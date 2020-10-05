@@ -1,0 +1,12 @@
+<div>
+  <button (click)="loadMidfielders()">Load mid</button>
+  <button (click)="loadForwards()">Load for</button>
+  <br />
+  <app-players-filters></app-players-filters>
+
+  <app-players-table
+    [lastMatchday]="(properties$ | async)?.lastMatchday"
+    [players]="state"
+    [filters]="filters"
+  ></app-players-table>
+</div>

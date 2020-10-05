@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fantasybl-stats": {
+      "hosting": {
+        "fbl": [
+          "fantasybl-stats"
+        ]
+      }
+    }
+  }
+}
