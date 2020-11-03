@@ -1,7 +1,31 @@
-<div fxLayout>
-  <mat-card><span>GK</span></mat-card>
-  <div class="card">GK</div>
-  <div class="card">DEF</div>
-  <div class="card">MID</div>
-  <div class="card">FOR</div>
-</div>
+<app-expansion-panel [opened]="opened">
+  <div header fxLayoutAlign="space-between">
+    <span>Filters</span>
+    <mat-icon
+      *ngIf="filtersModified$ | async"
+      (click)="clearFilters(); $event.stopPropagation()"
+      class="red clear-button"
+      >cancel</mat-icon
+    >
+  </div>
+  <div
+    content
+    fxLayoutGap.lt-sm="10px"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="start stretch"
+    class.gt-xs="container"
+    gdAreas.gt-xs="form unavailable | price popularity | teams teams"
+    gdGap.gt-xs="10px"
+    gdRows.gt-xs="auto auto auto"
+    gdColumns.gt-xs="50% 50%"
+  >
+    <app-players-select-form gdArea.gt-xs="form"></app-players-select-form>
+    <app-players-filter-hide-unavailable
+      ngClass.lt-sm="unavailable-mobile"
+      gdArea.gt-xs="unavailable"
+    ></app-players-filter-hide-unavailable>
+    <app-players-filter-max-price gdArea.gt-xs="price"></app-players-filter-max-price>
+    <app-players-filter-popularity gdArea.gt-xs="popularity"></app-players-filter-popularity>
+    <app-players-filter-teams gdArea.gt-xs="teams"></app-players-filter-teams>
+  </div>
+</app-expansion-panel>

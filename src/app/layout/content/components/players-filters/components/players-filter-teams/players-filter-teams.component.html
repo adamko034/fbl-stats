@@ -1,0 +1,24 @@
+<app-form-field [label]="'Teams'" [labelWidth]="9">
+  <div *ngIf="!isTeamSelected()" fxLayoutAlign="start center" fxLayoutGap="3px">
+    <span>No teams selected.</span>
+    <button class="red-background select-button" mat-icon-button (click)="openDialog()">
+      <mat-icon>input</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="isTeamSelected()" fxLayout="row" fxLayoutAlign="start center">
+    <mat-chip-list>
+      <mat-chip
+        [selectable]="0"
+        [disableRipple]="1"
+        *ngFor="let team of getSelectedTeamsChips()"
+        (removed)="onChipRemove(team)"
+      >
+        {{ team }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <button fxFlexAlign="end" class="red-background select-button" mat-icon-button (click)="openDialog()">
+      <mat-icon>input</mat-icon>
+    </button>
+  </div>
+</app-form-field>

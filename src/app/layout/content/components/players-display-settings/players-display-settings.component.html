@@ -1,0 +1,28 @@
+<div fxHide.lt-md fxLayoutAlign="end center" class="padding" fxLayoutGap="40px">
+  <app-players-search></app-players-search>
+  <app-players-view-switch></app-players-view-switch>
+  <app-players-count></app-players-count>
+</div>
+
+<div fxHide.lt-sm fxHide.gt-sm class="padding">
+  <div fxLayout="column" fxLayoutAlign="center end">
+    <app-players-search></app-players-search>
+    <div fxLayout="row" fxLayoutGap="40px">
+      <app-players-view-switch></app-players-view-switch>
+      <app-players-count></app-players-count>
+    </div>
+  </div>
+</div>
+
+<app-expansion-panel fxHide.gt-xs [opened]="opened">
+  <div header fxLayoutAlign="space-between">
+    <span>Display settings</span>
+    <mat-icon *ngIf="searchChanged$ | async" (click)="clearSearch(); $event.stopPropagation()" class="red clear-button"
+      >cancel</mat-icon
+    >
+  </div>
+  <div content fxLayout="column" fxLayoutGap="5px">
+    <app-players-search></app-players-search>
+    <app-players-count></app-players-count>
+  </div>
+</app-expansion-panel>

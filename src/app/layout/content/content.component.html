@@ -1,12 +1,26 @@
 <div>
-  <button (click)="loadMidfielders()">Load mid</button>
-  <button (click)="loadForwards()">Load for</button>
-  <br />
-  <app-players-filters></app-players-filters>
+  <div class="position" ngClass.lt-sm="padding-mobile">
+    <app-select-position></app-select-position>
+  </div>
 
-  <app-players-table
-    [lastMatchday]="(properties$ | async)?.lastMatchday"
-    [players]="state"
-    [filters]="filters"
-  ></app-players-table>
+  <div
+    *ngIf="showContent"
+    class="content animate__animated animate__bounceInLeft"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap="20px"
+  >
+    <div ngClass.lt-sm="padding-mobile" fxLayout="column">
+      <app-players-filters
+        [opened]="panelsOpened"
+        fxFlexAlign="center"
+        ngClass.xs="filters-100"
+        ngClass.gt-xs="filters-90"
+        ngClass.gt-sm="filters-80"
+      ></app-players-filters>
+    </div>
+
+    <app-players-display-settings ngClass.lt-sm="padding-mobile" [opened]="panelsOpened"></app-players-display-settings>
+    <app-players-table-container></app-players-table-container>
+  </div>
 </div>

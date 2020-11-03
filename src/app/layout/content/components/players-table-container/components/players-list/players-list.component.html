@@ -1,0 +1,14 @@
+<div
+  *ngIf="players.length > 0"
+  class="container"
+  fxLayout="column"
+  fxLayoutAlign.gt-xs="center"
+  ngClass.gt-xs="container-md"
+  ngClass.gt-md="container-lg"
+>
+  <div *ngFor="let player of players" fxLayout="column">
+    <app-player-tile [player]="player"></app-player-tile>
+  </div>
+</div>
+
+<app-player-tile-no-records *ngIf="players.length === 0"></app-player-tile-no-records>

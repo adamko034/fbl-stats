@@ -1,0 +1,11 @@
+<div fxHide.gt-xs>
+  <app-players-list [players]="playersToDisplay"></app-players-list>
+</div>
+
+<div fxHide.lt-sm>
+  <div [ngSwitch]="view">
+    <app-players-list *ngSwitchCase="PlayersViews.LIST" [players]="playersToDisplay"></app-players-list>
+    <app-players-tiles *ngSwitchCase="PlayersViews.TILES" [players]="playersToDisplay"></app-players-tiles>
+    <app-players-table *ngSwitchDefault [players]="playersToDisplay"></app-players-table>
+  </div>
+</div>

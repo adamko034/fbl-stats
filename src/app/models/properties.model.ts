@@ -1,4 +1,10 @@
 export interface Properties {
   lastMatchday: number;
-  maxPrice: number;
+  playerMaxPrice: number;
+  teams: TeamProperty[];
+}
+
+export interface TeamProperty {
+  name: string;
+  short: string;
 }

@@ -1,0 +1,24 @@
+<div class="switch-container">
+  <div class="switch">
+    <mat-button-toggle-group
+      [value]="defaultValue"
+      (change)="onChange($event)"
+      [name]="name"
+      #group="matButtonToggleGroup"
+    >
+      <mat-button-toggle
+        *ngFor="let item of items"
+        [disableRipple]="1"
+        [ngClass]="selectedItem === item.value ? 'item-active' : 'item'"
+        [value]="item.value"
+      >
+        <span *ngIf="!item.isMatIcon">
+          {{ item.description }}
+        </span>
+        <mat-icon [ngClass]="{ 'material-icons-outlined': item.isMatIconOutline }" *ngIf="item.isMatIcon">{{
+          item.description
+        }}</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

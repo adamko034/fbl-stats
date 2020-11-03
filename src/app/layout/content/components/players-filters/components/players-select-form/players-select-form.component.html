@@ -1,0 +1,9 @@
+<app-form-field [label]="'Include MDs'">
+  <app-switch
+    fxFlex
+    [defaultValue]="default"
+    name="form"
+    [items]="items"
+    (switchChange)="onFormChanged($event)"
+  ></app-switch>
+</app-form-field>

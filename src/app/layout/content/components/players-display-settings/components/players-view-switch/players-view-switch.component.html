@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+  <span>View:</span>
+  <app-switch
+    [defaultValue]="default"
+    name="viewSwitch"
+    [items]="items"
+    (switchChange)="onViewChange($event)"
+  ></app-switch>
+</div>

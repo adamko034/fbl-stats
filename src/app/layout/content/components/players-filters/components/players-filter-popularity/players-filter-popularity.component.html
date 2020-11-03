@@ -1,0 +1,17 @@
+<app-form-field [label]="'Max Popularity'" [labelWidth]="20">
+  <div fxLayout fxLayoutGap="10px">
+    <mat-slider
+      class="slider"
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      [ngModel]="value"
+      fxFlex="80"
+      thumbLabel
+      (change)="onPopularityChanged($event)"
+    ></mat-slider>
+    <span fxFlex="15" fxFlexAlign="center" class="bolder">
+      <span>{{ value?.toString() + '%' }}</span>
+    </span>
+  </div>
+</app-form-field>

@@ -1,0 +1,25 @@
+.switch-container {
+  background-color: #fff;
+
+  .switch {
+    .item-active {
+      background-color: #c80a00;
+      transition-property: background-color, color;
+      transition-duration: 0.4s, 0.5s;
+      transition-timing-function: ease-in, ease-in;
+      color: #fff;
+    }
+
+    .item {
+      background-color: transparent;
+      transition-property: background-color, color;
+      transition-duration: 0.4s, 0.5s;
+      transition-timing-function: ease-in, ease-in;
+      color: unset;
+
+      &:hover {
+        font-weight: 500;
+      }
+    }
+  }
+}

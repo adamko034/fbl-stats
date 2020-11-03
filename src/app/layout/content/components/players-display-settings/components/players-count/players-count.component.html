@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+  <span>Show:</span>
+  <app-switch
+    [defaultValue]="default"
+    name="count"
+    [items]="items"
+    (switchChange)="onPlayersCountChange($event)"
+  ></app-switch>
+</div>

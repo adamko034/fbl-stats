@@ -1,0 +1,17 @@
+.position-title {
+  text-align: center;
+}
+
+.position-card {
+  min-width: 105px;
+  text-align: center;
+
+  &:not(.selected) {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  background-color: #c80a00;
+  color: #fff;
+}
