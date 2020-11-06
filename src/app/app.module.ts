@@ -15,6 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
@@ -34,6 +35,7 @@ import { ContentComponent } from 'src/app/layout/content/content.component';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { ToastrComponent } from './components/toastr/toastr.component';
 import { PlayersViewSwitchComponent } from './layout/content/components/players-display-settings/components/players-view-switch/players-view-switch.component';
 import { PlayersFilterHideUnavailableComponent } from './layout/content/components/players-filters/components/players-filter-hide-unavailable/players-filter-hide-unavailable.component';
@@ -46,6 +48,8 @@ import { PlayersTilesComponent } from './layout/content/components/players-table
 import { PlayerTileNoRecordsComponent } from './layout/content/components/players-table-container/components/shared/player-tile-no-records/player-tile-no-records.component';
 import { PlayerTileComponent } from './layout/content/components/players-table-container/components/shared/player-tile/player-tile.component';
 import { SelectPositionComponent } from './layout/content/components/select-position/select-position.component';
+import { LastUdpatedComponent } from './layout/header/components/last-udpated/last-udpated.component';
+import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
@@ -78,7 +82,10 @@ import { SwitchComponent } from './shared/components/switch/switch.component';
     PlayersViewSwitchComponent,
     PlayersTilesComponent,
     PlayerTileComponent,
-    PlayerTileNoRecordsComponent
+    PlayerTileNoRecordsComponent,
+    LastUdpatedComponent,
+    LoadingComponent,
+    NewUpdatesComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +109,8 @@ import { SwitchComponent } from './shared/components/switch/switch.component';
     MatInputModule,
     MatFormFieldModule,
     MatBadgeModule,
-    ToastrModule.forRoot(),
+    MatProgressSpinnerModule,
+    ToastrModule.forRoot({ preventDuplicates: true }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     CommonModule

@@ -1,0 +1,5 @@
+<div *ngIf="newUpdates$ | async">
+  <button mat-icon-button (click)="updateData()">
+    <mat-icon matBadge="!">cached</mat-icon>
+  </button>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PlayersDisplaySettingService } from 'src/app/services/players-display-settings.service';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 
@@ -8,7 +9,7 @@ import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.
   styleUrls: ['./players-count.component.scss']
 })
 export class PlayersCountComponent implements OnInit {
-  public default: number;
+  public value$: Observable<number>;
   public items: SwitchItem[] = [
     { description: '10', value: 10 },
     { description: '15', value: 15 },
@@ -19,7 +20,7 @@ export class PlayersCountComponent implements OnInit {
   constructor(private playersDisplaySettingsService: PlayersDisplaySettingService) {}
 
   ngOnInit(): void {
-    this.default = this.playersDisplaySettingsService.getInitialData().count;
+    this.value$ = this.playersDisplaySettingsService.selectPlayersCount();
   }
 
   public onPlayersCountChange(newValue: number): void {

@@ -75,6 +75,15 @@ mat-button-toggle.position-active {
   margin: 2px;
 }
 
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #c80a00;
+}
+
+.mat-badge-content {
+  background: #c80a00;
+}
+
 .dot-red {
   height: 10px;
   width: 10px;

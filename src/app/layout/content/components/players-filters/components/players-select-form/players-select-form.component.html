@@ -1,7 +1,7 @@
 <app-form-field [label]="'Include MDs'">
   <app-switch
     fxFlex
-    [defaultValue]="default"
+    [value]="matchdays"
     name="form"
     [items]="items"
     (switchChange)="onFormChanged($event)"

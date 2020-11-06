@@ -1,1 +1,7 @@
-<div class="header" fxLayout fxLayoutAlign="start center" [ngClass.lt-sm]="'header-mobile'">FBL Stats</div>
+<div class="header" fxLayout fxLayoutAlign="space-between center" [ngClass.lt-sm]="'header-mobile'">
+  <span>FantasyBL Stats</span>
+  <div fxFlexAlign="end" fxLayoutAlign="end center" fxLayout="row" fxLayoutGap="3px">
+    <app-last-udpated></app-last-udpated>
+    <app-new-updates></app-new-updates>
+  </div>
+</div>

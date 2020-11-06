@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
+import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Player } from 'src/app/models/player.model';
 import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
@@ -20,6 +21,7 @@ export class FirebaseService {
       .collection<Player>(this.midfieldersCollection)
       .valueChanges()
       .pipe(
+        take(1),
         catchError(() => {
           this.errorService.sendFirebaseError();
           return [];
@@ -32,6 +34,7 @@ export class FirebaseService {
       .collection<Player>(this.forwardsCollection)
       .valueChanges()
       .pipe(
+        take(1),
         catchError(() => {
           this.errorService.sendFirebaseError();
           return [];
@@ -44,6 +47,7 @@ export class FirebaseService {
       .collection<Player>(this.defendersCollection)
       .valueChanges()
       .pipe(
+        take(1),
         catchError(() => {
           this.errorService.sendFirebaseError();
           return [];
@@ -56,6 +60,7 @@ export class FirebaseService {
       .collection<Player>(this.goalkeepersCollection)
       .valueChanges()
       .pipe(
+        take(1),
         catchError(() => {
           this.errorService.sendFirebaseError();
           return [];
@@ -67,6 +72,20 @@ export class FirebaseService {
     return this.firestore
       .collection('properties')
       .doc<Properties>('general')
+      .valueChanges()
+      .pipe(
+        take(1),
+        catchError(() => {
+          this.errorService.sendFirebaseError();
+          return [];
+        })
+      );
+  }
+
+  public getLastUpdated(): Observable<LastUpdated> {
+    return this.firestore
+      .collection('properties')
+      .doc<LastUpdated>('last-updated')
       .valueChanges()
       .pipe(
         catchError(() => {

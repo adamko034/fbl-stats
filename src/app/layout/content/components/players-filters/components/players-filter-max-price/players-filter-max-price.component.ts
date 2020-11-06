@@ -23,11 +23,11 @@ export class PlayersFilterMaxPriceComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((maxPrice) => {
         if (maxPrice) {
-          this.max = maxPrice;
-
-          if (this.value === 0) {
+          if (this.value === 0 || this.value === this.max) {
             this.value = maxPrice;
           }
+
+          this.max = maxPrice;
         }
       });
 

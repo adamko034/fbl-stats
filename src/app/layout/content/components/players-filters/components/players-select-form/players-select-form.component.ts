@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { PropertiesService } from 'src/app/services/properties.service';
@@ -13,26 +13,24 @@ import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.
 export class PlayersSelectFormComponent implements OnInit {
   private destroyed$ = new Subject<void>();
 
-  public default = 0;
+  public matchdays = 0;
 
   public items: SwitchItem[] = [];
 
   constructor(private filtersStoreService: FiltersStoreService, private propertiesService: PropertiesService) {}
 
   public ngOnInit(): void {
-    this.propertiesService
-      .selectLastMatchday()
+    combineLatest([this.propertiesService.selectLastMatchday(), this.filtersStoreService.selectMatchdays()])
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((lastMatchday) => {
-        const matchdaysToDisplay = lastMatchday < 5 ? lastMatchday : 5;
-        for (let i = 1; i <= matchdaysToDisplay; i++) {
-          this.items.push({ description: i.toString(), value: i });
+      .subscribe(([lastMatchday, matchdays]) => {
+        if (this.items.length === 0) {
+          const matchdaysToDisplay = lastMatchday < 5 ? lastMatchday : 5;
+          for (let i = 1; i <= matchdaysToDisplay; i++) {
+            this.items.push({ description: i.toString(), value: i });
+          }
         }
 
-        this.default =
-          matchdaysToDisplay < this.filtersStoreService.getInitialData().matchdays
-            ? matchdaysToDisplay
-            : this.filtersStoreService.getInitialData().matchdays;
+        this.matchdays = lastMatchday < 5 ? lastMatchday : matchdays;
       });
   }
 

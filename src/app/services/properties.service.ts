@@ -1,21 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { Properties, TeamProperty } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Injectable({ providedIn: 'root' })
 export class PropertiesService {
-  private properties$: Observable<Properties>;
+  private properties$ = new ReplaySubject<Properties>(1);
+  private destroyed$ = new Subject<void>();
+  private state: Properties;
+  private lastUpdated$ = new Subject<Date>();
 
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService, private loadingService: LoadingService) {}
 
-  public selectProperties(): Observable<Properties> {
-    if (!this.properties$) {
-      this.properties$ = this.firebaseService.getProperties();
-    }
+  public update() {
+    this.state = null;
+    this.loadProperties();
+  }
 
-    return this.properties$;
+  public loadLastUpdated() {
+    this.loadingService.startLoadingLastUpdated();
+    this.firebaseService
+      .getLastUpdated()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((lastUpdated) => {
+        this.lastUpdated$.next(new Date(lastUpdated.date));
+        this.loadingService.endLoadingLastUpdated();
+      });
   }
 
   public selectPlayerMaxPrice(): Observable<number> {
@@ -28,5 +40,29 @@ export class PropertiesService {
 
   public selectLastMatchday(): Observable<number> {
     return this.selectProperties().pipe(map((properties) => properties.lastMatchday));
+  }
+
+  public selectLastUpdated(): Observable<Date> {
+    return this.lastUpdated$.asObservable();
+  }
+
+  private selectProperties(): Observable<Properties> {
+    if (!this.state) {
+      this.loadProperties();
+    }
+
+    return this.properties$.asObservable();
+  }
+
+  private loadProperties() {
+    this.loadingService.startLoadingProperties();
+    this.firebaseService
+      .getProperties()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((properties) => {
+        this.state = { ...properties };
+        this.properties$.next({ ...this.state });
+        this.loadingService.endLoadingProperties();
+      });
   }
 }

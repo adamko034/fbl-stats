@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
   <span>View:</span>
   <app-switch
-    [defaultValue]="default"
+    [value]="value$ | async"
     name="viewSwitch"
     [items]="items"
     (switchChange)="onViewChange($event)"

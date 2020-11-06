@@ -3,13 +3,7 @@
     <app-select-position></app-select-position>
   </div>
 
-  <div
-    *ngIf="showContent"
-    class="content animate__animated animate__bounceInLeft"
-    fxLayout="column"
-    fxLayoutAlign="start stretch"
-    fxLayoutGap="20px"
-  >
+  <div *ngIf="showContent" class="content" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
     <div ngClass.lt-sm="padding-mobile" fxLayout="column">
       <app-players-filters
         [opened]="panelsOpened"
