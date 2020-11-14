@@ -133,3 +133,22 @@ mat-button-toggle.position-active {
   font-weight: 550;
   color: orange;
 }
+
+.circle-border {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid rgba($color: #000000, $alpha: 0.4);
+  color: rgba($color: #000000, $alpha: 0.4);
+  transition: all 0.4s;
+  transition-property: border, color;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid #c80a00;
+    color: #c80a00;
+  }
+}

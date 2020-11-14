@@ -9,8 +9,20 @@
 table {
   width: 100%;
 
-  tr:hover:not(.mat-header-row) {
+  tr:hover:not(.mat-header-row):not(.player-details-content):not(.player-details-expanded-row) {
     background-color: rgba($color: #000000, $alpha: 0.1);
+  }
+
+  tr.player-details-content {
+    height: 0;
+  }
+
+  .player-details-row td {
+    border-bottom-width: 0;
+  }
+
+  .player-details {
+    overflow: hidden;
   }
 
   .total-points {

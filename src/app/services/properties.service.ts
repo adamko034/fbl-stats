@@ -4,6 +4,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Properties, TeamProperty } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })
 export class PropertiesService {
@@ -11,11 +12,13 @@ export class PropertiesService {
   private destroyed$ = new Subject<void>();
   private state: Properties;
   private lastUpdated$ = new Subject<Date>();
+  private propertiesLoaded = false;
 
   constructor(private firebaseService: FirebaseService, private loadingService: LoadingService) {}
 
   public update() {
     this.state = null;
+    this.propertiesLoaded = false;
     this.loadProperties();
   }
 
@@ -47,8 +50,9 @@ export class PropertiesService {
   }
 
   private selectProperties(): Observable<Properties> {
-    if (!this.state) {
+    if (!this.propertiesLoaded) {
       this.loadProperties();
+      this.propertiesLoaded = true;
     }
 
     return this.properties$.asObservable();
@@ -60,6 +64,7 @@ export class PropertiesService {
       .getProperties()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((properties) => {
+        Logger.logDev('properties store service, properties loaded');
         this.state = { ...properties };
         this.properties$.next({ ...this.state });
         this.loadingService.endLoadingProperties();

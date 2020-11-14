@@ -13,8 +13,11 @@ export class PlayersModelConverter {
   }
 
   private toUiSingle(player: Player): PlayerUi {
-    const { name, team, teamShort, popularity, price, games, totalPoints, attendance } = cloneDeep(player) as Player;
+    const { id, name, team, teamShort, popularity, price, games, totalPoints, attendance } = cloneDeep(
+      player
+    ) as Player;
     return {
+      id,
       name,
       team,
       teamShort,

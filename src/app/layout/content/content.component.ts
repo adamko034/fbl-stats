@@ -10,16 +10,15 @@ import { FiltersStoreService } from 'src/app/services/filters-store.service';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-  private destroyed$ = new Subject<void>();
-
-  public showContent = false;
-  public showLoader = false;
-
   public get panelsOpened(): boolean {
     return !this.deviceDetector.isMobile();
   }
 
   constructor(private filtersStoreService: FiltersStoreService, private deviceDetector: DeviceDetectorService) {}
+  private destroyed$ = new Subject<void>();
+
+  public showContent = false;
+  public showLoader = false;
 
   public ngOnInit(): void {
     this.filtersStoreService

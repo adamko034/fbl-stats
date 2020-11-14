@@ -7,7 +7,8 @@
   ngClass.gt-md="container-lg"
 >
   <div *ngFor="let player of players" fxLayout="column">
-    <app-player-tile [player]="player"></app-player-tile>
+    <app-player-tile fxHide.lt-sm [player]="player" [timelineOptions]="playerTimelineOptions"></app-player-tile>
+    <app-player-tile fxHide.gt-xs [player]="player" [timelineOptions]="playerTimelineOptionsMobile"></app-player-tile>
   </div>
 </div>
 

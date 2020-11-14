@@ -15,6 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -30,6 +31,7 @@ import { PlayersDisplaySettingsComponent } from 'src/app/layout/content/componen
 import { PlayersFilterMaxPriceComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-max-price/players-filter-max-price.component';
 import { PlayersSelectFormComponent } from 'src/app/layout/content/components/players-filters/components/players-select-form/players-select-form.component';
 import { PlayersFiltersComponent } from 'src/app/layout/content/components/players-filters/players-filters.component';
+import { PlayerSchedulesComponent } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/components/player-schedules/player-schedules.component';
 import { PlayersTableContainerComponent } from 'src/app/layout/content/components/players-table-container/players-table-container.component';
 import { ContentComponent } from 'src/app/layout/content/content.component';
 import { environment } from 'src/environments/environment';
@@ -45,6 +47,7 @@ import { SelectTeamsDialogComponent } from './layout/content/components/players-
 import { PlayersListComponent } from './layout/content/components/players-table-container/components/players-list/players-list.component';
 import { PlayersTableComponent } from './layout/content/components/players-table-container/components/players-table/players-table.component';
 import { PlayersTilesComponent } from './layout/content/components/players-table-container/components/players-tiles/players-tiles.component';
+import { PlayerDetailsComponent } from './layout/content/components/players-table-container/components/shared/player-details/player-details.component';
 import { PlayerTileNoRecordsComponent } from './layout/content/components/players-table-container/components/shared/player-tile-no-records/player-tile-no-records.component';
 import { PlayerTileComponent } from './layout/content/components/players-table-container/components/shared/player-tile/player-tile.component';
 import { SelectPositionComponent } from './layout/content/components/select-position/select-position.component';
@@ -54,6 +57,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
 import { SwitchComponent } from './shared/components/switch/switch.component';
+import { TimelineComponent } from './shared/components/timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +89,11 @@ import { SwitchComponent } from './shared/components/switch/switch.component';
     PlayerTileNoRecordsComponent,
     LastUdpatedComponent,
     LoadingComponent,
-    NewUpdatesComponent
+    NewUpdatesComponent,
+    PlayersFiltersComponent,
+    TimelineComponent,
+    PlayerDetailsComponent,
+    PlayerSchedulesComponent
   ],
   imports: [
     BrowserModule,
@@ -109,10 +117,12 @@ import { SwitchComponent } from './shared/components/switch/switch.component';
     MatInputModule,
     MatFormFieldModule,
     MatBadgeModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     ToastrModule.forRoot({ preventDuplicates: true }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    BrowserAnimationsModule,
     CommonModule
   ],
   providers: [],

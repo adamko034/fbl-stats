@@ -1,23 +1,29 @@
-<div class="player hvr-underline-from-left">
-  <div fxLayout="row" fxLayoutAlign="space-between start">
-    <div fxLayout="column">
-      <div class="name">{{ player.name }}</div>
-      <div class="team">{{ player.team }}</div>
+<div class="player hvr-underline-from-left" ngClass.xs="player-mobile" fxLayout="column">
+  <div (click)="onShowPlayerDetails()">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+      <div fxLayout="column">
+        <div class="name">{{ player.name }}</div>
+        <div class="team">{{ player.team }}</div>
+      </div>
+
+      <div fxLayout="column" fxLayoutGap="3px">
+        <div fxFlexAlign="end" class="score red-background">{{ player.form }}</div>
+        <div fxLayout="row" fxLayoutGap="7px">
+          <span [ngClass]="getScoreColor(game.points)" *ngFor="let game of player.games | orderBy: '-matchday'">{{
+            game.points
+          }}</span>
+        </div>
+      </div>
     </div>
 
-    <div fxLayout="column" fxLayoutGap="3px">
-      <div fxFlexAlign="end" class="score red-background">{{ player.form }}</div>
-      <div fxLayout="row" fxLayoutGap="7px">
-        <span [ngClass]="getScoreColor(game.points)" *ngFor="let game of player.games | orderBy: '-matchday'">{{
-          game.points
-        }}</span>
-      </div>
+    <div fxLayout="row" fxLayoutGap="10px" class="stats">
+      <span><span class="stat-type">$</span>: {{ player.price }}M</span>
+      <span><span class="stat-type">%</span>: {{ player.popularity }}</span>
+      <span><span class="stat-type">TP</span>: {{ player.totalPoints }}</span>
     </div>
   </div>
 
-  <div fxLayout="row" fxLayoutGap="10px" class="stats">
-    <span><span class="stat-type">$</span>: {{ player.price }}M</span>
-    <span><span class="stat-type">%</span>: {{ player.popularity }}</span>
-    <span><span class="stat-type">TP</span>: {{ player.totalPoints }}</span>
+  <div>
+    <app-player-details [player]="player" [timelineOptions]="timelineOptions"></app-player-details>
   </div>
 </div>

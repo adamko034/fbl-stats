@@ -1,0 +1,15 @@
+<div
+  *ngIf="isExpanded$ | async"
+  fxLayout.lt-sm="column"
+  fxLayout="row"
+  fxLayoutAlign="space-between"
+  class="player-details-container"
+  fxLayoutGap.xs="7px"
+>
+  <app-player-schedules [player]="player" [timelineOptions]="timelineOptions"></app-player-schedules>
+  <div fxFlexAlign="end">
+    <div class="circle-border" (click)="onDetailsCollapse()">
+      <mat-icon>expand_less</mat-icon>
+    </div>
+  </div>
+</div>

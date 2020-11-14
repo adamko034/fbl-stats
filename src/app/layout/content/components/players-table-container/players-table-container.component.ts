@@ -11,6 +11,7 @@ import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { PlayersDisplaySettingService } from 'src/app/services/players-display-settings.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { StoreService } from 'src/app/services/store.service';
+import { Logger } from 'src/app/utils/logger';
 
 @Component({
   selector: 'app-players-table-container',
@@ -34,6 +35,7 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
+    Logger.logDev('players table container component, ng on init');
     combineLatest([
       this.propertiesService.selectLastMatchday(),
       this.filtersStoreService.selectFilters(),
@@ -57,6 +59,7 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
+    Logger.logDev('players table container component, ng on destroy');
     this.destroyed$.next();
     this.storeService.close();
   }
