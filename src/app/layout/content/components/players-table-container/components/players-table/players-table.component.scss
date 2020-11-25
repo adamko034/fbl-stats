@@ -13,8 +13,28 @@ table {
     background-color: rgba($color: #000000, $alpha: 0.1);
   }
 
+  tr:hover:not(.mat-header-row) {
+    cursor: pointer;
+  }
+
   tr.player-details-content {
     height: 0;
+  }
+
+  .td-name {
+    width: 20%;
+  }
+
+  .td-team {
+    width: 10%;
+  }
+
+  .td-next {
+    width: 8%;
+  }
+
+  .td-numbers {
+    width: 6%;
   }
 
   .player-details-row td {
@@ -23,9 +43,15 @@ table {
 
   .player-details {
     overflow: hidden;
+    margin-bottom: 7px;
   }
 
   .total-points {
     font-weight: 500;
+  }
+
+  .img {
+    width: 30px;
+    height: 30px;
   }
 }

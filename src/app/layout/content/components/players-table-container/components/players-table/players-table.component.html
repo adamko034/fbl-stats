@@ -3,7 +3,7 @@
     <table mat-table [dataSource]="data" multiTemplateDataRows>
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let item">
+        <td mat-cell *matCellDef="let item" class="td-name">
           <div fxLayout fxLayoutGap="5px">
             <span>{{ item.name }}</span>
             <span *ngIf="item.attendance === 0" class="dot-red"></span>
@@ -11,15 +11,37 @@
         </td>
       </ng-container>
 
-      <ng-container [matColumnDef]="column.fieldName" *ngFor="let column of columns">
+      <ng-container matColumnDef="Team">
+        <th mat-header-cell *matHeaderCellDef>Team</th>
+        <td mat-cell *matCellDef="let player" class="td-team">
+          <app-team-logo [team]="player.teamShort" [height]="35"></app-team-logo>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Next">
+        <th mat-header-cell *matHeaderCellDef>Next</th>
+        <td mat-cell *matCellDef="let player" class="td-next">
+          <app-player-next-game [height]="35" [player]="player"></app-player-next-game>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column.fieldName" *ngFor="let column of columns; trackBy: trackColumnsBy">
         <th mat-header-cell *matHeaderCellDef>{{ column.displayName }}</th>
-        <td mat-cell *matCellDef="let item" [ngClass]="getTdClass(column, item)">{{ item[column.fieldName] }}</td>
+        <td mat-cell *matCellDef="let item" class="td-numbers" [ngClass]="getTdClass(column, item)">
+          {{ item[column.fieldName] }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="playerDetails">
         <td mat-cell *matCellDef="let player" [attr.colspan]="displayedColumns.length">
-          <div class="player-details" [@detailExpand]="expandedRows[player.id] ? 'expanded' : 'collapsed'">
-            <app-player-details [player]="player" [timelineOptions]="playerTimelineOptions"></app-player-details>
+          <div class="player-details" [@detailExpand] *ngIf="!!expandedRows[player.id]">
+            <app-player-details [player]="player"></app-player-details>
+            <div class="red bold" (click)="toggleExpandedPlayer(player.id)">
+              <span class="hvr-icon-bob" fxLayoutAlign="start center">
+                Show less
+                <mat-icon class="hvr-icon">keyboard_arrow_up</mat-icon>
+              </span>
+            </div>
           </div>
         </td>
       </ng-container>

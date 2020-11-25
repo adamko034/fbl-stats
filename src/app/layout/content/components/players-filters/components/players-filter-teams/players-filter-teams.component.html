@@ -10,10 +10,10 @@
       <mat-chip
         [selectable]="0"
         [disableRipple]="1"
-        *ngFor="let team of getSelectedTeamsChips()"
-        (removed)="onChipRemove(team)"
+        *ngFor="let team of selectedTeams | filterByImpure: ['selected']:true; trackBy: trackChipsBy"
+        (removed)="onChipRemove(team.short)"
       >
-        {{ team }}
+        {{ team.short }}
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>

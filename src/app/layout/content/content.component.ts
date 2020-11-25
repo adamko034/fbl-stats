@@ -3,6 +3,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
+import { Logger } from 'src/app/utils/logger';
 
 @Component({
   selector: 'app-content',
@@ -18,12 +19,15 @@ export class ContentComponent implements OnInit {
   private destroyed$ = new Subject<void>();
 
   public showContent = false;
-  public showLoader = false;
 
   public ngOnInit(): void {
+    Logger.logDev('content component, ng on init');
     this.filtersStoreService
       .selectPosition()
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((position) => (this.showContent = !!position));
+      .subscribe((position) => {
+        Logger.logDev('content component, ng on init subscriptions, position: ' + position);
+        this.showContent = !!position;
+      });
   }
 }

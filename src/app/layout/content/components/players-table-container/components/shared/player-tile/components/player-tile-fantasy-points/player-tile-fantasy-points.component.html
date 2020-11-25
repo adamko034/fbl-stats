@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="3px">
+  <div class="player-score red-background">{{ player.form }}</div>
+  <div fxLayout="row" fxLayoutGap="7px">
+    <span
+      [ngClass]="getScoreColor(game.points)"
+      *ngFor="let game of player.games | orderBy: '-matchday'; trackBy: trackGamesBy"
+      >{{ game.points }}</span
+    >
+  </div>
+</div>

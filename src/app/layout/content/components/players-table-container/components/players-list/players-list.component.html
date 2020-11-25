@@ -1,15 +1,15 @@
 <div
-  *ngIf="players.length > 0"
   class="container"
   fxLayout="column"
-  fxLayoutAlign.gt-xs="center"
-  ngClass.gt-xs="container-md"
+  ngClass.gt-xs="container-sm"
+  ngClass.gt-sm="container-md"
   ngClass.gt-md="container-lg"
 >
-  <div *ngFor="let player of players" fxLayout="column">
-    <app-player-tile fxHide.lt-sm [player]="player" [timelineOptions]="playerTimelineOptions"></app-player-tile>
-    <app-player-tile fxHide.gt-xs [player]="player" [timelineOptions]="playerTimelineOptionsMobile"></app-player-tile>
+  <div *ngIf="players?.length > 0" fxLayout="column" fxLayoutGap="20px" fxLayoutGap.lt-sm="10px">
+    <div *ngFor="let player of players; trackBy: trackPlayersBy">
+      <app-player-tile [player]="player"></app-player-tile>
+    </div>
   </div>
-</div>
 
-<app-player-tile-no-records *ngIf="players.length === 0"></app-player-tile-no-records>
+  <app-player-tile-no-records *ngIf="players?.length === 0"></app-player-tile-no-records>
+</div>

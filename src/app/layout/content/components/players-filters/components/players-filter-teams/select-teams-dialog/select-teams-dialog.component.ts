@@ -16,4 +16,8 @@ export class SelectTeamsDialogComponent {
   public close(): void {
     this.dialogRef.close(this.data.teams.filter((t) => t.selected));
   }
+
+  public trackTeamsBy(index, item: SelectableTeam) {
+    return item.short;
+  }
 }

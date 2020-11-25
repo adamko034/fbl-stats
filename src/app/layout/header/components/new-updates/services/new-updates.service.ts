@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PropertiesService } from 'src/app/services/properties.service';
@@ -10,7 +9,7 @@ export class NewUpdatesService {
   private lastUpdated$: Subscription;
   private currentDate: Date;
 
-  constructor(private propertiesService: PropertiesService, private toastrService: ToastrService) {}
+  constructor(private propertiesService: PropertiesService) {}
 
   public select(): Observable<boolean> {
     if (!this.lastUpdated$) {

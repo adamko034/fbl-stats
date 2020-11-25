@@ -32,13 +32,8 @@ export class TimelineItemBuilder {
     return this;
   }
 
-  public withImageUrl(url: string): TimelineItemBuilder {
-    this.item.imageUrl = url;
-    return this;
-  }
-
-  public withImageAltText(altText: string): TimelineItemBuilder {
-    this.item.imageAltText = altText;
+  public withTeamShort(teamShort: string): TimelineItemBuilder {
+    this.item.teamShort = teamShort;
     return this;
   }
 

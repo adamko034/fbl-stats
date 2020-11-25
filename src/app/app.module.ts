@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgPipesModule } from 'ngx-pipes';
@@ -34,6 +35,9 @@ import { PlayersFiltersComponent } from 'src/app/layout/content/components/playe
 import { PlayerSchedulesComponent } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/components/player-schedules/player-schedules.component';
 import { PlayersTableContainerComponent } from 'src/app/layout/content/components/players-table-container/players-table-container.component';
 import { ContentComponent } from 'src/app/layout/content/content.component';
+import { TeamLogoSourceDirective } from 'src/app/shared/components/team-logo/directives/team-logo-source.directive';
+import { TeamLogoStyleDirective } from 'src/app/shared/components/team-logo/directives/team-logo-style.directive';
+import { ImageLazyLoadingDirective } from 'src/app/shared/directives/image-lazy-loading/image-lazy-loading.directive';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,8 +51,14 @@ import { SelectTeamsDialogComponent } from './layout/content/components/players-
 import { PlayersListComponent } from './layout/content/components/players-table-container/components/players-list/players-list.component';
 import { PlayersTableComponent } from './layout/content/components/players-table-container/components/players-table/players-table.component';
 import { PlayersTilesComponent } from './layout/content/components/players-table-container/components/players-tiles/players-tiles.component';
+import { PlayerNextMatchDetailsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/player-next-match-details.component';
 import { PlayerDetailsComponent } from './layout/content/components/players-table-container/components/shared/player-details/player-details.component';
+import { PlayerNextGameComponent } from './layout/content/components/players-table-container/components/shared/player-next-game/player-next-game.component';
 import { PlayerTileNoRecordsComponent } from './layout/content/components/players-table-container/components/shared/player-tile-no-records/player-tile-no-records.component';
+import { PlayerTileFantasyDataComponent } from './layout/content/components/players-table-container/components/shared/player-tile/components/player-tile-fantasy-data/player-tile-fantasy-data.component';
+import { PlayerTileFantasyPointsComponent } from './layout/content/components/players-table-container/components/shared/player-tile/components/player-tile-fantasy-points/player-tile-fantasy-points.component';
+import { PlayerTileNameComponent } from './layout/content/components/players-table-container/components/shared/player-tile/components/player-tile-name/player-tile-name.component';
+import { PlayerTileNextGameComponent } from './layout/content/components/players-table-container/components/shared/player-tile/components/player-tile-next-game/player-tile-next-game.component';
 import { PlayerTileComponent } from './layout/content/components/players-table-container/components/shared/player-tile/player-tile.component';
 import { SelectPositionComponent } from './layout/content/components/select-position/select-position.component';
 import { LastUdpatedComponent } from './layout/header/components/last-udpated/last-udpated.component';
@@ -57,6 +67,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
 import { SwitchComponent } from './shared/components/switch/switch.component';
+import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 
 @NgModule({
@@ -93,7 +104,17 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
     PlayersFiltersComponent,
     TimelineComponent,
     PlayerDetailsComponent,
-    PlayerSchedulesComponent
+    PlayerSchedulesComponent,
+    TeamLogoComponent,
+    PlayerNextGameComponent,
+    PlayerNextMatchDetailsComponent,
+    PlayerTileNameComponent,
+    PlayerTileFantasyDataComponent,
+    PlayerTileNextGameComponent,
+    PlayerTileFantasyPointsComponent,
+    ImageLazyLoadingDirective,
+    TeamLogoSourceDirective,
+    TeamLogoStyleDirective
   ],
   imports: [
     BrowserModule,
@@ -106,6 +127,7 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatTooltipModule,
     MatCheckboxModule,
     MatExpansionModule,
     NgPipesModule,

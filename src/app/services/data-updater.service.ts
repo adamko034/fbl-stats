@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { StoreService } from 'src/app/services/store.service';
-import { SchedulesStoreService } from 'src/app/store/schedules/schedules-store.service';
+import { TeamsStoreService } from 'src/app/store/teams/teams-store.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataUpdatedService {
@@ -10,7 +10,7 @@ export class DataUpdatedService {
     private storeService: StoreService,
     private filtersService: FiltersStoreService,
     private propertiesService: PropertiesService,
-    private schedulesStoreService: SchedulesStoreService
+    private schedulesStoreService: TeamsStoreService
   ) {}
 
   public update(): void {

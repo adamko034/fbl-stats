@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewUpdatesService } from 'src/app/layout/header/components/new-updates/services/new-updates.service';
 import { DataUpdatedService } from 'src/app/services/data-updater.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-new-updates',
   templateUrl: './new-updates.component.html',
   styleUrls: ['./new-updates.component.scss']

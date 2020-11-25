@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Select Teams</h2>
 <div fxLayout="row wrap" fxLayoutGap="10px">
-  <div fxFlex="30" fxFlex.lt-md="45" fxFlex.lt-sm="30" *ngFor="let team of data.teams">
+  <div fxFlex="30" fxFlex.lt-md="45" fxFlex.lt-sm="30" *ngFor="let team of data.teams; trackBy: trackTeamsBy">
     <mat-checkbox [(ngModel)]="team.selected">
       <span fxHide.lt-sm>{{ team.name }}</span>
       <span fxHide.gt-xs>{{ team.short }}</span>

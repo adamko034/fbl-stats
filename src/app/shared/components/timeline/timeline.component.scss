@@ -1,5 +1,6 @@
 .navigate-button {
   margin-top: -15px;
+  user-select: none;
 }
 
 .timeline {
@@ -49,7 +50,7 @@
       border-top: 2px solid #00af09;
     }
 
-    .img {
+    .logo {
       width: 45px;
       height: 45px;
       position: absolute;

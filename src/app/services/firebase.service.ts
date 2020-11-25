@@ -6,7 +6,7 @@ import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Player } from 'src/app/models/player.model';
 import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
-import { TeamSchedule } from 'src/app/store/schedules/models/team-schedule.model';
+import { Team } from 'src/app/store/teams/models/team.model';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
@@ -19,7 +19,7 @@ export class FirebaseService {
 
   public getMidfielders(): Observable<Player[]> {
     return this.firestore
-      .collection<Player>(this.midfieldersCollection)
+      .collection<Player>(this.midfieldersCollection, (ref) => ref.where('disabled', '==', false))
       .valueChanges({ idField: 'id' })
       .pipe(
         take(1),
@@ -32,7 +32,7 @@ export class FirebaseService {
 
   public getForwards(): Observable<Player[]> {
     return this.firestore
-      .collection<Player>(this.forwardsCollection)
+      .collection<Player>(this.forwardsCollection, (ref) => ref.where('disabled', '==', false))
       .valueChanges({ idField: 'id' })
       .pipe(
         take(1),
@@ -45,7 +45,7 @@ export class FirebaseService {
 
   public getDefenders(): Observable<Player[]> {
     return this.firestore
-      .collection<Player>(this.defendersCollection)
+      .collection<Player>(this.defendersCollection, (ref) => ref.where('disabled', '==', false))
       .valueChanges({ idField: 'id' })
       .pipe(
         take(1),
@@ -58,7 +58,7 @@ export class FirebaseService {
 
   public getGoalkeepers(): Observable<Player[]> {
     return this.firestore
-      .collection<Player>(this.goalkeepersCollection)
+      .collection<Player>(this.goalkeepersCollection, (ref) => ref.where('disabled', '==', false))
       .valueChanges({ idField: 'id' })
       .pipe(
         take(1),
@@ -96,14 +96,14 @@ export class FirebaseService {
       );
   }
 
-  public getTeamSchedules(teamShort: string): Observable<TeamSchedule> {
+  public getTeam(teamShort: string): Observable<Team> {
     return this.firestore
-      .collection('schedules')
-      .doc<TeamSchedule>(teamShort)
+      .collection('teams')
+      .doc<Team>(teamShort)
       .valueChanges()
       .pipe(
         take(1),
-        map((s) => ({ ...s, teamShort }))
+        map((s) => ({ ...s, shortName: teamShort }))
       );
   }
 }

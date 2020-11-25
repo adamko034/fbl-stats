@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { orderBy } from 'lodash';
-import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/players-ui.model';
+import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/player-ui.model';
 import { PlayersFilteringService } from 'src/app/layout/content/components/players-table-container/services/players-filtering.service';
 import { PlayersModelConverter } from 'src/app/layout/content/components/players-table-container/services/players-model-converter.service';
 import { PlayersFilters } from 'src/app/layout/content/models/players-filters';
@@ -23,11 +23,10 @@ export class PlayersDataService {
     const converted = this.playersModelConverter.toUi(filtered);
 
     const ordered = orderBy(converted, ['form'], ['desc']);
-
-    const minFormPlayer = ordered[playersCount - 1];
+    const minFormPlayer: PlayerUi = ordered[playersCount - 1];
 
     if (!!minFormPlayer) {
-      return ordered.filter((p) => p.form >= minFormPlayer.form);
+      return ordered.filter((p) => p.form >= minFormPlayer.form && p.games.some((m) => m.points !== 0));
     }
 
     return ordered.slice(0, playersCount);

@@ -4,16 +4,15 @@ import { DateService } from 'src/app/services/date.service';
 import { TimelineItemBuilder } from 'src/app/shared/components/timeline/models/timeline-item.builder';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
 import { TimelineTense } from 'src/app/shared/components/timeline/models/timeline-tense.enum';
-import { Fixture } from 'src/app/store/schedules/models/fixture.model';
-import { TeamSchedule } from 'src/app/store/schedules/models/team-schedule.model';
+import { Fixture } from 'src/app/store/teams/models/fixture.model';
 
 @Injectable({ providedIn: 'root' })
 export class SchedulesService {
   constructor(private dateService: DateService) {}
 
-  public toTimelineItems(teamSchedule: TeamSchedule, lastMatchday: number): TimelineItem[] {
+  public toTimelineItems(fixtures: Fixture[], lastMatchday: number): TimelineItem[] {
     const timelineItems: TimelineItem[] = [];
-    const sorted: Fixture[] = orderBy(teamSchedule.games, 'matchday');
+    const sorted: Fixture[] = orderBy(fixtures, 'matchday');
 
     sorted.forEach((fixture: Fixture) => timelineItems.push(this.toTimelineItem(fixture, lastMatchday)));
     return timelineItems;
@@ -38,8 +37,7 @@ export class SchedulesService {
   private toTimelineItem(fixture: Fixture, lastMatchday: number): TimelineItem {
     return TimelineItemBuilder.from(fixture.matchday, this.getFixtureTense(fixture, lastMatchday))
       .withTitle(fixture.matchday.toString())
-      .withImageUrl(`/assets/logos/${fixture.opponent}.png`)
-      .withImageAltText(fixture.opponent)
+      .withTeamShort(fixture.opponent)
       .withDescription(this.getDescription(fixture, lastMatchday))
       .witDescriptionCssClass(this.getDescriptionCssClass(fixture))
       .withDescriptionDetails(this.getHomeOrAwayText(fixture))

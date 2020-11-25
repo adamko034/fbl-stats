@@ -1,17 +1,27 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { maxBy, minBy, orderBy } from 'lodash';
 import { TimelineDisplayOptions } from 'src/app/shared/components/timeline/models/timeline-display-options.model';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
 import { TimelineTense } from 'src/app/shared/components/timeline/models/timeline-tense.enum';
+import { Logger } from 'src/app/utils/logger';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss']
 })
-export class TimelineComponent implements OnChanges {
-  @Input() items: TimelineItem[];
-  @Input() options: TimelineDisplayOptions = { futureItemsCount: 2, pastItemsCount: 3 };
+export class TimelineComponent implements OnInit {
+  @Input() set items(timelineItems: TimelineItem[]) {
+    if (timelineItems.length > 0) {
+      Logger.logDev('timeline component, got items, calculating displayed items');
+      this.allItems = timelineItems;
+      this.setDisplayedItems(timelineItems);
+    }
+  }
+
+  private options: TimelineDisplayOptions = { futureItemsCount: 2, pastItemsCount: 3 };
+  private allItems: TimelineItem[];
 
   private get displayedItemsCount(): number {
     return this.options.pastItemsCount + this.options.futureItemsCount + 1;
@@ -20,12 +30,22 @@ export class TimelineComponent implements OnChanges {
   public displayedItems: TimelineItem[];
   public showTimeline = false;
 
-  constructor() {}
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
-  public ngOnChanges(changes: SimpleChanges) {
-    if (!!changes.items && changes.items.currentValue.length > 0) {
-      this.setDisplayedItems();
+  public ngOnInit(): void {
+    if (window.innerWidth < 500) {
+      this.options = { futureItemsCount: 2, pastItemsCount: 1 };
     }
+
+    if (window.innerWidth < 360) {
+      this.options = { futureItemsCount: 1, pastItemsCount: 0 };
+    }
+
+    this.changeDetector.detectChanges();
+  }
+
+  public trackItemsBy(index, item: TimelineItem): number {
+    return item.order;
   }
 
   public isCurrent(item: TimelineItem): boolean {
@@ -33,25 +53,25 @@ export class TimelineComponent implements OnChanges {
   }
 
   public isBeforeItem(): boolean {
-    const minItem = minBy(this.items, 'order');
+    const minItem = minBy(this.allItems, 'order');
     const minDisplayedItem = minBy(this.displayedItems, 'order');
     return minItem.order < minDisplayedItem.order;
   }
 
   public isNextItem(): boolean {
-    const maxItem = maxBy(this.items, 'order');
+    const maxItem = maxBy(this.allItems, 'order');
     const maxDispalyedItem = maxBy(this.displayedItems, 'order');
     return maxItem.order > maxDispalyedItem.order;
   }
 
   public onShowPrevious(): void {
-    const minItem = minBy(this.items, 'order');
+    const minItem = minBy(this.allItems, 'order');
     const displayedMinItem = minBy(this.displayedItems, 'order');
 
     if (displayedMinItem.order > minItem.order) {
       const previousMin = displayedMinItem.order - 1;
 
-      const filtered = this.items
+      const filtered = this.allItems
         .filter((i) => i.order >= previousMin)
         .filter((i) => i.order < previousMin + this.displayedItemsCount);
 
@@ -63,7 +83,7 @@ export class TimelineComponent implements OnChanges {
     const displayedMaxItem = maxBy(this.displayedItems, 'order');
     const nextMax = displayedMaxItem.order + 1;
 
-    const filtered = this.items
+    const filtered = this.allItems
       .filter((i) => i.order <= nextMax)
       .filter((i) => i.order > nextMax - this.displayedItemsCount);
 
@@ -81,21 +101,22 @@ export class TimelineComponent implements OnChanges {
     )}`;
   }
 
-  private setDisplayedItems(): void {
-    if (!!this.items && this.items.length > 0) {
-      if (this.items.length <= this.displayedItemsCount) {
-        this.displayedItems = this.items;
+  private setDisplayedItems(items: TimelineItem[]): void {
+    if (!!items && items.length > 0) {
+      if (items.length <= this.displayedItemsCount) {
+        this.displayedItems = items;
         return;
       }
 
-      const currentItem = this.items.find((i) => i.tense === TimelineTense.CURRENT);
+      const currentItem = items.find((i) => i.tense === TimelineTense.CURRENT);
       if (!currentItem) {
         return;
       }
 
-      const filtered = this.items.filter((item) => this.itemShouldBeDisplayed(item, currentItem.order));
+      const filtered = items.filter((item) => this.itemShouldBeDisplayed(item, currentItem.order));
       this.displayedItems = orderBy(filtered, 'order');
       this.showTimeline = true;
+      this.changeDetector.detectChanges();
     }
   }
 

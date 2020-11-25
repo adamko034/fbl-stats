@@ -10,4 +10,6 @@ export interface Player {
   price: number;
   games: Game[];
   attendance: number;
+  nextGameIsHome: boolean;
+  nextOpponent: string;
 }

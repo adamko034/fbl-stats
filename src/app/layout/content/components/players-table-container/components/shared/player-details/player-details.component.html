@@ -1,15 +1,4 @@
-<div
-  *ngIf="isExpanded$ | async"
-  fxLayout.lt-sm="column"
-  fxLayout="row"
-  fxLayoutAlign="space-between"
-  class="player-details-container"
-  fxLayoutGap.xs="7px"
->
-  <app-player-schedules [player]="player" [timelineOptions]="timelineOptions"></app-player-schedules>
-  <div fxFlexAlign="end">
-    <div class="circle-border" (click)="onDetailsCollapse()">
-      <mat-icon>expand_less</mat-icon>
-    </div>
-  </div>
+<div class="player-details-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
+  <app-player-next-match-details class="next-game" [player]="player"></app-player-next-match-details>
+  <app-player-schedules [player]="player"></app-player-schedules>
 </div>

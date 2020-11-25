@@ -65,15 +65,13 @@ export class PlayersFilterTeamsComponent implements OnInit {
     });
   }
 
-  public getSelectedTeamsChips(): string[] {
-    return this.getSelectedTeams()
-      .map((t) => t.short)
-      .sort();
-  }
-
   public onChipRemove(teamShortName: string) {
     this.selectedTeams.find((t) => t.short === teamShortName).selected = false;
     this.sendSelectedTeams();
+  }
+
+  public trackChipsBy(index, chip) {
+    return chip.short;
   }
 
   private sendSelectedTeams(): void {

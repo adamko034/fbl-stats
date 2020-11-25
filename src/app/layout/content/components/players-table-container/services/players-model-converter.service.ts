@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/players-ui.model';
+import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/player-ui.model';
 import { PlayerFormCalculatorService } from 'src/app/layout/content/components/players-table-container/services/player-form-calculator.service';
 import { Player } from 'src/app/models/player.model';
 
@@ -13,9 +13,19 @@ export class PlayersModelConverter {
   }
 
   private toUiSingle(player: Player): PlayerUi {
-    const { id, name, team, teamShort, popularity, price, games, totalPoints, attendance } = cloneDeep(
-      player
-    ) as Player;
+    const {
+      id,
+      name,
+      team,
+      teamShort,
+      popularity,
+      price,
+      games,
+      totalPoints,
+      attendance,
+      nextGameIsHome,
+      nextOpponent
+    } = cloneDeep(player) as Player;
     return {
       id,
       name,
@@ -26,7 +36,9 @@ export class PlayersModelConverter {
       totalPoints,
       games,
       attendance,
-      form: this.playerFormCalculator.calculate(games)
+      form: this.playerFormCalculator.calculate(games),
+      nextOpponent,
+      nextGameIsHome
     };
   }
 }

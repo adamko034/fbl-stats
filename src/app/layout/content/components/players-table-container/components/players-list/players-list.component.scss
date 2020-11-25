@@ -1,9 +1,15 @@
-.container-lg {
-  width: 40%;
+.container {
   margin: auto;
 }
 
+.container-lg {
+  width: 80%;
+}
+
 .container-md {
-  width: 70%;
-  margin: auto;
+  width: 90%;
+}
+
+.container-sm {
+  width: 100%;
 }

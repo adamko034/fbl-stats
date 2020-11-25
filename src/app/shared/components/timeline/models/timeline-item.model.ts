@@ -7,6 +7,5 @@ export interface TimelineItem {
   description?: string;
   descriptionCssClass?: string;
   descriptionDetails?: string;
-  imageUrl?: string;
-  imageAltText?: string;
+  teamShort?: string;
 }

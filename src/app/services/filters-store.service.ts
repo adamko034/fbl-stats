@@ -3,6 +3,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlayerPosition, PlayersFilters } from 'src/app/layout/content/models/players-filters';
 import { TeamProperty } from 'src/app/models/properties.model';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersStoreService {
@@ -24,7 +25,7 @@ export class FiltersStoreService {
     change: false
   };
 
-  constructor() {
+  constructor(private loadingService: LoadingService) {
     this.state = this.getInitialData();
 
     this.filters = new ReplaySubject(1);

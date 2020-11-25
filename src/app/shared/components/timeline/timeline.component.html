@@ -1,41 +1,39 @@
-<div>
-  <div *ngIf="!showTimeline" fxLayout="row" fxLayoutAlign="center center">
-    <mat-progress-spinner [diameter]="30" [mode]="'indeterminate'"></mat-progress-spinner>
+<div *ngIf="!showTimeline" fxLayout="row" fxLayoutAlign="center center">
+  <mat-progress-spinner [diameter]="30" [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
+
+<div *ngIf="showTimeline" fxLayoutAlign="start center">
+  <div
+    [style.visibility]="isBeforeItem() ? 'visible' : 'hidden'"
+    class="navigate-button circle-border"
+    (click)="onShowPrevious()"
+  >
+    <mat-icon>navigate_before</mat-icon>
   </div>
 
-  <div *ngIf="showTimeline" fxLayoutAlign="start center">
-    <div
-      [style.visibility]="isBeforeItem() ? 'visible' : 'hidden'"
-      class="navigate-button circle-border"
-      (click)="onShowPrevious()"
-    >
-      <mat-icon>navigate_before</mat-icon>
-    </div>
+  <ul class="timeline" fxLayout="row" fxLayoutAlign="center center">
+    <li *ngFor="let item of displayedItems; trackBy: trackItemsBy" [ngClass]="getTenseClassWithPrefix(item, 'li')">
+      <div class="info" [ngClass]="getTenseClassWithPrefix(item, 'info')" fxLayoutAlign="center">
+        {{ item.title }}
+      </div>
+      <div
+        class="description"
+        [ngClass]="getDescriptionCssClasses(item)"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
+        <app-team-logo class="logo" [team]="item.teamShort" [scaleOnMobile]="0" [height]="45"></app-team-logo>
+        <div class="main" [ngClass]="getTenseClassWithPrefix(item, 'main')">{{ item.description }}</div>
+        <div class="sub">{{ item.descriptionDetails }}</div>
+      </div>
+    </li>
+  </ul>
 
-    <ul class="timeline" fxLayout="row" fxLayoutAlign="center center">
-      <li *ngFor="let item of displayedItems" [ngClass]="getTenseClassWithPrefix(item, 'li')">
-        <div class="info" [ngClass]="getTenseClassWithPrefix(item, 'info')" fxLayoutAlign="center">
-          {{ item.title }}
-        </div>
-        <div
-          class="description"
-          [ngClass]="getDescriptionCssClasses(item)"
-          fxLayout="column"
-          fxLayoutAlign="center center"
-        >
-          <img class="img" [src]="item.imageUrl" />
-          <div class="main" [ngClass]="getTenseClassWithPrefix(item, 'main')">{{ item.description }}</div>
-          <div class="sub">{{ item.descriptionDetails }}</div>
-        </div>
-      </li>
-    </ul>
-
-    <div
-      [style.visibility]="isNextItem() ? 'visible' : 'hidden'"
-      class="navigate-button circle-border"
-      (click)="onShowNext()"
-    >
-      <mat-icon>navigate_next</mat-icon>
-    </div>
+  <div
+    [style.visibility]="isNextItem() ? 'visible' : 'hidden'"
+    class="navigate-button circle-border"
+    (click)="onShowNext()"
+  >
+    <mat-icon>navigate_next</mat-icon>
   </div>
 </div>

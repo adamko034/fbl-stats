@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { cloneDeep } from 'lodash';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/players-ui.model';
+import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/player-ui.model';
 import { PlayersDataService } from 'src/app/layout/content/components/players-table-container/services/players-data.service';
 import { PlayersFilters } from 'src/app/layout/content/models/players-filters';
 import { PlayersState } from 'src/app/layout/content/models/players-state.model';
@@ -14,24 +15,30 @@ import { StoreService } from 'src/app/services/store.service';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-players-table-container',
   templateUrl: './players-table-container.component.html',
   styleUrls: ['./players-table-container.component.scss']
 })
 export class PlayersTableContainerComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject();
-  private playersState: PlayersState;
 
-  public playersToDisplay: PlayerUi[] = [];
+  public playersToDisplay: PlayerUi[];
   public view: PlayersView;
   public PlayersViews = PlayersView;
+
+  public get isMobile(): boolean {
+    return this.deviceDetectorService.isMobile();
+  }
 
   constructor(
     private storeService: StoreService,
     private propertiesService: PropertiesService,
     private filtersStoreService: FiltersStoreService,
     private playersDataService: PlayersDataService,
-    private playersDisplaySettingsService: PlayersDisplaySettingService
+    private playersDisplaySettingsService: PlayersDisplaySettingService,
+    private deviceDetectorService: DeviceDetectorService,
+    private changeDetector: ChangeDetectorRef
   ) {}
 
   public ngOnInit() {
@@ -44,17 +51,19 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
     ])
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([lastMatchday, filters, playersState, displaySettings]) => {
-        this.playersState = playersState;
+        Logger.logDev('players table container component, ng on init subscription start');
         this.view = displaySettings.view;
 
-        if (this.shouldFilter(filters)) {
+        if (this.shouldFilter(filters, playersState)) {
           this.playersToDisplay = this.playersDataService.getPlayersToDisplay(
-            cloneDeep(this.playersState[filters.position]),
+            cloneDeep(playersState[filters.position]),
             filters,
             lastMatchday,
             displaySettings.count
           );
         }
+
+        this.changeDetector.detectChanges();
       });
   }
 
@@ -64,7 +73,7 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
     this.storeService.close();
   }
 
-  private shouldFilter(filters: PlayersFilters): boolean {
-    return !!filters && !!filters.position && !!this.playersState && !!this.playersState[filters.position];
+  private shouldFilter(filters: PlayersFilters, playersState: PlayersState): boolean {
+    return !!filters && !!filters.position && !!playersState && !!playersState[filters.position];
   }
 }

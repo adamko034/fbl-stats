@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { NewUpdatesService } from 'src/app/layout/header/components/new-updates/
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-toastr',
   templateUrl: './toastr.component.html',
   styleUrls: ['./toastr.component.scss']
@@ -44,7 +45,7 @@ export class ToastrComponent implements OnInit, OnDestroy {
 
   public showNewUpdatesToastr(): void {
     this.toastrService.success(
-      'Click on the refresh button at the right upper corner to get the latest players data',
+      'Refresh the page to get the latest updates',
       'New updates!',
       this.getDefaultToastrProperties()
     );

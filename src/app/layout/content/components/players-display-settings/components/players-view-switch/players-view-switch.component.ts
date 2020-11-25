@@ -13,8 +13,8 @@ export class PlayersViewSwitchComponent implements OnInit {
   public value$: Observable<PlayersView>;
   public items: SwitchItem[] = [
     { description: 'table_chart', value: PlayersView.TABLE, isMatIcon: true, isMatIconOutline: true },
-    { description: 'reorder', value: PlayersView.LIST, isMatIcon: true },
-    { description: 'view_comfy', value: PlayersView.TILES, isMatIcon: true }
+    { description: 'reorder', value: PlayersView.LIST, isMatIcon: true }
+    // { description: 'view_comfy', value: PlayersView.TILES, isMatIcon: true }
   ];
 
   constructor(private playersDisplaySettingsService: PlayersDisplaySettingService) {}

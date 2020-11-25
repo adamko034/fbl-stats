@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-last-udpated',
   templateUrl: './last-udpated.component.html',
   styleUrls: ['./last-udpated.component.scss']

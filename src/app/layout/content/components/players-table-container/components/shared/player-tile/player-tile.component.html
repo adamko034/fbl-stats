@@ -1,29 +1,41 @@
-<div class="player hvr-underline-from-left" ngClass.xs="player-mobile" fxLayout="column">
-  <div (click)="onShowPlayerDetails()">
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-      <div fxLayout="column">
-        <div class="name">{{ player.name }}</div>
-        <div class="team">{{ player.team }}</div>
+<div class="player" ngClass.lt-md="player-mobile" fxLayout="column">
+  <div class="pointer" (click)="onShowPlayerDetails()">
+    <div *ngIf="isMobile" fxLayout="row" fxLayoutGap="10px" fxFill>
+      <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
+      <div fxLayout="column" fxLayoutGap="5px">
+        <app-player-tile-name [player]="player"></app-player-tile-name>
+        <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
+        <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
       </div>
-
-      <div fxLayout="column" fxLayoutGap="3px">
-        <div fxFlexAlign="end" class="score red-background">{{ player.form }}</div>
-        <div fxLayout="row" fxLayoutGap="7px">
-          <span [ngClass]="getScoreColor(game.points)" *ngFor="let game of player.games | orderBy: '-matchday'">{{
-            game.points
-          }}</span>
-        </div>
-      </div>
+      <app-player-tile-fantasy-points [player]="player" fxFlex fxFlexAlign="center"></app-player-tile-fantasy-points>
     </div>
 
-    <div fxLayout="row" fxLayoutGap="10px" class="stats">
-      <span><span class="stat-type">$</span>: {{ player.price }}M</span>
-      <span><span class="stat-type">%</span>: {{ player.popularity }}</span>
-      <span><span class="stat-type">TP</span>: {{ player.totalPoints }}</span>
+    <div *ngIf="!isMobile" fxLayout="row" fxLayoutAlign="start center">
+      <div fxLayout="row" fxLayoutGap="10px" fxFlex="55">
+        <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
+        <div fxLayout="column" fxLayoutGap="10px">
+          <app-player-tile-name [player]="player"></app-player-tile-name>
+          <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
+        </div>
+      </div>
+
+      <app-player-tile-next-game fxFlex="25" [player]="player"></app-player-tile-next-game>
+      <app-player-tile-fantasy-points fxFlex [player]="player"></app-player-tile-fantasy-points>
     </div>
   </div>
 
-  <div>
-    <app-player-details [player]="player" [timelineOptions]="timelineOptions"></app-player-details>
+  <div [@detailExpanded] *ngIf="expanded$ | async">
+    <app-player-details [player]="player"></app-player-details>
+  </div>
+
+  <div class="red bold expand pointer" (click)="onShowPlayerDetails()">
+    <span *ngIf="!(expanded$ | async)" class="hvr-icon-hang" fxLayoutAlign="start center">
+      Show more
+      <mat-icon class="hvr-icon">keyboard_arrow_down</mat-icon>
+    </span>
+    <span *ngIf="expanded$ | async" class="hvr-icon-bob" fxLayoutAlign="start center">
+      Show less
+      <mat-icon class="hvr-icon">keyboard_arrow_up</mat-icon>
+    </span>
   </div>
 </div>

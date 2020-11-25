@@ -1,18 +1,17 @@
-<div fxHide.lt-md fxLayoutAlign="end center" class="padding" fxLayoutGap="40px">
+<div fxHide.lt-sm fxLayoutAlign="end center" class="padding" fxLayoutGap="40px">
   <app-players-search></app-players-search>
-  <app-players-view-switch></app-players-view-switch>
+  <app-players-view-switch fxHide.lt-md></app-players-view-switch>
   <app-players-count></app-players-count>
 </div>
 
-<div fxHide.lt-sm fxHide.gt-sm class="padding">
+<!-- <div fxHide.lt-sm fxHide.gt-sm class="padding">
   <div fxLayout="column" fxLayoutAlign="center end">
     <app-players-search></app-players-search>
     <div fxLayout="row" fxLayoutGap="40px">
-      <app-players-view-switch></app-players-view-switch>
       <app-players-count></app-players-count>
     </div>
   </div>
-</div>
+</div> -->
 
 <app-expansion-panel fxHide.gt-xs [opened]="opened">
   <div header fxLayoutAlign="space-between">

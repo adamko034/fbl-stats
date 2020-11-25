@@ -11,4 +11,6 @@ export interface PlayerUi {
   attendance: number;
   form: number;
   games: Game[];
+  nextOpponent: string;
+  nextGameIsHome: boolean;
 }
