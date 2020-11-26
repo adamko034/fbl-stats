@@ -1,13 +1,40 @@
-<h2 mat-dialog-title>Select Teams</h2>
-<div fxLayout="row wrap" fxLayoutGap="10px">
-  <div fxFlex="30" fxFlex.lt-md="45" fxFlex.lt-sm="30" *ngFor="let team of data.teams; trackBy: trackTeamsBy">
-    <mat-checkbox [(ngModel)]="team.selected">
-      <span fxHide.lt-sm>{{ team.name }}</span>
-      <span fxHide.gt-xs>{{ team.short }}</span>
-    </mat-checkbox>
+<div
+  class="container"
+  ngClass.gt-md="container-lg"
+  ngClass.gt-sm="container-md"
+  ngClass.gt-xs="container-sm"
+  ngClass.xs="container-xs"
+>
+  <h2 mat-dialog-title>Select Teams</h2>
+  <div>
+    <mat-form-field class="search">
+      <mat-label>Search by name</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput type="text" [(ngModel)]="searchTerm" (keyup)="onSearch()" />
+      <button mat-button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <div
+      ngClass.gt-md="team-checkbox"
+      fxFlex="30"
+      fxFlex.lt-md="45"
+      fxFlex.lt-sm="45"
+      *ngFor="let team of teams; trackBy: trackTeamsBy"
+    >
+      <mat-checkbox [(ngModel)]="team.selected">
+        <div fxHide.lt-sm fxLayoutGap="3px" fxLayoutAlign="start center">
+          <app-team-logo fxHide.lt-lg [team]="team.short" [height]="20"></app-team-logo>
+          <span>{{ team.name }}</span>
+        </div>
+        <span fxHide.gt-xs>{{ team.short }}</span>
+      </mat-checkbox>
+    </div>
+  </div>
+  <mat-dialog-actions class="actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button class="red-background" mat-button (click)="close()">Confirm</button>
+  </mat-dialog-actions>
 </div>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button class="red-background" mat-button (click)="close()">Confirm</button>
-</mat-dialog-actions>
