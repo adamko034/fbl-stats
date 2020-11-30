@@ -1,0 +1,3 @@
+<div *ngIf="!!form" fxLayoutGap="2px">
+  <span *ngFor="let result of form" class="game-result" [ngClass]="getGameResultClass(result)">{{ result }}</span>
+</div>

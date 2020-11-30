@@ -15,11 +15,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,6 +32,7 @@ import { PlayersCountComponent } from 'src/app/layout/content/components/players
 import { PlayersSearchComponent } from 'src/app/layout/content/components/players-display-settings/components/players-search/players-search.component';
 import { PlayersDisplaySettingsComponent } from 'src/app/layout/content/components/players-display-settings/players-display-settings.component';
 import { PlayersFilterMaxPriceComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-max-price/players-filter-max-price.component';
+import { SelectTeamsDialogComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/components/select-teams-dialog/select-teams-dialog.component';
 import { PlayersSelectFormComponent } from 'src/app/layout/content/components/players-filters/components/players-select-form/players-select-form.component';
 import { PlayersFiltersComponent } from 'src/app/layout/content/components/players-filters/players-filters.component';
 import { PlayerSchedulesComponent } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/components/player-schedules/player-schedules.component';
@@ -46,8 +49,9 @@ import { ToastrComponent } from './components/toastr/toastr.component';
 import { PlayersViewSwitchComponent } from './layout/content/components/players-display-settings/components/players-view-switch/players-view-switch.component';
 import { PlayersFilterHideUnavailableComponent } from './layout/content/components/players-filters/components/players-filter-hide-unavailable/players-filter-hide-unavailable.component';
 import { PlayersFilterPopularityComponent } from './layout/content/components/players-filters/components/players-filter-popularity/players-filter-popularity.component';
+import { SelectTeamsFromTableComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/select-teams-from-table/select-teams-from-table.component';
+import { SmartTeamsSelectionDialogComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/smart-teams-selection-dialog/smart-teams-selection-dialog.component';
 import { PlayersFilterTeamsComponent } from './layout/content/components/players-filters/components/players-filter-teams/players-filter-teams.component';
-import { SelectTeamsDialogComponent } from './layout/content/components/players-filters/components/players-filter-teams/select-teams-dialog/select-teams-dialog.component';
 import { PlayersListComponent } from './layout/content/components/players-table-container/components/players-list/players-list.component';
 import { PlayersTableComponent } from './layout/content/components/players-table-container/components/players-table/players-table.component';
 import { PlayersTilesComponent } from './layout/content/components/players-table-container/components/players-tiles/players-tiles.component';
@@ -67,6 +71,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
 import { SwitchComponent } from './shared/components/switch/switch.component';
+import { TeamFormComponent } from './shared/components/team-form/team-form.component';
 import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 
@@ -114,7 +119,10 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
     PlayerTileFantasyPointsComponent,
     ImageLazyLoadingDirective,
     TeamLogoSourceDirective,
-    TeamLogoStyleDirective
+    TeamLogoStyleDirective,
+    SmartTeamsSelectionDialogComponent,
+    SelectTeamsFromTableComponent,
+    TeamFormComponent
   ],
   imports: [
     BrowserModule,
@@ -145,6 +153,8 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    MatListModule,
+    MatSortModule,
     CommonModule
   ],
   providers: [],

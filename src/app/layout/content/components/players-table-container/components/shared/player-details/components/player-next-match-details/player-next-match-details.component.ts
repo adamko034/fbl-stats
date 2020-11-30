@@ -62,20 +62,6 @@ export class PlayerNextMatchDetailsComponent implements OnInit, OnDestroy {
     return Math.round((team.goalsConceded / team.gamesPlayed + Number.EPSILON) * 100) / 100;
   }
 
-  public getGameResultClass(result: string): string {
-    const prefix = 'game-result';
-    let color = '';
-    if (result.toLocaleLowerCase() === 'w') {
-      color = 'green';
-    } else if (result.toLocaleLowerCase() === 'd') {
-      color = 'orange';
-    } else {
-      color = 'red';
-    }
-
-    return `${prefix}-${color}`;
-  }
-
   public getRank(team: Team): string {
     let suffix = 'th';
 

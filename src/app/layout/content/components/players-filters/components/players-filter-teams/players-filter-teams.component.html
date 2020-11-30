@@ -1,24 +1,51 @@
 <app-form-field [label]="'Teams'" [labelWidth]="9">
-  <div *ngIf="!isTeamSelected()" fxLayoutAlign="start center" fxLayoutGap="3px">
-    <span>No teams selected.</span>
-    <button class="red-background select-button" mat-icon-button (click)="openDialog()">
-      <mat-icon>input</mat-icon>
-    </button>
-  </div>
-  <div *ngIf="isTeamSelected()" fxLayout="row" fxLayoutAlign="start center">
-    <mat-chip-list>
+  <div fxLayoutAlign="start center" fxLayoutGap="3px">
+    <span *ngIf="!isTeamSelected()">No teams selected.</span>
+    <mat-chip-list *ngIf="isTeamSelected()">
       <mat-chip
         [selectable]="0"
         [disableRipple]="1"
-        *ngFor="let team of selectedTeams | filterByImpure: ['selected']:true; trackBy: trackChipsBy"
+        *ngFor="let team of selectedTeams | filterByImpure: ['selected']:true | orderBy: 'order'; trackBy: trackChipsBy"
         (removed)="onChipRemove(team.short)"
       >
-        {{ team.short }}
+        <span>{{ team.short }}</span>
+        <span class="chip-info" *ngIf="!!team.additionalInfo">({{ team.additionalInfo }})</span>
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-list>
-    <button fxFlexAlign="end" class="red-background select-button" mat-icon-button (click)="openDialog()">
-      <mat-icon>input</mat-icon>
-    </button>
+    <ng-template [ngTemplateOutlet]="actions"></ng-template>
   </div>
 </app-form-field>
+
+<ng-template #actions>
+  <div>
+    <button matTooltip="Select teams" class="red-background select-button" mat-icon-button (click)="openDialog()">
+      <mat-icon>input</mat-icon>
+    </button>
+    <button
+      matTooltip="Smart selects"
+      class="red-background select-button"
+      mat-icon-button
+      (click)="openSmartSelectionsDialog()"
+    >
+      <mat-icon>psychology</mat-icon>
+    </button>
+    <button
+      matTooltip="Select from table"
+      class="red-background select-button"
+      mat-icon-button
+      (click)="openSelectTeamsFromTableDialog()"
+    >
+      <mat-icon>table_view</mat-icon>
+    </button>
+    <button
+      *ngIf="isTeamSelected()"
+      matTooltip="Clear"
+      class="red-background select-button"
+      mat-icon-button
+      (click)="clearTeamsSelection()"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+</ng-template>

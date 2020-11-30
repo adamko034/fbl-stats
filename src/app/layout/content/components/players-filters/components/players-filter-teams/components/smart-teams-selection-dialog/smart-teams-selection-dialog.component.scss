@@ -1,0 +1,51 @@
+.select-count {
+  user-select: none;
+  padding: 0 16px;
+
+  .info {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .count {
+    margin-right: 15px;
+    width: 40px;
+    font-size: 24px;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 4px;
+    background-image: linear-gradient(to right, #333 40%, rgba(255, 255, 255, 0.6) 20%);
+    background-position: bottom;
+    background-size: 4px 2px;
+    background-repeat: repeat-x;
+    font-weight: 500;
+  }
+
+  .actions {
+    mat-icon {
+      cursor: pointer;
+    }
+
+    .disabled {
+      cursor: not-allowed;
+      color: rgba($color: #000000, $alpha: 0.6);
+    }
+
+    .hover-red-bold:hover {
+      font-weight: 800;
+      color: #c80a00;
+    }
+  }
+}
+
+mat-list {
+  margin-top: 20px;
+
+  mat-list-item {
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+}

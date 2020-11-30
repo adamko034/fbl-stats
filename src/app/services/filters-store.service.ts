@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayerPosition, PlayersFilters } from 'src/app/layout/content/models/players-filters';
 import { TeamProperty } from 'src/app/models/properties.model';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -43,23 +43,38 @@ export class FiltersStoreService {
   }
 
   public selectPrice(): Observable<number> {
-    return this.filters.pipe(map((filters) => filters.price));
+    return this.filters.pipe(
+      map((filters) => filters.price),
+      distinctUntilChanged()
+    );
   }
 
   public selectPopularity(): Observable<number> {
-    return this.filters.pipe(map((filters) => filters.popularity));
+    return this.filters.pipe(
+      map((filters) => filters.popularity),
+      distinctUntilChanged()
+    );
   }
 
   public selectMatchdays(): Observable<number> {
-    return this.filters.pipe(map((filters) => filters.matchdays));
+    return this.filters.pipe(
+      map((filters) => filters.matchdays),
+      distinctUntilChanged()
+    );
   }
 
   public selectTeams(): Observable<TeamProperty[]> {
-    return this.filters.pipe(map((filters) => filters.teams));
+    return this.filters.pipe(
+      map((filters) => filters.teams),
+      distinctUntilChanged()
+    );
   }
 
   public selectPosition(): Observable<PlayerPosition> {
-    return this.filters.pipe(map((filters) => filters.position));
+    return this.filters.pipe(
+      map((filters) => filters.position),
+      distinctUntilChanged()
+    );
   }
 
   public selectName(): Observable<string> {

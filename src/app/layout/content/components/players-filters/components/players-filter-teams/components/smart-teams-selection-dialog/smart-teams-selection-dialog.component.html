@@ -1,0 +1,35 @@
+<div>
+  <div class="select-count" fxLayoutAlign="start center">
+    <span class="info">Select top </span>
+    <span class="count grey">{{ count }}</span>
+    <span class="actions" fxLayoutGap="15px">
+      <mat-icon [ngClass]="{ disabled: count === 1 }" class="hover-red-bold" (click)="countMinus()">remove</mat-icon>
+      <mat-icon [ngClass]="{ disabled: count === 18 }" class="hover-red-bold" (click)="countAdd()">add</mat-icon>
+    </span>
+  </div>
+  <mat-list>
+    <mat-list-item (click)="selectSmartSelection(SmartSelections.Rank)" class="hvr-grow-shadow">
+      <mat-icon class="red">exit_to_app</mat-icon>
+      <span fxHide.lt-sm>Best table rank</span>
+      <span fxHide.gt-xs>Table rank</span>
+    </mat-list-item>
+    <mat-list-item (click)="selectSmartSelection(SmartSelections.Last3Games)" class="hvr-grow-shadow"
+      ><mat-icon class="red">exit_to_app</mat-icon>
+      <span fxHide.lt-sm>Best form in last 3 games</span>
+      <span fxHide.gt-xs>Form in last 3 games</span>
+    </mat-list-item>
+    <mat-list-item (click)="selectSmartSelection(SmartSelections.Last5Games)" class="hvr-grow-shadow"
+      ><mat-icon class="red">exit_to_app</mat-icon> <span fxHide.lt-sm>Best form in last 5 games</span>
+      <span fxHide.gt-xs>Form in last 5 games</span>
+    </mat-list-item>
+    <mat-list-item (click)="selectSmartSelection(SmartSelections.Gspg)" class="hvr-grow-shadow"
+      ><mat-icon class="red">exit_to_app</mat-icon> <span fxHide.lt-sm>Most goals scored per game</span>
+      <span fxHide.gt-xs>Golas scored per game</span>
+    </mat-list-item>
+    <mat-list-item (click)="selectSmartSelection(SmartSelections.Gcpg)" class="hvr-grow-shadow"
+      ><mat-icon class="red">exit_to_app</mat-icon>
+      <span fxHide.lt-sm>Least goals conceded per game</span>
+      <span fxHide.gt-xs>Golas conceded per game</span>
+    </mat-list-item>
+  </mat-list>
+</div>

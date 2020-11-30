@@ -22,26 +22,4 @@
       padding-bottom: 7px;
     }
   }
-
-  .game-result {
-    padding: 2px 0;
-    color: #fff;
-    font-weight: normal;
-    min-width: 26px;
-    border-radius: 5px;
-    display: inline-flex;
-    justify-content: center;
-
-    &-green {
-      background-color: green;
-    }
-
-    &-red {
-      background-color: rgba(217, 30, 24, 1);
-    }
-
-    &-orange {
-      background-color: orange;
-    }
-  }
 }

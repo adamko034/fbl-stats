@@ -51,14 +51,10 @@
     <span matTooltip="goals scored per game">GSPG: {{ getGoalsScoredPerGame(awayTeam) }}</span>
     <span matTooltip="goals conceded per game">GCPG: {{ getGoalsConcededPerGame(awayTeam) }}</span>
   </div>
-  <div gdArea="hForm" fxLayoutGap="2px" [ngClass]="{ 'current current-bottom': current === 'home' }">
-    <span *ngFor="let result of homeTeamForm" class="game-result" [ngClass]="getGameResultClass(result)">{{
-      result
-    }}</span>
+  <div gdArea="hForm" [ngClass]="{ 'current current-bottom': current === 'home' }">
+    <app-team-form [form]="homeTeamForm" indicator="char"></app-team-form>
   </div>
-  <div gdArea="aForm" fxLayoutGap="2px" [ngClass]="{ 'current current-bottom': current === 'away' }">
-    <span *ngFor="let result of awayTeamForm" class="game-result" [ngClass]="getGameResultClass(result)">{{
-      result
-    }}</span>
+  <div gdArea="aForm" [ngClass]="{ 'current current-bottom': current === 'away' }">
+    <app-team-form [form]="awayTeamForm" indicator="char"></app-team-form>
   </div>
 </div>

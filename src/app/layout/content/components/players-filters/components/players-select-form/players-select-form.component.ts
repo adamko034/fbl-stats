@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PropertiesService } from 'src/app/services/properties.service';
@@ -12,7 +12,7 @@ import { Logger } from 'src/app/utils/logger';
   templateUrl: './players-select-form.component.html',
   styleUrls: ['./players-select-form.component.scss']
 })
-export class PlayersSelectFormComponent implements OnInit {
+export class PlayersSelectFormComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
 
   public matchdays = 0;
@@ -27,7 +27,7 @@ export class PlayersSelectFormComponent implements OnInit {
 
   public ngOnInit(): void {
     combineLatest([this.propertiesService.selectLastMatchday(), this.filtersStoreService.selectMatchdays()])
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(distinctUntilChanged(), takeUntil(this.destroyed$))
       .subscribe(([lastMatchday, matchdays]) => {
         Logger.logDev('players filters select form, on init subscription');
         if (this.items.length === 0) {
@@ -39,6 +39,11 @@ export class PlayersSelectFormComponent implements OnInit {
 
         this.matchdays = lastMatchday < 5 ? lastMatchday : matchdays;
       });
+  }
+
+  public ngOnDestroy(): void {
+    Logger.logDev('players filters select form, on destroy');
+    this.destroyed$.next();
   }
 
   public onFormChanged(newValue: number) {
