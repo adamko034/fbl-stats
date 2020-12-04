@@ -28,18 +28,6 @@ export class SmartTeamsSelectionDialogComponent implements OnInit {
     this.dialogRef.close({ selection, count: this.count });
   }
 
-  public countMinus(): void {
-    if (this.count > 1) {
-      this.count -= 1;
-    }
-  }
-
-  public countAdd(): void {
-    if (this.count < 18) {
-      this.count += 1;
-    }
-  }
-
   private saveCountToLocalStorage(): void {
     this.localStorageService.upsert(this.LOCALSTORAGE_KEY, this.count);
   }

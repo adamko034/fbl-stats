@@ -11,7 +11,7 @@ export enum ScreenSize {
 }
 
 @Injectable({ providedIn: 'root' })
-export class ResponsivenessService {
+export class ScreenSizeService {
   private resize$: ReplaySubject<ScreenSize>;
 
   public onResize(): Observable<ScreenSize> {
@@ -28,6 +28,17 @@ export class ResponsivenessService {
     }
 
     return this.resize$.asObservable();
+  }
+
+  public isMobile$(): Observable<boolean> {
+    return this.onResize().pipe(
+      map((screenSize) => screenSize === ScreenSize.XS),
+      distinctUntilChanged()
+    );
+  }
+
+  public isMobile(): boolean {
+    return this.mapToScreenSize() === ScreenSize.XS;
   }
 
   private mapToScreenSize(): ScreenSize {

@@ -1,12 +1,11 @@
 <div>
-  <div class="select-count" fxLayoutAlign="start center">
-    <span class="info">Select top </span>
-    <span class="count grey">{{ count }}</span>
-    <span class="actions" fxLayoutGap="15px">
-      <mat-icon [ngClass]="{ disabled: count === 1 }" class="hover-red-bold" (click)="countMinus()">remove</mat-icon>
-      <mat-icon [ngClass]="{ disabled: count === 18 }" class="hover-red-bold" (click)="countAdd()">add</mat-icon>
-    </span>
-  </div>
+  <app-input-number
+    [min]="1"
+    [max]="18"
+    [label]="'Select top '"
+    [(value)]="count"
+    [buttonsPosition]="'right'"
+  ></app-input-number>
   <mat-list>
     <mat-list-item (click)="selectSmartSelection(SmartSelections.Rank)" class="hvr-grow-shadow">
       <mat-icon class="red">exit_to_app</mat-icon>

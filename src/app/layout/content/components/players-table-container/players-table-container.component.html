@@ -1,11 +1,4 @@
-<div *ngIf="isMobile">
-  <app-players-list [players]="playersToDisplay"></app-players-list>
-</div>
-
-<div *ngIf="!isMobile">
-  <div [ngSwitch]="view">
-    <app-players-list *ngSwitchCase="PlayersViews.LIST" [players]="playersToDisplay"></app-players-list>
-    <app-players-tiles *ngSwitchCase="PlayersViews.TILES" [players]="playersToDisplay"></app-players-tiles>
-    <app-players-table *ngSwitchCase="PlayersViews.TABLE" [players]="playersToDisplay"></app-players-table>
-  </div>
+<div [ngSwitch]="view">
+  <app-players-list *ngSwitchCase="PlayersViews.LIST" [players]="playersToDisplay"></app-players-list>
+  <app-players-table *ngSwitchCase="PlayersViews.TABLE" [players]="playersToDisplay"></app-players-table>
 </div>

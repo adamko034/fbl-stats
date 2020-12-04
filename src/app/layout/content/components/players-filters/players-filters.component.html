@@ -10,22 +10,21 @@
   </div>
   <div
     content
-    fxLayoutGap.lt-sm="10px"
-    fxLayout.lt-sm="column"
-    fxLayoutAlign.lt-sm="start stretch"
-    class.gt-xs="container"
-    gdAreas.gt-xs="form unavailable | price popularity | teams teams"
-    gdGap.gt-xs="10px"
-    gdRows.gt-xs="auto auto auto"
-    gdColumns.gt-xs="50% 50%"
+    fxLayoutGap.lt-md="10px"
+    fxLayout.lt-md="column"
+    fxLayoutAlign.lt-md="start stretch"
+    class.gt-sm="container"
+    gdAreas.gt-sm="form unavailable | price popularity | teams teams"
+    gdGap.gt-sm="10px"
+    gdRows.gt-sm="auto auto auto"
   >
-    <app-players-select-form gdArea.gt-xs="form"></app-players-select-form>
+    <app-players-select-form gdArea.gt-sm="form"></app-players-select-form>
     <app-players-filter-hide-unavailable
-      ngClass.lt-sm="unavailable-mobile"
-      gdArea.gt-xs="unavailable"
+      ngClass.lt-md="unavailable-mobile"
+      gdArea.gt-sm="unavailable"
     ></app-players-filter-hide-unavailable>
-    <app-players-filter-max-price gdArea.gt-xs="price"></app-players-filter-max-price>
-    <app-players-filter-popularity gdArea.gt-xs="popularity"></app-players-filter-popularity>
-    <app-players-filter-teams gdArea.gt-xs="teams"></app-players-filter-teams>
+    <app-players-filter-max-price gdArea.gt-sm="price"></app-players-filter-max-price>
+    <app-players-filter-popularity gdArea.gt-sm="popularity"></app-players-filter-popularity>
+    <app-players-filter-teams gdArea.gt-sm="teams"></app-players-filter-teams>
   </div>
 </app-expansion-panel>

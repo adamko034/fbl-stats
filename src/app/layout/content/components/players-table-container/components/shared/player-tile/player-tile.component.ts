@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/player-ui.model';
 import { ExpandedPlayersService } from 'src/app/layout/content/components/players-table-container/services/expanded-players.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -28,14 +29,14 @@ export class PlayerTileComponent implements OnInit {
   @Input() player: PlayerUi;
 
   public expanded$: Observable<boolean>;
-  public isMobile = false;
+  public isMobile$: Observable<boolean>;
 
-  constructor(private expandedPlayersService: ExpandedPlayersService) {}
+  constructor(private expandedPlayersService: ExpandedPlayersService, private screenSizeService: ScreenSizeService) {}
 
   public ngOnInit(): void {
     Logger.logDev('player tile component, ' + this.player.name + ', on init');
     this.expanded$ = this.expandedPlayersService.selectPlayerExpanded(this.player.id).pipe(distinctUntilChanged());
-    this.isMobile = window.innerWidth < 500;
+    this.isMobile$ = this.screenSizeService.isMobile$();
   }
 
   public onShowPlayerDetails(): void {

@@ -12,9 +12,8 @@ import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.
 export class PlayersViewSwitchComponent implements OnInit {
   public value$: Observable<PlayersView>;
   public items: SwitchItem[] = [
-    { description: 'table_chart', value: PlayersView.TABLE, isMatIcon: true, isMatIconOutline: true },
-    { description: 'reorder', value: PlayersView.LIST, isMatIcon: true }
-    // { description: 'view_comfy', value: PlayersView.TILES, isMatIcon: true }
+    { value: PlayersView.TABLE, matIcon: 'table_chart', isMatIconOutline: true },
+    { value: PlayersView.LIST, matIcon: 'reorder' }
   ];
 
   constructor(private playersDisplaySettingsService: PlayersDisplaySettingService) {}

@@ -1,5 +1,5 @@
 <div fxLayout.lt-sm="column" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="start center" fxLayoutGap.gt-xs="8px">
-  <span ngClass.lt-sm="label-mobile" [fxFlex]="labelWidth">{{ label }}</span>
+  <span ngClass.lt-sm="label-mobile" [fxFlex.gt-xs]="labelWidth">{{ label }}</span>
   <div fxFlex>
     <ng-content></ng-content>
   </div>

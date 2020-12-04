@@ -4,8 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { delay, filter, takeUntil } from 'rxjs/operators';
-import { ResponsivenessService, ScreenSize } from 'src/app/services/responsiveness.service';
 import { ResultIndicatorService } from 'src/app/services/result-indicator.service';
+import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { SmartSelectionTeam } from 'src/app/store/teams-smart-selection/models/smart-selection-team.model';
 import { SmartSelectionTeamsStore } from 'src/app/store/teams-smart-selection/smart-selection-teams.store';
 import { Logger } from 'src/app/utils/logger';
@@ -33,7 +33,7 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
   constructor(
     private dialogRef: MatDialogRef<SelectTeamsFromTableComponent, string[]>,
     private smartSelectionTeamStore: SmartSelectionTeamsStore,
-    private responsivenessService: ResponsivenessService,
+    private responsivenessService: ScreenSizeService,
     private resultIndicatorService: ResultIndicatorService,
     @Inject(MAT_DIALOG_DATA) public data: { selectedTeams: string[] }
   ) {}
@@ -59,14 +59,13 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
     this.data.selectedTeams.forEach((team) => this.toggleTeamSelection(team));
     this.responsivenessService.onResize().subscribe((screen) => {
       if (screen === ScreenSize.XS) {
-        this.maxFormCount = 3;
         this.displayedColumns = [...this.columnsMobile];
         return;
       }
 
       this.displayedColumns = [...this.columns];
       if (screen === ScreenSize.SM) {
-        this.maxFormCount = 5;
+        this.maxFormCount = 3;
         return;
       }
 

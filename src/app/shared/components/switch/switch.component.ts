@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 
 @Component({
@@ -12,11 +11,21 @@ export class SwitchComponent {
   @Input() name: string;
   @Input() value: string | number;
   @Input() items: SwitchItem[];
+  @Input() additionalItem?: SwitchItem;
   @Output() switchChange = new EventEmitter<string | number>();
+
+  public get allItems(): SwitchItem[] {
+    const all = [...this.items];
+    if (!!this.additionalItem) {
+      all.push(this.additionalItem);
+    }
+
+    return all;
+  }
 
   constructor() {}
 
-  public onChange(change: MatButtonToggleChange) {
-    this.switchChange.emit(change.value);
+  public onChange(value: string | number) {
+    this.switchChange.emit(value);
   }
 }

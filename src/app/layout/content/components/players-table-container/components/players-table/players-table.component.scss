@@ -1,16 +1,11 @@
-.container {
-  padding: 0 12px;
-}
-
 .table-card {
   padding: 3px;
 }
 
 table {
   width: 100%;
-
   tr:hover:not(.mat-header-row):not(.player-details-content):not(.player-details-expanded-row) {
-    background-color: rgba($color: #000000, $alpha: 0.1);
+    background-color: #f0f0f0;
   }
 
   tr:hover:not(.mat-header-row) {
@@ -19,22 +14,6 @@ table {
 
   tr.player-details-content {
     height: 0;
-  }
-
-  .td-name {
-    width: 20%;
-  }
-
-  .td-team {
-    width: 10%;
-  }
-
-  .td-next {
-    width: 8%;
-  }
-
-  .td-numbers {
-    width: 6%;
   }
 
   .player-details-row td {
@@ -48,10 +27,5 @@ table {
 
   .total-points {
     font-weight: 500;
-  }
-
-  .img {
-    width: 30px;
-    height: 30px;
   }
 }

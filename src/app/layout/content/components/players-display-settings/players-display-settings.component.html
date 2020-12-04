@@ -1,27 +1,34 @@
-<div fxHide.lt-sm fxLayoutAlign="end center" class="padding" fxLayoutGap="40px">
-  <app-players-search></app-players-search>
-  <app-players-view-switch fxHide.lt-md></app-players-view-switch>
-  <app-players-count></app-players-count>
-</div>
-
-<!-- <div fxHide.lt-sm fxHide.gt-sm class="padding">
-  <div fxLayout="column" fxLayoutAlign="center end">
-    <app-players-search></app-players-search>
-    <div fxLayout="row" fxLayoutGap="40px">
+<div [ngSwitch]="screenSize$ | async">
+  <app-expansion-panel *ngSwitchCase="ScreenSize.XS" [opened]="opened">
+    <div header fxLayoutAlign="space-between">
+      <span>Display settings</span>
+      <mat-icon
+        *ngIf="searchChanged$ | async"
+        (click)="clearSearch(); $event.stopPropagation()"
+        class="red clear-button"
+        >cancel</mat-icon
+      >
+    </div>
+    <div content fxLayout="column" fxLayoutGap="10px">
+      <app-players-search></app-players-search>
+      <app-players-view-switch></app-players-view-switch>
       <app-players-count></app-players-count>
     </div>
-  </div>
-</div> -->
+  </app-expansion-panel>
 
-<app-expansion-panel fxHide.gt-xs [opened]="opened">
-  <div header fxLayoutAlign="space-between">
-    <span>Display settings</span>
-    <mat-icon *ngIf="searchChanged$ | async" (click)="clearSearch(); $event.stopPropagation()" class="red clear-button"
-      >cancel</mat-icon
-    >
+  <div *ngSwitchCase="ScreenSize.SM">
+    <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="10px">
+      <app-players-search></app-players-search>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="40px">
+        <app-players-view-switch></app-players-view-switch>
+        <app-players-count></app-players-count>
+      </div>
+    </div>
   </div>
-  <div content fxLayout="column" fxLayoutGap="5px">
+
+  <div *ngSwitchDefault fxLayoutAlign="end center" fxLayoutGap="40px">
     <app-players-search></app-players-search>
+    <app-players-view-switch></app-players-view-switch>
     <app-players-count></app-players-count>
   </div>
-</app-expansion-panel>
+</div>

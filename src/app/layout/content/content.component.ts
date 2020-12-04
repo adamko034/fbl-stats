@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -11,14 +11,14 @@ import { Logger } from 'src/app/utils/logger';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-  public get panelsOpened(): boolean {
-    return !this.deviceDetector.isMobile();
-  }
-
-  constructor(private filtersStoreService: FiltersStoreService, private deviceDetector: DeviceDetectorService) {}
   private destroyed$ = new Subject<void>();
 
   public showContent = false;
+  public get panelsOpened(): boolean {
+    return !this.screenSizeService.isMobile();
+  }
+
+  constructor(private filtersStoreService: FiltersStoreService, private screenSizeService: ScreenSizeService) {}
 
   public ngOnInit(): void {
     Logger.logDev('content component, ng on init');

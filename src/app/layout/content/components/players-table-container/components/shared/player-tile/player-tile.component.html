@@ -1,6 +1,6 @@
 <div class="player" ngClass.lt-md="player-mobile" fxLayout="column">
   <div class="pointer" (click)="onShowPlayerDetails()">
-    <div *ngIf="isMobile" fxLayout="row" fxLayoutGap="10px" fxFill>
+    <div *ngIf="isMobile$ | async" fxLayout="row" fxLayoutGap="10px" fxFill>
       <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
       <div fxLayout="column" fxLayoutGap="5px">
         <app-player-tile-name [player]="player"></app-player-tile-name>
@@ -10,7 +10,7 @@
       <app-player-tile-fantasy-points [player]="player" fxFlex fxFlexAlign="center"></app-player-tile-fantasy-points>
     </div>
 
-    <div *ngIf="!isMobile" fxLayout="row" fxLayoutAlign="start center">
+    <div *ngIf="!(isMobile$ | async)" fxLayout="row" fxLayoutAlign="start center">
       <div fxLayout="row" fxLayoutGap="10px" fxFlex="55">
         <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
         <div fxLayout="column" fxLayoutGap="10px">
@@ -28,14 +28,9 @@
     <app-player-details [player]="player"></app-player-details>
   </div>
 
-  <div class="red bold expand pointer" (click)="onShowPlayerDetails()">
-    <span *ngIf="!(expanded$ | async)" class="hvr-icon-hang" fxLayoutAlign="start center">
-      Show more
-      <mat-icon class="hvr-icon">keyboard_arrow_down</mat-icon>
-    </span>
-    <span *ngIf="expanded$ | async" class="hvr-icon-bob" fxLayoutAlign="start center">
-      Show less
-      <mat-icon class="hvr-icon">keyboard_arrow_up</mat-icon>
-    </span>
-  </div>
+  <app-toggle-expand
+    class="expand"
+    [expanded]="expanded$ | async"
+    (toggleExpand)="onShowPlayerDetails()"
+  ></app-toggle-expand>
 </div>

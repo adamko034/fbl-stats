@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
-import { StoreService } from 'src/app/services/store.service';
+import { PlayersStore } from 'src/app/store/players/players.store';
 
 @Component({
   selector: 'app-select-position',
@@ -12,11 +12,11 @@ export class SelectPositionComponent {
   public PlayerPosition = PlayerPosition;
   public selected: PlayerPosition;
 
-  constructor(private filtersStoreServie: FiltersStoreService, private storeService: StoreService) {}
+  constructor(private filtersStoreServie: FiltersStoreService, private playersStore: PlayersStore) {}
 
   public onPositionChange(position: PlayerPosition) {
     this.selected = position;
-    this.storeService.loadByPosition(position);
+    this.playersStore.loadByPosition(position);
     this.filtersStoreServie.updatePosition(position);
   }
 }

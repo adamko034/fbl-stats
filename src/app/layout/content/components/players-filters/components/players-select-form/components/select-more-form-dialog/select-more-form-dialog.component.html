@@ -1,0 +1,16 @@
+<mat-dialog-content class="content">
+  <h2 matDialogTitle>Select matchdays count</h2>
+  <div fxLayoutAlign="center center">
+    <app-input-number
+      [min]="min"
+      [max]="data.lastMatchday"
+      [buttonsPosition]="'onSides'"
+      [(value)]="value"
+    ></app-input-number>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button class="red-background" mat-button (click)="confirm()">Confirm</button>
+</mat-dialog-actions>

@@ -18,7 +18,7 @@ export class LoadingComponent implements OnInit {
   ngOnInit(): void {
     this.dataLoaded$ = this.loadingService.select().pipe(
       delay(0),
-      tap((val) => Logger.logDev('Loading Component: data loaded: ' + val))
+      tap((val) => Logger.logDev('loading component: data loaded: ' + val))
     );
   }
 }

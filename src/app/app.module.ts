@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -52,6 +53,7 @@ import { PlayersFilterPopularityComponent } from './layout/content/components/pl
 import { SelectTeamsFromTableComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/select-teams-from-table/select-teams-from-table.component';
 import { SmartTeamsSelectionDialogComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/smart-teams-selection-dialog/smart-teams-selection-dialog.component';
 import { PlayersFilterTeamsComponent } from './layout/content/components/players-filters/components/players-filter-teams/players-filter-teams.component';
+import { SelectMoreFormDialogComponent } from './layout/content/components/players-filters/components/players-select-form/components/select-more-form-dialog/select-more-form-dialog.component';
 import { PlayersListComponent } from './layout/content/components/players-table-container/components/players-list/players-list.component';
 import { PlayersTableComponent } from './layout/content/components/players-table-container/components/players-table/players-table.component';
 import { PlayersTilesComponent } from './layout/content/components/players-table-container/components/players-tiles/players-tiles.component';
@@ -70,10 +72,12 @@ import { NewUpdatesComponent } from './layout/header/components/new-updates/new-
 import { HeaderComponent } from './layout/header/header.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
+import { InputNumberComponent } from './shared/components/input-number/input-number.component';
 import { SwitchComponent } from './shared/components/switch/switch.component';
 import { TeamFormComponent } from './shared/components/team-form/team-form.component';
 import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
+import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-expand.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +126,10 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
     TeamLogoStyleDirective,
     SmartTeamsSelectionDialogComponent,
     SelectTeamsFromTableComponent,
-    TeamFormComponent
+    TeamFormComponent,
+    InputNumberComponent,
+    SelectMoreFormDialogComponent,
+    ToggleExpandComponent
   ],
   imports: [
     BrowserModule,
@@ -155,7 +162,8 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
     BrowserAnimationsModule,
     MatListModule,
     MatSortModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

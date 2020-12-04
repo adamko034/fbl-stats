@@ -1,0 +1,10 @@
+<div class="red bold pointer" (click)="onToggle()">
+  <span *ngIf="!expanded" class="hvr-icon-hang" fxLayoutAlign="start center">
+    Show more
+    <mat-icon class="hvr-icon">keyboard_arrow_down</mat-icon>
+  </span>
+  <span *ngIf="expanded" class="hvr-icon-bob" fxLayoutAlign="start center">
+    Show less
+    <mat-icon class="hvr-icon">keyboard_arrow_up</mat-icon>
+  </span>
+</div>

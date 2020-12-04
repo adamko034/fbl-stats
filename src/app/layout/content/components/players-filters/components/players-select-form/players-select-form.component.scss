@@ -1,0 +1,19 @@
+.more {
+  height: 37px;
+  border-radius: 4px;
+  min-width: 33px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.12);
+
+  &:hover:not(.red-background) {
+    background-color: rgba($color: #000000, $alpha: 0.02);
+  }
+
+  &:hover {
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .value {
+    padding-left: 10px;
+  }
+}
