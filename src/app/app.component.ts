@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PropertiesService } from 'src/app/services/properties.service';
+import { PlayersStore } from 'src/app/store/players/players.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -8,10 +9,11 @@ import { Logger } from 'src/app/utils/logger';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private propertiesService: PropertiesService) {}
+  constructor(private propertiesService: PropertiesService, private playersStore: PlayersStore) {}
 
   public ngOnInit(): void {
     Logger.logDev('app component, on init');
     this.propertiesService.loadLastUpdated();
+    this.playersStore.loadAll();
   }
 }

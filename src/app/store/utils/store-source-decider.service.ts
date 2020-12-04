@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { Logger } from 'src/app/utils/logger';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -18,7 +17,6 @@ export class StoreSourceDeciderService {
         filter((dev: { source: string }) => !!dev.source)
       )
       .subscribe(({ source }) => {
-        Logger.logDev('store source decider, source has changed to ' + source);
         this.source = source;
       });
   }

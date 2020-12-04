@@ -34,6 +34,16 @@ export class PlayersStore {
     this.loadByPosition(position);
   }
 
+  public loadAll(): void {
+    Logger.logDev('players store, loading all players');
+    const store = this.getStore();
+
+    this.loadGoalkeepers(store);
+    this.loadDefenders(store);
+    this.loadMidfielders(store);
+    this.loadForwards(store);
+  }
+
   public loadByPosition(position: PlayerPosition): void {
     Logger.logDev('players store, loading players by position');
     const store = this.getStore();
@@ -59,12 +69,12 @@ export class PlayersStore {
 
   private loadMidfielders(store: IPlayersStore): void {
     if (!this.state.midfielders) {
-      this.loadingService.startLoadingPlayers();
+      this.loadingService.startLoading('players-midfielders');
       store
         .loadMidfielders()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((midfielders: Player[]) => {
-          this.loadingService.endLoadingPlayers();
+          this.loadingService.endLoading('players-midfielders');
           this.state.midfielders = midfielders;
           this.players$.next({ ...this.state });
         });
@@ -73,12 +83,12 @@ export class PlayersStore {
 
   private loadForwards(store: IPlayersStore): void {
     if (!this.state.forwards) {
-      this.loadingService.startLoadingPlayers();
+      this.loadingService.startLoading('players-forwards');
       store
         .loadForwards()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((forwards: Player[]) => {
-          this.loadingService.endLoadingPlayers();
+          this.loadingService.endLoading('players-forwards');
           this.state.forwards = forwards;
           this.players$.next({ ...this.state });
         });
@@ -87,12 +97,12 @@ export class PlayersStore {
 
   private loadGoalkeepers(store: IPlayersStore) {
     if (!this.state.goalkeepers) {
-      this.loadingService.startLoadingPlayers();
+      this.loadingService.startLoading('players-goalkeepers');
       store
         .loadGoalkeepers()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((goalkeepers: Player[]) => {
-          this.loadingService.endLoadingPlayers();
+          this.loadingService.endLoading('players-goalkeepers');
           this.state.goalkeepers = goalkeepers;
           this.players$.next({ ...this.state });
         });
@@ -101,12 +111,12 @@ export class PlayersStore {
 
   private loadDefenders(store: IPlayersStore) {
     if (!this.state.defenders) {
-      this.loadingService.startLoadingPlayers();
+      this.loadingService.startLoading('players-defenders');
       store
         .loadDefenders()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((defenders: Player[]) => {
-          this.loadingService.endLoadingPlayers();
+          this.loadingService.endLoading('players-defenders');
           this.state.defenders = defenders;
           this.players$.next({ ...this.state });
         });

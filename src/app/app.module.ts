@@ -78,6 +78,7 @@ import { TeamFormComponent } from './shared/components/team-form/team-form.compo
 import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-expand.component';
+import { StartupLoadingComponent } from './components/startup-loading/startup-loading.component';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-
     TeamFormComponent,
     InputNumberComponent,
     SelectMoreFormDialogComponent,
-    ToggleExpandComponent
+    ToggleExpandComponent,
+    StartupLoadingComponent
   ],
   imports: [
     BrowserModule,
