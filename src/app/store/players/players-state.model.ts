@@ -5,4 +5,6 @@ export interface PlayersState {
   defenders?: Player[];
   midfielders?: Player[];
   forwards?: Player[];
+
+  players: Player[];
 }

@@ -1,5 +1,5 @@
-<div class="body">
-  <div id="container">
+<div class="container">
+  <div class="loading">
     <div class="divider" aria-hidden="true"></div>
     <p class="loading-text" aria-label="Loading">
       <span class="letter" aria-hidden="true">L</span>
@@ -10,5 +10,10 @@
       <span class="letter" aria-hidden="true">n</span>
       <span class="letter" aria-hidden="true">g</span>
     </p>
+  </div>
+
+  <div class="positions" fxLayout fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
+    <mat-progress-bar class="spinner" mode="determinate" [value]="value"></mat-progress-bar>
+    <span>{{ value }}%</span>
   </div>
 </div>

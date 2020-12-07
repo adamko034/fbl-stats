@@ -6,6 +6,7 @@ export interface PlayerUi {
   team: string;
   teamShort: string;
   price: number;
+  position: string;
   popularity: number;
   totalPoints: number;
   attendance: number;

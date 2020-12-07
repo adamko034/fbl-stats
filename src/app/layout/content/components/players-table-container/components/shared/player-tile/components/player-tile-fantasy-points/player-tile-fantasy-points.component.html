@@ -1,10 +1,12 @@
-<div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="3px">
+<div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="5px">
   <div class="player-score red-background">{{ player.form }}</div>
-  <div fxLayout="row" fxLayoutGap="7px">
+  <div fxLayout="row wrap" fxLayoutGap="10px">
     <span
+      class="score"
       [ngClass]="getScoreColor(game.points)"
       *ngFor="let game of player.games | orderBy: '-matchday'; trackBy: trackGamesBy"
-      >{{ game.points }}</span
     >
+      {{ game.points }}
+    </span>
   </div>
 </div>

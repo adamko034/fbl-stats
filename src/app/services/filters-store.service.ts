@@ -9,7 +9,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class FiltersStoreService {
   private state: PlayersFilters;
   private initialData: PlayersFilters = {
-    position: null,
+    position: PlayerPosition.ALL,
     matchdays: 3,
     name: '',
     price: null,
@@ -114,7 +114,7 @@ export class FiltersStoreService {
   }
 
   public updatePosition(position: PlayerPosition) {
-    this.filtersChanged = { change: true, shouldSend: false };
+    this.filtersChanged = { change: true, shouldSend: true };
     this.state.position = position;
     this.sendFilters();
   }
@@ -138,6 +138,7 @@ export class FiltersStoreService {
     this.state.teams = null;
     this.state.hideUnavailable = false;
     this.state.matchdays = initial.matchdays;
+    this.state.position = initial.position;
 
     this.filtersChanged = { change: false, shouldSend: true };
     this.sendFilters();

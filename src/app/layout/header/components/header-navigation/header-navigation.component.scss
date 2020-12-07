@@ -1,0 +1,17 @@
+.navigation {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    cursor: default;
+    padding: 10px;
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+
+  li.active {
+    color: #c80a00;
+    font-weight: 500;
+  }
+}

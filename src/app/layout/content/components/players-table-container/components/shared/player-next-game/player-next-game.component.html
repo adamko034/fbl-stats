@@ -1,5 +1,9 @@
 <div fxLayout fxLayoutGap="3px" fxLayoutAlign="start end">
-  <app-team-logo [style]="'height: ' + height + 'px'" [height]="height" [team]="player.nextOpponent"></app-team-logo>
+  <app-team-logo
+    [style]="'height: ' + height + 'px; width: ' + height + 'px;'"
+    [height]="height"
+    [team]="player.nextOpponent"
+  ></app-team-logo>
   <div class="grey">
     <span *ngIf="player.nextGameIsHome">(h)</span>
     <span *ngIf="!player.nextGameIsHome">(a)</span>

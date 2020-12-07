@@ -5,7 +5,7 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
 import { Player } from 'src/app/models/player.model';
-import { LoadingService } from 'src/app/services/loading.service';
+import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { IPlayersStore } from 'src/app/store/players/impl/players-store.interface';
 import { PlayersFilesStoreService } from 'src/app/store/players/impl/players.files-store';
 import { PlayersFirebaseStoreService } from 'src/app/store/players/impl/players.firebase-store';
@@ -16,7 +16,7 @@ import { Logger } from 'src/app/utils/logger';
 @Injectable({ providedIn: 'root' })
 export class PlayersStore {
   private destroyed$: Subject<void> = new Subject<void>();
-  private state: PlayersState = {};
+  private state: PlayersState = { players: [] };
   private players$: ReplaySubject<PlayersState> = new ReplaySubject(1);
 
   private firebaseStore: IPlayersStore;
@@ -25,12 +25,12 @@ export class PlayersStore {
   constructor(
     private firestore: AngularFirestore,
     private http: HttpClient,
-    private loadingService: LoadingService,
+    private startupLoading: StartupLoadingService,
     private storeSourceDecider: StoreSourceDeciderService
   ) {}
 
   public update(position: PlayerPosition) {
-    this.state = {};
+    this.state = { players: [] };
     this.loadByPosition(position);
   }
 
@@ -69,13 +69,13 @@ export class PlayersStore {
 
   private loadMidfielders(store: IPlayersStore): void {
     if (!this.state.midfielders) {
-      this.loadingService.startLoading('players-midfielders');
       store
         .loadMidfielders()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((midfielders: Player[]) => {
-          this.loadingService.endLoading('players-midfielders');
+          this.startupLoading.endLoadingMid();
           this.state.midfielders = midfielders;
+          this.state.players = this.state.players.concat(midfielders);
           this.players$.next({ ...this.state });
         });
     }
@@ -83,13 +83,13 @@ export class PlayersStore {
 
   private loadForwards(store: IPlayersStore): void {
     if (!this.state.forwards) {
-      this.loadingService.startLoading('players-forwards');
       store
         .loadForwards()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((forwards: Player[]) => {
-          this.loadingService.endLoading('players-forwards');
+          this.startupLoading.endLoadingFor();
           this.state.forwards = forwards;
+          this.state.players = this.state.players.concat(forwards);
           this.players$.next({ ...this.state });
         });
     }
@@ -97,13 +97,13 @@ export class PlayersStore {
 
   private loadGoalkeepers(store: IPlayersStore) {
     if (!this.state.goalkeepers) {
-      this.loadingService.startLoading('players-goalkeepers');
       store
         .loadGoalkeepers()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((goalkeepers: Player[]) => {
-          this.loadingService.endLoading('players-goalkeepers');
+          this.startupLoading.endLoadingGk();
           this.state.goalkeepers = goalkeepers;
+          this.state.players = this.state.players.concat(goalkeepers);
           this.players$.next({ ...this.state });
         });
     }
@@ -111,13 +111,13 @@ export class PlayersStore {
 
   private loadDefenders(store: IPlayersStore) {
     if (!this.state.defenders) {
-      this.loadingService.startLoading('players-defenders');
       store
         .loadDefenders()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((defenders: Player[]) => {
-          this.loadingService.endLoading('players-defenders');
+          this.startupLoading.endLoadingDef();
           this.state.defenders = defenders;
+          this.state.players = this.state.players.concat(defenders);
           this.players$.next({ ...this.state });
         });
     }

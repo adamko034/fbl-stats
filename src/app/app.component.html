@@ -1,7 +1,11 @@
-<!-- <app-header></app-header> -->
-<app-startup-loading></app-startup-loading>
-<!-- <app-loading></app-loading>
-<app-content></app-content>
-<div class="footer">
-  <app-toastr></app-toastr>
-</div> -->
+<div *ngIf="!(showLoading$ | async)" [@inOutAnimation]>
+  <app-startup-loading></app-startup-loading>
+</div>
+
+<div class="app-content" *ngIf="showConent$ | async" [@inOutAnimation]>
+  <app-header></app-header>
+  <app-content></app-content>
+  <div class="footer"></div>
+</div>
+
+<app-toastr></app-toastr>

@@ -3,15 +3,16 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   background-color: #fafafa;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
   overflow-x: hidden;
 }
 
@@ -77,6 +78,10 @@ mat-button-toggle.position-active {
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: #c80a00;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: #c80a00;
 }
 
 .mat-badge-content {

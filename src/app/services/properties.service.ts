@@ -3,7 +3,7 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { Properties, TeamProperty } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { LoadingService } from 'src/app/services/loading.service';
+import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })
@@ -14,7 +14,7 @@ export class PropertiesService {
   private lastUpdated$ = new Subject<Date>();
   private propertiesLoaded = false;
 
-  constructor(private firebaseService: FirebaseService, private loadingService: LoadingService) {}
+  constructor(private firebaseService: FirebaseService, private startupLoading: StartupLoadingService) {}
 
   public update() {
     this.state = null;
@@ -23,13 +23,12 @@ export class PropertiesService {
   }
 
   public loadLastUpdated() {
-    this.loadingService.startLoadingLastUpdated();
     this.firebaseService
       .getLastUpdated()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((lastUpdated) => {
         this.lastUpdated$.next(new Date(lastUpdated.date));
-        this.loadingService.endLoadingLastUpdated();
+        this.startupLoading.endLoadingLastUpdated();
       });
   }
 
@@ -58,8 +57,7 @@ export class PropertiesService {
     return this.properties$.asObservable();
   }
 
-  private loadProperties() {
-    this.loadingService.startLoadingProperties();
+  public loadProperties() {
     this.firebaseService
       .getProperties()
       .pipe(takeUntil(this.destroyed$))
@@ -67,7 +65,7 @@ export class PropertiesService {
         Logger.logDev('properties store service, properties loaded');
         this.state = { ...properties };
         this.properties$.next({ ...this.state });
-        this.loadingService.endLoadingProperties();
+        this.startupLoading.endLoadingProperties();
       });
   }
 }

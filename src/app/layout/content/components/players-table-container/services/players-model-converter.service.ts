@@ -24,7 +24,8 @@ export class PlayersModelConverter {
       totalPoints,
       attendance,
       nextGameIsHome,
-      nextOpponent
+      nextOpponent,
+      position
     } = cloneDeep(player) as Player;
     return {
       id,
@@ -32,6 +33,7 @@ export class PlayersModelConverter {
       team,
       teamShort,
       popularity,
+      position,
       price,
       totalPoints,
       games,

@@ -1,18 +1,19 @@
 .header {
-  padding: 0 25px;
-  font-size: 35px;
-  color: #fff;
-  height: 90px;
-  width: 100%;
-  font-weight: 600;
-  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0 50px;
+  font-size: 23px;
+  height: 65px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  margin: 0 2vw;
+  width: 95%;
+  border-bottom: 2px solid #c80a00;
 }
 
 .header-mobile {
+  font-size: 16px;
   padding: 0 10px;
-  font-size: 20px;
-  color: #fff;
-  height: 60px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  margin: 0;
 }

@@ -82,11 +82,11 @@ export class PlayersFilterTeamsComponent implements OnInit {
       .open(SmartTeamsSelectionDialogComponent, { minWidth: '365px' })
       .afterClosed()
       .pipe(
+        tap(() => this.loadingService.startLoading('smart-selection')),
         filter((result: SmartTeamsSelectionDialogResult) => !!result),
         tap((result: SmartTeamsSelectionDialogResult) =>
           Logger.logDev('players filter teams, got new smart selection: ' + result.selection)
         ),
-        tap(() => this.loadingService.startLoading('smart-selection')),
         switchMap((result: SmartTeamsSelectionDialogResult) =>
           this.smartSelectionTeamsService.selectTeamsBy(result.selection, result.count)
         ),

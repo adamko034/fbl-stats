@@ -1,0 +1,10 @@
+<app-form-field label="Position">
+  <div fxLayout fxLayoutGap="5px" fxLayoutAlign="start center">
+    <app-switch
+      [value]="selectedPosition$ | async"
+      name="position"
+      [items]="items"
+      (switchChange)="onPositionChange($event)"
+    ></app-switch>
+  </div>
+</app-form-field>

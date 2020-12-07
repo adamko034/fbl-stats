@@ -11,8 +11,9 @@ export interface PlayersFilters {
 }
 
 export enum PlayerPosition {
-  GK = 'goalkeepers',
-  DEF = 'defenders',
-  MID = 'midfielders',
-  FOR = 'forwards'
+  GK = 'gk',
+  DEF = 'def',
+  MID = 'mid',
+  FOR = 'for',
+  ALL = 'all'
 }

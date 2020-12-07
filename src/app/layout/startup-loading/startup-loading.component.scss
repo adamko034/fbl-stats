@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400&display=swap');
 
 $black: #000;
-$white: #fff;
+$white: #fafafa;
 
 @mixin pseudo($content: '') {
   position: absolute;
@@ -16,21 +16,21 @@ $white: #fff;
   }
 }
 
-.body {
+.container {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   display: flex;
+  flex-direction: column;
+  padding-top: 10vw;
   align-items: center;
-  justify-content: center;
   margin: 0;
   min-height: 100vh;
-  background: #fff;
+  background: $white;
   overflow: hidden;
 }
 
-#container {
-  z-index: 5000000;
+.loading {
   position: relative;
   transform: scale(0.725);
 }
@@ -56,10 +56,10 @@ $white: #fff;
     @include pseudo;
     z-index: 1;
     top: 40px;
-    left: 115px;
-    width: 6px;
-    height: 6px;
-    background: $black;
+    left: 114px;
+    width: 8px;
+    height: 8px;
+    background: #c80a00;
     border-radius: 50%;
     animation: dotMove 1800ms cubic-bezier(0.25, 0.25, 0.75, 0.75) infinite;
   }
@@ -91,6 +91,7 @@ $white: #fff;
     }
     &:nth-child(5) {
       // For the letter "i"
+      margin-left: 14px;
       transform-origin: 100% 70%;
       animation: letterStretch 1800ms cubic-bezier(0.25, 0.23, 0.73, 0.75) infinite;
       &::before {
@@ -169,13 +170,22 @@ $white: #fff;
 }
 
 @media (min-width: 48rem) {
-  #container {
+  .loading {
     transform: scale(0.725rem);
   }
 }
 
 @media (min-width: 62rem) {
-  #container {
+  .loading {
     transform: scale(0.85);
+  }
+}
+
+.positions {
+  margin-top: 20px;
+  width: 50vw;
+
+  .info {
+    font-size: 18px;
   }
 }

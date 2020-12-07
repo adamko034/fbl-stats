@@ -1,22 +1,16 @@
-<div>
-  <div class="position">
-    <app-select-position></app-select-position>
+<div class="content" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+  <div
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap="20px"
+    fxFlexAlign="center"
+    ngClass.xs="filters-100"
+    ngClass.gt-xs="filters-90"
+    ngClass.gt-sm="filters-80"
+  >
+    <app-players-filters></app-players-filters>
+    <app-players-display-settings></app-players-display-settings>
   </div>
 
-  <div *ngIf="showContent" class="content" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
-    <div
-      fxLayout="column"
-      fxLayoutAlign="start stretch"
-      fxLayoutGap="20px"
-      fxFlexAlign="center"
-      ngClass.xs="filters-100"
-      ngClass.gt-xs="filters-90"
-      ngClass.gt-sm="filters-80"
-    >
-      <app-players-filters [opened]="panelsOpened"></app-players-filters>
-      <app-players-display-settings [opened]="panelsOpened"></app-players-display-settings>
-    </div>
-
-    <app-players-table-container></app-players-table-container>
-  </div>
+  <app-players-table-container></app-players-table-container>
 </div>

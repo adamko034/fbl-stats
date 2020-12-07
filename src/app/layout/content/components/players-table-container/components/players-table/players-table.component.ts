@@ -85,8 +85,9 @@ export class PlayersTableComponent implements OnInit {
 
     this.displayedColumns = this.columns.map((c) => c.fieldName);
     this.displayedColumns.unshift('Team');
+    this.displayedColumns.unshift('Position');
     this.displayedColumns.unshift('Name');
-    this.displayedColumns.splice(2, 0, 'Next');
+    this.displayedColumns.splice(3, 0, 'Next');
     this.show = true;
   }
 

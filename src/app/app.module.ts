@@ -70,6 +70,7 @@ import { SelectPositionComponent } from './layout/content/components/select-posi
 import { LastUdpatedComponent } from './layout/header/components/last-udpated/last-udpated.component';
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { StartupLoadingComponent } from './layout/startup-loading/startup-loading.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
 import { InputNumberComponent } from './shared/components/input-number/input-number.component';
@@ -78,7 +79,8 @@ import { TeamFormComponent } from './shared/components/team-form/team-form.compo
 import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-expand.component';
-import { StartupLoadingComponent } from './components/startup-loading/startup-loading.component';
+import { HeaderNavigationComponent } from './layout/header/components/header-navigation/header-navigation.component';
+import { PlayersFilterPositionComponent } from './layout/content/components/players-filters/components/players-filter-position/players-filter-position.component';
 
 @NgModule({
   declarations: [
@@ -131,7 +133,9 @@ import { StartupLoadingComponent } from './components/startup-loading/startup-lo
     InputNumberComponent,
     SelectMoreFormDialogComponent,
     ToggleExpandComponent,
-    StartupLoadingComponent
+    StartupLoadingComponent,
+    HeaderNavigationComponent,
+    PlayersFilterPositionComponent
   ],
   imports: [
     BrowserModule,

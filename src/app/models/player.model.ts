@@ -6,6 +6,7 @@ export interface Player {
   team: string;
   teamShort: string;
   totalPoints: number;
+  position: string;
   popularity: number;
   price: number;
   games: Game[];

@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Component({
   selector: 'app-players-filters',
@@ -8,14 +9,14 @@ import { FiltersStoreService } from 'src/app/services/filters-store.service';
   styleUrls: ['./players-filters.component.scss']
 })
 export class PlayersFiltersComponent implements OnInit {
-  @Input() opened = false;
-
   public filtersModified$: Observable<boolean>;
+  public isMobile$: Observable<boolean>;
 
-  constructor(private filtersStoreService: FiltersStoreService) {}
+  constructor(private filtersStoreService: FiltersStoreService, private screenSizeService: ScreenSizeService) {}
 
   ngOnInit() {
     this.filtersModified$ = this.filtersStoreService.selectFiltersChanged();
+    this.isMobile$ = this.screenSizeService.isMobile$();
   }
 
   public clearFilters(): void {

@@ -1,4 +1,8 @@
-<div [ngSwitch]="view">
+<div *ngIf="loading" fxLayoutAlign="center center">
+  <mat-progress-spinner [diameter]="50" [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
+
+<div *ngIf="!loading" [ngSwitch]="view" class="animate__animated animate__fadeIn">
   <app-players-list *ngSwitchCase="PlayersViews.LIST" [players]="playersToDisplay"></app-players-list>
   <app-players-table *ngSwitchCase="PlayersViews.TABLE" [players]="playersToDisplay"></app-players-table>
 </div>
