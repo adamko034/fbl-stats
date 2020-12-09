@@ -2,10 +2,10 @@
   <app-team-logo
     [style]="'height: ' + height + 'px; width: ' + height + 'px;'"
     [height]="height"
-    [team]="player.nextOpponent"
+    [team]="nextGame.opponent"
   ></app-team-logo>
   <div class="grey">
-    <span *ngIf="player.nextGameIsHome">(h)</span>
-    <span *ngIf="!player.nextGameIsHome">(a)</span>
+    <span *ngIf="nextGame.isHome">(h)</span>
+    <span *ngIf="!nextGame.isHome">(a)</span>
   </div>
 </div>

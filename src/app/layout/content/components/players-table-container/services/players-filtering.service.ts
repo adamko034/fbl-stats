@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PlayerPosition, PlayersFilters } from 'src/app/layout/content/models/players-filters';
-import { Player } from 'src/app/models/player.model';
+import { Player } from 'src/app/store/players/models/player.model';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersFilteringService {

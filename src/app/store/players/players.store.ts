@@ -4,12 +4,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
-import { Player } from 'src/app/models/player.model';
 import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { IPlayersStore } from 'src/app/store/players/impl/players-store.interface';
 import { PlayersFilesStoreService } from 'src/app/store/players/impl/players.files-store';
 import { PlayersFirebaseStoreService } from 'src/app/store/players/impl/players.firebase-store';
-import { PlayersState } from 'src/app/store/players/players-state.model';
+import { Player } from 'src/app/store/players/models/player.model';
+import { PlayersState } from 'src/app/store/players/players.state';
 import { StoreSourceDeciderService } from 'src/app/store/utils/store-source-decider.service';
 import { Logger } from 'src/app/utils/logger';
 

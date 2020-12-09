@@ -1,4 +1,4 @@
 <div class="player-name" fxLayout="row" fxLayoutGap="7px" fxLayoutAlign="start center">
   <span>{{ player.name }}</span>
-  <span *ngIf="player.attendance === 0" class="dot-red"></span>
+  <app-prediction-indicator *ngIf="player.attendance === 0" [value]="0" [height]="35"></app-prediction-indicator>
 </div>

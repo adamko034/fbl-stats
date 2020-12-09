@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Player } from 'src/app/models/player.model';
+import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
 
 @Component({
   selector: 'app-player-next-game',
@@ -7,7 +7,7 @@ import { Player } from 'src/app/models/player.model';
   styleUrls: ['./player-next-game.component.scss']
 })
 export class PlayerNextGameComponent {
-  @Input() player: Player;
+  @Input() nextGame: PlayerNextGame;
   @Input() height: number;
 
   constructor() {}

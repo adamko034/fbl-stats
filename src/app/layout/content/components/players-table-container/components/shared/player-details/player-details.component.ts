@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ExpandedPlayersService } from 'src/app/layout/content/components/players-table-container/services/expanded-players.service';
-import { Player } from 'src/app/models/player.model';
+import { Player } from 'src/app/store/players/models/player.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStoreService } from 'src/app/store/teams/teams-store.service';
 import { Logger } from 'src/app/utils/logger';
@@ -28,7 +28,7 @@ export class PlayerDetailsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     Logger.logDev('player details component, ' + this.player.name + ', on init');
     this.teamsStoreService.load(this.player.teamShort);
-    this.teamsStoreService.load(this.player.nextOpponent);
+    this.teamsStoreService.load(this.player.nextGame.opponent);
   }
 
   public ngOnDestroy(): void {

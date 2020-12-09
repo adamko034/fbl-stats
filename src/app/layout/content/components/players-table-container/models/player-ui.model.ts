@@ -1,4 +1,6 @@
+import { PlayerAttendancePrediction } from 'src/app/layout/content/components/players-table-container/models/player-attendance-prediction.enum';
 import { Game } from 'src/app/models/game.model';
+import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
 
 export interface PlayerUi {
   id: string;
@@ -12,6 +14,6 @@ export interface PlayerUi {
   attendance: number;
   form: number;
   games: Game[];
-  nextOpponent: string;
-  nextGameIsHome: boolean;
+  nextGameAttendancePrediction: PlayerAttendancePrediction;
+  nextGame: PlayerNextGame;
 }

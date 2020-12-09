@@ -4,9 +4,13 @@
       <ng-container matColumnDef="Name" sticky>
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let item">
-          <div fxLayout fxLayoutGap="5px">
+          <div fxLayout fxLayoutAlign="start center" fxLayoutGap="5px">
             <span>{{ item.name }}</span>
-            <span *ngIf="item.attendance === 0" class="dot-red"></span>
+            <app-prediction-indicator
+              *ngIf="item.attendance === 0"
+              [value]="0"
+              [height]="35"
+            ></app-prediction-indicator>
           </div>
         </td>
       </ng-container>
@@ -28,7 +32,13 @@
       <ng-container matColumnDef="Next">
         <th mat-header-cell *matHeaderCellDef>Next</th>
         <td mat-cell *matCellDef="let player">
-          <app-player-next-game [height]="35" [player]="player"></app-player-next-game>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <app-player-next-game [height]="35" [nextGame]="player.nextGame"></app-player-next-game>
+            <app-prediction-indicator
+              [value]="player.nextGameAttendancePrediction"
+              [height]="35"
+            ></app-prediction-indicator>
+          </div>
         </td>
       </ng-container>
 

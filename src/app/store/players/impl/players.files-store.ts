@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Player } from 'src/app/models/player.model';
 import { IPlayersStore } from 'src/app/store/players/impl/players-store.interface';
+import { Player } from 'src/app/store/players/models/player.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })

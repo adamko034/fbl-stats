@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy
 import { combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SchedulesService } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/components/player-schedules/services/schedules.service';
-import { Player } from 'src/app/models/player.model';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
+import { Player } from 'src/app/store/players/models/player.model';
 import { TeamsStoreService } from 'src/app/store/teams/teams-store.service';
 import { Logger } from 'src/app/utils/logger';
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Player } from 'src/app/models/player.model';
 import { IPlayersStore } from 'src/app/store/players/impl/players-store.interface';
+import { Player } from 'src/app/store/players/models/player.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })

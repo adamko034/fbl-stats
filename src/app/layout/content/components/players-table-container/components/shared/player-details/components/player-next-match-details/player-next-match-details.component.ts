@@ -35,15 +35,15 @@ export class PlayerNextMatchDetailsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     combineLatest([
       this.teamsStoreService.select(this.player.teamShort),
-      this.teamsStoreService.select(this.player.nextOpponent)
+      this.teamsStoreService.select(this.player.nextGame.opponent)
     ])
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([team, opponent]) => {
         if (!!team && !!opponent) {
           Logger.logDev('player next match details component, ' + this.player.name + ', got teams');
-          this.homeTeam = this.player.nextGameIsHome ? team : opponent;
-          this.awayTeam = this.player.nextGameIsHome ? opponent : team;
-          this.current = this.player.nextGameIsHome ? 'home' : 'away';
+          this.homeTeam = this.player.nextGame.isHome ? team : opponent;
+          this.awayTeam = this.player.nextGame.isHome ? opponent : team;
+          this.current = this.player.nextGame.isHome ? 'home' : 'away';
           this.show = true;
           this.changeDetector.detectChanges();
         }

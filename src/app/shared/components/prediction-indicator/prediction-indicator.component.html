@@ -1,0 +1,5 @@
+<div *ngIf="value !== cases.UnknownYet" [ngSwitch]="value" fxLayoutAlign="start center">
+  <mat-icon *ngSwitchCase="cases.WillPlay" class="green">check_circle</mat-icon>
+  <mat-icon *ngSwitchCase="cases.WillNotPlay" class="red">highlight_off</mat-icon>
+  <mat-icon *ngSwitchCase="cases.Doubt" class="orange">help_outline</mat-icon>
+</div>

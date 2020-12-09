@@ -81,6 +81,7 @@ import { TimelineComponent } from './shared/components/timeline/timeline.compone
 import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-expand.component';
 import { HeaderNavigationComponent } from './layout/header/components/header-navigation/header-navigation.component';
 import { PlayersFilterPositionComponent } from './layout/content/components/players-filters/components/players-filter-position/players-filter-position.component';
+import { PredictionIndicatorComponent } from './shared/components/prediction-indicator/prediction-indicator.component';
 
 @NgModule({
   declarations: [
@@ -135,7 +136,8 @@ import { PlayersFilterPositionComponent } from './layout/content/components/play
     ToggleExpandComponent,
     StartupLoadingComponent,
     HeaderNavigationComponent,
-    PlayersFilterPositionComponent
+    PlayersFilterPositionComponent,
+    PredictionIndicatorComponent
   ],
   imports: [
     BrowserModule,

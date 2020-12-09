@@ -1,4 +1,4 @@
-import { Player } from 'src/app/models/player.model';
+import { Player } from 'src/app/store/players/models/player.model';
 
 export interface PlayersState {
   goalkeepers?: Player[];

@@ -4,7 +4,7 @@ import { PlayerUi } from 'src/app/layout/content/components/players-table-contai
 import { PlayersFilteringService } from 'src/app/layout/content/components/players-table-container/services/players-filtering.service';
 import { PlayersModelConverter } from 'src/app/layout/content/components/players-table-container/services/players-model-converter.service';
 import { PlayersFilters } from 'src/app/layout/content/models/players-filters';
-import { Player } from 'src/app/models/player.model';
+import { Player } from 'src/app/store/players/models/player.model';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersDataService {
