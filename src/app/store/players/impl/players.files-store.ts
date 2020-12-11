@@ -32,6 +32,7 @@ export class PlayersFilesStoreService implements IPlayersStore {
   }
 
   private getJson(fileName: string): Observable<Player[]> {
-    return this.http.get<Player[]>(`${this.baseUrl}${fileName}.json`);
+    const salt = new Date().getTime();
+    return this.http.get<Player[]>(`${this.baseUrl}${fileName}.json?${salt}`);
   }
 }
