@@ -3,10 +3,11 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayerPosition, PlayersFilters } from 'src/app/layout/content/models/players-filters';
 import { TeamProperty } from 'src/app/models/properties.model';
-import { LoadingService } from 'src/app/services/loading.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersStoreService {
+  private localStorageKey = 'FANTASY_FBL_STATS:Filters';
   private state: PlayersFilters;
   private initialData: PlayersFilters = {
     position: PlayerPosition.ALL,
@@ -25,17 +26,27 @@ export class FiltersStoreService {
     change: false
   };
 
-  constructor(private loadingService: LoadingService) {
-    this.state = this.getInitialData();
+  constructor(private localStorageService: LocalStorageService) {
+    const data = this.getInitialData();
 
     this.filters = new ReplaySubject(1);
     this.changed = new ReplaySubject(1);
 
+    if (data.fromCache) {
+      this.filtersChanged = { change: true, shouldSend: true };
+    }
+
+    this.state = { ...data.filters };
     this.sendFilters();
   }
 
-  public getInitialData(): PlayersFilters {
-    return { ...this.initialData };
+  private getInitialData(): { fromCache: boolean; filters: PlayersFilters } {
+    var fromLocalStorage = this.localStorageService.get<PlayersFilters>(this.localStorageKey);
+    if (!fromLocalStorage) {
+      return { filters: { ...this.initialData }, fromCache: false };
+    }
+
+    return { fromCache: true, filters: { ...fromLocalStorage } };
   }
 
   public selectFilters(): Observable<PlayersFilters> {
@@ -132,7 +143,7 @@ export class FiltersStoreService {
   }
 
   public clear() {
-    const initial = this.getInitialData();
+    const initial = { ...this.initialData };
     this.state.popularity = initial.popularity;
     this.state.price = initial.price;
     this.state.teams = null;
@@ -149,6 +160,7 @@ export class FiltersStoreService {
   }
 
   private sendFilters(): void {
+    this.localStorageService.upsert<PlayersFilters>(this.localStorageKey, { ...this.state });
     this.filters.next({ ...this.state });
 
     if (this.filtersChanged.shouldSend) {
