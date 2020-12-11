@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { Properties, TeamProperty } from 'src/app/models/properties.model';
+import { LineupsSource, LineupsSourceProperty, Properties, TeamProperty } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { Logger } from 'src/app/utils/logger';
@@ -46,6 +46,10 @@ export class PropertiesService {
 
   public selectLastUpdated(): Observable<Date> {
     return this.lastUpdated$.asObservable();
+  }
+
+  public selectLineupSources(source: LineupsSource): Observable<LineupsSourceProperty> {
+    return this.selectProperties().pipe(map((properties) => properties.lineupSources[source]));
   }
 
   private selectProperties(): Observable<Properties> {

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { PlayerDetailsLoadingService } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/services/player-details-loading.service';
 import { ExpandedPlayersService } from 'src/app/layout/content/components/players-table-container/services/expanded-players.service';
 import { Player } from 'src/app/store/players/models/player.model';
-import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStoreService } from 'src/app/store/teams/teams-store.service';
 import { Logger } from 'src/app/utils/logger';
 
@@ -17,18 +17,19 @@ export class PlayerDetailsComponent implements OnInit, OnDestroy {
 
   private destroyed$ = new Subject<void>();
 
-  public playerTeam: Team;
-  public homeTeam: Team;
-  public awayTeam: Team;
-  public lastMatchday: number;
-  public showLoading = true;
+  public isLoading$: Observable<boolean>;
 
-  constructor(private expandedPlayersService: ExpandedPlayersService, private teamsStoreService: TeamsStoreService) {}
+  constructor(
+    private expandedPlayersService: ExpandedPlayersService,
+    private teamsStoreService: TeamsStoreService,
+    private loadingService: PlayerDetailsLoadingService
+  ) {}
 
   public ngOnInit(): void {
     Logger.logDev('player details component, ' + this.player.name + ', on init');
     this.teamsStoreService.load(this.player.teamShort);
     this.teamsStoreService.load(this.player.nextGame.opponent);
+    this.isLoading$ = this.loadingService.isLoading();
   }
 
   public ngOnDestroy(): void {

@@ -121,6 +121,10 @@ mat-button-toggle.position-active {
   background: #c80a00 !important;
 }
 
+.hvr-small.hvr-underline-from-center:before {
+  height: 2px !important;
+}
+
 .points-blue {
   font-weight: 550;
   color: blue;

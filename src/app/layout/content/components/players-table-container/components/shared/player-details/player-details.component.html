@@ -1,4 +1,8 @@
-<div class="player-details-container" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
-  <app-player-next-match-details class="next-game" [player]="player"></app-player-next-match-details>
+<div *ngIf="isLoading$ | async" class="loading" fxLayout="row" fxLayoutAlign="center center">
+  <mat-progress-spinner [diameter]="30" [mode]="'indeterminate'"></mat-progress-spinner>
+</div>
+
+<div class="player-details-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+  <app-player-next-match-details [player]="player"></app-player-next-match-details>
   <app-player-schedules [player]="player"></app-player-schedules>
 </div>

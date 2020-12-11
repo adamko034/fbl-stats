@@ -1,0 +1,56 @@
+<div
+  *ngIf="!!homeTeam && !!awayTeam"
+  class="game-details-container grey small"
+  ngClass.lt-sm="small-mobile"
+  ngClass.gt-xs="small"
+  gdAreas="home nothing away | hRank nothing aRank | hGames nothing aGames | hGoals nothing aGoals | hForm nothing aForm"
+  gdRows="auto auto auto auto auto"
+  gdColumns="auto 1% auto"
+  gdColumns.gt-sm="auto 2% auto"
+  gdColumns.gt-md="auto 3% auto"
+  gdAlignColumns="center center"
+>
+  <div gdArea="home" [ngClass]="{ 'current current-top': current === 'home' }">
+    <app-team-logo [height]="45" [scaleOnMobile]="0" [team]="homeTeam.shortName"></app-team-logo>
+  </div>
+  <div gdArea="nothing"></div>
+  <div gdArea="away" [ngClass]="{ 'current current-top': current === 'away' }">
+    <app-team-logo [height]="45" [scaleOnMobile]="0" [team]="awayTeam.shortName"></app-team-logo>
+  </div>
+  <div gdArea="hRank" [ngClass]="{ current: current === 'home' }" fxLayoutGap="5px">
+    <span class="bold">{{ getRank(homeTeam) }}</span>
+    <span>{{ homeTeam.points }}pts</span>
+  </div>
+  <div gdArea="aRank" [ngClass]="{ current: current === 'away' }" fxLayoutGap="5px">
+    <span class="bold">{{ getRank(awayTeam) }}</span>
+    <span>{{ awayTeam.points }}pts</span>
+  </div>
+  <div gdArea="hGames" fxLayoutGap="5px" [ngClass]="{ current: current === 'home' }">
+    <span matTooltip="wins">W:{{ homeTeam.wins }}</span>
+    <span matTooltip="draws">D:{{ homeTeam.draws }}</span>
+    <span matTooltip="losses">L:{{ homeTeam.losses }}</span>
+    <span matTooltip="goals scored">GS:{{ homeTeam.goalsScored }}</span>
+    <span matTooltip="goals conceded">GC:{{ homeTeam.goalsConceded }}</span>
+  </div>
+  <div gdArea="aGames" fxLayoutGap="5px" [ngClass]="{ current: current === 'away' }">
+    <span matTooltip="wins">W:{{ awayTeam.wins }}</span>
+    <span matTooltip="draws">D:{{ awayTeam.draws }}</span>
+    <span matTooltip="losses">L:{{ awayTeam.losses }}</span>
+    <span matTooltip="goals scored">GS:{{ awayTeam.goalsScored }}</span>
+    <span matTooltip="goals conceded">GC:{{ awayTeam.goalsConceded }}</span>
+  </div>
+  <div gdArea="hGoals" fxLayoutGap="5px" [ngClass]="{ current: current === 'home' }">
+    <span matTooltip="goals scored per game">GSPG: {{ getGoalsScoredPerGame(homeTeam) }}</span>
+    <span matTooltip="goals conceded per game">GCPG: {{ getGoalsConcededPerGame(homeTeam) }}</span>
+  </div>
+  <div gdArea="aGoals" fxLayoutGap="5px" [ngClass]="{ current: current === 'away' }">
+    <span matTooltip="goals scored per game">GSPG: {{ getGoalsScoredPerGame(awayTeam) }}</span>
+    <span matTooltip="goals conceded per game">GCPG: {{ getGoalsConcededPerGame(awayTeam) }}</span>
+  </div>
+  <div gdArea="hForm" [ngClass]="{ 'current current-bottom': current === 'home' }">
+    <app-team-form [form]="homeTeamForm" indicator="char"></app-team-form>
+  </div>
+  <div gdArea="aForm" [ngClass]="{ 'current current-bottom': current === 'away' }">
+    <app-team-form [form]="awayTeamForm" indicator="char"></app-team-form>
+  </div>
+</div>

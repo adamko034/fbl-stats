@@ -82,6 +82,9 @@ import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-
 import { HeaderNavigationComponent } from './layout/header/components/header-navigation/header-navigation.component';
 import { PlayersFilterPositionComponent } from './layout/content/components/players-filters/components/players-filter-position/players-filter-position.component';
 import { PredictionIndicatorComponent } from './shared/components/prediction-indicator/prediction-indicator.component';
+import { PlayerNextMatchTeamsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-teams/player-next-match-teams.component';
+import { PlayerNextMatchPredictionsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/player-next-match-predictions.component';
+import { PredictionSourceComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/components/prediction-source/prediction-source.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +140,10 @@ import { PredictionIndicatorComponent } from './shared/components/prediction-ind
     StartupLoadingComponent,
     HeaderNavigationComponent,
     PlayersFilterPositionComponent,
-    PredictionIndicatorComponent
+    PredictionIndicatorComponent,
+    PlayerNextMatchTeamsComponent,
+    PlayerNextMatchPredictionsComponent,
+    PredictionSourceComponent
   ],
   imports: [
     BrowserModule,

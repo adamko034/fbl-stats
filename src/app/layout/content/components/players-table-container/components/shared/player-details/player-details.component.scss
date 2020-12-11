@@ -1,8 +1,9 @@
-.player-details-container {
-  padding: 10px 0 0 0;
-  cursor: default;
+.loading {
+  margin-top: 10px;
+}
 
-  .next-game {
-    margin-bottom: 20px;
-  }
+.player-details-container {
+  padding: 15px 0 0 0;
+  cursor: default;
+  max-width: 90vw;
 }

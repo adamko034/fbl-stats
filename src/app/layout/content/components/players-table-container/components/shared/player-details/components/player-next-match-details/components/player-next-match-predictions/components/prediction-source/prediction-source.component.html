@@ -1,0 +1,8 @@
+<div *ngIf="source$" class="source" fxLayoutAlign="flex-end center">
+  <span class="hvr-small hvr-underline-from-center">
+    <a [href]="(source$ | async).url" target="blank" fxLayout="row" fxLayoutAlign="start center">
+      <span>{{ (source$ | async).displayName }}</span>
+      <mat-icon class="open" fxLayoutAlign="start center">open_in_new</mat-icon></a
+    >
+  </span>
+</div>

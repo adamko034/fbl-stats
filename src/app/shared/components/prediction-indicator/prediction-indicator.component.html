@@ -1,5 +1,11 @@
-<div *ngIf="value !== cases.UnknownYet" [ngSwitch]="value" fxLayoutAlign="start center">
+<div [ngSwitch]="value" fxLayoutAlign="start center">
   <mat-icon *ngSwitchCase="cases.WillPlay" class="green">check_circle</mat-icon>
   <mat-icon *ngSwitchCase="cases.WillNotPlay" class="red">highlight_off</mat-icon>
-  <mat-icon *ngSwitchCase="cases.Doubt" class="orange">help_outline</mat-icon>
+  <mat-icon *ngSwitchCase="cases.Doubt" class="orange">error_outline</mat-icon>
+  <mat-icon
+    matTooltip="Not published yet"
+    class="material-icons-outlined"
+    *ngIf="showUnknownYet && value === cases.UnknownYet"
+    >link_off</mat-icon
+  >
 </div>

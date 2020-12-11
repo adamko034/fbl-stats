@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy
 import { combineLatest, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SchedulesService } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/components/player-schedules/services/schedules.service';
+import { PlayerDetailsLoadingService } from 'src/app/layout/content/components/players-table-container/components/shared/player-details/services/player-details-loading.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
 import { Player } from 'src/app/store/players/models/player.model';
@@ -25,10 +26,12 @@ export class PlayerSchedulesComponent implements OnInit, OnDestroy {
     private schedulesService: SchedulesService,
     private propertiesService: PropertiesService,
     private teamsStoreService: TeamsStoreService,
-    private changeDetector: ChangeDetectorRef
+    private changeDetector: ChangeDetectorRef,
+    private loadingService: PlayerDetailsLoadingService
   ) {}
 
   public ngOnInit(): void {
+    this.loadingService.startLoading('schedules');
     Logger.logDev('player schedules component, ' + this.player.name + ' on init');
     combineLatest([this.propertiesService.selectLastMatchday(), this.teamsStoreService.select(this.player.teamShort)])
       .pipe(takeUntil(this.destroyed$))
@@ -38,6 +41,8 @@ export class PlayerSchedulesComponent implements OnInit, OnDestroy {
           this.timelineItems = this.schedulesService.toTimelineItems(team.games, lastMatchday);
           this.changeDetector.detectChanges();
         }
+
+        this.loadingService.endLoading('schedules');
       });
   }
 

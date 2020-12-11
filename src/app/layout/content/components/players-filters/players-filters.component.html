@@ -23,7 +23,7 @@
     </mat-card-content>
   </mat-card>
 
-  <app-expansion-panel *ngIf="isMobile$ | async" [opened]="true">
+  <app-expansion-panel *ngIf="isMobile$ | async" [opened]="false">
     <div header fxLayoutAlign="space-between">
       <span>Filters</span>
       <ng-template [ngTemplateOutlet]="clearButton"></ng-template>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { maxBy, minBy, orderBy } from 'lodash';
 import { TimelineDisplayOptions } from 'src/app/shared/components/timeline/models/timeline-display-options.model';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
@@ -6,7 +6,6 @@ import { TimelineTense } from 'src/app/shared/components/timeline/models/timelin
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss']
@@ -40,8 +39,6 @@ export class TimelineComponent implements OnInit {
     if (window.innerWidth < 360) {
       this.options = { futureItemsCount: 1, pastItemsCount: 0 };
     }
-
-    this.changeDetector.detectChanges();
   }
 
   public trackItemsBy(index, item: TimelineItem): number {
