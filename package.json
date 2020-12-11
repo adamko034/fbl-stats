@@ -29,6 +29,7 @@
     "hover.css": "^2.3.2",
     "moment": "^2.29.1",
     "ngx-device-detector": "^2.0.0",
+    "ngx-moment": "^5.0.0",
     "ngx-pipes": "^2.7.5",
     "ngx-toastr": "^13.1.0",
     "rxjs": "~6.6.3",

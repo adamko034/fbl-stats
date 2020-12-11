@@ -11,7 +11,7 @@ export class PropertiesService {
   private properties$ = new ReplaySubject<Properties>(1);
   private destroyed$ = new Subject<void>();
   private state: Properties;
-  private lastUpdated$ = new Subject<Date>();
+  private lastUpdated$ = new ReplaySubject<Date>(1);
   private propertiesLoaded = false;
 
   constructor(private firebaseService: FirebaseService, private startupLoading: StartupLoadingService) {}
@@ -27,7 +27,10 @@ export class PropertiesService {
       .getLastUpdated()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((lastUpdated) => {
-        this.lastUpdated$.next(new Date(lastUpdated.date));
+        if (lastUpdated) {
+          this.lastUpdated$.next(new Date(lastUpdated.date));
+        }
+
         this.startupLoading.endLoadingLastUpdated();
       });
   }

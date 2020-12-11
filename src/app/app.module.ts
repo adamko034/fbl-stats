@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { ToastrModule } from 'ngx-toastr';
 import { PlayersCountComponent } from 'src/app/layout/content/components/players-display-settings/components/players-count/players-count.component';
@@ -50,6 +51,7 @@ import { ToastrComponent } from './components/toastr/toastr.component';
 import { PlayersViewSwitchComponent } from './layout/content/components/players-display-settings/components/players-view-switch/players-view-switch.component';
 import { PlayersFilterHideUnavailableComponent } from './layout/content/components/players-filters/components/players-filter-hide-unavailable/players-filter-hide-unavailable.component';
 import { PlayersFilterPopularityComponent } from './layout/content/components/players-filters/components/players-filter-popularity/players-filter-popularity.component';
+import { PlayersFilterPositionComponent } from './layout/content/components/players-filters/components/players-filter-position/players-filter-position.component';
 import { SelectTeamsFromTableComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/select-teams-from-table/select-teams-from-table.component';
 import { SmartTeamsSelectionDialogComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/smart-teams-selection-dialog/smart-teams-selection-dialog.component';
 import { PlayersFilterTeamsComponent } from './layout/content/components/players-filters/components/players-filter-teams/players-filter-teams.component';
@@ -57,6 +59,9 @@ import { SelectMoreFormDialogComponent } from './layout/content/components/playe
 import { PlayersListComponent } from './layout/content/components/players-table-container/components/players-list/players-list.component';
 import { PlayersTableComponent } from './layout/content/components/players-table-container/components/players-table/players-table.component';
 import { PlayersTilesComponent } from './layout/content/components/players-table-container/components/players-tiles/players-tiles.component';
+import { PredictionSourceComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/components/prediction-source/prediction-source.component';
+import { PlayerNextMatchPredictionsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/player-next-match-predictions.component';
+import { PlayerNextMatchTeamsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-teams/player-next-match-teams.component';
 import { PlayerNextMatchDetailsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/player-next-match-details.component';
 import { PlayerDetailsComponent } from './layout/content/components/players-table-container/components/shared/player-details/player-details.component';
 import { PlayerNextGameComponent } from './layout/content/components/players-table-container/components/shared/player-next-game/player-next-game.component';
@@ -67,6 +72,7 @@ import { PlayerTileNameComponent } from './layout/content/components/players-tab
 import { PlayerTileNextGameComponent } from './layout/content/components/players-table-container/components/shared/player-tile/components/player-tile-next-game/player-tile-next-game.component';
 import { PlayerTileComponent } from './layout/content/components/players-table-container/components/shared/player-tile/player-tile.component';
 import { SelectPositionComponent } from './layout/content/components/select-position/select-position.component';
+import { HeaderNavigationComponent } from './layout/header/components/header-navigation/header-navigation.component';
 import { LastUdpatedComponent } from './layout/header/components/last-udpated/last-udpated.component';
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -74,17 +80,12 @@ import { StartupLoadingComponent } from './layout/startup-loading/startup-loadin
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from './shared/components/form-field/form-field.component';
 import { InputNumberComponent } from './shared/components/input-number/input-number.component';
+import { PredictionIndicatorComponent } from './shared/components/prediction-indicator/prediction-indicator.component';
 import { SwitchComponent } from './shared/components/switch/switch.component';
 import { TeamFormComponent } from './shared/components/team-form/team-form.component';
 import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-expand.component';
-import { HeaderNavigationComponent } from './layout/header/components/header-navigation/header-navigation.component';
-import { PlayersFilterPositionComponent } from './layout/content/components/players-filters/components/players-filter-position/players-filter-position.component';
-import { PredictionIndicatorComponent } from './shared/components/prediction-indicator/prediction-indicator.component';
-import { PlayerNextMatchTeamsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-teams/player-next-match-teams.component';
-import { PlayerNextMatchPredictionsComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/player-next-match-predictions.component';
-import { PredictionSourceComponent } from './layout/content/components/players-table-container/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/components/prediction-source/prediction-source.component';
 
 @NgModule({
   declarations: [
@@ -170,10 +171,10 @@ import { PredictionSourceComponent } from './layout/content/components/players-t
     MatBadgeModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MomentModule,
     ToastrModule.forRoot({ preventDuplicates: true }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    BrowserAnimationsModule,
     MatListModule,
     MatSortModule,
     CommonModule,

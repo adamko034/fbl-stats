@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-last-udpated',
   templateUrl: './last-udpated.component.html',
   styleUrls: ['./last-udpated.component.scss']
@@ -14,6 +14,6 @@ export class LastUdpatedComponent implements OnInit {
   constructor(private propertiesService: PropertiesService) {}
 
   ngOnInit(): void {
-    this.lastUpdated$ = this.propertiesService.selectLastUpdated();
+    this.lastUpdated$ = this.propertiesService.selectLastUpdated().pipe(take(1));
   }
 }

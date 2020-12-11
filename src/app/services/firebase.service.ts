@@ -7,6 +7,7 @@ import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
 import { SmartSelectionTeam } from 'src/app/store/teams-smart-selection/models/smart-selection-team.model';
 import { Team } from 'src/app/store/teams/models/team.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
@@ -27,9 +28,10 @@ export class FirebaseService {
   }
 
   public getLastUpdated(): Observable<LastUpdated> {
+    var doc = environment.production ? 'last-updated' : 'last-updated-dev';
     return this.firestore
       .collection('properties')
-      .doc<LastUpdated>('last-updated')
+      .doc<LastUpdated>(doc)
       .valueChanges()
       .pipe(
         catchError(() => {
