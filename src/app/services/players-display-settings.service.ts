@@ -4,15 +4,16 @@ import { map } from 'rxjs/operators';
 import { PlayersDisplaySettings } from 'src/app/layout/content/models/players-display-settings.model';
 import { PlayersView } from 'src/app/layout/content/models/players-view.enum';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersDisplaySettingService {
-  private readonly PLAYERS_DISPLAY_KEY = 'FBL_Players_Display_Settings';
+  private readonly PLAYERS_DISPLAY_KEY = 'DisplaySettings';
 
   private state: PlayersDisplaySettings;
   private settings$: ReplaySubject<PlayersDisplaySettings>;
 
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService, private screenSizeService: ScreenSizeService) {
     this.settings$ = new ReplaySubject<PlayersDisplaySettings>(1);
 
     this.state = this.getInitialData();
@@ -25,10 +26,11 @@ export class PlayersDisplaySettingService {
 
   public getInitialData(): PlayersDisplaySettings {
     const fromLocalStorage = this.localStorageService.get<PlayersDisplaySettings>(this.PLAYERS_DISPLAY_KEY);
+    const view = this.screenSizeService.isMobile() ? PlayersView.LIST : fromLocalStorage?.view;
 
     return {
       count: fromLocalStorage?.count || 15,
-      view: fromLocalStorage?.view || PlayersView.TABLE
+      view: view || PlayersView.TABLE
     };
   }
 

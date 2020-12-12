@@ -1,11 +1,11 @@
-import { TeamProperty } from 'src/app/models/properties.model';
+import { SelectableTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/selectable-team.model';
 
 export interface PlayersFilters {
   position: PlayerPosition;
   price: number;
   matchdays: number;
   popularity: number;
-  teams: TeamProperty[];
+  teams: SelectableTeam[];
   name: string;
   hideUnavailable: boolean;
 }

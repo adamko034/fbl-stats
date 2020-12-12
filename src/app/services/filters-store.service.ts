@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { SelectableTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/selectable-team.model';
 import { PlayerPosition, PlayersFilters } from 'src/app/layout/content/models/players-filters';
-import { TeamProperty } from 'src/app/models/properties.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersStoreService {
-  private localStorageKey = 'FANTASY_FBL_STATS:Filters';
+  private localStorageKey = 'Filters';
   private state: PlayersFilters;
   private initialData: PlayersFilters = {
     position: PlayerPosition.ALL,
@@ -74,7 +74,7 @@ export class FiltersStoreService {
     );
   }
 
-  public selectTeams(): Observable<TeamProperty[]> {
+  public selectTeams(): Observable<SelectableTeam[]> {
     return this.filters.pipe(
       map((filters) => filters.teams),
       distinctUntilChanged()
@@ -118,7 +118,7 @@ export class FiltersStoreService {
     this.sendFilters();
   }
 
-  public updateTeams(teams: TeamProperty[]) {
+  public updateTeams(teams: SelectableTeam[]) {
     this.state.teams = teams;
     this.filtersChanged = { change: true, shouldSend: true };
     this.sendFilters();

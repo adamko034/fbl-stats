@@ -10,7 +10,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./smart-teams-selection-dialog.component.scss']
 })
 export class SmartTeamsSelectionDialogComponent implements OnInit {
-  private readonly LOCALSTORAGE_KEY = 'FBL_SMART_SELECTIONS_TEAM_COUNT';
+  private readonly LOCALSTORAGE_KEY = 'SmartSelections';
   public SmartSelections = SmartTeamsSelectionBy;
   public count = 3;
 

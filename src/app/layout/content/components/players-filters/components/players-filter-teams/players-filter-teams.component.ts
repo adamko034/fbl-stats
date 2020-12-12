@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { cloneDeep } from 'lodash';
 import { Subject } from 'rxjs';
-import { filter, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { filter, switchMap, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { SelectTeamsDialogComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/components/select-teams-dialog/select-teams-dialog.component';
 import { SelectTeamsFromTableComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/components/select-teams-from-table/select-teams-from-table.component';
 import { SmartTeamsSelectionDialogResult } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/components/smart-teams-selection-dialog/models/smart-teams-selection-dialog-result';
@@ -34,23 +34,18 @@ export class PlayersFilterTeamsComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.propertiesService
-      .selectTeams()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((teams: TeamProperty[]) => {
-        if (teams && this.selectedTeams.length === 0) {
-          this.selectedTeams = teams.map(({ name, short }) => ({ name, short, selected: false }));
-        }
-      });
-
     this.fitlersStoreService
       .selectTeams()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((teams) => {
-        if (!teams) {
-          this.selectedTeams.forEach((t) => (t.selected = false));
-          return;
-        }
+      .pipe(withLatestFrom(this.propertiesService.selectTeams()), takeUntil(this.destroyed$))
+      .subscribe(([selectedTeamsFilter, allTeams]) => {
+        this.selectedTeams = !selectedTeamsFilter ? [] : [...selectedTeamsFilter];
+        var notSelectedTeams = allTeams.filter(
+          (team) => this.selectedTeams.findIndex((selectedTeam) => selectedTeam.short === team.short) < 0
+        );
+
+        notSelectedTeams.forEach(({ name, short }) => {
+          this.selectedTeams.push({ name, short, selected: false });
+        });
       });
   }
 
@@ -149,7 +144,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
     this.fitlersStoreService.updateTeams(teamsToSend.length > 0 ? teamsToSend : null);
   }
 
-  private getSelectedTeams(): TeamProperty[] {
+  private getSelectedTeams(): SelectableTeam[] {
     return this.selectedTeams.filter((t) => t.selected);
   }
 }
