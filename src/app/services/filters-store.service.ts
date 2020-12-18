@@ -16,7 +16,8 @@ export class FiltersStoreService {
     price: null,
     popularity: 100,
     teams: null,
-    hideUnavailable: false
+    hideUnavailable: false,
+    showOnlyReturning: false
   };
 
   private filters: ReplaySubject<PlayersFilters>;
@@ -41,16 +42,18 @@ export class FiltersStoreService {
   }
 
   private getInitialData(): { fromCache: boolean; filters: PlayersFilters } {
-    var fromLocalStorage = this.localStorageService.get<PlayersFilters>(this.localStorageKey);
-    if (!fromLocalStorage) {
-      return { filters: { ...this.initialData }, fromCache: false };
-    }
+    // var fromLocalStorage = this.localStorageService.get<PlayersFilters>(this.localStorageKey);
+    // if (!fromLocalStorage) {
+    //   return { filters: { ...this.initialData }, fromCache: false };
+    // }
 
-    return { fromCache: true, filters: { ...fromLocalStorage } };
+    // return { fromCache: true, filters: { ...fromLocalStorage } };
+
+    return { filters: { ...this.initialData }, fromCache: false };
   }
 
   public selectFilters(): Observable<PlayersFilters> {
-    return this.filters.asObservable();
+    return this.filters.asObservable().pipe(distinctUntilChanged());
   }
 
   public selectPrice(): Observable<number> {
@@ -94,6 +97,13 @@ export class FiltersStoreService {
 
   public selectHideUnavailable(): Observable<boolean> {
     return this.filters.pipe(map((filters) => filters.hideUnavailable));
+  }
+
+  public selectShowOnlyReturning(): Observable<boolean> {
+    return this.filters.pipe(
+      map((filters) => filters.showOnlyReturning),
+      distinctUntilChanged()
+    );
   }
 
   public selectFiltersChanged(): Observable<boolean> {
@@ -142,6 +152,12 @@ export class FiltersStoreService {
     this.sendFilters();
   }
 
+  public updateShowOnlyReturning(newValue: boolean): void {
+    this.filtersChanged = { change: true, shouldSend: true };
+    this.state.showOnlyReturning = newValue;
+    this.sendFilters();
+  }
+
   public clear() {
     const initial = { ...this.initialData };
     this.state.popularity = initial.popularity;
@@ -150,6 +166,7 @@ export class FiltersStoreService {
     this.state.hideUnavailable = false;
     this.state.matchdays = initial.matchdays;
     this.state.position = initial.position;
+    this.state.showOnlyReturning = initial.showOnlyReturning;
 
     this.filtersChanged = { change: false, shouldSend: true };
     this.sendFilters();
@@ -160,7 +177,7 @@ export class FiltersStoreService {
   }
 
   private sendFilters(): void {
-    this.localStorageService.upsert<PlayersFilters>(this.localStorageKey, { ...this.state });
+    //this.localStorageService.upsert<PlayersFilters>(this.localStorageKey, { ...this.state });
     this.filters.next({ ...this.state });
 
     if (this.filtersChanged.shouldSend) {

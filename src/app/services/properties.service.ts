@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { LineupsSource, LineupsSourceProperty, Properties, TeamProperty } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { StartupLoadingService } from 'src/app/services/startup-loading.service';
@@ -12,13 +12,11 @@ export class PropertiesService {
   private destroyed$ = new Subject<void>();
   private state: Properties;
   private lastUpdated$ = new ReplaySubject<Date>(1);
-  private propertiesLoaded = false;
 
   constructor(private firebaseService: FirebaseService, private startupLoading: StartupLoadingService) {}
 
   public update() {
     this.state = null;
-    this.propertiesLoaded = false;
     this.loadProperties();
   }
 
@@ -44,7 +42,10 @@ export class PropertiesService {
   }
 
   public selectLastMatchday(): Observable<number> {
-    return this.selectProperties().pipe(map((properties) => properties.lastMatchday));
+    return this.selectProperties().pipe(
+      map((properties) => properties.lastMatchday),
+      distinctUntilChanged()
+    );
   }
 
   public selectLastUpdated(): Observable<Date> {
@@ -56,18 +57,13 @@ export class PropertiesService {
   }
 
   private selectProperties(): Observable<Properties> {
-    if (!this.propertiesLoaded) {
-      this.loadProperties();
-      this.propertiesLoaded = true;
-    }
-
     return this.properties$.asObservable();
   }
 
   public loadProperties() {
     this.firebaseService
       .getProperties()
-      .pipe(takeUntil(this.destroyed$))
+      .pipe(takeUntil(this.destroyed$), distinctUntilChanged())
       .subscribe((properties) => {
         Logger.logDev('properties store service, properties loaded');
         this.state = { ...properties };

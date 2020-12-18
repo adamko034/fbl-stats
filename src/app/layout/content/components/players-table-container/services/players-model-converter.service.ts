@@ -29,7 +29,9 @@ export class PlayersModelConverter {
       totalPoints,
       attendance,
       nextGame,
-      position
+      position,
+      isSuspensionRisk,
+      isReturning
     } = cloneDeep(player) as Player;
     return {
       id,
@@ -44,7 +46,9 @@ export class PlayersModelConverter {
       attendance,
       nextGameAttendancePrediction: predicion,
       form: this.playerFormCalculator.calculate(games),
-      nextGame
+      nextGame,
+      isSuspensionRisk,
+      isReturning
     };
   }
 }

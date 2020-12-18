@@ -11,7 +11,8 @@ export class PlayersFilteringService {
       .filter((p) => !filters.popularity || filters.popularity === 100 || p.popularity <= filters.popularity)
       .filter((p) => !filters.teams || filters.teams.some((t) => t.short === p.teamShort))
       .filter((p) => !filters.name || p.name.toLocaleLowerCase().includes(filters.name.toLocaleLowerCase()))
-      .filter((p) => (filters.hideUnavailable ? p.attendance > 0 : true));
+      .filter((p) => (filters.hideUnavailable ? p.attendance > 0 : true))
+      .filter((p) => p.isReturning === filters.showOnlyReturning);
     this.filterMatchdays(filtered, lastMatchday, filters.matchdays);
 
     return filtered;

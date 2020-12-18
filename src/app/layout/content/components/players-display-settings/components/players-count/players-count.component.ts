@@ -15,8 +15,7 @@ export class PlayersCountComponent implements OnInit {
     { description: '15', value: 15 },
     { description: '20', value: 20 },
     { description: '30', value: 30 },
-    { description: '50', value: 50 },
-    { description: '100', value: 100 }
+    { description: '50', value: 50 }
   ];
 
   constructor(private playersDisplaySettingsService: PlayersDisplaySettingService) {}

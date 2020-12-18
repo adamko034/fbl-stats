@@ -13,4 +13,6 @@ export interface Player {
   games: Game[];
   attendance: number;
   nextGame: PlayerNextGame;
+  isSuspensionRisk: boolean;
+  isReturning: boolean;
 }

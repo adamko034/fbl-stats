@@ -11,6 +11,8 @@
               [value]="0"
               [height]="35"
             ></app-prediction-indicator>
+            <app-player-suspension-risk [show]="item.isSuspensionRisk"></app-player-suspension-risk>
+            <app-player-returning [show]="item.isReturning"></app-player-returning>
           </div>
         </td>
       </ng-container>

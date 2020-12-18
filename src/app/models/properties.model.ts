@@ -12,7 +12,8 @@ export interface TeamProperty {
 
 export enum LineupsSource {
   BUNDESLIGA = 'bundesliga',
-  KICKER = 'kicker'
+  KICKER = 'kicker',
+  LIGAINSIDER = 'ligainsider'
 }
 
 export interface LineupsSourceProperty {

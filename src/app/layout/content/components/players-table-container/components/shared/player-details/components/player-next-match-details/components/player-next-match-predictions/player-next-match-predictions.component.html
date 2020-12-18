@@ -1,6 +1,10 @@
 <div class="predictions-container animate__animated animate__fadeIn" fxLayout="column" fxLayoutGap="10px">
   <span class="title">Predicted lineups</span>
-  <div gdAreas="bundesliga bPrediction | kicker kPrediction" gdRows="auto" gdGap="10px 10px">
+  <div
+    gdAreas="bundesliga bPrediction | kicker kPrediction | insider iPrediction"
+    gdRows="auto auto auto"
+    gdGap="10px 10px"
+  >
     <app-prediction-source
       gdArea="bundesliga"
       [source]="sources.BUNDESLIGA"
@@ -22,6 +26,18 @@
       gdArea="kPrediction"
       [showUnknownYet]="true"
       [value]="getPrediction('kicker')"
+    ></app-prediction-indicator>
+
+    <app-prediction-source
+      gdArea="insider"
+      [source]="sources.LIGAINSIDER"
+      [teamShort]="player.teamShort"
+    ></app-prediction-source>
+
+    <app-prediction-indicator
+      gdArea="iPrediction"
+      [showUnknownYet]="true"
+      [value]="getPrediction('ligainsider')"
     ></app-prediction-indicator>
   </div>
 </div>

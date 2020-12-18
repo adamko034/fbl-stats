@@ -14,6 +14,8 @@ export interface PlayerUi {
   attendance: number;
   form: number;
   games: Game[];
+  isSuspensionRisk: boolean;
+  isReturning: boolean;
   nextGameAttendancePrediction: PlayerAttendancePrediction;
   nextGame: PlayerNextGame;
 }

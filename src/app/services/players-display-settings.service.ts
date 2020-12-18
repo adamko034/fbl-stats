@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayersDisplaySettings } from 'src/app/layout/content/models/players-display-settings.model';
 import { PlayersView } from 'src/app/layout/content/models/players-view.enum';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -21,7 +21,7 @@ export class PlayersDisplaySettingService {
   }
 
   public selectSettings(): Observable<PlayersDisplaySettings> {
-    return this.settings$.asObservable();
+    return this.settings$.pipe(distinctUntilChanged());
   }
 
   public getInitialData(): PlayersDisplaySettings {

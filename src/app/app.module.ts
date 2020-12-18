@@ -86,6 +86,9 @@ import { TeamFormComponent } from './shared/components/team-form/team-form.compo
 import { TeamLogoComponent } from './shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from './shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-expand.component';
+import { PlayerSuspensionRiskComponent } from './shared/components/player-suspension-risk/player-suspension-risk.component';
+import { PlayerReturningComponent } from './shared/components/player-returning/player-returning.component';
+import { PlayersFilterShowOnlyReturningComponent } from './layout/content/components/players-filters/components/players-filter-show-only-returning/players-filter-show-only-returning.component';
 
 @NgModule({
   declarations: [
@@ -144,7 +147,10 @@ import { ToggleExpandComponent } from './shared/components/toggle-expand/toggle-
     PredictionIndicatorComponent,
     PlayerNextMatchTeamsComponent,
     PlayerNextMatchPredictionsComponent,
-    PredictionSourceComponent
+    PredictionSourceComponent,
+    PlayerSuspensionRiskComponent,
+    PlayerReturningComponent,
+    PlayersFilterShowOnlyReturningComponent
   ],
   imports: [
     BrowserModule,

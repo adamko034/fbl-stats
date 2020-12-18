@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { combineLatest, Subject } from 'rxjs';
-import { delay, takeUntil, tap } from 'rxjs/operators';
+import { delay, filter, takeUntil, tap } from 'rxjs/operators';
 import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/player-ui.model';
 import { PlayersDataService } from 'src/app/layout/content/components/players-table-container/services/players-data.service';
 import { PlayersView } from 'src/app/layout/content/models/players-view.enum';
@@ -47,12 +47,11 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
       this.playersDisplaySettingsService.selectSettings()
     ])
       .pipe(
-        tap(() => {
-          if (!this.loading) {
-            this.loading = true;
-          }
+        tap(() => (this.loading = true)),
+        delay(0),
+        filter(([lastMatchday, filters, playersState, displaySettings]) => {
+          return !!lastMatchday && lastMatchday !== 0 && !!filters && !!playersState && !!displaySettings;
         }),
-        delay(100),
         takeUntil(this.destroyed$)
       )
       .subscribe(([lastMatchday, filters, playersState, displaySettings]) => {

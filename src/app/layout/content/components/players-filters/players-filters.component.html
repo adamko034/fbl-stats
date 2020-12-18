@@ -2,7 +2,7 @@
   <mat-card *ngIf="!(isMobile$ | async)">
     <mat-card-content>
       <div
-        gdAreas="position clear | form unavailable | price popularity | teams teams"
+        gdAreas="position clear | form checkboxes | price popularity | teams teams"
         gdGap="20px 10px"
         gdRows="auto auto auto auto"
       >
@@ -12,10 +12,11 @@
         </div>
 
         <app-players-select-form gdArea="form"></app-players-select-form>
-        <app-players-filter-hide-unavailable
-          ngClass.lt-md="unavailable-mobile"
-          gdArea="unavailable"
-        ></app-players-filter-hide-unavailable>
+        <div gdArea="checkboxes" fxLayout="column" ngClass.lt-md="checboxes-mobile">
+          <app-players-filter-hide-unavailable></app-players-filter-hide-unavailable>
+          <app-players-filter-show-only-returning></app-players-filter-show-only-returning>
+        </div>
+
         <app-players-filter-max-price gdArea="price"></app-players-filter-max-price>
         <app-players-filter-popularity gdArea="popularity"></app-players-filter-popularity>
         <app-players-filter-teams gdArea="teams"></app-players-filter-teams>
@@ -32,6 +33,7 @@
       <app-players-filter-position gdArea="position"></app-players-filter-position>
       <app-players-select-form></app-players-select-form>
       <app-players-filter-hide-unavailable class="unavailable-mobile"></app-players-filter-hide-unavailable>
+      <app-players-filter-show-only-returning></app-players-filter-show-only-returning>
       <app-players-filter-max-price></app-players-filter-max-price>
       <app-players-filter-popularity></app-players-filter-popularity>
       <app-players-filter-teams></app-players-filter-teams>
