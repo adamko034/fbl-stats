@@ -1,8 +1,8 @@
-.source:hover {
-  color: #c80a00;
-}
-
 .source {
+  &-active:hover {
+    color: #c80a00;
+  }
+
   .open {
     font-size: 13px;
     padding: 1px 0 0 3px;
