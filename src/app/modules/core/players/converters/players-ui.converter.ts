@@ -1,0 +1,55 @@
+import { Injectable } from '@angular/core';
+import { cloneDeep } from 'lodash';
+import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
+import { PlayerAttendancePredictionService } from 'src/app/modules/core/players/services/player-attendance-prediction.service';
+import { PlayerFormCalculatorService } from 'src/app/modules/core/players/services/player-form-calculator.service';
+import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
+import { Player } from 'src/app/store/players/models/player.model';
+
+@Injectable({ providedIn: 'root' })
+export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
+  constructor(
+    private playerFormCalculator: PlayerFormCalculatorService,
+    private playerAttendacePredictionService: PlayerAttendancePredictionService
+  ) {}
+
+  public convert(players: Player[]): PlayerUi[] {
+    return players.map((p) => this.toUiSingle(p));
+  }
+
+  private toUiSingle(player: Player): PlayerUi {
+    const predicion = this.playerAttendacePredictionService.determine(player.nextGame.lineupPredictions);
+    const {
+      id,
+      name,
+      team,
+      teamShort,
+      popularity,
+      price,
+      games,
+      totalPoints,
+      attendance,
+      nextGame,
+      position,
+      isSuspensionRisk,
+      isReturning
+    } = cloneDeep(player) as Player;
+    return {
+      id,
+      name,
+      team,
+      teamShort,
+      popularity,
+      position,
+      price,
+      totalPoints,
+      games,
+      attendance,
+      nextGameAttendancePrediction: predicion,
+      form: this.playerFormCalculator.calculate(games),
+      nextGame,
+      isSuspensionRisk,
+      isReturning
+    };
+  }
+}

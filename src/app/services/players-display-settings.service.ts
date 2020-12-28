@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayersDisplaySettings } from 'src/app/layout/content/models/players-display-settings.model';
-import { PlayersView } from 'src/app/layout/content/models/players-view.enum';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersDisplaySettingService {
@@ -13,7 +11,7 @@ export class PlayersDisplaySettingService {
   private state: PlayersDisplaySettings;
   private settings$: ReplaySubject<PlayersDisplaySettings>;
 
-  constructor(private localStorageService: LocalStorageService, private screenSizeService: ScreenSizeService) {
+  constructor(private localStorageService: LocalStorageService) {
     this.settings$ = new ReplaySubject<PlayersDisplaySettings>(1);
 
     this.state = this.getInitialData();
@@ -26,11 +24,9 @@ export class PlayersDisplaySettingService {
 
   public getInitialData(): PlayersDisplaySettings {
     const fromLocalStorage = this.localStorageService.get<PlayersDisplaySettings>(this.PLAYERS_DISPLAY_KEY);
-    const view = this.screenSizeService.isMobile() ? PlayersView.LIST : fromLocalStorage?.view;
 
     return {
-      count: fromLocalStorage?.count || 15,
-      view: view || PlayersView.TABLE
+      count: fromLocalStorage?.count || 15
     };
   }
 
@@ -38,17 +34,8 @@ export class PlayersDisplaySettingService {
     return this.settings$.pipe(map((s) => s.count));
   }
 
-  public selectPlayersView(): Observable<PlayersView> {
-    return this.settings$.pipe(map((s) => s.view));
-  }
-
   public updatePlayersCount(newValue: number): void {
     this.state.count = newValue;
-    this.sendSettings();
-  }
-
-  public updateView(newView: PlayersView): void {
-    this.state.view = newView;
     this.sendSettings();
   }
 

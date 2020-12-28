@@ -1,9 +1,8 @@
-<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-  <span fxFlex.lt-sm="10" ngClass.lt-sm="bolder">Show</span>
+<app-form-field label="Show">
   <app-switch
     [value]="value$ | async"
     name="count"
     [items]="items"
     (switchChange)="onPlayersCountChange($event)"
   ></app-switch>
-</div>
+</app-form-field>

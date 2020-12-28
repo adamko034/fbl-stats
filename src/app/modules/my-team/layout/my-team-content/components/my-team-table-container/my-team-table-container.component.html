@@ -1,0 +1,36 @@
+<div class="my-team-table-container" fxLayout="column">
+  <div
+    *ngIf="(screen$ | async) !== screens.SM"
+    class="my-team-filters"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="start"
+    fxLayoutGap.lt-sm="15px"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap="40px"
+  >
+    <app-my-team-filters-position></app-my-team-filters-position>
+    <app-my-team-filters-matchdays></app-my-team-filters-matchdays>
+    <app-players-view-switch></app-players-view-switch>
+  </div>
+
+  <div class="my-team-filters" *ngIf="(screen$ | async) === screens.SM" fxLayout="column" fxLayoutGap="15px">
+    <div fxLayoutAlign="space-between center">
+      <app-my-team-filters-position></app-my-team-filters-position>
+      <app-my-team-filters-matchdays></app-my-team-filters-matchdays>
+    </div>
+    <app-players-view-switch></app-players-view-switch>
+  </div>
+
+  <app-players-table
+    *ngIf="(view$ | async) === views.TABLE"
+    [players]="players$ | async"
+    [showDeleteFromMyTeamButton]="true"
+  ></app-players-table>
+
+  <app-players-list
+    [showAddToMyTeamButton]="false"
+    [showRemoveFromMyTeamButton]="true"
+    *ngIf="(view$ | async) === views.LIST"
+    [players]="players$ | async"
+  ></app-players-list>
+</div>

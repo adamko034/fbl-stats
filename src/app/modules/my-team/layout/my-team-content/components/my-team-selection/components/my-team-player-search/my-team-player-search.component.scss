@@ -1,0 +1,30 @@
+.player-search-content {
+  .add-player {
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+  mat-form-field {
+    min-width: 300px;
+  }
+}
+
+.player-search-content-mobile {
+  padding-left: 10px;
+
+  form {
+    width: 100%;
+
+    mat-form-field {
+      width: 100%;
+      min-width: 100%;
+    }
+  }
+}
+
+.option-text-mobile {
+  font-size: 13px;
+}

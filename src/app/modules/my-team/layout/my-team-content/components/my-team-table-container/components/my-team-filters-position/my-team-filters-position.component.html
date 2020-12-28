@@ -1,0 +1,8 @@
+<app-form-field label="Position" [labelOnlyOnMobile]="true">
+  <app-switch
+    [value]="selectedPosition$ | async"
+    name="position"
+    [items]="items"
+    (switchChange)="onPositionChange($event)"
+  ></app-switch>
+</app-form-field>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { delay } from 'rxjs/operators';
 import { PropertiesService } from 'src/app/services/properties.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { Logger } from 'src/app/utils/logger';
@@ -20,11 +21,13 @@ import { Logger } from 'src/app/utils/logger';
 export class AppComponent implements OnInit {
   public showLoading$: Observable<boolean>;
   public showConent$: Observable<boolean>;
+  public sidenavOpened$: Observable<boolean>;
 
   constructor(
     private propertiesService: PropertiesService,
     private playersStore: PlayersStore,
-    private startupLoading: StartupLoadingService
+    private startupLoading: StartupLoadingService,
+    private sidenavService: SidenavService
   ) {}
 
   public ngOnInit(): void {
@@ -35,5 +38,10 @@ export class AppComponent implements OnInit {
 
     this.showLoading$ = this.startupLoading.selectAllLoaded();
     this.showConent$ = this.startupLoading.selectAllLoaded().pipe(delay(1000));
+    this.sidenavOpened$ = this.sidenavService.selectOpened();
+  }
+
+  public closeSidenav(): void {
+    this.sidenavService.close();
   }
 }

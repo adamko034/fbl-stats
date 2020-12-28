@@ -18,3 +18,5 @@ export enum PlayerPosition {
   FOR = 'for',
   ALL = 'all'
 }
+
+export const FILTERS_MATCHDAYS_STORAGEKEY = 'FILTERS_MATCHDAYS';

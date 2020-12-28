@@ -1,0 +1,17 @@
+<mat-card
+  ngClass.lt-sm="my-team-totals-card-mobile"
+  class="my-team-totals-card"
+  fxLayoutAlign="start center"
+  fxLayoutGap="20px"
+  fxLayoutAlign.lt-sm="center center"
+>
+  <span class="label bold">My Team:</span>
+  <div fxLayoutAlign="start center" fxLayoutGap="4px">
+    <mat-icon class="red">people</mat-icon>
+    <span class="label">{{ (players$ | async).length }}</span>
+  </div>
+  <div fxLayoutAlign="start center" fxLayoutGap="4px">
+    <mat-icon class="red">attach_money</mat-icon>
+    <span class="label">{{ players$ | async | sumBy: 'price' }}M</span>
+  </div>
+</mat-card>

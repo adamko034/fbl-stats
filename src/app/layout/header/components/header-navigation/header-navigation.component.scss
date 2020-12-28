@@ -4,14 +4,23 @@
   padding: 0;
 
   li {
-    cursor: default;
-    padding: 10px;
+    cursor: pointer;
+    padding: 10px 20px;
     font-size: 15px;
     letter-spacing: 3px;
+    color: rgba($color: #000000, $alpha: 0.7);
+
+    &:focus {
+      outline: none !important;
+    }
+
+    &:hover {
+      color: #000;
+      transition: color 0.3s ease-in;
+    }
   }
 
   li.active {
     color: #c80a00;
-    font-weight: 500;
   }
 }

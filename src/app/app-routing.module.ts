@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { ContentComponent } from 'src/app/layout/content/content.component';
 
+const routes: Routes = [
+  { path: 'home', component: ContentComponent },
+  {
+    path: 'myteam',
+    loadChildren: () => import('./modules/my-team/my-team.module').then((m) => m.MyTeamModule)
+  },
 
-const routes: Routes = [];
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

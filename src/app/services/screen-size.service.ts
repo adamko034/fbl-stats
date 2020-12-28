@@ -3,11 +3,11 @@ import { fromEvent, Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
 export enum ScreenSize {
-  XS = 'xs',
-  SM = 'sm',
-  MD = 'md',
-  LG = 'lg',
-  XL = 'xl'
+  XS = 1,
+  SM = 2,
+  MD = 3,
+  LG = 4,
+  XL = 5
 }
 
 @Injectable({ providedIn: 'root' })
@@ -42,7 +42,7 @@ export class ScreenSizeService {
   }
 
   private mapToScreenSize(): ScreenSize {
-    const width = window.innerWidth;
+    const width = window.screen.width;
     if (width < 600) {
       return ScreenSize.XS;
     } else if (width < 960) {

@@ -1,5 +1,12 @@
-<div>
-  <ul class="navigation" fxLayout fxLayoutAlign="start center">
-    <li class="active">HOME</li>
-  </ul>
-</div>
+<ul *ngIf="mode === modes.HORIZONTAL" class="navigation" fxLayout fxLayoutAlign="start center">
+  <ng-template [ngTemplateOutlet]="links"></ng-template>
+</ul>
+
+<ul *ngIf="mode == modes.VERTICAL" class="navigation" fxLayout="column" fxLayoutAlign="start center">
+  <ng-template [ngTemplateOutlet]="links"></ng-template>
+</ul>
+
+<ng-template #links>
+  <li routerLink="/home" routerLinkActive="active" (click)="closeSidenav()">home</li>
+  <li routerLink="/myteam" routerLinkActive="active" (click)="closeSidenav()">my-team</li>
+</ng-template>

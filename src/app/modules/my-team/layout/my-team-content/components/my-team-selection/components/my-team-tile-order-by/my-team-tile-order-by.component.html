@@ -1,0 +1,45 @@
+<div ngClass.lt-sm="my-team-tile-order-mobile">
+  <button mat-button [matMenuTriggerFor]="options">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #options="matMenu">
+    <button mat-menu-item fxLayoutGap="8px" fxLayoutAlign="start center" (click)="onShowTilesToggled()">
+      <mat-icon>{{ (displayed$ | async) ? 'visibility_off' : 'visibility' }}</mat-icon>
+      <span>{{ (displayed$ | async) ? 'Hide' : 'Show' }} tiles</span>
+    </button>
+    <button mat-menu-item [disabled]="!(displayed$ | async)" [matMenuTriggerFor]="tileOrderByMenu">Tile order</button>
+  </mat-menu>
+
+  <mat-menu #tileOrderByMenu="matMenu" yPosition="below">
+    <button
+      [ngClass]="{ active: (currentOrder$ | async) === 'teamShort' }"
+      mat-menu-item
+      fxLayoutGap="8px"
+      fxLayoutAlign="start center"
+      (click)="onOrderChanged('teamShort')"
+    >
+      <span>Team</span>
+      <mat-icon>groups</mat-icon>
+    </button>
+    <button
+      [ngClass]="{ active: (currentOrder$ | async) === 'price' }"
+      mat-menu-item
+      fxLayoutGap="8px"
+      fxLayoutAlign="start center"
+      (click)="onOrderChanged('price')"
+    >
+      <span>Price: from low</span>
+      <mat-icon>north</mat-icon>
+    </button>
+    <button
+      [ngClass]="{ active: (currentOrder$ | async) === '-price' }"
+      mat-menu-item
+      fxLayoutGap="8px"
+      fxLayoutAlign="start center"
+      (click)="onOrderChanged('-price')"
+    >
+      <span>Price: from high</span>
+      <mat-icon>south</mat-icon>
+    </button>
+  </mat-menu>
+</div>

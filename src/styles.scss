@@ -16,6 +16,10 @@ body {
   overflow-x: hidden;
 }
 
+.mat-drawer-content {
+  overflow: unset !important;
+}
+
 .bolder {
   font-weight: 500;
 }

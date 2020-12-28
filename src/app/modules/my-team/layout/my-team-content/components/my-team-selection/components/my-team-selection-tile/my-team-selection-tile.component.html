@@ -1,0 +1,37 @@
+<mat-card>
+  <div fxLayout="column" fxLayoutGap="15px" class="tile">
+    <div class="tile-header">
+      <span class="tile-header-text">{{ title }}</span>
+    </div>
+    <div class="tile-content" fxLayout="column">
+      <span *ngIf="!players || players.length === 0">No players added</span>
+      <div *ngIf="!!players" fxLayout="column">
+        <div
+          *ngFor="let player of players | orderBy: (orderBy$ | async)"
+          class="player"
+          fxLayoutAlign="space-between center"
+        >
+          <div fxLayoutGap="7px" fxLayoutAlign="start center">
+            <app-team-logo [team]="player.teamShort" [height]="25"></app-team-logo>
+            <span>{{ player.name }}</span>
+            <span>{{ player.price }}M</span>
+          </div>
+          <button fxFlexAlign="flex-end" mat-icon-button class="red" (click)="onPlayerRemove(player.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="total" fxLayoutGap="5px" fxLayoutAlign="start center">
+        <mat-icon>people</mat-icon>
+        <span>{{ !!players ? players.length : 0 }}</span>
+      </div>
+
+      <div class="total" fxLayoutGap="2px" fxLayoutAlign="start center">
+        <mat-icon>attach_money</mat-icon>
+        <span>{{ players | sumBy: 'price' }}M</span>
+      </div>
+    </div>
+  </div>
+</mat-card>

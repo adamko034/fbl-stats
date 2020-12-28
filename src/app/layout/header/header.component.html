@@ -1,8 +1,22 @@
-<div class="header" fxLayout fxLayoutAlign="space-between center" [ngClass.lt-sm]="'header-mobile'">
+<div *ngIf="(screen$ | async) > screens.XS" class="header" fxLayout fxLayoutAlign="space-between center">
   <span>FantasyBL-Stats</span>
-
   <app-header-navigation></app-header-navigation>
+  <div fxFlexAlign="end" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="3px">
+    <app-new-updates></app-new-updates>
+    <app-last-udpated></app-last-udpated>
+  </div>
+</div>
 
+<div
+  *ngIf="(screen$ | async) === screens.XS"
+  class="header header-mobile"
+  fxLayout
+  fxLayoutAlign="space-between center"
+>
+  <button mat-icon-button (click)="openSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>FantasyBL-Stats</span>
   <div fxFlexAlign="end" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="3px">
     <app-new-updates></app-new-updates>
     <app-last-udpated></app-last-udpated>

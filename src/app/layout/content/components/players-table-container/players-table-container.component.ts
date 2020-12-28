@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { cloneDeep } from 'lodash';
-import { combineLatest, Subject } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { delay, filter, takeUntil, tap } from 'rxjs/operators';
-import { PlayerUi } from 'src/app/layout/content/components/players-table-container/models/player-ui.model';
 import { PlayersDataService } from 'src/app/layout/content/components/players-table-container/services/players-data.service';
-import { PlayersView } from 'src/app/layout/content/models/players-view.enum';
+import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
+import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
+import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { PlayersDisplaySettingService } from 'src/app/services/players-display-settings.service';
 import { PropertiesService } from 'src/app/services/properties.service';
-import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { Logger } from 'src/app/utils/logger';
 
@@ -22,10 +22,9 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
 
   public loading = true;
   public playersToDisplay: PlayerUi[];
-  public view: PlayersView;
   public PlayersViews = PlayersView;
 
-  public isMobile: boolean;
+  public view$: Observable<PlayersView>;
 
   constructor(
     private playersStore: PlayersStore,
@@ -33,13 +32,12 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
     private filtersStoreService: FiltersStoreService,
     private playersDataService: PlayersDataService,
     private playersDisplaySettingsService: PlayersDisplaySettingService,
-    private screenSizeService: ScreenSizeService
-  ) {
-    this.isMobile = this.screenSizeService.isMobile();
-  }
+    private playersViewService: PlayersViewService
+  ) {}
 
   public ngOnInit() {
     Logger.logDev('players table container component, ng on init');
+    this.view$ = this.playersViewService.select();
     combineLatest([
       this.propertiesService.selectLastMatchday(),
       this.filtersStoreService.selectFilters(),
@@ -56,7 +54,6 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
       )
       .subscribe(([lastMatchday, filters, playersState, displaySettings]) => {
         Logger.logDev('players table container component, ng on init subscription start');
-        this.view = displaySettings.view;
 
         this.playersToDisplay = this.playersDataService.getPlayersToDisplay(
           cloneDeep(playersState.players),
@@ -67,18 +64,10 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
 
         this.loading = false;
       });
-
-    this.screenSizeService
-      .onResize()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((screenSize) => {
-        this.isMobile = screenSize === ScreenSize.XS;
-      });
   }
 
   public ngOnDestroy() {
     Logger.logDev('players table container component, ng on destroy');
     this.destroyed$.next();
-    this.playersStore.close();
   }
 }

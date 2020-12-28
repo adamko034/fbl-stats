@@ -3,9 +3,16 @@
 </div>
 
 <div class="app-content" *ngIf="showConent$ | async" [@inOutAnimation]>
-  <app-header></app-header>
-  <app-content></app-content>
-  <div class="footer"></div>
+  <mat-sidenav-container>
+    <mat-sidenav (closed)="closeSidenav()" mode="over" [opened]="sidenavOpened$ | async">
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-header></app-header>
+      <router-outlet></router-outlet>
+      <div class="footer"></div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
 
 <app-toastr></app-toastr>

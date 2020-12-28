@@ -1,0 +1,9 @@
+<app-form-field [label]="'Include MDs'" [labelWidth]="labelWidth">
+  <app-switch
+    [value]="matchdays"
+    name="form"
+    [items]="items"
+    [additionalItem]="moreItem"
+    (switchChange)="onFormChanged($event)"
+  ></app-switch>
+</app-form-field>

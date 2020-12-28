@@ -7,7 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class FormFieldComponent {
   @Input() label: string;
-  @Input() labelWidth = 18;
+  @Input() labelWidth = 0;
+  @Input() labelOnlyOnMobile = false;
 
   constructor() {}
 }

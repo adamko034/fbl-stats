@@ -1,1 +1,5 @@
-<span class="last-updated">Updated: {{ lastUpdated$ | async | amTimeAgo }}</span>
+<span class="last-updated" fxLayoutAlign="start center">
+  <span fxHide.lt-sm>Updated: </span>
+  <span fxHide.gt-xs style="transform: scale(0.7)"><mat-icon>update</mat-icon></span>
+  <span>{{ lastUpdated$ | async | amTimeAgo }}</span>
+</span>

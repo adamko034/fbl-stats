@@ -11,7 +11,7 @@
           <ng-template [ngTemplateOutlet]="clearButton"></ng-template>
         </div>
 
-        <app-players-select-form gdArea="form"></app-players-select-form>
+        <app-players-filter-matchdays></app-players-filter-matchdays>
         <div gdArea="checkboxes" fxLayout="column" ngClass.lt-md="checboxes-mobile">
           <app-players-filter-hide-unavailable></app-players-filter-hide-unavailable>
           <app-players-filter-show-only-returning></app-players-filter-show-only-returning>
@@ -31,7 +31,7 @@
     </div>
     <div content fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="start stretch">
       <app-players-filter-position gdArea="position"></app-players-filter-position>
-      <app-players-select-form></app-players-select-form>
+      <app-players-filter-matchdays></app-players-filter-matchdays>
       <app-players-filter-hide-unavailable class="unavailable-mobile"></app-players-filter-hide-unavailable>
       <app-players-filter-show-only-returning></app-players-filter-show-only-returning>
       <app-players-filter-max-price></app-players-filter-max-price>

@@ -39,7 +39,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
       .pipe(withLatestFrom(this.propertiesService.selectTeams()), takeUntil(this.destroyed$))
       .subscribe(([selectedTeamsFilter, allTeams]) => {
         this.selectedTeams = !selectedTeamsFilter ? [] : [...selectedTeamsFilter];
-        var notSelectedTeams = allTeams.filter(
+        const notSelectedTeams = allTeams.filter(
           (team) => this.selectedTeams.findIndex((selectedTeam) => selectedTeam.short === team.short) < 0
         );
 

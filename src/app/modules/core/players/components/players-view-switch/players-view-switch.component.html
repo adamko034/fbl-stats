@@ -1,0 +1,8 @@
+<app-form-field label="View">
+  <app-switch
+    [value]="value$ | async"
+    name="viewSwitch"
+    [items]="items"
+    (switchChange)="onViewChange($event)"
+  ></app-switch>
+</app-form-field>

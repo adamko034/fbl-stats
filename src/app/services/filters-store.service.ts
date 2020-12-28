@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { SelectableTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/selectable-team.model';
-import { PlayerPosition, PlayersFilters } from 'src/app/layout/content/models/players-filters';
+import {
+  FILTERS_MATCHDAYS_STORAGEKEY,
+  PlayerPosition,
+  PlayersFilters
+} from 'src/app/layout/content/models/players-filters';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersStoreService {
-  private localStorageKey = 'Filters';
   private state: PlayersFilters;
   private initialData: PlayersFilters = {
     position: PlayerPosition.ALL,
@@ -28,28 +31,18 @@ export class FiltersStoreService {
   };
 
   constructor(private localStorageService: LocalStorageService) {
-    const data = this.getInitialData();
-
     this.filters = new ReplaySubject(1);
     this.changed = new ReplaySubject(1);
 
-    if (data.fromCache) {
-      this.filtersChanged = { change: true, shouldSend: true };
-    }
-
-    this.state = { ...data.filters };
+    this.state = this.getInitialData();
     this.sendFilters();
   }
 
-  private getInitialData(): { fromCache: boolean; filters: PlayersFilters } {
-    // var fromLocalStorage = this.localStorageService.get<PlayersFilters>(this.localStorageKey);
-    // if (!fromLocalStorage) {
-    //   return { filters: { ...this.initialData }, fromCache: false };
-    // }
+  private getInitialData(): PlayersFilters {
+    const fromLocalStorage = this.localStorageService.get<number>(FILTERS_MATCHDAYS_STORAGEKEY);
+    const matchdays = fromLocalStorage || this.initialData.matchdays;
 
-    // return { fromCache: true, filters: { ...fromLocalStorage } };
-
-    return { filters: { ...this.initialData }, fromCache: false };
+    return { ...this.initialData, matchdays };
   }
 
   public selectFilters(): Observable<PlayersFilters> {
@@ -125,6 +118,7 @@ export class FiltersStoreService {
   public updateMatchdays(matchdays: number) {
     this.state.matchdays = matchdays;
     this.filtersChanged = { change: true, shouldSend: true };
+    this.localStorageService.upsert<number>(FILTERS_MATCHDAYS_STORAGEKEY, matchdays);
     this.sendFilters();
   }
 
@@ -177,7 +171,6 @@ export class FiltersStoreService {
   }
 
   private sendFilters(): void {
-    //this.localStorageService.upsert<PlayersFilters>(this.localStorageKey, { ...this.state });
     this.filters.next({ ...this.state });
 
     if (this.filtersChanged.shouldSend) {

@@ -1,0 +1,32 @@
+<div
+  ngClass.lt-sm="player-search-content-mobile"
+  class="player-search-content"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  fxLayoutGap="10px"
+>
+  <span fxHide.lt-sm class="label red-background add-player" fxLayoutAlign="start center"
+    >Add player<mat-icon>arrow_right</mat-icon></span
+  >
+  <form>
+    <mat-form-field>
+      <input
+        type="text"
+        placeholder="Search for player"
+        matInput
+        [formControl]="playerSearch"
+        [matAutocomplete]="auto"
+      />
+      <mat-hint>Min 2 characters ({{ playerSearch.value?.length || 0 }}/2)</mat-hint>
+      <mat-icon matSuffix class="red">add_circle_outline</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPlayerSelected($event.option.value)">
+        <mat-option *ngFor="let player of foundPlayers$ | async" [value]="player.id">
+          <div fxLayoutGap="8px" fxLayoutAlign="start center">
+            <app-team-logo [height]="25" [team]="player.teamShort" fxHide.lt-sm></app-team-logo>
+            <span ngClass.lt-sm="option-text-mobile">{{ player.name }} ({{ player.position | uppercase }})</span>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

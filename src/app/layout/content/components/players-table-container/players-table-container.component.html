@@ -2,7 +2,16 @@
   <mat-progress-spinner [diameter]="50" [mode]="'indeterminate'"></mat-progress-spinner>
 </div>
 
-<div *ngIf="!loading" [ngSwitch]="view" class="animate__animated animate__fadeIn">
-  <app-players-list *ngSwitchCase="PlayersViews.LIST" [players]="playersToDisplay"></app-players-list>
-  <app-players-table *ngSwitchCase="PlayersViews.TABLE" [players]="playersToDisplay"></app-players-table>
+<div *ngIf="!loading" [ngSwitch]="view$ | async" class="animate__animated animate__fadeIn">
+  <app-players-list
+    [showRemoveFromMyTeamButton]="false"
+    [showAddToMyTeamButton]="true"
+    *ngSwitchCase="PlayersViews.LIST"
+    [players]="playersToDisplay"
+  ></app-players-list>
+  <app-players-table
+    *ngSwitchCase="PlayersViews.TABLE"
+    [players]="playersToDisplay"
+    [showAddToMyTeamButton]="true"
+  ></app-players-table>
 </div>
