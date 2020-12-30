@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { maxBy } from 'lodash';
@@ -41,6 +42,7 @@ export class PlayersTableComponent implements OnInit, AfterViewInit {
   @Input() showDeleteFromMyTeamButton = false;
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public columns = [];
   public displayedColumns: string[];
@@ -65,6 +67,7 @@ export class PlayersTableComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   public getTdClass(column: { displayName: string; fieldName: string }, item: any): string {

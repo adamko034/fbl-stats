@@ -5,24 +5,58 @@ import { PlayerNextGamePrediction } from 'src/app/store/players/models/player-ne
 @Injectable({ providedIn: 'root' })
 export class PlayerAttendancePredictionService {
   public determine(predictions: PlayerNextGamePrediction[]): PlayerAttendancePrediction {
-    if (predictions.every((p) => p.attendance === -1)) {
+    if (this.allNotPublished(predictions)) {
       return PlayerAttendancePrediction.UnknownYet;
     }
 
-    // const availablePredictions = predictions.filter((p) => p.attendance !== -1);
-
-    // const willPlay = availablePredictions.every((p) => p.attendance === 1);
-    const willPlay = predictions.every((p) => p.attendance === 1);
-    if (willPlay) {
+    if (this.allWillPlay(predictions)) {
       return PlayerAttendancePrediction.WillPlay;
     }
 
-    // const wontPlay = availablePredictions.every((p) => p.attendance === 0);
-    const wontPlay = predictions.every((p) => p.attendance === 0);
-    if (wontPlay || predictions.length === 0) {
+    if (
+      this.allWontPlay(predictions) ||
+      this.predictionsNotSet(predictions) ||
+      this.atLeastOneWontPlayOthersUnkown(predictions)
+    ) {
       return PlayerAttendancePrediction.WillNotPlay;
     }
 
+    if (this.atLeastOnePlayAndOtherWont(predictions)) {
+      return PlayerAttendancePrediction.Doubt;
+    }
+
+    if (this.atLeastOnePlayOthersUnknown(predictions)) {
+      return PlayerAttendancePrediction.WillPlayWithWarn;
+    }
+
     return PlayerAttendancePrediction.Doubt;
+  }
+
+  private allNotPublished(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.every((p) => p.attendance === -1);
+  }
+
+  private allWillPlay(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.every((p) => p.attendance === 1);
+  }
+
+  private allWontPlay(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.every((p) => p.attendance === 0);
+  }
+
+  private atLeastOnePlayAndOtherWont(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.some((p) => p.attendance === 1) && predictions.every((p) => p.attendance !== -1);
+  }
+
+  private predictionsNotSet(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.length === 0;
+  }
+
+  private atLeastOneWontPlayOthersUnkown(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.some((p) => p.attendance === 0) && predictions.every((p) => p.attendance !== 1);
+  }
+
+  private atLeastOnePlayOthersUnknown(predictions: PlayerNextGamePrediction[]): boolean {
+    return predictions.some((p) => p.attendance === 1) && predictions.every((p) => p.attendance !== 0);
   }
 }
