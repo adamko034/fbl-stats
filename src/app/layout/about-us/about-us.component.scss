@@ -1,0 +1,60 @@
+.about-us-container {
+  margin-top: 60px;
+  padding: 0 20px;
+
+  &-mobile {
+    height: 100vh;
+  }
+
+  .info {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+
+    &-mobile {
+      letter-spacing: normal;
+    }
+  }
+
+  .title {
+    font-size: 40px;
+
+    &-mobile {
+      font-size: 30px;
+    }
+
+    .leckerli {
+      padding: 0 15px;
+      font-family: 'Leckerli One', cursive;
+      border-radius: 10px;
+    }
+
+    &-rest {
+      margin-left: 3px;
+      font-family: 'Roboto', sans-serif;
+    }
+  }
+
+  .slogan {
+    font-size: 23px;
+
+    &-mobile {
+      font-size: 20px;
+    }
+
+    .hashtag {
+      padding: 0 3px;
+    }
+  }
+
+  .follow-us {
+    h1 {
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+
+    .social-media {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+  }
+}
