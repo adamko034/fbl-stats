@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CoreModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
@@ -78,6 +79,7 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     MomentModule,
     ToastrModule.forRoot({ preventDuplicates: true }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAnalyticsModule,
     AngularFirestoreModule,
     CommonModule,
     HttpClientModule,
@@ -86,7 +88,7 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     FblCoreModule,
     AngularMaterialModule
   ],
-  providers: [ExpandedPlayersService],
+  providers: [ExpandedPlayersService, ScreenTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
