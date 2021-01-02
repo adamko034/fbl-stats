@@ -19,7 +19,7 @@ import { PlayersTableContainerComponent } from 'src/app/layout/content/component
 import { ContentComponent } from 'src/app/layout/content/content.component';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { ExpandedPlayersService } from 'src/app/modules/core/players/services/expanded-players.service';
-import { ImageLazyLoadingDirective } from 'src/app/shared/directives/image-lazy-loading/image-lazy-loading.directive';
+import { ImageLazyLoadingDirective } from 'src/app/shared/directives/image-lazy-loading.directive';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +33,6 @@ import { PlayersFilterShowOnlyReturningComponent } from './layout/content/compon
 import { SelectTeamsFromTableComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/select-teams-from-table/select-teams-from-table.component';
 import { SmartTeamsSelectionDialogComponent } from './layout/content/components/players-filters/components/players-filter-teams/components/smart-teams-selection-dialog/smart-teams-selection-dialog.component';
 import { PlayersFilterTeamsComponent } from './layout/content/components/players-filters/components/players-filter-teams/players-filter-teams.component';
-import { SelectPositionComponent } from './layout/content/components/select-position/select-position.component';
 import { HeaderNavigationComponent } from './layout/header/components/header-navigation/header-navigation.component';
 import { LastUdpatedComponent } from './layout/header/components/last-udpated/last-udpated.component';
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
@@ -53,7 +52,6 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     PlayersFilterTeamsComponent,
     HeaderComponent,
     ToastrComponent,
-    SelectPositionComponent,
     SelectTeamsDialogComponent,
     ExpansionPanelComponent,
     PlayersFilterHideUnavailableComponent,

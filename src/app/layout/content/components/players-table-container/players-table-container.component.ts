@@ -7,7 +7,6 @@ import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
-import { PlayersDisplaySettingService } from 'src/app/services/players-display-settings.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { Logger } from 'src/app/utils/logger';
@@ -31,7 +30,6 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
     private propertiesService: PropertiesService,
     private filtersStoreService: FiltersStoreService,
     private playersDataService: PlayersDataService,
-    private playersDisplaySettingsService: PlayersDisplaySettingService,
     private playersViewService: PlayersViewService
   ) {}
 
