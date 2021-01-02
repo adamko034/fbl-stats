@@ -56,6 +56,12 @@ export class MyTeamStore {
     this.send();
   }
 
+  public clear(): void {
+    this.players = [];
+    this.store();
+    this.send();
+  }
+
   private store(): void {
     this.localStorageService.upsert<string[]>(
       this.MY_TEAM_KEY,

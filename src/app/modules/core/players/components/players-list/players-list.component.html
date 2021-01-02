@@ -1,19 +1,22 @@
-<div
-  class="players-list-container"
-  fxLayout="column"
-  ngClass.gt-xs="container-sm"
-  ngClass.gt-sm="container-md"
-  ngClass.gt-md="container-lg"
->
-  <div *ngIf="players?.length > 0" fxLayout="column" fxLayoutGap="20px" fxLayoutGap.lt-sm="10px">
-    <div *ngFor="let player of players; trackBy: trackPlayersBy">
-      <app-player-tile
-        [showAddToMyTeamButton]="showAddToMyTeamButton"
-        [showRemoveFromMyTeamButton]="showRemoveFromMyTeamButton"
-        [player]="player"
-      ></app-player-tile>
+<div>
+  <app-players-display [key]="DISPLAY_KEY" class="display"></app-players-display>
+  <div
+    class="players-list-container"
+    fxLayout="column"
+    ngClass.gt-xs="container-sm"
+    ngClass.gt-sm="container-md"
+    ngClass.gt-md="container-lg"
+  >
+    <div *ngIf="players?.length > 0" fxLayout="column" fxLayoutGap="20px" fxLayoutGap.lt-sm="10px">
+      <div *ngFor="let player of playersToDisplay; trackBy: trackPlayersBy">
+        <app-player-tile
+          [showAddToMyTeamButton]="showAddToMyTeamButton"
+          [showRemoveFromMyTeamButton]="showRemoveFromMyTeamButton"
+          [player]="player"
+        ></app-player-tile>
+      </div>
     </div>
-  </div>
 
-  <app-player-tile-no-records *ngIf="players?.length === 0"></app-player-tile-no-records>
+    <app-player-tile-no-records *ngIf="playersToDisplay.length === 0"></app-player-tile-no-records>
+  </div>
 </div>

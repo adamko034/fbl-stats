@@ -10,19 +10,13 @@ import { Player } from 'src/app/store/players/models/player.model';
 export class PlayersDataService {
   constructor(private playersUiConverter: PlayersUiConverter) {}
 
-  public getPlayersToDisplay(
-    players: Player[],
-    playersFilters: PlayersFilters,
-    lastMatchday: number,
-    playersCount: number
-  ): PlayerUi[] {
+  public getPlayersToDisplay(players: Player[], playersFilters: PlayersFilters, lastMatchday: number): PlayerUi[] {
     const filter = new PlayersTableFilter(playersFilters, lastMatchday);
 
     return new ArrayStream<Player>(players)
       .filter(filter)
       .convert(this.playersUiConverter)
       .orderBy('form', 'dsc')
-      .takeWhereFieldValue(playersCount, 'form')
       .collect();
   }
 

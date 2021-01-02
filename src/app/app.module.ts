@@ -10,9 +10,6 @@ import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
-import { PlayersCountComponent } from 'src/app/layout/content/components/players-display-settings/components/players-count/players-count.component';
-import { PlayersSearchComponent } from 'src/app/layout/content/components/players-display-settings/components/players-search/players-search.component';
-import { PlayersDisplaySettingsComponent } from 'src/app/layout/content/components/players-display-settings/players-display-settings.component';
 import { PlayersFilterMatchdaysComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-matchdays/players-filter-matchdays.component';
 import { PlayersFilterMaxPriceComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-max-price/players-filter-max-price.component';
 import { SelectTeamsDialogComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/components/select-teams-dialog/select-teams-dialog.component';
@@ -57,11 +54,8 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     ToastrComponent,
     SelectPositionComponent,
     SelectTeamsDialogComponent,
-    PlayersSearchComponent,
-    PlayersDisplaySettingsComponent,
     ExpansionPanelComponent,
     PlayersFilterHideUnavailableComponent,
-    PlayersCountComponent,
     LastUdpatedComponent,
     LoadingComponent,
     NewUpdatesComponent,

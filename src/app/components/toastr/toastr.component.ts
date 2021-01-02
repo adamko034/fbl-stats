@@ -51,6 +51,10 @@ export class ToastrComponent implements OnInit, OnDestroy {
     );
   }
 
+  public showSuccess(text: string, title?: string) {
+    this.toastrService.success(text, title, this.getDefaultToastrProperties());
+  }
+
   public ngOnDestroy(): void {
     this.destroyed$.next();
   }

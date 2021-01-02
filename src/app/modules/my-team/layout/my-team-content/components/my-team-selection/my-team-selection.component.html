@@ -1,15 +1,15 @@
 <div fxLayout="column" fxLayoutGap="30px">
   <div *ngIf="(screenSize$ | async) > screens.SM" fxLayout="row" fxLayoutAlign="space-between center">
-    <app-my-team-totals></app-my-team-totals>
     <app-my-team-player-search></app-my-team-player-search>
-    <app-my-team-tile-order-by></app-my-team-tile-order-by>
+    <app-my-team-totals></app-my-team-totals>
+    <app-my-team-options></app-my-team-options>
   </div>
 
-  <div *ngIf="(screenSize$ | async) <= screens.SM" fxLayout="column" fxLayoutGap="15px">
+  <div *ngIf="(screenSize$ | async) <= screens.SM" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
     <app-my-team-totals></app-my-team-totals>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <app-my-team-player-search fxFlex="80"></app-my-team-player-search>
-      <app-my-team-tile-order-by></app-my-team-tile-order-by>
+    <div fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="space-between center">
+      <app-my-team-player-search></app-my-team-player-search>
+      <app-my-team-options></app-my-team-options>
     </div>
   </div>
 

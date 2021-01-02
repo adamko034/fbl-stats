@@ -6,7 +6,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersDisplaySettingService {
-  private readonly PLAYERS_DISPLAY_KEY = 'DisplaySettings';
+  private readonly PLAYERS_DISPLAY_KEY = 'PlayersPageSize';
 
   private state: PlayersDisplaySettings;
   private settings$: ReplaySubject<PlayersDisplaySettings>;

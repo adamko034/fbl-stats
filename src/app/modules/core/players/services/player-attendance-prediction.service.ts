@@ -9,7 +9,7 @@ export class PlayerAttendancePredictionService {
       return PlayerAttendancePrediction.UnknownYet;
     }
 
-    if (this.allWillPlay(predictions)) {
+    if (this.allWillPlay(predictions) || this.atLeastOnePlayOthersUnknown(predictions)) {
       return PlayerAttendancePrediction.WillPlay;
     }
 
@@ -23,10 +23,6 @@ export class PlayerAttendancePredictionService {
 
     if (this.atLeastOnePlayAndOtherWont(predictions)) {
       return PlayerAttendancePrediction.Doubt;
-    }
-
-    if (this.atLeastOnePlayOthersUnknown(predictions)) {
-      return PlayerAttendancePrediction.WillPlayWithWarn;
     }
 
     return PlayerAttendancePrediction.Doubt;

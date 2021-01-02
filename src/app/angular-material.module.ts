@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -52,9 +52,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatListModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule
   ],
   exports: [
+    ReactiveFormsModule,
     MatTableModule,
     MatCardModule,
     MatSliderModule,

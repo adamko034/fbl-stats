@@ -8,12 +8,4 @@
     *ngIf="showUnknownYet && value === cases.UnknownYet"
     >link_off</mat-icon
   >
-  <div
-    *ngSwitchCase="cases.WillPlayWithWarn"
-    fxLayoutAlign="start center"
-    matTooltip="Not all source ale published yet"
-  >
-    <mat-icon class="green">check_circle</mat-icon>
-    <mat-icon class="orange material-icons-outlined warn">feedback</mat-icon>
-  </div>
 </div>

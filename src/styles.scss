@@ -92,6 +92,10 @@ mat-button-toggle.position-active {
   background: #c80a00;
 }
 
+.mat-menu-panel {
+  max-width: unset !important;
+}
+
 .dot-red {
   height: 10px;
   width: 10px;

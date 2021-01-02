@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
 import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { IPlayersStore } from 'src/app/store/players/impl/players-store.interface';
@@ -129,6 +129,7 @@ export class PlayersStore {
 
   public searchPlayers(term: string): Observable<Player[]> {
     return this.players$.pipe(
+      filter(() => !!term),
       map((state) => state.players),
       map((players) => {
         return players
@@ -139,7 +140,7 @@ export class PlayersStore {
   }
 
   public getById(id: string): Player {
-    return this.state.players.find((p) => p.id === id);
+    return this.state.players.find((p) => p.id.toString() === id.toString());
   }
 
   public close(): void {

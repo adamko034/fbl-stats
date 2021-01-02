@@ -113,6 +113,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
           selectedTeam.additionalInfo = null;
           selectedTeam.selected = teams.findIndex((t) => t === selectedTeam.short) >= 0;
         });
+        this.sendSelectedTeams();
       });
   }
 

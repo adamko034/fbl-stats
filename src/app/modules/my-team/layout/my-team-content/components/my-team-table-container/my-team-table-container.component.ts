@@ -11,8 +11,8 @@ import { MyTeamPlayersFitlersService } from 'src/app/modules/my-team/layout/my-t
 import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { PropertiesService } from 'src/app/services/properties.service';
-import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { Player } from 'src/app/store/players/models/player.model';
+import { Logger } from 'src/app/utils/logger';
 
 @Component({
   selector: 'app-my-team-table-container',
@@ -23,22 +23,18 @@ import { Player } from 'src/app/store/players/models/player.model';
 export class MyTeamTableContainerComponent implements OnInit {
   public players$: Observable<PlayerUi[]>;
   public view$: Observable<PlayersView>;
-  public screen$: Observable<ScreenSize>;
 
   public views = PlayersView;
-  public screens = ScreenSize;
 
   constructor(
     private myTeamService: MyTeamStore,
     private playersUiConverter: PlayersUiConverter,
     private propertiesService: PropertiesService,
     private myTeamPlayersFilters: MyTeamPlayersFitlersService,
-    private playersViewService: PlayersViewService,
-    private screenSizeService: ScreenSizeService
+    private playersViewService: PlayersViewService
   ) {}
 
   public ngOnInit(): void {
-    this.screen$ = this.screenSizeService.onResize();
     this.view$ = this.playersViewService.select();
     this.players$ = combineLatest([
       this.myTeamService.select(),
@@ -46,6 +42,7 @@ export class MyTeamTableContainerComponent implements OnInit {
       this.propertiesService.selectLastMatchday()
     ]).pipe(
       map(([players, filters, lastMatchday]) => {
+        Logger.logDev('my tam table container, on init subscription');
         const filter = new MyTeamPlayersFitler(filters, lastMatchday);
         return new ArrayStream<Player>(players)
           .filter(filter)

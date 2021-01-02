@@ -1,13 +1,25 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { maxBy } from 'lodash';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { PlayersDataService } from 'src/app/layout/content/components/players-table-container/services/players-data.service';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
+import { PlayersDisplaySettings } from 'src/app/modules/core/players/models/players-display-settings.model';
 import { ExpandedPlayersService } from 'src/app/modules/core/players/services/expanded-players.service';
+import { PlayersDisplaySettingsService } from 'src/app/modules/core/players/services/players-display-settings.service';
 import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 import { Logger } from 'src/app/utils/logger';
 
@@ -30,24 +42,18 @@ import { Logger } from 'src/app/utils/logger';
     ])
   ]
 })
-export class PlayersTableComponent implements OnInit, AfterViewInit {
-  @Input() set players(playersUi: PlayerUi[]) {
-    Logger.logDev('players table component, setting players, calculating data');
-    this.preparePlayersData(playersUi);
-    this.dataSource = new MatTableDataSource(this.data);
-    this.dataSource.sort = this.sort;
-  }
-
+export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+  @Input() players: PlayerUi[];
   @Input() showAddToMyTeamButton = false;
   @Input() showDeleteFromMyTeamButton = false;
 
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  public readonly DISPLAY_KEY = 'table';
+  private destroyed$ = new Subject<void>();
 
   public columns = [];
   public displayedColumns: string[];
-  public show = false;
-  public data: any[] = [];
   public dataSource: MatTableDataSource<any>;
   public myTeamPlayers$: Observable<string[]>;
 
@@ -56,8 +62,16 @@ export class PlayersTableComponent implements OnInit, AfterViewInit {
   constructor(
     private myTeamService: MyTeamStore,
     private playersDataService: PlayersDataService,
-    private expandedPlayersService: ExpandedPlayersService
+    private expandedPlayersService: ExpandedPlayersService,
+    private displaySettingsService: PlayersDisplaySettingsService
   ) {}
+
+  public ngOnChanges(change: SimpleChanges) {
+    if (!!change.players && !change.players.isFirstChange()) {
+      this.dataSource.data = this.getDataSourceData();
+      this.dataSource.paginator?.firstPage();
+    }
+  }
 
   ngOnInit() {
     Logger.logDev('players table componenet, on init');
@@ -66,8 +80,14 @@ export class PlayersTableComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    this.displaySettingsService.select(this.DISPLAY_KEY).subscribe((settings) => {
+      this.prepareDataSource(settings);
+    });
+  }
+
+  public ngOnDestroy(): void {
+    Logger.logDev('players table componenet, on destroy');
+    this.destroyed$.next();
   }
 
   public getTdClass(column: { displayName: string; fieldName: string }, item: any): string {
@@ -96,17 +116,36 @@ export class PlayersTableComponent implements OnInit, AfterViewInit {
     this.myTeamService.remove(playerId);
   }
 
-  private preparePlayersData(playersUi: PlayerUi[]) {
-    this.data = [];
+  private prepareDataSource(settings: PlayersDisplaySettings): void {
+    Logger.logDev('players table componenet, preparing data source');
 
-    if (!!playersUi && playersUi.length > 0) {
-      this.data = this.playersDataService.flatten(playersUi);
-      const exPlayer = playersUi[0];
+    if (!this.dataSource) {
+      this.dataSource = new MatTableDataSource([]);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = settings.paginator;
+      this.dataSource.filterPredicate = (data, filter) =>
+        !!filter && data.name.toLowerCase().includes(filter.toLowerCase());
+      this.dataSource.data = this.getDataSourceData();
+      this.sort.sortChange.pipe(takeUntil(this.destroyed$)).subscribe(() => this.dataSource.paginator.firstPage());
+    }
+
+    this.dataSource.filter = settings.searchTerm;
+    this.dataSource.paginator?.firstPage();
+  }
+
+  private getDataSourceData(): any[] {
+    let data = [];
+
+    if (!!this.players && this.players.length > 0) {
+      data = this.playersDataService.flatten(this.players);
+      const exPlayer = this.players[0];
       const lastMatchday = maxBy(exPlayer.games, 'matchday').matchday;
       const includedMatchdays = exPlayer.games.length;
 
       this.prepareTableColumns(lastMatchday, includedMatchdays);
     }
+
+    return data;
   }
 
   private prepareTableColumns(lastMatchday: number, matchdays: number): void {
@@ -121,9 +160,9 @@ export class PlayersTableComponent implements OnInit, AfterViewInit {
     this.displayedColumns.unshift('Team');
     this.displayedColumns.unshift('Position');
     this.displayedColumns.unshift('Name');
-    this.displayedColumns.splice(3, 0, 'Next');
+    this.displayedColumns.unshift('No');
+    this.displayedColumns.splice(4, 0, 'Next');
     this.displayedColumns.push('MT');
-    this.show = true;
   }
 
   private getDefaulColumns() {

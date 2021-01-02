@@ -11,6 +11,7 @@ import { TeamLogoStyleDirective } from 'src/app/shared/components/team-logo/dire
 import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo.component';
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
+import { MatInputAutofocusDirective } from 'src/app/shared/directives/mat-input-autofocus.directive';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
     TimelineComponent,
     TeamFormComponent,
     SwitchComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    MatInputAutofocusDirective
   ],
   imports: [CommonModule, AngularMaterialModule],
   exports: [
@@ -39,7 +41,8 @@ import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
     TimelineComponent,
     TeamFormComponent,
     SwitchComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    MatInputAutofocusDirective
   ]
 })
 export class SharedModule {}

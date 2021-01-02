@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
+import { ToastrService } from 'ngx-toastr';
 import { combineLatest, Observable, of, Subject } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { map, switchMap, takeUntil } from 'rxjs/operators';
 import { MyTeamPlayer } from 'src/app/modules/my-team/models/my-team-player.model';
 import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 
@@ -12,16 +14,19 @@ import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 })
 export class MyTeamPlayerSearchComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
+
+  public addButtonExpanded = false;
   public playerSearch = new FormControl();
   public foundPlayers$: Observable<MyTeamPlayer[]>;
 
-  constructor(private myTeamService: MyTeamStore) {}
+  @ViewChild(MatInput) searchInput;
+
+  constructor(private myTeamService: MyTeamStore, private toastrService: ToastrService) {}
 
   public ngOnInit(): void {
     this.foundPlayers$ = combineLatest([this.playerSearch.valueChanges, this.myTeamService.selectMyTeamPlayers()]).pipe(
-      filter(([term]) => isNaN(+term)),
       switchMap(([term, myTeamPlayers]) => {
-        if (!term || term.length <= 1) {
+        if (!term || term.length <= 1 || !isNaN(+term)) {
           return of([]);
         }
 
@@ -35,9 +40,11 @@ export class MyTeamPlayerSearchComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
   }
 
-  public onPlayerSelected(id: string) {
-    this.myTeamService.add(id);
+  public onPlayerSelected(selectedValue: string) {
+    const values = selectedValue.split(';');
+    this.myTeamService.add(values[0]);
     this.playerSearch.setValue(null);
+    this.toastrService.success(`${values[1]} was added.`, null, { positionClass: 'toast-top-center' });
   }
 
   private searchPlayersAndFilterAlredySelected(

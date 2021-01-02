@@ -41,25 +41,23 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
     combineLatest([
       this.propertiesService.selectLastMatchday(),
       this.filtersStoreService.selectFilters(),
-      this.playersStore.selectPlayers(),
-      this.playersDisplaySettingsService.selectSettings()
+      this.playersStore.selectPlayers()
     ])
       .pipe(
         tap(() => (this.loading = true)),
         delay(0),
-        filter(([lastMatchday, filters, playersState, displaySettings]) => {
-          return !!lastMatchday && lastMatchday !== 0 && !!filters && !!playersState && !!displaySettings;
+        filter(([lastMatchday, filters, playersState]) => {
+          return !!lastMatchday && lastMatchday !== 0 && !!filters && !!playersState;
         }),
         takeUntil(this.destroyed$)
       )
-      .subscribe(([lastMatchday, filters, playersState, displaySettings]) => {
+      .subscribe(([lastMatchday, filters, playersState]) => {
         Logger.logDev('players table container component, ng on init subscription start');
 
         this.playersToDisplay = this.playersDataService.getPlayersToDisplay(
           cloneDeep(playersState.players),
           filters,
-          lastMatchday,
-          displaySettings.count
+          lastMatchday
         );
 
         this.loading = false;

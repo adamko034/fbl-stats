@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PlayersSearchComponent } from 'src/app/modules/core/players/components/players-display/components/players-search/players-search.component';
 import { PlayersListComponent } from 'src/app/modules/core/players/components/players-list/players-list.component';
 import { SelectMoreMatchdaysDialogComponent } from 'src/app/modules/core/players/components/players-select-matchdays/components/select-more-form-dialog/select-more-matchdays-dialog.component';
 import { PlayersSelectMatchdaysComponent } from 'src/app/modules/core/players/components/players-select-matchdays/players-select-matchdays.component';
@@ -22,7 +23,8 @@ import { PlayerTileNameComponent } from 'src/app/modules/core/players/components
 import { PlayerTileNextGameComponent } from 'src/app/modules/core/players/components/shared/player-tile/components/player-tile-next-game/player-tile-next-game.component';
 import { PlayerTileComponent } from 'src/app/modules/core/players/components/shared/player-tile/player-tile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { PlayersViewSwitchComponent } from './players/components/players-view-switch/players-view-switch.component';
+import { PlayersViewSwitchComponent } from './players/components/players-display/components/players-view-switch/players-view-switch.component';
+import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PlayersViewSwitchComponent } from './players/components/players-view-sw
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
     SelectMoreMatchdaysDialogComponent,
-    PlayersViewSwitchComponent
+    PlayersViewSwitchComponent,
+    PlayersDisplayComponent,
+    PlayersSearchComponent
   ],
   imports: [CommonModule, SharedModule, NgPipesModule, AngularMaterialModule],
   exports: [
@@ -67,7 +71,8 @@ import { PlayersViewSwitchComponent } from './players/components/players-view-sw
     PlayerTileNameComponent,
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
-    PlayersViewSwitchComponent
+    PlayersViewSwitchComponent,
+    PlayersSearchComponent
   ]
 })
 export class FblCoreModule {}
