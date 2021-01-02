@@ -7,6 +7,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CoreModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { ToastrModule } from 'ngx-toastr';
@@ -26,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ToastrComponent } from './components/toastr/toastr.component';
+import { AboutUsComponent } from './layout/about-us/about-us.component';
 import { PlayersFilterHideUnavailableComponent } from './layout/content/components/players-filters/components/players-filter-hide-unavailable/players-filter-hide-unavailable.component';
 import { PlayersFilterPopularityComponent } from './layout/content/components/players-filters/components/players-filter-popularity/players-filter-popularity.component';
 import { PlayersFilterPositionComponent } from './layout/content/components/players-filters/components/players-filter-position/players-filter-position.component';
@@ -67,7 +70,8 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     PlayersFilterPositionComponent,
     PlayersFilterShowOnlyReturningComponent,
     PlayersFilterMatchdaysComponent,
-    SidenavComponent
+    SidenavComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
@@ -84,9 +88,14 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     SharedModule,
     CoreModule,
     FblCoreModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FontAwesomeModule
   ],
   providers: [ExpandedPlayersService, ScreenTrackingService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private faLibrary: FaIconLibrary) {
+    faLibrary.addIcons(faTwitter);
+  }
+}

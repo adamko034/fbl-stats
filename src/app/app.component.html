@@ -3,7 +3,7 @@
 </div>
 
 <div class="app-content" *ngIf="showConent$ | async" [@inOutAnimation]>
-  <mat-sidenav-container>
+  <mat-sidenav-container class="side-nav-container">
     <mat-sidenav (closed)="closeSidenav()" mode="over" [opened]="sidenavOpened$ | async">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
