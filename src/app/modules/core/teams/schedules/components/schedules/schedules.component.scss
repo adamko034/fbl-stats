@@ -1,0 +1,88 @@
+.schedules-container {
+  .schedules {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+
+      &:not(:first-child) {
+        margin-bottom: 15px;
+      }
+    }
+
+    .schedule {
+      padding: 0;
+
+      &-mobile {
+        padding: 0;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+      }
+    }
+
+    .header {
+      padding: 10px 0 10px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      &-mobile {
+        padding: 0;
+        text-align: center;
+      }
+    }
+
+    .row {
+      .team-logo {
+        padding: 10px 0;
+
+        .rank {
+          font-size: 12px;
+          font-weight: 500;
+        }
+
+        &-mobile {
+          padding-left: 30px;
+        }
+      }
+
+      .md {
+        height: 100px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 500;
+
+        &-mobile {
+          width: 100%;
+          padding-top: 8px;
+        }
+      }
+    }
+  }
+
+  .order-by-container {
+    margin: 15px 0;
+  }
+
+  .legend {
+    &-when-row {
+      margin-top: 18px;
+    }
+
+    &-color {
+      width: 80px;
+      height: 75px;
+
+      &-mobile {
+        width: 12vw;
+        height: 40px;
+      }
+    }
+  }
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: #fff;
+}
