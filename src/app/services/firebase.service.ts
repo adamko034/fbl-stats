@@ -28,7 +28,7 @@ export class FirebaseService {
   }
 
   public getLastUpdated(): Observable<LastUpdated> {
-    var doc = environment.production ? 'last-updated' : 'last-updated-dev';
+    const doc = environment.production ? 'last-updated' : 'last-updated-dev';
     return this.firestore
       .collection('properties')
       .doc<LastUpdated>(doc)

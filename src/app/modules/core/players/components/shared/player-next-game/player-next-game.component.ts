@@ -9,6 +9,9 @@ import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.mo
 export class PlayerNextGameComponent {
   @Input() nextGame: PlayerNextGame;
   @Input() height: number;
+  @Input() bold = false;
+  @Input() fontSize = 0;
+  @Input() venueLong = false;
 
   constructor() {}
 }

@@ -1,9 +1,16 @@
 .app-content {
+  height: 101vh;
+
   .side-nav-container {
     mat-sidenav {
       background-color: #fafafa !important;
     }
   }
+
+  .loading {
+    margin-top: -3px;
+  }
+
   .footer {
     min-height: 30px;
   }

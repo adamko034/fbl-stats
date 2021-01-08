@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PlayersSearchComponent } from 'src/app/modules/core/players/components/players-display/components/players-search/players-search.component';
@@ -22,9 +23,13 @@ import { PlayerTileFantasyPointsComponent } from 'src/app/modules/core/players/c
 import { PlayerTileNameComponent } from 'src/app/modules/core/players/components/shared/player-tile/components/player-tile-name/player-tile-name.component';
 import { PlayerTileNextGameComponent } from 'src/app/modules/core/players/components/shared/player-tile/components/player-tile-next-game/player-tile-next-game.component';
 import { PlayerTileComponent } from 'src/app/modules/core/players/components/shared/player-tile/player-tile.component';
+import { TeamScheduleColorsService } from 'src/app/modules/core/teams/schedules/services/team-schedule-colors.service';
+import { TeamScheduleIndexCalculator } from 'src/app/modules/core/teams/schedules/services/team-schedule-index-calculator.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersViewSwitchComponent } from './players/components/players-display/components/players-view-switch/players-view-switch.component';
 import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
+import { ExplainSchedulesEaseIndexComponent } from './teams/schedules/components/explain-schedules-ease-index/explain-schedules-ease-index.component';
+import { SchedulesComponent } from './teams/schedules/components/schedules/schedules.component';
 
 @NgModule({
   declarations: [
@@ -49,9 +54,12 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     SelectMoreMatchdaysDialogComponent,
     PlayersViewSwitchComponent,
     PlayersDisplayComponent,
-    PlayersSearchComponent
+    PlayersSearchComponent,
+    SchedulesComponent,
+    ExplainSchedulesEaseIndexComponent
   ],
-  imports: [CommonModule, SharedModule, NgPipesModule, AngularMaterialModule],
+  imports: [CommonModule, SharedModule, NgPipesModule, AngularMaterialModule, NgxChartsModule],
+  providers: [TeamScheduleIndexCalculator, TeamScheduleColorsService],
   exports: [
     PlayersListComponent,
     PlayersTableComponent,
@@ -72,7 +80,8 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
     PlayersViewSwitchComponent,
-    PlayersSearchComponent
+    PlayersSearchComponent,
+    SchedulesComponent
   ]
 })
 export class FblCoreModule {}

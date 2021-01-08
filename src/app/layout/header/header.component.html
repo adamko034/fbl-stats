@@ -1,6 +1,15 @@
-<div *ngIf="(screen$ | async) > screens.XS" class="header" fxLayout fxLayoutAlign="space-between center">
-  <span fxHide.sm>FantasyBL-Stats</span>
-  <span fxHide.lt-sm fxHide.gt-sm class="leckerli red-background">F</span>
+<div
+  *ngIf="(screen$ | async) > screens.XS"
+  class="header"
+  ngClass.sm="header-sm"
+  fxLayout
+  fxLayoutAlign="space-between center"
+>
+  <span class="name">
+    <span routerLink="home" fxHide.lt-md>FantasyBL-Stats</span>
+    <span fxHide.lt-sm fxHide.gt-sm class="leckerli red-background">F</span>
+  </span>
+
   <app-header-navigation></app-header-navigation>
   <div fxFlexAlign="end" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="3px">
     <app-new-updates></app-new-updates>

@@ -3,7 +3,6 @@ import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { LineupsSource, LineupsSourceProperty, Properties, TeamProperty } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { StartupLoadingService } from 'src/app/services/startup-loading.service';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +12,7 @@ export class PropertiesService {
   private state: Properties;
   private lastUpdated$ = new ReplaySubject<Date>(1);
 
-  constructor(private firebaseService: FirebaseService, private startupLoading: StartupLoadingService) {}
+  constructor(private firebaseService: FirebaseService) {}
 
   public update() {
     this.state = null;
@@ -28,8 +27,6 @@ export class PropertiesService {
         if (lastUpdated) {
           this.lastUpdated$.next(new Date(lastUpdated.date));
         }
-
-        this.startupLoading.endLoadingLastUpdated();
       });
   }
 
@@ -68,7 +65,6 @@ export class PropertiesService {
         Logger.logDev('properties store service, properties loaded');
         this.state = { ...properties };
         this.properties$.next({ ...this.state });
-        this.startupLoading.endLoadingProperties();
       });
   }
 }

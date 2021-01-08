@@ -7,8 +7,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CoreModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { ToastrModule } from 'ngx-toastr';
@@ -41,7 +39,6 @@ import { LastUdpatedComponent } from './layout/header/components/last-udpated/la
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { SidenavComponent } from './layout/header/components/sidenav/sidenav.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { StartupLoadingComponent } from './layout/startup-loading/startup-loading.component';
 import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 
 @NgModule({
@@ -65,7 +62,6 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     ImageLazyLoadingDirective,
     SmartTeamsSelectionDialogComponent,
     SelectTeamsFromTableComponent,
-    StartupLoadingComponent,
     HeaderNavigationComponent,
     PlayersFilterPositionComponent,
     PlayersFilterShowOnlyReturningComponent,
@@ -88,14 +84,9 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     SharedModule,
     CoreModule,
     FblCoreModule,
-    AngularMaterialModule,
-    FontAwesomeModule
+    AngularMaterialModule
   ],
   providers: [ExpandedPlayersService, ScreenTrackingService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(private faLibrary: FaIconLibrary) {
-    faLibrary.addIcons(faTwitter);
-  }
-}
+export class AppModule {}

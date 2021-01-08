@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faSortAmountDownAlt, faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
 import { InputNumberComponent } from 'src/app/shared/components/input-number/input-number.component';
@@ -12,6 +15,8 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { NumeralsPipe } from './pipes/numerals.pipe';
+import { WherePipe } from './pipes/where.pipe';
 
 @NgModule({
   declarations: [
@@ -25,9 +30,11 @@ import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
     TimelineComponent,
     TeamFormComponent,
     SwitchComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    WherePipe,
+    NumeralsPipe
   ],
-  imports: [CommonModule, AngularMaterialModule],
+  imports: [CommonModule, AngularMaterialModule, FontAwesomeModule],
   exports: [
     TeamLogoComponent,
     TeamLogoSourceDirective,
@@ -39,7 +46,14 @@ import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
     TimelineComponent,
     TeamFormComponent,
     SwitchComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    WherePipe,
+    NumeralsPipe,
+    FontAwesomeModule
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+  constructor(private faLibrary: FaIconLibrary) {
+    this.faLibrary.addIcons(faTwitter, faSortAmountDownAlt, faSortAmountUpAlt);
+  }
+}

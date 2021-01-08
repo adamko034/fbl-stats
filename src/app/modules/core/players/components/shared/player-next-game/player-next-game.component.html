@@ -4,8 +4,10 @@
     [height]="height"
     [team]="nextGame.opponent"
   ></app-team-logo>
-  <div class="grey">
-    <span *ngIf="nextGame.isHome">(h)</span>
-    <span *ngIf="!nextGame.isHome">(a)</span>
+  <div class="grey" [ngStyle]="{ 'font-weight: 500': bold }" [style.font-size.px]="fontSize > 0 ? fontSize : 'unset'">
+    <span *ngIf="nextGame.isHome && !venueLong">(h)</span>
+    <span *ngIf="nextGame.isHome && venueLong">(home)</span>
+    <span *ngIf="!nextGame.isHome && !venueLong">(a)</span>
+    <span *ngIf="!nextGame.isHome && venueLong">(away)</span>
   </div>
 </div>

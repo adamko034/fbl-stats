@@ -2,7 +2,7 @@
   <div *ngIf="(screen$ | async) > screens.SM" fxLayoutAlign="space-between center">
     <app-players-view-switch></app-players-view-switch>
     <app-players-search [key]="key" fxFlex="40"></app-players-search>
-    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
+    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
   </div>
 
   <div *ngIf="(screen$ | async) === screens.SM" fxLayout="column" fxLayoutAlign="start cetner">
@@ -11,12 +11,12 @@
       <app-players-search [key]="key" fxFlex="50"></app-players-search>
     </div>
 
-    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
+    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
   </div>
 
   <div *ngIf="(screen$ | async) < screens.SM" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
     <app-players-view-switch></app-players-view-switch>
     <app-players-search [key]="key"></app-players-search>
-    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
+    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
   </div>
 </div>

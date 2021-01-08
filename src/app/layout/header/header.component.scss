@@ -10,8 +10,17 @@
   width: 95%;
   border-bottom: 2px solid #c80a00;
 
+  &-sm {
+    padding: 0 5px;
+  }
+
+  .name {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   .leckerli {
-    padding: 7px 12px;
+    padding: 1px 13px;
     font-family: 'Leckerli One', cursive;
     border-radius: 10px;
     font-size: 30px;

@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
-import { StartupLoadingService } from 'src/app/services/startup-loading.service';
+import { FilesService } from 'src/app/store/files.service';
 import { IPlayersStore } from 'src/app/store/players/impl/players-store.interface';
 import { PlayersFilesStoreService } from 'src/app/store/players/impl/players.files-store';
 import { PlayersFirebaseStoreService } from 'src/app/store/players/impl/players.firebase-store';
@@ -24,8 +23,7 @@ export class PlayersStore {
 
   constructor(
     private firestore: AngularFirestore,
-    private http: HttpClient,
-    private startupLoading: StartupLoadingService,
+    private filesService: FilesService,
     private storeSourceDecider: StoreSourceDeciderService
   ) {}
 
@@ -73,7 +71,6 @@ export class PlayersStore {
         .loadMidfielders()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((midfielders: Player[]) => {
-          this.startupLoading.endLoadingMid();
           this.state.midfielders = midfielders;
           this.state.players = this.state.players.concat(midfielders);
           this.players$.next({ ...this.state });
@@ -87,7 +84,6 @@ export class PlayersStore {
         .loadForwards()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((forwards: Player[]) => {
-          this.startupLoading.endLoadingFor();
           this.state.forwards = forwards;
           this.state.players = this.state.players.concat(forwards);
           this.players$.next({ ...this.state });
@@ -101,7 +97,6 @@ export class PlayersStore {
         .loadGoalkeepers()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((goalkeepers: Player[]) => {
-          this.startupLoading.endLoadingGk();
           this.state.goalkeepers = goalkeepers;
           this.state.players = this.state.players.concat(goalkeepers);
           this.players$.next({ ...this.state });
@@ -115,7 +110,6 @@ export class PlayersStore {
         .loadDefenders()
         .pipe(takeUntil(this.destroyed$))
         .subscribe((defenders: Player[]) => {
-          this.startupLoading.endLoadingDef();
           this.state.defenders = defenders;
           this.state.players = this.state.players.concat(defenders);
           this.players$.next({ ...this.state });
@@ -159,7 +153,7 @@ export class PlayersStore {
     }
 
     if (!this.filesStore) {
-      this.filesStore = new PlayersFilesStoreService(this.http);
+      this.filesStore = new PlayersFilesStoreService(this.filesService);
     }
 
     return this.filesStore;

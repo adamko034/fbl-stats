@@ -16,6 +16,10 @@ body {
   overflow-x: hidden;
 }
 
+*[ng-reflect-router-link]:focus {
+  outline: 0;
+}
+
 .mat-drawer-content {
   overflow: unset !important;
 }
@@ -94,6 +98,10 @@ mat-button-toggle.position-active {
 
 .mat-menu-panel {
   max-width: unset !important;
+}
+
+.mat-ink-bar {
+  background-color: #c80a00 !important;
 }
 
 .dot-red {

@@ -3,6 +3,12 @@
   margin: 0;
   padding: 0;
 
+  &-sm {
+    li {
+      letter-spacing: 1px !important;
+    }
+  }
+
   li {
     cursor: pointer;
     padding: 10px 20px;

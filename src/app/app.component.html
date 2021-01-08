@@ -1,15 +1,17 @@
-<div *ngIf="!(showLoading$ | async)" [@inOutAnimation]>
-  <app-startup-loading></app-startup-loading>
-</div>
-
-<div class="app-content" *ngIf="showConent$ | async" [@inOutAnimation]>
+<div class="app-content" [@inOutAnimation]>
   <mat-sidenav-container class="side-nav-container">
     <mat-sidenav (closed)="closeSidenav()" mode="over" [opened]="sidenavOpened$ | async">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
       <app-header></app-header>
-      <router-outlet></router-outlet>
+      <div *ngIf="!loading">
+        <router-outlet></router-outlet>
+      </div>
+      <div *ngIf="loading" class="loading">
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </div>
+
       <div class="footer"></div>
     </mat-sidenav-content>
   </mat-sidenav-container>
