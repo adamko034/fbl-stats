@@ -1,7 +1,7 @@
 <h1>{{ 'Teams next fixtures' | uppercase }}</h1>
 <div *ngIf="!!state" class="schedules-container">
-  <div class="order-by-container" fxLayoutAlign="center center">
-    <span class="bold" fxFlex="10">Sort by:</span>
+  <div class="order-by-container" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <span class="bold">Sort by:</span>
     <mat-button-toggle-group name="orderBy">
       <mat-button-toggle [disableRipple]="true">
         <button mat-button [matMenuTriggerFor]="orderByMenu">{{ selectedOrderText }}</button>
