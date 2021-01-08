@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { cloneDeep } from 'lodash';
 import { Subject } from 'rxjs';
 import { filter, switchMap, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { SelectTeamsDialogComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/components/select-teams-dialog/select-teams-dialog.component';
@@ -11,6 +10,7 @@ import { SelectableTeam } from 'src/app/layout/content/components/players-filter
 import { SelectableSmartTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/smart-selects/selectable-smart-team.model';
 import { SmartSelectionTeamsService } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/services/smart-selection-teams.service';
 import { TeamProperty } from 'src/app/models/properties.model';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { PropertiesService } from 'src/app/services/properties.service';
@@ -56,7 +56,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
   public openDialog(): void {
     this.matDialog
       .open(SelectTeamsDialogComponent, {
-        data: { teams: cloneDeep(this.selectedTeams) }
+        data: { teams: new ArrayStream(this.selectedTeams).collect() }
       })
       .afterClosed()
       .pipe(
@@ -100,7 +100,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
   public openSelectTeamsFromTableDialog(): void {
     this.matDialog
       .open(SelectTeamsFromTableComponent, {
-        data: { selectedTeams: cloneDeep(this.getSelectedTeams().map((t) => t.short)) }
+        data: { selectedTeams: new ArrayStream(this.getSelectedTeams().map((t) => t.short)).collect() }
       })
       .afterClosed()
       .pipe(

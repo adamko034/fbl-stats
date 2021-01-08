@@ -1,4 +1,3 @@
-import { cloneDeep } from 'lodash';
 import { OrderByPipe } from 'ngx-pipes';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
@@ -7,7 +6,7 @@ export class ArrayStream<T> {
   private array: any[];
 
   constructor(array: T[], deepClone = true) {
-    this.array = deepClone ? cloneDeep(array) : array;
+    this.array = deepClone ? this.cloneDeep(array) : array;
   }
 
   public filter(filterable: Filterable<T>) {
@@ -15,7 +14,7 @@ export class ArrayStream<T> {
     return this;
   }
 
-  public orderBy(field: string, order: 'asc' | 'dsc'): ArrayStream<T> {
+  public orderBy(field: string, order: 'asc' | 'dsc' = 'asc'): ArrayStream<T> {
     if (order === 'dsc') {
       field = `-${field}`;
     }
@@ -40,7 +39,21 @@ export class ArrayStream<T> {
     return new ArrayStream<R>(this.array, false);
   }
 
+  public minBy(predicate: (item: T) => number): number {
+    return Math.min(...this.array.map(predicate));
+  }
+
+  public maxBy(predicate: (item: T) => number): number {
+    return Math.max(...this.array.map(predicate));
+  }
+
   public collect(): T[] {
     return this.array;
+  }
+
+  private cloneDeep(array: T[]): T[] {
+    const newArray = [];
+    array.forEach((a) => newArray.push({ ...a }));
+    return newArray;
   }
 }

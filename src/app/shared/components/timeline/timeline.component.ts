@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { maxBy, minBy, orderBy } from 'lodash';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { TimelineDisplayOptions } from 'src/app/shared/components/timeline/models/timeline-display-options.model';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
 import { TimelineTense } from 'src/app/shared/components/timeline/models/timeline-tense.enum';
@@ -50,41 +50,41 @@ export class TimelineComponent implements OnInit {
   }
 
   public isBeforeItem(): boolean {
-    const minItem = minBy(this.allItems, 'order');
-    const minDisplayedItem = minBy(this.displayedItems, 'order');
-    return minItem.order < minDisplayedItem.order;
+    const minItem = this.minOrder(this.allItems);
+    const minDisplayedItem = this.minOrder(this.displayedItems);
+    return minItem < minDisplayedItem;
   }
 
   public isNextItem(): boolean {
-    const maxItem = maxBy(this.allItems, 'order');
-    const maxDispalyedItem = maxBy(this.displayedItems, 'order');
-    return maxItem.order > maxDispalyedItem.order;
+    const maxItem = this.maxOrder(this.allItems);
+    const maxDispalyedItem = this.maxOrder(this.displayedItems);
+    return maxItem > maxDispalyedItem;
   }
 
   public onShowPrevious(): void {
-    const minItem = minBy(this.allItems, 'order');
-    const displayedMinItem = minBy(this.displayedItems, 'order');
+    const minItem = this.minOrder(this.allItems);
+    const displayedMinItem = this.minOrder(this.displayedItems);
 
-    if (displayedMinItem.order > minItem.order) {
-      const previousMin = displayedMinItem.order - 1;
+    if (displayedMinItem > minItem) {
+      const previousMin = displayedMinItem - 1;
 
       const filtered = this.allItems
         .filter((i) => i.order >= previousMin)
         .filter((i) => i.order < previousMin + this.displayedItemsCount);
 
-      this.displayedItems = orderBy(filtered, 'order');
+      this.displayedItems = this.orderBy(filtered, 'order');
     }
   }
 
   public onShowNext(): void {
-    const displayedMaxItem = maxBy(this.displayedItems, 'order');
-    const nextMax = displayedMaxItem.order + 1;
+    const displayedMaxItem = this.maxOrder(this.displayedItems);
+    const nextMax = displayedMaxItem + 1;
 
     const filtered = this.allItems
       .filter((i) => i.order <= nextMax)
       .filter((i) => i.order > nextMax - this.displayedItemsCount);
 
-    this.displayedItems = orderBy(filtered, 'order');
+    this.displayedItems = this.orderBy(filtered, 'order');
   }
 
   public getTenseClassWithPrefix(item: TimelineItem, prefix: string): string {
@@ -111,7 +111,7 @@ export class TimelineComponent implements OnInit {
       }
 
       const filtered = items.filter((item) => this.itemShouldBeDisplayed(item, currentItem.order));
-      this.displayedItems = orderBy(filtered, 'order');
+      this.displayedItems = this.orderBy(filtered, 'order');
       this.showTimeline = true;
       this.changeDetector.detectChanges();
     }
@@ -123,5 +123,17 @@ export class TimelineComponent implements OnInit {
       (item.order < currentItemIndex && item.order >= currentItemIndex - this.options.pastItemsCount) ||
       (item.order > currentItemIndex && item.order <= currentItemIndex + this.options.futureItemsCount)
     );
+  }
+
+  private minOrder(array: TimelineItem[]): number {
+    return new ArrayStream(array).minBy((i) => i.order);
+  }
+
+  private maxOrder(array: TimelineItem[]): number {
+    return new ArrayStream(array).maxBy((i) => i.order);
+  }
+
+  public orderBy(array: TimelineItem[], field: string): TimelineItem[] {
+    return new ArrayStream<TimelineItem>(array).orderBy(field, 'asc').collect();
   }
 }

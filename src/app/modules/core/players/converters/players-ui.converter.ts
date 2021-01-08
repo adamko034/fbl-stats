@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { cloneDeep } from 'lodash';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayerAttendancePredictionService } from 'src/app/modules/core/players/services/player-attendance-prediction.service';
 import { PlayerFormCalculatorService } from 'src/app/modules/core/players/services/player-form-calculator.service';
@@ -33,7 +32,7 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       position,
       isSuspensionRisk,
       isReturning
-    } = cloneDeep(player) as Player;
+    } = { ...player } as Player;
     return {
       id,
       name,

@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { cloneDeep } from 'lodash';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { delay, filter, takeUntil, tap } from 'rxjs/operators';
 import { PlayersDataService } from 'src/app/layout/content/components/players-table-container/services/players-data.service';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
@@ -53,7 +53,7 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
         Logger.logDev('players table container component, ng on init subscription start');
 
         this.playersToDisplay = this.playersDataService.getPlayersToDisplay(
-          cloneDeep(playersState.players),
+          new ArrayStream(playersState.players).collect(),
           filters,
           lastMatchday
         );

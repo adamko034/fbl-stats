@@ -12,15 +12,16 @@ import {
 } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { maxBy } from 'lodash';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { PlayersDataService } from 'src/app/layout/content/components/players-table-container/services/players-data.service';
+import { Game } from 'src/app/models/game.model';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersDisplaySettings } from 'src/app/modules/core/players/models/players-display-settings.model';
 import { ExpandedPlayersService } from 'src/app/modules/core/players/services/expanded-players.service';
 import { PlayersDisplaySettingsService } from 'src/app/modules/core/players/services/players-display-settings.service';
 import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -139,7 +140,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     if (!!this.players && this.players.length > 0) {
       data = this.playersDataService.flatten(this.players);
       const exPlayer = this.players[0];
-      const lastMatchday = maxBy(exPlayer.games, 'matchday').matchday;
+      const lastMatchday = new ArrayStream<Game>(exPlayer.games).maxBy((g) => g.matchday);
       const includedMatchdays = exPlayer.games.length;
 
       this.prepareTableColumns(lastMatchday, includedMatchdays);

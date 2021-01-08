@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { orderBy } from 'lodash';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { DateService } from 'src/app/services/date.service';
 import { TimelineItemBuilder } from 'src/app/shared/components/timeline/models/timeline-item.builder';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
@@ -12,7 +12,7 @@ export class SchedulesService {
 
   public toTimelineItems(fixtures: Fixture[], lastMatchday: number): TimelineItem[] {
     const timelineItems: TimelineItem[] = [];
-    const sorted: Fixture[] = orderBy(fixtures, 'matchday');
+    const sorted: Fixture[] = new ArrayStream<Fixture>(fixtures).orderBy('matchday').collect();
 
     sorted.forEach((fixture: Fixture) => timelineItems.push(this.toTimelineItem(fixture, lastMatchday)));
     return timelineItems;
