@@ -1,29 +1,29 @@
-<h1>{{ 'Teams next fixtures' | uppercase }}</h1>
 <div *ngIf="!!state" class="schedules-container">
   <div class="order-by-container" fxLayoutAlign="center center" fxLayoutGap="10px">
     <span class="bold">Sort by:</span>
     <mat-button-toggle-group name="orderBy">
-      <mat-button-toggle [disableRipple]="true">
-        <button mat-button [matMenuTriggerFor]="orderByMenu">{{ selectedOrderText }}</button>
+      <mat-button-toggle
+        [disableRipple]="true"
+        (click)="menuTrigger.menuOpen ? menuTrigger.closeMenu() : menuTrigger.openMenu(); $event.stopPropagation()"
+      >
+        <button
+          type="button"
+          mat-button
+          [matMenuTriggerFor]="orderByMenu"
+          #menuTrigger="matMenuTrigger"
+          (click)="$event.stopPropagation()"
+        >
+          {{ selectedOrderText }}
+        </button>
         <mat-menu #orderByMenu="matMenu">
-          <button mat-menu-item *ngFor="let order of orders" (click)="onMobileSortChange(order)">
+          <button type="button" mat-menu-item *ngFor="let order of orders" (click)="onMobileSortChange(order)">
             {{ order.text }}
           </button>
         </mat-menu>
       </mat-button-toggle>
-      <mat-button-toggle>
-        <fa-icon
-          (click)="onOrderDirectionChange('asc')"
-          *ngIf="sort.direction === 'desc'"
-          [icon]="['fas', 'sort-amount-down-alt']"
-          size="lg"
-        ></fa-icon>
-        <fa-icon
-          (click)="onOrderDirectionChange('desc')"
-          *ngIf="sort.direction === 'asc'"
-          [icon]="['fas', 'sort-amount-up-alt']"
-          size="lg"
-        ></fa-icon>
+      <mat-button-toggle (click)="onToggleOrder()">
+        <fa-icon *ngIf="sort.direction === 'desc'" [icon]="['fas', 'sort-amount-down-alt']" size="lg"></fa-icon>
+        <fa-icon *ngIf="sort.direction === 'asc'" [icon]="['fas', 'sort-amount-up-alt']" size="lg"></fa-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>
   </div>

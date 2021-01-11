@@ -48,9 +48,9 @@
     <span matTooltip="goals conceded per game">GCPG: {{ getGoalsConcededPerGame(awayTeam) }}</span>
   </div>
   <div gdArea="hForm" [ngClass]="{ 'current current-bottom': current === 'home' }">
-    <app-team-form [form]="homeTeamForm" indicator="char"></app-team-form>
+    <app-team-form [form]="homeTeamForm"></app-team-form>
   </div>
   <div gdArea="aForm" [ngClass]="{ 'current current-bottom': current === 'away' }">
-    <app-team-form [form]="awayTeamForm" indicator="char"></app-team-form>
+    <app-team-form [form]="awayTeamForm"></app-team-form>
   </div>
 </div>

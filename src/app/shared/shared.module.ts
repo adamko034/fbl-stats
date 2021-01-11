@@ -4,8 +4,10 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faSortAmountDownAlt, faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { ExpansionPanelComponent } from 'src/app/shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
 import { InputNumberComponent } from 'src/app/shared/components/input-number/input-number.component';
+import { FiltersContentLayoutComponent } from 'src/app/shared/components/layout/filters-content-layout/filters-content-layout.component';
 import { PredictionIndicatorComponent } from 'src/app/shared/components/prediction-indicator/prediction-indicator.component';
 import { SwitchComponent } from 'src/app/shared/components/switch/switch.component';
 import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form.component';
@@ -15,6 +17,7 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 
@@ -32,7 +35,10 @@ import { WherePipe } from './pipes/where.pipe';
     SwitchComponent,
     InputNumberComponent,
     WherePipe,
-    NumeralsPipe
+    NumeralsPipe,
+    FiltersContentLayoutComponent,
+    FiltersLayoutComponent,
+    ExpansionPanelComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule],
   exports: [
@@ -49,7 +55,10 @@ import { WherePipe } from './pipes/where.pipe';
     InputNumberComponent,
     WherePipe,
     NumeralsPipe,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FiltersContentLayoutComponent,
+    FiltersLayoutComponent,
+    ExpansionPanelComponent
   ]
 })
 export class SharedModule {

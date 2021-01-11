@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
@@ -12,10 +12,14 @@ import { Logger } from 'src/app/utils/logger';
   templateUrl: './teams-schedules.component.html',
   styleUrls: ['./teams-schedules.component.scss']
 })
-export class TeamsSchedulesComponent implements OnInit {
+export class TeamsSchedulesComponent implements OnInit, OnDestroy {
   public state$: Observable<TeamsSchedulesState>;
 
   constructor(private route: ActivatedRoute) {}
+
+  public ngOnDestroy() {
+    console.log('schedules on destroy');
+  }
 
   public ngOnInit(): void {
     Logger.logDev('teams schedules component, ng on init');

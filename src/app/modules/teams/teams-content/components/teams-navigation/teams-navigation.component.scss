@@ -1,0 +1,17 @@
+.teams-navigation-container {
+  .link {
+    padding: 10px 15px;
+    a {
+      text-decoration: none;
+      color: #fff;
+      letter-spacing: 3px;
+      font-family: Roboto, sans-serif;
+
+      &.active {
+        text-decoration: underline;
+        text-decoration-color: #fff;
+        text-decoration-thickness: 2px;
+      }
+    }
+  }
+}

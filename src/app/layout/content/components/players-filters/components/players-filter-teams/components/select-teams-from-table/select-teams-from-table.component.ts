@@ -25,8 +25,8 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
   public selectedTeams = [];
   public dataSource: MatTableDataSource<SmartSelectionTeam>;
 
-  private columns = ['select', 'team', 'rank', 'last3Games', 'last5Games', 'gspg', 'gcpg', 'goals', 'form'];
-  private columnsMobile = ['select', 'team', 'rank', 'last3Games', 'last5Games', 'gspg', 'gcpg'];
+  private columns = ['select', 'rank', 'team', 'last3Games', 'last5Games', 'gspg', 'gcpg', 'goals', 'form'];
+  private columnsMobile = ['select', 'rank', 'team', 'last3Games', 'last5Games', 'gspg', 'gcpg'];
 
   public displayedColumns: string[];
 
@@ -86,9 +86,9 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
     return `width: ${count * 28}px`;
   }
 
-  public getForm(form: string): string[] {
+  public getForm(form: string): string {
     const count = form.length > this.maxFormCount ? this.maxFormCount : form.length;
-    return this.resultIndicatorService.toCharsArray(form.substring(0, count));
+    return this.resultIndicatorService.toCharsArray(form.substring(0, count)).join('');
   }
 
   public toggleTeamSelection(teamShort: string): void {

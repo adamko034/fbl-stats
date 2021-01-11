@@ -1,0 +1,43 @@
+<app-filters-layout>
+  <div gt-xs>
+    <div fxLayout="row" fxLayoutAlign="space-evenly">
+      <app-switch
+        [items]="venues"
+        name="venues"
+        [value]="filters.venue"
+        (switchChange)="onVenueChange($event)"
+      ></app-switch>
+
+      <app-switch
+        [items]="games"
+        name="games"
+        [value]="filters.games"
+        (switchChange)="onGamesChange($event)"
+      ></app-switch>
+    </div>
+  </div>
+  <div xs-header>
+    <span>Filters</span>
+  </div>
+  <div xs-content>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <app-form-field [label]="'Venue'">
+        <app-switch
+          [items]="venues"
+          name="venues"
+          [value]="filters.venue"
+          (switchChange)="onVenueChange($event)"
+        ></app-switch>
+      </app-form-field>
+
+      <app-form-field [label]="'Games'">
+        <app-switch
+          [items]="games"
+          name="games"
+          [value]="filters.games"
+          (switchChange)="onGamesChange($event)"
+        ></app-switch>
+      </app-form-field>
+    </div>
+  </div>
+</app-filters-layout>

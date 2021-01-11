@@ -8,6 +8,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class TeamFormComponent {
   @Input() form: string;
+  @Input() showLabels: boolean = false;
+  @Input() mode: 'dot' | 'rectangle' = 'dot';
 
   constructor() {}
 

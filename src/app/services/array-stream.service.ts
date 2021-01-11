@@ -1,4 +1,5 @@
 import { OrderByPipe } from 'ngx-pipes';
+import { Actionable } from 'src/app/modules/core/shared/arrays/actionable';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
 
@@ -20,6 +21,11 @@ export class ArrayStream<T> {
     }
 
     this.array = new OrderByPipe().transform(this.array, field);
+    return this;
+  }
+
+  public forEach(action: Actionable<T>) {
+    this.array = action.exec(this.array);
     return this;
   }
 

@@ -81,7 +81,8 @@ import { SchedulesComponent } from './teams/schedules/components/schedules/sched
     PlayersSelectMatchdaysComponent,
     PlayersViewSwitchComponent,
     PlayersSearchComponent,
-    SchedulesComponent
+    SchedulesComponent,
+    NgPipesModule
   ]
 })
 export class FblCoreModule {}

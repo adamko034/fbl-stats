@@ -8,7 +8,6 @@ import { CoreModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MomentModule } from 'ngx-moment';
-import { NgPipesModule } from 'ngx-pipes';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PlayersFilterMatchdaysComponent } from 'src/app/layout/content/components/players-filters/components/players-filter-matchdays/players-filter-matchdays.component';
@@ -39,7 +38,6 @@ import { LastUdpatedComponent } from './layout/header/components/last-udpated/la
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { SidenavComponent } from './layout/header/components/sidenav/sidenav.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { ExpansionPanelComponent } from './shared/components/expansion-panel/expansion-panel.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +51,6 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     HeaderComponent,
     ToastrComponent,
     SelectTeamsDialogComponent,
-    ExpansionPanelComponent,
     PlayersFilterHideUnavailableComponent,
     LastUdpatedComponent,
     LoadingComponent,
@@ -73,7 +70,6 @@ import { ExpansionPanelComponent } from './shared/components/expansion-panel/exp
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgPipesModule,
     MomentModule,
     ToastrModule.forRoot({ preventDuplicates: true }),
     AngularFireModule.initializeApp(environment.firebaseConfig),

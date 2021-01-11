@@ -21,12 +21,12 @@ export class PlayerNextMatchTeamsComponent implements OnInit, OnDestroy {
   public awayTeam: Team;
   public current: 'home' | 'away';
 
-  public get homeTeamForm(): string[] {
-    return this.homeTeam?.form.substring(0, 5).split('');
+  public get homeTeamForm(): string {
+    return this.homeTeam?.form.substring(0, 5);
   }
 
-  public get awayTeamForm(): string[] {
-    return this.awayTeam.form.substring(0, 5).split('');
+  public get awayTeamForm(): string {
+    return this.awayTeam.form.substring(0, 5);
   }
 
   constructor(

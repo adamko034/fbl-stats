@@ -1,0 +1,11 @@
+<div class="teams-navigation-container red-background" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+  <div class="link" *ngFor="let link of links | orderBy: 'order'">
+    <a
+      [ngClass]="{ 'hvr-rotate': !rla.isActive }"
+      [routerLink]="link.path"
+      #rla="routerLinkActive"
+      routerLinkActive="active"
+      >{{ link.text }}</a
+    >
+  </div>
+</div>

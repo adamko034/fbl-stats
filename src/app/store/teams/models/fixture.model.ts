@@ -4,6 +4,7 @@ export interface Fixture {
   date: Date;
   opponent: string;
   opponentRank: number;
+  wasPlayed: boolean;
   result?: number;
   resultText?: string;
 }

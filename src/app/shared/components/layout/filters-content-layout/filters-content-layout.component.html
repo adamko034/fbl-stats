@@ -1,0 +1,21 @@
+<div
+  style="margin-top: 20px"
+  class="animate__animated animate__fadeIn"
+  fxLayout="column"
+  fxLayoutAlign="start stretch"
+  fxLayoutGap="20px"
+>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap="20px"
+    fxFlexAlign="center"
+    ngClass.xs="filters-100"
+    ngClass.gt-xs="filters-90"
+    ngClass.gt-sm="filters-80"
+  >
+    <ng-content select="[filters]"></ng-content>
+  </div>
+
+  <ng-content select="[content]"></ng-content>
+</div>

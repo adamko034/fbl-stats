@@ -1,11 +1,11 @@
-<div class="teams-content-container" ngClass.lt-sm="teams-content-container-mobile" fxLayout="column">
-  <nav fxFlexAlign="center" class="tabs" mat-tab-nav-bar mat-align-tabs="center">
-    <!-- <a mat-tab-link routerLink="./" [active]="isActive('teams')">teams</a> -->
-    <!-- <a mat-tab-link routerLink="schedules" [active]="isActive('schedules')">schedules</a> -->
-    <a mat-tab-link [active]="true">schedules</a>
-  </nav>
+<div
+  class="teams-content-container animate__animated animate__fadeIn"
+  ngClass.lt-sm="teams-content-container-mobile"
+  fxLayout="column"
+>
+  <app-teams-navigation></app-teams-navigation>
 
-  <div class="teams-content">
+  <div class="teams-content" ngClass.lt-sm="teams-content-mobile">
     <router-outlet></router-outlet>
   </div>
 </div>

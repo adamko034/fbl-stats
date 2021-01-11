@@ -5,7 +5,6 @@ import { TeamScheduleGame } from 'src/app/modules/core/teams/schedules/models/te
 import { TeamSchedule } from 'src/app/modules/core/teams/schedules/models/team-schedule.model';
 import { TeamsSchedulesState } from 'src/app/modules/core/teams/schedules/models/teams-schedules.state';
 import { TeamScheduleColorsService } from 'src/app/modules/core/teams/schedules/services/team-schedule-colors.service';
-import { TeamScheduleIndexCalculator } from 'src/app/modules/core/teams/schedules/services/team-schedule-index-calculator.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';
@@ -17,8 +16,7 @@ export class TeamsSchedulesLoader {
   constructor(
     private teamsFileStoreService: TeamsStoreFileService,
     private propertiesService: PropertiesService,
-    private teamScheduleColors: TeamScheduleColorsService,
-    private teamScheduleIndexCalculator: TeamScheduleIndexCalculator
+    private teamScheduleColors: TeamScheduleColorsService
   ) {}
 
   public load(): Observable<TeamsSchedulesState> {

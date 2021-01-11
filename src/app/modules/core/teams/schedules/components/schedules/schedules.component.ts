@@ -1,6 +1,6 @@
 import { KeyValue } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Sort, SortDirection } from '@angular/material/sort';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Sort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { TeamSchedule } from 'src/app/modules/core/teams/schedules/models/team-schedule.model';
 import { TeamsSchedulesState } from 'src/app/modules/core/teams/schedules/models/teams-schedules.state';
@@ -14,7 +14,7 @@ import { Range } from 'src/app/shared/models/range.model';
   templateUrl: './schedules.component.html',
   styleUrls: ['./schedules.component.scss']
 })
-export class SchedulesComponent implements OnInit {
+export class SchedulesComponent implements OnInit, OnDestroy {
   @Input() state: TeamsSchedulesState;
   @Input() showLegend = true;
 
@@ -38,6 +38,10 @@ export class SchedulesComponent implements OnInit {
     this.state.mdsHeader.forEach((md) => this.orders.push({ value: `games.${md}.gameIndex`, text: `MD ${md}` }));
   }
 
+  public ngOnDestroy(): void {
+    console.log('inner schedules on destroye');
+  }
+
   public getGames(team: TeamSchedule) {
     return Object.values(team.games);
   }
@@ -48,8 +52,8 @@ export class SchedulesComponent implements OnInit {
     this.onSortChange(this.sort);
   }
 
-  public onOrderDirectionChange(direction: SortDirection): void {
-    this.sort.direction = direction;
+  public onToggleOrder(): void {
+    this.sort.direction = this.sort.direction === 'asc' ? 'desc' : 'asc';
     this.onSortChange(this.sort);
   }
 
