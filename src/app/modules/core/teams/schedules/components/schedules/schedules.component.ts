@@ -18,8 +18,8 @@ export class SchedulesComponent implements OnInit, OnDestroy {
   @Input() state: TeamsSchedulesState;
   @Input() showLegend = true;
 
-  public sort: Sort = { active: 'next5GamesIndex', direction: 'desc' };
-  public order = '-next5GamesIndex';
+  public sort: Sort = { active: 'next3GamesIndex', direction: 'desc' };
+  public order = '-next3GamesIndex';
   public screen$: Observable<ScreenSize>;
   public screens = ScreenSize;
 
@@ -28,7 +28,7 @@ export class SchedulesComponent implements OnInit, OnDestroy {
     { value: 'next3GamesIndex', text: 'Next 3 games difficulty' },
     { value: 'next5GamesIndex', text: 'Next 5 games difficulty' }
   ];
-  public selectedOrderText = 'Next 5 games difficulty';
+  public selectedOrderText = 'Next 3 games difficulty';
   public direction = 'desc';
 
   constructor(private screenSizeService: ScreenSizeService, private teamScheduleColors: TeamScheduleColorsService) {}

@@ -10,8 +10,8 @@ export class ResultIndicatorService {
 
   private readonly resultToChar = {
     '-1': 'l',
-    '0': 'd',
-    '1': 'w'
+    0: 'd',
+    1: 'w'
   };
 
   public toCharsArray(formInPoints: string): string[] {
