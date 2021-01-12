@@ -22,7 +22,7 @@
       fxFlex="30"
       fxFlex.lt-md="45"
       fxFlex.lt-sm="45"
-      *ngFor="let team of teams; trackBy: trackTeamsBy"
+      *ngFor="let team of teams | orderBy: 'name'; trackBy: trackTeamsBy"
     >
       <mat-checkbox [(ngModel)]="team.selected">
         <div fxHide.lt-sm fxLayoutGap="3px" fxLayoutAlign="start center">
