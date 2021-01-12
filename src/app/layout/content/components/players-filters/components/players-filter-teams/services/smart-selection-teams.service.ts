@@ -28,11 +28,7 @@ export class SmartSelectionTeamsService {
     const isAscending = this.shouldSortAscending(by);
     const order: 'asc' | 'dsc' = isAscending ? 'asc' : 'dsc';
     const ordered = new ArrayStream<Team>(teams).orderBy(by.toString(), order).collect();
-    console.table(ordered);
-    console.log(count);
-    console.log(by.toString());
     const max = ordered[count - 1][by.toString()];
-    console.log(max);
 
     return ordered.filter((team) => (isAscending ? team[by.toString()] <= max : team[by.toString()] >= max));
   }

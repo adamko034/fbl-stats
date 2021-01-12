@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('./modules/my-team/my-team.module').then((m) => m.MyTeamModule)
       },
       { path: 'about', component: AboutUsComponent },
-      { path: 'teams', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) }
+      { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) }
     ]
   }
 ];

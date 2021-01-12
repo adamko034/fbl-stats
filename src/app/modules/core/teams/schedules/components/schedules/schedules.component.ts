@@ -1,5 +1,5 @@
 import { KeyValue } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { TeamSchedule } from 'src/app/modules/core/teams/schedules/models/team-schedule.model';
@@ -14,7 +14,7 @@ import { Range } from 'src/app/shared/models/range.model';
   templateUrl: './schedules.component.html',
   styleUrls: ['./schedules.component.scss']
 })
-export class SchedulesComponent implements OnInit, OnDestroy {
+export class SchedulesComponent implements OnInit {
   @Input() state: TeamsSchedulesState;
   @Input() showLegend = true;
 
@@ -36,10 +36,6 @@ export class SchedulesComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.screen$ = this.screenSizeService.onResize();
     this.state.mdsHeader.forEach((md) => this.orders.push({ value: `games.${md}.gameIndex`, text: `MD ${md}` }));
-  }
-
-  public ngOnDestroy(): void {
-    console.log('inner schedules on destroye');
   }
 
   public getGames(team: TeamSchedule) {

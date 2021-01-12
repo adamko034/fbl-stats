@@ -100,7 +100,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
   public openSelectTeamsFromTableDialog(): void {
     this.matDialog
       .open(SelectTeamsFromTableComponent, {
-        data: { selectedTeams: new ArrayStream(this.getSelectedTeams().map((t) => t.short)).collect() }
+        data: { selectedTeams: this.getSelectedTeams().map((t) => t.short) }
       })
       .afterClosed()
       .pipe(

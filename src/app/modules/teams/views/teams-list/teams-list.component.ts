@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { Logger } from 'src/app/utils/logger';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -7,14 +6,6 @@ import { Logger } from 'src/app/utils/logger';
   templateUrl: './teams-list.component.html',
   styleUrls: ['./teams-list.component.scss']
 })
-export class TeamsListComponent implements OnInit, OnDestroy {
+export class TeamsListComponent {
   constructor() {}
-
-  ngOnInit(): void {
-    Logger.logDev('teams list component, ng on init');
-  }
-
-  public ngOnDestroy() {
-    console.log('list on destroy');
-  }
 }

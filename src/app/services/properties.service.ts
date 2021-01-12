@@ -34,10 +34,6 @@ export class PropertiesService {
     return this.selectProperties().pipe(map((properties) => properties.playerMaxPrice));
   }
 
-  // public selectTeams(): Observable<TeamProperty[]> {
-  //   return this.selectProperties().pipe(map((properties) => properties.teams));
-  // }
-
   public selectLastMatchday(): Observable<number> {
     return this.selectProperties().pipe(
       map((properties) => properties.lastMatchday),

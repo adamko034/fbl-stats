@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ResultIndicatorService } from 'src/app/services/result-indicator.service';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
@@ -21,7 +20,6 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
 
   @ViewChild(MatSort) sort: MatSort;
 
-  public loading = true;
   public selectedTeams = [];
   public dataSource: MatTableDataSource<Team>;
 
@@ -34,24 +32,22 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
     private dialogRef: MatDialogRef<SelectTeamsFromTableComponent, string[]>,
     private teamsStore: TeamsStore,
     private responsivenessService: ScreenSizeService,
-    private resultIndicatorService: ResultIndicatorService,
     @Inject(MAT_DIALOG_DATA) public data: { selectedTeams: string[] }
   ) {}
 
   public ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  public ngOnInit(): void {
     this.teamsStore
       .selectAllWithoutGames()
       .pipe(takeUntil(this.destroyed$))
       .subscribe((teams: Team[]) => {
         Logger.logDev('select teams from table dialog, got teams');
         this.dataSource = new MatTableDataSource(teams);
-        this.dataSource.sort = this.sort;
-        this.loading = false;
       });
-  }
 
-  public ngOnInit(): void {
-    this.loading = true;
     this.data.selectedTeams.forEach((team) => this.toggleTeamSelection(team));
     this.responsivenessService.onResize().subscribe((screen) => {
       if (screen === ScreenSize.XS) {
@@ -84,7 +80,7 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
 
   public getForm(form: string): string {
     const count = form.length > this.maxFormCount ? this.maxFormCount : form.length;
-    return this.resultIndicatorService.toCharsArray(form.substring(0, count)).join('');
+    return form.substring(0, count);
   }
 
   public toggleTeamSelection(teamShort: string): void {

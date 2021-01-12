@@ -13,8 +13,16 @@
 </ul>
 
 <ng-template #links>
-  <li routerLink="home" routerLinkActive="active" (click)="closeSidenav()">players</li>
-  <li routerLink="/myteam" routerLinkActive="active" (click)="closeSidenav()">my-team</li>
-  <li routerLink="/teams" routerLinkActive="active" (click)="closeSidenav()">teams</li>
-  <li routerLink="/about" routerLinkActive="active" (click)="closeSidenav()">about-us</li>
+  <li (click)="closeSidenav()">
+    <a routerLink="home" routerLinkActive="active">fantasy</a>
+  </li>
+  <li (click)="closeSidenav()">
+    <a routerLink="/myteam" routerLinkActive="active">my-team</a>
+  </li>
+  <li (click)="closeSidenav()">
+    <a routerLink="/bundesliga" routerLinkActive="active">bundesliga</a>
+  </li>
+  <li (click)="closeSidenav()">
+    <a routerLink="/about" routerLinkActive="active">about-us</a>
+  </li>
 </ng-template>

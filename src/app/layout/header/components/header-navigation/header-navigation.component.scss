@@ -12,21 +12,29 @@
   li {
     cursor: pointer;
     padding: 10px 20px;
-    font-size: 15px;
-    letter-spacing: 3px;
-    color: rgba($color: #000000, $alpha: 0.7);
 
     &:focus {
       outline: none !important;
     }
 
-    &:hover {
-      color: #000;
-      transition: color 0.3s ease-in;
-    }
-  }
+    a {
+      font-size: 15px;
+      letter-spacing: 3px;
+      color: rgba($color: #000000, $alpha: 0.7);
+      text-decoration: none;
 
-  li.active {
-    color: #c80a00;
+      &:visited {
+        color: rgba($color: #000000, $alpha: 0.7);
+      }
+
+      &:hover {
+        color: #000;
+        transition: color 0.3s ease-in;
+      }
+    }
+
+    a.active {
+      color: #c80a00;
+    }
   }
 }
