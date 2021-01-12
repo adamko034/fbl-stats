@@ -6,7 +6,7 @@ import { PlayerDetailsLoadingService } from 'src/app/modules/core/players/compon
 import { PropertiesService } from 'src/app/services/properties.service';
 import { TimelineItem } from 'src/app/shared/components/timeline/models/timeline-item.model';
 import { Player } from 'src/app/store/players/models/player.model';
-import { TeamsStoreService } from 'src/app/store/teams/teams-store.service';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -25,7 +25,7 @@ export class PlayerSchedulesComponent implements OnInit, OnDestroy {
   constructor(
     private schedulesService: SchedulesService,
     private propertiesService: PropertiesService,
-    private teamsStoreService: TeamsStoreService,
+    private teamsStore: TeamsStore,
     private changeDetector: ChangeDetectorRef,
     private loadingService: PlayerDetailsLoadingService
   ) {}
@@ -33,7 +33,7 @@ export class PlayerSchedulesComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.loadingService.startLoading('schedules');
     Logger.logDev('player schedules component, ' + this.player.name + ' on init');
-    combineLatest([this.propertiesService.selectLastMatchday(), this.teamsStoreService.select(this.player.teamShort)])
+    combineLatest([this.propertiesService.selectLastMatchday(), this.teamsStore.select(this.player.teamShort)])
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([lastMatchday, team]) => {
         if (!!lastMatchday && !!team) {

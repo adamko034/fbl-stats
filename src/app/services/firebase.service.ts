@@ -5,7 +5,6 @@ import { catchError, map, take } from 'rxjs/operators';
 import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
-import { SmartSelectionTeam } from 'src/app/store/teams-smart-selection/models/smart-selection-team.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { environment } from 'src/environments/environment';
 
@@ -49,17 +48,6 @@ export class FirebaseService {
       .pipe(
         take(1),
         map((s) => ({ ...s, shortName: teamShort }))
-      );
-  }
-
-  public getSmartSelectionsTeams(): Observable<SmartSelectionTeam[]> {
-    return this.firestore
-      .collection('smartSelections')
-      .doc('teams')
-      .valueChanges()
-      .pipe(
-        take(1),
-        map((res: { teams: SmartSelectionTeam[] }) => res.teams)
       );
   }
 }

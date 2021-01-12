@@ -3,11 +3,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject } from 'rxjs';
-import { delay, filter, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { ResultIndicatorService } from 'src/app/services/result-indicator.service';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
-import { SmartSelectionTeam } from 'src/app/store/teams-smart-selection/models/smart-selection-team.model';
-import { SmartSelectionTeamsStore } from 'src/app/store/teams-smart-selection/smart-selection-teams.store';
+import { Team } from 'src/app/store/teams/models/team.model';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -23,7 +23,7 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
 
   public loading = true;
   public selectedTeams = [];
-  public dataSource: MatTableDataSource<SmartSelectionTeam>;
+  public dataSource: MatTableDataSource<Team>;
 
   private columns = ['select', 'rank', 'team', 'last3Games', 'last5Games', 'gspg', 'gcpg', 'goals', 'form'];
   private columnsMobile = ['select', 'rank', 'team', 'last3Games', 'last5Games', 'gspg', 'gcpg'];
@@ -32,21 +32,17 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
 
   constructor(
     private dialogRef: MatDialogRef<SelectTeamsFromTableComponent, string[]>,
-    private smartSelectionTeamStore: SmartSelectionTeamsStore,
+    private teamsStore: TeamsStore,
     private responsivenessService: ScreenSizeService,
     private resultIndicatorService: ResultIndicatorService,
     @Inject(MAT_DIALOG_DATA) public data: { selectedTeams: string[] }
   ) {}
 
   public ngAfterViewInit() {
-    this.smartSelectionTeamStore
-      .select()
-      .pipe(
-        delay(0),
-        filter((teams) => !!teams && teams.length > 0),
-        takeUntil(this.destroyed$)
-      )
-      .subscribe((teams: SmartSelectionTeam[]) => {
+    this.teamsStore
+      .selectAllWithoutGames()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((teams: Team[]) => {
         Logger.logDev('select teams from table dialog, got teams');
         this.dataSource = new MatTableDataSource(teams);
         this.dataSource.sort = this.sort;

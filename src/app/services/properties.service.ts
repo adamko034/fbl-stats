@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
-import { LineupsSource, LineupsSourceProperty, Properties, TeamProperty } from 'src/app/models/properties.model';
+import { LineupsSource, LineupsSourceProperty, Properties } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Logger } from 'src/app/utils/logger';
 
@@ -34,9 +34,9 @@ export class PropertiesService {
     return this.selectProperties().pipe(map((properties) => properties.playerMaxPrice));
   }
 
-  public selectTeams(): Observable<TeamProperty[]> {
-    return this.selectProperties().pipe(map((properties) => properties.teams));
-  }
+  // public selectTeams(): Observable<TeamProperty[]> {
+  //   return this.selectProperties().pipe(map((properties) => properties.teams));
+  // }
 
   public selectLastMatchday(): Observable<number> {
     return this.selectProperties().pipe(

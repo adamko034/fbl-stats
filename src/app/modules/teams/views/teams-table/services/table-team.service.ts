@@ -34,7 +34,9 @@ export class TableTeamService {
       games,
       rank: 0,
       gcpg: Math.round((goalsConceded / games.length) * 10) / 10,
-      gspg: Math.round((goalsScored / games.length) * 10) / 10
+      gspg: Math.round((goalsScored / games.length) * 10) / 10,
+      last3Games: team.last3Games,
+      last5Games: team.last5Games
     };
   }
 

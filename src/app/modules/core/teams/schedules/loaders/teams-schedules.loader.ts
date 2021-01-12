@@ -8,20 +8,20 @@ import { TeamScheduleColorsService } from 'src/app/modules/core/teams/schedules/
 import { PropertiesService } from 'src/app/services/properties.service';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';
-import { TeamsStoreFileService } from 'src/app/store/teams/teams-store-file.service';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })
 export class TeamsSchedulesLoader {
   constructor(
-    private teamsFileStoreService: TeamsStoreFileService,
+    private teamsFileStoreService: TeamsStore,
     private propertiesService: PropertiesService,
     private teamScheduleColors: TeamScheduleColorsService
   ) {}
 
   public load(): Observable<TeamsSchedulesState> {
     Logger.logDev('teams schedules loader, loading');
-    return this.teamsFileStoreService.select().pipe(
+    return this.teamsFileStoreService.selectAll().pipe(
       withLatestFrom(this.propertiesService.selectLastMatchday()),
       filter(([teams]) => !!teams),
       map(([teams, lastMatchday]) => {

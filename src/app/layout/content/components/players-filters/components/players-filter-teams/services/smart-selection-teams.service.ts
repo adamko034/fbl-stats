@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { SelectableSmartTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/smart-selects/selectable-smart-team.model';
 import { SmartTeamsSelectionBy } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/smart-selects/smart-teams-selecetion-by.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { SmartSelectionTeam } from 'src/app/store/teams-smart-selection/models/smart-selection-team.model';
-import { SmartSelectionTeamsStore } from 'src/app/store/teams-smart-selection/smart-selection-teams.store';
-import { Logger } from 'src/app/utils/logger';
+import { Team } from 'src/app/store/teams/models/team.model';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 
 @Injectable({ providedIn: 'root' })
 export class SmartSelectionTeamsService {
-  constructor(private smartSelectionTeamsStore: SmartSelectionTeamsStore) {}
+  constructor(private teamsStore: TeamsStore) {}
 
   public selectTeamsBy(by: SmartTeamsSelectionBy, count: number): Observable<SelectableSmartTeam[]> {
-    return this.smartSelectionTeamsStore.select().pipe(
-      filter((smartSelectionTeams) => !!smartSelectionTeams),
-      tap((smartSelectionTeams) => Logger.logDev('smart selection teams service, got ' + smartSelectionTeams.length)),
-      map((smartSelectionTeams: SmartSelectionTeam[]) => this.getBy(smartSelectionTeams, by, count)),
-      map((smartSelectionTeams: SmartSelectionTeam[]) =>
-        smartSelectionTeams.map((s, index) => ({
-          shortName: s.team,
+    return this.teamsStore.selectAllWithoutGames().pipe(
+      map((teams: Team[]) => this.getBy(teams, by, count)),
+      map((teams: Team[]) =>
+        teams.map((s, index) => ({
+          shortName: s.shortName,
           smartChoiceInfo: s[by.toString()],
           order: index + 1
         }))
@@ -27,15 +24,15 @@ export class SmartSelectionTeamsService {
     );
   }
 
-  private getBy(
-    smartSelectionTeams: SmartSelectionTeam[],
-    by: SmartTeamsSelectionBy,
-    count: number
-  ): SmartSelectionTeam[] {
+  private getBy(teams: Team[], by: SmartTeamsSelectionBy, count: number): Team[] {
     const isAscending = this.shouldSortAscending(by);
     const order: 'asc' | 'dsc' = isAscending ? 'asc' : 'dsc';
-    const ordered = new ArrayStream<SmartSelectionTeam>(smartSelectionTeams).orderBy(by.toString(), order).collect();
+    const ordered = new ArrayStream<Team>(teams).orderBy(by.toString(), order).collect();
+    console.table(ordered);
+    console.log(count);
+    console.log(by.toString());
     const max = ordered[count - 1][by.toString()];
+    console.log(max);
 
     return ordered.filter((team) => (isAscending ? team[by.toString()] <= max : team[by.toString()] >= max));
   }

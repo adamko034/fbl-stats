@@ -49,11 +49,11 @@ export class PlayersTableContainerComponent implements OnInit, OnDestroy {
         }),
         takeUntil(this.destroyed$)
       )
-      .subscribe(([lastMatchday, filters, playersState]) => {
+      .subscribe(([lastMatchday, filters, players]) => {
         Logger.logDev('players table container component, ng on init subscription start');
 
         this.playersToDisplay = this.playersDataService.getPlayersToDisplay(
-          new ArrayStream(playersState.players).collect(),
+          new ArrayStream(players).collect(),
           filters,
           lastMatchday
         );

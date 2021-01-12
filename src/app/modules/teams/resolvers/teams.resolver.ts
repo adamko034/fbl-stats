@@ -3,13 +3,13 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Team } from 'src/app/store/teams/models/team.model';
-import { TeamsStoreFileService } from 'src/app/store/teams/teams-store-file.service';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 
 @Injectable()
 export class TeamsResolver implements Resolve<Team[]> {
-  constructor(private teamsStore: TeamsStoreFileService) {}
+  constructor(private teamsStore: TeamsStore) {}
 
   public resolve(): Observable<Team[]> {
-    return this.teamsStore.select().pipe(first());
+    return this.teamsStore.selectAll().pipe(first());
   }
 }

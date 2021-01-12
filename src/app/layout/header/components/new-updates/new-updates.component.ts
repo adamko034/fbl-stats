@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewUpdatesService } from 'src/app/layout/header/components/new-updates/services/new-updates.service';
-import { DataUpdatedService } from 'src/app/services/data-updater.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,7 +11,7 @@ import { DataUpdatedService } from 'src/app/services/data-updater.service';
 export class NewUpdatesComponent implements OnInit, OnDestroy {
   public newUpdates$: Observable<boolean>;
 
-  constructor(private newUpdatesService: NewUpdatesService, private dataUpdaterService: DataUpdatedService) {}
+  constructor(private newUpdatesService: NewUpdatesService) {}
 
   public ngOnInit(): void {
     this.newUpdates$ = this.newUpdatesService.select();
@@ -20,10 +19,5 @@ export class NewUpdatesComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.newUpdatesService.close();
-  }
-
-  public updateData(): void {
-    this.dataUpdaterService.update();
-    this.newUpdatesService.markAsUpdated();
   }
 }

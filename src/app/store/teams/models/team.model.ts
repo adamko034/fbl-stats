@@ -11,6 +11,10 @@ export interface Team {
   draws: number;
   losses: number;
   form: string;
+  last3Games: number;
+  last5Games: number;
   goalsScored: number;
   goalsConceded: number;
+  gspg: number;
+  gcpg: number;
 }

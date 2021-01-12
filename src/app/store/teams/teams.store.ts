@@ -3,6 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map, take, tap } from 'rxjs/operators';
 import { FilesService } from 'src/app/store/files.service';
+import { TeamProperty } from 'src/app/store/teams/models/team-property.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsFileSource } from 'src/app/store/teams/stores/teams-source-file';
 import { ITeamsSource } from 'src/app/store/teams/stores/teams-source.interface';
@@ -14,7 +15,7 @@ interface TeamsState {
 
 @UntilDestroy()
 @Injectable({ providedIn: 'root' })
-export class TeamsStoreFileService {
+export class TeamsStore {
   private state: TeamsState = {};
   private state$ = new ReplaySubject<TeamsState>(1);
 
@@ -40,10 +41,32 @@ export class TeamsStoreFileService {
     }
   }
 
-  public select(): Observable<Team[]> {
+  public select(teamShort: string): Observable<Team> {
+    return this.state$.pipe(
+      distinctUntilChanged(),
+      map((state) => state[teamShort])
+    );
+  }
+
+  public selectAllNames(): Observable<TeamProperty[]> {
+    return this.state$.pipe(
+      distinctUntilChanged(),
+      map((state) => Object.values(state).map((team) => ({ name: team.name, short: team.shortName })))
+    );
+  }
+
+  public selectAll(): Observable<Team[]> {
     return this.state$.pipe(
       distinctUntilChanged(),
       map((state) => Object.values(state))
+    );
+  }
+
+  public selectAllWithoutGames(): Observable<Team[]> {
+    return this.state$.pipe(
+      distinctUntilChanged(),
+      map((state) => Object.values(state)),
+      map((teams) => teams.map((t) => ({ ...t, games: [] })))
     );
   }
 

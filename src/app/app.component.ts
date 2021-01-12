@@ -14,7 +14,7 @@ import { delay } from 'rxjs/operators';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
-import { TeamsStoreFileService } from 'src/app/store/teams/teams-store-file.service';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 
 @UntilDestroy()
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     private propertiesService: PropertiesService,
     private playersStore: PlayersStore,
     private sidenavService: SidenavService,
-    private teamsStoreFileService: TeamsStoreFileService,
+    private teamsStore: TeamsStore,
     private router: Router
   ) {}
 
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     this.propertiesService.loadLastUpdated();
     this.propertiesService.loadProperties();
     this.playersStore.loadAll();
-    this.teamsStoreFileService.load();
+    this.teamsStore.load();
 
     this.sidenavOpened$ = this.sidenavService.selectOpened();
 

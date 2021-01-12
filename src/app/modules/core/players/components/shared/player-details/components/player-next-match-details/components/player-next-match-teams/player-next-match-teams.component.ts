@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { PlayerDetailsLoadingService } from 'src/app/modules/core/players/components/shared/player-details/services/player-details-loading.service';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { Team } from 'src/app/store/teams/models/team.model';
-import { TeamsStoreService } from 'src/app/store/teams/teams-store.service';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -30,7 +30,7 @@ export class PlayerNextMatchTeamsComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private teamsStoreService: TeamsStoreService,
+    private teamsStore: TeamsStore,
     private changeDetector: ChangeDetectorRef,
     private loadingService: PlayerDetailsLoadingService
   ) {}
@@ -38,8 +38,8 @@ export class PlayerNextMatchTeamsComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.loadingService.startLoading('next-match-teams');
     combineLatest([
-      this.teamsStoreService.select(this.player.teamShort),
-      this.teamsStoreService.select(this.player.nextGame.opponent)
+      this.teamsStore.select(this.player.teamShort),
+      this.teamsStore.select(this.player.nextGame.opponent)
     ])
       .pipe(takeUntil(this.destroyed$))
       .subscribe(([team, opponent]) => {

@@ -9,11 +9,11 @@ import { SmartTeamsSelectionDialogComponent } from 'src/app/layout/content/compo
 import { SelectableTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/selectable-team.model';
 import { SelectableSmartTeam } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/model/smart-selects/selectable-smart-team.model';
 import { SmartSelectionTeamsService } from 'src/app/layout/content/components/players-filters/components/players-filter-teams/services/smart-selection-teams.service';
-import { TeamProperty } from 'src/app/models/properties.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { TeamProperty } from 'src/app/store/teams/models/team-property.model';
+import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -27,7 +27,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
 
   constructor(
     private fitlersStoreService: FiltersStoreService,
-    private propertiesService: PropertiesService,
+    private teamsStore: TeamsStore,
     private matDialog: MatDialog,
     private loadingService: LoadingService,
     private smartSelectionTeamsService: SmartSelectionTeamsService
@@ -36,7 +36,7 @@ export class PlayersFilterTeamsComponent implements OnInit {
   public ngOnInit(): void {
     this.fitlersStoreService
       .selectTeams()
-      .pipe(withLatestFrom(this.propertiesService.selectTeams()), takeUntil(this.destroyed$))
+      .pipe(withLatestFrom(this.teamsStore.selectAllNames()), takeUntil(this.destroyed$))
       .subscribe(([selectedTeamsFilter, allTeams]) => {
         this.selectedTeams = !selectedTeamsFilter ? [] : [...selectedTeamsFilter];
         const notSelectedTeams = allTeams.filter(
