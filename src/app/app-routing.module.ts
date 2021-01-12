@@ -7,14 +7,14 @@ import { CoreDataLoadedGuard as CoreDataLoadedGuard } from 'src/app/resolvers/co
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: 'fantasy',
     pathMatch: 'full'
   },
   {
     path: '',
     canActivate: [CoreDataLoadedGuard],
     children: [
-      { path: 'home', component: ContentComponent },
+      { path: 'fantasy', component: ContentComponent },
       {
         path: 'myteam',
         loadChildren: () => import('./modules/my-team/my-team.module').then((m) => m.MyTeamModule)
@@ -22,7 +22,8 @@ const routes: Routes = [
       { path: 'about', component: AboutUsComponent },
       { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) }
     ]
-  }
+  },
+  { path: '**', redirectTo: 'fantasy', pathMatch: 'full' }
 ];
 
 @NgModule({

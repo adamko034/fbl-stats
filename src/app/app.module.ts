@@ -38,6 +38,7 @@ import { LastUdpatedComponent } from './layout/header/components/last-udpated/la
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { SidenavComponent } from './layout/header/components/sidenav/sidenav.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { PlayersNavigationComponent } from './layout/content/components/players-navigation/players-navigation.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { HeaderComponent } from './layout/header/header.component';
     PlayersFilterShowOnlyReturningComponent,
     PlayersFilterMatchdaysComponent,
     SidenavComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PlayersNavigationComponent
   ],
   imports: [
     BrowserModule,

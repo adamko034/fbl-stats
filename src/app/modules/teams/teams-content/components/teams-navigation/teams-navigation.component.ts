@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-
-interface TeamLink {
-  path: string;
-  text: string;
-  order: number;
-}
+import { NavigationLink } from 'src/app/shared/components/layout/subnavigation/model/navigation-link.model';
 
 @Component({
   selector: 'app-teams-navigation',
@@ -12,10 +7,11 @@ interface TeamLink {
   styleUrls: ['./teams-navigation.component.scss']
 })
 export class TeamsNavigationComponent {
-  public links: TeamLink[] = [
+  public links: NavigationLink[] = [
     // { path: 'list', text: 'list', order: 1 },
     { path: 'table', text: 'table', order: 2 },
     { path: 'schedules', text: 'schedules', order: 3 }
   ];
+
   constructor() {}
 }

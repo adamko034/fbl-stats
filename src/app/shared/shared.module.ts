@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faSortAmountDownAlt, faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ExpansionPanelComponent } from 'src/app/shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
@@ -18,6 +20,7 @@ import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.c
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
+import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 
@@ -38,9 +41,10 @@ import { WherePipe } from './pipes/where.pipe';
     NumeralsPipe,
     FiltersContentLayoutComponent,
     FiltersLayoutComponent,
-    ExpansionPanelComponent
+    ExpansionPanelComponent,
+    SubnavigationComponent
   ],
-  imports: [CommonModule, AngularMaterialModule, FontAwesomeModule],
+  imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
     TeamLogoComponent,
     TeamLogoSourceDirective,
@@ -58,7 +62,8 @@ import { WherePipe } from './pipes/where.pipe';
     FontAwesomeModule,
     FiltersContentLayoutComponent,
     FiltersLayoutComponent,
-    ExpansionPanelComponent
+    ExpansionPanelComponent,
+    SubnavigationComponent
   ]
 })
 export class SharedModule {
