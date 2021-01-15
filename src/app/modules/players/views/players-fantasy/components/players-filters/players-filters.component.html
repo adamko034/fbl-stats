@@ -1,22 +1,9 @@
 <div>
   <mat-card *ngIf="!(isMobile$ | async)">
     <mat-card-content>
-      <div
-        gdAreas="position clear | form checkboxes | price popularity | teams teams"
-        gdGap="20px 10px"
-        gdRows="auto auto auto auto"
-      >
+      <div gdAreas="position form | price popularity | teams teams" gdGap="20px 10px" gdRows="auto auto auto">
         <app-players-filter-position gdArea="position"></app-players-filter-position>
-        <div gdArea="clear" fxLayoutAlign="end start">
-          <ng-template [ngTemplateOutlet]="clearButton"></ng-template>
-        </div>
-
-        <app-players-filter-matchdays></app-players-filter-matchdays>
-        <div gdArea="checkboxes" fxLayout="column" ngClass.lt-md="checboxes-mobile">
-          <app-players-filter-hide-unavailable></app-players-filter-hide-unavailable>
-          <app-players-filter-show-only-returning></app-players-filter-show-only-returning>
-        </div>
-
+        <app-players-filter-matchdays gdArea="form"></app-players-filter-matchdays>
         <app-players-filter-max-price gdArea="price"></app-players-filter-max-price>
         <app-players-filter-popularity gdArea="popularity"></app-players-filter-popularity>
         <app-players-filter-teams gdArea="teams"></app-players-filter-teams>
@@ -27,22 +14,13 @@
   <app-expansion-panel *ngIf="isMobile$ | async" [opened]="false">
     <div header fxLayoutAlign="space-between">
       <span>Filters</span>
-      <ng-template [ngTemplateOutlet]="clearButton"></ng-template>
     </div>
     <div content fxLayoutGap="10px" fxLayout="column" fxLayoutAlign="start stretch">
-      <app-players-filter-position gdArea="position"></app-players-filter-position>
+      <app-players-filter-position></app-players-filter-position>
       <app-players-filter-matchdays></app-players-filter-matchdays>
-      <app-players-filter-hide-unavailable class="unavailable-mobile"></app-players-filter-hide-unavailable>
-      <app-players-filter-show-only-returning></app-players-filter-show-only-returning>
       <app-players-filter-max-price></app-players-filter-max-price>
       <app-players-filter-popularity></app-players-filter-popularity>
       <app-players-filter-teams></app-players-filter-teams>
     </div>
   </app-expansion-panel>
 </div>
-
-<ng-template #clearButton>
-  <mat-icon *ngIf="filtersModified$ | async" (click)="clearFilters(); $event.stopPropagation()" class="red clear-button"
-    >cancel</mat-icon
-  >
-</ng-template>

@@ -7,8 +7,6 @@ export interface PlayersFilters {
   popularity: number;
   teams: SelectableTeam[];
   name: string;
-  hideUnavailable: boolean;
-  showOnlyReturning: boolean;
 }
 
 export enum PlayerPosition {

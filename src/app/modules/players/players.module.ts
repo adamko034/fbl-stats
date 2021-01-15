@@ -5,12 +5,10 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { PlayersNavigationComponent } from 'src/app/modules/players/players-content/components/players-navigation/players-navigation.component';
 import { PlayersListsLoader } from 'src/app/modules/players/services/players-lists.loader';
-import { PlayersFilterHideUnavailableComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-hide-unavailable/players-filter-hide-unavailable.component';
 import { PlayersFilterMatchdaysComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-matchdays/players-filter-matchdays.component';
 import { PlayersFilterMaxPriceComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-max-price/players-filter-max-price.component';
 import { PlayersFilterPopularityComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-popularity/players-filter-popularity.component';
 import { PlayersFilterPositionComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-position/players-filter-position.component';
-import { PlayersFilterShowOnlyReturningComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-show-only-returning/players-filter-show-only-returning.component';
 import { SelectTeamsDialogComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-teams/components/select-teams-dialog/select-teams-dialog.component';
 import { SelectTeamsFromTableComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-teams/components/select-teams-from-table/select-teams-from-table.component';
 import { SmartTeamsSelectionDialogComponent } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-teams/components/smart-teams-selection-dialog/smart-teams-selection-dialog.component';
@@ -41,9 +39,7 @@ import { PlayersListUnavailableComponent } from './views/players-list-unavailabl
     SelectTeamsFromTableComponent,
     PlayersFiltersComponent,
     SelectTeamsDialogComponent,
-    PlayersFilterHideUnavailableComponent,
     PlayersFilterPositionComponent,
-    PlayersFilterShowOnlyReturningComponent,
     PlayersFilterMatchdaysComponent,
     PlayersNavigationComponent,
     PlayersListSuspensionRiskComponent,

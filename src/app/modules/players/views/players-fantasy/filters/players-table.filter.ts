@@ -3,9 +3,7 @@ import { PlayersFilterName } from 'src/app/modules/core/players/filter/filters/p
 import { PlayersFilterPopularity } from 'src/app/modules/core/players/filter/filters/players-filter-popularity';
 import { PlayersFilterPosition } from 'src/app/modules/core/players/filter/filters/players-filter-position';
 import { PlayersFilterPrice } from 'src/app/modules/core/players/filter/filters/players-filter-price';
-import { PlayersFilterReturning } from 'src/app/modules/core/players/filter/filters/players-filter-returning';
 import { PlayersFilterTeams } from 'src/app/modules/core/players/filter/filters/players-filter-teams';
-import { PlayersFilterUnavailable } from 'src/app/modules/core/players/filter/filters/players-filter-unavailable';
 import { PlayersFilterService } from 'src/app/modules/core/players/filter/players-filter.service';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
 import { PlayersFilters } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
@@ -29,8 +27,6 @@ export class PlayersTableFilter implements Filterable<Player> {
       new PlayersFilterPosition(this.playersFilters.position),
       new PlayersFilterPrice(this.playersFilters.price),
       new PlayersFilterPopularity(this.playersFilters.popularity),
-      new PlayersFilterUnavailable(this.playersFilters.hideUnavailable),
-      new PlayersFilterReturning(this.playersFilters.showOnlyReturning),
       new PlayersFilterTeams(this.playersFilters.teams),
       new PlayersFilterGames(this.lastMatchday, this.playersFilters.matchdays)
     ];

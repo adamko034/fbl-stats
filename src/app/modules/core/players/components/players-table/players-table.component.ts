@@ -163,6 +163,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     this.displayedColumns.unshift('Name');
     this.displayedColumns.unshift('No');
     this.displayedColumns.splice(4, 0, 'Next');
+    this.displayedColumns.splice(5, 0, 'Prediction');
     this.displayedColumns.push('MT');
   }
 

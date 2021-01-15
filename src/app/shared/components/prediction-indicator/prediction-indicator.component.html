@@ -1,7 +1,7 @@
 <div [ngSwitch]="value" fxLayoutAlign="start center">
-  <mat-icon *ngSwitchCase="cases.WillPlay" class="green">check_circle</mat-icon>
-  <mat-icon *ngSwitchCase="cases.WillNotPlay" matTooltip="Won't play" class="red">highlight_off</mat-icon>
-  <mat-icon *ngSwitchCase="cases.Doubt" class="orange">error_outline</mat-icon>
+  <mat-icon *ngSwitchCase="cases.WillPlay" class="green" matTooltip="Prediction: will play">check_circle</mat-icon>
+  <mat-icon *ngSwitchCase="cases.WillNotPlay" matTooltip="Prediction: won't play" class="red">highlight_off</mat-icon>
+  <mat-icon *ngSwitchCase="cases.Doubt" class="orange" matTooltip="Prediction: doubt">error_outline</mat-icon>
   <mat-icon
     matTooltip="Not published yet"
     class="material-icons-outlined"
