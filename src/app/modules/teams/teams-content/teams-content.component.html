@@ -1,11 +1,4 @@
-<div
-  class="teams-content-container animate__animated animate__fadeIn"
-  ngClass.lt-sm="teams-content-container-mobile"
-  fxLayout="column"
->
-  <app-teams-navigation></app-teams-navigation>
-
-  <div class="teams-content" ngClass.lt-sm="teams-content-mobile">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<app-view-layout>
+  <app-teams-navigation navigation></app-teams-navigation>
+  <router-outlet content></router-outlet>
+</app-view-layout>

@@ -16,11 +16,17 @@ export class ArrayStream<T> {
   }
 
   public orderBy(field: string, order: 'asc' | 'dsc' = 'asc'): ArrayStream<T> {
-    if (order === 'dsc') {
-      field = `-${field}`;
+    if (isNaN(Number(this.array[0][field]))) {
+      if (order === 'dsc') {
+        field = `-${field}`;
+      }
+
+      this.array = new OrderByPipe().transform<T[]>(this.array, field);
+    } else {
+      const predicate = order === 'dsc' ? (a, b) => b[field] - a[field] : (a, b) => a[field] - b[field];
+      this.array = this.array.sort(predicate);
     }
 
-    this.array = new OrderByPipe().transform(this.array, field);
     return this;
   }
 

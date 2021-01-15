@@ -1,0 +1,17 @@
+.view-layout-container {
+  margin-top: 10px;
+
+  .view-layout-content {
+    padding: 0 20px;
+    margin-top: 20px;
+
+    &-mobile,
+    &-no-padding {
+      padding: 0;
+    }
+  }
+
+  &-mobile {
+    padding: 0;
+  }
+}

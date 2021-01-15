@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationLink } from 'src/app/shared/components/layout/subnavigation/model/navigation-link.model';
+import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
 @Component({
   selector: 'app-teams-navigation',

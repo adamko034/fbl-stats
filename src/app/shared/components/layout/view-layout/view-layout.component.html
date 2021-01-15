@@ -1,0 +1,15 @@
+<div
+  class="view-layout-container animate__animated animate__fadeIn"
+  ngClass.lt-sm="view-layout-container-mobile"
+  fxLayout="column"
+>
+  <ng-content select="[navigation]"></ng-content>
+
+  <div
+    class="view-layout-content"
+    ngClass.lt-sm="view-layout-content-mobile"
+    [ngClass]="{ 'view-layout-content-no-padding': contentNoPadding }"
+  >
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>

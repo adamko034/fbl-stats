@@ -5,19 +5,47 @@
   fxLayout
   fxLayoutAlign="start center"
 >
-  <ng-template [ngTemplateOutlet]="links"></ng-template>
+  <li *ngFor="let link of links | orderBy: 'order'">
+    <a [routerLink]="link.path" routerLinkActive="active">{{ link.text }}</a>
+  </li>
 </ul>
 
 <ul *ngIf="mode == modes.VERTICAL" class="navigation" fxLayout="column" fxLayoutAlign="start center">
-  <ng-template [ngTemplateOutlet]="links"></ng-template>
+  <li *ngFor="let link of links | orderBy: 'order'">
+    <a *ngIf="!link.isDropdown" [routerLink]="link.path" routerLinkActive="active" (click)="closeSidenav()">{{
+      link.text
+    }}</a>
+    <ng-template
+      *ngIf="link.isDropdown"
+      [ngTemplateOutlet]="linkWithDropdown"
+      [ngTemplateOutletContext]="{ link: link }"
+    >
+    </ng-template>
+  </li>
 </ul>
 
-<ng-template #links>
+<ng-template #linkWithDropdown let-link="link">
+  <a *ngIf="!link.isDropdown" [routerLink]="link.path" routerLinkActive="active" (click)="closeSidenav()">{{
+    link.text
+  }}</a>
+  <div [id]="'dropdown-' + link.key" class="dropdown" *ngIf="link.isDropdown">
+    <span class="dropdown-button" fxLayoutAlign="start center">
+      <span [ngClass]="{ active: isDropdownActive(link.text) }">{{ link.text }}</span>
+      <mat-icon>arrow_right</mat-icon>
+    </span>
+    <div class="dropdown-content" [ngStyle]="{ left: (100 * link.dropdownIndex).toString() + 'px' }">
+      <ng-template
+        *ngFor="let sublink of link.dropdownLinks | orderBy: 'order'"
+        [ngTemplateOutlet]="linkWithDropdown"
+        [ngTemplateOutletContext]="{ link: sublink }"
+      ></ng-template>
+    </div>
+  </div>
+</ng-template>
+
+<!-- <ng-template #links>
   <li (click)="closeSidenav()">
-    <a routerLink="home" routerLinkActive="active">fantasy</a>
-  </li>
-  <li (click)="closeSidenav()">
-    <a routerLink="/myteam" routerLinkActive="active">my-team</a>
+    <a routerLink="/fantasy" routerLinkActive="active">fantasy</a>
   </li>
   <li (click)="closeSidenav()">
     <a routerLink="/bundesliga" routerLinkActive="active">bundesliga</a>
@@ -25,4 +53,4 @@
   <li (click)="closeSidenav()">
     <a routerLink="/about" routerLinkActive="active">about-us</a>
   </li>
-</ng-template>
+</ng-template> -->

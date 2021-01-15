@@ -1,14 +1,13 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
 import { MyTeamTilesDisplaySettingsService } from 'src/app/modules/my-team/layout/my-team-content/components/my-team-selection/services/my-team-tiles-display-settings.service';
 import { MyTeamPlayer } from 'src/app/modules/my-team/models/my-team-player.model';
 import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
+import { PlayerPosition } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Component({
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-my-team-selection',
   templateUrl: './my-team-selection.component.html',
   styleUrls: ['./my-team-selection.component.scss'],

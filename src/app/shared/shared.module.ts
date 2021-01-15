@@ -21,6 +21,8 @@ import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/t
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
+import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
+import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 
@@ -42,7 +44,9 @@ import { WherePipe } from './pipes/where.pipe';
     FiltersContentLayoutComponent,
     FiltersLayoutComponent,
     ExpansionPanelComponent,
-    SubnavigationComponent
+    SubnavigationComponent,
+    ViewLayoutComponent,
+    ViewTitleComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -63,7 +67,9 @@ import { WherePipe } from './pipes/where.pipe';
     FiltersContentLayoutComponent,
     FiltersLayoutComponent,
     ExpansionPanelComponent,
-    SubnavigationComponent
+    SubnavigationComponent,
+    ViewLayoutComponent,
+    ViewTitleComponent
   ]
 })
 export class SharedModule {

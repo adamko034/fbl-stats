@@ -1,0 +1,49 @@
+<div class="players-list-base-container" fxLayoutAlign="center center">
+  <table
+    class="table"
+    ngClass.lt-md="table-sm"
+    ngClass.lt-sm="table-xs"
+    matSort
+    matSortStart="desc"
+    matSortActive="team"
+    matSortDisableClear
+    matSortDirection="asc"
+    (matSortChange)="onSortChange($event)"
+  >
+    <tr>
+      <th mat-sort-header="team">team</th>
+      <th mat-sort-header="name">name</th>
+      <th mat-sort-header="position">position</th>
+      <th fxHide.lt-sm mat-sort-header="price">price</th>
+      <th fxHide.lt-sm mat-sort-header="popularity">popularity</th>
+      <th fxHide.lt-sm mat-sort-header="totalPoints">total points</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let player of sorted" class="player" ngClass.lt-sm="player-mobile">
+        <td>
+          <app-team-logo fxHide.lt-sm [team]="player.teamShort" [height]="40"></app-team-logo>
+          <app-team-logo fxHide.gt-xs [team]="player.teamShort" [height]="30"></app-team-logo>
+        </td>
+        <td class="player-name">
+          {{ player.name }}
+        </td>
+        <td class="player-position">
+          {{ player.position | uppercase }}
+        </td>
+        <td fxHide.lt-sm class="player-price">{{ player.price }}M</td>
+        <td fxHide.lt-sm>{{ player.popularity }}%</td>
+
+        <td fxHide.lt-sm>
+          {{ player.totalPoints }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #playerInfo let-title="title" let-value="value">
+  <div fxLayout="column" class="player-info" fxLayoutAlign="center center">
+    <span class="player-info-title">{{ title }}</span>
+    <span>{{ value }}</span>
+  </div>
+</ng-template>

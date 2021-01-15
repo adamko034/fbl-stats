@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
 import { MyTeamTilesDisplaySettingsService } from 'src/app/modules/my-team/layout/my-team-content/components/my-team-selection/services/my-team-tiles-display-settings.service';
 import { MyTeamPlayer } from 'src/app/modules/my-team/models/my-team-player.model';
 import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
+import { PlayerPosition } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

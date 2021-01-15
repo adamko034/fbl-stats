@@ -17,7 +17,8 @@
       outline: none !important;
     }
 
-    a {
+    a,
+    span {
       font-size: 15px;
       letter-spacing: 3px;
       color: rgba($color: #000000, $alpha: 0.7);
@@ -33,8 +34,41 @@
       }
     }
 
-    a.active {
+    a.active,
+    span.active {
       color: #c80a00;
     }
+  }
+
+  .dropdown {
+    cursor: default;
+
+    &-content {
+      display: none;
+      position: fixed;
+      background-color: #f9f9f9;
+      min-width: 140px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+
+      a,
+      span.dropdown-button {
+        cursor: pointer;
+        display: block;
+        padding: 10px 20px;
+        color: rgba(0, 0, 0, 0.7);
+
+        &:hover {
+          color: #000;
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+
+  #dropdown-fantasy:hover > .dropdown-content,
+  #dropdown-lists:hover > .dropdown-content,
+  #dropdown-bundesliga:hover > .dropdown-content {
+    display: block;
   }
 }

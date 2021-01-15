@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from 'src/app/layout/about-us/about-us.component';
-import { ContentComponent } from 'src/app/layout/content/content.component';
 import { CoreDataLoadedGuard as CoreDataLoadedGuard } from 'src/app/resolvers/core-data-loaded.guard';
 
 const routes: Routes = [
@@ -14,11 +13,7 @@ const routes: Routes = [
     path: '',
     canActivate: [CoreDataLoadedGuard],
     children: [
-      { path: 'fantasy', component: ContentComponent },
-      {
-        path: 'myteam',
-        loadChildren: () => import('./modules/my-team/my-team.module').then((m) => m.MyTeamModule)
-      },
+      { path: 'fantasy', loadChildren: () => import('./modules/players/players.module').then((m) => m.PlayersModule) },
       { path: 'about', component: AboutUsComponent },
       { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) }
     ]

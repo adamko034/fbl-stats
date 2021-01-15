@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { FILTERS_MATCHDAYS_STORAGEKEY } from 'src/app/layout/content/models/players-filters';
 import { MyTeamPlayersFilters } from 'src/app/modules/my-team/models/my-team-players-filters.model';
+import { FILTERS_MATCHDAYS_STORAGEKEY } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Injectable()

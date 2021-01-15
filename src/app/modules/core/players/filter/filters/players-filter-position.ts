@@ -1,5 +1,5 @@
-import { PlayerPosition } from 'src/app/layout/content/models/players-filters';
 import { PlayersFilter } from 'src/app/modules/core/players/filter/filters/players-filter';
+import { PlayerPosition } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
 import { Player } from 'src/app/store/players/models/player.model';
 
 export class PlayersFilterPosition implements PlayersFilter {

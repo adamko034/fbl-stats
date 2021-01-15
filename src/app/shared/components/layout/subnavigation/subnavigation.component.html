@@ -1,8 +1,14 @@
-<div class="subnavigation-container red-background" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+<div
+  *ngIf="show$ | async"
+  class="subnavigation-container red-background"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  fxLayoutGap="30px"
+>
   <div class="link" *ngFor="let link of links | orderBy: 'order'">
     <a
       *ngIf="!link.isDropdown"
-      [ngClass]="{ 'hvr-rotate': !rla.isActive }"
+      [ngClass]="{ 'hvr-grow': !rla.isActive }"
       [routerLink]="link.path"
       #rla="routerLinkActive"
       routerLinkActive="active"
@@ -10,7 +16,9 @@
     >
     <div class="dropdown" *ngIf="link.isDropdown">
       <span class="dropdown-button" fxLayoutAlign="start center">
-        <span>{{ link.text }}</span>
+        <span [ngClass]="{ active: isDropdownActive(link.text) }"
+          >{{ link.text }} <span *ngIf="isDropdownActive(link.text)">: {{ activeLinkFromDropdown(link) }}</span></span
+        >
         <mat-icon>arrow_drop_down</mat-icon>
       </span>
       <div class="dropdown-content">
