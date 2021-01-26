@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Navigation } from 'src/app/resources/navigation';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
 @Component({
@@ -7,11 +8,7 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
   styleUrls: ['./teams-navigation.component.scss']
 })
 export class TeamsNavigationComponent {
-  public links: NavigationLink[] = [
-    // { path: 'list', text: 'list', order: 1 },
-    { path: 'table', text: 'table', order: 2 },
-    { path: 'schedules', text: 'schedules', order: 3 }
-  ];
+  public links: NavigationLink[] = Navigation.links.bundesliga.dropdownLinks;
 
   constructor() {}
 }

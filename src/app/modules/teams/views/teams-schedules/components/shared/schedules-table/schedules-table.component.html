@@ -1,0 +1,34 @@
+<div class="schedules-table-container">
+  <table
+    mat-table
+    class="table-responsive"
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="value"
+    [matSortDirection]="sortDirection"
+    matSortStart="desc"
+    matSortDisableClear
+  >
+    <ng-container matColumnDef="team">
+      <th mat-header-cell *matHeaderCellDef class="th-team" ngClass.sm="th-team-sm">team</th>
+      <td mat-cell *matCellDef="let item">
+        <app-team-logo [team]="item.shortName" [height]="30"></app-team-logo>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ valueColumnHeader }}</th>
+      <td mat-cell *matCellDef="let item">
+        <span>{{ item.value }}</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['team', 'value']"></tr>
+    <tr
+      mat-row
+      [style.background-color]="item.color"
+      class="row"
+      *matRowDef="let item; columns: ['team', 'value']"
+    ></tr>
+  </table>
+</div>

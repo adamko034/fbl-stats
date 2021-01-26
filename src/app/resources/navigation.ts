@@ -36,7 +36,18 @@ export class Navigation {
       dropdownIndex: 1,
       dropdownLinks: [
         { order: 1, path: '/bundesliga/table', text: 'table' },
-        { order: 2, path: '/bundesliga/schedules', text: 'schedules' }
+        {
+          order: 2,
+          path: '/bundesliga/schedules',
+          text: 'schedules',
+          key: 'schedules',
+          isDropdown: true,
+          dropdownIndex: 2,
+          dropdownLinks: [
+            { order: 1, path: '/bundesliga/schedules/byRank', text: 'by table rank' },
+            { order: 2, path: '/bundesliga/schedules/byForm', text: 'by team form' }
+          ]
+        }
       ]
     },
     aboutUs: { order: 1, path: '/about', text: 'about-us', isDropdown: false }

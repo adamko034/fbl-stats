@@ -1,0 +1,55 @@
+<app-view-title>
+  <h1 title>{{ 'Teams next schedules' | uppercase }}</h1>
+  <div subtitle>
+    <span>Teams next schedules based on teams form in last {{ includedGames }} games.</span>
+  </div>
+</app-view-title>
+
+<app-filters-content-layout>
+  <div filters>
+    <app-filters-layout>
+      <div gt-xs fxLayout="row" fxLayoutAlign="space-evenly center">
+        <app-schedules-include-venue-filter
+          (includeVenueChange)="onIncludeVenueCalculationChange($event)"
+        ></app-schedules-include-venue-filter>
+        <ng-template [ngTemplateOutlet]="formDropdown"></ng-template>
+      </div>
+      <div xs-header>
+        <span>Filters</span>
+      </div>
+      <div xs-content fxLayout="column" fxLayoutGap="15px">
+        <app-schedules-include-venue-filter
+          (includeVenueChange)="onIncludeVenueCalculationChange($event)"
+        ></app-schedules-include-venue-filter>
+        <ng-template [ngTemplateOutlet]="formDropdown"></ng-template>
+      </div>
+    </app-filters-layout>
+  </div>
+  <div content fxLayout="column" fxLayoutGap="15px">
+    <app-schedules-sort [nextMatchdays]="state.mdsHeader" (sortChange)="onSortChange($event)"></app-schedules-sort>
+    <div fxLayout="row" fxLayoutGap.gt-xs="40px" fxLayout.lt-sm="column">
+      <app-schedules fxFlex.gt-xs="82" [state]="state" [sortBy]="sortBy"></app-schedules>
+      <app-schedules-table
+        fxFlexAlign.lt-sm="center"
+        fxFlex.gt-xs="18"
+        ngClass.gt-xs="table"
+        [valueColumnHeader]="'last ' + includedGames"
+        [teams]="scheduleTableTeams"
+        sortDirection="desc"
+      ></app-schedules-table>
+    </div>
+  </div>
+</app-filters-content-layout>
+
+<ng-template #formDropdown>
+  <app-form-field label="Form includes:">
+    <mat-form-field>
+      <mat-select [ngModel]="includedGames" name="includeGames" (selectionChange)="onFormChange($event)">
+        <mat-option value="2">2 last games</mat-option>
+        <mat-option value="3">3 last games</mat-option>
+        <mat-option value="4">4 last games</mat-option>
+        <mat-option value="5">5 last games</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </app-form-field>
+</ng-template>

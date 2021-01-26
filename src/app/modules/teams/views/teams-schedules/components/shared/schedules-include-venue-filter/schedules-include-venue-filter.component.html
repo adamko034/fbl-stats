@@ -1,0 +1,7 @@
+<mat-checkbox
+  ngClass.lt-sm="bold"
+  labelPosition="before"
+  (change)="onToggleCheckbox($event)"
+  [ngModel]="isVenueCalculation$ | async"
+  >Inlude game venue in calculation</mat-checkbox
+>

@@ -23,6 +23,7 @@ import { FiltersLayoutComponent } from './components/layout/filters-layout/filte
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
+import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 
@@ -46,7 +47,8 @@ import { WherePipe } from './pipes/where.pipe';
     ExpansionPanelComponent,
     SubnavigationComponent,
     ViewLayoutComponent,
-    ViewTitleComponent
+    ViewTitleComponent,
+    SortByComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -69,7 +71,8 @@ import { WherePipe } from './pipes/where.pipe';
     ExpansionPanelComponent,
     SubnavigationComponent,
     ViewLayoutComponent,
-    ViewTitleComponent
+    ViewTitleComponent,
+    SortByComponent
   ]
 })
 export class SharedModule {
