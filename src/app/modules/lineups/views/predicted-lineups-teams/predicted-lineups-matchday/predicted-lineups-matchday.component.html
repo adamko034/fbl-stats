@@ -1,0 +1,11 @@
+<div
+  *ngIf="matchday$ | async"
+  class="predicted-lineups-matchday-container"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <app-title-underlined class="title">
+    <h2>Matchday {{ (matchday$ | async).num }}</h2>
+  </app-title-underlined>
+  <app-matchday [matchday]="matchday$ | async"></app-matchday>
+</div>

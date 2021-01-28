@@ -14,6 +14,10 @@ const routes: Routes = [
     canActivate: [CoreDataLoadedGuard],
     children: [
       { path: 'fantasy', loadChildren: () => import('./modules/players/players.module').then((m) => m.PlayersModule) },
+      {
+        path: 'lineups',
+        loadChildren: () => import('./modules/lineups/predicted-lineups.module').then((m) => m.PredictedLineupsModule)
+      },
       { path: 'about', component: AboutUsComponent },
       { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) }
     ]

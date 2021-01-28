@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PlayersSearchComponent } from 'src/app/modules/core/players/components/players-display/components/players-search/players-search.component';
 import { PlayersListComponent } from 'src/app/modules/core/players/components/players-list/players-list.component';
@@ -52,7 +51,7 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     PlayersDisplayComponent,
     PlayersSearchComponent
   ],
-  imports: [CommonModule, SharedModule, NgPipesModule, AngularMaterialModule, NgxChartsModule],
+  imports: [CommonModule, SharedModule, AngularMaterialModule, NgxChartsModule],
   exports: [
     PlayersListComponent,
     PlayersTableComponent,
@@ -73,8 +72,7 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
     PlayersViewSwitchComponent,
-    PlayersSearchComponent,
-    NgPipesModule
+    PlayersSearchComponent
   ]
 })
 export class FblCoreModule {}

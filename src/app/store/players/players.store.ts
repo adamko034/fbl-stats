@@ -66,6 +66,12 @@ export class PlayersStore {
     return this.players$.asObservable();
   }
 
+  public selectAllByTeam(teamShort: string): Observable<Player[]> {
+    return this.players$.pipe(
+      map((players) => players.filter((p) => p.teamShort.toLocaleLowerCase() === teamShort.toLocaleLowerCase()))
+    );
+  }
+
   public searchPlayers(term: string): Observable<Player[]> {
     return this.players$.pipe(
       filter(() => !!term),

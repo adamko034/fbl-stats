@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TeamsResolver } from 'src/app/modules/teams/resolvers/teams.resolver';
+import { TeamsResolver } from 'src/app/modules/core/resolvers/teams.resolver';
 import { TeamsContentComponent } from 'src/app/modules/teams/teams-content/teams-content.component';
 import { TeamsListComponent } from 'src/app/modules/teams/views/teams-list/teams-list.component';
 import { TeamsSchedulesByFormComponent } from 'src/app/modules/teams/views/teams-schedules/components/teams-schedules-by-form/teams-schedules-by-form.component';

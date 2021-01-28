@@ -28,7 +28,7 @@ export class Navigation {
       ]
     },
     bundesliga: {
-      order: 1,
+      order: 3,
       path: '/bundesliga',
       text: 'bundesliga',
       key: 'bundesliga',
@@ -50,6 +50,7 @@ export class Navigation {
         }
       ]
     },
-    aboutUs: { order: 1, path: '/about', text: 'about-us', isDropdown: false }
+    lineups: { order: 2, path: '/lineups', text: 'lineups', isDropdown: false },
+    aboutUs: { order: 4, path: '/about', text: 'about-us', isDropdown: false }
   };
 }

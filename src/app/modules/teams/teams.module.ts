@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
-import { TeamsResolver } from 'src/app/modules/teams/resolvers/teams.resolver';
 import { SchedulesComponent } from 'src/app/modules/teams/views/teams-schedules/components/shared/schedules/schedules.component';
 import { TeamsSchedulesByFormGuard } from 'src/app/modules/teams/views/teams-schedules/guards/teams-schedules-by-form.guard';
 import { TeamsSchedulesLoader } from 'src/app/modules/teams/views/teams-schedules/loaders/teams-schedules.loader';
@@ -43,7 +42,6 @@ import { TeamsTableContainerComponent } from './views/teams-table/teams-table-co
   ],
   imports: [SharedModule, CoreModule, CommonModule, TeamsRoutingModule, AngularMaterialModule, FblCoreModule],
   providers: [
-    TeamsResolver,
     TeamsSchedulesByRankResolver,
     TeamsSchedulesByFormResolver,
     TeamsSchedulesLoader,

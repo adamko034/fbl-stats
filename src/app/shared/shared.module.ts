@@ -23,7 +23,10 @@ import { FiltersLayoutComponent } from './components/layout/filters-layout/filte
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
+import { MatchdayFixtureComponent } from './components/matchday-fixture/matchday-fixture.component';
+import { MatchdayComponent } from './components/matchday/matchday.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
+import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 
@@ -48,7 +51,10 @@ import { WherePipe } from './pipes/where.pipe';
     SubnavigationComponent,
     ViewLayoutComponent,
     ViewTitleComponent,
-    SortByComponent
+    SortByComponent,
+    TitleUnderlinedComponent,
+    MatchdayFixtureComponent,
+    MatchdayComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -72,7 +78,11 @@ import { WherePipe } from './pipes/where.pipe';
     SubnavigationComponent,
     ViewLayoutComponent,
     ViewTitleComponent,
-    SortByComponent
+    SortByComponent,
+    NgPipesModule,
+    TitleUnderlinedComponent,
+    MatchdayComponent,
+    MatchdayFixtureComponent
   ]
 })
 export class SharedModule {

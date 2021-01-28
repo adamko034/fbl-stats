@@ -3,6 +3,7 @@ export interface Fixture {
   isHome: boolean;
   date: Date;
   opponent: string;
+  opponentLong: string;
   opponentRank: number;
   wasPlayed: boolean;
   result?: number;

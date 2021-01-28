@@ -1,15 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-view-layout',
   templateUrl: './view-layout.component.html',
   styleUrls: ['./view-layout.component.scss']
 })
-export class ViewLayoutComponent implements OnInit {
-  @Input() title: string;
+export class ViewLayoutComponent {
   @Input() contentNoPadding = false;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

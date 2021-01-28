@@ -1,0 +1,8 @@
+<div class="matchday-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+  <div class="matchday-day" *ngFor="let matchdayFixtures of matchday.fixtures | keyvalue">
+    {{ matchdayFixtures.key }}
+    <div *ngFor="let fixture of matchdayFixtures.value">
+      <app-matchday-fixture [matchdayFixture]="fixture"></app-matchday-fixture>
+    </div>
+  </div>
+</div>
