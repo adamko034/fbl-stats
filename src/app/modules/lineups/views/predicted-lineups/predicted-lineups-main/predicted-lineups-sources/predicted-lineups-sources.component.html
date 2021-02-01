@@ -1,0 +1,37 @@
+<mat-card
+  *ngIf="sources$ | async"
+  class="predicted-lineups-sources-container"
+  ngClass.lt-sm="predicted-lineups-sources-container-mobile"
+  fxLayout="column"
+  fxLayoutAlign.lt-sm="center"
+  fxLayoutAlign="center center"
+>
+  <app-title-underlined class="title">
+    <h2>Sources</h2>
+  </app-title-underlined>
+
+  <div fxLayout="column" fxLayoutAlign.lt-sm="center center">
+    <div class="last-update-info" fxLayout="column">
+      <span>Last checked on: </span>
+      <span class="bold">{{ (sources$ | async)[0].lastUpdated | date: 'EEEE, MMMM d, y, HH:mm' }}</span>
+    </div>
+
+    <div class="list">
+      <mat-list role="list">
+        <mat-list-item *ngFor="let source of sources$ | async">
+          <div class="source-item" fxLayout="row" fxLayoutAlign="space-between center">
+            <span>{{ source.displayName }}</span>
+            <span>
+              <mat-icon *ngIf="source.published" matTooltip="Lineups available" class="green"
+                >published_with_changes</mat-icon
+              >
+              <mat-icon *ngIf="!source.published" matTooltip="Lineups not published yet" class="red"
+                >unpublished</mat-icon
+              >
+            </span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</mat-card>

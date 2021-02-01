@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Matchday } from 'src/app/modules/core/matchday/models/matchday.model';
 
 @Component({
@@ -10,6 +10,13 @@ import { Matchday } from 'src/app/modules/core/matchday/models/matchday.model';
 export class MatchdayComponent {
   @Input() matchday: Matchday;
   @Input() displaye: 'long' | 'short' | 'logo' = 'long';
+  @Input() clickable = false;
+
+  @Output() teamClick = new EventEmitter<string>();
 
   constructor() {}
+
+  public onTeamClick(teamShort: string): void {
+    this.teamClick.emit(teamShort);
+  }
 }

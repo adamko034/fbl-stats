@@ -1,0 +1,25 @@
+.matchday-fixture-container {
+  .team {
+    display: flex;
+    align-items: center;
+    width: calc(50% - 15px);
+
+    &-home {
+      justify-content: flex-end;
+    }
+
+    &-away {
+      justify-content: start;
+    }
+
+    .logo {
+      margin: 0 10px;
+    }
+  }
+
+  .delimeter {
+    padding: 0 20px;
+  }
+
+  margin-bottom: 10px;
+}

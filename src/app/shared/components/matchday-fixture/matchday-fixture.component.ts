@@ -9,7 +9,8 @@ import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-f
 })
 export class MatchdayFixtureComponent {
   @Input() matchdayFixture: MatchdayFixture;
-  @Input() display: 'long' | 'short' | 'logo' = 'long';
+
+  public clickable = false;
 
   constructor() {}
 }

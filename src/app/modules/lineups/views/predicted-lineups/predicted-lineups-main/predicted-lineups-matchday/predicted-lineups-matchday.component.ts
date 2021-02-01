@@ -18,4 +18,8 @@ export class PredictedLineupsMatchdayComponent implements OnInit {
   public ngOnInit(): void {
     this.matchday$ = this.route.data.pipe(map((data) => data.matchday));
   }
+
+  public onTeamClick(teamShort: string) {
+    alert(teamShort);
+  }
 }

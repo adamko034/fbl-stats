@@ -1,0 +1,20 @@
+.predicted-lineups-team-navigation-container {
+  padding: 0 10px;
+
+  &-mobile {
+    padding: 0 3px;
+  }
+  .team-link {
+    padding: 8px 15px;
+    cursor: pointer;
+
+    &-active {
+      background-color: rgba(#000, 0.2);
+      border-radius: 20px;
+    }
+
+    &-sm {
+      padding: 5px 10px;
+    }
+  }
+}

@@ -20,6 +20,11 @@ body {
   outline: 0;
 }
 
+a:visited,
+a {
+  color: #000;
+}
+
 .mat-drawer-content {
   overflow: unset !important;
 }

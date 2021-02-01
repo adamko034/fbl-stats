@@ -6,28 +6,30 @@ import { PredictedLineupsLoadedGuard } from 'src/app/modules/lineups/guards/pred
 import { PredictedLineupsContentComponent } from 'src/app/modules/lineups/predicted-lineups-content/predicted-lineups-content.component';
 import { PredictedLineupsSourcesResolver } from 'src/app/modules/lineups/resolvers/predicted-lineups-sources.resolver';
 import { PredictedLineupTeamResolver } from 'src/app/modules/lineups/resolvers/predicted-lineups-team.resolver';
-import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups-team/predicted-lineups-team.component';
-import { PredictedLineupsTeamsComponent } from 'src/app/modules/lineups/views/predicted-lineups-teams/predicted-lineups-teams.component';
+import { PredictedLineupsMainComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-main/predicted-lineups-main.component';
+import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
+import { PredictedLineupsComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: PredictedLineupsContentComponent,
     redirectTo: 'teams',
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'teams',
     canActivate: [PredictedLineupsLoadedGuard],
-    component: PredictedLineupsContentComponent,
+    component: PredictedLineupsComponent,
     resolve: { teams: TeamsResolver },
     children: [
       {
-        path: 'teams',
-        component: PredictedLineupsTeamsComponent,
+        path: '',
+        component: PredictedLineupsMainComponent,
         resolve: { sources: PredictedLineupsSourcesResolver, matchday: NextMatchdayResolver }
       },
       {
-        path: 'teams/:team',
+        path: ':team',
         component: PredictedLineupsTeamComponent,
         resolve: { team: PredictedLineupTeamResolver }
       }

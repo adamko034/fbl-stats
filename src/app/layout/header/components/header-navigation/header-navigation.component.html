@@ -1,12 +1,6 @@
-<ul
-  *ngIf="mode === modes.HORIZONTAL"
-  class="navigation"
-  ngClass.sm="navigation-sm"
-  fxLayout
-  fxLayoutAlign="start center"
->
+<ul *ngIf="mode === modes.HORIZONTAL" class="navigation" fxLayout fxLayoutAlign="start center">
   <li *ngFor="let link of links | orderBy: 'order'">
-    <a [routerLink]="link.path" routerLinkActive="active">{{ link.text }}</a>
+    <a ngClass.sm="link-sm" [routerLink]="link.path" routerLinkActive="active">{{ link.text }}</a>
   </li>
 </ul>
 

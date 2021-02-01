@@ -4,6 +4,7 @@ import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.mo
 export interface Player {
   id: string;
   name: string;
+  lastName: string;
   team: string;
   teamShort: string;
   totalPoints: number;

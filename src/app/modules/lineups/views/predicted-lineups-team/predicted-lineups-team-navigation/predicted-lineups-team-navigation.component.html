@@ -1,7 +1,0 @@
-<div class="predicted-lineups-team-navigation-container" fxLayout="row wrap" fxLayoutAlign="center center">
-  <div *ngFor="let team of teams$ | async | orderBy: 'rank'" routerLinkActive="team-link-active" class="team-link">
-    <a [routerLink]="'/lineups/teams/' + team.shortName">
-      <app-team-logo [height]="45" [team]="team.shortName"></app-team-logo>
-    </a>
-  </div>
-</div>

@@ -1,0 +1,54 @@
+.team-lineup-container {
+  &-mobile {
+    transform: scale(0.85);
+  }
+
+  .title {
+    width: 100%;
+    text-align: center;
+
+    .source-name {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .link {
+      float: right;
+      margin-right: 7px;
+    }
+  }
+
+  .field {
+    background-image: url('/assets/img/field63.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    width: 380px;
+    height: 504px;
+
+    .position {
+      &:not(.goalkeeper) {
+        width: 95%;
+      }
+
+      .player {
+        font-size: 13px;
+        background-color: rgba(0, 0, 0, 0.35);
+        padding: 5px 11px;
+        color: #fff;
+        border-radius: 5px;
+        letter-spacing: 0.6px;
+
+        &-2-lines {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .goalkeeper {
+      .player {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

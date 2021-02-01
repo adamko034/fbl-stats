@@ -1,0 +1,24 @@
+<app-view-title>
+  <h1 title>{{ 'predicted lineups' | uppercase }}</h1>
+  <h2 subtitle>{{ (team$ | async).longName }}</h2>
+</app-view-title>
+
+<div fxLayout="column" fxLayoutGap="15px">
+  <span ngClass.lt-sm="info-mobile"
+    >*Players position are in accordance with Fantasy Bundesliga, not with the source lineups. Therfore the lineups may
+    sometimes look unexpected (etc. only one winger or no forwards)</span
+  >
+  <div
+    class="lineups-container"
+    fxLayout="row wrap"
+    fxLayoutGap="15px grid"
+    fxLayoutAlign="space-evenly center"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayoutGap.lt-sm="15px"
+  >
+    <div *ngFor="let sourceLineup of (team$ | async).predictions | orderBy: 'order'">
+      <app-team-lineup [lineup]="sourceLineup"></app-team-lineup>
+    </div>
+  </div>
+</div>

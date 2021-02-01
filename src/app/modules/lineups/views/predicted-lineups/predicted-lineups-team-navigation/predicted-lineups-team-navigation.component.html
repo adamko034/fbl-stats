@@ -1,0 +1,19 @@
+<div
+  class="predicted-lineups-team-navigation-container"
+  ngClass.lt-sm="predicted-lineups-team-navigation-container-mobile"
+  fxLayout="row wrap"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px"
+>
+  <div
+    *ngFor="let team of teams$ | async | orderBy: 'rank'"
+    routerLinkActive="team-link-active"
+    class="team-link hvr-small hvr-underline-from-center"
+    ngClass.sm="team-link-sm"
+  >
+    <a [routerLink]="'/lineups/teams/' + team.shortName">
+      <app-team-logo *ngIf="(screen$ | async) > screens.SM" [height]="40" [team]="team.shortName"></app-team-logo>
+      <app-team-logo *ngIf="(screen$ | async) <= screens.SM" [height]="30" [team]="team.shortName"></app-team-logo>
+    </a>
+  </div>
+</div>

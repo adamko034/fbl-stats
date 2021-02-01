@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Navigation } from 'src/app/resources/navigation';
 import { SidenavService } from 'src/app/services/sidenav.service';
@@ -10,7 +10,7 @@ export enum NavigationMode {
 }
 
 @Component({
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-header-navigation',
   templateUrl: './header-navigation.component.html',
   styleUrls: ['./header-navigation.component.scss']
