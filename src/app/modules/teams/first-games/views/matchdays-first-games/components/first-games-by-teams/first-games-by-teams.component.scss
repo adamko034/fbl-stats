@@ -1,0 +1,42 @@
+h2 {
+  margin-bottom: 0px;
+}
+
+.first-games-by-teams-container {
+  ul {
+    li {
+      list-style: none;
+      padding: 17px 20px;
+      background-color: #fff;
+      margin-bottom: 10px;
+
+      &:first-of-type {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .chip {
+        width: 40px;
+        font-size: 11px;
+        font-weight: 500;
+        text-align: center;
+        border-radius: 15px;
+        padding: 3px 7px;
+        color: #fff;
+
+        &-red {
+          background-color: rgba($color: #000000, $alpha: 0.5);
+        }
+
+        &-green {
+          background-color: green;
+        }
+      }
+    }
+  }
+}

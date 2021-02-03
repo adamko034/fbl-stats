@@ -1,0 +1,30 @@
+<app-view-title>
+  <h2 subtitle>Upcoming matchdays</h2>
+</app-view-title>
+
+<div
+  class="first-games-by-matchday-container"
+  fxLayout="row wrap"
+  fxLayoutGap="20px grid"
+  fxLayoutAlign="space-evenly centers"
+>
+  <div *ngFor="let matchday of matchdays$ | async">
+    <mat-card>
+      <app-title-underlined padding="0 20px">
+        <h3>Matchday {{ matchday.matchday }}</h3>
+      </app-title-underlined>
+      <mat-card-content>
+        <div class="card-content" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <span class="date">{{ matchday.date | date: 'EEEE, dd.MM.yyyy HH:mm' }}</span>
+          <div *ngFor="let game of matchday.fixtures">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <app-team-logo [team]="game.homeShort" [height]="30"></app-team-logo>
+              <span>:</span>
+              <app-team-logo [team]="game.awayShort" [height]="30"></app-team-logo>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

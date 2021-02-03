@@ -47,6 +47,11 @@ export class Navigation {
             { order: 1, path: '/bundesliga/schedules/byRank', text: 'by table rank' },
             { order: 2, path: '/bundesliga/schedules/byForm', text: 'by team form' }
           ]
+        },
+        {
+          order: 3,
+          path: '/bundesliga/firstGames',
+          text: 'matchdays first games'
         }
       ]
     },

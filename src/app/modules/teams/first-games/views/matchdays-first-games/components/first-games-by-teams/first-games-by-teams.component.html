@@ -1,0 +1,20 @@
+<app-view-title>
+  <h2 subtitle>Season overall</h2>
+</app-view-title>
+<div class="first-games-by-teams-container">
+  <ul>
+    <li *ngFor="let team of teams$ | async | orderBy: ['-firstGamesCount', '-firstGamesPlayedCount']">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="25px">
+        <app-team-logo [height]="40" [team]="team.teamShort"></app-team-logo>
+        <div fxLayout="row" fxLayoutGap="15px">
+          <span
+            class="chip"
+            *ngFor="let game of team.games"
+            [ngClass]="{ 'chip-red': game.wasPlayed, 'chip-green': !game.wasPlayed }"
+            >MD {{ game.matchday }}</span
+          >
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

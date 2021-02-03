@@ -4,4 +4,5 @@ export interface MatchdayFixture {
   homeLong: string;
   awayShort: string;
   awayLong: string;
+  matchday: number;
 }

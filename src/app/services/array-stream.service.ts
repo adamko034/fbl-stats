@@ -2,6 +2,7 @@ import { OrderByPipe } from 'ngx-pipes';
 import { Actionable } from 'src/app/modules/core/shared/arrays/actionable';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
+import { DateService } from 'src/app/services/date.service';
 
 export class ArrayStream<T> {
   private array: any[];
@@ -30,9 +31,26 @@ export class ArrayStream<T> {
     return this;
   }
 
+  public orderByDate(field: string, order: 'asc' | 'desc' = 'asc'): ArrayStream<T> {
+    const dateService = new DateService();
+    if (this.array.every((item) => dateService.isDate(item[field]))) {
+      const predicate =
+        order === 'desc'
+          ? (a, b) => new Date(b[field]).getTime() - new Date(a[field]).getTime()
+          : (a, b) => new Date(a[field]).getTime() - new Date(b[field]).getTime();
+      this.array = this.array.sort(predicate);
+    }
+
+    return this;
+  }
+
   public forEach(action: Actionable<T>) {
     this.array = action.exec(this.array);
     return this;
+  }
+
+  public takeFirst(): T {
+    return this.array[0];
   }
 
   public takeWhereFieldValue(n: number, field: string): ArrayStream<T> {

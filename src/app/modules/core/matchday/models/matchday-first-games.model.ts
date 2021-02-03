@@ -1,7 +1,8 @@
 import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-fixture.model';
 
-export interface Matchday {
-  num: number;
+export interface MatchdayFirstGames {
+  matchday: number;
+  date: Date;
+  fixtures: MatchdayFixture[];
   wasPlayed: boolean;
-  fixtures: { [date: string]: MatchdayFixture[] };
 }

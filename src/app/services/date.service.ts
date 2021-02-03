@@ -14,4 +14,8 @@ export class DateService {
 
     return textIfDateNull;
   }
+
+  public isDate(obj: any): boolean {
+    return moment.isDate(new Date(obj));
+  }
 }

@@ -3,6 +3,13 @@ import { NgModule } from '@angular/core';
 import { CoreModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
+import { NextMatchdaysFirstGamesLoader } from 'src/app/modules/teams/first-games/resolvers/next-matchdays-first-games.loader';
+import { NextMatchdaysFirstGamesResolver } from 'src/app/modules/teams/first-games/resolvers/next-matchdays-first-games.resolver';
+import { TeamsMatchdaysFirstGamesResolver } from 'src/app/modules/teams/first-games/resolvers/teams-matchdays-first-games.resolver';
+import { TeamMatchdaysFirstsGamesLoader } from 'src/app/modules/teams/first-games/resolvers/teams-matchdays-firsts-games.loader';
+import { FirstGamesByMatchdayComponent } from 'src/app/modules/teams/first-games/views/matchdays-first-games/components/first-games-by-matchday/first-games-by-matchday.component';
+import { FirstGamesByTeamsComponent } from 'src/app/modules/teams/first-games/views/matchdays-first-games/components/first-games-by-teams/first-games-by-teams.component';
+import { MatchdaysFirstGamesComponent } from 'src/app/modules/teams/first-games/views/matchdays-first-games/matchdays-first-games.component';
 import { SchedulesComponent } from 'src/app/modules/teams/views/teams-schedules/components/shared/schedules/schedules.component';
 import { TeamsSchedulesByFormGuard } from 'src/app/modules/teams/views/teams-schedules/guards/teams-schedules-by-form.guard';
 import { TeamsSchedulesLoader } from 'src/app/modules/teams/views/teams-schedules/loaders/teams-schedules.loader';
@@ -38,7 +45,10 @@ import { TeamsTableContainerComponent } from './views/teams-table/teams-table-co
     SchedulesComponent,
     SchedulesSortComponent,
     SchedulesIncludeVenueFilterComponent,
-    SchedulesTableComponent
+    SchedulesTableComponent,
+    MatchdaysFirstGamesComponent,
+    FirstGamesByMatchdayComponent,
+    FirstGamesByTeamsComponent
   ],
   imports: [SharedModule, CoreModule, CommonModule, TeamsRoutingModule, AngularMaterialModule, FblCoreModule],
   providers: [
@@ -46,7 +56,11 @@ import { TeamsTableContainerComponent } from './views/teams-table/teams-table-co
     TeamsSchedulesByFormResolver,
     TeamsSchedulesLoader,
     TeamsSchedulesByFormGuard,
-    TeamScheduleColorsService
+    TeamScheduleColorsService,
+    NextMatchdaysFirstGamesLoader,
+    NextMatchdaysFirstGamesResolver,
+    TeamsMatchdaysFirstGamesResolver,
+    TeamMatchdaysFirstsGamesLoader
   ]
 })
 export class TeamsModule {}
