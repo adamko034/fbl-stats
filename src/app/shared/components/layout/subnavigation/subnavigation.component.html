@@ -6,19 +6,12 @@
   fxLayoutGap="30px"
 >
   <div class="link" *ngFor="let link of links | orderBy: 'order'">
-    <a
-      *ngIf="!link.isDropdown"
-      [ngClass]="{ 'hvr-grow': !rla.isActive }"
-      [routerLink]="link.path"
-      #rla="routerLinkActive"
-      routerLinkActive="active"
-      >{{ link.text }}</a
-    >
+    <a *ngIf="!link.isDropdown" [routerLink]="link.path" #rla="routerLinkActive" routerLinkActive="active">{{
+      link.text
+    }}</a>
     <div class="dropdown" *ngIf="link.isDropdown">
       <span class="dropdown-button" fxLayoutAlign="start center">
-        <span [ngClass]="{ active: isDropdownActive(link.text) }"
-          >{{ link.text }} <span *ngIf="isDropdownActive(link.text)">: {{ activeLinkFromDropdown(link) }}</span></span
-        >
+        <span [ngClass]="{ active: isDropdownActive(link.key) }">{{ link.text }}</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </span>
       <div class="dropdown-content">

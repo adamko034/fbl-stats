@@ -11,7 +11,7 @@
     class="team-link hvr-small hvr-underline-from-center"
     ngClass.sm="team-link-sm"
   >
-    <a [routerLink]="'/lineups/teams/' + team.shortName">
+    <a [routerLink]="team.shortName">
       <app-team-logo *ngIf="(screen$ | async) > screens.SM" [height]="40" [team]="team.shortName"></app-team-logo>
       <app-team-logo *ngIf="(screen$ | async) <= screens.SM" [height]="30" [team]="team.shortName"></app-team-logo>
     </a>

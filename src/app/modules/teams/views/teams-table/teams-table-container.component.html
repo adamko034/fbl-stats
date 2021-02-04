@@ -1,4 +1,6 @@
-<h1>{{ 'Bundesliga table' | uppercase }}</h1>
+<app-view-title>
+  <span title>{{ 'Bundesliga table' | uppercase }}</span>
+</app-view-title>
 <app-filters-content-layout>
   <app-teams-table-filters filters (filtersChange)="onFiltersChange($event)"></app-teams-table-filters>
   <app-teams-table content [teams]="teamsToDisplay"></app-teams-table>

@@ -4,6 +4,8 @@ h2 {
 
 .first-games-by-teams-container {
   ul {
+    padding: 0;
+
     li {
       list-style: none;
       padding: 17px 20px;
@@ -29,7 +31,7 @@ h2 {
         padding: 3px 7px;
         color: #fff;
 
-        &-red {
+        &-played {
           background-color: rgba($color: #000000, $alpha: 0.5);
         }
 

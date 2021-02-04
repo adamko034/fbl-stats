@@ -1,4 +1,4 @@
-<div class="my-team-table-container" fxLayout="column" fxLayoutGap="25px">
+<div class="my-team-table-container" fxLayout="column" fxLayoutGap="25px" *ngIf="players$ | async">
   <div
     class="my-team-filters"
     fxLayout.lt-sm="column"

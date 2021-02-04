@@ -1,4 +1,5 @@
 <mat-card
+  *ngIf="players$ | async"
   ngClass.lt-sm="my-team-totals-card-mobile"
   class="my-team-totals-card"
   fxLayoutAlign="start center"

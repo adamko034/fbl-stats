@@ -44,6 +44,11 @@ export class MyTeamTableContainerComponent implements OnInit {
       map(([players, filters, lastMatchday]) => {
         Logger.logDev('my tam table container, on init subscription');
         const filter = new MyTeamPlayersFitler(filters, lastMatchday);
+
+        if (!players || players.length === 0) {
+          return [];
+        }
+
         return new ArrayStream<Player>(players)
           .filter(filter)
           .convert(this.playersUiConverter)

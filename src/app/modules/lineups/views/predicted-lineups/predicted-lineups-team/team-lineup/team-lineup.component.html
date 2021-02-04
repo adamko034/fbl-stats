@@ -6,7 +6,8 @@
 >
   <div class="title">
     <span class="source-name">{{ lineup.sourceName }}</span>
-    <a class="link" [href]="lineup.sourceUrl" target="blank">
+    <a class="link" [href]="lineup.sourceUrl" target="blank"
+      >source
       <fa-icon [icon]="['fas', 'external-link-alt']"></fa-icon>
     </a>
   </div>
@@ -45,7 +46,7 @@
         class="player"
         [ngClass]="{ 'player-2-lines': isMoreThanFourCentrals(players) }"
         fxLayout="center center"
-        *ngFor="let player of players | filterBy: ['subPosition']:'1' | orderBy: 'subPosition'"
+        *ngFor="let player of players | filterBy: ['subPosition']:'2' | orderBy: 'subPosition'"
       >
         <span>{{ player.lastName }}</span>
       </div>

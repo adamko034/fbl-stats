@@ -12,7 +12,6 @@ import { PredictedLineupsMatchdayComponent } from 'src/app/modules/lineups/views
 import { PredictedLineupsSourcesComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-main/predicted-lineups-sources/predicted-lineups-sources.component';
 import { PredictedLineupsTeamNavigationComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team-navigation/predicted-lineups-team-navigation.component';
 import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
-import { PredictedLineupsComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/team-lineup/team-lineup.component';
 
@@ -22,7 +21,6 @@ import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups
     PredictedLineupsTeamNavigationComponent,
     PredictedLineupsTeamComponent,
     PredictedLineupsMatchdayComponent,
-    PredictedLineupsComponent,
     PredictedLineupsMainComponent,
     PredictedLineupsSourcesComponent,
     TeamLineupComponent

@@ -22,6 +22,7 @@ const routes: Routes = [
       { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) }
     ]
   },
+
   { path: '**', redirectTo: 'fantasy', pathMatch: 'full' }
 ];
 

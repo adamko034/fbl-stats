@@ -24,12 +24,18 @@ const routes: Routes = [
         component: TeamsListComponent
       },
       {
-        path: 'firstGames',
-        component: MatchdaysFirstGamesComponent,
-        resolve: { matchdays: NextMatchdaysFirstGamesResolver, teams: TeamsMatchdaysFirstGamesResolver }
+        path: 'matchdays',
+        children: [
+          {
+            path: 'firstGames',
+            component: MatchdaysFirstGamesComponent,
+            resolve: { matchdays: NextMatchdaysFirstGamesResolver, teams: TeamsMatchdaysFirstGamesResolver }
+          }
+        ]
       },
+
       {
-        path: 'schedules',
+        path: 'nextFixtures',
         component: TeamsSchedulesComponent,
         children: [
           { path: '', redirectTo: 'byRank', pathMatch: 'full' },
@@ -53,7 +59,8 @@ const routes: Routes = [
         resolve: { state: TeamsResolver },
         component: TeamsTableContainerComponent
       },
-      { path: '', redirectTo: 'table', pathMatch: 'full' }
+      { path: '', redirectTo: 'table', pathMatch: 'full' },
+      { path: 'matchdays', redirectTo: 'matchdays/firstGames', pathMatch: 'full' }
     ]
   }
 ];

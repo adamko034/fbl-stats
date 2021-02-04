@@ -5,10 +5,13 @@
 
   li {
     cursor: pointer;
-    padding: 10px 20px;
 
     &:focus {
       outline: none !important;
+    }
+
+    a {
+      padding: 10px 20px;
     }
 
     a,
@@ -51,6 +54,7 @@
 
       a,
       span.dropdown-button {
+        letter-spacing: 0;
         cursor: pointer;
         display: block;
         padding: 10px 20px;

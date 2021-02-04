@@ -1,7 +1,13 @@
-<div class="my-team-content animate__animated animate__fadeIn" fxLayout="column" fxLayoutGap="25px">
-  <app-my-team-selection class="my-team-selection"></app-my-team-selection>
-  <div>
-    <mat-divider></mat-divider>
+<div class="my-team-content animate__animated animate__fadeIn">
+  <app-view-title>
+    <span title>MY TEAM</span>
+  </app-view-title>
+
+  <div fxLayout="column" fxLayoutGap="25px">
+    <app-my-team-selection class="my-team-selection"></app-my-team-selection>
+    <div>
+      <mat-divider></mat-divider>
+    </div>
+    <app-my-team-table-container></app-my-team-table-container>
   </div>
-  <app-my-team-table-container></app-my-team-table-container>
 </div>

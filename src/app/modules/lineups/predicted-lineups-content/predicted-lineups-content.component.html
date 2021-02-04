@@ -1,3 +1,9 @@
-<div class="animate__animated animate__fadeIn">
-  <router-outlet></router-outlet>
-</div>
+<app-view-layout>
+  <div navigation>
+    <app-predicted-lineups-team-navigation></app-predicted-lineups-team-navigation>
+  </div>
+
+  <div content>
+    <router-outlet></router-outlet>
+  </div>
+</app-view-layout>

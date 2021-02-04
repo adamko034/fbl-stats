@@ -38,20 +38,23 @@ export class Navigation {
         { order: 1, path: '/bundesliga/table', text: 'table' },
         {
           order: 2,
-          path: '/bundesliga/schedules',
-          text: 'schedules',
-          key: 'schedules',
+          path: '/bundesliga/nextFixtures',
+          text: 'next fixtures',
+          key: 'nextFixtures',
           isDropdown: true,
           dropdownIndex: 2,
           dropdownLinks: [
-            { order: 1, path: '/bundesliga/schedules/byRank', text: 'by table rank' },
-            { order: 2, path: '/bundesliga/schedules/byForm', text: 'by team form' }
+            { order: 1, path: '/bundesliga/nextFixtures/byRank', text: 'by table rank' },
+            { order: 2, path: '/bundesliga/nextFixtures/byForm', text: 'by team form' }
           ]
         },
         {
           order: 3,
           path: '/bundesliga/firstGames',
-          text: 'matchdays first games'
+          text: 'matchdays',
+          key: 'matchdays',
+          isDropdown: true,
+          dropdownLinks: [{ order: 1, path: '/bundesliga/matchdays/firstGames', text: 'first games' }]
         }
       ]
     },

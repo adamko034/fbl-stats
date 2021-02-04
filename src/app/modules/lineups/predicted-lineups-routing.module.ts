@@ -8,19 +8,12 @@ import { PredictedLineupsSourcesResolver } from 'src/app/modules/lineups/resolve
 import { PredictedLineupTeamResolver } from 'src/app/modules/lineups/resolvers/predicted-lineups-team.resolver';
 import { PredictedLineupsMainComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-main/predicted-lineups-main.component';
 import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
-import { PredictedLineupsComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: PredictedLineupsContentComponent,
-    redirectTo: 'teams',
-    pathMatch: 'full'
-  },
-  {
     path: 'teams',
     canActivate: [PredictedLineupsLoadedGuard],
-    component: PredictedLineupsComponent,
+    component: PredictedLineupsContentComponent,
     resolve: { teams: TeamsResolver },
     children: [
       {
@@ -34,6 +27,11 @@ const routes: Routes = [
         resolve: { team: PredictedLineupTeamResolver }
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: 'teams',
+    pathMatch: 'full'
   }
 ];
 
