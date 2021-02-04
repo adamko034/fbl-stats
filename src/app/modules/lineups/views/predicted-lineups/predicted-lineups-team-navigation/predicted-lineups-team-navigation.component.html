@@ -5,13 +5,13 @@
   fxLayoutAlign="center center"
   fxLayoutGap="10px"
 >
-  <div
-    *ngFor="let team of teams$ | async | orderBy: 'rank'"
-    routerLinkActive="team-link-active"
-    class="team-link hvr-small hvr-underline-from-center"
-    ngClass.sm="team-link-sm"
-  >
-    <a [routerLink]="team.shortName">
+  <div *ngFor="let team of teams$ | async | orderBy: 'rank'">
+    <a
+      routerLinkActive="team-link-active"
+      class="team-link hvr-small hvr-underline-from-center"
+      ngClass.sm="team-link-sm"
+      [routerLink]="team.shortName"
+    >
       <app-team-logo *ngIf="(screen$ | async) > screens.SM" [height]="40" [team]="team.shortName"></app-team-logo>
       <app-team-logo *ngIf="(screen$ | async) <= screens.SM" [height]="30" [team]="team.shortName"></app-team-logo>
     </a>
