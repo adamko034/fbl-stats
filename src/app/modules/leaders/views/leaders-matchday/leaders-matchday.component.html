@@ -1,0 +1,16 @@
+<div *ngIf="matchday$ | async">
+  <app-view-title>
+    <h1 title class="view-title-h1">Fantasy Bundesliga Leaders Stats</h1>
+    <span class="view-subtitle-span" subtitle
+      >Here are some statistics after matchday {{ (matchday$ | async).matchday }} for global TOP 100 #FantasyBL
+      managers.</span
+    >
+  </app-view-title>
+  <div class="leaders-matchday-content" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="30px">
+      <app-min-max-avg title="Team Points" valueSuffix="pts" [minMaxAvg]="(matchday$ | async).points"></app-min-max-avg>
+      <app-min-max-avg title="Team Value" valueSuffix="M" [minMaxAvg]="(matchday$ | async).teamValue"></app-min-max-avg>
+      <app-leaders-formations-usage [formations]="(matchday$ | async).formations"></app-leaders-formations-usage>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,10 @@ const routes: Routes = [
         path: 'myteam',
         loadChildren: () => import('../my-team/my-team.module').then((m) => m.MyTeamModule)
       },
+      {
+        path: 'leaders',
+        loadChildren: () => import('../leaders/leaders.module').then((m) => m.LeadersModule)
+      },
       { path: 'players', component: ContentComponent },
       {
         path: 'lists',

@@ -24,6 +24,11 @@ export class Navigation {
             { order: 2, path: '/fantasy/lists/unavailable', text: 'unavailable' },
             { order: 3, path: '/fantasy/lists/returning', text: 'returning' }
           ]
+        },
+        {
+          order: 4,
+          path: '/fantasy/leaders',
+          text: 'leaders'
         }
       ]
     },

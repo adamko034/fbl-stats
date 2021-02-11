@@ -1,0 +1,13 @@
+<mat-card>
+  <app-title-underlined>
+    <h3>{{ title }}</h3>
+  </app-title-underlined>
+  <div class="text-value-card-content" fxLayoutAlign="center">
+    <table class="text-value-table">
+      <tr *ngFor="let item of items" [ngClass]="{ bold: item.bold }">
+        <td [ngStyle]="item.style">{{ item.text }}</td>
+        <td>{{ item.value }}</td>
+      </tr>
+    </table>
+  </div>
+</mat-card>

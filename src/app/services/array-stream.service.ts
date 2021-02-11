@@ -53,6 +53,11 @@ export class ArrayStream<T> {
     return this.array[0];
   }
 
+  public take(n: number): ArrayStream<T> {
+    this.array = this.array.slice(0, n);
+    return this;
+  }
+
   public takeWhereFieldValue(n: number, field: string): ArrayStream<T> {
     const minItem = this.array[n - 1];
     if (!!minItem) {

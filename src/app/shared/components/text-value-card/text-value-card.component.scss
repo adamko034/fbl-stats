@@ -1,0 +1,16 @@
+h3 {
+  margin-bottom: 0;
+}
+
+.text-value-card-content {
+  margin-top: 10px;
+
+  .text-value-table {
+    td:first-child {
+      padding-right: 20px;
+    }
+    td:nth-child(2) {
+      float: right;
+    }
+  }
+}
