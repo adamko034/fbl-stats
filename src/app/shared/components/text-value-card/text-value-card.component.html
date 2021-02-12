@@ -1,13 +1,42 @@
-<mat-card>
-  <app-title-underlined>
+<mat-card *ngIf="showInMatCard">
+  <ng-template [ngTemplateOutlet]="content"></ng-template>
+</mat-card>
+
+<div *ngIf="!showInMatCard">
+  <ng-template [ngTemplateOutlet]="content"></ng-template>
+</div>
+
+<ng-template #content>
+  <app-title-underlined padding="0 10px" *ngIf="!!title">
     <h3>{{ title }}</h3>
   </app-title-underlined>
-  <div class="text-value-card-content" fxLayoutAlign="center">
-    <table class="text-value-table">
-      <tr *ngFor="let item of items" [ngClass]="{ bold: item.bold }">
-        <td [ngStyle]="item.style">{{ item.text }}</td>
-        <td>{{ item.value }}</td>
-      </tr>
-    </table>
+  <div class="text-value-card-content" fxLayout="column" fxLayoutGap="5px">
+    <div fxLayoutAlign="start">
+      <table class="text-value-table">
+        <tr
+          *ngFor="let item of items"
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          [ngClass]="{ bold: item.bold, 'bottom-border': showBottomBorder }"
+        >
+          <td>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+              <app-team-logo *ngIf="!!item.teamShort" [height]="25" [team]="item.teamShort"></app-team-logo>
+              <span [ngStyle]="item.style">{{ item.text }}</span>
+            </div>
+          </td>
+          <td>{{ item.value }}</td>
+        </tr>
+      </table>
+    </div>
+    <span
+      *ngIf="showMoreButton"
+      fxLayoutAlign="flex-end center"
+      class="more-button hvr-icon-forward red bold pointer"
+      (click)="onShowMoreClick()"
+    >
+      Show all
+      <mat-icon class="hvr-icon">keyboard_arrow_right</mat-icon>
+    </span>
   </div>
-</mat-card>
+</ng-template>

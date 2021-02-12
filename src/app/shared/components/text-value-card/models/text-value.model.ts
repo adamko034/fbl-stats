@@ -1,6 +1,7 @@
 export interface TextValue {
   text: string;
   value: string;
-  bold: boolean;
+  bold?: boolean;
   style?: any;
+  teamShort?: string;
 }

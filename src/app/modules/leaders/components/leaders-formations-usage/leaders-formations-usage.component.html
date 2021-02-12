@@ -1,1 +1,6 @@
-<app-text-value-card title="Formations" [items]="items"></app-text-value-card>
+<app-text-value-card
+  title="Formations"
+  [items]="items"
+  [showMoreButton]="true"
+  (showMoreClick)="onShowMoreClick()"
+></app-text-value-card>

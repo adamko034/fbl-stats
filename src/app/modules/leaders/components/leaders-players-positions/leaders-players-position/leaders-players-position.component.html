@@ -1,0 +1,26 @@
+<div class="leaders-players-by-position-container">
+  <mat-card>
+    <mat-card-title>
+      <h2>{{ title | uppercase }}</h2>
+    </mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <app-text-value-card
+          [showMoreButton]="true"
+          [showInMatCard]="false"
+          title="Common Picks"
+          [items]="commonPlayers"
+          (showMoreClick)="onShowMoreClick('players')"
+        ></app-text-value-card>
+        <app-text-value-card
+          [showMoreButton]="true"
+          [showInMatCard]="false"
+          title="Common Combinations"
+          [items]="combinations"
+          [showBottomBorder]="isMobile$ | async"
+          (showMoreClick)="onShowMoreClick('combinations')"
+        ></app-text-value-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

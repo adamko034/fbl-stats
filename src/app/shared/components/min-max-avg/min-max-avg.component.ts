@@ -15,10 +15,10 @@ export class MinMaxAvgComponent {
 
   public get items(): TextValue[] {
     const _items: TextValue[] = [];
-    Object.keys(this.minMaxAvg).forEach((key) => {
-      _items.push({ text: key.toUpperCase(), value: this.getValueText(key), bold: key === 'avg' });
-    });
 
+    _items.push({ text: 'AVG', value: this.getValueText('avg'), bold: true });
+    _items.push({ text: 'MIN', value: this.getValueText('min') });
+    _items.push({ text: 'MAX', value: this.getValueText('max') });
     return _items;
   }
 

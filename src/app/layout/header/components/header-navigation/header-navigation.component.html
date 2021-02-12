@@ -4,7 +4,7 @@
   </li>
 </ul>
 
-<ul *ngIf="mode == modes.VERTICAL" class="navigation" fxLayout="column" fxLayoutAlign="start center">
+<ul *ngIf="mode == modes.VERTICAL" class="navigation" fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="20px">
   <li *ngFor="let link of links | orderBy: 'order'">
     <a *ngIf="!link.isDropdown" [routerLink]="link.path" routerLinkActive="active" (click)="closeSidenav()">{{
       link.text
