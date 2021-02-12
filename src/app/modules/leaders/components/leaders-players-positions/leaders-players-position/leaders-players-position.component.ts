@@ -38,7 +38,7 @@ export class LeadersPlayersPositionComponent {
     }
 
     return new ArrayStream<LeadersPlayersCombinationUsage>(this.data.combinations)
-      .convert(new LeadersUsageTextValueConverter('combination'))
+      .convert(new LeadersUsageTextValueConverter('combination', { padding: '3px 0' }))
       .collect();
   }
 
