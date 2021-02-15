@@ -15,7 +15,11 @@ import { LeadersTextValueDialgComponent } from '../dialogs/leaders-text-value-di
 export class LeadersFormationsUsageComponent {
   @Input() formations: LeadersFormation[];
 
-  private converter = new LeadersUsageTextValueConverter('formation', { 'letter-spacing': '2px' });
+  private converter = new LeadersUsageTextValueConverter({
+    textField: 'formation',
+    valueType: 'usage',
+    style: { 'letter-spacing': '2px' }
+  });
 
   public get items(): TextValue[] {
     if (!!this.formations) {

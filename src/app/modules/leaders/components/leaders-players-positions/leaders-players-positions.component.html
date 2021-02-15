@@ -1,22 +1,18 @@
-<div class="leaders-players-posionts-container" fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px grid">
+<div class="leaders-players-posionts-container" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px grid">
   <app-leaders-players-position
     title="Goalkeepers"
     [data]="getLeadersPlayersByPosition('gk')"
-    (showAllClick)="onShowAllClick($event, 'gk')"
   ></app-leaders-players-position>
   <app-leaders-players-position
     title="Defenders"
     [data]="getLeadersPlayersByPosition('def')"
-    (showAllClick)="onShowAllClick($event, 'def')"
   ></app-leaders-players-position>
   <app-leaders-players-position
     title="Midfielders"
     [data]="getLeadersPlayersByPosition('mid')"
-    (showAllClick)="onShowAllClick($event, 'mid')"
   ></app-leaders-players-position>
   <app-leaders-players-position
     title="Forwards"
     [data]="getLeadersPlayersByPosition('for')"
-    (showAllClick)="onShowAllClick($event, 'for')"
   ></app-leaders-players-position>
 </div>

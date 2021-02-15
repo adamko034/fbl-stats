@@ -1,6 +1,8 @@
-import { LeadersPlayersCombination } from './leaders-players-combination.model';
+import { LeadersPlayersCombination as LeadersPlayersCombination } from './leaders-players-combination.model';
 
 export interface LeadersPlayersCombinations {
-  top3: LeadersPlayersCombination;
-  all: LeadersPlayersCombination;
+  goalkeepers: LeadersPlayersCombination[];
+  defenders: LeadersPlayersCombination[];
+  midfielders: LeadersPlayersCombination[];
+  forwards: LeadersPlayersCombination[];
 }

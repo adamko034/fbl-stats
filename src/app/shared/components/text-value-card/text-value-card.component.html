@@ -12,7 +12,7 @@
   </app-title-underlined>
   <div class="text-value-card-content" fxLayout="column" fxLayoutGap="5px">
     <div fxLayoutAlign="start">
-      <table class="text-value-table">
+      <table class="text-value-table" *ngIf="!!items && items.length > 0">
         <tr
           *ngFor="let item of items"
           fxLayout="row"
@@ -25,7 +25,32 @@
               <span [ngStyle]="item.style">{{ item.text }}</span>
             </div>
           </td>
-          <td>{{ item.value }}</td>
+          <td>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+              <span>{{ item.value }}</span>
+              <span class="item-difference" *ngIf="item.change != null">
+                <span *ngIf="item.change > 0"
+                  ><fa-icon class="item-difference-icon green" [icon]="['fas', 'arrow-up']"></fa-icon>+{{
+                    item.change
+                  }}</span
+                >
+                <span *ngIf="item.change < 0">
+                  <fa-icon class="item-difference-icon red" [icon]="['fas', 'arrow-down']"></fa-icon>{{ item.change }}
+                </span>
+
+                <fa-icon
+                  class="item-difference-icon blue"
+                  *ngIf="item.change == 0"
+                  [icon]="['fas', 'equals']"
+                ></fa-icon>
+              </span>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table class="text-value-table" *ngIf="!items || items.length === 0">
+        <tr>
+          <td>Not applicable</td>
         </tr>
       </table>
     </div>

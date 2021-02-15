@@ -7,4 +7,5 @@ export interface LeaderPlayer {
   matchdayPoints: number;
   usage: number;
   teamShort: string;
+  usageDifference: number;
 }

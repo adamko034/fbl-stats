@@ -3,7 +3,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faExternalLinkAlt, faSortAmountDownAlt, faSortAmountUpAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowDown,
+  faArrowUp,
+  faEquals,
+  faExternalLinkAlt,
+  faSortAmountDownAlt,
+  faSortAmountUpAlt
+} from '@fortawesome/free-solid-svg-icons';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ExpansionPanelComponent } from 'src/app/shared/components/expansion-panel/expansion-panel.component';
@@ -93,6 +100,14 @@ import { WherePipe } from './pipes/where.pipe';
 })
 export class SharedModule {
   constructor(private faLibrary: FaIconLibrary) {
-    this.faLibrary.addIcons(faTwitter, faSortAmountDownAlt, faSortAmountUpAlt, faExternalLinkAlt);
+    this.faLibrary.addIcons(
+      faTwitter,
+      faSortAmountDownAlt,
+      faSortAmountUpAlt,
+      faExternalLinkAlt,
+      faArrowUp,
+      faArrowDown,
+      faEquals
+    );
   }
 }

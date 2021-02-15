@@ -16,16 +16,23 @@ export class ArrayStream<T> {
     return this;
   }
 
-  public orderBy(field: string, order: 'asc' | 'dsc' = 'asc'): ArrayStream<T> {
-    if (isNaN(Number(this.array[0][field]))) {
-      if (order === 'dsc') {
-        field = `-${field}`;
-      }
+  public filterQuick(func: (obj: T) => boolean): ArrayStream<T> {
+    this.array = this.array.filter(func);
+    return this;
+  }
 
-      this.array = new OrderByPipe().transform<T[]>(this.array, field);
-    } else {
-      const predicate = order === 'dsc' ? (a, b) => b[field] - a[field] : (a, b) => a[field] - b[field];
-      this.array = this.array.sort(predicate);
+  public orderBy(field: string, order: 'asc' | 'dsc' = 'asc'): ArrayStream<T> {
+    if (this.array.length > 0) {
+      if (isNaN(Number(this.array[0][field]))) {
+        if (order === 'dsc') {
+          field = `-${field}`;
+        }
+
+        this.array = new OrderByPipe().transform<T[]>(this.array, field);
+      } else {
+        const predicate = order === 'dsc' ? (a, b) => b[field] - a[field] : (a, b) => a[field] - b[field];
+        this.array = this.array.sort(predicate);
+      }
     }
 
     return this;
