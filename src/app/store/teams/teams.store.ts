@@ -70,6 +70,10 @@ export class TeamsStore {
     );
   }
 
+  public getBy(teamShort: string): Team {
+    return this.state[teamShort];
+  }
+
   private send(): void {
     this.state$.next({ ...this.state });
   }

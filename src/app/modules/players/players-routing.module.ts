@@ -23,6 +23,10 @@ const routes: Routes = [
         path: 'leaders',
         loadChildren: () => import('../leaders/leaders.module').then((m) => m.LeadersModule)
       },
+      {
+        path: 'our-picks',
+        loadChildren: () => import('../our-picks/our-picks.module').then((m) => m.OurPicksModule)
+      },
       { path: 'players', component: ContentComponent },
       {
         path: 'lists',

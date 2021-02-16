@@ -29,6 +29,11 @@ export class Navigation {
           order: 4,
           path: '/fantasy/leaders',
           text: 'leaders'
+        },
+        {
+          order: 5,
+          path: '/fantasy/our-picks',
+          text: 'our-picks'
         }
       ]
     },

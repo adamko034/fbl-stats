@@ -1,0 +1,5 @@
+<div class="our-picks-players-container" fxLayout="column">
+  <div class="player" *ngFor="let player of ourPicks.players | orderBy: 'order'">
+    {{ player.name }}
+  </div>
+</div>

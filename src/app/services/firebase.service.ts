@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, take } from 'rxjs/operators';
 import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
-import { Team } from 'src/app/store/teams/models/team.model';
 import { environment } from 'src/environments/environment';
+import { OurPicks } from '../store/our-picks/models/our-picks.model';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
@@ -40,14 +40,29 @@ export class FirebaseService {
       );
   }
 
-  public getTeam(teamShort: string): Observable<Team> {
-    return this.firestore
-      .collection('teams')
-      .doc<Team>(teamShort)
-      .valueChanges()
-      .pipe(
-        take(1),
-        map((s) => ({ ...s, shortName: teamShort }))
-      );
+  public getOurPicks(matchday: number): Observable<OurPicks> {
+    return of({
+      bargains: [123, 321],
+      players: [
+        { playerId: 123, order: 2 },
+        { playerId: 321, order: 1 },
+        { playerId: 46, order: 5 },
+        { playerId: 345, order: 3 },
+        { playerId: 111, order: 4 }
+      ],
+      differentials: [43]
+    });
+    // return this.firestore
+    //   .collection('our-picks')
+    //   .doc<OurPicks>(matchday.toString())
+    //   .valueChanges()
+    //   .pipe(
+    6; //     take(1),
+    //     map((ourPicks) => (!ourPicks ? {} : ourPicks)),
+    //     catchError(() => {
+    //       this.errorService.sendFirebaseError();
+    //       return [];
+    //     })
+    //   );
   }
 }
