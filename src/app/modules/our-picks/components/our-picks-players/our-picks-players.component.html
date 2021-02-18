@@ -1,5 +1,5 @@
-<div class="our-picks-players-container" fxLayout="column">
+<div class="our-picks-players-container" fxLayout="column" fxLayoutGap="20px">
   <div class="player" *ngFor="let player of ourPicks.players | orderBy: 'order'">
-    {{ player.name }}
+    <app-our-picks-player [player]="player"></app-our-picks-player>
   </div>
 </div>

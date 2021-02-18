@@ -2,6 +2,8 @@
   <h1 title class="view-title-h1">Our Top Picks FOR upcoming matchday</h1>
 </app-view-title>
 
-<app-filters-content-layout>
-  <app-our-picks-players content [ourPicks]="ourPicks$ | async"></app-our-picks-players>
-</app-filters-content-layout>
+<app-view-layout>
+  <app-filters-content-layout content>
+    <app-our-picks-players content [ourPicks]="ourPicks$ | async"></app-our-picks-players>
+  </app-filters-content-layout>
+</app-view-layout>

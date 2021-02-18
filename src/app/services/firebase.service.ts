@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { catchError, map, take } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
 import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
@@ -50,14 +50,10 @@ export class FirebaseService {
         { playerId: 345, order: 3 },
         { playerId: 111, order: 4 }
       ],
-      differentials: [43]
+      differentials: [321],
+      mustHave: [123, 321],
+      premium: [111, 321]
     });
-    // return this.firestore
-    //   .collection('our-picks')
-    //   .doc<OurPicks>(matchday.toString())
-    //   .valueChanges()
-    //   .pipe(
-    6; //     take(1),
     //     map((ourPicks) => (!ourPicks ? {} : ourPicks)),
     //     catchError(() => {
     //       this.errorService.sendFirebaseError();

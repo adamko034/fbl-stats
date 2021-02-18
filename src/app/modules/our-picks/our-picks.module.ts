@@ -11,9 +11,10 @@ import { OurPicksLoadedGuard } from './guards/our-picks-loaded.guard';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { OurPicksPlayersComponent } from './components/our-picks-players/our-picks-players.component';
+import { OurPicksPlayerComponent } from './components/our-picks-players/our-picks-player/our-picks-player.component';
 
 @NgModule({
-  declarations: [OurPicksContentComponent, OurPicksMatchdayComponent, OurPicksPlayersComponent],
+  declarations: [OurPicksContentComponent, OurPicksMatchdayComponent, OurPicksPlayersComponent, OurPicksPlayerComponent],
   imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule],
   providers: [OurPicksLatestGuard, OurPicksPlayersResolver, OurPicksPlayersLoader, OurPicksLoadedGuard]
 })

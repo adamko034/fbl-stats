@@ -69,7 +69,9 @@ export class OurPicksPlayersLoader {
         lastName: player.lastName,
         position: player.position,
         isBargain: picks.bargains.includes(pick.playerId),
-        isDifferential: picks.differentials.includes(pick.playerId)
+        isDifferential: picks.differentials.includes(pick.playerId),
+        isMustHave: picks.mustHave.includes(pick.playerId),
+        isPremium: picks.premium.includes(pick.playerId)
       };
     });
   }

@@ -1,0 +1,49 @@
+<mat-card class="our-picks-player-container">
+  <div fxLayoutAlign="start center" fxLayoutGap="40px">
+    <div class="circle red-background">
+      <span class="circle-text">{{ player.order }}</span>
+    </div>
+    <div class="player-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <app-team-logo [team]="player.team.teamShort" [height]="30"></app-team-logo>
+      <span class="player-header-name">{{ player.name }}</span>
+    </div>
+
+    <div class="player-header-sub" fxLayout="row" fxLayoutAlign="star center" fxLayoutGap="10px">
+      <span class="player-header-sub-item">{{ player.position | uppercase }}</span>
+      <span class="player-header-sub-item">{{ player.fantasy.price }}M</span>
+      <span class="player-header-sub-item">{{ player.fantasy.popularity }}%</span>
+      <span class="player-header-sub-item">TP: {{ player.fantasy.totalPoints }}</span>
+    </div>
+
+    <div class="player-header-icons" fxLayoutAlign="star center" fxLayoutGap="15px">
+      <fa-icon
+        *ngIf="player.isMustHave"
+        class="icon text-icon green border-green"
+        fxLayoutAlign="center center"
+        matTooltip="must have"
+        [icon]="['fas', 'star']"
+      ></fa-icon>
+      <fa-icon
+        *ngIf="player.isBargain"
+        [icon]="['fas', 'piggy-bank']"
+        fxLayoutAlign="center center"
+        class="icon text-icon pink border-pink"
+        matTooltip="bargain pick"
+      ></fa-icon>
+      <span
+        *ngIf="player.isDifferential"
+        class="text-icon icon blue border-blue"
+        fxLayoutAlign="center center"
+        matTooltip="differential pick"
+        >%</span
+      >
+      <fa-icon
+        *ngIf="player.isPremium"
+        class="icon text-icon orange border-orange"
+        fxLayoutAlign="center center"
+        matTooltip="premium pick"
+        [icon]="['fas', 'crown']"
+      ></fa-icon>
+    </div>
+  </div>
+</mat-card>

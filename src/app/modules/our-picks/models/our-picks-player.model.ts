@@ -9,6 +9,8 @@ export interface OurPicksPlayer {
   position: string;
   isBargain: boolean;
   isDifferential: boolean;
+  isMustHave: boolean;
+  isPremium: boolean;
   team: OurPicksPlayerTeam;
   fantasy: OurPicksPlayerFantasy;
 }

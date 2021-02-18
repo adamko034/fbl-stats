@@ -4,4 +4,6 @@ export interface OurPicks {
   players: OurPick[];
   differentials: number[];
   bargains: number[];
+  mustHave: number[];
+  premium: number[];
 }

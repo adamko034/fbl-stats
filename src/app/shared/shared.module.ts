@@ -6,10 +6,13 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowDown,
   faArrowUp,
+  faCrown,
   faEquals,
   faExternalLinkAlt,
+  faPiggyBank,
   faSortAmountDownAlt,
-  faSortAmountUpAlt
+  faSortAmountUpAlt,
+  faStar
 } from '@fortawesome/free-solid-svg-icons';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
@@ -107,7 +110,10 @@ export class SharedModule {
       faExternalLinkAlt,
       faArrowUp,
       faArrowDown,
-      faEquals
+      faEquals,
+      faCrown,
+      faPiggyBank,
+      faStar
     );
   }
 }

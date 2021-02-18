@@ -140,6 +140,10 @@ mat-button-toggle.position-active {
   color: green;
 }
 
+.pink {
+  color: pink;
+}
+
 .hvr-underline-from-center:before,
 .hvr-underline-from-left:before {
   background: $mainColor !important;
@@ -256,4 +260,19 @@ span.view-subtitle-span {
 
 .pointer {
   cursor: pointer;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+
+  &-text {
+    font-size: 15px;
+  }
 }
