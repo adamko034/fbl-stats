@@ -14,7 +14,7 @@ export class OurPicksPlayersResolver implements Resolve<OurPicksPlayers> {
   public resolve(route: ActivatedRouteSnapshot): Observable<OurPicksPlayers> {
     Logger.logDev('our picks players resolver, resolving ...');
     return this.propertiesService.selectLastMatchday().pipe(
-      switchMap((lastMatchday) => this.ourPicksLoader.load(route.params.matchday, lastMatchday)),
+      switchMap((lastMatchday) => this.ourPicksLoader.load(+route.params.matchday - 1, lastMatchday)),
       first()
     );
   }

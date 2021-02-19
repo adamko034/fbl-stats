@@ -6,20 +6,24 @@ import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
 import { OurPicksStore } from 'src/app/store/our-picks/our-picks.store';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
+import { PlayerAttendancePredictionService } from '../../core/players/services/player-attendance-prediction.service';
 import { OurPicksPlayerFantasyMatchday } from '../models/our-picks-player-fantasy-matchday.model';
 import { OurPicksPlayerFantasy } from '../models/our-picks-player-fantasy.model';
 import { OurPicksPlayerTeam } from '../models/our-picks-player-team.model';
 import { OurPicksPlayer } from '../models/our-picks-player.model';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
+import { OurPicksTeamGame } from '../models/our-picks-team-game.model';
 
 @Injectable()
 export class OurPicksPlayersLoader {
   constructor(
     private ourPicksStore: OurPicksStore,
     private playersStore: PlayersStore,
-    private teamsStore: TeamsStore
+    private teamsStore: TeamsStore,
+    private predictionService: PlayerAttendancePredictionService
   ) {}
 
   public load(matchday: number, lastMatchday: number): Observable<OurPicksPlayers> {
@@ -57,7 +61,8 @@ export class OurPicksPlayersLoader {
 
       const ourPicksTeam: OurPicksPlayerTeam = {
         rank: team.rank,
-        teamShort: team.shortName
+        teamShort: team.shortName,
+        nextGames: this.getNextGames(team, lastMatchday)
       };
 
       return {
@@ -71,7 +76,8 @@ export class OurPicksPlayersLoader {
         isBargain: picks.bargains.includes(pick.playerId),
         isDifferential: picks.differentials.includes(pick.playerId),
         isMustHave: picks.mustHave.includes(pick.playerId),
-        isPremium: picks.premium.includes(pick.playerId)
+        isPremium: picks.premium.includes(pick.playerId),
+        prediction: this.predictionService.determine(player.nextGame.lineupPredictions)
       };
     });
   }
@@ -80,5 +86,17 @@ export class OurPicksPlayersLoader {
     return player.games
       .filter((g) => lastMatchday - 3 < g.matchday && g.matchday <= lastMatchday)
       .map(({ matchday, points }) => ({ matchday, points }));
+  }
+
+  private getNextGames(team: Team, lastMatchday: number): OurPicksTeamGame[] {
+    return team.games
+      .filter((g) => lastMatchday < g.matchday && g.matchday <= lastMatchday + 3)
+      .map((g) => ({
+        isHome: g.isHome,
+        matchday: g.matchday,
+        opponentShort: g.opponent,
+        opponentRank: g.opponentRank,
+        isFirstGame: g.isMatchdayFirstGame
+      }));
   }
 }

@@ -1,3 +1,4 @@
+import { PlayerAttendancePrediction } from '../../core/players/models/player-attendance-prediction.enum';
 import { OurPicksPlayerFantasy } from './our-picks-player-fantasy.model';
 import { OurPicksPlayerTeam } from './our-picks-player-team.model';
 
@@ -13,4 +14,5 @@ export interface OurPicksPlayer {
   isPremium: boolean;
   team: OurPicksPlayerTeam;
   fantasy: OurPicksPlayerFantasy;
+  prediction: PlayerAttendancePrediction;
 }

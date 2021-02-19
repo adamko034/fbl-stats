@@ -12,9 +12,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { OurPicksPlayersComponent } from './components/our-picks-players/our-picks-players.component';
 import { OurPicksPlayerComponent } from './components/our-picks-players/our-picks-player/our-picks-player.component';
+import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
+import { OurPicksMatchdayDescriptionComponent } from './views/our-picks-matchday/our-picks-matchday-description/our-picks-matchday-description.component';
 
 @NgModule({
-  declarations: [OurPicksContentComponent, OurPicksMatchdayComponent, OurPicksPlayersComponent, OurPicksPlayerComponent],
+  declarations: [OurPicksContentComponent, OurPicksMatchdayComponent, OurPicksPlayersComponent, OurPicksPlayerComponent, OurPickIconComponent, OurPicksMatchdayDescriptionComponent],
   imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule],
   providers: [OurPicksLatestGuard, OurPicksPlayersResolver, OurPicksPlayersLoader, OurPicksLoadedGuard]
 })

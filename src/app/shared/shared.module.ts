@@ -39,6 +39,7 @@ import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.compone
 import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
+import { FieldPipe } from './pipes/field.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 
@@ -68,7 +69,8 @@ import { WherePipe } from './pipes/where.pipe';
     MatchdayFixtureComponent,
     MatchdayComponent,
     MinMaxAvgComponent,
-    TextValueCardComponent
+    TextValueCardComponent,
+    FieldPipe
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -98,7 +100,8 @@ import { WherePipe } from './pipes/where.pipe';
     MatchdayComponent,
     MatchdayFixtureComponent,
     MinMaxAvgComponent,
-    TextValueCardComponent
+    TextValueCardComponent,
+    FieldPipe
   ]
 })
 export class SharedModule {

@@ -1,49 +1,84 @@
 <mat-card class="our-picks-player-container">
-  <div fxLayoutAlign="start center" fxLayoutGap="40px">
-    <div class="circle red-background">
-      <span class="circle-text">{{ player.order }}</span>
-    </div>
-    <div class="player-header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+  <div class="player" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="start center" fxLayout.xs="column">
+    <div
+      class="player-main"
+      ngClass.xs="player-main-mobile"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="15px"
+    >
       <app-team-logo [team]="player.team.teamShort" [height]="30"></app-team-logo>
-      <span class="player-header-name">{{ player.name }}</span>
+      <div fxLayout="column" fxLayoutGap="7px">
+        <div class="player-main-name" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <span class="player-main-name-text">{{ player.name }}</span>
+        </div>
+
+        <div class="player-main-info" fxLayout="row" fxLayoutAlign="start center">
+          <span class="player-main-info-item">{{ player.position | uppercase }}</span>
+          <span class="player-main-info-item">{{ player.fantasy.price }}M</span>
+          <span class="player-main-info-item">{{ player.fantasy.popularity }}%</span>
+        </div>
+
+        <div class="player-main-prediction" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <a [routerLink]="'/lineups/teams/' + player.team.teamShort" target="_blank">Is predicted to start?</a>
+          <app-prediction-indicator [value]="player.prediction" [height]="20"></app-prediction-indicator>
+        </div>
+      </div>
     </div>
 
-    <div class="player-header-sub" fxLayout="row" fxLayoutAlign="star center" fxLayoutGap="10px">
-      <span class="player-header-sub-item">{{ player.position | uppercase }}</span>
-      <span class="player-header-sub-item">{{ player.fantasy.price }}M</span>
-      <span class="player-header-sub-item">{{ player.fantasy.popularity }}%</span>
-      <span class="player-header-sub-item">TP: {{ player.fantasy.totalPoints }}</span>
+    <div
+      class="player-icons"
+      ngClass.xs="player-icons-mobile"
+      fxLayout.gt-xs="column"
+      fxLayout.xs="row"
+      fxLayoutAlign.xs="center stretch"
+      fxLayoutAlign.gt-xs="center center"
+      fxLayoutGap.gt-xs="5px"
+      fxLayoutGap.xs="10px"
+    >
+      <app-our-pick-icon [ngClass]="{ hidden: !player.isMustHave }" icon="mustHave"></app-our-pick-icon>
+      <app-our-pick-icon [ngClass]="{ hidden: !player.isPremium }" icon="premium"></app-our-pick-icon>
+      <app-our-pick-icon [ngClass]="{ hidden: !player.isBargain }" icon="bargain"></app-our-pick-icon>
+      <app-our-pick-icon [ngClass]="{ hidden: !player.isDifferential }" icon="differential"></app-our-pick-icon>
     </div>
 
-    <div class="player-header-icons" fxLayoutAlign="star center" fxLayoutGap="15px">
-      <fa-icon
-        *ngIf="player.isMustHave"
-        class="icon text-icon green border-green"
-        fxLayoutAlign="center center"
-        matTooltip="must have"
-        [icon]="['fas', 'star']"
-      ></fa-icon>
-      <fa-icon
-        *ngIf="player.isBargain"
-        [icon]="['fas', 'piggy-bank']"
-        fxLayoutAlign="center center"
-        class="icon text-icon pink border-pink"
-        matTooltip="bargain pick"
-      ></fa-icon>
-      <span
-        *ngIf="player.isDifferential"
-        class="text-icon icon blue border-blue"
-        fxLayoutAlign="center center"
-        matTooltip="differential pick"
-        >%</span
-      >
-      <fa-icon
-        *ngIf="player.isPremium"
-        class="icon text-icon orange border-orange"
-        fxLayoutAlign="center center"
-        matTooltip="premium pick"
-        [icon]="['fas', 'crown']"
-      ></fa-icon>
+    <div
+      class="player-form"
+      ngClass.xs="player-form-mobile"
+      fxLayout.gt-xs="column"
+      fxLayout.xs="row"
+      fxLayoutGap="10px"
+    >
+      <div class="md-row" *ngFor="let md of player.fantasy.form | orderBy: '-matchday'" fxLayoutAlign="start center">
+        <span class="md-row-text grey">MD {{ md.matchday }}:</span>
+        <span class="player-form-points bold" [ngClass]="getPointsColor(md.points)">{{ md.points }}</span>
+      </div>
+    </div>
+
+    <div
+      class="player-next-games"
+      ngClass.xs="player-next-games-mobile"
+      fxLayout="column"
+      fxLayoutAlign.xs="center center"
+      fxLayoutGap="10px"
+    >
+      <div class="md-row" *ngFor="let md of player.team.nextGames | orderBy: 'matchday'">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <span class="md-row-text grey">MD {{ md.matchday }}:</span>
+          <div fxLayoutAlign="start center" fxLayoutGap="5px">
+            <app-team-logo [team]="md.opponentShort" [height]="30"></app-team-logo>
+            <span>({{ md.isHome ? 'h' : 'a' }})</span>
+            <span
+              *ngIf="md.isFirstGame"
+              class="green first-game"
+              fxLayoutAlign="center center"
+              matTooltip="matchday first game"
+              >1</span
+            >
+            <span *ngIf="!md.isFirstGame" class="placeholder">&nbsp;</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </mat-card>

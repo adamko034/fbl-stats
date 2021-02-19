@@ -1,5 +1,13 @@
-<div class="our-picks-players-container" fxLayout="column" fxLayoutGap="20px">
-  <div class="player" *ngFor="let player of ourPicks.players | orderBy: 'order'">
+<div
+  *ngIf="!!ourPicks?.players && ourPicks.players.length > 0"
+  class="our-picks-players-container"
+  fxLayout.gt-xs="row wrap"
+  fxLayout.xs="column"
+  fxLayoutGap.xs="20px"
+  fxLayoutAlign="center center"
+  fxLayoutGap.gt-xs="30px grid"
+>
+  <div *ngFor="let player of ourPicks.players | orderBy: 'order'">
     <app-our-picks-player [player]="player"></app-our-picks-player>
   </div>
 </div>

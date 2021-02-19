@@ -16,10 +16,12 @@ export class OurPicksLoadedGuard implements CanActivate {
       return false;
     }
 
-    this.store.load(+route.params.matchday);
+    const matchday = +route.params.matchday - 1;
 
-    return this.store.loaded(+route.params.matchday).pipe(
-      tap(() => Logger.logDev('our picks loaded guard, waiting for loaded for MD ' + route.params.matchday)),
+    this.store.load(matchday);
+
+    return this.store.loaded(matchday).pipe(
+      tap(() => Logger.logDev('our picks loaded guard, waiting for loaded for MD ' + matchday)),
       filter((isLoaded) => isLoaded),
       tap(() => Logger.logDev('our picks loaded guard, data loaded!'))
     );
