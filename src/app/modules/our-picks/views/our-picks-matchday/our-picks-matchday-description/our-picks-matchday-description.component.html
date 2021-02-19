@@ -1,0 +1,28 @@
+<div fxLayout="column" fxLayoutGap="15px">
+  <span> Here is a list of players that we think are instresting for the upcoming MD{{ matchday }}. </span>
+  <div
+    fxFlexAlign="center"
+    fxLayout.xs="column"
+    fxLayoutGap.xs="7px"
+    gdAreas.gt-xs="mustHave premium | bargain differential | firstGame firstGame"
+    gdGap.gt-xs="10px 40px"
+  >
+    <div
+      *ngFor="let item of iconsLegend"
+      [gdArea.gt-xs]="item.icon"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
+    >
+      <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
+      <span>{{ item.description }}</span>
+    </div>
+    <div gdArea="firstGame" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <span fxLayoutAlign="center center" class="first-game green">1</span>
+      <span
+        >team playing on a matchday first game. check all matchdays first games
+        <a routerLink="/bundesliga/matchdays/firstGames" class="bold">here</a></span
+      >
+    </div>
+  </div>
+</div>

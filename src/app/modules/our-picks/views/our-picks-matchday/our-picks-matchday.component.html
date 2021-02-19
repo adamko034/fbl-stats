@@ -1,9 +1,13 @@
-<app-view-title>
-  <h1 title class="view-title-h1">Our Top Picks FOR upcoming matchday</h1>
-</app-view-title>
+<div *ngIf="ourPicks$ | async">
+  <app-view-title>
+    <h1 title class="view-title-h1">Our Top Picks FOR upcoming matchday</h1>
+    <app-our-picks-matchday-description
+      subtitle
+      [matchday]="ourPicks$ | async | field: 'matchday'"
+    ></app-our-picks-matchday-description>
+  </app-view-title>
 
-<app-view-layout>
-  <app-filters-content-layout content>
+  <app-view-layout>
     <app-our-picks-players content [ourPicks]="ourPicks$ | async"></app-our-picks-players>
-  </app-filters-content-layout>
-</app-view-layout>
+  </app-view-layout>
+</div>
