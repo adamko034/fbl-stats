@@ -7,7 +7,8 @@
     ></app-our-picks-matchday-description>
   </app-view-title>
 
-  <app-view-layout>
+  <app-filters-content-layout>
+    <app-our-picks-filters filters></app-our-picks-filters>
     <app-our-picks-players content [ourPicks]="ourPicks$ | async"></app-our-picks-players>
-  </app-view-layout>
+  </app-filters-content-layout>
 </div>

@@ -8,6 +8,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 })
 export class OurPickIconComponent {
   @Input() icon: 'mustHave' | 'premium' | 'bargain' | 'differential';
+  @Input() color;
 
   constructor() {}
 }

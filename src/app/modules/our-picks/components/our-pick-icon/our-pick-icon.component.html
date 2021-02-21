@@ -1,6 +1,7 @@
 <fa-icon
   *ngIf="icon === 'mustHave'"
   class="icon text-icon green border-green"
+  [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
   matTooltip="must have"
   [icon]="['fas', 'star']"
@@ -8,6 +9,7 @@
 <fa-icon
   *ngIf="icon === 'premium'"
   class="icon text-icon orange border-orange"
+  [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
   matTooltip="premium pick"
   [icon]="['fas', 'crown']"
@@ -15,6 +17,7 @@
 <fa-icon
   *ngIf="icon === 'bargain'"
   [icon]="['fas', 'piggy-bank']"
+  [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
   class="icon text-icon pink border-pink"
   matTooltip="bargain pick"
@@ -22,6 +25,7 @@
 <span
   *ngIf="icon === 'differential'"
   class="text-icon icon blue border-blue"
+  [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
   matTooltip="differential pick"
   >%</span

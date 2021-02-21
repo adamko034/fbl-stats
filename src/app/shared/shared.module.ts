@@ -42,6 +42,7 @@ import { TitleUnderlinedComponent } from './components/title-underlined/title-un
 import { FieldPipe } from './pipes/field.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
+import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { WherePipe } from './pipes/where.pipe';
     MatchdayComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
-    FieldPipe
+    FieldPipe,
+    FilterPositionComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -101,7 +103,8 @@ import { WherePipe } from './pipes/where.pipe';
     MatchdayFixtureComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
-    FieldPipe
+    FieldPipe,
+    FilterPositionComponent
   ]
 })
 export class SharedModule {

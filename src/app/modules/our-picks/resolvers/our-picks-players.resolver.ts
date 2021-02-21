@@ -5,6 +5,7 @@ import { first, switchMap } from 'rxjs/operators';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { Logger } from 'src/app/utils/logger';
 import { OurPicksPlayersLoader } from '../loaders/our-picks-players.loader';
+import { OurPicksFilters } from '../models/our-picks-filters.model';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
 
 @Injectable()
@@ -13,8 +14,9 @@ export class OurPicksPlayersResolver implements Resolve<OurPicksPlayers> {
 
   public resolve(route: ActivatedRouteSnapshot): Observable<OurPicksPlayers> {
     Logger.logDev('our picks players resolver, resolving ...');
+    const matchday = +route.params.matchday;
     return this.propertiesService.selectLastMatchday().pipe(
-      switchMap((lastMatchday) => this.ourPicksLoader.load(+route.params.matchday - 1, lastMatchday)),
+      switchMap((lastMatchday) => this.ourPicksLoader.load(matchday - 1, lastMatchday)),
       first()
     );
   }

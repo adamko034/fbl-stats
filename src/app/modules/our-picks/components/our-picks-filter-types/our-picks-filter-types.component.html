@@ -1,0 +1,16 @@
+<div class="our-picks-filter-types-container">
+  <app-form-field label="Picks types">
+    <mat-button-toggle-group multiple name="types">
+      <mat-button-toggle
+        disableRipple
+        [ngClass]="isSelected(icon) ? { active: true } : { normal: true }"
+        (click)="onClick(icon)"
+        *ngFor="let icon of ['mustHave', 'bargain', 'differential', 'premium']"
+      >
+        <div class="icon-container">
+          <app-our-pick-icon [icon]="icon" [color]="isSelected(icon) ? '#fff' : null"></app-our-pick-icon>
+        </div>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </app-form-field>
+</div>
