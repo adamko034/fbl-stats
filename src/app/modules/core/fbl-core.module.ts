@@ -25,6 +25,7 @@ import { PlayerTileComponent } from 'src/app/modules/core/players/components/sha
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersViewSwitchComponent } from './players/components/players-display/components/players-view-switch/players-view-switch.component';
 import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
+import { AdminLoginComponent } from './admin/views/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     SelectMoreMatchdaysDialogComponent,
     PlayersViewSwitchComponent,
     PlayersDisplayComponent,
-    PlayersSearchComponent
+    PlayersSearchComponent,
+    AdminLoginComponent
   ],
   imports: [CommonModule, SharedModule, AngularMaterialModule, NgxChartsModule],
   exports: [

@@ -99,6 +99,17 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="OP">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let player">
+          <div *ngIf="isLogged">
+            <button mat-icon-button matTooltip="Add To Our Picks">
+              <mat-icon class="blue">group_add</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="playerDetails">
         <td mat-cell *matCellDef="let player" [attr.colspan]="displayedColumns.length">
           <div class="player-details" [@detailExpand] *ngIf="!!expandedRows[player.id]">

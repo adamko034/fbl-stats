@@ -2,6 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
   OnChanges,
@@ -13,7 +14,7 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { first, takeUntil, tap } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersDisplaySettings } from 'src/app/modules/core/players/models/players-display-settings.model';
@@ -23,6 +24,7 @@ import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 import { PlayersDataService } from 'src/app/modules/players/views/players-fantasy/components/players-table-container/services/players-data.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Logger } from 'src/app/utils/logger';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -59,12 +61,15 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   public myTeamPlayers$: Observable<string[]>;
 
   public expandedRows: { [key: string]: boolean } = {};
+  public isLogged = false;
 
   constructor(
     private myTeamService: MyTeamStore,
     private playersDataService: PlayersDataService,
     private expandedPlayersService: ExpandedPlayersService,
-    private displaySettingsService: PlayersDisplaySettingsService
+    private displaySettingsService: PlayersDisplaySettingsService,
+    private auth: AuthenticationService,
+    private changeDetection: ChangeDetectorRef
   ) {}
 
   public ngOnChanges(change: SimpleChanges) {
@@ -78,6 +83,14 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     Logger.logDev('players table componenet, on init');
     this.expandedPlayersService.select().subscribe((expanedPlayers) => (this.expandedRows = expanedPlayers));
     this.myTeamPlayers$ = this.myTeamService.selectPlayersId();
+    this.auth.isLogged().subscribe((isLogged) => {
+      this.isLogged = isLogged;
+      if (isLogged) {
+        Logger.logDev('adding op column');
+        this.displayedColumns.push('OP');
+        this.changeDetection.detectChanges();
+      }
+    });
   }
 
   public ngAfterViewInit(): void {

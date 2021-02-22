@@ -1,0 +1,19 @@
+.admin-login-container {
+  width: 300px;
+  margin: auto;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    float: right;
+  }
+
+  .login-failed {
+    margin-top: 30px;
+    clear: both;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}

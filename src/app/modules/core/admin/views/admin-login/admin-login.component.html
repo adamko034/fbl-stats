@@ -1,0 +1,17 @@
+<app-view-layout>
+  <div content class="admin-login-container">
+    <form [formGroup]="formGroup">
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email" formControlName="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" formControlName="password" />
+      </mat-form-field>
+    </form>
+    <button class="red-background" fxFlexAlign="end" mat-raised-button (click)="login()">Log in</button>
+    <br />
+    <div *ngIf="!!loginFailed$ && loginFailed$ | async" class="login-failed red">
+      Login failed. Check your email and password.
+    </div>
+  </div>
+</app-view-layout>

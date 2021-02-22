@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { CoreModule } from '@angular/flex-layout';
@@ -46,6 +47,7 @@ import { HeaderComponent } from './layout/header/header.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
+    AngularFireAuthModule,
     HttpClientModule,
     SharedModule,
     CoreModule,
