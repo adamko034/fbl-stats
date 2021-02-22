@@ -1,9 +1,9 @@
 <app-view-title>
   <span title>{{ 'predicted lineups' | uppercase }}</span>
-  <h2 subtitle>{{ (team$ | async).longName }}</h2>
+  <h2 *ngIf="team$ | async" subtitle>{{ (team$ | async).longName }}</h2>
 </app-view-title>
 
-<div fxLayout="column" fxLayoutGap="15px">
+<div *ngIf="team$ | async" fxLayout="column" fxLayoutGap="15px">
   <span ngClass.lt-sm="info-mobile"
     >*Players position are in accordance with Fantasy Bundesliga, not with the source lineups. Therfore the lineups may
     sometimes look unexpected (etc. only one winger or no forwards)</span
@@ -21,4 +21,8 @@
       <app-team-lineup [lineup]="sourceLineup"></app-team-lineup>
     </div>
   </div>
+</div>
+
+<div *ngIf="!(team$ | async)" fxLayout="column" fxLayoutAlign="center center">
+  Predicted lineups have not been published yet.
 </div>
