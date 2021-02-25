@@ -43,6 +43,7 @@ import { FieldPipe } from './pipes/field.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
+import { AuthenticatedDirective } from './directives/authenticated.directive';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { FilterPositionComponent } from './components/filter-position/filter-pos
     MinMaxAvgComponent,
     TextValueCardComponent,
     FieldPipe,
-    FilterPositionComponent
+    FilterPositionComponent,
+    AuthenticatedDirective
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -104,7 +106,8 @@ import { FilterPositionComponent } from './components/filter-position/filter-pos
     MinMaxAvgComponent,
     TextValueCardComponent,
     FieldPipe,
-    FilterPositionComponent
+    FilterPositionComponent,
+    AuthenticatedDirective
   ]
 })
 export class SharedModule {

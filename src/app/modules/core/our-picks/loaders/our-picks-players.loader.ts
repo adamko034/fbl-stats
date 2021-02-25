@@ -9,8 +9,7 @@ import { PlayersStore } from 'src/app/store/players/players.store';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
-import { PlayerAttendancePredictionService } from '../../core/players/services/player-attendance-prediction.service';
-import { OurPicksFilters } from '../models/our-picks-filters.model';
+import { PlayerAttendancePredictionService } from '../../players/services/player-attendance-prediction.service';
 import { OurPicksPlayerFantasyMatchday } from '../models/our-picks-player-fantasy-matchday.model';
 import { OurPicksPlayerFantasy } from '../models/our-picks-player-fantasy.model';
 import { OurPicksPlayerTeam } from '../models/our-picks-player-team.model';
@@ -18,7 +17,7 @@ import { OurPicksPlayer } from '../models/our-picks-player.model';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
 import { OurPicksTeamGame } from '../models/our-picks-team-game.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class OurPicksPlayersLoader {
   private cache: { [matchday: number]: OurPicksPlayers } = {};
 
@@ -43,7 +42,11 @@ export class OurPicksPlayersLoader {
           return null;
         }
 
-        const value: OurPicksPlayers = { matchday, players: this.getPlayers(ourPicks, lastMatchday) };
+        const value: OurPicksPlayers = {
+          matchday,
+          published: ourPicks.published,
+          players: this.getPlayers(ourPicks, lastMatchday)
+        };
 
         this.cache[matchday] = value;
         return value;
@@ -82,10 +85,10 @@ export class OurPicksPlayersLoader {
         team: ourPicksTeam,
         lastName: player.lastName,
         position: player.position,
-        isBargain: picks.bargains.includes(pick.playerId),
-        isDifferential: picks.differentials.includes(pick.playerId),
-        isMustHave: picks.mustHave.includes(pick.playerId),
-        isPremium: picks.premium.includes(pick.playerId),
+        isBargain: picks.bargains?.includes(pick.playerId) || false,
+        isDifferential: picks.differentials?.includes(pick.playerId) || false,
+        isMustHave: picks.mustHave?.includes(pick.playerId) || false,
+        isPremium: picks.premium?.includes(pick.playerId) || false,
         prediction: this.predictionService.determine(player.nextGame.lineupPredictions)
       };
     });

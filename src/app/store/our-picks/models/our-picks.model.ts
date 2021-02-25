@@ -6,4 +6,5 @@ export interface OurPicks {
   bargains: number[];
   mustHave: number[];
   premium: number[];
+  published: boolean;
 }

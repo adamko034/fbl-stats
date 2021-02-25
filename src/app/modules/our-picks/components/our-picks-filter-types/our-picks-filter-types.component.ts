@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { OurPicksType } from '../../models/our-picks-type.enum';
+import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 
 @Component({
   selector: 'app-our-picks-filter-types',

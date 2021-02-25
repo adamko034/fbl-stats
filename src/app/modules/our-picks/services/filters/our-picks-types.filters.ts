@@ -1,6 +1,6 @@
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
-import { OurPicksPlayer } from '../../models/our-picks-player.model';
-import { OurPicksType } from '../../models/our-picks-type.enum';
+import { OurPicksPlayer } from '../../../core/our-picks/models/our-picks-player.model';
+import { OurPicksType } from '../../../core/our-picks/models/our-picks-type.enum';
 
 export class OurPicksTypesFilter implements Filterable<OurPicksPlayer> {
   constructor(private types: OurPicksType[]) {}

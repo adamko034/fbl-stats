@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
 import { PlayersDataService } from 'src/app/modules/players/views/players-fantasy/components/players-table-container/services/players-data.service';
-import { OurPicksPlayer } from '../../../models/our-picks-player.model';
 
 @Component({
   selector: 'app-our-picks-player',

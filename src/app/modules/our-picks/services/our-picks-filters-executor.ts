@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
 import { PlayerPosition } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
-import { OurPicksFilters } from '../../models/our-picks-filters.model';
-import { OurPicksPlayer } from '../../models/our-picks-player.model';
-import { OurPicksPositionFilter } from './our-picks-position.filter';
-import { OurPicksTypesFilter } from './our-picks-types.filters';
+import { OurPicksFilters } from '../models/our-picks-filters.model';
+import { OurPicksPlayer } from '../../core/our-picks/models/our-picks-player.model';
+import { OurPicksPositionFilter } from './filters/our-picks-position.filter';
+import { OurPicksTypesFilter } from './filters/our-picks-types.filters';
 
 @Injectable()
 export class OurPicksFiltersExecutor {

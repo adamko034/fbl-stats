@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith, tap } from 'rxjs/operators';
+import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 import { PlayerPosition } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
-import { OurPicksType } from '../../models/our-picks-type.enum';
 import { OurPicksFiltersService } from '../../services/our-picks-filters.service';
 
 @Component({

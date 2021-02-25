@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
+import { OurPicksType } from '../../core/our-picks/models/our-picks-type.enum';
 import { PlayerPosition } from '../../players/views/players-fantasy/models/players-filters';
 import { OurPicksFilters } from '../models/our-picks-filters.model';
-import { OurPicksType } from '../models/our-picks-type.enum';
 
 @Injectable()
 export class OurPicksFiltersService {

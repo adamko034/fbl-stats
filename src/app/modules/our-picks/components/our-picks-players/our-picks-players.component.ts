@@ -1,11 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { map, startWith, tap } from 'rxjs/operators';
-import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
-import { OurPicksFiltersExecutor } from '../../loaders/filters/our-picks-filters-executor';
+import { Component, OnInit, Input } from '@angular/core';
+import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
+import { OurPicksPlayers } from 'src/app/modules/core/our-picks/models/our-picks-players.model';
 import { OurPicksFilters } from '../../models/our-picks-filters.model';
-import { OurPicksPlayer } from '../../models/our-picks-player.model';
-import { OurPicksPlayers } from '../../models/our-picks-players.model';
+import { OurPicksFiltersExecutor } from '../../services/our-picks-filters-executor';
 import { OurPicksFiltersService } from '../../services/our-picks-filters.service';
 
 @Component({
@@ -17,6 +14,9 @@ export class OurPicksPlayersComponent implements OnInit {
   @Input() ourPicks: OurPicksPlayers;
 
   public players: OurPicksPlayer[];
+  public get published(): boolean {
+    return this.ourPicks?.published || false;
+  }
 
   constructor(private filtersService: OurPicksFiltersService, private filtersExecutor: OurPicksFiltersExecutor) {}
 

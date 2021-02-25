@@ -103,8 +103,12 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let player">
           <div *ngIf="isLogged">
-            <button mat-icon-button matTooltip="Add To Our Picks">
-              <mat-icon class="blue">group_add</mat-icon>
+            <button
+              mat-icon-button
+              matTooltip="Add To Our Picks"
+              (click)="addOurPick(player.id); $event.stopPropagation()"
+            >
+              <mat-icon class="blue">person_add_alt_1</mat-icon>
             </button>
           </div>
         </td>

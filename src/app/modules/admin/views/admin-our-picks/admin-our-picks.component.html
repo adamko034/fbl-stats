@@ -1,0 +1,9 @@
+<div class="admin-our-picks-container" fxLayout="column" fxLayoutGap="10px">
+  <div cdkDropList class="admin-our-picks-list" (cdkDropListDropped)="drop($event)">
+    <div class="admin-our-pick" fxLayout="row" *ngFor="let player of players" cdkDrag>
+      <span fxFlex="7">{{ player.order }}</span>
+      <span>{{ player.name }}</span>
+    </div>
+  </div>
+  <button mat-raised-button class="red-background" fxFlexAlign="end">Publish</button>
+</div>

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, Query, QueryFn } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { catchError, first, map, take } from 'rxjs/operators';
+import { catchError, first, flatMap, map, take, tap } from 'rxjs/operators';
 import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Properties } from 'src/app/models/properties.model';
 import { ErrorService } from 'src/app/services/error.service';
 import { environment } from 'src/environments/environment';
 import { OurPicks } from '../store/our-picks/models/our-picks.model';
+import { firestore } from 'firebase/app';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
@@ -40,18 +41,35 @@ export class FirebaseService {
       );
   }
 
-  public getOurPicks(matchday: number): Observable<OurPicks> {
+  public getOurPicks(matchday: number, onlyPublished: boolean): Observable<OurPicks> {
     return this.firestore
-      .collection('our-picks')
-      .doc<OurPicks>(matchday.toString())
+      .collection('our-picks', (ref) => {
+        let query: Query = ref.where('matchday', '==', matchday);
+
+        if (onlyPublished) {
+          query = query.where('published', '==', true);
+        }
+
+        return query.limit(1);
+      })
       .valueChanges()
       .pipe(
         first(),
-        map((ourPicks) => (!ourPicks ? {} : ourPicks)),
+        map((ourPicks) => (!!ourPicks && ourPicks.length === 1 ? ourPicks[0] : {})),
         catchError(() => {
           this.errorService.sendFirebaseError();
           return [];
         })
+      );
+  }
+
+  public addOurPick(playerId: number, matchday: number): void {
+    this.firestore
+      .collection('our-picks')
+      .doc(matchday.toString())
+      .set(
+        { players: firestore.FieldValue.arrayUnion({ order: 1, playerId }), published: false, matchday: matchday },
+        { merge: true }
       );
   }
 }

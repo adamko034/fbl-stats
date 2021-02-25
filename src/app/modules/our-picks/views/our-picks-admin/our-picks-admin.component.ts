@@ -1,16 +1,16 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { OurPicksPlayers } from 'src/app/modules/core/our-picks/models/our-picks-players.model';
 
 @Component({
-  selector: 'app-our-picks-matchday',
-  templateUrl: './our-picks-matchday.component.html',
-  styleUrls: ['./our-picks-matchday.component.scss'],
+  selector: 'app-our-picks-admin',
+  templateUrl: './our-picks-admin.component.html',
+  styleUrls: ['./our-picks-admin.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OurPicksMatchdayComponent implements OnInit {
+export class OurPicksAdminComponent implements OnInit {
   public ourPicks$: Observable<OurPicksPlayers>;
 
   constructor(private route: ActivatedRoute) {}

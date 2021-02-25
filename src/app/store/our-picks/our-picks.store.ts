@@ -14,11 +14,11 @@ export class OurPicksStore {
     this.store$ = new ReplaySubject<{ [matchday: number]: OurPicks }>();
   }
 
-  public load(matchday: number): void {
+  public load(matchday: number, onlyPublished: boolean): void {
     if (!this.store[matchday]) {
       Logger.logDev('our picks store, loading from firebase for MD ' + matchday);
       this.firebase
-        .getOurPicks(matchday)
+        .getOurPicks(matchday, onlyPublished)
         .pipe(first())
         .subscribe((ourPicks) => {
           Logger.logDev('our picks store, got data');

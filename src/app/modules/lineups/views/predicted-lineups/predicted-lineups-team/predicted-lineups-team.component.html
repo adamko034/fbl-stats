@@ -23,6 +23,10 @@
   </div>
 </div>
 
-<div *ngIf="!(team$ | async)" fxLayout="column" fxLayoutAlign="center center">
+<h2 *ngIf="!(team$ | async)" fxLayout="column" fxLayoutAlign="center center">
   Predicted lineups have not been published yet.
-</div>
+  <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
+    ><span>Stay tuned!</span>
+    <fa-icon class="red" [icon]="['fab', 'twitter']" size="2x"></fa-icon>
+  </a>
+</h2>

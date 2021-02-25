@@ -14,7 +14,7 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject } from 'rxjs';
-import { first, takeUntil, tap } from 'rxjs/operators';
+import { distinctUntilChanged, first, takeUntil, tap } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersDisplaySettings } from 'src/app/modules/core/players/models/players-display-settings.model';
@@ -25,6 +25,7 @@ import { PlayersDataService } from 'src/app/modules/players/views/players-fantas
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Logger } from 'src/app/utils/logger';
 import { AuthenticationService } from '../../../services/authentication.service';
+import { OurPicksAdminService } from '../../../services/our-picks-admin.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,7 +70,8 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     private expandedPlayersService: ExpandedPlayersService,
     private displaySettingsService: PlayersDisplaySettingsService,
     private auth: AuthenticationService,
-    private changeDetection: ChangeDetectorRef
+    private changeDetection: ChangeDetectorRef,
+    private ourPicksAdminService: OurPicksAdminService
   ) {}
 
   public ngOnChanges(change: SimpleChanges) {
@@ -83,14 +85,20 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     Logger.logDev('players table componenet, on init');
     this.expandedPlayersService.select().subscribe((expanedPlayers) => (this.expandedRows = expanedPlayers));
     this.myTeamPlayers$ = this.myTeamService.selectPlayersId();
-    this.auth.isLogged().subscribe((isLogged) => {
-      this.isLogged = isLogged;
-      if (isLogged) {
-        Logger.logDev('adding op column');
-        this.displayedColumns.push('OP');
-        this.changeDetection.detectChanges();
-      }
-    });
+    this.auth
+      .isLogged()
+      .pipe(distinctUntilChanged())
+      .subscribe((res) => {
+        this.isLogged = res.isLogged;
+        if (this.isLogged) {
+          if (!this.displayedColumns.includes('OP')) {
+            this.displayedColumns.push('OP');
+            this.changeDetection.detectChanges();
+          }
+        } else {
+          this.displayedColumns = this.displayedColumns.filter((x) => x !== 'OP');
+        }
+      });
   }
 
   public ngAfterViewInit(): void {
@@ -124,6 +132,10 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
 
   public addToMyTeam(playerId: string): void {
     this.myTeamService.add(playerId);
+  }
+
+  public addOurPick(playerId: string): void {
+    this.ourPicksAdminService.insert(+playerId, 23);
   }
 
   public removeFromMyTeam(playerId: string): void {

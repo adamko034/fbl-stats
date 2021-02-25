@@ -26,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [],
@@ -55,7 +56,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatSortModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    DragDropModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -85,7 +87,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatAutocompleteModule,
     MatSidenavModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    DragDropModule
   ]
 })
 export class AngularMaterialModule {}

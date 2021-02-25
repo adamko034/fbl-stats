@@ -1,6 +1,5 @@
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
-import { OurPicksPlayer } from '../../models/our-picks-player.model';
-import { OurPicksPlayers } from '../../models/our-picks-players.model';
+import { OurPicksPlayer } from '../../../core/our-picks/models/our-picks-player.model';
 
 export class OurPicksPositionFilter implements Filterable<OurPicksPlayer> {
   constructor(private position: string) {}

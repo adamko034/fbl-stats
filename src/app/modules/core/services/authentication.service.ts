@@ -16,7 +16,11 @@ export class AuthenticationService {
     );
   }
 
-  public isLogged(): Observable<boolean> {
-    return this.auth.user.pipe(map((user) => !!user));
+  public logOut(): Observable<void> {
+    return from(this.auth.signOut());
+  }
+
+  public isLogged(): Observable<{ isLogged: boolean }> {
+    return this.auth.user.pipe(map((user) => ({ isLogged: !!user })));
   }
 }

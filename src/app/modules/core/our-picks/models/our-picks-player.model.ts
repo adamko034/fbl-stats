@@ -1,4 +1,4 @@
-import { PlayerAttendancePrediction } from '../../core/players/models/player-attendance-prediction.enum';
+import { PlayerAttendancePrediction } from '../../players/models/player-attendance-prediction.enum';
 import { OurPicksPlayerFantasy } from './our-picks-player-fantasy.model';
 import { OurPicksPlayerTeam } from './our-picks-player-team.model';
 
