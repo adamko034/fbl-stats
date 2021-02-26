@@ -23,6 +23,7 @@ import { PlayerTileNameComponent } from 'src/app/modules/core/players/components
 import { PlayerTileNextGameComponent } from 'src/app/modules/core/players/components/shared/player-tile/components/player-tile-next-game/player-tile-next-game.component';
 import { PlayerTileComponent } from 'src/app/modules/core/players/components/shared/player-tile/player-tile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { OurPickIconComponent } from '../../shared/components/our-pick-icon/our-pick-icon.component';
 import { PlayersViewSwitchComponent } from './players/components/players-display/components/players-view-switch/players-view-switch.component';
 import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
 

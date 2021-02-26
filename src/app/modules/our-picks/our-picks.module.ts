@@ -9,14 +9,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { OurPicksPlayersComponent } from './components/our-picks-players/our-picks-players.component';
 import { OurPicksPlayerComponent } from './components/our-picks-players/our-picks-player/our-picks-player.component';
-import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { OurPicksMatchdayDescriptionComponent } from './views/our-picks-matchday/our-picks-matchday-description/our-picks-matchday-description.component';
 import { OurPicksFiltersComponent } from './components/our-picks-filters/our-picks-filters.component';
-import { OurPicksFiltersExecutor } from './services/our-picks-filters-executor';
 import { OurPicksFilterTypesComponent } from './components/our-picks-filter-types/our-picks-filter-types.component';
 import { OurPicksFiltersService } from './services/our-picks-filters.service';
 import { OurPicksAdminComponent } from './views/our-picks-admin/our-picks-admin.component';
 import { OurPicksAdminSelectComponent } from './views/our-picks-admin/our-picks-admin-select/our-picks-admin-select.component';
+import { OurPicksFiltersExecutor } from './services/our-picks-filters-executor';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { OurPicksAdminSelectComponent } from './views/our-picks-admin/our-picks-
     OurPicksMatchdayComponent,
     OurPicksPlayersComponent,
     OurPicksPlayerComponent,
-    OurPickIconComponent,
     OurPicksMatchdayDescriptionComponent,
     OurPicksFiltersComponent,
     OurPicksFilterTypesComponent,

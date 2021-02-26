@@ -2,8 +2,57 @@
   <div cdkDropList class="admin-our-picks-list" (cdkDropListDropped)="drop($event)">
     <div class="admin-our-pick" fxLayout="row" *ngFor="let player of players" cdkDrag>
       <span fxFlex="7">{{ player.order }}</span>
-      <span>{{ player.name }}</span>
+      <span fxFlex class="bold">{{ player.name }}</span>
+      <div fxFlex="20" fxLayoutGap="10px">
+        <span>{{ player.position | uppercase }}</span
+        ><span>{{ player.fantasy.price }}M</span><span>{{ player.fantasy.popularity }}%</span>
+      </div>
+      <div class="icons" fxLayout="row" fxLayoutGap="10px">
+        <app-our-pick-icon
+          class="icon"
+          [icon]="Icons.MUST_HAVE"
+          [color]="getIconColor(Icons.MUST_HAVE, player.playerId)"
+          [showTooltip]="false"
+          (click)="togglePlayerType(Icons.MUST_HAVE, player.playerId)"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [icon]="Icons.PREMIUM"
+          [color]="getIconColor(Icons.PREMIUM, player.playerId)"
+          [showTooltip]="false"
+          (click)="togglePlayerType(Icons.PREMIUM, player.playerId)"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: player.fantasy.price > 8 }"
+          [icon]="Icons.BARGAIN"
+          [color]="getIconColor(Icons.BARGAIN, player.playerId)"
+          [showTooltip]="false"
+          (click)="togglePlayerType(Icons.BARGAIN, player.playerId)"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: player.fantasy.popularity > 5 }"
+          [icon]="Icons.DIFFERENTIAL"
+          [color]="getIconColor(Icons.DIFFERENTIAL, player.playerId)"
+          [showTooltip]="false"
+          (click)="togglePlayerType(Icons.DIFFERENTIAL, player.playerId)"
+        ></app-our-pick-icon>
+      </div>
+
+      <div fxFlex="10" fxLayoutAlign="center center">
+        <span class="drag-handle" cdkDragHandle>
+          <fa-icon [icon]="['fas', 'sort']" size="2x"></fa-icon>
+        </span>
+      </div>
+
+      <div fxFlex="10" fxLayoutAlign="center center">
+        <mat-icon class="red remove-button" (click)="remove(player.playerId)">delete</mat-icon>
+      </div>
     </div>
   </div>
-  <button mat-raised-button class="red-background" fxFlexAlign="end">Publish</button>
+  <div fxLayoutGap="7px" fxFlexAlign="end">
+    <button [disabled]="!isChange" mat-raised-button class="green-background" (click)="save()">Save</button>
+    <button [disabled]="isChange" mat-raised-button class="red-background" (click)="publish()">Publish</button>
+  </div>
 </div>

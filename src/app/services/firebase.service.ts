@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, Query, QueryFn } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { catchError, first, flatMap, map, take, tap } from 'rxjs/operators';
 import { LastUpdated } from 'src/app/models/last-updated.model';
 import { Properties } from 'src/app/models/properties.model';
@@ -71,5 +71,15 @@ export class FirebaseService {
         { players: firestore.FieldValue.arrayUnion({ order: 1, playerId }), published: false, matchday: matchday },
         { merge: true }
       );
+  }
+
+  public saveOurPicks(ourPicks: OurPicks): Observable<void> {
+    return from(this.firestore.collection('our-picks').doc(ourPicks.matchday.toString()).set(ourPicks));
+  }
+
+  public publishOurPicks(matchday: number): Observable<void> {
+    return from(
+      this.firestore.collection('our-picks').doc(matchday.toString()).set({ published: true }, { merge: true })
+    );
   }
 }

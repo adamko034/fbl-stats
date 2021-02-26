@@ -3,7 +3,7 @@
   class="icon text-icon green border-green"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
-  matTooltip="must have"
+  [matTooltip]="showTooltip ? 'must have' : null"
   [icon]="['fas', 'star']"
 ></fa-icon>
 <fa-icon
@@ -11,7 +11,7 @@
   class="icon text-icon orange border-orange"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
-  matTooltip="premium pick"
+  [matTooltip]="showTooltip ? 'premium pick' : null"
   [icon]="['fas', 'crown']"
 ></fa-icon>
 <fa-icon
@@ -20,13 +20,13 @@
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
   class="icon text-icon pink border-pink"
-  matTooltip="bargain pick"
+  [matTooltip]="showTooltip ? 'bargain pick' : null"
 ></fa-icon>
 <span
   *ngIf="icon === 'differential'"
   class="text-icon icon blue border-blue"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
-  matTooltip="differential pick"
+  [matTooltip]="showTooltip ? 'differential' : null"
   >%</span
 >

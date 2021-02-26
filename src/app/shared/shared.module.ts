@@ -10,6 +10,7 @@ import {
   faEquals,
   faExternalLinkAlt,
   faPiggyBank,
+  faSort,
   faSortAmountDownAlt,
   faSortAmountUpAlt,
   faStar
@@ -44,6 +45,7 @@ import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
+import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { AuthenticatedDirective } from './directives/authenticated.directive';
     TextValueCardComponent,
     FieldPipe,
     FilterPositionComponent,
-    AuthenticatedDirective
+    AuthenticatedDirective,
+    OurPickIconComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -107,13 +110,15 @@ import { AuthenticatedDirective } from './directives/authenticated.directive';
     TextValueCardComponent,
     FieldPipe,
     FilterPositionComponent,
-    AuthenticatedDirective
+    AuthenticatedDirective,
+    OurPickIconComponent
   ]
 })
 export class SharedModule {
   constructor(private faLibrary: FaIconLibrary) {
     this.faLibrary.addIcons(
       faTwitter,
+      faSort,
       faSortAmountDownAlt,
       faSortAmountUpAlt,
       faExternalLinkAlt,
