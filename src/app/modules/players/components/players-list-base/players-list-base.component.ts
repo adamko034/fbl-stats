@@ -20,7 +20,7 @@ export class PlayersListBaseComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
-    this.onSortChange({ active: 'team', direction: 'asc' });
+    this.onSortChange({ active: 'totalPoints', direction: 'desc' });
   }
 
   public onSortChange(sort: Sort): void {

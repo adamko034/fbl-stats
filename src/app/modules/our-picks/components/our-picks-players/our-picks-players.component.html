@@ -1,12 +1,12 @@
 <div class="our-picks-players-container" fxLayoutAlign="center center">
   <div *ngIf="published">
     <div
-      *ngIf="!!players && players.length > 0"
-      fxLayout.gt-xs="row wrap"
-      fxLayout.xs="column"
-      fxLayoutGap.xs="20px"
+      *ngIf="!!players && players.length > 0 && !!display"
+      [fxLayout.gt-md]="display === displays.LIST ? 'column' : 'row wrap'"
+      fxLayout.lt-lg="column"
+      fxLayoutGap.lt-lg="20px"
       fxLayoutAlign="center center"
-      fxLayoutGap.gt-xs="30px grid"
+      fxLayoutGap.gt-md="30px grid"
     >
       <div *ngFor="let player of players | orderBy: 'order'">
         <app-our-picks-player [player]="player"></app-our-picks-player>

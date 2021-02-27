@@ -1,0 +1,14 @@
+<div
+  *ngIf="screenLarge$ | async"
+  class="our-picks-display-settings-container"
+  fxLayout="row"
+  fxLayoutAlign="space-evenly center"
+>
+  <app-switch
+    *ngIf="screenLarge$ | async"
+    name="ouPicksDisplays"
+    [value]="settings$ | async | field: 'display'"
+    [items]="displayItems"
+    (switchChange)="onDisplayChange($event)"
+  ></app-switch>
+</div>

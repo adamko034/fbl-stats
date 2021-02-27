@@ -1,21 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase';
+import { from, Observable } from 'rxjs';
+import { ErrorService } from 'src/app/services/error.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
 
 @Injectable({ providedIn: 'root' })
 export class OurPicksAdminService {
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firestore: AngularFirestore, private errorService: ErrorService) {}
 
   public insert(playerId: number, matchday: number): void {
-    this.firebaseService.addOurPick(playerId, matchday);
+    this.firestore
+      .collection('our-picks')
+      .doc(matchday.toString())
+      .set(
+        { players: firestore.FieldValue.arrayUnion({ order: 1, playerId }), published: false, matchday: matchday },
+        { merge: true }
+      );
   }
 
   public save(ourPicks: OurPicks): Observable<void> {
-    return this.firebaseService.saveOurPicks(ourPicks);
+    return from(this.firestore.collection('our-picks').doc(ourPicks.matchday.toString()).set(ourPicks));
   }
 
   public publish(matchday: number): Observable<void> {
-    return this.firebaseService.publishOurPicks(matchday);
+    return from(
+      this.firestore.collection('our-picks').doc(matchday.toString()).set({ published: true }, { merge: true })
+    );
   }
 }

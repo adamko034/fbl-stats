@@ -16,6 +16,8 @@ import { OurPicksFiltersService } from './services/our-picks-filters.service';
 import { OurPicksAdminComponent } from './views/our-picks-admin/our-picks-admin.component';
 import { OurPicksAdminSelectComponent } from './views/our-picks-admin/our-picks-admin-select/our-picks-admin-select.component';
 import { OurPicksFiltersExecutor } from './services/our-picks-filters-executor';
+import { OurPicksDisplaySettingsComponent } from './components/our-picks-display-settings/our-picks-display-settings.component';
+import { OurPicksDisplaySettingsService } from './services/our-picks-display-settings.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,10 @@ import { OurPicksFiltersExecutor } from './services/our-picks-filters-executor';
     OurPicksFiltersComponent,
     OurPicksFilterTypesComponent,
     OurPicksAdminComponent,
-    OurPicksAdminSelectComponent
+    OurPicksAdminSelectComponent,
+    OurPicksDisplaySettingsComponent
   ],
   imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule],
-  providers: [OurPicksLoadedGuard, OurPicksFiltersExecutor, OurPicksFiltersService]
+  providers: [OurPicksLoadedGuard, OurPicksFiltersExecutor, OurPicksFiltersService, OurPicksDisplaySettingsService]
 })
 export class OurPicksModule {}

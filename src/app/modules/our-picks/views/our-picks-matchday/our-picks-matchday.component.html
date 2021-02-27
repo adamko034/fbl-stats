@@ -7,14 +7,12 @@
     ></app-our-picks-matchday-description>
   </app-view-title>
 
-  <div fxLayoutAlign="center center">
-    <a [routerLink]="'/fantasy/our-picks/admin/' + (ourPicks$ | async | field: 'matchday')" *appAuthenticated
-      >To Admin</a
-    >
-  </div>
-
   <app-filters-content-layout>
     <app-our-picks-filters filters></app-our-picks-filters>
-    <app-our-picks-players content [ourPicks]="ourPicks$ | async"></app-our-picks-players>
+
+    <div content fxLayout="column" fxLayoutGap="20px">
+      <app-our-picks-display-settings></app-our-picks-display-settings>
+      <app-our-picks-players content [ourPicks]="ourPicks$ | async"></app-our-picks-players>
+    </div>
   </app-filters-content-layout>
 </div>
