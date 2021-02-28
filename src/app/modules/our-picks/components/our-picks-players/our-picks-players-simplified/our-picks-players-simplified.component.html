@@ -1,0 +1,51 @@
+<div class="our-picks-players-simplified" ngClass.xs="our-picks-players-simplified-mobile">
+  <div *ngIf="playersFound" class="admin-our-picks-list">
+    <div
+      class="admin-our-pick"
+      fxLayout="row"
+      *ngFor="let player of ourPicks.players | orderBy: 'order'; let i = index"
+    >
+      <span fxFlex="5" fxFlex.xs="7" fxLayoutAlign="center center">{{ i + 1 }}</span>
+      <app-team-logo fxFlex="7" fxFlex.xs="10" [team]="player.team.teamShort" [height]="30"></app-team-logo>
+      <span fxFlex class="bold">{{ player.name }}</span>
+      <div fxHide.xs fxFlex="25" fxLayoutGap="10px">
+        <span>{{ player.position | uppercase }}</span
+        ><span>{{ player.fantasy.price }}M</span><span>{{ player.fantasy.popularity }}%</span>
+      </div>
+      <div class="icons" fxLayout="row" fxLayoutGap="10px">
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: !player.isMustHave }"
+          [ngClass.xs]="{ 'hidden-mobile': !player.isMustHave }"
+          [icon]="Types.MUST_HAVE"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: !player.isPremium }"
+          [ngClass.xs]="{ 'hidden-mobile': !player.isPremium }"
+          [icon]="Types.PREMIUM"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: !player.isBargain }"
+          [ngClass.xs]="{ 'hidden-mobile': !player.isBargain }"
+          [icon]="Types.BARGAIN"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: !player.isDifferential }"
+          [ngClass.xs]="{ 'hidden-mobile': !player.isDifferential }"
+          [icon]="Types.DIFFERENTIAL"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!playersFound" fxLayoutAlign="center center">
+    <span>No players matching filters criteria.</span>
+  </div>
+</div>

@@ -8,7 +8,7 @@ import { OurPicksPlayersLoader } from '../loaders/our-picks-players.loader';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
 
 @Injectable({ providedIn: 'root' })
-export class OurPicksPlayersResolver implements Resolve<OurPicksPlayers> {
+export class OurPicksResolver implements Resolve<OurPicksPlayers> {
   constructor(private ourPicksLoader: OurPicksPlayersLoader, private propertiesService: PropertiesService) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<OurPicksPlayers> {

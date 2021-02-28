@@ -1,4 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-our-picks-matchday-description',
@@ -7,7 +10,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OurPicksMatchdayDescriptionComponent implements OnInit {
-  @Input() matchday: number;
+  public matchday$: Observable<number>;
 
   public iconsLegend: { icon: string; description: string }[] = [
     { icon: 'mustHave', description: 'must have player' },
@@ -16,7 +19,9 @@ export class OurPicksMatchdayDescriptionComponent implements OnInit {
     { icon: 'differential', description: 'differential - max popularity 5%' }
   ];
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.matchday$ = this.route.data.pipe(map((data) => data.ourPicks?.matchday));
+  }
 }

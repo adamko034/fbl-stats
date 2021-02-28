@@ -1,11 +1,12 @@
-<div
-  *ngIf="screenLarge$ | async"
-  class="our-picks-display-settings-container"
-  fxLayout="row"
-  fxLayoutAlign="space-evenly center"
->
+<div class="our-picks-display-settings-container" fxLayout="row" fxLayoutAlign="space-evenly center">
   <app-switch
-    *ngIf="screenLarge$ | async"
+    name="ourPicksViews"
+    [value]="settings$ | async | field: 'view'"
+    [items]="viewItems"
+    (switchChange)="onViewChange($event)"
+  ></app-switch>
+  <app-switch
+    *ngIf="(screenLarge$ | async) && (settings$ | async | field: 'view') === Views.EXTENDED"
     name="ouPicksDisplays"
     [value]="settings$ | async | field: 'display'"
     [items]="displayItems"

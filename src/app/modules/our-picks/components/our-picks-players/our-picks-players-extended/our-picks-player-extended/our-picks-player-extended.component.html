@@ -67,7 +67,9 @@
           <span class="md-row-text grey">MD {{ md.matchday }}:</span>
           <div fxLayoutAlign="start center" fxLayoutGap="5px">
             <app-team-logo [team]="md.opponentShort" [height]="30"></app-team-logo>
-            <span>({{ md.isHome ? 'h' : 'a' }})</span>
+            <span class="player-next-games-info">{{ md.opponentRank | numerals }}</span>
+            <span class="player-next-games-info">({{ md.isHome ? 'h' : 'a' }})</span>
+
             <span
               *ngIf="md.isFirstGame"
               class="green first-game"

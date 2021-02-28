@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MatchdayLatestGuard } from '../core/guards/matchday-latest.guard';
-import { OurPicksPlayersResolver } from '../core/our-picks/resolvers/our-picks-players.resolver';
+import { OurPicksResolver } from '../core/our-picks/resolvers/our-picks.resolver';
 import { AdminLoggedGuard } from './guard/admin-logged.guard';
 import { AdminOurPicksLoadedGuard } from './guard/admin-our-picks-loaded.guard';
 import { AdminLoginComponent } from './views/admin-login/admin-login.component';
@@ -30,7 +30,7 @@ const routes: Routes = [
           {
             path: ':matchday',
             canActivate: [MatchdayLatestGuard, AdminOurPicksLoadedGuard],
-            resolve: { players: OurPicksPlayersResolver },
+            resolve: { players: OurPicksResolver },
             component: AdminOurPicksComponent
           }
         ]

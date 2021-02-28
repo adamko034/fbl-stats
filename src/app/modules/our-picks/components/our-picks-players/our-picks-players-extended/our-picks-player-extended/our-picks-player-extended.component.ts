@@ -3,12 +3,12 @@ import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-
 import { PlayersDataService } from 'src/app/modules/players/views/players-fantasy/components/players-table-container/services/players-data.service';
 
 @Component({
-  selector: 'app-our-picks-player',
-  templateUrl: './our-picks-player.component.html',
-  styleUrls: ['./our-picks-player.component.scss'],
+  selector: 'app-our-picks-player-extended',
+  templateUrl: './our-picks-player-extended.component.html',
+  styleUrls: ['./our-picks-player-extended.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OurPicksPlayerComponent implements OnInit {
+export class OurPicksPlayerExtendedComponent implements OnInit {
   @Input() player: OurPicksPlayer;
 
   constructor(private playersDataService: PlayersDataService) {}

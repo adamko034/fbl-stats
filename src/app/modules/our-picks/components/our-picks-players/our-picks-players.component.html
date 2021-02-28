@@ -1,30 +1,18 @@
-<div class="our-picks-players-container" fxLayoutAlign="center center">
-  <div *ngIf="published">
-    <div
-      *ngIf="!!players && players.length > 0 && !!display"
-      [fxLayout.gt-md]="display === displays.LIST ? 'column' : 'row wrap'"
-      fxLayout.lt-lg="column"
-      fxLayoutGap.lt-lg="20px"
-      fxLayoutAlign="center center"
-      fxLayoutGap.gt-md="30px grid"
-    >
-      <div *ngFor="let player of players | orderBy: 'order'">
-        <app-our-picks-player [player]="player"></app-our-picks-player>
-      </div>
-    </div>
-
-    <div *ngIf="!players || players.length === 0" fxLayoutAlign="center center">
-      <span>No players matching filters criteria.</span>
-    </div>
+<div *ngIf="ourPicks$ | async | field: 'published'" [ngSwitch]="view$ | async">
+  <div *ngSwitchCase="Views.EXTENDED">
+    <app-our-picks-players-extended [ourPicks]="ourPicks$ | async"></app-our-picks-players-extended>
   </div>
-
-  <div *ngIf="!published">
-    <h2 fxLayoutAlign="start center" fxLayout="column">
-      Sorry, we haven't published our picks yet.
-      <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
-        ><span>Stay tuned and follow us</span>
-        <fa-icon class="twitter red" [icon]="['fab', 'twitter']"></fa-icon>
-      </a>
-    </h2>
+  <div *ngSwitchCase="Views.SIMPLIFIED">
+    <app-our-picks-players-simplified [ourPicks]="ourPicks$ | async"></app-our-picks-players-simplified>
   </div>
+</div>
+
+<div *ngIf="!(ourPicks$ | async | field: 'published')">
+  <h2 fxLayoutAlign="start center" fxLayout="column">
+    Sorry, we haven't published our picks yet.
+    <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
+      ><span>Stay tuned and follow us</span>
+      <fa-icon class="twitter red" [icon]="['fab', 'twitter']"></fa-icon>
+    </a>
+  </h2>
 </div>

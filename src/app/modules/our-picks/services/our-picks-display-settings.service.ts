@@ -3,10 +3,16 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OurPicksDisplaySettings } from '../models/our-picks-display-settings.model';
 import { OurPicksDisplay } from '../models/our-picks-display.enum';
+import { OurPicksView } from '../models/our-picks-view.enum';
 
 @Injectable()
 export class OurPicksDisplaySettingsService {
   private readonly STORAGE_KEY = 'OUR_PICKS_DISPLAY';
+
+  private defaultValue: OurPicksDisplaySettings = {
+    display: OurPicksDisplay.TILES,
+    view: OurPicksView.EXTENDED
+  };
 
   private settings: OurPicksDisplaySettings = this.getInitialValue();
   private settings$ = new ReplaySubject<OurPicksDisplaySettings>(1);
@@ -19,8 +25,13 @@ export class OurPicksDisplaySettingsService {
     return this.settings$.asObservable();
   }
 
-  public updateDisplay(display: OurPicksDisplay) {
+  public updateDisplay(display: OurPicksDisplay): void {
     this.settings.display = display;
+    this.send();
+  }
+
+  public udpateView(view: OurPicksView): void {
+    this.settings.view = view;
     this.send();
   }
 
@@ -30,6 +41,16 @@ export class OurPicksDisplaySettingsService {
   }
 
   private getInitialValue(): OurPicksDisplaySettings {
-    return this.localStorage.get<OurPicksDisplaySettings>(this.STORAGE_KEY) || { display: OurPicksDisplay.TILES };
+    const fromCache = this.localStorage.get<OurPicksDisplaySettings>(this.STORAGE_KEY);
+
+    if (!fromCache) {
+      return this.defaultValue;
+    }
+
+    if (!fromCache.view) {
+      return { ...fromCache, view: this.defaultValue.view };
+    }
+
+    return fromCache;
   }
 }

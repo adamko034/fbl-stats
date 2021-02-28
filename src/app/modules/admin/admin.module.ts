@@ -8,7 +8,6 @@ import { AdminLoggedGuard } from './guard/admin-logged.guard';
 import { AdminComponent } from './views/admin/admin.component';
 import { AdminOurPicksLoadedGuard } from './guard/admin-our-picks-loaded.guard';
 import { AdminOurPicksComponent } from './views/admin-our-picks/admin-our-picks.component';
-
 @NgModule({
   declarations: [AdminLoginComponent, AdminComponent, AdminOurPicksComponent],
   imports: [CommonModule, AdminRoutingModule, SharedModule, AngularMaterialModule],

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatchdayLatestGuard } from '../core/guards/matchday-latest.guard';
 import { OurPicksLoadedGuard } from './guards/our-picks-loaded.guard';
 import { OurPicksContentComponent } from './our-picks-content/our-picks-content.component';
-import { OurPicksPlayersResolver } from '../core/our-picks/resolvers/our-picks-players.resolver';
+import { OurPicksResolver } from '../core/our-picks/resolvers/our-picks.resolver';
 import { OurPicksMatchdayComponent } from './views/our-picks-matchday/our-picks-matchday.component';
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
         path: ':matchday',
         canActivate: [MatchdayLatestGuard, OurPicksLoadedGuard],
         component: OurPicksMatchdayComponent,
-        resolve: { players: OurPicksPlayersResolver }
+        resolve: { ourPicks: OurPicksResolver }
       }
     ]
   }
