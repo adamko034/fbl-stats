@@ -1,18 +1,20 @@
-<div *ngIf="ourPicks$ | async | field: 'published'" [ngSwitch]="view$ | async">
-  <div *ngSwitchCase="Views.EXTENDED">
-    <app-our-picks-players-extended [ourPicks]="ourPicks$ | async"></app-our-picks-players-extended>
+<div *ngIf="ourPicks$ | async">
+  <div *ngIf="ourPicks$ | async | field: 'published'" [ngSwitch]="view$ | async">
+    <div *ngSwitchCase="Views.EXTENDED">
+      <app-our-picks-players-extended [ourPicks]="ourPicks$ | async"></app-our-picks-players-extended>
+    </div>
+    <div *ngSwitchCase="Views.SIMPLIFIED">
+      <app-our-picks-players-simplified [ourPicks]="ourPicks$ | async"></app-our-picks-players-simplified>
+    </div>
   </div>
-  <div *ngSwitchCase="Views.SIMPLIFIED">
-    <app-our-picks-players-simplified [ourPicks]="ourPicks$ | async"></app-our-picks-players-simplified>
-  </div>
-</div>
 
-<div *ngIf="!(ourPicks$ | async | field: 'published')">
-  <h2 fxLayoutAlign="start center" fxLayout="column">
-    Sorry, we haven't published our picks yet.
-    <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
-      ><span>Stay tuned and follow us</span>
-      <fa-icon class="twitter red" [icon]="['fab', 'twitter']"></fa-icon>
-    </a>
-  </h2>
+  <div *ngIf="!(ourPicks$ | async | field: 'published')">
+    <h2 fxLayoutAlign="start center" fxLayout="column">
+      Sorry, we haven't published our picks yet.
+      <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
+        ><span>Stay tuned and follow us</span>
+        <fa-icon class="twitter red" [icon]="['fab', 'twitter']"></fa-icon>
+      </a>
+    </h2>
+  </div>
 </div>

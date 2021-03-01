@@ -26,6 +26,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { OurPickIconComponent } from '../../shared/components/our-pick-icon/our-pick-icon.component';
 import { PlayersViewSwitchComponent } from './players/components/players-display/components/players-view-switch/players-view-switch.component';
 import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
+import { PlayersTableAddOurPickComponent } from './players/components/players-table/players-table-add-our-pick/players-table-add-our-pick.component';
+import { PlayersPickerComponent } from './players/picker/components/players-picker/players-picker.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     SelectMoreMatchdaysDialogComponent,
     PlayersViewSwitchComponent,
     PlayersDisplayComponent,
-    PlayersSearchComponent
+    PlayersSearchComponent,
+    PlayersTableAddOurPickComponent,
+    PlayersPickerComponent
   ],
   imports: [CommonModule, SharedModule, AngularMaterialModule, NgxChartsModule],
   exports: [
@@ -73,7 +77,8 @@ import { PlayersDisplayComponent } from './players/components/players-display/pl
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
     PlayersViewSwitchComponent,
-    PlayersSearchComponent
+    PlayersSearchComponent,
+    PlayersPickerComponent
   ]
 })
 export class FblCoreModule {}

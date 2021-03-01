@@ -13,7 +13,8 @@ import {
   faSort,
   faSortAmountDownAlt,
   faSortAmountUpAlt,
-  faStar
+  faStar,
+  faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
@@ -46,6 +47,7 @@ import { WherePipe } from './pipes/where.pipe';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
+import { YesNoPipe } from './pipes/yes-no.pipe';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.c
     FieldPipe,
     FilterPositionComponent,
     AuthenticatedDirective,
-    OurPickIconComponent
+    OurPickIconComponent,
+    YesNoPipe
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -111,7 +114,8 @@ import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.c
     FieldPipe,
     FilterPositionComponent,
     AuthenticatedDirective,
-    OurPickIconComponent
+    OurPickIconComponent,
+    YesNoPipe
   ]
 })
 export class SharedModule {
@@ -127,7 +131,8 @@ export class SharedModule {
       faEquals,
       faCrown,
       faPiggyBank,
-      faStar
+      faStar,
+      faUserPlus
     );
   }
 }

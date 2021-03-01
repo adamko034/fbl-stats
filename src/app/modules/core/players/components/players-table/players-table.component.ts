@@ -85,20 +85,20 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     Logger.logDev('players table componenet, on init');
     this.expandedPlayersService.select().subscribe((expanedPlayers) => (this.expandedRows = expanedPlayers));
     this.myTeamPlayers$ = this.myTeamService.selectPlayersId();
-    this.auth
-      .isLogged()
-      .pipe(distinctUntilChanged())
-      .subscribe((res) => {
-        this.isLogged = res.isLogged;
-        if (this.isLogged) {
-          if (!this.displayedColumns.includes('OP')) {
-            this.displayedColumns.push('OP');
-            this.changeDetection.detectChanges();
-          }
-        } else {
-          this.displayedColumns = this.displayedColumns.filter((x) => x !== 'OP');
-        }
-      });
+    // this.auth
+    //   .isLogged()
+    //   .pipe(distinctUntilChanged())
+    //   .subscribe((res) => {
+    //     this.isLogged = res.isLogged;
+    //     if (this.isLogged) {
+    //       if (!this.displayedColumns.includes('OP')) {
+    //         this.displayedColumns.push('OP');
+    //         this.changeDetection.detectChanges();
+    //       }
+    //     } else {
+    //       this.displayedColumns = this.displayedColumns.filter((x) => x !== 'OP');
+    //     }
+    //   });
   }
 
   public ngAfterViewInit(): void {
@@ -132,10 +132,6 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
 
   public addToMyTeam(playerId: string): void {
     this.myTeamService.add(playerId);
-  }
-
-  public addOurPick(playerId: string): void {
-    this.ourPicksAdminService.insert(+playerId, 23);
   }
 
   public removeFromMyTeam(playerId: string): void {
@@ -190,6 +186,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     this.displayedColumns.splice(4, 0, 'Next');
     this.displayedColumns.splice(5, 0, 'Prediction');
     this.displayedColumns.push('MT');
+    this.displayedColumns.push('OP');
   }
 
   private getDefaulColumns() {

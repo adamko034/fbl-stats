@@ -4,28 +4,48 @@ import { firestore } from 'firebase/app';
 import { from, Observable } from 'rxjs';
 import { ErrorService } from 'src/app/services/error.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class OurPicksAdminService {
-  constructor(private firestore: AngularFirestore, private errorService: ErrorService) {}
+  constructor(private firestore: AngularFirestore) {}
 
-  public insert(playerId: number, matchday: number): void {
-    this.firestore
-      .collection('our-picks')
-      .doc(matchday.toString())
-      .set(
-        { players: firestore.FieldValue.arrayUnion({ order: 1, playerId }), published: false, matchday: matchday },
-        { merge: true }
-      );
+  public insert(playerId: number, matchday: number): Observable<void> {
+    return from(
+      this.firestore
+        .collection('our-picks')
+        .doc(this.getDevProdMatchday(matchday).toString())
+        .set(
+          {
+            players: firestore.FieldValue.arrayUnion({ order: 1, playerId }),
+            published: false,
+            matchday: this.getDevProdMatchday(matchday)
+          },
+          { merge: true }
+        )
+    );
   }
 
   public save(ourPicks: OurPicks): Observable<void> {
-    return from(this.firestore.collection('our-picks').doc(ourPicks.matchday.toString()).set(ourPicks));
+    const matchday = this.getDevProdMatchday(ourPicks.matchday);
+    return from(
+      this.firestore
+        .collection('our-picks')
+        .doc(matchday.toString())
+        .set({ ...ourPicks, matchday })
+    );
   }
 
-  public publish(matchday: number): Observable<void> {
+  public setPublish(value: boolean, matchday: number): Observable<void> {
     return from(
-      this.firestore.collection('our-picks').doc(matchday.toString()).set({ published: true }, { merge: true })
+      this.firestore
+        .collection('our-picks')
+        .doc(this.getDevProdMatchday(matchday).toString())
+        .set({ published: value }, { merge: true })
     );
+  }
+
+  private getDevProdMatchday(matchday: number): number {
+    return environment.production ? matchday : 100;
   }
 }

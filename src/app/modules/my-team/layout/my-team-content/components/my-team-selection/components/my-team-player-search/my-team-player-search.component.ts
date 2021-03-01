@@ -15,7 +15,6 @@ import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 export class MyTeamPlayerSearchComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
 
-  public addButtonExpanded = false;
   public playerSearch = new FormControl();
   public foundPlayers$: Observable<MyTeamPlayer[]>;
 

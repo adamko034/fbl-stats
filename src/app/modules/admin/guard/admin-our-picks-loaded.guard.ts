@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { OurPicksStore } from 'src/app/store/our-picks/our-picks.store';
 import { Logger } from 'src/app/utils/logger';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AdminOurPicksLoadedGuard implements CanActivate {
@@ -15,8 +16,8 @@ export class AdminOurPicksLoadedGuard implements CanActivate {
       return false;
     }
 
-    Logger.logDev(`admin our picks loaded, loading for matchday ${route.params.matchday}`);
-    const matchday = +route.params.matchday;
+    const matchday = environment.production ? +route.params.matchday : 100;
+    Logger.logDev(`admin our picks loaded, loading for matchday ${matchday}`);
 
     this.store.load(matchday, false);
 

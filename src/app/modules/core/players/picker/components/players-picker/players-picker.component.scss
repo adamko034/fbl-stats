@@ -1,0 +1,12 @@
+.menu-form {
+  width: 300px;
+  padding: 0 10px;
+
+  mat-form-field {
+    width: 100%;
+
+    .option-text-mobile {
+      font-size: 13px;
+    }
+  }
+}

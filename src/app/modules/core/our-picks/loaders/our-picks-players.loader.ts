@@ -16,17 +16,13 @@ import { OurPicksPlayerTeam } from '../models/our-picks-player-team.model';
 import { OurPicksPlayer } from '../models/our-picks-player.model';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
 import { OurPicksTeamGame } from '../models/our-picks-team-game.model';
+import { OurPicksPlayerLoader } from './our-picks-player.loader';
 
 @Injectable({ providedIn: 'root' })
 export class OurPicksPlayersLoader {
   private cache: { [matchday: number]: OurPicksPlayers } = {};
 
-  constructor(
-    private ourPicksStore: OurPicksStore,
-    private playersStore: PlayersStore,
-    private teamsStore: TeamsStore,
-    private predictionService: PlayerAttendancePredictionService
-  ) {}
+  constructor(private ourPicksStore: OurPicksStore, private ourPicksPlayerLoader: OurPicksPlayerLoader) {}
 
   public load(matchday: number, lastMatchday: number): Observable<OurPicksPlayers> {
     Logger.logDev('our picks players loader, loading for MD ' + matchday);
@@ -60,55 +56,8 @@ export class OurPicksPlayersLoader {
       return [];
     }
 
-    return picks.players.map((pick: OurPick) => {
-      const player = this.playersStore.getById(pick.playerId.toString());
-      const team = this.teamsStore.getBy(player.teamShort);
-
-      const fantasy: OurPicksPlayerFantasy = {
-        popularity: player.popularity,
-        price: player.price,
-        totalPoints: player.totalPoints,
-        form: this.getForm(player, lastMatchday)
-      };
-
-      const ourPicksTeam: OurPicksPlayerTeam = {
-        rank: team.rank,
-        teamShort: team.shortName,
-        nextGames: this.getNextGames(team, lastMatchday)
-      };
-
-      return {
-        name: player.name,
-        playerId: pick.playerId,
-        order: pick.order,
-        fantasy,
-        team: ourPicksTeam,
-        lastName: player.lastName,
-        position: player.position,
-        isBargain: picks.bargains?.includes(pick.playerId) || false,
-        isDifferential: picks.differentials?.includes(pick.playerId) || false,
-        isMustHave: picks.mustHave?.includes(pick.playerId) || false,
-        isPremium: picks.premium?.includes(pick.playerId) || false,
-        prediction: this.predictionService.determine(player.nextGame.lineupPredictions)
-      };
-    });
-  }
-
-  private getForm(player: Player, lastMatchday: number): OurPicksPlayerFantasyMatchday[] {
-    return player.games
-      .filter((g) => lastMatchday - 3 < g.matchday && g.matchday <= lastMatchday)
-      .map(({ matchday, points }) => ({ matchday, points }));
-  }
-
-  private getNextGames(team: Team, lastMatchday: number): OurPicksTeamGame[] {
-    return team.games
-      .filter((g) => lastMatchday < g.matchday && g.matchday <= lastMatchday + 3)
-      .map((g) => ({
-        isHome: g.isHome,
-        matchday: g.matchday,
-        opponentShort: g.opponent,
-        opponentRank: g.opponentRank,
-        isFirstGame: g.isMatchdayFirstGame
-      }));
+    return picks.players.map((pick: OurPick) =>
+      this.ourPicksPlayerLoader.load(pick.playerId, lastMatchday, pick.order, picks)
+    );
   }
 }

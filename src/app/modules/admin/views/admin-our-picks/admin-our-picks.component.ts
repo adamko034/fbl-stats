@@ -1,14 +1,16 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
-import { OurPicksPlayers } from 'src/app/modules/core/our-picks/models/our-picks-players.model';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
+import { PropertiesService } from 'src/app/services/properties.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
+import { AdminOurPicksState } from '../../our-picks/models/admin-our-picks-state.model';
 
 @UntilDestroy()
 @Component({
@@ -17,40 +19,45 @@ import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
   styleUrls: ['./admin-our-picks.component.scss']
 })
 export class AdminOurPicksComponent implements OnInit {
-  private ourPicks: OurPicksPlayers;
+  public state: AdminOurPicksState;
+  public lastMatchday$: Observable<number>;
 
-  public players: OurPicksPlayer[];
+  public get players(): OurPicksPlayer[] {
+    return this.state?.ourPicks?.players;
+  }
+
   public isChange = false;
   public Icons = OurPicksType;
-  public bargains: number[] = [];
-  public differentials: number[] = [];
-  public premium: number[] = [];
-  public mustHave: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private ourPicksAdminService: OurPicksAdminService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private propertiesService: PropertiesService,
+    private changeDetection: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
     this.route.data
       .pipe(
-        map((data) => data.players),
+        map((data) => data.state),
         untilDestroyed(this)
       )
-      .subscribe((ourPicks) => {
-        this.ourPicks = { ...ourPicks };
-        this.players = [...this.ourPicks.players];
-        this.bargains = [...this.ourPicks.players.filter((m) => m.isBargain).map((p) => p.playerId)];
-        this.differentials = [...this.ourPicks.players.filter((m) => m.isDifferential).map((p) => p.playerId)];
-        this.mustHave = [...this.ourPicks.players.filter((m) => m.isMustHave).map((p) => p.playerId)];
-        this.premium = [...this.ourPicks.players.filter((m) => m.isPremium).map((p) => p.playerId)];
+      .subscribe((state) => {
+        this.state = state;
       });
+
+    this.lastMatchday$ = this.propertiesService.selectLastMatchday();
+  }
+
+  public onPlayerSelected(player: OurPicksPlayer): void {
+    this.state.ourPicks.players.push({ ...player, order: 1 });
+    this.toastrService.success(`Added ${player.name}`);
+    this.isChange = true;
   }
 
   public drop(event: CdkDragDrop<string[]>) {
-    this.arraymove(this.players, event.previousIndex, event.currentIndex);
+    this.arraymove(this.state.ourPicks.players, event.previousIndex, event.currentIndex);
     this.reorderPlayers();
 
     this.isChange = true;
@@ -58,13 +65,13 @@ export class AdminOurPicksComponent implements OnInit {
 
   public save() {
     const ourPicksDto: OurPicks = {
-      matchday: this.ourPicks.matchday,
+      matchday: this.state.ourPicks.matchday,
       published: false,
-      players: this.players.map((p) => ({ order: p.order, playerId: p.playerId })),
-      bargains: this.bargains,
-      differentials: this.differentials,
-      mustHave: this.mustHave,
-      premium: this.premium
+      players: this.state.ourPicks.players.map((p) => ({ order: p.order, playerId: p.playerId })),
+      bargains: this.state.bargains,
+      differentials: this.state.differentials,
+      mustHave: this.state.mustHave,
+      premium: this.state.premium
     };
 
     this.ourPicksAdminService
@@ -74,22 +81,30 @@ export class AdminOurPicksComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe(() => {
+        this.isChange = false;
         this.toastrService.success('Changes has been saved', 'Our Picks');
+        this.changeDetection.detectChanges();
       });
-
-    this.isChange = false;
   }
 
   public publish(): void {
-    this.ourPicksAdminService.publish(this.ourPicks.matchday);
+    this.ourPicksAdminService
+      .setPublish(!this.state.ourPicks.published, this.state.ourPicks.matchday)
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.state.ourPicks.published = !this.state.ourPicks.published;
+        this.isChange = false;
+        this.toastrService.success(this.state.ourPicks.published ? 'Published' : 'Unpublished');
+        this.changeDetection.detectChanges();
+      });
   }
 
   public remove(playerId: number): void {
-    this.players = this.players.filter((p) => p.playerId !== playerId);
-    this.bargains = this.bargains.filter((id) => id !== playerId);
-    this.differentials = this.differentials.filter((id) => id !== playerId);
-    this.mustHave = this.mustHave.filter((id) => id !== playerId);
-    this.premium = this.premium.filter((id) => id !== playerId);
+    this.state.ourPicks.players = this.state.ourPicks.players.filter((p) => p.playerId !== playerId);
+    this.state.bargains = this.state.bargains.filter((id) => id !== playerId);
+    this.state.differentials = this.state.differentials.filter((id) => id !== playerId);
+    this.state.mustHave = this.state.mustHave.filter((id) => id !== playerId);
+    this.state.premium = this.state.premium.filter((id) => id !== playerId);
 
     this.reorderPlayers();
     this.isChange = true;
@@ -98,29 +113,29 @@ export class AdminOurPicksComponent implements OnInit {
   public getIconColor(type: OurPicksType, playerId: number): string {
     switch (type) {
       case OurPicksType.MUST_HAVE:
-        return this.mustHave.includes(playerId) ? null : 'grey';
+        return this.state.mustHave.includes(playerId) ? null : 'grey';
       case OurPicksType.BARGAIN:
-        return this.bargains.includes(playerId) ? null : 'grey';
+        return this.state.bargains.includes(playerId) ? null : 'grey';
       case OurPicksType.DIFFERENTIAL:
-        return this.differentials.includes(playerId) ? null : 'grey';
+        return this.state.differentials.includes(playerId) ? null : 'grey';
       case OurPicksType.PREMIUM:
-        return this.premium.includes(playerId) ? null : 'grey';
+        return this.state.premium.includes(playerId) ? null : 'grey';
     }
   }
 
   public togglePlayerType(type: OurPicksType, playerId: number): void {
     switch (type) {
       case OurPicksType.MUST_HAVE:
-        this.mustHave = this.addOrRemove(this.mustHave, playerId);
+        this.state.mustHave = this.addOrRemove(this.state.mustHave, playerId);
         break;
       case OurPicksType.BARGAIN:
-        this.bargains = this.addOrRemove(this.bargains, playerId);
+        this.state.bargains = this.addOrRemove(this.state.bargains, playerId);
         break;
       case OurPicksType.DIFFERENTIAL:
-        this.differentials = this.addOrRemove(this.differentials, playerId);
+        this.state.differentials = this.addOrRemove(this.state.differentials, playerId);
         break;
       case OurPicksType.PREMIUM:
-        this.premium = this.addOrRemove(this.premium, playerId);
+        this.state.premium = this.addOrRemove(this.state.premium, playerId);
         break;
     }
 
@@ -128,8 +143,8 @@ export class AdminOurPicksComponent implements OnInit {
   }
 
   private reorderPlayers() {
-    for (let i = 0; i < this.players.length; i++) {
-      this.players[i].order = i + 1;
+    for (let i = 0; i < this.state.ourPicks.players.length; i++) {
+      this.state.ourPicks.players[i].order = i + 1;
     }
   }
 

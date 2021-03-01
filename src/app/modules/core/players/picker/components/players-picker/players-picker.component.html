@@ -1,0 +1,31 @@
+<div>
+  <button
+    mat-button
+    class="red-background"
+    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+    (menuClosed)="opened = trigger.menuOpen"
+    [matMenuTriggerFor]="searchMenuOurPick"
+    #trigger="matMenuTrigger"
+  >
+    Add player
+    <mat-icon *ngIf="opened">arrow_drop_up</mat-icon>
+    <mat-icon *ngIf="!opened">arrow_drop_down</mat-icon>
+  </button>
+  <mat-menu #searchMenuOurPick="matMenu">
+    <form class="menu-form">
+      <mat-form-field>
+        <input type="text" matInput [formControl]="playerSearch" [matAutocomplete]="ourPicksAuto" />
+        <mat-hint>Min 2 characters ({{ playerSearch.value?.length || 0 }}/2)</mat-hint>
+
+        <mat-autocomplete #ourPicksAuto="matAutocomplete" (optionSelected)="onPlayerSelected($event.option.value)">
+          <mat-option *ngFor="let player of foundPlayers$ | async" [value]="player.id.toString() + ';' + player.name">
+            <div fxLayoutGap="8px" fxLayoutAlign="start center">
+              <app-team-logo [height]="25" [team]="player.teamShort" fxHide.lt-sm></app-team-logo>
+              <span ngClass.lt-sm="option-text-mobile">{{ player.name }} ({{ player.position | uppercase }})</span>
+            </div>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </mat-menu>
+</div>

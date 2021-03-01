@@ -2,6 +2,9 @@
   <li *ngFor="let link of links | orderBy: 'order'">
     <a ngClass.sm="link-sm" [routerLink]="link.path" routerLinkActive="active">{{ link.text }}</a>
   </li>
+  <li *appAuthenticated>
+    <a ngClass.sm="link-sm" routerLink="/admin" routerLinkActive="active">admin</a>
+  </li>
 </ul>
 
 <ul *ngIf="mode == modes.VERTICAL" class="navigation" fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="20px">
