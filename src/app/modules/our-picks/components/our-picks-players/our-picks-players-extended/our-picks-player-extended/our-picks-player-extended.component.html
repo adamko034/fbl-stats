@@ -19,6 +19,10 @@
           <span class="player-main-info-item">{{ player.fantasy.popularity }}%</span>
         </div>
 
+        <div class="player-main-info" fxLayout="row" fxLayoutAlign="start center">
+          <span class="player-main-info-item">Top 100: {{ player.top100Popularity }}%</span>
+        </div>
+
         <div class="player-main-prediction" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
           <a [routerLink]="'/lineups/teams/' + player.team.teamShort" target="_blank">Is predicted to start?</a>
           <app-prediction-indicator [value]="player.prediction" [height]="20"></app-prediction-indicator>

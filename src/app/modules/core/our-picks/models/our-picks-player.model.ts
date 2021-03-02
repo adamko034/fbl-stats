@@ -12,6 +12,7 @@ export interface OurPicksPlayer {
   isDifferential: boolean;
   isMustHave: boolean;
   isPremium: boolean;
+  top100Popularity: number;
   team: OurPicksPlayerTeam;
   fantasy: OurPicksPlayerFantasy;
   prediction: PlayerAttendancePrediction;

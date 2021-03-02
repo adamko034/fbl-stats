@@ -48,6 +48,7 @@ export class OurPicksPlayerLoader {
       isDifferential: currentPicks?.differentials?.includes(id) || false,
       isMustHave: currentPicks?.mustHave?.includes(id) || false,
       isPremium: currentPicks?.premium?.includes(id) || false,
+      top100Popularity: player.top100Popularity,
       prediction: this.predictionService.determine(player.nextGame.lineupPredictions)
     };
   }

@@ -16,4 +16,5 @@ export interface Player {
   nextGame: PlayerNextGame;
   isSuspensionRisk: boolean;
   isReturning: boolean;
+  top100Popularity: number;
 }

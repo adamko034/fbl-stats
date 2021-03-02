@@ -3,6 +3,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { OurPicksDisplaySettings } from '../models/our-picks-display-settings.model';
 import { OurPicksDisplay } from '../models/our-picks-display.enum';
+import { OurPicksOrderBy } from '../models/our-picks-order-by.enum';
 import { OurPicksView } from '../models/our-picks-view.enum';
 
 @Injectable()
@@ -11,7 +12,8 @@ export class OurPicksDisplaySettingsService {
 
   private defaultValue: OurPicksDisplaySettings = {
     display: OurPicksDisplay.TILES,
-    view: OurPicksView.EXTENDED
+    view: OurPicksView.EXTENDED,
+    sortBy: { value: 'order', text: 'Our Order' }
   };
 
   private settings: OurPicksDisplaySettings = this.getInitialValue();

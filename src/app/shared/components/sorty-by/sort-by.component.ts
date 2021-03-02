@@ -8,6 +8,7 @@ import { SortBy } from 'src/app/shared/components/sorty-by/models/sort-by.model'
   styleUrls: ['./sort-by.component.scss']
 })
 export class SortByComponent implements OnInit {
+  @Input() showLabel = true;
   @Input() label = 'Sort by:';
   @Input() defaultValue: SortBy;
   @Input() items: SortByItem[];

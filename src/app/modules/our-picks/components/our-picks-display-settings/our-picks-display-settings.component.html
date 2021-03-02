@@ -12,4 +12,5 @@
     [items]="displayItems"
     (switchChange)="onDisplayChange($event)"
   ></app-switch>
+  <app-sort-by [showLabel]="false" [defaultValue]="settings$ | async | field: 'sortBy'"></app-sort-by>
 </div>
