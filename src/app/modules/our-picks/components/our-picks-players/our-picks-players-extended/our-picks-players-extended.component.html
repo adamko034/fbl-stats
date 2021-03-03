@@ -7,7 +7,7 @@
     fxLayoutAlign="center center"
     fxLayoutGap.gt-md="30px grid"
   >
-    <div *ngFor="let player of ourPicks.players | orderBy: 'order'">
+    <div *ngFor="let player of ourPicks.players">
       <app-our-picks-player-extended [player]="player"></app-our-picks-player-extended>
     </div>
   </div>

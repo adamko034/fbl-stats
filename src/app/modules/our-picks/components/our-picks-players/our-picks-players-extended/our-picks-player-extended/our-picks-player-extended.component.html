@@ -7,7 +7,13 @@
       fxLayoutAlign="start center"
       fxLayoutGap="15px"
     >
-      <app-team-logo [team]="player.team.teamShort" [height]="30"></app-team-logo>
+      <div fxFlexAlign="start" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <app-team-logo [team]="player.team.teamShort" [height]="30"></app-team-logo>
+        <div *ngIf="player.order <= 3">
+          <fa-icon [icon]="['fas', 'medal']" size="2x" [appMedalColor]="player.order"></fa-icon>
+        </div>
+      </div>
+
       <div fxLayout="column" fxLayoutGap="7px">
         <div class="player-main-name" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
           <span class="player-main-name-text">{{ player.name }}</span>
@@ -15,8 +21,8 @@
 
         <div class="player-main-info" fxLayout="row" fxLayoutAlign="start center">
           <span class="player-main-info-item">{{ player.position | uppercase }}</span>
-          <span class="player-main-info-item">{{ player.fantasy.price }}M</span>
-          <span class="player-main-info-item">{{ player.fantasy.popularity }}%</span>
+          <span class="player-main-info-item">{{ player.price }}M</span>
+          <span class="player-main-info-item">{{ player.popularity }}%</span>
         </div>
 
         <div class="player-main-info" fxLayout="row" fxLayoutAlign="start center">
@@ -53,7 +59,7 @@
       fxLayout.xs="row"
       fxLayoutGap="10px"
     >
-      <div class="md-row" *ngFor="let md of player.fantasy.form | orderBy: '-matchday'" fxLayoutAlign="start center">
+      <div class="md-row" *ngFor="let md of player.matchdays | orderBy: '-matchday'" fxLayoutAlign="start center">
         <span class="md-row-text grey">MD {{ md.matchday }}:</span>
         <span class="player-form-points bold" [ngClass]="getPointsColor(md.points)">{{ md.points }}</span>
       </div>

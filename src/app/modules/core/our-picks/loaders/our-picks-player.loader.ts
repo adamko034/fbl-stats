@@ -6,7 +6,6 @@ import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { PlayerAttendancePredictionService } from '../../players/services/player-attendance-prediction.service';
 import { OurPicksPlayerFantasyMatchday } from '../models/our-picks-player-fantasy-matchday.model';
-import { OurPicksPlayerFantasy } from '../models/our-picks-player-fantasy.model';
 import { OurPicksPlayerTeam } from '../models/our-picks-player-team.model';
 import { OurPicksPlayer } from '../models/our-picks-player.model';
 import { OurPicksTeamGame } from '../models/our-picks-team-game.model';
@@ -22,13 +21,9 @@ export class OurPicksPlayerLoader {
   public load(id: number, lastMatchday: number, order?: number, currentPicks?: OurPicks): OurPicksPlayer {
     const player = this.playersStore.getById(id.toString());
     const team = this.teamsStore.getBy(player.teamShort);
-
-    const fantasy: OurPicksPlayerFantasy = {
-      popularity: player.popularity,
-      price: player.price,
-      totalPoints: player.totalPoints,
-      form: this.getForm(player, lastMatchday)
-    };
+    const matchdays = this.getPreviousMatchdays(player, lastMatchday);
+    let formPts = 0;
+    matchdays.forEach((f) => (formPts += f.points));
 
     const ourPicksTeam: OurPicksPlayerTeam = {
       rank: team.rank,
@@ -40,7 +35,6 @@ export class OurPicksPlayerLoader {
       name: player.name,
       playerId: id,
       order: order || null,
-      fantasy,
       team: ourPicksTeam,
       lastName: player.lastName,
       position: player.position,
@@ -49,11 +43,16 @@ export class OurPicksPlayerLoader {
       isMustHave: currentPicks?.mustHave?.includes(id) || false,
       isPremium: currentPicks?.premium?.includes(id) || false,
       top100Popularity: player.top100Popularity,
-      prediction: this.predictionService.determine(player.nextGame.lineupPredictions)
+      price: player.price,
+      popularity: player.popularity,
+      formPts,
+      matchdays,
+      prediction: this.predictionService.determine(player.nextGame.lineupPredictions),
+      totalPoints: player.totalPoints
     };
   }
 
-  private getForm(player: Player, lastMatchday: number): OurPicksPlayerFantasyMatchday[] {
+  private getPreviousMatchdays(player: Player, lastMatchday: number): OurPicksPlayerFantasyMatchday[] {
     return player.games
       .filter((g) => lastMatchday - 3 < g.matchday && g.matchday <= lastMatchday)
       .map(({ matchday, points }) => ({ matchday, points }));

@@ -15,7 +15,7 @@
           <span fxFlex class="bold">{{ player.name }}</span>
           <div fxFlex="20" fxLayoutGap="10px">
             <span>{{ player.position | uppercase }}</span
-            ><span>{{ player.fantasy.price }}M</span><span>{{ player.fantasy.popularity }}%</span>
+            ><span>{{ player.price }}M</span><span>{{ player.popularity }}%</span>
           </div>
           <div class="icons" fxLayout="row" fxLayoutGap="10px">
             <app-our-pick-icon
@@ -34,7 +34,7 @@
             ></app-our-pick-icon>
             <app-our-pick-icon
               class="icon"
-              [ngClass]="{ hidden: player.fantasy.price > 8 }"
+              [ngClass]="{ hidden: player.price > 8 }"
               [icon]="Icons.BARGAIN"
               [color]="getIconColor(Icons.BARGAIN, player.playerId)"
               [showTooltip]="false"
@@ -42,7 +42,7 @@
             ></app-our-pick-icon>
             <app-our-pick-icon
               class="icon"
-              [ngClass]="{ hidden: player.fantasy.popularity > 5 }"
+              [ngClass]="{ hidden: player.popularity > 5 }"
               [icon]="Icons.DIFFERENTIAL"
               [color]="getIconColor(Icons.DIFFERENTIAL, player.playerId)"
               [showTooltip]="false"

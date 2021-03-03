@@ -9,8 +9,7 @@ import { ScreenSizeService } from 'src/app/services/screen-size.service';
 @Component({
   selector: 'app-our-picks-players-simplified',
   templateUrl: './our-picks-players-simplified.component.html',
-  styleUrls: ['./our-picks-players-simplified.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./our-picks-players-simplified.component.scss']
 })
 export class OurPicksPlayersSimplifiedComponent {
   @Input() ourPicks: OurPicksPlayers;

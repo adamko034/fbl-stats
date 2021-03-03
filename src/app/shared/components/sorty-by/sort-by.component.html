@@ -1,5 +1,5 @@
 <div class="sort-by-container" fxLayoutAlign="start center" fxLayoutGap="10px">
-  <span class="bold">{{ label }}</span>
+  <span *ngIf="showLabel" class="bold">{{ label }}</span>
   <mat-button-toggle-group name="orderBy">
     <mat-button-toggle
       [disableRipple]="true"
@@ -21,8 +21,8 @@
       </mat-menu>
     </mat-button-toggle>
     <mat-button-toggle (click)="onToggleDirectionChange()">
-      <fa-icon *ngIf="direction === 'desc'" [icon]="['fas', 'sort-amount-down-alt']" size="lg"></fa-icon>
-      <fa-icon *ngIf="direction === 'asc'" [icon]="['fas', 'sort-amount-up-alt']" size="lg"></fa-icon>
+      <fa-icon *ngIf="direction === 'desc'" [icon]="['fas', 'sort-amount-down']" size="lg"></fa-icon>
+      <fa-icon *ngIf="direction === 'asc'" [icon]="['fas', 'sort-amount-down-alt']" size="lg"></fa-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
 </div>

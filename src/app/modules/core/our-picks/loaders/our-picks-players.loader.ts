@@ -4,18 +4,9 @@ import { first, map } from 'rxjs/operators';
 import { OurPick } from 'src/app/store/our-picks/models/our-pick.model';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
 import { OurPicksStore } from 'src/app/store/our-picks/our-picks.store';
-import { Player } from 'src/app/store/players/models/player.model';
-import { PlayersStore } from 'src/app/store/players/players.store';
-import { Team } from 'src/app/store/teams/models/team.model';
-import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
-import { PlayerAttendancePredictionService } from '../../players/services/player-attendance-prediction.service';
-import { OurPicksPlayerFantasyMatchday } from '../models/our-picks-player-fantasy-matchday.model';
-import { OurPicksPlayerFantasy } from '../models/our-picks-player-fantasy.model';
-import { OurPicksPlayerTeam } from '../models/our-picks-player-team.model';
 import { OurPicksPlayer } from '../models/our-picks-player.model';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
-import { OurPicksTeamGame } from '../models/our-picks-team-game.model';
 import { OurPicksPlayerLoader } from './our-picks-player.loader';
 
 @Injectable({ providedIn: 'root' })

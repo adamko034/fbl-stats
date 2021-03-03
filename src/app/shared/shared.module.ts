@@ -9,9 +9,12 @@ import {
   faCrown,
   faEquals,
   faExternalLinkAlt,
+  faMedal,
   faPiggyBank,
   faSort,
+  faSortAmountDown,
   faSortAmountDownAlt,
+  faSortAmountUp,
   faSortAmountUpAlt,
   faStar,
   faUserPlus
@@ -48,6 +51,7 @@ import { FilterPositionComponent } from './components/filter-position/filter-pos
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
+import { MedalColorDirective } from './directives/medal-color.directive';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FilterPositionComponent,
     AuthenticatedDirective,
     OurPickIconComponent,
-    YesNoPipe
+    YesNoPipe,
+    MedalColorDirective
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -115,7 +120,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FilterPositionComponent,
     AuthenticatedDirective,
     OurPickIconComponent,
-    YesNoPipe
+    YesNoPipe,
+    MedalColorDirective
   ]
 })
 export class SharedModule {
@@ -123,7 +129,9 @@ export class SharedModule {
     this.faLibrary.addIcons(
       faTwitter,
       faSort,
+      faSortAmountDown,
       faSortAmountDownAlt,
+      faSortAmountUp,
       faSortAmountUpAlt,
       faExternalLinkAlt,
       faArrowUp,
@@ -132,7 +140,8 @@ export class SharedModule {
       faCrown,
       faPiggyBank,
       faStar,
-      faUserPlus
+      faUserPlus,
+      faMedal
     );
   }
 }

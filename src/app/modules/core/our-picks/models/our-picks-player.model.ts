@@ -1,5 +1,5 @@
 import { PlayerAttendancePrediction } from '../../players/models/player-attendance-prediction.enum';
-import { OurPicksPlayerFantasy } from './our-picks-player-fantasy.model';
+import { OurPicksPlayerFantasyMatchday } from './our-picks-player-fantasy-matchday.model';
 import { OurPicksPlayerTeam } from './our-picks-player-team.model';
 
 export interface OurPicksPlayer {
@@ -13,7 +13,11 @@ export interface OurPicksPlayer {
   isMustHave: boolean;
   isPremium: boolean;
   top100Popularity: number;
+  popularity: number;
+  price: number;
+  formPts: number;
   team: OurPicksPlayerTeam;
-  fantasy: OurPicksPlayerFantasy;
+  matchdays: OurPicksPlayerFantasyMatchday[];
   prediction: PlayerAttendancePrediction;
+  totalPoints: number;
 }

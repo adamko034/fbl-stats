@@ -30,7 +30,7 @@ export class ArrayStream<T> {
 
         this.array = new OrderByPipe().transform<T[]>(this.array, field);
       } else {
-        const predicate = order === 'dsc' ? (a, b) => b[field] - a[field] : (a, b) => a[field] - b[field];
+        const predicate = order === 'dsc' ? (a, b) => +b[field] - +a[field] : (a, b) => +a[field] - +b[field];
         this.array = this.array.sort(predicate);
       }
     }

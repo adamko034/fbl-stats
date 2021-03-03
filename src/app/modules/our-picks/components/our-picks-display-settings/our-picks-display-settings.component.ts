@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
+import { SortByItem } from 'src/app/shared/components/sorty-by/models/sort-by-item.model';
+import { SortBy } from 'src/app/shared/components/sorty-by/models/sort-by.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { OurPicksDisplaySettings } from '../../models/our-picks-display-settings.model';
 import { OurPicksDisplay } from '../../models/our-picks-display.enum';
@@ -29,6 +31,20 @@ export class OurPicksDisplaySettingsComponent implements OnInit {
     { value: OurPicksView.SIMPLIFIED, description: 'SIMPLIFIED' }
   ];
 
+  public sortsSimplified: SortByItem[] = [
+    { value: 'order', text: 'Our order' },
+    { value: 'price', text: 'Price' },
+    { value: 'popularity', text: 'Popularity' }
+  ];
+
+  public sortsExtended: SortByItem[] = [
+    { value: 'order', text: 'Our order' },
+    { value: 'price', text: 'Price' },
+    { value: 'formPts', text: 'Form' },
+    { value: 'popularity', text: 'Popularity' },
+    { value: 'top100Popularity', text: 'Top 100 popularity' }
+  ];
+
   public Views = OurPicksView;
 
   constructor(private service: OurPicksDisplaySettingsService, private screenSizeService: ScreenSizeService) {}
@@ -44,5 +60,9 @@ export class OurPicksDisplaySettingsComponent implements OnInit {
 
   public onViewChange(newView: OurPicksView): void {
     this.service.udpateView(newView);
+  }
+
+  public onSortChange(sortBy: SortBy): void {
+    this.service.updateSort(sortBy);
   }
 }
