@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Matchday } from 'src/app/modules/core/matchday/models/matchday.model';
+import { MatchdayFixtureDisplay } from './models/matchday-fixture-display.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,7 +10,7 @@ import { Matchday } from 'src/app/modules/core/matchday/models/matchday.model';
 })
 export class MatchdayComponent {
   @Input() matchday: Matchday;
-  @Input() displaye: 'long' | 'short' | 'logo' = 'long';
+  @Input() display: MatchdayFixtureDisplay = MatchdayFixtureDisplay.LONG;
   @Input() clickable = false;
 
   @Output() teamClick = new EventEmitter<string>();

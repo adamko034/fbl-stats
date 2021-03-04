@@ -4,7 +4,8 @@
     [ngTemplateOutletContext]="{
       teamLong: matchdayFixture.homeLong,
       teamShort: matchdayFixture.homeShort,
-      isHome: true
+      isHome: true,
+      rank: matchdayFixture.homeRank
     }"
   ></ng-template>
   <div class="delimeter">
@@ -15,16 +16,19 @@
     [ngTemplateOutletContext]="{
       teamLong: matchdayFixture.awayLong,
       teamShort: matchdayFixture.awayShort,
-      isHome: false
+      isHome: false,
+      rank: matchdayFixture.awayRank
     }"
   ></ng-template>
 </div>
 
-<ng-template #team let-isHome="isHome" let-teamLong="teamLong" let-teamShort="teamShort">
+<ng-template #team let-isHome="isHome" let-teamLong="teamLong" let-teamShort="teamShort" let-rank="rank">
   <div *ngIf="!clickable" class="team" [ngClass]="{ 'team-home': isHome, 'team-away': !isHome }">
     <app-team-logo *ngIf="!isHome" class="logo" [height]="35" [team]="teamShort"></app-team-logo>
-    <span fxHide.lt-md>{{ teamLong }}</span>
-    <span fxHide.gt-sm>{{ teamShort | uppercase }}</span>
+    <span class="rank" *ngIf="!isHome">({{ rank | numerals }})</span>
+    <span *ngIf="display === Displays.LONG" fxHide.lt-md>{{ teamLong }}</span>
+    <span *ngIf="display === Displays.SHORT" fxHide.gt-sm>{{ teamShort | uppercase }}</span>
+    <span class="rank" *ngIf="isHome">({{ rank | numerals }})</span>
     <app-team-logo *ngIf="isHome" class="logo" [height]="35" [team]="teamShort"></app-team-logo>
   </div>
 

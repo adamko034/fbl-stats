@@ -38,7 +38,7 @@ import { FiltersLayoutComponent } from './components/layout/filters-layout/filte
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
-import { MatchdayFixtureComponent } from './components/matchday-fixture/matchday-fixture.component';
+import { MatchdayFixtureComponent } from './components/matchday/matchday-fixture/matchday-fixture.component';
 import { MatchdayComponent } from './components/matchday/matchday.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';

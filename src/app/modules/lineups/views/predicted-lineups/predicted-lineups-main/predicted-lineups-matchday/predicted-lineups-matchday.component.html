@@ -8,10 +8,5 @@
   <app-title-underlined class="title">
     <h2>Matchday {{ (matchday$ | async).num }}</h2>
   </app-title-underlined>
-  <app-matchday
-    [clickable]="true"
-    (teamClick)="onTeamClick($event)"
-    class="matchday"
-    [matchday]="matchday$ | async"
-  ></app-matchday>
+  <app-matchday [clickable]="true" class="matchday" [matchday]="matchday$ | async" [display]="display"></app-matchday>
 </mat-card>

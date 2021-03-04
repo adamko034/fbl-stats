@@ -18,6 +18,7 @@ export class MatchdayService {
 
     const matchdaysDto: Matchday[] = [];
     const maxMatchday = new ArrayStream<Fixture>(teams[0].games).maxBy((g) => g.matchday);
+
     for (let matchdayNum = 1; matchdayNum <= maxMatchday; matchdayNum++) {
       matchdaysDto.push(this.getFor(matchdayNum, teams));
     }
@@ -45,7 +46,9 @@ export class MatchdayService {
             date: fixture.date,
             homeLong: team.name,
             homeShort: team.shortName,
-            matchday: matchdayNum
+            matchday: matchdayNum,
+            homeRank: team.rank,
+            awayRank: fixture.opponentRank
           };
 
           if (!matchday.fixtures[dateInMilis.toString()]) {

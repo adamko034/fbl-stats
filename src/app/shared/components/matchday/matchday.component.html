@@ -7,7 +7,7 @@
   >
     <span class="title" fxFlexAlign="center">{{ matchdayFixtures.key | date: 'EEEE, dd-MM-y HH:mm' }}</span>
     <div *ngFor="let fixture of matchdayFixtures.value">
-      <app-matchday-fixture [matchdayFixture]="fixture"></app-matchday-fixture>
+      <app-matchday-fixture [matchdayFixture]="fixture" [display]="display"></app-matchday-fixture>
     </div>
   </div>
 </div>

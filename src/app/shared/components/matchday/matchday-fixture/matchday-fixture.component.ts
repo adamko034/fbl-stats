@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-fixture.model';
+import { MatchdayFixtureDisplay } from '../models/matchday-fixture-display.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,6 +10,9 @@ import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-f
 })
 export class MatchdayFixtureComponent {
   @Input() matchdayFixture: MatchdayFixture;
+  @Input() display: MatchdayFixtureDisplay;
+
+  public Displays = MatchdayFixtureDisplay;
 
   public clickable = false;
 
