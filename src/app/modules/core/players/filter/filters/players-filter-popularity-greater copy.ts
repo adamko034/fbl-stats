@@ -1,10 +1,10 @@
 import { PlayersFilter } from 'src/app/modules/core/players/filter/filters/players-filter';
 import { Player } from 'src/app/store/players/models/player.model';
 
-export class PlayersFilterUnavailable implements PlayersFilter {
-  constructor() {}
+export class PlayersFilterTop100PopularityGreater implements PlayersFilter {
+  constructor(private minPopularity: number) {}
 
   public filter(players: Player[]): Player[] {
-    return players.filter((p) => p.attendance === 0);
+    return players.filter((p) => p.top100Popularity >= this.minPopularity);
   }
 }

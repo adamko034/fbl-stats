@@ -1,4 +1,5 @@
 .predicted-lineups-matchday-container {
+  min-width: 300px;
   .title {
     h2 {
       margin-bottom: 0;
@@ -6,7 +7,6 @@
   }
 
   .matchday {
-    width: 100%;
     margin-top: 25px;
   }
 }

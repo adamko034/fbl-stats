@@ -3,35 +3,25 @@
   class="predicted-lineups-sources-container"
   ngClass.lt-sm="predicted-lineups-sources-container-mobile"
   fxLayout="column"
-  fxLayoutAlign.lt-sm="center"
-  fxLayoutAlign="center center"
+  fxLayoutAlign="center"
+  fxLayoutGap="20px"
 >
-  <app-title-underlined class="title">
-    <h2>Sources</h2>
-  </app-title-underlined>
-
-  <div fxLayout="column" fxLayoutAlign.lt-sm="center center">
-    <div class="last-update-info" fxLayout="column">
-      <span>Last checked on: </span>
-      <span class="bold">{{ (sources$ | async)[0].lastUpdated | date: 'EEEE, MMMM d, y, HH:mm' }}</span>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap.gt-xs="20px" fxLayoutGap.xs="10px grid">
+    <div *ngFor="let source of sources$ | async">
+      <div class="source-item" fxLayoutGap="7px" fxLayoutAlign="start center">
+        <span>{{ source.displayName }}</span>
+        <span>
+          <mat-icon *ngIf="source.published" matTooltip="Lineups available" class="green"
+            >published_with_changes</mat-icon
+          >
+          <mat-icon *ngIf="!source.published" matTooltip="Lineups not published yet" class="red">unpublished</mat-icon>
+        </span>
+      </div>
     </div>
+  </div>
 
-    <div class="list">
-      <mat-list role="list">
-        <mat-list-item *ngFor="let source of sources$ | async">
-          <div class="source-item" fxLayout="row" fxLayoutAlign="space-between center">
-            <span>{{ source.displayName }}</span>
-            <span>
-              <mat-icon *ngIf="source.published" matTooltip="Lineups available" class="green"
-                >published_with_changes</mat-icon
-              >
-              <mat-icon *ngIf="!source.published" matTooltip="Lineups not published yet" class="red"
-                >unpublished</mat-icon
-              >
-            </span>
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </div>
+  <div class="last-update-info" fxLayout="row wrap" fxLayoutGap="10px" fxFlexAlign="center">
+    <span>Last checked on: </span>
+    <span class="bold">{{ (sources$ | async)[0].lastUpdated | date: 'EEEE, MMMM d, y, HH:mm' }}</span>
   </div>
 </mat-card>

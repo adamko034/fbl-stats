@@ -14,6 +14,9 @@ import { PredictedLineupsTeamNavigationComponent } from 'src/app/modules/lineups
 import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/team-lineup/team-lineup.component';
+import { PredictedLineupsStatsComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-stats/predicted-lineups-stats.component';
+import { PredictedLineupsStasPlayersResolver } from './resolvers/predicted-lineups-stats-players.resolver';
+import { PredictedLineupsStatsPlayerConverter } from './converters/predicted-lineups-stats-player.converter';
 
 @NgModule({
   declarations: [
@@ -23,14 +26,17 @@ import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups
     PredictedLineupsMatchdayComponent,
     PredictedLineupsMainComponent,
     PredictedLineupsSourcesComponent,
-    TeamLineupComponent
+    TeamLineupComponent,
+    PredictedLineupsStatsComponent
   ],
   imports: [CommonModule, PredictedLineupsRoutingModule, SharedModule, AngularMaterialModule],
   providers: [
     PredictedLineupsStore,
     PredictedLineupsSourcesResolver,
     PredictedLineupsLoadedGuard,
-    PredictedLineupTeamResolver
+    PredictedLineupTeamResolver,
+    PredictedLineupsStasPlayersResolver,
+    PredictedLineupsStatsPlayerConverter
   ]
 })
 export class PredictedLineupsModule {}

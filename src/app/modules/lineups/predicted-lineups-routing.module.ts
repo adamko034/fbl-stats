@@ -8,6 +8,7 @@ import { PredictedLineupsSourcesResolver } from 'src/app/modules/lineups/resolve
 import { PredictedLineupTeamResolver } from 'src/app/modules/lineups/resolvers/predicted-lineups-team.resolver';
 import { PredictedLineupsMainComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-main/predicted-lineups-main.component';
 import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
+import { PredictedLineupsStasPlayersResolver } from './resolvers/predicted-lineups-stats-players.resolver';
 
 const routes: Routes = [
   {
@@ -19,7 +20,11 @@ const routes: Routes = [
       {
         path: '',
         component: PredictedLineupsMainComponent,
-        resolve: { sources: PredictedLineupsSourcesResolver, matchday: NextMatchdayResolver }
+        resolve: {
+          sources: PredictedLineupsSourcesResolver,
+          matchday: NextMatchdayResolver,
+          stats: PredictedLineupsStasPlayersResolver
+        }
       },
       {
         path: ':team',
