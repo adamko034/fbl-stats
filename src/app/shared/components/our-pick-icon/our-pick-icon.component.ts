@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 
 @Component({
   selector: 'app-our-pick-icon',
@@ -7,9 +8,11 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OurPickIconComponent {
-  @Input() icon: 'mustHave' | 'premium' | 'bargain' | 'differential';
+  @Input() icon: OurPicksType;
   @Input() color;
   @Input() showTooltip = true;
+
+  public Icons = OurPicksType;
 
   constructor() {}
 }

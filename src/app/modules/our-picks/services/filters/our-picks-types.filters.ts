@@ -27,6 +27,10 @@ export class OurPicksTypesFilter implements Filterable<OurPicksPlayer> {
       newItems = newItems.filter((p) => p.isMustHave);
     }
 
+    if (this.types.includes(OurPicksType.SURPRISING)) {
+      newItems = newItems.filter((p) => p.isSurprising);
+    }
+
     return newItems;
   }
 }

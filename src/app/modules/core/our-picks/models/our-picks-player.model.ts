@@ -12,6 +12,7 @@ export interface OurPicksPlayer {
   isDifferential: boolean;
   isMustHave: boolean;
   isPremium: boolean;
+  isSurprising: boolean;
   top100Popularity: number;
   popularity: number;
   price: number;

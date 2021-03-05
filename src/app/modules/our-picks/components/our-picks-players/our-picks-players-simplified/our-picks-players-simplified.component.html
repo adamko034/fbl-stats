@@ -41,6 +41,13 @@
           [icon]="Types.DIFFERENTIAL"
           [showTooltip]="false"
         ></app-our-pick-icon>
+        <app-our-pick-icon
+          class="icon"
+          [ngClass]="{ hidden: !player.isSurprising }"
+          [ngClass.xs]="{ 'hidden-mobile': !player.isSurprising }"
+          [icon]="Types.SURPRISING"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
       </div>
     </div>
   </div>

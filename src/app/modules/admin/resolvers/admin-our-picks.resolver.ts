@@ -31,7 +31,8 @@ export class AdminOurPicksResolver implements Resolve<AdminOurPicksState> {
       bargains: [...ourPicks?.players.filter((m) => m.isBargain).map((p) => p.playerId)],
       differentials: [...ourPicks?.players.filter((m) => m.isDifferential).map((p) => p.playerId)],
       mustHave: [...ourPicks?.players.filter((m) => m.isMustHave).map((p) => p.playerId)],
-      premium: [...ourPicks?.players.filter((m) => m.isPremium).map((p) => p.playerId)]
+      premium: [...ourPicks?.players.filter((m) => m.isPremium).map((p) => p.playerId)],
+      suprising: [...ourPicks?.players.filter((m) => m.isSurprising).map((p) => p.playerId)]
     };
   }
 }

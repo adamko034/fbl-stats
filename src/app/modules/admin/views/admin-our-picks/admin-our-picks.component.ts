@@ -71,7 +71,8 @@ export class AdminOurPicksComponent implements OnInit {
       bargains: this.state.bargains,
       differentials: this.state.differentials,
       mustHave: this.state.mustHave,
-      premium: this.state.premium
+      premium: this.state.premium,
+      suprising: this.state.suprising
     };
 
     this.ourPicksAdminService
@@ -120,6 +121,8 @@ export class AdminOurPicksComponent implements OnInit {
         return this.state.differentials.includes(playerId) ? null : 'grey';
       case OurPicksType.PREMIUM:
         return this.state.premium.includes(playerId) ? null : 'grey';
+      case OurPicksType.SURPRISING:
+        return this.state.suprising.includes(playerId) ? null : 'grey';
     }
   }
 
@@ -136,6 +139,9 @@ export class AdminOurPicksComponent implements OnInit {
         break;
       case OurPicksType.PREMIUM:
         this.state.premium = this.addOrRemove(this.state.premium, playerId);
+        break;
+      case OurPicksType.SURPRISING:
+        this.state.suprising = this.addOrRemove(this.state.suprising, playerId);
         break;
     }
 

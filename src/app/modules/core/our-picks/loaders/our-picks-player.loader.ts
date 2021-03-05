@@ -42,6 +42,7 @@ export class OurPicksPlayerLoader {
       isDifferential: currentPicks?.differentials?.includes(id) || false,
       isMustHave: currentPicks?.mustHave?.includes(id) || false,
       isPremium: currentPicks?.premium?.includes(id) || false,
+      isSurprising: currentPicks?.suprising?.includes(id) || false,
       top100Popularity: player.top100Popularity,
       price: player.price,
       popularity: player.popularity,

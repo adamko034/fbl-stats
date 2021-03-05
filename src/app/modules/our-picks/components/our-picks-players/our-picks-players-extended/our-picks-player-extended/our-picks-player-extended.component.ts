@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
+import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 import { PlayersDataService } from 'src/app/modules/players/views/players-fantasy/components/players-table-container/services/players-data.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { PlayersDataService } from 'src/app/modules/players/views/players-fantas
 })
 export class OurPicksPlayerExtendedComponent implements OnInit {
   @Input() player: OurPicksPlayer;
+
+  public Icons = OurPicksType;
 
   constructor(private playersDataService: PlayersDataService) {}
 

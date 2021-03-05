@@ -41,14 +41,14 @@ export class MatchdayService {
         if (!!fixture) {
           const dateInMilis = fixture.date;
           const matchdayFixture: MatchdayFixture = {
-            awayLong: fixture.opponentLong,
-            awayShort: fixture.opponent,
+            awayLong: fixture.isHome ? fixture.opponentLong : team.name,
+            awayShort: fixture.isHome ? fixture.opponent : team.shortName,
             date: fixture.date,
-            homeLong: team.name,
-            homeShort: team.shortName,
+            homeLong: fixture.isHome ? team.name : fixture.opponentLong,
+            homeShort: fixture.isHome ? team.shortName : fixture.opponent,
             matchday: matchdayNum,
-            homeRank: team.rank,
-            awayRank: fixture.opponentRank
+            homeRank: fixture.isHome ? team.rank : fixture.opponentRank,
+            awayRank: fixture.isHome ? fixture.opponentRank : team.rank
           };
 
           if (!matchday.fixtures[dateInMilis.toString()]) {

@@ -6,4 +6,5 @@ export interface AdminOurPicksState {
   mustHave: number[];
   differentials: number[];
   premium: number[];
+  suprising: number[];
 }

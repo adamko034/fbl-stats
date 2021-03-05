@@ -6,6 +6,7 @@ export interface OurPicks {
   bargains?: number[];
   mustHave?: number[];
   premium?: number[];
+  suprising?: number[];
   published: boolean;
   matchday: number;
 }

@@ -2,5 +2,6 @@ export enum OurPicksType {
   BARGAIN = 'bargain',
   MUST_HAVE = 'mustHave',
   DIFFERENTIAL = 'differential',
-  PREMIUM = 'premium'
+  PREMIUM = 'premium',
+  SURPRISING = 'surprising'
 }

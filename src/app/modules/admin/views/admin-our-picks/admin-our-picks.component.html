@@ -48,6 +48,13 @@
               [showTooltip]="false"
               (click)="togglePlayerType(Icons.DIFFERENTIAL, player.playerId)"
             ></app-our-pick-icon>
+            <app-our-pick-icon
+              class="icon"
+              [icon]="Icons.SURPRISING"
+              [color]="getIconColor(Icons.SURPRISING, player.playerId)"
+              [showTooltip]="false"
+              (click)="togglePlayerType(Icons.SURPRISING, player.playerId)"
+            ></app-our-pick-icon>
           </div>
 
           <div fxFlex="10" fxLayoutAlign="center center">

@@ -5,7 +5,7 @@
         disableRipple
         [ngClass]="isSelected(icon) ? { active: true } : { normal: true }"
         (click)="onClick(icon)"
-        *ngFor="let icon of ['mustHave', 'premium', 'bargain', 'differential']"
+        *ngFor="let icon of ['mustHave', 'premium', 'bargain', 'differential', 'surprising']"
       >
         <div class="icon-container">
           <app-our-pick-icon [icon]="icon" [color]="isSelected(icon) ? '#fff' : null"></app-our-pick-icon>

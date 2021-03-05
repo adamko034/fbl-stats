@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 
 @Component({
   selector: 'app-our-picks-matchday-description',
@@ -16,7 +17,8 @@ export class OurPicksMatchdayDescriptionComponent implements OnInit {
     { icon: 'mustHave', description: 'must have player' },
     { icon: 'premium', description: 'premium pick - high cost player who can score big' },
     { icon: 'bargain', description: 'bargain pick - max price 8M' },
-    { icon: 'differential', description: 'differential - max popularity 5%' }
+    { icon: 'differential', description: 'differential - max popularity 5%' },
+    { icon: OurPicksType.SURPRISING, description: 'surpring pick, player you may not to think about' }
   ];
 
   constructor(private route: ActivatedRoute) {}

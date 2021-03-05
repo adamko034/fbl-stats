@@ -11,6 +11,7 @@ import {
   faExternalLinkAlt,
   faMedal,
   faPiggyBank,
+  faQuestion,
   faSort,
   faSortAmountDown,
   faSortAmountDownAlt,
@@ -52,6 +53,7 @@ import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { MedalColorDirective } from './directives/medal-color.directive';
+import { faSurprise } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -141,7 +143,8 @@ export class SharedModule {
       faPiggyBank,
       faStar,
       faUserPlus,
-      faMedal
+      faMedal,
+      faQuestion
     );
   }
 }

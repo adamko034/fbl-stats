@@ -1,5 +1,5 @@
 <fa-icon
-  *ngIf="icon === 'mustHave'"
+  *ngIf="icon === Icons.MUST_HAVE"
   class="icon text-icon green border-green"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
@@ -7,7 +7,7 @@
   [icon]="['fas', 'star']"
 ></fa-icon>
 <fa-icon
-  *ngIf="icon === 'premium'"
+  *ngIf="icon === Icons.PREMIUM"
   class="icon text-icon orange border-orange"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
@@ -15,7 +15,7 @@
   [icon]="['fas', 'crown']"
 ></fa-icon>
 <fa-icon
-  *ngIf="icon === 'bargain'"
+  *ngIf="icon === Icons.BARGAIN"
   [icon]="['fas', 'piggy-bank']"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
@@ -23,10 +23,18 @@
   [matTooltip]="showTooltip ? 'bargain pick' : null"
 ></fa-icon>
 <span
-  *ngIf="icon === 'differential'"
+  *ngIf="icon === Icons.DIFFERENTIAL"
   class="text-icon icon blue border-blue"
   [ngStyle]="{ color: color, 'border-color': color }"
   fxLayoutAlign="center center"
   [matTooltip]="showTooltip ? 'differential' : null"
-  >%</span
->
+  >%
+</span>
+<fa-icon
+  *ngIf="icon === Icons.SURPRISING"
+  [icon]="['fas', 'question']"
+  [ngStyle]="{ color: color, 'border-color': color }"
+  fxLayoutAlign="center center"
+  class="text-icon icon yellow border-yellow"
+  [matTooltip]="showTooltip ? 'surprising pick' : null"
+></fa-icon>
