@@ -4,13 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
 import { PropertiesService } from 'src/app/services/properties.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
-import { AdminOurPicksState } from '../../our-picks/models/admin-our-picks-state.model';
+import { AdminOurPicksMatchday } from '../../our-picks/models/admin-our-picks-matchday.model';
 
 @UntilDestroy()
 @Component({
@@ -19,7 +19,7 @@ import { AdminOurPicksState } from '../../our-picks/models/admin-our-picks-state
   styleUrls: ['./admin-our-picks.component.scss']
 })
 export class AdminOurPicksComponent implements OnInit {
-  public state: AdminOurPicksState;
+  public state: AdminOurPicksMatchday;
   public lastMatchday$: Observable<number>;
 
   public get players(): OurPicksPlayer[] {
@@ -40,7 +40,7 @@ export class AdminOurPicksComponent implements OnInit {
   public ngOnInit(): void {
     this.route.data
       .pipe(
-        map((data) => data.state),
+        map((data) => data.adminOurPicks),
         untilDestroyed(this)
       )
       .subscribe((state) => {
@@ -72,7 +72,7 @@ export class AdminOurPicksComponent implements OnInit {
       differentials: this.state.differentials,
       mustHave: this.state.mustHave,
       premium: this.state.premium,
-      suprising: this.state.suprising
+      suprising: this.state.surprising
     };
 
     this.ourPicksAdminService
@@ -122,7 +122,7 @@ export class AdminOurPicksComponent implements OnInit {
       case OurPicksType.PREMIUM:
         return this.state.premium.includes(playerId) ? null : 'grey';
       case OurPicksType.SURPRISING:
-        return this.state.suprising.includes(playerId) ? null : 'grey';
+        return this.state.surprising.includes(playerId) ? null : 'grey';
     }
   }
 
@@ -141,7 +141,7 @@ export class AdminOurPicksComponent implements OnInit {
         this.state.premium = this.addOrRemove(this.state.premium, playerId);
         break;
       case OurPicksType.SURPRISING:
-        this.state.suprising = this.addOrRemove(this.state.suprising, playerId);
+        this.state.surprising = this.addOrRemove(this.state.surprising, playerId);
         break;
     }
 

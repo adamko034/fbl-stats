@@ -18,17 +18,17 @@ export class OurPicksPlayerLoader {
     private predictionService: PlayerAttendancePredictionService
   ) {}
 
-  public load(id: number, lastMatchday: number, order?: number, currentPicks?: OurPicks): OurPicksPlayer {
+  public load(id: number, matchday: number, order?: number, currentPicks?: OurPicks): OurPicksPlayer {
     const player = this.playersStore.getById(id.toString());
     const team = this.teamsStore.getBy(player.teamShort);
-    const matchdays = this.getPreviousMatchdays(player, lastMatchday);
+    const matchdays = this.getPreviousMatchdays(player, matchday);
     let formPts = 0;
     matchdays.forEach((f) => (formPts += f.points));
 
     const ourPicksTeam: OurPicksPlayerTeam = {
       rank: team.rank,
       teamShort: team.shortName,
-      nextGames: this.getNextGames(team, lastMatchday)
+      nextGames: this.getNextGames(team, matchday)
     };
 
     return {

@@ -12,9 +12,16 @@ import { AdminOurPicksResolver } from './resolvers/admin-our-picks.resolver';
 import { AdminOurPicksTotalsComponent } from './views/admin-our-picks/admin-our-picks-totals/admin-our-picks-totals.component';
 import { FblCoreModule } from '../core/fbl-core.module';
 import { AdminOurPicksPlayerSearchComponent } from './views/admin-our-picks/admin-our-picks-player-search/admin-our-picks-player-search.component';
+import { AdminOurPicksLoader } from './our-picks/loaders/admin-our-picks.loader';
 @NgModule({
-  declarations: [AdminLoginComponent, AdminComponent, AdminOurPicksComponent, AdminOurPicksTotalsComponent, AdminOurPicksPlayerSearchComponent],
+  declarations: [
+    AdminLoginComponent,
+    AdminComponent,
+    AdminOurPicksComponent,
+    AdminOurPicksTotalsComponent,
+    AdminOurPicksPlayerSearchComponent
+  ],
   imports: [CommonModule, AdminRoutingModule, FblCoreModule, SharedModule, AngularMaterialModule],
-  providers: [AdminLoggedGuard, AdminOurPicksLoadedGuard, AdminOurPicksResolver]
+  providers: [AdminLoggedGuard, AdminOurPicksLoadedGuard, AdminOurPicksResolver, AdminOurPicksLoader]
 })
 export class AdminModule {}

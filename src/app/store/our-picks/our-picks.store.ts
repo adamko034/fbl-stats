@@ -11,7 +11,7 @@ export class OurPicksStore {
   private store$: ReplaySubject<{ [matchday: number]: OurPicks }>;
 
   constructor(private firebase: FirebaseService) {
-    this.store$ = new ReplaySubject<{ [matchday: number]: OurPicks }>();
+    this.store$ = new ReplaySubject<{ [matchday: number]: OurPicks }>(1);
   }
 
   public load(matchday: number, onlyPublished: boolean): void {
@@ -21,7 +21,7 @@ export class OurPicksStore {
         .getOurPicks(matchday, onlyPublished)
         .pipe(first())
         .subscribe((ourPicks) => {
-          Logger.logDev('our picks store, got data');
+          Logger.logDev(`our picks store, got data for MD ${matchday}`);
           this.store[matchday] = ourPicks;
           this.send();
         });

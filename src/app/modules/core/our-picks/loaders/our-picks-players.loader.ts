@@ -15,7 +15,7 @@ export class OurPicksPlayersLoader {
 
   constructor(private ourPicksStore: OurPicksStore, private ourPicksPlayerLoader: OurPicksPlayerLoader) {}
 
-  public load(matchday: number, lastMatchday: number): Observable<OurPicksPlayers> {
+  public load(matchday: number): Observable<OurPicksPlayers> {
     Logger.logDev('our picks players loader, loading for MD ' + matchday);
 
     if (!!this.cache[matchday]) {
@@ -32,7 +32,7 @@ export class OurPicksPlayersLoader {
         const value: OurPicksPlayers = {
           matchday,
           published: ourPicks.published,
-          players: this.getPlayers(ourPicks, lastMatchday)
+          players: this.getPlayers(ourPicks, matchday)
         };
 
         this.cache[matchday] = value;
@@ -42,13 +42,13 @@ export class OurPicksPlayersLoader {
     );
   }
 
-  private getPlayers(picks: OurPicks, lastMatchday: number): OurPicksPlayer[] {
+  private getPlayers(picks: OurPicks, matchday: number): OurPicksPlayer[] {
     if (!picks || !picks.players) {
       return [];
     }
 
     return picks.players.map((pick: OurPick) =>
-      this.ourPicksPlayerLoader.load(pick.playerId, lastMatchday, pick.order, picks)
+      this.ourPicksPlayerLoader.load(pick.playerId, matchday - 1, pick.order, picks)
     );
   }
 }

@@ -30,7 +30,7 @@ const routes: Routes = [
           {
             path: ':matchday',
             canActivate: [MatchdayLatestGuard, AdminOurPicksLoadedGuard],
-            resolve: { state: AdminOurPicksResolver },
+            resolve: { adminOurPicks: AdminOurPicksResolver },
             component: AdminOurPicksComponent
           }
         ]
