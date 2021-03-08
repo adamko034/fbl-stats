@@ -54,6 +54,7 @@ import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.c
 import { YesNoPipe } from './pipes/yes-no.pipe';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { faSurprise } from '@fortawesome/free-regular-svg-icons';
+import { EpochDatePipe } from './pipes/epoch-date.pipe';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { faSurprise } from '@fortawesome/free-regular-svg-icons';
     AuthenticatedDirective,
     OurPickIconComponent,
     YesNoPipe,
-    MedalColorDirective
+    MedalColorDirective,
+    EpochDatePipe
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -123,7 +125,8 @@ import { faSurprise } from '@fortawesome/free-regular-svg-icons';
     AuthenticatedDirective,
     OurPickIconComponent,
     YesNoPipe,
-    MedalColorDirective
+    MedalColorDirective,
+    EpochDatePipe
   ]
 })
 export class SharedModule {

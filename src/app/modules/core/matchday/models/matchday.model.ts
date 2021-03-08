@@ -3,5 +3,5 @@ import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-f
 export interface Matchday {
   num: number;
   wasPlayed: boolean;
-  fixtures: { [date: string]: MatchdayFixture[] };
+  fixtures: { [number: string]: MatchdayFixture[] };
 }

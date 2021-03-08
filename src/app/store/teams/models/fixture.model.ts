@@ -1,7 +1,7 @@
 export interface Fixture {
   matchday: number;
   isHome: boolean;
-  date: Date;
+  date: number;
   opponent: string;
   opponentLong: string;
   opponentRank: number;

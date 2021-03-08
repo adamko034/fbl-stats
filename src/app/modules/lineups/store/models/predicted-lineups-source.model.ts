@@ -1,6 +1,6 @@
 export interface PredictedLineupsSource {
   name: string;
   displayName: string;
-  lastUpdated: Date;
+  lastUpdated: number;
   published: boolean;
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { EpochDatePipe } from '../shared/pipes/epoch-date.pipe';
 
 @Injectable({ providedIn: 'root' })
 export class DateService {
@@ -7,9 +8,9 @@ export class DateService {
     return moment(date).format(format);
   }
 
-  public formatOrDefault(date: Date, format: string, textIfDateNull: string) {
+  public formatOrDefault(date: number, format: string, textIfDateNull: string) {
     if (!!date) {
-      return this.format(date, format);
+      return this.format(new EpochDatePipe().transform(date), format);
     }
 
     return textIfDateNull;

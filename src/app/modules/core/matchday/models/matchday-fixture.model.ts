@@ -1,5 +1,5 @@
 export interface MatchdayFixture {
-  date: Date;
+  date: number;
   homeRank: number;
   homeShort: string;
   homeLong: string;

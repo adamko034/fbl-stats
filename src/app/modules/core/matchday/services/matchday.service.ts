@@ -108,6 +108,9 @@ export class MatchdayService {
     const fixtures: MatchdayFixture[] = [];
     for (const key in matchday.fixtures) {
       if (Object.prototype.hasOwnProperty.call(matchday.fixtures, key)) {
+        if (isNaN(+key) || +key === 0) {
+          continue;
+        }
         matchday.fixtures[key].forEach((game) => fixtures.push(game));
       }
     }

@@ -2,7 +2,7 @@ import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-f
 
 export interface MatchdayFirstGames {
   matchday: number;
-  date: Date;
+  date: number;
   fixtures: MatchdayFixture[];
   wasPlayed: boolean;
 }
