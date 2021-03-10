@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { from, Observable } from 'rxjs';
-import { ErrorService } from 'src/app/services/error.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
 import { environment } from 'src/environments/environment';
 

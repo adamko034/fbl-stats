@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { PlayerPosition } from 'src/app/modules/players/views/players-fantasy/models/players-filters';
+import { PlayerPosition } from 'src/app/modules/fantasy/players/models/players-filters';
 import { SwitchItem } from '../switch/models/switch-item.model';
 
 @Component({

@@ -1,5 +1,5 @@
 import { PlayersFilter } from 'src/app/modules/core/players/filter/filters/players-filter';
-import { SelectableTeam } from 'src/app/modules/players/views/players-fantasy/components/players-filters/components/players-filter-teams/model/selectable-team.model';
+import { SelectableTeam } from 'src/app/modules/fantasy/players/models/selectable-team.model';
 import { Player } from 'src/app/store/players/models/player.model';
 
 export class PlayersFilterTeams implements PlayersFilter {

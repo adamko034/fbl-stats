@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SelectMoreMatchdaysDialogComponent } from 'src/app/modules/core/players/components/players-select-matchdays/components/select-more-form-dialog/select-more-matchdays-dialog.component';
+import { SelectMoreMatchdaysDialogComponent } from 'src/app/modules/core/players/components/players-select-matchdays/select-more-form-dialog/select-more-matchdays-dialog.component';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { Logger } from 'src/app/utils/logger';
 

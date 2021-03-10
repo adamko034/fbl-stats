@@ -13,7 +13,7 @@ const routes: Routes = [
     path: '',
     canActivate: [CoreDataLoadedGuard],
     children: [
-      { path: 'fantasy', loadChildren: () => import('./modules/players/players.module').then((m) => m.PlayersModule) },
+      { path: 'fantasy', loadChildren: () => import('./modules/fantasy/fantasy.module').then((m) => m.FantasyModule) },
       {
         path: 'lineups',
         loadChildren: () => import('./modules/lineups/predicted-lineups.module').then((m) => m.PredictedLineupsModule)

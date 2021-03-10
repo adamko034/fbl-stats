@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { ExpandedPlayersService } from 'src/app/modules/core/players/services/expanded-players.service';
-import { MyTeamStore } from 'src/app/modules/my-team/store/my-team.store';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({

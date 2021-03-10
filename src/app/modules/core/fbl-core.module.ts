@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
-import { PlayersSearchComponent } from 'src/app/modules/core/players/components/players-display/components/players-search/players-search.component';
+import { PlayersSearchComponent } from 'src/app/modules/core/players/components/players-display/players-search/players-search.component';
 import { PlayersListComponent } from 'src/app/modules/core/players/components/players-list/players-list.component';
-import { SelectMoreMatchdaysDialogComponent } from 'src/app/modules/core/players/components/players-select-matchdays/components/select-more-form-dialog/select-more-matchdays-dialog.component';
+import { SelectMoreMatchdaysDialogComponent } from 'src/app/modules/core/players/components/players-select-matchdays/select-more-form-dialog/select-more-matchdays-dialog.component';
 import { PlayersSelectMatchdaysComponent } from 'src/app/modules/core/players/components/players-select-matchdays/players-select-matchdays.component';
 import { PlayersTableComponent } from 'src/app/modules/core/players/components/players-table/players-table.component';
 import { PredictionSourceComponent } from 'src/app/modules/core/players/components/shared/player-details/components/player-next-match-details/components/player-next-match-predictions/components/prediction-source/prediction-source.component';
@@ -23,11 +23,10 @@ import { PlayerTileNameComponent } from 'src/app/modules/core/players/components
 import { PlayerTileNextGameComponent } from 'src/app/modules/core/players/components/shared/player-tile/components/player-tile-next-game/player-tile-next-game.component';
 import { PlayerTileComponent } from 'src/app/modules/core/players/components/shared/player-tile/player-tile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { OurPickIconComponent } from '../../shared/components/our-pick-icon/our-pick-icon.component';
-import { PlayersViewSwitchComponent } from './players/components/players-display/components/players-view-switch/players-view-switch.component';
 import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
 import { PlayersTableAddOurPickComponent } from './players/components/players-table/players-table-add-our-pick/players-table-add-our-pick.component';
 import { PlayersPickerComponent } from './players/picker/components/players-picker/players-picker.component';
+import { PlayersViewSwitchComponent } from './players/components/players-display/players-view-switch/players-view-switch.component';
 
 @NgModule({
   declarations: [
