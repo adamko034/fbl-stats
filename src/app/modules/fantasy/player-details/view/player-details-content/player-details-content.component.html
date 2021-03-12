@@ -1,0 +1,6 @@
+<div class="player-details-content-container" fxLayout="column" fxLayoutGap="30px">
+  <app-player-details-main fxFlexAlign="center" [player]="player$ | async"></app-player-details-main>
+  <app-player-details-matchdays [player]="player$ | async"></app-player-details-matchdays>
+</div>
+
+{{ player$ | async | json }}

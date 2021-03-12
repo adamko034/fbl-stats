@@ -1,0 +1,40 @@
+<mat-card class="card">
+  <div fxLayout="column">
+    <h2 fxLayoutAlign="center center" fxLayoutGap="50px">
+      <div fxLayoutGap="10px" fxLayoutAlign="center center">
+        <app-team-logo [height]="30" [team]="player.team.shortName"></app-team-logo>
+        <span>{{ player.name }}</span>
+      </div>
+      <div fxFlexAlign="start" fxLayout="column" fxLayoutGap="5px">
+        <h3>{{ getPositionLong(player.position) | uppercase }}</h3>
+        <mat-chip-list>
+          <mat-chip>{{ player.fantasy.price }}M</mat-chip>
+        </mat-chip-list>
+      </div>
+    </h2>
+    <div class="card-stats" fxLayoutAlign="space-between" fxLayoutGap="40px">
+      <ul fxLayoutGap="25px">
+        <li>
+          <h3>{{ player.fantasy.totalPoints }}</h3>
+          <span class="sub">total pts</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.last5 }}</h3>
+          <span class="sub">last 5 pts</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.lastMD }}</h3>
+          <span class="sub">last MD pts</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.popularity }}%</h3>
+          <span class="sub">popularity</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.top100Popularity }}%</h3>
+          <span class="sub">leaders popularity</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</mat-card>

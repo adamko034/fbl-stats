@@ -15,4 +15,8 @@ export class PlayerFormCalculatorService {
     const lastNGames = new ArrayStream<Game>(games).orderBy('matchday', 'dsc').take(n).collect();
     return this.calculate(lastNGames);
   }
+
+  public getLastMD(games: Game[]): number {
+    return new ArrayStream<Game>(games).orderBy('matchday', 'dsc').takeFirst().points;
+  }
 }
