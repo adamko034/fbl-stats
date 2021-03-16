@@ -10,6 +10,7 @@ export class TeamFormComponent {
   @Input() form: string;
   @Input() showLabels = false;
   @Input() mode: 'dot' | 'rectangle' = 'dot';
+  @Input() size: 'supersmall' | 'small' | 'medium' = 'medium';
 
   constructor() {}
 
@@ -30,6 +31,10 @@ export class TeamFormComponent {
         color = 'red';
     }
 
-    return `${prefix}-${color}`;
+    return `${prefix}-${color} ${this.getSizeClass()}`;
+  }
+
+  private getSizeClass(): string {
+    return this.size !== 'medium' ? `game-result-dot-${this.size}` : '';
   }
 }

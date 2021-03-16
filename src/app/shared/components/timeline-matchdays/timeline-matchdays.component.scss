@@ -1,0 +1,47 @@
+.item {
+  width: 50px;
+
+  &-title {
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+  &-logo {
+    margin-bottom: 7px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      background-color: #c80a00;
+      width: 25px;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    &::before {
+      left: -23px;
+    }
+
+    &::after {
+      right: -22px;
+    }
+  }
+
+  &-result {
+    font-size: 13px;
+  }
+
+  &-text,
+  &-sub-text {
+    font-size: 13px;
+  }
+
+  &-sub-text {
+    margin-top: 3px;
+  }
+}

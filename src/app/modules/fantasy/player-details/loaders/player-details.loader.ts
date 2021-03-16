@@ -17,9 +17,13 @@ export class PlayerDetailsLoader {
   public load(id: number): Observable<PlayerDetails> {
     return this.playersStore.selectById(id.toString()).pipe(
       mergeMap((player) => {
-        return combineLatest([of(player), this.teamsStore.select(player.teamShort)]);
+        return combineLatest([
+          of(player),
+          this.teamsStore.select(player.teamShort),
+          this.teamsStore.select(player.nextGame.opponent)
+        ]);
       }),
-      map(([player, team]) => this.playerDetailsFabric.create(player, team))
+      map(([player, team, opponent]) => this.playerDetailsFabric.create(player, team, opponent))
     );
   }
 }

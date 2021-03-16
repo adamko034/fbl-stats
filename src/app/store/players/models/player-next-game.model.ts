@@ -4,4 +4,6 @@ export interface PlayerNextGame {
   isHome: boolean;
   opponent: string;
   lineupPredictions: PlayerNextGamePrediction[];
+  date: number;
+  matchday: number;
 }

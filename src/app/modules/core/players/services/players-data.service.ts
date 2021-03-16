@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Game } from 'src/app/models/game.model';
 import { PlayersUiConverter } from 'src/app/modules/core/players/converters/players-ui.converter';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
@@ -25,6 +26,14 @@ export class PlayersDataService {
       const gamesFlatted = player.games.reduce((obj, item) => ({ ...obj, [item.matchday]: item.points }), {});
       return { ...player, ...gamesFlatted } as any;
     });
+  }
+
+  public getBestGame(games: Game[]): Game {
+    return new ArrayStream<Game>(games).orderBy('points', 'dsc').takeFirst();
+  }
+
+  public getWorstGame(games: Game[]): Game {
+    return new ArrayStream<Game>(games).orderBy('points', 'asc').takeFirst();
   }
 
   public getPointsColor(points: number): string {

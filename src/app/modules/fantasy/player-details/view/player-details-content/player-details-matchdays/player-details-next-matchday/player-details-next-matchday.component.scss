@@ -1,0 +1,53 @@
+h3 {
+  margin-bottom: 3px;
+}
+
+.next-game-info {
+  h4 {
+    margin: 0px;
+  }
+
+  &-date {
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.stats-section-title {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.stats-section {
+  padding: 5px 20px 10px 20px;
+  border-top: 1px solid rgba($color: #000000, $alpha: 0.3);
+
+  table {
+    tr {
+      td {
+        text-align: center;
+        padding-top: 5px;
+        vertical-align: middle;
+
+        &:first-child {
+          text-align: end;
+          // padding-top: 0;
+        }
+
+        &:not(:nth-child(3)) {
+          padding-right: 20px;
+        }
+      }
+
+      td.bolder {
+        font-weight: 600;
+      }
+    }
+
+    tr.after-logo {
+      td {
+        padding-top: 7px;
+      }
+    }
+  }
+}

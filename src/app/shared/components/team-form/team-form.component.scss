@@ -16,6 +16,16 @@
     border-radius: 50%;
     width: 16px;
     height: 14px;
+
+    &-small {
+      width: 13px;
+      height: 10px;
+    }
+
+    &-supersmall {
+      width: 10px;
+      height: 6px;
+    }
   }
 
   &-green {

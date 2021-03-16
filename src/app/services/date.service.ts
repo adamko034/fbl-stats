@@ -19,4 +19,11 @@ export class DateService {
   public isDate(obj: any): boolean {
     return moment.isDate(new Date(obj));
   }
+
+  public fromEpochSeconds(seconds: number): Date {
+    const date = new Date(0);
+    date.setUTCSeconds(seconds);
+
+    return date;
+  }
 }

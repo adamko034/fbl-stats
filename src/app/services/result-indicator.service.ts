@@ -14,6 +14,11 @@ export class ResultIndicatorService {
     1: 'w'
   };
 
+  public toChar(result: number): string {
+    return this.resultToChar[result.toString()];
+  }
+  q;
+
   public toCharsArray(formInPoints: string): string[] {
     return formInPoints.split('').map((x) => this.charToNumber[x]);
   }

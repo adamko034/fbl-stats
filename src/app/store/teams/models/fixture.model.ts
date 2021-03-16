@@ -9,4 +9,6 @@ export interface Fixture {
   isMatchdayFirstGame: boolean;
   result?: number;
   resultText?: string;
+  goalsScored?: number;
+  goalsConceded?: number;
 }

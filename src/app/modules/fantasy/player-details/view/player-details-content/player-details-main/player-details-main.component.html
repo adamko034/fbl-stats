@@ -1,17 +1,17 @@
 <mat-card class="card">
   <div fxLayout="column">
-    <h2 fxLayoutAlign="center center" fxLayoutGap="50px">
+    <div class="title" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="50px">
       <div fxLayoutGap="10px" fxLayoutAlign="center center">
         <app-team-logo [height]="30" [team]="player.team.shortName"></app-team-logo>
-        <span>{{ player.name }}</span>
+        <h2>{{ player.name }}</h2>
       </div>
-      <div fxFlexAlign="start" fxLayout="column" fxLayoutGap="5px">
-        <h3>{{ getPositionLong(player.position) | uppercase }}</h3>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <h3>{{ player.position | uppercase }}</h3>
         <mat-chip-list>
           <mat-chip>{{ player.fantasy.price }}M</mat-chip>
         </mat-chip-list>
       </div>
-    </h2>
+    </div>
     <div class="card-stats" fxLayoutAlign="space-between" fxLayoutGap="40px">
       <ul fxLayoutGap="25px">
         <li>
@@ -32,7 +32,27 @@
         </li>
         <li>
           <h3>{{ player.fantasy.top100Popularity }}%</h3>
-          <span class="sub">leaders popularity</span>
+          <span class="sub">leaders %</span>
+        </li>
+      </ul>
+    </div>
+    <div class="card-stats card-stats-second" fxLayoutAlign="space-between" fxLayoutGap="40px">
+      <ul fxLayoutGap="25px">
+        <li>
+          <h3>{{ player.fantasy.seasonAvg }}</h3>
+          <span class="sub">season avg</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.last5Avg }}</h3>
+          <span class="sub">last 5 avg</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.bestGame.points }}</h3>
+          <span class="sub">best game</span>
+        </li>
+        <li>
+          <h3>{{ player.fantasy.worstGame.points }}</h3>
+          <span class="sub">worst game</span>
         </li>
       </ul>
     </div>

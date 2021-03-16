@@ -55,6 +55,7 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { faSurprise } from '@fortawesome/free-regular-svg-icons';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
+import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { EpochDatePipe } from './pipes/epoch-date.pipe';
     OurPickIconComponent,
     YesNoPipe,
     MedalColorDirective,
-    EpochDatePipe
+    EpochDatePipe,
+    TimelineMatchdaysComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -126,7 +128,8 @@ import { EpochDatePipe } from './pipes/epoch-date.pipe';
     OurPickIconComponent,
     YesNoPipe,
     MedalColorDirective,
-    EpochDatePipe
+    EpochDatePipe,
+    TimelineMatchdaysComponent
   ]
 })
 export class SharedModule {
