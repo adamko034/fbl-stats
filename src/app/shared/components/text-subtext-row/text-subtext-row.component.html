@@ -1,0 +1,10 @@
+<div class="text-subtext-container" fxLayout="column" fxLayoutGap="3px">
+  <div class="text-subtext-row" *ngFor="let row of rows | orderBy: 'order'">
+    <ul fxLayout="row" fxLayoutAlign="space-evenly" fxLayoutGap="25px">
+      <li *ngFor="let item of row.items | orderBy: 'order'">
+        <h3>{{ item.text }}</h3>
+        <span class="sub">{{ item.subtext }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
 import { PlayersDataService } from 'src/app/modules/core/players/services/players-data.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { TimelineMatchdayItem } from './models/timeline-matchday-item.model';
 
 @Component({
@@ -30,16 +31,21 @@ export class TimelineMatchdaysComponent implements OnInit {
     return this.order === 'dsc' ? '-matchday' : 'matchday';
   }
 
-  constructor(private playersDataService: PlayersDataService) {}
+  constructor(
+    private playersDataService: PlayersDataService,
+    private screenSizeService: ScreenSizeService,
+    private changeDetection: ChangeDetectorRef
+  ) {}
 
   public ngOnInit(): void {
     this.min = new ArrayStream<TimelineMatchdayItem>(this.items, false).minBy((item) => item.matchday);
     this.max = new ArrayStream<TimelineMatchdayItem>(this.items, false).maxBy((item) => item.matchday);
 
-    this.displayedItems = new ArrayStream<TimelineMatchdayItem>(this.items)
-      .orderBy('matchday', this.order)
-      .take(5)
-      .collect();
+    this.screenSizeService.isMobile$().subscribe((isMobile) => {
+      const count = isMobile ? 3 : 5;
+      this.filterItems(count);
+      this.changeDetection.detectChanges();
+    });
   }
 
   public previousMatchdays(): void {
@@ -56,6 +62,13 @@ export class TimelineMatchdaysComponent implements OnInit {
 
   public getPointsCssClass(points: number): string {
     return this.playersDataService.getPointsColor(points);
+  }
+
+  private filterItems(count: number): void {
+    this.displayedItems = new ArrayStream<TimelineMatchdayItem>(this.items)
+      .orderBy('matchday', this.order)
+      .take(count)
+      .collect();
   }
 
   private getDisplayedMin(): number {

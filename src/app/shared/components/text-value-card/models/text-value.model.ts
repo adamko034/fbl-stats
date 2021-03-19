@@ -5,4 +5,5 @@ export interface TextValue {
   style?: any;
   teamShort?: string;
   change?: number;
+  linkId?: string;
 }

@@ -1,6 +1,7 @@
 .subnavigation-container {
   .link {
     padding: 10px 15px;
+    z-index: 1000;
 
     a,
     span {
@@ -17,6 +18,7 @@
     }
 
     .dropdown {
+      z-index: 1000;
       cursor: default;
 
       &:hover .dropdown-content {
