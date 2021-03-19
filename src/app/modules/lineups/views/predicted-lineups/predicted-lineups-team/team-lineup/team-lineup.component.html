@@ -32,13 +32,13 @@
     fxLayoutAlign="space-evenly center"
   >
     <div class="player" fxLayout="center center" *ngFor="let player of players | orderBy: 'subPosition'">
-      <span>{{ player.lastName }}</span>
+      <span><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></span>
     </div>
   </div>
   <div *ngIf="players.length > 4" class="position" fxFlex="30" fxLayout="column" fxLayoutGap="10px">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div class="player" fxLayout="center center" *ngFor="let player of getWingers(players) | orderBy: 'subPosition'">
-        <span>{{ player.lastName }}</span>
+        <span><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></span>
       </div>
     </div>
     <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
@@ -48,7 +48,7 @@
         fxLayout="center center"
         *ngFor="let player of players | filterBy: ['subPosition']:'2' | orderBy: 'subPosition'"
       >
-        <span>{{ player.lastName }}</span>
+        <span><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></span>
       </div>
     </div>
   </div>

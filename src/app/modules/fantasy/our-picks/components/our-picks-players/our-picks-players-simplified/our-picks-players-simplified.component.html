@@ -7,7 +7,9 @@
         </div>
       </span>
       <app-team-logo fxFlex="7" fxFlex.xs="10" [team]="player.team.teamShort" [height]="30"></app-team-logo>
-      <span fxFlex class="bold">{{ player.name }}</span>
+      <span fxFlex class="bold"
+        ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
+      ></span>
       <div fxHide.xs fxFlex="25" fxLayoutGap="10px">
         <span>{{ player.position | uppercase }}</span
         ><span>{{ player.price }}M</span><span>{{ player.popularity }}%</span>

@@ -16,7 +16,9 @@
 
       <div fxLayout="column" fxLayoutGap="7px">
         <div class="player-main-name" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-          <span class="player-main-name-text">{{ player.name }}</span>
+          <span class="player-main-name-text"
+            ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
+          ></span>
         </div>
 
         <div class="player-main-info" fxLayout="row" fxLayoutAlign="start center">

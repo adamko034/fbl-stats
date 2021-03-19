@@ -33,15 +33,6 @@
   }
 
   .player {
-    &-name,
-    &-position {
-      font-size: 16px;
-    }
-
-    &-name {
-      font-weight: 500;
-    }
-
     &-price {
       min-width: 70px;
     }

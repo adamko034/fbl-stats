@@ -22,7 +22,8 @@ export class LeadersUsageTextValueConverter<T> implements Convertable<T, TextVal
       value: this.isValueType('usage') ? `${item['usage']}%` : null,
       style: this.config.style,
       change: this.isValueType('difference') ? item['usageDifference'] : null,
-      teamShort: !!this.config.showTeamLogo ? item['teamShort'] : null
+      teamShort: !!this.config.showTeamLogo ? item['teamShort'] : null,
+      linkId: item['playerId']
     }));
   }
 

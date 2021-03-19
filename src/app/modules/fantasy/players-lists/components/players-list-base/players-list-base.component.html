@@ -25,7 +25,7 @@
           <app-team-logo fxHide.gt-xs [team]="player.teamShort" [height]="30"></app-team-logo>
         </td>
         <td class="player-name">
-          {{ player.name }}
+          <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
         </td>
         <td class="player-position">
           {{ player.position | uppercase }}

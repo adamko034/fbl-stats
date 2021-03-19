@@ -15,7 +15,7 @@
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let item">
           <div fxLayout fxLayoutAlign="start center" fxLayoutGap="5px">
-            <span>{{ item.name }}</span>
+            <app-player-name-link [name]="item.name" [id]="item.id"></app-player-name-link>
             <mat-icon *ngIf="item.attendance === 0" class="red">not_interested</mat-icon>
             <app-player-suspension-risk [show]="item.isSuspensionRisk"></app-player-suspension-risk>
             <app-player-returning [show]="item.isReturning"></app-player-returning>
@@ -106,29 +106,8 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="playerDetails">
-        <td mat-cell *matCellDef="let player" [attr.colspan]="displayedColumns.length">
-          <div class="player-details" [@detailExpand] *ngIf="!!expandedRows[player.id]">
-            <app-player-details [player]="player"></app-player-details>
-            <div class="red bold" (click)="toggleExpandedPlayer(player.id)">
-              <span class="hvr-icon-bob" fxLayoutAlign="start center">
-                Show less
-                <mat-icon class="hvr-icon">keyboard_arrow_up</mat-icon>
-              </span>
-            </div>
-          </div>
-        </td>
-      </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr
-        mat-row
-        *matRowDef="let player; columns: displayedColumns"
-        class="player-details-row"
-        [class.player-details-expanded-row]="expandedRows[player.id]"
-        (click)="toggleExpandedPlayer(player.id)"
-      ></tr>
-      <tr mat-row *matRowDef="let player; columns: ['playerDetails']" class="player-details-content"></tr>
+      <tr mat-row *matRowDef="let player; columns: displayedColumns" class="player-details-row"></tr>
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the criteria.</td>

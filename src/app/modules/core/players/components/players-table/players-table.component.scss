@@ -8,20 +8,9 @@
 
 table {
   width: 100%;
-  tr:hover:not(.mat-header-row):not(.player-details-content):not(.player-details-expanded-row) {
-    background-color: #f0f0f0;
-  }
 
   tr:hover:not(.mat-header-row) {
-    cursor: pointer;
-  }
-
-  tr.player-details-content {
-    height: 0;
-  }
-
-  .player-details-row td {
-    border-bottom-width: 0;
+    background-color: #f0f0f0;
   }
 
   .player-details {

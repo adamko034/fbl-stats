@@ -1,137 +1,135 @@
-<mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-  <app-title-underlined>
-    <h3>Next game</h3>
-  </app-title-underlined>
-
-  <div class="next-game-info" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="60px">
+<div
+  class="player-details-next-matchday-container"
+  fxLayout="row wrap"
+  fxLayoutGap="10px grid"
+  fxLayoutAlign="space-evenly start"
+  fxLayout.lt-sm="column"
+  fxLayoutAlign.lt-sm="center center"
+  fxLayoutGap.lt-sm="20px"
+>
+  <div fxLayout="column" class="next-game-info" fxLayoutGap="25px">
     <div>
-      <h4>MATCHDAY {{ player.nextOpponent.matchday }}</h4>
+      <h4>MATCHDAY {{ player.nextGame.matchday }}</h4>
       <span class="next-game-info-date grey">{{
-        player.nextOpponent.date | epochDate | date: 'EEEE, HH:mm, dd.MM.yyyy'
+        player.nextGame.date | epochDate | date: 'EEEE, HH:mm, dd.MM.yyyy'
       }}</span>
     </div>
-
     <div fxLayoutGap="20px">
       <app-team-logo [height]="50" [team]="homeTeam.shortName"></app-team-logo>
       <span>vs.</span>
       <app-team-logo [height]="50" [team]="awayTeam.shortName"></app-team-logo>
     </div>
-  </div>
-
-  <div fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="space-evenly start">
-    <div fxLayout="column">
-      <span class="stats-section-title">Bundesliga Overall</span>
-      <div class="stats-section">
-        <table>
-          <tbody>
-            <tr>
-              <td></td>
-              <td>{{ homeTeam.shortName | uppercase }}</td>
-              <td>{{ awayTeam.shortName | uppercase }}</td>
-            </tr>
-            <tr class="after-logo">
-              <td>Games</td>
-              <td>{{ homeTeam.table.games }}</td>
-              <td>{{ awayTeam.table.games }}</td>
-            </tr>
-            <tr>
-              <td>Rank</td>
-              <td [ngClass]="{ bolder: homeTeam.table.rank < awayTeam.table.rank }">
-                {{ homeTeam.table.rank | numerals }}
-              </td>
-              <td [ngClass]="{ bolder: homeTeam.table.rank > awayTeam.table.rank }">
-                {{ awayTeam.table.rank | numerals }}
-              </td>
-            </tr>
-            <tr>
-              <td>Points</td>
-              <td [ngClass]="{ bolder: homeTeam.table.points > awayTeam.table.points }">{{ homeTeam.table.points }}</td>
-              <td [ngClass]="{ bolder: homeTeam.table.points < awayTeam.table.points }">{{ awayTeam.table.points }}</td>
-            </tr>
-            <tr>
-              <td>W / D / L</td>
-              <td>{{ homeTeam.table.wins }} / {{ homeTeam.table.draws }} / {{ homeTeam.table.losses }}</td>
-              <td>{{ awayTeam.table.wins }} / {{ awayTeam.table.draws }} / {{ awayTeam.table.losses }}</td>
-            </tr>
-            <tr>
-              <td>Goals</td>
-              <td>{{ homeTeam.table.goalsScored }}:{{ homeTeam.table.goalsConceded }}</td>
-              <td>{{ awayTeam.table.goalsScored }}:{{ awayTeam.table.goalsConceded }}</td>
-            </tr>
-            <tr>
-              <td>GSPG</td>
-              <td [ngClass]="{ bolder: homeTeam.table.gspg > awayTeam.table.gspg }">{{ homeTeam.table.gspg }}</td>
-              <td [ngClass]="{ bolder: homeTeam.table.gspg < awayTeam.table.gspg }">{{ awayTeam.table.gspg }}</td>
-            </tr>
-            <tr>
-              <td>GCPG</td>
-              <td [ngClass]="{ bolder: homeTeam.table.gcpg < awayTeam.table.gcpg }">{{ homeTeam.table.gcpg }}</td>
-              <td [ngClass]="{ bolder: homeTeam.table.gcpg > awayTeam.table.gcpg }">{{ awayTeam.table.gcpg }}</td>
-            </tr>
-            <!-- <tr>
-        <td>Last 5 Pts</td>
-        <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
-        <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>
-      </tr>
-      <tr>
-        <td>Last 5</td>
-        <td><app-team-form [form]="homeTeam.last5Form" [size]="'small'"></app-team-form></td>
-        <td><app-team-form [form]="awayTeam.last5Form" [size]="'small'"></app-team-form></td>
-      </tr>
-      <tr>
-        <td>Last 5 Goals</td>
-        <td>{{ homeTeam.last5.goalsScored }}:{{ homeTeam.last5.goalsConceded }}</td>
-        <td>{{ awayTeam.last5.goalsScored }}:{{ awayTeam.last5.goalsConceded }}</td>
-      </tr> -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div fxLayout="column">
-      <span class="stats-section-title">Bundesliga Last 5</span>
-      <div class="stats-section">
-        <table>
-          <tbody>
-            <tr>
-              <td></td>
-              <td>{{ homeTeam.shortName | uppercase }}</td>
-              <td>{{ awayTeam.shortName | uppercase }}</td>
-            </tr>
-            <tr class="after-logo">
-              <td>Points</td>
-              <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
-              <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>
-            </tr>
-            <tr>
-              <td>Form</td>
-              <td><app-team-form [form]="homeTeam.last5Form" [size]="'small'"></app-team-form></td>
-              <td><app-team-form [form]="awayTeam.last5Form" [size]="'small'"></app-team-form></td>
-            </tr>
-            <tr>
-              <td>W / D / L</td>
-              <td>{{ homeTeam.last5.wins }} / {{ homeTeam.last5.draws }} / {{ homeTeam.last5.losses }}</td>
-              <td>{{ awayTeam.last5.wins }} / {{ awayTeam.last5.draws }} / {{ awayTeam.last5.losses }}</td>
-            </tr>
-            <tr>
-              <td>Goals</td>
-              <td>{{ homeTeam.last5.goalsScored }}:{{ homeTeam.last5.goalsConceded }}</td>
-              <td>{{ awayTeam.last5.goalsScored }}:{{ awayTeam.last5.goalsConceded }}</td>
-            </tr>
-
-            <tr>
-              <td>GSPG</td>
-              <td [ngClass]="{ bolder: homeTeam.last5.gspg > awayTeam.last5.gspg }">{{ homeTeam.last5.gspg }}</td>
-              <td [ngClass]="{ bolder: homeTeam.last5.gspg < awayTeam.last5.gspg }">{{ awayTeam.last5.gspg }}</td>
-            </tr>
-            <tr>
-              <td>GCPG</td>
-              <td [ngClass]="{ bolder: homeTeam.last5.gcpg < awayTeam.last5.gcpg }">{{ homeTeam.last5.gcpg }}</td>
-              <td [ngClass]="{ bolder: homeTeam.last5.gcpg > awayTeam.last5.gcpg }">{{ awayTeam.last5.gcpg }}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div>
+      <span class="stats-section-title">Lineup Predictions</span>
+      <div class="stats-section" fxLayout="column" fxLayoutGap="10px">
+        <div *ngFor="let prediction of player.nextGame.lineupPredictions" fxLayout="row" fxLayoutAlign="start center">
+          <span class="prediction-source">{{ prediction.source | ucfirst }} </span>
+          <app-prediction-indicator [showUnknownYet]="true" [value]="prediction.attendance"></app-prediction-indicator>
+        </div>
+        <a fxFlexAlign="flex-end" [routerLink]="'/lineups/teams/' + player.team.shortName" target="_blank">
+          Show more
+        </a>
       </div>
     </div>
   </div>
-</mat-card>
+
+  <div fxLayout="column">
+    <span class="stats-section-title">Bundesliga Overall</span>
+    <div class="stats-section">
+      <table>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>{{ homeTeam.shortName | uppercase }}</td>
+            <td>{{ awayTeam.shortName | uppercase }}</td>
+          </tr>
+          <tr class="after-logo">
+            <td>Games</td>
+            <td>{{ homeTeam.table.games }}</td>
+            <td>{{ awayTeam.table.games }}</td>
+          </tr>
+          <tr>
+            <td>Rank</td>
+            <td [ngClass]="{ bolder: homeTeam.table.rank < awayTeam.table.rank }">
+              {{ homeTeam.table.rank | numerals }}
+            </td>
+            <td [ngClass]="{ bolder: homeTeam.table.rank > awayTeam.table.rank }">
+              {{ awayTeam.table.rank | numerals }}
+            </td>
+          </tr>
+          <tr>
+            <td>Points</td>
+            <td [ngClass]="{ bolder: homeTeam.table.points > awayTeam.table.points }">{{ homeTeam.table.points }}</td>
+            <td [ngClass]="{ bolder: homeTeam.table.points < awayTeam.table.points }">{{ awayTeam.table.points }}</td>
+          </tr>
+          <tr>
+            <td>W / D / L</td>
+            <td>{{ homeTeam.table.wins }} / {{ homeTeam.table.draws }} / {{ homeTeam.table.losses }}</td>
+            <td>{{ awayTeam.table.wins }} / {{ awayTeam.table.draws }} / {{ awayTeam.table.losses }}</td>
+          </tr>
+          <tr>
+            <td>Goals</td>
+            <td>{{ homeTeam.table.goalsScored }}:{{ homeTeam.table.goalsConceded }}</td>
+            <td>{{ awayTeam.table.goalsScored }}:{{ awayTeam.table.goalsConceded }}</td>
+          </tr>
+          <tr>
+            <td>GSPG</td>
+            <td [ngClass]="{ bolder: homeTeam.table.gspg > awayTeam.table.gspg }">{{ homeTeam.table.gspg }}</td>
+            <td [ngClass]="{ bolder: homeTeam.table.gspg < awayTeam.table.gspg }">{{ awayTeam.table.gspg }}</td>
+          </tr>
+          <tr>
+            <td>GCPG</td>
+            <td [ngClass]="{ bolder: homeTeam.table.gcpg < awayTeam.table.gcpg }">{{ homeTeam.table.gcpg }}</td>
+            <td [ngClass]="{ bolder: homeTeam.table.gcpg > awayTeam.table.gcpg }">{{ awayTeam.table.gcpg }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div fxLayout="column">
+    <span class="stats-section-title">Bundesliga Last 5</span>
+    <div class="stats-section">
+      <table>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>{{ homeTeam.shortName | uppercase }}</td>
+            <td>{{ awayTeam.shortName | uppercase }}</td>
+          </tr>
+          <tr class="after-logo">
+            <td>Points</td>
+            <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
+            <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>
+          </tr>
+          <tr>
+            <td>Form</td>
+            <td><app-team-form [form]="homeTeam.last5Form" [size]="'small'"></app-team-form></td>
+            <td><app-team-form [form]="awayTeam.last5Form" [size]="'small'"></app-team-form></td>
+          </tr>
+          <tr>
+            <td>W / D / L</td>
+            <td>{{ homeTeam.last5.wins }} / {{ homeTeam.last5.draws }} / {{ homeTeam.last5.losses }}</td>
+            <td>{{ awayTeam.last5.wins }} / {{ awayTeam.last5.draws }} / {{ awayTeam.last5.losses }}</td>
+          </tr>
+          <tr>
+            <td>Goals</td>
+            <td>{{ homeTeam.last5.goalsScored }}:{{ homeTeam.last5.goalsConceded }}</td>
+            <td>{{ awayTeam.last5.goalsScored }}:{{ awayTeam.last5.goalsConceded }}</td>
+          </tr>
+
+          <tr>
+            <td>GSPG</td>
+            <td [ngClass]="{ bolder: homeTeam.last5.gspg > awayTeam.last5.gspg }">{{ homeTeam.last5.gspg }}</td>
+            <td [ngClass]="{ bolder: homeTeam.last5.gspg < awayTeam.last5.gspg }">{{ awayTeam.last5.gspg }}</td>
+          </tr>
+          <tr>
+            <td>GCPG</td>
+            <td [ngClass]="{ bolder: homeTeam.last5.gcpg < awayTeam.last5.gcpg }">{{ homeTeam.last5.gcpg }}</td>
+            <td [ngClass]="{ bolder: homeTeam.last5.gcpg > awayTeam.last5.gcpg }">{{ awayTeam.last5.gcpg }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

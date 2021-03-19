@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PlayerDetailsRoutingModule } from './player-details-routing.module';
-import { PlayerDetailsContentComponent } from './view/player-details-content/player-details-content.component';
-import { PlayerDetailsResolver } from './resolvers/player-details.resolver';
-import { PlayerDetailsLoader } from './loaders/player-details.loader';
-import { PlayerDetailsFantasyCreator } from './loaders/creators/player-details-fantasy.creator';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { FblCoreModule } from '../../core/fbl-core.module';
+import { PlayerDetailsFantasyCreator } from './loaders/creators/player-details-fantasy.creator';
+import { PlayerDetailsGamesCreator } from './loaders/creators/player-details-games.creator';
+import { PlayerDetailsNextGameCreator } from './loaders/creators/player-details-next-game.creator';
+import { PlayerDetailsTeamCreator } from './loaders/creators/player-details-team.creator';
+import { PlayerDetailsFabric } from './loaders/player-details.fabric';
+import { PlayerDetailsLoader } from './loaders/player-details.loader';
+import { PlayerDetailsRoutingModule } from './player-details-routing.module';
+import { PlayerDetailsResolver } from './resolvers/player-details.resolver';
+import { PlayerDetailsContentComponent } from './view/player-details-content/player-details-content.component';
 import { PlayerDetailsMainComponent } from './view/player-details-content/player-details-main/player-details-main.component';
 import { PlayerDetailsMatchdaysComponent } from './view/player-details-content/player-details-matchdays/player-details-matchdays.component';
-import { PlayerDetailsTeamCreator } from './loaders/creators/player-details-team.creator';
-import { PlayerDetailsGamesCreator } from './loaders/creators/player-details-games.creator';
-import { PlayerDetailsFabric } from './loaders/player-details.fabric';
 import { PlayerDetailsNextMatchdayComponent } from './view/player-details-content/player-details-matchdays/player-details-next-matchday/player-details-next-matchday.component';
-import { PlayerDetailsNextOpponentCreator } from './loaders/creators/player-details-next-opponent.creator';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { PlayerDetailsNextOpponentCreator } from './loaders/creators/player-deta
     PlayerDetailsMatchdaysComponent,
     PlayerDetailsNextMatchdayComponent
   ],
-  imports: [CommonModule, PlayerDetailsRoutingModule, SharedModule, AngularMaterialModule],
+  imports: [CommonModule, PlayerDetailsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [
     PlayerDetailsResolver,
     PlayerDetailsLoader,
@@ -30,7 +31,7 @@ import { PlayerDetailsNextOpponentCreator } from './loaders/creators/player-deta
     PlayerDetailsFantasyCreator,
     PlayerDetailsGamesCreator,
     PlayerDetailsFabric,
-    PlayerDetailsNextOpponentCreator
+    PlayerDetailsNextGameCreator
   ]
 })
 export class PlayerDetailsModule {}

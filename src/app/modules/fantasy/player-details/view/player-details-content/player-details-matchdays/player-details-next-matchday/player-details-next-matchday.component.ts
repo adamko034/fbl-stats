@@ -1,5 +1,4 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { platformBrowser } from '@angular/platform-browser';
 import { PlayerDetailsTeam } from '../../../../models/player-details-team.model';
 import { PlayerDetails } from '../../../../models/player-details.model';
 
@@ -13,11 +12,11 @@ export class PlayerDetailsNextMatchdayComponent implements OnInit {
   @Input() player: PlayerDetails;
 
   public get homeTeam(): PlayerDetailsTeam {
-    return this.player.nextOpponent.isHome ? this.player.team : this.player.nextOpponent.team;
+    return this.player.nextGame.isHome ? this.player.team : this.player.nextGame.opponent;
   }
 
   public get awayTeam() {
-    return this.player.nextOpponent.isHome ? this.player.nextOpponent.team : this.player.team;
+    return this.player.nextGame.isHome ? this.player.nextGame.opponent : this.player.team;
   }
 
   constructor() {}

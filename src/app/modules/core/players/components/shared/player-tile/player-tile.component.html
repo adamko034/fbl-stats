@@ -1,52 +1,37 @@
 <div class="player" ngClass.lt-md="player-mobile" fxLayout="column">
-  <div class="pointer" (click)="onShowPlayerDetails()">
-    <div *ngIf="isMobile$ | async" fxLayout="row" fxLayoutGap="10px" fxFill>
-      <ng-template [ngTemplateOutlet]="teamLogoSecion"></ng-template>
-      <div fxLayout="column" fxLayoutGap="5px">
-        <app-player-tile-name [player]="player"></app-player-tile-name>
-        <span>{{ player.position | uppercase }}</span>
-        <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-          <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
-          <app-prediction-indicator
-            [value]="player.nextGameAttendancePrediction"
-            [height]="35"
-          ></app-prediction-indicator>
-        </div>
-      </div>
-      <app-player-tile-fantasy-points [player]="player" fxFlex fxFlexAlign="center"></app-player-tile-fantasy-points>
-    </div>
-
-    <div *ngIf="!(isMobile$ | async)" fxLayout="row" fxLayoutAlign="start center">
-      <div fxLayout="row" fxLayoutGap="15px" fxFlex="40">
-        <ng-template [ngTemplateOutlet]="teamLogoSecion"></ng-template>
-        <div fxLayout="column" fxLayoutGap="10px">
-          <app-player-tile-name [player]="player"></app-player-tile-name>
-          <span>{{ player.position | uppercase }}</span>
-          <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
-        </div>
-      </div>
-      <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+  <div *ngIf="isMobile$ | async" fxLayout="row" fxLayoutGap="10px" fxFill>
+    <ng-template [ngTemplateOutlet]="teamLogoSecion"></ng-template>
+    <div fxLayout="column" fxLayoutGap="5px">
+      <app-player-tile-name [player]="player"></app-player-tile-name>
+      <span>{{ player.position | uppercase }}</span>
+      <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
         <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
         <app-prediction-indicator
           [value]="player.nextGameAttendancePrediction"
           [height]="35"
         ></app-prediction-indicator>
       </div>
-
-      <app-player-tile-fantasy-points fxFlex [player]="player"></app-player-tile-fantasy-points>
     </div>
+    <app-player-tile-fantasy-points [player]="player" fxFlex fxFlexAlign="center"></app-player-tile-fantasy-points>
   </div>
 
-  <div [@detailExpanded] *ngIf="expanded$ | async">
-    <app-player-details [player]="player"></app-player-details>
-  </div>
+  <div *ngIf="!(isMobile$ | async)" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="row" fxLayoutGap="15px" fxFlex="40">
+      <ng-template [ngTemplateOutlet]="teamLogoSecion"></ng-template>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <app-player-tile-name [player]="player"></app-player-tile-name>
+        <span>{{ player.position | uppercase }}</span>
+        <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
+      </div>
+    </div>
+    <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+      <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
+      <app-prediction-indicator [value]="player.nextGameAttendancePrediction" [height]="35"></app-prediction-indicator>
+    </div>
 
-  <app-toggle-expand
-    class="expand"
-    [expanded]="expanded$ | async"
-    (toggleExpand)="onShowPlayerDetails()"
-  ></app-toggle-expand>
+    <app-player-tile-fantasy-points fxFlex [player]="player"></app-player-tile-fantasy-points>
+  </div>
 </div>
 
 <ng-template #teamLogoSecion>

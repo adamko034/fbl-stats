@@ -12,7 +12,9 @@
       <div *ngIf="!!players" cdkDropList class="admin-our-picks-list" (cdkDropListDropped)="drop($event)">
         <div class="admin-our-pick" fxLayout="row" *ngFor="let player of players" cdkDrag>
           <span fxFlex="7">{{ player.order }}</span>
-          <span fxFlex class="bold">{{ player.name }}</span>
+          <span fxFlex class="bold"
+            ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
+          ></span>
           <div fxFlex="20" fxLayoutGap="10px">
             <span>{{ player.position | uppercase }}</span
             ><span>{{ player.price }}M</span><span>{{ player.popularity }}%</span>

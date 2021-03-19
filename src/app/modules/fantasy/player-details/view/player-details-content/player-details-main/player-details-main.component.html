@@ -1,60 +1,60 @@
-<mat-card class="card">
-  <div fxLayout="column">
-    <div class="title" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="50px">
-      <div fxLayoutGap="10px" fxLayoutAlign="center center">
-        <app-team-logo [height]="30" [team]="player.team.shortName"></app-team-logo>
-        <h2>{{ player.name }}</h2>
+<div fxLayout="row" fxLayout.lt-md="column">
+  <mat-card class="card">
+    <div fxLayout="column">
+      <div
+        class="title"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        fxLayoutGap="50px"
+        fxLayout.lt-sm="column"
+        fxLayoutGap.lt-sm="10px"
+      >
+        <div fxLayoutGap="10px" fxLayoutAlign="center center">
+          <app-team-logo [height]="30" [team]="player.team.shortName"></app-team-logo>
+          <h2>{{ player.name }}</h2>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <h3>{{ player.position | uppercase }}</h3>
+          <mat-chip-list>
+            <mat-chip>{{ player.fantasy.price }}M</mat-chip>
+          </mat-chip-list>
+        </div>
       </div>
-      <div fxLayout="row" fxLayoutGap="10px">
-        <h3>{{ player.position | uppercase }}</h3>
-        <mat-chip-list>
-          <mat-chip>{{ player.fantasy.price }}M</mat-chip>
-        </mat-chip-list>
-      </div>
+      <app-text-subtext-row *ngIf="!(isMobile$ | async)" [rows]="stats"></app-text-subtext-row>
+      <app-text-subtext-row *ngIf="isMobile$ | async" [rows]="statsMobile"></app-text-subtext-row>
     </div>
-    <div class="card-stats" fxLayoutAlign="space-between" fxLayoutGap="40px">
-      <ul fxLayoutGap="25px">
-        <li>
-          <h3>{{ player.fantasy.totalPoints }}</h3>
-          <span class="sub">total pts</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.last5 }}</h3>
-          <span class="sub">last 5 pts</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.lastMD }}</h3>
-          <span class="sub">last MD pts</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.popularity }}%</h3>
-          <span class="sub">popularity</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.top100Popularity }}%</h3>
-          <span class="sub">leaders %</span>
-        </li>
-      </ul>
-    </div>
-    <div class="card-stats card-stats-second" fxLayoutAlign="space-between" fxLayoutGap="40px">
-      <ul fxLayoutGap="25px">
-        <li>
-          <h3>{{ player.fantasy.seasonAvg }}</h3>
-          <span class="sub">season avg</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.last5Avg }}</h3>
-          <span class="sub">last 5 avg</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.bestGame.points }}</h3>
-          <span class="sub">best game</span>
-        </li>
-        <li>
-          <h3>{{ player.fantasy.worstGame.points }}</h3>
-          <span class="sub">worst game</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</mat-card>
+  </mat-card>
+  <mat-card
+    class="status-desktop"
+    ngClass.lt-md="status-mobile"
+    fxLayout="column"
+    fxLayout.lt-md="row"
+    fxLayoutGap="10px"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="center center"
+  >
+    <p fxHide.lt-md class="md-info grey" fxLayoutAlign="center start">
+      <span>MD {{ player.nextGame.matchday }} status</span>
+    </p>
+    <p class="unavailable" *ngIf="player.nextGame.isUnavailable">
+      <mat-icon>not_interested</mat-icon>
+      <span>Unavailable !!</span>
+    </p>
+    <p class="doubt" *ngIf="player.nextGame.prediction === predictions.Doubt">
+      <mat-icon>error_outline</mat-icon>
+      <span>Varied predictions</span>
+    </p>
+    <p class="unavailable" *ngIf="player.nextGame.prediction === predictions.WillNotPlay">
+      <mat-icon>highlight_off</mat-icon>
+      <span>Not predicted to start</span>
+    </p>
+    <p class="should-start" *ngIf="player.nextGame.prediction === predictions.WillPlay">
+      <mat-icon>check_circle</mat-icon>
+      <span>Predicted to start</span>
+    </p>
+    <p class="suspension-risk" *ngIf="player.nextGame.isSuspensionRisk">
+      <app-player-suspension-risk [show]="true"></app-player-suspension-risk>
+      <span>Suspension risk</span>
+    </p>
+  </mat-card>
+</div>

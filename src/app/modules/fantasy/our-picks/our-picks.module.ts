@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FblCoreModule } from '../../core/fbl-core.module';
 import { OurPicksDisplaySettingsComponent } from './components/our-picks-display-settings/our-picks-display-settings.component';
 import { OurPicksFilterTypesComponent } from './components/our-picks-filter-types/our-picks-filter-types.component';
 import { OurPicksFiltersComponent } from './components/our-picks-filters/our-picks-filters.component';
@@ -29,7 +30,7 @@ import { OurPicksMatchdayComponent } from './views/our-picks-matchday/our-picks-
     OurPicksDisplaySettingsComponent,
     OurPicksPlayersSimplifiedComponent
   ],
-  imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule],
+  imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [OurPicksLoadedGuard, OurPicksFiltersExecutor, OurPicksFiltersService, OurPicksDisplaySettingsService]
 })
 export class OurPicksModule {}

@@ -11,4 +11,5 @@ export interface PlayerDetailsFantasy {
   last5Avg: number;
   bestGame: Game;
   worstGame: Game;
+  pointsPer1M: number;
 }

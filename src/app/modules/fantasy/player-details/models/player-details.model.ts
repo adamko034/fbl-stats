@@ -1,6 +1,6 @@
 import { PlayerDetailsFantasy } from './player-details-fantasy.model';
 import { PlayerDetailsGame } from './player-details-game.model';
-import { PlayerDetailsNextOpponent } from './player-details-next-opponent.model';
+import { PlayerDetailsNextGame } from './player-details-next-game.model';
 import { PlayerDetailsTeam } from './player-details-team.model';
 
 export interface PlayerDetails {
@@ -10,5 +10,5 @@ export interface PlayerDetails {
   team: PlayerDetailsTeam;
   fantasy: PlayerDetailsFantasy;
   games: PlayerDetailsGame[];
-  nextOpponent: PlayerDetailsNextOpponent;
+  nextGame: PlayerDetailsNextGame;
 }

@@ -11,7 +11,6 @@ import { MomentModule } from 'ngx-moment';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
-import { ExpandedPlayersService } from 'src/app/modules/core/players/services/expanded-players.service';
 import { ImageLazyLoadingDirective } from 'src/app/shared/directives/image-lazy-loading.directive';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from 'src/environments/environment';
@@ -54,7 +53,7 @@ import { HeaderComponent } from './layout/header/header.component';
     FblCoreModule,
     AngularMaterialModule
   ],
-  providers: [ExpandedPlayersService, ScreenTrackingService],
+  providers: [ScreenTrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

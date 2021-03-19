@@ -35,6 +35,7 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
@@ -42,20 +43,20 @@ import { ViewTitleComponent } from './components/layout/view-title/view-title.co
 import { MatchdayFixtureComponent } from './components/matchday/matchday-fixture/matchday-fixture.component';
 import { MatchdayComponent } from './components/matchday/matchday.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
+import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
+import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
+import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
+import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
+import { AuthenticatedDirective } from './directives/authenticated.directive';
+import { MedalColorDirective } from './directives/medal-color.directive';
+import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { WherePipe } from './pipes/where.pipe';
-import { FilterPositionComponent } from './components/filter-position/filter-position.component';
-import { AuthenticatedDirective } from './directives/authenticated.directive';
-import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { YesNoPipe } from './pipes/yes-no.pipe';
-import { MedalColorDirective } from './directives/medal-color.directive';
-import { faSurprise } from '@fortawesome/free-regular-svg-icons';
-import { EpochDatePipe } from './pipes/epoch-date.pipe';
-import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,9 @@ import { TimelineMatchdaysComponent } from './components/timeline-matchdays/time
     YesNoPipe,
     MedalColorDirective,
     EpochDatePipe,
-    TimelineMatchdaysComponent
+    TimelineMatchdaysComponent,
+    PlayerNameLinkComponent,
+    TextSubtextRowComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -129,7 +132,9 @@ import { TimelineMatchdaysComponent } from './components/timeline-matchdays/time
     YesNoPipe,
     MedalColorDirective,
     EpochDatePipe,
-    TimelineMatchdaysComponent
+    TimelineMatchdaysComponent,
+    PlayerNameLinkComponent,
+    TextSubtextRowComponent
   ]
 })
 export class SharedModule {

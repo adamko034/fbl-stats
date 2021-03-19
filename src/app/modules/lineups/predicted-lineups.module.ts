@@ -13,10 +13,11 @@ import { PredictedLineupsSourcesComponent } from 'src/app/modules/lineups/views/
 import { PredictedLineupsTeamNavigationComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team-navigation/predicted-lineups-team-navigation.component';
 import { PredictedLineupsTeamComponent } from 'src/app/modules/lineups/views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/team-lineup/team-lineup.component';
-import { PredictedLineupsStatsComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-stats/predicted-lineups-stats.component';
-import { PredictedLineupsStasPlayersResolver } from './resolvers/predicted-lineups-stats-players.resolver';
+import { FblCoreModule } from '../core/fbl-core.module';
 import { PredictedLineupsStatsPlayerConverter } from './converters/predicted-lineups-stats-player.converter';
+import { PredictedLineupsStasPlayersResolver } from './resolvers/predicted-lineups-stats-players.resolver';
+import { PredictedLineupsStatsComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-stats/predicted-lineups-stats.component';
+import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/team-lineup/team-lineup.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { PredictedLineupsStatsPlayerConverter } from './converters/predicted-lin
     TeamLineupComponent,
     PredictedLineupsStatsComponent
   ],
-  imports: [CommonModule, PredictedLineupsRoutingModule, SharedModule, AngularMaterialModule],
+  imports: [CommonModule, PredictedLineupsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [
     PredictedLineupsStore,
     PredictedLineupsSourcesResolver,
