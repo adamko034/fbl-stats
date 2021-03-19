@@ -18,7 +18,7 @@ export class OurPicksMatchdayDescriptionComponent implements OnInit {
     { icon: 'premium', description: 'premium pick - high cost player who can score big' },
     { icon: 'bargain', description: 'bargain pick - max price 8M' },
     { icon: 'differential', description: 'differential - max popularity 5%' },
-    { icon: OurPicksType.SURPRISING, description: 'surpring pick, player you may not to think about' }
+    { icon: OurPicksType.SURPRISING, description: 'surprising pick, player you may not think about' }
   ];
 
   constructor(private route: ActivatedRoute) {}
