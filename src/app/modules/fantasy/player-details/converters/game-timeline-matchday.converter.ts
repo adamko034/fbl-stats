@@ -4,17 +4,20 @@ import { PlayerDetailsGame } from '../models/player-details-game.model';
 
 export class GameTimelineMatchdayConverter implements Convertable<PlayerDetailsGame, TimelineMatchdayItem> {
   public convert(items: PlayerDetailsGame[]): TimelineMatchdayItem[] {
-    return items.map(({ date, resultText, result, isHome, matchday, opponent, points, wasPlayed, opponentRank }) => ({
-      date,
-      result: this.resultNumberToText(result),
-      resultText,
-      isHome,
-      points,
-      matchday,
-      wasPlayed,
-      opponent,
-      opponentRank
-    }));
+    return items.map(
+      ({ date, resultText, result, isHome, matchday, opponent, points, wasPlayed, opponentRank, isFirstGame }) => ({
+        date,
+        result: this.resultNumberToText(result),
+        resultText,
+        isHome,
+        points,
+        matchday,
+        wasPlayed,
+        opponent,
+        opponentRank,
+        isFirstGame
+      })
+    );
   }
 
   private resultNumberToText(result: number): string {

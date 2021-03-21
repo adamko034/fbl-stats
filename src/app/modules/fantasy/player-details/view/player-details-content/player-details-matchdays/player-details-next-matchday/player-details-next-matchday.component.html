@@ -19,17 +19,20 @@
       <span>vs.</span>
       <app-team-logo [height]="50" [team]="awayTeam.shortName"></app-team-logo>
     </div>
-    <div>
-      <span class="stats-section-title">Lineup Predictions</span>
-      <div class="stats-section" fxLayout="column" fxLayoutGap="10px">
-        <div *ngFor="let prediction of player.nextGame.lineupPredictions" fxLayout="row" fxLayoutAlign="start center">
-          <span class="prediction-source">{{ prediction.source | ucfirst }} </span>
-          <app-prediction-indicator [showUnknownYet]="true" [value]="prediction.attendance"></app-prediction-indicator>
-        </div>
-        <a fxFlexAlign="flex-end" [routerLink]="'/lineups/teams/' + player.team.shortName" target="_blank">
-          Show more
-        </a>
+    <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+      <app-matchday-first-game-indicator></app-matchday-first-game-indicator>
+      <span>Matchday first game!</span>
+    </div>
+  </div>
+
+  <div>
+    <span class="stats-section-title">Lineup Predictions</span>
+    <div class="stats-section" fxLayout="column" fxLayoutGap="10px">
+      <div *ngFor="let prediction of player.nextGame.lineupPredictions" fxLayout="row" fxLayoutAlign="start center">
+        <span class="prediction-source">{{ prediction.source | ucfirst }} </span>
+        <app-prediction-indicator [showUnknownYet]="true" [value]="prediction.attendance"></app-prediction-indicator>
       </div>
+      <a fxFlexAlign="flex-end" [routerLink]="'/lineups/teams/' + player.team.shortName">Show more</a>
     </div>
   </div>
 

@@ -8,4 +8,5 @@ export interface TimelineMatchdayItem {
   result?: string;
   resultText?: string;
   opponentRank: number;
+  isFirstGame: boolean;
 }

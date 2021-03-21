@@ -20,7 +20,7 @@ export class LeadersUsageTextValueConverter<T> implements Convertable<T, TextVal
       bold: this.config.boldMax ? item['usage'] === max : false,
       text: item[this.config.textField],
       value: this.isValueType('usage') ? `${item['usage']}%` : null,
-      style: this.config.style,
+      textStyle: this.config.style,
       change: this.isValueType('difference') ? item['usageDifference'] : null,
       teamShort: !!this.config.showTeamLogo ? item['teamShort'] : null,
       linkId: item['playerId']

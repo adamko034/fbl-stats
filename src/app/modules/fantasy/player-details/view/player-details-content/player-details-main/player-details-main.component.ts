@@ -24,7 +24,6 @@ export class PlayerDetailsMainComponent {
         items: [
           { order: 1, text: this.player?.fantasy.totalPoints.toString(), subtext: 'total pts' },
           { order: 2, text: this.player?.fantasy.last5.toString(), subtext: 'last 5 pts' },
-          { order: 3, text: this.player?.fantasy.lastMD.toString(), subtext: 'last MD pts' },
           { order: 4, text: this.player?.fantasy.seasonAvg.toString(), subtext: 'season avg pts' },
           { order: 5, text: this.player?.fantasy.last5Avg.toString(), subtext: 'last 5 avg pts' }
         ]
@@ -32,11 +31,10 @@ export class PlayerDetailsMainComponent {
       {
         order: 2,
         items: [
-          { order: 1, text: this.player?.fantasy.popularity.toString(), subtext: 'popularity' },
-          { order: 2, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'leaders %' },
-          { order: 3, text: this.player?.fantasy.bestGame.points.toString(), subtext: 'best game pts' },
-          { order: 4, text: this.player?.fantasy.worstGame.points.toString(), subtext: 'worst game pts' },
-          { order: 5, text: this.player?.fantasy.pointsPer1M.toString(), subtext: 'pts / 1M' }
+          { order: 1, text: this.player?.fantasy.lastMD.toString(), subtext: 'last MD pts' },
+          { order: 2, text: this.player?.fantasy.popularity.toString(), subtext: 'popularity' },
+          { order: 3, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'leaders %' },
+          { order: 4, text: this.player?.fantasy.pointsPer1M.toString(), subtext: 'pts / 1M' }
         ]
       }
     ];
@@ -56,16 +54,15 @@ export class PlayerDetailsMainComponent {
         order: 2,
         items: [
           { order: 1, text: this.player?.fantasy.last5.toString(), subtext: 'last 5 pts' },
-          { order: 2, text: this.player?.fantasy.lastMD.toString(), subtext: 'last MD pts' },
-          { order: 3, text: this.player?.fantasy.last5Avg.toString(), subtext: 'last 5 avg pts' }
+          { order: 3, text: this.player?.fantasy.lastMD.toString(), subtext: 'last MD pts' },
+          { order: 2, text: this.player?.fantasy.last5Avg.toString(), subtext: 'last 5 avg pts' }
         ]
       },
       {
         order: 3,
         items: [
           { order: 1, text: this.player?.fantasy.popularity.toString(), subtext: '%' },
-          { order: 2, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'leaders %' },
-          { order: 3, text: this.player?.fantasy.bestGame.points.toString(), subtext: 'best game pts' }
+          { order: 2, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'leaders %' }
         ]
       }
     ];

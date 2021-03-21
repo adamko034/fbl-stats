@@ -2,7 +2,8 @@ export interface TextValue {
   text: string;
   value?: string;
   bold?: boolean;
-  style?: any;
+  textStyle?: any;
+  valueStyle?: any;
   teamShort?: string;
   change?: number;
   linkId?: string;

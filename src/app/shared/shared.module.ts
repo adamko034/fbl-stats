@@ -40,6 +40,7 @@ import { FiltersLayoutComponent } from './components/layout/filters-layout/filte
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
+import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
 import { MatchdayFixtureComponent } from './components/matchday/matchday-fixture/matchday-fixture.component';
 import { MatchdayComponent } from './components/matchday/matchday.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
@@ -94,7 +95,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     EpochDatePipe,
     TimelineMatchdaysComponent,
     PlayerNameLinkComponent,
-    TextSubtextRowComponent
+    TextSubtextRowComponent,
+    MatchdayFirstGameIndicatorComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
   exports: [
@@ -134,7 +136,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     EpochDatePipe,
     TimelineMatchdaysComponent,
     PlayerNameLinkComponent,
-    TextSubtextRowComponent
+    TextSubtextRowComponent,
+    MatchdayFirstGameIndicatorComponent
   ]
 })
 export class SharedModule {

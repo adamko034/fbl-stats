@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { combineLatest, Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { filter, map, mergeMap } from 'rxjs/operators';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { PlayerDetails } from '../models/player-details.model';
@@ -16,6 +16,7 @@ export class PlayerDetailsLoader {
 
   public load(id: number): Observable<PlayerDetails> {
     return this.playersStore.selectById(id.toString()).pipe(
+      filter((player) => !!player),
       mergeMap((player) => {
         return combineLatest([
           of(player),

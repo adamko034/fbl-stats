@@ -5,6 +5,7 @@ import { PlayerDetailsTeam } from './player-details-team.model';
 export interface PlayerDetailsNextGame {
   isHome: boolean;
   date: number;
+  isFirstGame: boolean;
   opponent: PlayerDetailsTeam;
   matchday: number;
   isUnavailable: boolean;

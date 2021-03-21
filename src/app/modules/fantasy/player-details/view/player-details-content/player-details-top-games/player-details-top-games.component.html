@@ -1,0 +1,29 @@
+<mat-card class="top-games-container">
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="20px">
+    <app-text-value-card
+      class="top-games-item"
+      title="Best games"
+      [items]="bestGames"
+      [showInMatCard]="false"
+    ></app-text-value-card>
+    <app-text-value-card
+      class="top-games-item"
+      title="Worst games"
+      [items]="worstGames"
+      [showInMatCard]="false"
+    ></app-text-value-card>
+    <app-text-value-card
+      class="top-games-item"
+      title="Points scored (overall)"
+      [items]="probabilities"
+      [showInMatCard]="false"
+    ></app-text-value-card>
+
+    <app-text-value-card
+      class="top-games-item"
+      title="Points scored (last 5)"
+      [items]="probabilitiesLast5"
+      [showInMatCard]="false"
+    ></app-text-value-card>
+  </div>
+</mat-card>

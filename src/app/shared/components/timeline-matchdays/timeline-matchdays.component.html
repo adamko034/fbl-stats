@@ -29,8 +29,14 @@
           <span>{{ item.opponentRank | numerals }}</span>
           <span>({{ item.isHome ? 'h' : 'a' }})</span>
         </div>
-        <div class="item-sub-text" *ngIf="!item.wasPlayed && !!item.date">
-          {{ item.date | epochDate | date: 'dd.MM' }}
+        <div
+          class="item-sub-text"
+          *ngIf="!item.wasPlayed && !!item.date"
+          fxLayoutAlign="start center"
+          fxLayoutGap="4px"
+        >
+          <span>{{ item.date | epochDate | date: 'dd.MM' }}</span>
+          <app-matchday-first-game-indicator *ngIf="item.isFirstGame" size="small"></app-matchday-first-game-indicator>
         </div>
         <div class="item-sub-text" *ngIf="!item.wasPlayed && !item.date">TBD</div>
       </div>

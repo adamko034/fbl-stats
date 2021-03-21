@@ -89,6 +89,10 @@ export class MatchdayService {
     return firstGames;
   }
 
+  public isFristGame(matchday: number, team: Team): boolean {
+    return team?.games?.find((g) => g.matchday === matchday)?.isMatchdayFirstGame || false;
+  }
+
   private createMatchdayFirstGames(matchday: Matchday): MatchdayFirstGames {
     const firstGame = this.getMatchdayFirstFixture(matchday);
 

@@ -24,12 +24,12 @@
               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
                 <app-team-logo *ngIf="!!item.teamShort" [height]="25" [team]="item.teamShort"></app-team-logo>
                 <app-player-name-link *ngIf="item.linkId" [name]="item.text" [id]="item.linkId"></app-player-name-link>
-                <span *ngIf="!item.linkId" [ngStyle]="item.style">{{ item.text }}</span>
+                <span *ngIf="!item.linkId" [ngStyle]="item.textStyle">{{ item.text }}</span>
               </div>
             </td>
             <td>
               <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
-                <span>{{ item.value }}</span>
+                <span [ngStyle]="item.valueStyle">{{ item.value }}</span>
                 <span class="item-difference" *ngIf="item.change != null">
                   <span *ngIf="item.change > 0"
                     ><fa-icon class="item-difference-icon green" [icon]="['fas', 'arrow-up']"></fa-icon>+{{
