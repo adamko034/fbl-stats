@@ -1,5 +1,6 @@
 import { Game } from 'src/app/models/game.model';
 import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
+import { PlayerScoringChances } from './player-scoring-chances.model';
 
 export interface Player {
   id: string;
@@ -17,4 +18,5 @@ export interface Player {
   isSuspensionRisk: boolean;
   isReturning: boolean;
   top100Popularity: number;
+  scoringChances: PlayerScoringChances;
 }

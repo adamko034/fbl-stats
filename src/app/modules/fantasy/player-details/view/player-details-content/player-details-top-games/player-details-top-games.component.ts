@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Game } from 'src/app/models/game.model';
 import { GameTextValueConverter } from 'src/app/modules/core/players/converters/game-text-value.converter';
 import { PlayerGamesService } from 'src/app/modules/core/players/services/player-games.service';
@@ -53,7 +54,15 @@ export class PlayerDetailsTopGamesComponent {
     ];
   }
 
-  constructor(private playersDataservice: PlayersDataService, private playerGamesService: PlayerGamesService) {}
+  constructor(
+    private playersDataservice: PlayersDataService,
+    private playerGamesService: PlayerGamesService,
+    private router: Router
+  ) {}
+
+  public onMoreScoringChancesClick(type: string): void {
+    this.router.navigateByUrl(`/fantasy/lists/scoringChances/${type}`);
+  }
 
   private getProbabilityValueText(minPoints: number, lastNGames?: number): string {
     let gamesPlayed: Game[] = this.player.games.filter((g) => g.wasPlayed);

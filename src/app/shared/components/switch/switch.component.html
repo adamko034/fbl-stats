@@ -6,10 +6,13 @@
         [disableRipple]="1"
         [ngClass]="value === item.value ? 'item-active' : 'item'"
         [value]="item.value"
-        (click)="onChange(item.value)"
+        (change)="onChange(item.value)"
       >
-        <span *ngIf="!!item.description">
+        <span fxHide.lt-sm *ngIf="!!item.description">
           {{ item.description }}
+        </span>
+        <span fxHide.gt-xs *ngIf="!!item.descriptionMobile || !!item.description">
+          {{ !!item.descriptionMobile ? item.descriptionMobile : item.description }}
         </span>
         <mat-icon [ngClass]="{ 'material-icons-outlined': item.isMatIconOutline }" *ngIf="!!item.matIcon">{{
           item.matIcon

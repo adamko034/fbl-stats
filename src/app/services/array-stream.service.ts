@@ -23,7 +23,7 @@ export class ArrayStream<T> {
 
   public orderBy(field: string, order: 'asc' | 'dsc' = 'asc'): ArrayStream<T> {
     if (this.array.length > 0) {
-      if (isNaN(Number(this.array[0][field]))) {
+      if (isNaN(Number(this.array[0][field])) || field.includes('.')) {
         if (order === 'dsc') {
           field = `-${field}`;
         }

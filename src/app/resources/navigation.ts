@@ -22,7 +22,8 @@ export class Navigation {
           dropdownLinks: [
             { order: 1, path: '/fantasy/lists/suspensionrisk', text: 'suspension risk' },
             { order: 2, path: '/fantasy/lists/unavailable', text: 'unavailable' },
-            { order: 3, path: '/fantasy/lists/returning', text: 'returning' }
+            { order: 3, path: '/fantasy/lists/returning', text: 'returning' },
+            { order: 4, path: '/fantasy/lists/scoringChances', text: 'scoring chances' }
           ]
         },
         {

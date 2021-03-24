@@ -17,6 +17,8 @@
       title="Points scored (overall)"
       [items]="probabilities"
       [showInMatCard]="false"
+      [showMoreButton]="true"
+      (showMoreClick)="onMoreScoringChancesClick('overall')"
     ></app-text-value-card>
 
     <app-text-value-card
@@ -24,6 +26,8 @@
       title="Points scored (last 5)"
       [items]="probabilitiesLast5"
       [showInMatCard]="false"
+      [showMoreButton]="true"
+      (showMoreClick)="onMoreScoringChancesClick('last5')"
     ></app-text-value-card>
   </div>
 </mat-card>

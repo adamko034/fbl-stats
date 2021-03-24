@@ -1,0 +1,34 @@
+<div *ngIf="!!state">
+  <app-view-title>
+    <h1 title class="view-title-h1">{{ 'players scoring chances' | uppercase }}</h1>
+    <div subtitle>
+      <span>Here is a list of top 30 players scoring chances.</span>
+    </div>
+  </app-view-title>
+  <mat-card fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+    <app-form-field label="Including games">
+      <app-switch
+        [items]="typeFilterItems"
+        name="types"
+        [value]="state.type"
+        (switchChange)="onTypeChange($event)"
+      ></app-switch>
+    </app-form-field>
+
+    <app-form-field label="Order by">
+      <app-switch
+        [items]="orderByFilterItems"
+        name="orderBys"
+        [value]="state.orderBy"
+        (switchChange)="onOrderByChange($event)"
+      ></app-switch>
+    </app-form-field>
+  </mat-card>
+  <div *ngIf="state.data">
+    <app-players-list-generic
+      [config]="state.config"
+      [data]="state.data"
+      (sortChange)="onSortChange($event)"
+    ></app-players-list-generic>
+  </div>
+</div>
