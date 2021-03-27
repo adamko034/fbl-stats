@@ -20,6 +20,7 @@ import {
   faStar,
   faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ExpansionPanelComponent } from 'src/app/shared/components/expansion-panel/expansion-panel.component';
@@ -35,6 +36,7 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
@@ -96,9 +98,10 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TimelineMatchdaysComponent,
     PlayerNameLinkComponent,
     TextSubtextRowComponent,
-    MatchdayFirstGameIndicatorComponent
+    MatchdayFirstGameIndicatorComponent,
+    ChartComponent
   ],
-  imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule],
+  imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
     TeamLogoComponent,
     TeamLogoSourceDirective,
@@ -137,7 +140,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TimelineMatchdaysComponent,
     PlayerNameLinkComponent,
     TextSubtextRowComponent,
-    MatchdayFirstGameIndicatorComponent
+    MatchdayFirstGameIndicatorComponent,
+    ChartComponent
   ]
 })
 export class SharedModule {

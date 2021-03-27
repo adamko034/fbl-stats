@@ -1,4 +1,5 @@
 import { Game } from 'src/app/models/game.model';
+import { PlayerDetailsFantasyHistory } from './player-details-fantasy-history.model';
 
 export interface PlayerDetailsFantasy {
   price: number;
@@ -12,4 +13,5 @@ export interface PlayerDetailsFantasy {
   bestGame: Game;
   worstGame: Game;
   pointsPer1M: number;
+  history: PlayerDetailsFantasyHistory;
 }

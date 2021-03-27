@@ -16,6 +16,7 @@ import { PlayerDetailsMainComponent } from './view/player-details-content/player
 import { PlayerDetailsMatchdaysComponent } from './view/player-details-content/player-details-matchdays/player-details-matchdays.component';
 import { PlayerDetailsNextMatchdayComponent } from './view/player-details-content/player-details-matchdays/player-details-next-matchday/player-details-next-matchday.component';
 import { PlayerDetailsTopGamesComponent } from './view/player-details-content/player-details-top-games/player-details-top-games.component';
+import { PlayerDetailsChartsComponent } from './view/player-details-content/player-details-charts/player-details-charts.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PlayerDetailsTopGamesComponent } from './view/player-details-content/pl
     PlayerDetailsMainComponent,
     PlayerDetailsMatchdaysComponent,
     PlayerDetailsNextMatchdayComponent,
-    PlayerDetailsTopGamesComponent
+    PlayerDetailsTopGamesComponent,
+    PlayerDetailsChartsComponent
   ],
   imports: [CommonModule, PlayerDetailsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [

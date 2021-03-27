@@ -21,7 +21,8 @@ export class PlayerDetailsFantasyCreator {
       last5Avg: Math.round((last5 / 5) * 10) / 10,
       bestGame: this.playersDataService.getBestGame(player.games),
       worstGame: this.playersDataService.getWorstGame(player.games),
-      pointsPer1M: Math.round((player.totalPoints / player.price) * 10) / 10
+      pointsPer1M: Math.round((player.totalPoints / player.price) * 10) / 10,
+      history: player.fantasyHistory
     };
   }
 }
