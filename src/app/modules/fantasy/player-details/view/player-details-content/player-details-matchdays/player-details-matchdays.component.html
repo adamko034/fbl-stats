@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="40px">
-  <div
+  <mat-card
     fxLayout="row wrap"
     fxLayoutGap.gt-xs="20px grid"
     fxLayoutAlign="space-evenly"
@@ -7,24 +7,18 @@
     fxLayoutAlign.lt-sm="center center"
     fxLayoutGap.lt-sm="20px"
   >
-    <div>
-      <mat-card class="card-games" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-        <app-title-underlined>
-          <h3>Previous games</h3>
-        </app-title-underlined>
-        <app-timeline-matchdays [items]="playedGames" order="dsc"></app-timeline-matchdays>
-      </mat-card>
+    <div class="card-games" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <app-title-underlined>
+        <h3>Previous games</h3>
+      </app-title-underlined>
+      <app-timeline-matchdays [items]="playedGames" order="dsc"></app-timeline-matchdays>
     </div>
 
-    <div>
-      <mat-card class="card-games" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-        <app-title-underlined>
-          <h3>Next games</h3>
-        </app-title-underlined>
-        <app-timeline-matchdays [items]="futureGames" order="asc"></app-timeline-matchdays>
-      </mat-card>
+    <div class="card-games" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <app-title-underlined>
+        <h3>Next games</h3>
+      </app-title-underlined>
+      <app-timeline-matchdays [items]="futureGames" order="asc"></app-timeline-matchdays>
     </div>
-  </div>
-
-  <app-player-details-next-matchday [player]="player"></app-player-details-next-matchday>
+  </mat-card>
 </div>

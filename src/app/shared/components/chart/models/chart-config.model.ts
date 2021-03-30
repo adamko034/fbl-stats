@@ -10,4 +10,8 @@ export interface ChartConfig {
   roundDomains?: boolean;
   yScaleMin?: number;
   yScaleMax?: number;
+  showLegend?: boolean;
+  legendPosition?: 'below' | 'right';
+  width?: number;
+  height?: number;
 }

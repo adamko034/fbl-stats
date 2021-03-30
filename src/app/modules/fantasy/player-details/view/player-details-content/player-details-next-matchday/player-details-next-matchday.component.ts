@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { PlayerDetailsTeam } from '../../../../models/player-details-team.model';
-import { PlayerDetails } from '../../../../models/player-details.model';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { PlayerDetailsTeam } from '../../../models/player-details-team.model';
+import { PlayerDetails } from '../../../models/player-details.model';
 
 @Component({
   selector: 'app-player-details-next-matchday',

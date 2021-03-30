@@ -26,6 +26,14 @@ export class ChartComponent implements OnInit {
     return this.config.roundDomains || false;
   }
 
+  public get showLegend() {
+    return this.config.showLegend || false;
+  }
+
+  public get dimension() {
+    return !!this.config.width && !!this.config.height ? [this.config.width, this.config.height] : undefined;
+  }
+
   constructor() {}
 
   ngOnInit(): void {}

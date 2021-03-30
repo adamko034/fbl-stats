@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { PositionsStatsLoadedGuard } from './guards/positions-stats-loaded.guard';
 import { PlayerDetailsResolver } from './resolvers/player-details.resolver';
+import { PositionsStatsResolver } from './resolvers/positions-stats.resolver';
 import { PlayerDetailsContentComponent } from './view/player-details-content/player-details-content.component';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [PositionsStatsLoadedGuard],
     component: PlayerDetailsContentComponent,
-    resolve: { player: PlayerDetailsResolver }
+    resolve: { player: PlayerDetailsResolver, positions: PositionsStatsResolver }
   }
 ];
 

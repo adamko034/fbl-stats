@@ -1,5 +1,23 @@
-<mat-card fxLayoutAlign="space-evenly center" fxLayout="row wrap" fxLayoutGap="20px">
-  <app-chart class="chart" [config]="pricesChart"></app-chart>
-  <app-chart class="chart" [config]="popularityChart"></app-chart>
-  <app-chart class="chart" [config]="leadersPopularityChart"></app-chart>
+<mat-card fxLayout="column" fxLayoutGap="20px">
+  <div fxLayoutAlign="space-between center" fxLayoutAlign.lt-md="center center" fxLayout="row wrap" fxLayoutGap="20px">
+    <app-chart [config]="pricesChart"></app-chart>
+    <app-chart [config]="popularityChart"></app-chart>
+    <app-chart [config]="leadersPopularityChart"></app-chart>
+    <app-chart [config]="pointsChart"></app-chart>
+    <div class="legend" fxFlexAlign="flex-end">
+      <span class="legend-title">Legend</span>
+      <div class="legend-content">
+        <ul>
+          <li>
+            <span class="legend-label legend-label-red"></span>
+            <span class="legend-item">{{ pointsChart.data[0].name }}</span>
+          </li>
+          <li>
+            <span class="legend-label legend-label-blue"></span>
+            <span class="legend-item">{{ pointsChart.data[1].name }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </mat-card>
