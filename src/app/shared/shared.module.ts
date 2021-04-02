@@ -52,12 +52,15 @@ import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
 import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
+import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey/title-underlined-grey.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
+import { AveragePipe } from './pipes/average.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
+import { TakePipe } from './pipes/take.pipe';
 import { WherePipe } from './pipes/where.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
 
@@ -99,7 +102,10 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     PlayerNameLinkComponent,
     TextSubtextRowComponent,
     MatchdayFirstGameIndicatorComponent,
-    ChartComponent
+    ChartComponent,
+    TitleUnderlinedGreyComponent,
+    AveragePipe,
+    TakePipe
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -141,7 +147,10 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     PlayerNameLinkComponent,
     TextSubtextRowComponent,
     MatchdayFirstGameIndicatorComponent,
-    ChartComponent
+    ChartComponent,
+    TitleUnderlinedGreyComponent,
+    AveragePipe,
+    TakePipe
   ]
 })
 export class SharedModule {

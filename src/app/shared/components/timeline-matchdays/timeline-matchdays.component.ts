@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { PlayersDataService } from 'src/app/modules/core/players/services/players-data.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { TimelineMatchdayItem } from './models/timeline-matchday-item.model';
 
 @Component({
@@ -41,8 +41,20 @@ export class TimelineMatchdaysComponent implements OnInit {
     this.min = new ArrayStream<TimelineMatchdayItem>(this.items, false).minBy((item) => item.matchday);
     this.max = new ArrayStream<TimelineMatchdayItem>(this.items, false).maxBy((item) => item.matchday);
 
-    this.screenSizeService.isMobile$().subscribe((isMobile) => {
-      const count = isMobile ? 3 : 5;
+    this.screenSizeService.onResize().subscribe((screenSize) => {
+      let count = 5;
+      switch (screenSize) {
+        case ScreenSize.XS:
+          count = 3;
+          break;
+        case ScreenSize.SM:
+          count = 6;
+          break;
+        case ScreenSize.LG:
+          count = 7;
+          break;
+      }
+
       this.filterItems(count);
       this.changeDetection.detectChanges();
     });

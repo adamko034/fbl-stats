@@ -13,6 +13,7 @@ export class TextValueCardComponent {
   @Input() showBottomBorder = false;
   @Input() showMoreButton = false;
   @Input() showInMatCard = true;
+  @Input() titleUnderlined: 'red' | 'grey' = 'red';
 
   @Output() showMoreClick = new EventEmitter();
 

@@ -21,35 +21,6 @@ h3 {
 .stats-section {
   padding: 5px 20px 10px 20px;
   border-top: 1px solid rgba($color: #000000, $alpha: 0.3);
-
-  table {
-    tr {
-      td {
-        text-align: center;
-        padding-top: 5px;
-        vertical-align: middle;
-
-        &:first-child {
-          text-align: end;
-          // padding-top: 0;
-        }
-
-        &:not(:nth-child(3)) {
-          padding-right: 20px;
-        }
-      }
-
-      td.bolder {
-        font-weight: 600;
-      }
-    }
-
-    tr.after-logo {
-      td {
-        padding-top: 7px;
-      }
-    }
-  }
 }
 
 .prediction-source {

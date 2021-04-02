@@ -172,9 +172,9 @@ mat-button-toggle.position-active {
   color: green;
 }
 
-.points-black {
+.points-darkred {
   font-weight: 550;
-  color: #000;
+  color: darkred;
 }
 
 .points-red {
@@ -283,5 +283,33 @@ span.view-subtitle-span {
 
   &-text {
     font-size: 15px;
+  }
+}
+
+table.comparison-table {
+  tr {
+    td {
+      text-align: center;
+      padding-top: 5px;
+      vertical-align: middle;
+
+      &:first-child {
+        text-align: end;
+      }
+
+      &:not(:last-child) {
+        padding-right: 20px;
+      }
+    }
+
+    td.bolder {
+      font-weight: 600;
+    }
+  }
+
+  tr.padding-top {
+    td {
+      padding-top: 7px;
+    }
   }
 }

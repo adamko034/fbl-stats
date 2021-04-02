@@ -39,14 +39,14 @@
   <div fxLayout="column">
     <span class="stats-section-title">Bundesliga Overall</span>
     <div class="stats-section">
-      <table>
+      <table class="comparison-table">
         <tbody>
           <tr>
             <td></td>
             <td>{{ homeTeam.shortName | uppercase }}</td>
             <td>{{ awayTeam.shortName | uppercase }}</td>
           </tr>
-          <tr class="after-logo">
+          <tr class="padding-top">
             <td>Games</td>
             <td>{{ homeTeam.table.games }}</td>
             <td>{{ awayTeam.table.games }}</td>
@@ -93,14 +93,14 @@
   <div fxLayout="column">
     <span class="stats-section-title">Bundesliga Last 5</span>
     <div class="stats-section">
-      <table>
+      <table class="comparison-table">
         <tbody>
           <tr>
             <td></td>
             <td>{{ homeTeam.shortName | uppercase }}</td>
             <td>{{ awayTeam.shortName | uppercase }}</td>
           </tr>
-          <tr class="after-logo">
+          <tr class="padding-top">
             <td>Points</td>
             <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
             <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>

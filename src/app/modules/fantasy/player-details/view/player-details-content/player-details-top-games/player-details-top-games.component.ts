@@ -22,7 +22,7 @@ export class PlayerDetailsTopGamesComponent {
     return new ArrayStream<PlayerDetailsGame>(this.player.games)
       .filterQuick((g) => g.wasPlayed)
       .orderBy('points', 'dsc')
-      .take(4)
+      .take(5)
       .convert(new GameTextValueConverter(this.playersDataservice))
       .collect();
   }
@@ -31,7 +31,7 @@ export class PlayerDetailsTopGamesComponent {
     return new ArrayStream<PlayerDetailsGame>(this.player.games)
       .filterQuick((g) => g.wasPlayed)
       .orderBy('points', 'asc')
-      .take(4)
+      .take(5)
       .convert(new GameTextValueConverter(this.playersDataservice))
       .collect();
   }
@@ -54,6 +54,14 @@ export class PlayerDetailsTopGamesComponent {
     ];
   }
 
+  public get homeGames(): PlayerDetailsGame[] {
+    return this.player.games.filter((g) => g.wasPlayed && g.isHome);
+  }
+
+  public get awayGames(): PlayerDetailsGame[] {
+    return this.player.games.filter((g) => g.wasPlayed && !g.isHome);
+  }
+
   constructor(
     private playersDataservice: PlayersDataService,
     private playerGamesService: PlayerGamesService,
@@ -62,6 +70,10 @@ export class PlayerDetailsTopGamesComponent {
 
   public onMoreScoringChancesClick(type: string): void {
     this.router.navigateByUrl(`/fantasy/lists/scoringChances/${type}`);
+  }
+
+  public calculatePointsPer1M(points: number): number {
+    return Math.round((points / this.player.fantasy.price) * 10) / 10;
   }
 
   private getProbabilityValueText(minPoints: number, lastNGames?: number): string {
