@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import {
   faArrowDown,
   faArrowUp,
@@ -157,6 +157,8 @@ export class SharedModule {
   constructor(private faLibrary: FaIconLibrary) {
     this.faLibrary.addIcons(
       faTwitter,
+      faFacebook,
+      faFacebookF,
       faSort,
       faSortAmountDown,
       faSortAmountDownAlt,

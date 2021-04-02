@@ -24,6 +24,7 @@ import { LastUdpatedComponent } from './layout/header/components/last-udpated/la
 import { NewUpdatesComponent } from './layout/header/components/new-updates/new-updates.component';
 import { SidenavComponent } from './layout/header/components/sidenav/sidenav.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { SocialMediaBarComponent } from './components/social-media-bar/social-media-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { HeaderComponent } from './layout/header/header.component';
     ImageLazyLoadingDirective,
     HeaderNavigationComponent,
     SidenavComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    SocialMediaBarComponent
   ],
   imports: [
     BrowserModule,
