@@ -87,18 +87,23 @@ export class PlayerDetailsChartsComponent implements OnInit {
         {
           name: this.player.lastName,
           series: new ArrayStream(this.player.games)
-            .filterQuick((g) => g.wasPlayed)
+            .filterQuick((g) => g.wasPlayed && g.points !== undefined)
             .convert(new GameToChartPointConverter())
             .collect()
         },
         {
           name: `Top 10 ${this.player.position.toUpperCase()} avg`,
           series: new ArrayStream(this.positionStats.matchdays)
+            .filterQuick((s) => s.matchday >= this.minMatchday)
             .convert(new PositionStatsToChartPointConverter())
             .collect()
         }
       ]
     };
+  }
+
+  private get minMatchday() {
+    return Math.min(...this.player.games.filter((g) => g.wasPlayed && g.points !== undefined).map((g) => g.matchday));
   }
 
   constructor() {}
