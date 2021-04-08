@@ -43,16 +43,17 @@ export class TimelineMatchdaysComponent implements OnInit {
 
     this.screenSizeService.onResize().subscribe((screenSize) => {
       let count = 5;
-      switch (screenSize) {
-        case ScreenSize.XS:
-          count = 3;
-          break;
-        case ScreenSize.SM:
-          count = 6;
-          break;
-        case ScreenSize.LG:
-          count = 7;
-          break;
+
+      if (screenSize <= ScreenSize.XS) {
+        count = 3;
+      } else if (screenSize === ScreenSize.SM) {
+        count = 6;
+      } else if (screenSize === ScreenSize.MD) {
+        count = 5;
+      } else if (screenSize === ScreenSize.LG) {
+        count = 7;
+      } else if (screenSize >= ScreenSize.XL) {
+        count = 9;
       }
 
       this.filterItems(count);
