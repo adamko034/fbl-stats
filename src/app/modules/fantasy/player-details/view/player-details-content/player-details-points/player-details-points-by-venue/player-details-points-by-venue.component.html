@@ -1,0 +1,51 @@
+<app-title-underlined-grey>
+  <span title>Points scored by venue</span>
+  <div content>
+    <table class="comparison-table">
+      <tbody>
+        <tr>
+          <td></td>
+          <td>overall</td>
+          <td>home</td>
+          <td>away</td>
+        </tr>
+        <tr class="padding-top">
+          <td>Games</td>
+          <td>{{ player.games | filterBy: ['wasPlayed']:true | field: 'length' }}</td>
+          <td>{{ homeGames.length }}</td>
+          <td>{{ awayGames.length }}</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ player.fantasy.totalPoints }}</td>
+          <td>{{ homeGames | sumBy: 'points' }}</td>
+          <td>{{ awayGames | sumBy: 'points' }}</td>
+        </tr>
+        <tr>
+          <td>Total AVG</td>
+          <td>{{ player.fantasy.seasonAvg }}</td>
+          <td>{{ homeGames | pluck: 'points' | average }}</td>
+          <td>{{ awayGames | pluck: 'points' | average }}</td>
+        </tr>
+        <tr>
+          <td>Pts / 1M</td>
+          <td>{{ player.fantasy.pointsPer1M }}</td>
+          <td>{{ calculatePointsPer1M(homeGames | sumBy: 'points') }}</td>
+          <td>{{ calculatePointsPer1M(awayGames | sumBy: 'points') }}</td>
+        </tr>
+        <tr>
+          <td>Last 5</td>
+          <td>{{ player.fantasy.last5 }}</td>
+          <td>{{ homeGames | orderBy: '-matchday' | take: 5 | sumBy: 'points' }}</td>
+          <td>{{ awayGames | orderBy: '-matchday' | take: 5 | sumBy: 'points' }}</td>
+        </tr>
+        <tr>
+          <td>Last 5 AVG</td>
+          <td>{{ player.fantasy.last5Avg }}</td>
+          <td>{{ homeGames | orderBy: '-matchday' | take: 5 | pluck: 'points' | average }}</td>
+          <td>{{ awayGames | orderBy: '-matchday' | take: 5 | pluck: 'points' | average }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</app-title-underlined-grey>

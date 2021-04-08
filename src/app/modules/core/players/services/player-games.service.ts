@@ -4,8 +4,8 @@ import { ArrayStream } from 'src/app/services/array-stream.service';
 
 @Injectable({ providedIn: 'root' })
 export class PlayerGamesService {
-  public getLastNGames(games: Game[], n: number): Game[] {
-    return new ArrayStream<Game>(games).orderBy('matchday', 'dsc').take(n).collect();
+  public getLastNGames<T>(games: T[], n: number): T[] {
+    return new ArrayStream<T>(games).orderBy('matchday', 'dsc').take(n).collect();
   }
 
   public getGamesCountWithPointsGreaterThan(games: Game[], minPoints: number): Game[] {

@@ -18,7 +18,10 @@ import { PlayerDetailsContentComponent } from './view/player-details-content/pla
 import { PlayerDetailsMainComponent } from './view/player-details-content/player-details-main/player-details-main.component';
 import { PlayerDetailsMatchdaysComponent } from './view/player-details-content/player-details-matchdays/player-details-matchdays.component';
 import { PlayerDetailsNextMatchdayComponent } from './view/player-details-content/player-details-next-matchday/player-details-next-matchday.component';
-import { PlayerDetailsTopGamesComponent } from './view/player-details-content/player-details-top-games/player-details-top-games.component';
+import { PlayerDetailsPointsByVenueComponent } from './view/player-details-content/player-details-points/player-details-points-by-venue/player-details-points-by-venue.component';
+import { PlayerDetailsPointsComponent } from './view/player-details-content/player-details-points/player-details-points.component';
+import { PlayerDetailsTopGamesComponent } from './view/player-details-content/player-details-points/player-details-top-games/player-details-top-games.component';
+import { PlayerDetailsPointsEfficiencyComponent } from './view/player-details-content/player-details-points/player-details-points-efficiency/player-details-points-efficiency.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { PlayerDetailsTopGamesComponent } from './view/player-details-content/pl
     PlayerDetailsMatchdaysComponent,
     PlayerDetailsNextMatchdayComponent,
     PlayerDetailsTopGamesComponent,
-    PlayerDetailsChartsComponent
+    PlayerDetailsChartsComponent,
+    PlayerDetailsPointsComponent,
+    PlayerDetailsPointsByVenueComponent,
+    PlayerDetailsPointsEfficiencyComponent
   ],
   imports: [CommonModule, PlayerDetailsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [

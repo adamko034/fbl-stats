@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { PlayerPosition } from '../../../players/models/players-filters';
 import { PlayersListGenericColumn } from '../../components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from '../../components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from '../../components/players-list-generic/models/players-list-generic-data.model';
@@ -13,9 +16,10 @@ import { PlayersListGenericRowsConverter } from '../../converters/players-list-g
 
 interface State {
   orderBy: string;
-  type: 'overall' | 'lasat5';
+  type: 'overall' | 'last5';
   data: PlayersListGenericData;
   config: PlayersListGenericConfig;
+  position: PlayerPosition;
 }
 
 @UntilDestroy()
@@ -28,12 +32,14 @@ interface State {
 export class PlayersListScoringChancesComponent implements OnInit {
   public state: State;
 
-  public get typeFilterItems(): SwitchItem[] {
-    return [
-      { value: 'overall', description: 'Overall' },
-      { value: 'last5', description: 'Last 5' }
-    ];
-  }
+  public typeFilterItems: SwitchItem[] = [
+    { value: 'overall', description: 'Overall' },
+    { value: 'last5', description: 'Last 5' },
+    { value: 'home', description: 'Home' },
+    { value: 'away', description: 'Away' },
+    { value: 'vsTop6', description: 'vs top 6' },
+    { value: 'vsWorst6', description: 'vst worst 6' }
+  ];
 
   public get orderByFilterItems(): SwitchItem[] {
     return [
@@ -44,12 +50,20 @@ export class PlayersListScoringChancesComponent implements OnInit {
     ];
   }
 
-  constructor(private route: ActivatedRoute, private router: Router, private changeDetection: ChangeDetectorRef) {}
+  public mobile$: Observable<boolean>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private changeDetection: ChangeDetectorRef,
+    private screenSizeService: ScreenSizeService
+  ) {}
 
   public ngOnInit(): void {
+    this.mobile$ = this.screenSizeService.isMobile$();
     combineLatest([this.route.data, this.route.params, this.route.queryParams])
       .pipe(
-        map(([{ scoringChances }, { type }, { orderBy }]) => {
+        map(([{ scoringChances }, { type }, { orderBy, position }]) => {
           let orderByParam = orderBy;
 
           if (
@@ -67,6 +81,7 @@ export class PlayersListScoringChancesComponent implements OnInit {
           const listConfig = this.getListConfig(orderByParam);
 
           return {
+            position: position || PlayerPosition.ALL,
             type,
             orderBy: orderByParam,
             config: listConfig,
@@ -92,7 +107,23 @@ export class PlayersListScoringChancesComponent implements OnInit {
   }
 
   public onTypeChange(value: string): void {
-    this.router.navigateByUrl(`/fantasy/lists/scoringChances/${value}?orderBy=${this.state.orderBy}`);
+    this.changeType(value);
+  }
+
+  public onPositionChange(value: PlayerPosition): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { position: value },
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  public onTypeChangeDropdown(change: MatSelectChange) {
+    this.changeType(change.value);
+  }
+
+  private changeType(newType: string) {
+    this.router.navigate(['fantasy', 'lists', 'pointsEfficiency', newType], { queryParamsHandling: 'preserve' });
   }
 
   private getColumns(orderBy: string): PlayersListGenericColumn[] {

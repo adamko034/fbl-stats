@@ -5,14 +5,25 @@
       <span>Here is a list of top 30 players scoring chances.</span>
     </div>
   </app-view-title>
-  <mat-card fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+  <mat-card class="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px grid">
+    <app-players-position-switch
+      [selected]="state.position"
+      (positionChange)="onPositionChange($event)"
+    ></app-players-position-switch>
+
     <app-form-field label="Including games">
       <app-switch
+        *ngIf="!(mobile$ | async)"
         [items]="typeFilterItems"
         name="types"
         [value]="state.type"
         (switchChange)="onTypeChange($event)"
       ></app-switch>
+      <mat-form-field *ngIf="mobile$ | async">
+        <mat-select [ngModel]="state.type" name="types" (selectionChange)="onTypeChangeDropdown($event)">
+          <mat-option *ngFor="let type of typeFilterItems" [value]="type.value">{{ type.description }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </app-form-field>
 
     <app-form-field label="Order by">
@@ -24,7 +35,7 @@
       ></app-switch>
     </app-form-field>
   </mat-card>
-  <div *ngIf="state.data">
+  <div class="content" *ngIf="state.data">
     <app-players-list-generic
       [config]="state.config"
       [data]="state.data"

@@ -2,9 +2,10 @@ import { PlayerFormCalculatorService } from 'src/app/modules/core/players/servic
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayerListScoringChances } from '../models/player-list-scoring-chances.model';
+import { PlayersListScoringChancesType } from '../models/players-lists-scoring-chancec-type.enum';
 
 export class PlayersListScoringChancesConverter implements Convertable<Player, PlayerListScoringChances> {
-  constructor(private type: 'overall' | 'last5', private formCalculator: PlayerFormCalculatorService) {}
+  constructor(private type: PlayersListScoringChancesType, private formCalculator: PlayerFormCalculatorService) {}
 
   public convert(items: Player[]): PlayerListScoringChances[] {
     return items.map((player) => {
@@ -13,13 +14,13 @@ export class PlayersListScoringChancesConverter implements Convertable<Player, P
       return {
         lastName: player.lastName,
         moreThan10PtsGamesCount: scoringChances.moreThan10ptsGamesCount,
-        moreThan10PtsPercentage: this.getPercentage(scoringChances.moreThan10ptsGamesCount, scoringChances.gamesCount),
+        moreThan10PtsPercentage: scoringChances.moreThan10ptsPercentage,
         moreThan15PtsGamesCount: scoringChances.moreThan15ptsGamesCount,
-        moreThan15PtsPercentage: this.getPercentage(scoringChances.moreThan15ptsGamesCount, scoringChances.gamesCount),
+        moreThan15PtsPercentage: scoringChances.moreThan15ptsPercentage,
         moreThan20PtsGamesCount: scoringChances.moreThan20ptsGamesCount,
-        moreThan20PtsPercentage: this.getPercentage(scoringChances.moreThan20ptsGamesCount, scoringChances.gamesCount),
+        moreThan20PtsPercentage: scoringChances.moreThan20ptsPercentage,
         moreThan5PtsGamesCount: scoringChances.moreThan5ptsGamesCount,
-        moreThan5PtsPercentage: this.getPercentage(scoringChances.moreThan5ptsGamesCount, scoringChances.gamesCount),
+        moreThan5PtsPercentage: scoringChances.moreThan5ptsPercentage,
         name: player.name,
         playerId: player.id,
         teamShort: player.teamShort,
@@ -27,10 +28,6 @@ export class PlayersListScoringChancesConverter implements Convertable<Player, P
         gamesCount: scoringChances.gamesCount
       };
     });
-  }
-
-  private getPercentage(gamesIncluded: number, gamesAll: number): number {
-    return Math.round((gamesIncluded / gamesAll) * 1000) / 10;
   }
 
   private getPoints(player: Player): number {

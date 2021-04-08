@@ -1,0 +1,16 @@
+<div fxLayout="row wrap" fxLayoutGap="30px">
+  <app-text-value-card
+    class="top-games-item"
+    title="Best games"
+    [items]="bestGames"
+    [showInMatCard]="false"
+    titleUnderlined="grey"
+  ></app-text-value-card>
+  <app-text-value-card
+    class="top-games-item"
+    title="Worst games"
+    [items]="worstGames"
+    [showInMatCard]="false"
+    titleUnderlined="grey"
+  ></app-text-value-card>
+</div>

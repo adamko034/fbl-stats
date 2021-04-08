@@ -1,0 +1,35 @@
+<app-title-underlined-grey>
+  <span title>Points efficiency</span>
+  <table content class="comparison-table">
+    <tbody>
+      <tr>
+        <td></td>
+        <td>overall</td>
+        <td>last 5</td>
+        <td>home</td>
+        <td>away</td>
+        <td>vs top 6</td>
+        <td>vs worst 6</td>
+      </tr>
+      <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ field: 'five', points: '5' }"></ng-template>
+      <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ field: 'ten', points: '10' }"></ng-template>
+      <ng-template
+        [ngTemplateOutlet]="row"
+        [ngTemplateOutletContext]="{ field: 'fifteen', points: '15' }"
+      ></ng-template>
+      <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ field: 'twenty', points: '20' }"></ng-template>
+    </tbody>
+  </table>
+</app-title-underlined-grey>
+
+<ng-template #row let-points="points" let-field="field">
+  <tr>
+    <td>>= {{ points }}pts</td>
+    <td>{{ state[field].overall }}</td>
+    <td>{{ state[field].last5 }}</td>
+    <td>{{ state[field].home }}</td>
+    <td>{{ state[field].away }}</td>
+    <td>{{ state[field].vsTop6 }}</td>
+    <td>{{ state[field].vsWorst6 }}</td>
+  </tr>
+</ng-template>

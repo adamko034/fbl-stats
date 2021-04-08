@@ -48,6 +48,7 @@ import { MatchdayComponent } from './components/matchday/matchday.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
+import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
@@ -105,7 +106,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ChartComponent,
     TitleUnderlinedGreyComponent,
     AveragePipe,
-    TakePipe
+    TakePipe,
+    PlayersPositionSwitchComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -150,7 +152,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ChartComponent,
     TitleUnderlinedGreyComponent,
     AveragePipe,
-    TakePipe
+    TakePipe,
+    PlayersPositionSwitchComponent
   ]
 })
 export class SharedModule {

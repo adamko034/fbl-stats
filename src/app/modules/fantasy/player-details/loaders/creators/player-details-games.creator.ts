@@ -44,6 +44,7 @@ export class PlayerDetailsGamesCreator {
       resultText,
       points,
       result,
+      playerWasAvailable: points !== undefined,
       isFirstGame: isMatchdayFirstGame
     };
   }

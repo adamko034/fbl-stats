@@ -26,12 +26,12 @@ const routes: Routes = [
     component: PlayersListUnavailableComponent
   },
   {
-    path: 'scoringChances',
-    redirectTo: 'scoringChances/overall',
+    path: 'pointsEfficiency',
+    redirectTo: 'pointsEfficiency/overall',
     pathMatch: 'full'
   },
   {
-    path: 'scoringChances',
+    path: 'pointsEfficiency',
     children: [
       {
         path: ':type',
