@@ -10,6 +10,12 @@
       <span class="text-big">Players: {{ state.ourPicks.players?.length }}</span>
     </div>
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <span class="text-big">GK: {{ state.ourPicks.players | filterBy: ['position']:'gk' | length }}</span>
+      <span class="text-big">DEF: {{ state.ourPicks.players | filterBy: ['position']:'def' | length }}</span>
+      <span class="text-big">MID: {{ state.ourPicks.players | filterBy: ['position']:'mid' | length }}</span>
+      <span class="text-big">FOR: {{ state.ourPicks.players | filterBy: ['position']:'for' | length }}</span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
       <ng-template
         [ngTemplateOutlet]="typeLength"
         [ngTemplateOutletContext]="{ type: Types.MUST_HAVE, length: state.mustHave.length }"

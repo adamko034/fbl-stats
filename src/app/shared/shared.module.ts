@@ -60,6 +60,7 @@ import { MedalColorDirective } from './directives/medal-color.directive';
 import { AveragePipe } from './pipes/average.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
+import { LengthPipe } from './pipes/length.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { TakePipe } from './pipes/take.pipe';
 import { WherePipe } from './pipes/where.pipe';
@@ -107,7 +108,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TitleUnderlinedGreyComponent,
     AveragePipe,
     TakePipe,
-    PlayersPositionSwitchComponent
+    PlayersPositionSwitchComponent,
+    LengthPipe
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -153,7 +155,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TitleUnderlinedGreyComponent,
     AveragePipe,
     TakePipe,
-    PlayersPositionSwitchComponent
+    PlayersPositionSwitchComponent,
+    LengthPipe
   ]
 })
 export class SharedModule {

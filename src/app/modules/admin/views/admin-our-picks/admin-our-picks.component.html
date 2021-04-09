@@ -1,5 +1,5 @@
 <div class="admin-our-picks-container" fxLayout="row">
-  <div fxFlex="30">
+  <div fxFlex="20">
     <app-admin-our-picks-player-search
       [selected]="players"
       [lastMatchday]="lastMatchday$ | async"
@@ -15,6 +15,9 @@
           <span fxFlex class="bold"
             ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
           ></span>
+          <div fxFlex="5">
+            <app-prediction-indicator [value]="player.prediction"></app-prediction-indicator>
+          </div>
           <div fxFlex="20" fxLayoutGap="10px">
             <span>{{ player.position | uppercase }}</span
             ><span>{{ player.price }}M</span><span>{{ player.popularity }}%</span>
