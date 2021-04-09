@@ -1,10 +1,7 @@
-import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { OurPicksPlayerLoader } from 'src/app/modules/core/our-picks/loaders/our-picks-player.loader';
-import { OurPicksPlayersLoader } from 'src/app/modules/core/our-picks/loaders/our-picks-players.loader';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
-import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
 
 @Component({
   selector: 'app-admin-our-picks-player-search',

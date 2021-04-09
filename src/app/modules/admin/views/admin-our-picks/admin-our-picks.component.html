@@ -10,15 +10,23 @@
     <app-admin-our-picks-totals [state]="state"></app-admin-our-picks-totals>
     <div fxLayout="column" fxLayoutGap="10px">
       <div *ngIf="!!players" cdkDropList class="admin-our-picks-list" (cdkDropListDropped)="drop($event)">
-        <div class="admin-our-pick" fxLayout="row" *ngFor="let player of players" cdkDrag>
-          <span fxFlex="7">{{ player.order }}</span>
+        <div class="admin-our-pick" fxLayout="row" fxLayoutGap="10px" *ngFor="let player of players" cdkDrag>
+          <span fxFlex="5">{{ player.order }}</span>
           <span fxFlex class="bold"
             ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
           ></span>
           <div fxFlex="5">
             <app-prediction-indicator [value]="player.prediction"></app-prediction-indicator>
           </div>
-          <div fxFlex="20" fxLayoutGap="10px">
+          <div fxFlex="15" fxLayoutGap="5px" fxLayoutAlign="start center">
+            <app-team-logo [height]="25" [team]="player.nextGame.opponentShort"></app-team-logo>
+            <span>({{ player.nextGame.isHome ? 'h' : 'a' }})</span>
+            <span>{{ player.nextGame.opponentRank | numerals }}</span>
+            <span *ngIf="player.nextGame.isFirstGame">
+              <app-matchday-first-game-indicator [size]="'small'"></app-matchday-first-game-indicator>
+            </span>
+          </div>
+          <div fxFlex="15" fxLayoutGap="10px">
             <span>{{ player.position | uppercase }}</span
             ><span>{{ player.price }}M</span><span>{{ player.popularity }}%</span>
           </div>
@@ -62,13 +70,13 @@
             ></app-our-pick-icon>
           </div>
 
-          <div fxFlex="10" fxLayoutAlign="center center">
+          <div fxFlex="5" fxLayoutAlign="center center">
             <span class="drag-handle" cdkDragHandle>
               <fa-icon [icon]="['fas', 'sort']" size="2x"></fa-icon>
             </span>
           </div>
 
-          <div fxFlex="10" fxLayoutAlign="center center">
+          <div fxFlex="5" fxLayoutAlign="center center">
             <mat-icon class="red remove-button" (click)="remove(player.playerId)">delete</mat-icon>
           </div>
         </div>

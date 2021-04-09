@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
@@ -49,7 +50,8 @@ export class OurPicksPlayerLoader {
       formPts,
       matchdays,
       prediction: this.predictionService.determine(player.nextGame.lineupPredictions),
-      totalPoints: player.totalPoints
+      totalPoints: player.totalPoints,
+      nextGame: this.getNextGame(ourPicksTeam.nextGames)
     };
   }
 
@@ -69,5 +71,9 @@ export class OurPicksPlayerLoader {
         opponentRank: g.opponentRank,
         isFirstGame: g.isMatchdayFirstGame
       }));
+  }
+
+  private getNextGame(games: OurPicksTeamGame[]): OurPicksTeamGame {
+    return new ArrayStream(games).orderBy('matchday', 'asc').takeFirst();
   }
 }
