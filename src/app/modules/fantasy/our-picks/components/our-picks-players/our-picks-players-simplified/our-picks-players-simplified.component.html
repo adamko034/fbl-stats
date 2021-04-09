@@ -1,4 +1,4 @@
-<div class="our-picks-players-simplified" ngClass.xs="our-picks-players-simplified-mobile">
+<div class="our-picks-players-simplified" ngClass.lt-md="our-picks-players-simplified-mobile">
   <div *ngIf="playersFound" class="admin-our-picks-list">
     <div class="admin-our-pick" fxLayout="row" *ngFor="let player of ourPicks.players">
       <span fxFlex="5" fxFlex.xs="7" fxLayoutAlign="center center">
@@ -10,9 +10,17 @@
       <span fxFlex class="bold"
         ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
       ></span>
-      <div fxHide.xs fxFlex="25" fxLayoutGap="10px">
+      <div fxHide.xs fxFlex="20" fxLayoutGap="10px">
         <span>{{ player.position | uppercase }}</span
         ><span>{{ player.price }}M</span><span>{{ player.popularity }}%</span>
+      </div>
+      <div fxFlex="15" fxHide.lt-md fxLayoutGap="5px" fxLayoutAlign="start center">
+        <app-team-logo [height]="25" [team]="player.nextGame.opponentShort"></app-team-logo>
+        <span>({{ player.nextGame.isHome ? 'h' : 'a' }})</span>
+        <span>{{ player.nextGame.opponentRank | numerals }}</span>
+        <span *ngIf="player.nextGame.isFirstGame">
+          <app-matchday-first-game-indicator [size]="'small'"></app-matchday-first-game-indicator>
+        </span>
       </div>
       <div class="icons" fxLayout="row" fxLayoutGap="10px">
         <app-our-pick-icon
