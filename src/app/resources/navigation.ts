@@ -65,6 +65,7 @@ export class Navigation {
           text: 'matchdays',
           key: 'matchdays',
           isDropdown: true,
+          dropdownIndex: 2,
           dropdownLinks: [{ order: 1, path: '/bundesliga/matchdays/firstGames', text: 'first games' }]
         }
       ]

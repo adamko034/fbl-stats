@@ -42,22 +42,11 @@
           <td>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
               <span [ngStyle]="item.valueStyle">{{ item.value }}</span>
-              <span class="item-difference" *ngIf="item.change != null">
-                <span *ngIf="item.change > 0"
-                  ><fa-icon class="item-difference-icon green" [icon]="['fas', 'arrow-up']"></fa-icon>+{{
-                    item.change
-                  }}</span
-                >
-                <span *ngIf="item.change < 0">
-                  <fa-icon class="item-difference-icon red" [icon]="['fas', 'arrow-down']"></fa-icon>{{ item.change }}
-                </span>
-
-                <fa-icon
-                  class="item-difference-icon blue"
-                  *ngIf="item.change == 0"
-                  [icon]="['fas', 'equals']"
-                ></fa-icon>
-              </span>
+              <app-value-difference
+                class="item-diff"
+                *ngIf="item.change != null"
+                [value]="item.change"
+              ></app-value-difference>
             </div>
           </td>
         </tr>

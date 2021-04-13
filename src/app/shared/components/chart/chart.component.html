@@ -1,17 +1,29 @@
-<ngx-charts-line-chart
-  [results]="config.data"
-  [showXAxisLabel]="showLabels"
-  [showYAxisLabel]="showLabels"
-  [xAxis]="true"
-  [yAxis]="true"
-  [xAxisLabel]="config.xAxisLabel"
-  [yAxisLabel]="config.yAxisLabel"
-  [roundDomains]="roundDomains"
-  [autoScale]="autoScale"
-  [yAxisTicks]="yAxisTicks"
-  [yScaleMin]="config.yScaleMin"
-  [yScaleMax]="config.yScaleMax"
-  [legend]="showLegend"
-  [legendPosition]="config.legendPosition"
-  [view]="dimension"
-></ngx-charts-line-chart>
+<div fxLayout="column">
+  <ng-template [ngTemplateOutlet]="chart"></ng-template>
+  <app-show-more-link
+    *ngIf="showDialog"
+    class="link"
+    text="Show data"
+    (showMoreClick)="onShowMoreClick()"
+  ></app-show-more-link>
+</div>
+
+<ng-template #chart>
+  <ngx-charts-line-chart
+    [results]="config.data"
+    [showXAxisLabel]="showLabels"
+    [showYAxisLabel]="showLabels"
+    [xAxis]="true"
+    [yAxis]="true"
+    [xAxisLabel]="config.xAxisLabel"
+    [yAxisLabel]="config.yAxisLabel"
+    [roundDomains]="roundDomains"
+    [autoScale]="autoScale"
+    [yAxisTicks]="yAxisTicks"
+    [yScaleMin]="config.yScaleMin"
+    [yScaleMax]="config.yScaleMax"
+    [legend]="showLegend"
+    [legendPosition]="config.legendPosition"
+    [view]="dimension"
+  ></ngx-charts-line-chart>
+</ng-template>

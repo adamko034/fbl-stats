@@ -19,15 +19,17 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get pricesChart(): ChartConfig {
     return {
+      title: 'Price Changes',
       width: 320,
       height: 200,
       xAxisLabel: 'Matchday',
+      xAxisLabelShort: 'MD',
       yAxisLabel: 'Price',
       data: [
         {
           name: this.player.name,
           series: new ArrayStream(this.player.fantasy.history.prices)
-            .convert(new MatchdayValueToChartPointConverter())
+            .convert(new MatchdayValueToChartPointConverter('M'))
             .collect()
         }
       ],
@@ -39,15 +41,17 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get popularityChart(): ChartConfig {
     return {
+      title: 'Popularity Changes',
       width: 320,
       height: 200,
       xAxisLabel: 'Matchday',
+      xAxisLabelShort: 'MD',
       yAxisLabel: 'Popularity',
       data: [
         {
           name: this.player.name,
           series: new ArrayStream(this.player.fantasy.history.popularity)
-            .convert(new MatchdayValueToChartPointConverter())
+            .convert(new MatchdayValueToChartPointConverter('%'))
             .collect()
         }
       ],
@@ -59,15 +63,17 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get leadersPopularityChart(): ChartConfig {
     return {
+      title: 'Leaders Popularity Changes',
       width: 320,
       height: 200,
       xAxisLabel: 'Matchday',
+      xAxisLabelShort: 'MD',
       yAxisLabel: 'Leaders popularity',
       data: [
         {
           name: this.player.name,
           series: new ArrayStream(this.player.fantasy.history.leadersPopularity)
-            .convert(new MatchdayValueToChartPointConverter())
+            .convert(new MatchdayValueToChartPointConverter('%'))
             .collect()
         }
       ],
@@ -79,9 +85,11 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get pointsChart(): ChartConfig {
     return {
+      title: 'Points Per Matchdays',
       width: 320,
       height: 200,
-      xAxisLabel: 'Matchdays',
+      xAxisLabel: 'Matchday',
+      xAxisLabelShort: 'MD',
       yAxisLabel: 'Points',
       data: [
         {
@@ -93,6 +101,7 @@ export class PlayerDetailsChartsComponent implements OnInit {
         },
         {
           name: `Top 10 ${this.player.position.toUpperCase()} avg`,
+          tableColumnName: 'AVG points',
           series: new ArrayStream(this.positionStats.matchdays)
             .filterQuick((s) => s.matchday >= this.minMatchday)
             .convert(new PositionStatsToChartPointConverter())

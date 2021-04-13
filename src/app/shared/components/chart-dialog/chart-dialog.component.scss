@@ -1,0 +1,19 @@
+.chart-dialog-container {
+  padding-bottom: 16px;
+  overflow: auto;
+  max-height: 65vh;
+
+  .table {
+    background-color: rgba($color: #000000, $alpha: 0.01);
+    width: 100%;
+    text-align: center;
+  }
+
+  table:not(.table-mobile) {
+    tr {
+      td:first-child {
+        padding-right: 70px;
+      }
+    }
+  }
+}

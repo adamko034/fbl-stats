@@ -1,0 +1,10 @@
+<span class="value-difference">
+  <span *ngIf="value > 0"
+    ><fa-icon class="value-difference-icon green" [icon]="['fas', 'arrow-up']"></fa-icon>+{{ value }}</span
+  >
+  <span *ngIf="value < 0">
+    <fa-icon class="value-difference-icon red" [icon]="['fas', 'arrow-down']"></fa-icon>{{ value }}
+  </span>
+
+  <fa-icon class="value-difference-icon blue" *ngIf="value == 0" [icon]="['fas', 'equals']"></fa-icon>
+</span>

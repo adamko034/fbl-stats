@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ chartDialogConfig.title }}</h2>
+<div class="chart-dialog-container">
+  <div fxLayout="column" fxLayoutGap="20px">
+    <app-chart *ngIf="showChart" [config]="chartDialogConfig"></app-chart>
+    <div *ngIf="data" class="table" fxLayoutAlign="center">
+      <table class="comparison-table" [ngClass]="{ 'table-mobile': isMobile }">
+        <tr>
+          <td *ngFor="let col of data.columns | orderBy: 'order'">{{ col.display }}</td>
+        </tr>
+        <tr *ngFor="let row of data.rows">
+          <td *ngFor="let cell of row.cells | orderBy: 'columnOrder'">
+            <span *ngIf="!cell.isDiffCell">{{ cell.displayValue }}</span>
+            <app-value-difference *ngIf="cell.isDiffCell" [value]="cell.value"></app-value-difference>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

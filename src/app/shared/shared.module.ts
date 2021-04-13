@@ -36,6 +36,7 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
@@ -49,12 +50,14 @@ import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.compone
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
+import { ShowMoreLinkComponent } from './components/show-more-link/show-more-link.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
 import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey/title-underlined-grey.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
+import { ValueDifferenceComponent } from './components/value-difference/value-difference.component';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { AveragePipe } from './pipes/average.pipe';
@@ -109,7 +112,10 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     AveragePipe,
     TakePipe,
     PlayersPositionSwitchComponent,
-    LengthPipe
+    LengthPipe,
+    ShowMoreLinkComponent,
+    ChartDialogComponent,
+    ValueDifferenceComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -156,7 +162,9 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     AveragePipe,
     TakePipe,
     PlayersPositionSwitchComponent,
-    LengthPipe
+    LengthPipe,
+    ShowMoreLinkComponent,
+    ValueDifferenceComponent
   ]
 })
 export class SharedModule {
