@@ -150,6 +150,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
       { displayName: 'Price', fieldName: 'price' },
       { displayName: '%', fieldName: 'popularity' },
       { displayName: 'TP', fieldName: 'totalPoints' },
+      { displayName: 'Avg', fieldName: 'avgPoints' },
       { displayName: 'Form', fieldName: 'form' }
     ];
   }

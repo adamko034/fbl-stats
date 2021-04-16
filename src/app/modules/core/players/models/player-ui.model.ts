@@ -11,6 +11,7 @@ export interface PlayerUi {
   position: string;
   popularity: number;
   totalPoints: number;
+  avgPoints: number;
   attendance: number;
   form: number;
   games: Game[];
