@@ -17,7 +17,7 @@ export class PlayerDetailsFantasyCreator {
       top100Popularity: player.top100Popularity,
       last5,
       lastMD: this.formCalculator.getLastMD(player.games),
-      seasonAvg: Math.round((player.totalPoints / player.games.length) * 10) / 10,
+      seasonAvg: player.avgPoints,
       last5Avg: Math.round((last5 / 5) * 10) / 10,
       bestGame: this.playersDataService.getBestGame(player.games),
       worstGame: this.playersDataService.getWorstGame(player.games),
