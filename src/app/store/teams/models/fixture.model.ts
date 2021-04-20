@@ -6,6 +6,7 @@ export interface Fixture {
   opponentLong: string;
   opponentRank: number;
   wasPlayed: boolean;
+  wasPostponed: boolean;
   isMatchdayFirstGame: boolean;
   result?: number;
   resultText?: string;

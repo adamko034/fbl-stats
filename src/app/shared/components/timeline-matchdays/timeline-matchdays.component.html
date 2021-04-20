@@ -18,7 +18,7 @@
           <app-team-logo [height]="30" [team]="item.opponent"></app-team-logo>
         </span>
         <div class="item-text" *ngIf="item.wasPlayed" fxLayoutGap="3px" fxLayoutAlign="center center">
-          <app-team-form size="supersmall" [form]="item.result"></app-team-form>
+          <app-team-form *ngIf="item.result" size="supersmall" [form]="item.result"></app-team-form>
           <span class="item-result">{{ item.resultText }}</span>
           <span>({{ item.isHome ? 'h' : 'a' }})</span>
         </div>

@@ -29,6 +29,7 @@ export class PlayerDetailsGamesCreator {
       result,
       resultText,
       opponentRank,
+      wasPostponed,
       isMatchdayFirstGame
     } = fixture;
     const playerGame = playerGames.find((g) => g.matchday === matchday);
@@ -41,6 +42,7 @@ export class PlayerDetailsGamesCreator {
       opponent,
       opponentRank,
       wasPlayed,
+      wasPostponed,
       resultText,
       points,
       result,
