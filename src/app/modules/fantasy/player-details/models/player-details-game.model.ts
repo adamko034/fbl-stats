@@ -1,4 +1,4 @@
-import { Game } from 'src/app/models/game.model';
+import { Game } from 'src/app/store/players/models/game.model';
 
 export interface PlayerDetailsGame extends Game {
   date?: number;

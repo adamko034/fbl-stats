@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Game } from 'src/app/models/game.model';
 import { PlayersUiConverter } from 'src/app/modules/core/players/converters/players-ui.converter';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { Game } from 'src/app/store/players/models/game.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersTableFilter } from '../../../fantasy/players/filters/players-table.filter';
 import { PlayersFilters } from '../../../fantasy/players/models/players-filters';

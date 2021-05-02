@@ -1,4 +1,4 @@
-import { Game } from 'src/app/models/game.model';
+import { Game } from 'src/app/store/players/models/game.model';
 import { PlayerDetailsFantasyHistory } from './player-details-fantasy-history.model';
 
 export interface PlayerDetailsFantasy {

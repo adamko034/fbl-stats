@@ -1,5 +1,5 @@
-import { Game } from 'src/app/models/game.model';
 import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
+import { Game } from 'src/app/store/players/models/game.model';
 import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
 
 export interface PlayerUi {

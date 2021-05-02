@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { NewUpdatesService } from 'src/app/layout/header/components/new-updates/services/new-updates.service';
+import { NewUpdatesService } from 'src/app/components/header/components/new-updates/services/new-updates.service';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({

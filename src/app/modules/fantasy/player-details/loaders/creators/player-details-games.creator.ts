@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Game } from 'src/app/models/game.model';
+import { Game } from 'src/app/store/players/models/game.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';

@@ -1,4 +1,4 @@
-import { Game } from 'src/app/models/game.model';
+import { Game } from 'src/app/store/players/models/game.model';
 import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
 import { PlayerFantasyHistory } from './player-fantasy-history.model';
 import { PlayerScoringChances } from './player-scoring-chances.model';

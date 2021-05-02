@@ -13,13 +13,13 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Game } from 'src/app/models/game.model';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersDisplaySettings } from 'src/app/modules/core/players/models/players-display-settings.model';
 import { PlayersDataService } from 'src/app/modules/core/players/services/players-data.service';
 import { PlayersDisplaySettingsService } from 'src/app/modules/core/players/services/players-display-settings.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
+import { Game } from 'src/app/store/players/models/game.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({

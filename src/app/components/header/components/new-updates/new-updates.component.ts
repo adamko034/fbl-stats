@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewUpdatesService } from 'src/app/layout/header/components/new-updates/services/new-updates.service';
+import { NewUpdatesService } from 'src/app/components/header/components/new-updates/services/new-updates.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

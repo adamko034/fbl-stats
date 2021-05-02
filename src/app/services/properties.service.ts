@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
-import { LineupsSource, LineupsSourceProperty, Properties } from 'src/app/models/properties.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LineupsSource, LineupsSourceProperty, Properties } from 'src/app/store/properties.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable({ providedIn: 'root' })

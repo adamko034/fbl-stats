@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationMode } from 'src/app/layout/header/components/header-navigation/header-navigation.component';
+import { NavigationMode } from 'src/app/components/header/components/header-navigation/header-navigation.component';
 
 @Component({
   selector: 'app-sidenav',

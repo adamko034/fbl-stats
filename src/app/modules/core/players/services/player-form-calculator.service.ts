@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Game } from 'src/app/models/game.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { Game } from 'src/app/store/players/models/game.model';
 
 @Injectable({ providedIn: 'root' })
 export class PlayerFormCalculatorService {
