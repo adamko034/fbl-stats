@@ -22,12 +22,12 @@ export class SubnavigationComponent implements OnInit {
     this.show$ = this.screenSizeService.onResize().pipe(map((size) => size > ScreenSize.XS));
   }
 
-  public isDropdownActive(path: string): boolean {
-    return this.router.url.includes(path);
-  }
+  // public isDropdownActive(path: string): boolean {
+  //   return this.router.url.includes(path);
+  // }
 
-  public activeLinkFromDropdown(link: NavigationLink): string {
-    const active = link.dropdownLinks.find((x) => this.isDropdownActive(x.path));
-    return !!active ? active.text : '';
-  }
+  // public activeLinkFromDropdown(link: NavigationLink): string {
+  //   const active = link.dropdownLinks.find((x) => this.isDropdownActive(x.path));
+  //   return !!active ? active.text : '';
+  // }
 }

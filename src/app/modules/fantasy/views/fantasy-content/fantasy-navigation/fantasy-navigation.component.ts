@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Navigation } from 'src/app/resources/navigation';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
@@ -9,8 +9,7 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FantasyNavigationComponent {
-  private key = 'fantasy';
-  public links: NavigationLink[] = Navigation.links[this.key].dropdownLinks;
+  public links: NavigationLink[] = Navigation.links.players.children;
 
   constructor() {}
 }

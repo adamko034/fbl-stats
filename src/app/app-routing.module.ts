@@ -12,7 +12,10 @@ const routes: Routes = [
     path: '',
     canActivate: [CoreDataLoadedGuard],
     children: [
-      { path: 'fantasy', loadChildren: () => import('./modules/fantasy/fantasy.module').then((m) => m.FantasyModule) },
+      {
+        path: 'fantasy',
+        loadChildren: () => import('./modules/fantasy/fantasy.module').then((m) => m.FantasyModule)
+      },
       {
         path: 'lineups',
         loadChildren: () => import('./modules/lineups/predicted-lineups.module').then((m) => m.PredictedLineupsModule)
@@ -21,9 +24,9 @@ const routes: Routes = [
       { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) },
       { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) }
     ]
-  },
+  }
 
-  { path: '**', redirectTo: 'fantasy', pathMatch: 'full' }
+  // { path: '**', redirectTo: 'fantasy', pathMatch: 'full' }
 ];
 
 @NgModule({

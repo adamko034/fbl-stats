@@ -43,6 +43,8 @@ import { FiltersLayoutComponent } from './components/layout/filters-layout/filte
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
+import { ViewSideNavigationComponent } from './components/layout/view/view-side-navigation/view-side-navigation.component';
+import { ViewComponent } from './components/layout/view/view.component';
 import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
 import { MatchdayFixtureComponent } from './components/matchday/matchday-fixture/matchday-fixture.component';
 import { MatchdayComponent } from './components/matchday/matchday.component';
@@ -115,7 +117,9 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     LengthPipe,
     ShowMoreLinkComponent,
     ChartDialogComponent,
-    ValueDifferenceComponent
+    ValueDifferenceComponent,
+    ViewComponent,
+    ViewSideNavigationComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -164,7 +168,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     PlayersPositionSwitchComponent,
     LengthPipe,
     ShowMoreLinkComponent,
-    ValueDifferenceComponent
+    ValueDifferenceComponent,
+    ViewComponent
   ]
 })
 export class SharedModule {

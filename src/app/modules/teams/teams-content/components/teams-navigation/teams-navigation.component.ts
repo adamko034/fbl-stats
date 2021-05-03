@@ -8,7 +8,7 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
   styleUrls: ['./teams-navigation.component.scss']
 })
 export class TeamsNavigationComponent {
-  public links: NavigationLink[] = Navigation.links.bundesliga.dropdownLinks;
+  public links: NavigationLink[] = Navigation.links.bundesliga.children;
 
   constructor() {}
 }
