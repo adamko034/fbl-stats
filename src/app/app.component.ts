@@ -16,6 +16,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
+import { ScreenSizeService } from './services/screen-size.service';
 
 @UntilDestroy()
 @Component({
@@ -31,13 +32,15 @@ import { Logger } from 'src/app/utils/logger';
 export class AppComponent implements OnInit {
   public loading = true;
   public sidenavOpened$: Observable<boolean>;
+  public isMobile$: Observable<boolean>;
 
   constructor(
     private propertiesService: PropertiesService,
     private playersStore: PlayersStore,
     private sidenavService: SidenavService,
     private teamsStore: TeamsStore,
-    private router: Router
+    private router: Router,
+    private screenSizeService: ScreenSizeService
   ) {}
 
   public ngOnInit(): void {
@@ -48,6 +51,7 @@ export class AppComponent implements OnInit {
     this.teamsStore.load();
 
     this.sidenavOpened$ = this.sidenavService.selectOpened();
+    this.isMobile$ = this.screenSizeService.isMobile$();
 
     this.router.events.pipe(delay(100), untilDestroyed(this)).subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {

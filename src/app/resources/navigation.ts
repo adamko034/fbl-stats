@@ -7,8 +7,14 @@ export class Navigation {
       path: 'fantasy/players',
       text: 'players',
       children: [
-        { order: 1, path: 'fantasy/leaders', text: 'leaders' },
-        { order: 2, path: 'fantasy/our-picks', text: 'our picks' }
+        //{ order: 1, path: 'players', text: 'Dashboard', icon: 'dashboard'},
+        { order: 2, path: 'players', text: 'Players', icon: 'person_search' },
+        { order: 3, path: 'lists/unavailable', text: 'Unavailable', icon: 'highlight_off' },
+        { order: 3, path: 'lists/suspensionrisk', text: 'Suspension risk', icon: 'alarm_on' },
+        { order: 3, path: 'lists/returning', text: 'Returning', icon: 'published_with_changes' },
+        { order: 3, path: 'myteam', text: 'My team', icon: 'groups' },
+        { order: 4, path: 'leaders', text: 'Leaders', icon: 'leaderboard' },
+        { order: 5, path: 'our-picks', text: 'Our picks', icon: 'assistant' }
       ]
     },
     teams: {

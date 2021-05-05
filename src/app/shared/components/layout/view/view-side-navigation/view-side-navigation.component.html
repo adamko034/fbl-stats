@@ -1,1 +1,23 @@
-<p>view-side-navigation works!</p>
+<div class="side-nav-container" fxLayout="column" fxLayoutAlign="space-between">
+  <div class="side-nav-section">
+    <nav class="sticky" fxLayout="column" fxLayoutGap="10px">
+      <span>NAVIGATION</span>
+      <ul>
+        <li *ngFor="let link of links">
+          <a
+            class="link"
+            [routerLink]="link.path"
+            routerLinkActive="link-active"
+            fxLayoutAlign="start center"
+            fxLayoutGap="10px"
+          >
+            <mat-icon class="link-icon" [inline]="true">{{ link.icon }}</mat-icon>
+            <span>{{ link.text }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div fxFlexAlign="flex-end" class="sticky-bottom">bottom</div>
+</div>

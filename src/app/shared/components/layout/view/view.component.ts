@@ -9,7 +9,6 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 })
 export class ViewComponent implements OnInit {
   @Input() links: NavigationLink[];
-  @Input() viewTitle: string;
 
   constructor() {}
 

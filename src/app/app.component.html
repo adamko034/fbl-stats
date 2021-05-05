@@ -1,21 +1,25 @@
 <div class="app-content">
-  <mat-sidenav-container class="side-nav-container">
+  <mat-sidenav-container *ngIf="isMobile$ | async" class="side-nav-container">
     <mat-sidenav (closed)="closeSidenav()" mode="over" [opened]="sidenavOpened$ | async">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
-      <app-header></app-header>
-      <app-social-media-bar></app-social-media-bar>
-      <div *ngIf="!loading">
-        <router-outlet></router-outlet>
-      </div>
-      <div *ngIf="loading" class="loading">
-        <mat-progress-bar mode="query"></mat-progress-bar>
-      </div>
-
-      <div class="footer"></div>
+      <ng-template [ngTemplateOutlet]="content"></ng-template>
     </mat-sidenav-content>
   </mat-sidenav-container>
+
+  <ng-template *ngIf="!(isMobile$ | async)" [ngTemplateOutlet]="content"></ng-template>
 </div>
+
+<ng-template #content>
+  <app-header></app-header>
+  <app-social-media-bar></app-social-media-bar>
+  <div *ngIf="!loading">
+    <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="loading" class="loading">
+    <mat-progress-bar mode="query"></mat-progress-bar>
+  </div>
+</ng-template>
 
 <app-toastr></app-toastr>

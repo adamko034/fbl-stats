@@ -1,0 +1,47 @@
+.side-nav-container {
+  min-width: 280px;
+  max-width: 280px;
+  background-color: rgba($color: #000000, $alpha: 0.03);
+  height: 100%;
+
+  .side-nav-section {
+    padding: 10px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        .link {
+          line-height: 24px;
+          padding: 7px 10px;
+          border-radius: 5px;
+          text-decoration: none;
+
+          &:hover {
+            background-color: rgba($color: #000000, $alpha: 0.04);
+          }
+
+          &-active {
+            background-color: rgba($color: #000000, $alpha: 0.06);
+          }
+
+          &-icon {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  .sticky {
+    position: sticky;
+    top: 0;
+  }
+
+  .sticky-bottom {
+    position: sticky;
+    bottom: 0;
+  }
+}

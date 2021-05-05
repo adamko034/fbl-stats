@@ -3,6 +3,7 @@ export interface NavigationLink {
   order: number;
   text: string;
   children?: NavigationLink[];
+  icon?: string;
   //key?: string;
   //isDropdown?: boolean;
   //dropdownIndex?: number;

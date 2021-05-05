@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Navigation } from 'src/app/resources/navigation';
+import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
 @Component({
   selector: 'app-fantasy-content',
@@ -6,11 +8,10 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./fantasy-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FantasyContentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class FantasyContentComponent {
+  public get links(): NavigationLink[] {
+    return Navigation.links.players.children;
   }
 
+  constructor() {}
 }
