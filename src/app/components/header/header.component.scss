@@ -1,23 +1,41 @@
+@import '/src/colors.scss';
+
 .header {
-  padding: 0 30px;
-  font-size: 23px;
-  height: 65px;
+  height: 45px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  display: flex;
-  justify-content: center;
-  margin: 0 2vw;
-  width: 95%;
-  border-bottom: 2px solid #c80a00;
+  width: 100%;
 
-  &-sm {
-    padding: 0 5px;
-  }
-
-  .name {
+  &-logo {
+    min-width: 200px;
+    max-width: 200px;
+    padding: 0 30px;
+    background-color: $backgroundGrey;
+    color: $colorWhite;
+    height: 100%;
+    border-bottom: 1px solid $colorGrey;
     text-decoration: none;
     cursor: pointer;
     margin: 0;
+
+    &-image {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &-content {
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid $backgroundGrey;
+
+    &-navigation {
+      width: 100%;
+    }
+  }
+
+  &-sm {
+    padding: 0 5px;
   }
 
   .leckerli {

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FantasyContentComponent } from './views/fantasy-content/fantasy-content.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'players',
+    redirectTo: 'all',
     pathMatch: 'full'
   },
   {
@@ -13,11 +13,11 @@ const routes: Routes = [
     component: FantasyContentComponent,
     children: [
       {
-        path: 'players',
+        path: 'all',
         loadChildren: () => import('./players/players.module').then((m) => m.PlayersModule)
       },
       {
-        path: 'players/:id',
+        path: 'details/:id',
         loadChildren: () => import('./player-details/player-details.module').then((m) => m.PlayerDetailsModule)
       },
       {

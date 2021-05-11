@@ -29,7 +29,8 @@
               "./node_modules/animate.css/animate.min.css",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/hover.css/css/hover-min.css"
+              "node_modules/hover.css/css/hover-min.css",
+              "src/colors.scss"
             ],
             "scripts": []
           },

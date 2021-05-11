@@ -5,7 +5,7 @@ import { CoreDataLoadedGuard as CoreDataLoadedGuard } from 'src/app/modules/core
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'fantasy',
+    redirectTo: 'players',
     pathMatch: 'full'
   },
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
     canActivate: [CoreDataLoadedGuard],
     children: [
       {
-        path: 'fantasy',
+        path: 'players',
         loadChildren: () => import('./modules/fantasy/fantasy.module').then((m) => m.FantasyModule)
       },
       {

@@ -38,7 +38,7 @@ export class PlayersListScoringChancesComponent implements OnInit {
     { value: 'home', description: 'Home' },
     { value: 'away', description: 'Away' },
     { value: 'vsTop6', description: 'vs top 6' },
-    { value: 'vsWorst6', description: 'vst worst 6' }
+    { value: 'vsWorst6', description: 'vs worst 6' }
   ];
 
   public get orderByFilterItems(): SwitchItem[] {
@@ -123,7 +123,7 @@ export class PlayersListScoringChancesComponent implements OnInit {
   }
 
   private changeType(newType: string) {
-    this.router.navigate(['fantasy', 'lists', 'pointsEfficiency', newType], { queryParamsHandling: 'preserve' });
+    this.router.navigate(['players', 'lists', 'pointsEfficiency', newType], { queryParamsHandling: 'preserve' });
   }
 
   private getColumns(orderBy: string): PlayersListGenericColumn[] {

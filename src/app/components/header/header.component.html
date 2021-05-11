@@ -1,5 +1,16 @@
-<div *ngIf="(screen$ | async) > screens.XS" class="header" ngClass.sm="header-sm" fxLayoutAlign="space-between center">
-  <h1 fxHide>Fantasy Bundesliga Stats | Tips & Tricks | Predicted Lineups</h1>
+<div class="header" fxLayoutAlign="start center">
+  <h1 routerLink="/players" class="header-logo" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <img src="favicon.ico" class="header-logo-image" />
+    <span>#FBL</span>
+  </h1>
+  <div class="header-content" fxLayoutAlign="space-between center">
+    <div class="header-content-navigation" fxLayoutAlign="center center">
+      <app-header-navigation></app-header-navigation>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="(screen$ | async) > screens.XS" class="header" ngClass.sm="header-sm" fxLayoutAlign="space-between center">
   <h1 class="name">
     <span routerLink="home" fxHide.lt-md>FantasyBL-Stats</span>
     <span fxHide.lt-sm fxHide.gt-sm class="leckerli red-background">F</span>
@@ -7,7 +18,7 @@
 
   <app-header-navigation></app-header-navigation>
   <ng-template [ngTemplateOutlet]="newUpdates"></ng-template>
-</div>
+</div> -->
 
 <div
   *ngIf="(screen$ | async) === screens.XS"
@@ -23,7 +34,7 @@
 </div>
 
 <ng-template #newUpdates>
-  <div fxFlexAlign="end" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="3px">
+  <div fxLayoutAlign="start" fxLayoutGap="3px">
     <app-new-updates></app-new-updates>
     <app-last-udpated></app-last-udpated>
   </div>

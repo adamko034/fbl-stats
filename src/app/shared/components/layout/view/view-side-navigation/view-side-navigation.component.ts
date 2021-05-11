@@ -12,5 +12,5 @@ export class ViewSideNavigationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

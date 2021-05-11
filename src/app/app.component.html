@@ -1,4 +1,5 @@
-<div class="app-content">
+<h1 fxHide>Fantasy Bundesliga Stats | Tips & Tricks | Predicted Lineups</h1>
+<div fxFlexFill class="app-content">
   <mat-sidenav-container *ngIf="isMobile$ | async" class="side-nav-container">
     <mat-sidenav (closed)="closeSidenav()" mode="over" [opened]="sidenavOpened$ | async">
       <app-sidenav></app-sidenav>
@@ -12,13 +13,16 @@
 </div>
 
 <ng-template #content>
-  <app-header></app-header>
-  <app-social-media-bar></app-social-media-bar>
-  <div *ngIf="!loading">
-    <router-outlet></router-outlet>
-  </div>
-  <div *ngIf="loading" class="loading">
-    <mat-progress-bar mode="query"></mat-progress-bar>
+  <div fxFlexFill>
+    <app-header></app-header>
+    <app-social-media-bar></app-social-media-bar>
+    <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
+    <div fxFlexFill *ngIf="!loading">
+      <router-outlet></router-outlet>
+    </div>
+    <div fxFill *ngIf="loading">
+      <div class="view-nav-placeholder">&nbsp;</div>
+    </div>
   </div>
 </ng-template>
 

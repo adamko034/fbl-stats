@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,8 +26,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [],
@@ -57,7 +58,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSortModule,
     ReactiveFormsModule,
     MatTabsModule,
-    DragDropModule
+    DragDropModule,
+    MatToolbarModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -88,7 +90,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSidenavModule,
     MatPaginatorModule,
     MatTabsModule,
-    DragDropModule
+    DragDropModule,
+    MatToolbarModule
   ]
 })
 export class AngularMaterialModule {}

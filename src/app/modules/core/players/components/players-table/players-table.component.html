@@ -1,6 +1,6 @@
 <div class="container" fxLayout="column" fxLayoutAlign="center stretch">
   <app-players-display [key]="DISPLAY_KEY" class="display"></app-players-display>
-  <mat-card class="table-card table-responsive" fxFill>
+  <div class="table-card">
     <table
       mat-table
       matSort
@@ -10,6 +10,7 @@
       matSortDirection="desc"
       [dataSource]="dataSource"
       multiTemplateDataRows
+      class="table-responsive"
     >
       <ng-container matColumnDef="Name" sticky>
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -113,5 +114,5 @@
         <td class="mat-cell" colspan="4">No data matching the criteria.</td>
       </tr>
     </table>
-  </mat-card>
+  </div>
 </div>

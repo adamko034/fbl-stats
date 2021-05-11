@@ -1,23 +1,29 @@
 <div class="side-nav-container" fxLayout="column" fxLayoutAlign="space-between">
-  <div class="side-nav-section">
-    <nav class="sticky" fxLayout="column" fxLayoutGap="10px">
-      <span>NAVIGATION</span>
-      <ul>
-        <li *ngFor="let link of links">
-          <a
-            class="link"
-            [routerLink]="link.path"
-            routerLinkActive="link-active"
-            fxLayoutAlign="start center"
-            fxLayoutGap="10px"
-          >
-            <mat-icon class="link-icon" [inline]="true">{{ link.icon }}</mat-icon>
-            <span>{{ link.text }}</span>
-          </a>
-        </li>
-      </ul>
+  <div class="side-nav-section sticky">
+    <nav fxLayout="column" fxLayoutGap="20px">
+      <div *ngFor="let link of links" class="links-section">
+        <span *ngIf="!link.path" class="links-section-title">{{ link.text }}</span>
+        <ul>
+          <li *ngFor="let sublink of link.children">
+            <a
+              class="link"
+              [routerLink]="sublink.path"
+              routerLinkActive="link-active"
+              fxLayoutAlign="start center"
+              fxLayoutGap="10px"
+            >
+              <mat-icon class="link-icon" [inline]="true">{{ sublink.icon }}</mat-icon>
+              <span>{{ sublink.text }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </div>
-
-  <div fxFlexAlign="flex-end" class="sticky-bottom">bottom</div>
+  <!-- <div fxFlexAlign="flex-end" class="sticky-bottom">
+    <button mat-icon-button class="show-hide-button" (click)="toggleSideNav()">
+      <mat-icon *ngIf="isOpened$ | async">chevron_left</mat-icon>
+      <mat-icon *ngIf="!(isOpened$ | async)">chevron_right</mat-icon>
+    </button>
+  </div> -->
 </div>

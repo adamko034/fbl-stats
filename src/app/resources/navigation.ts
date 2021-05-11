@@ -4,17 +4,33 @@ export class Navigation {
   public static links: { [key: string]: NavigationLink } = {
     players: {
       order: 1,
-      path: 'fantasy/players',
+      path: 'players',
       text: 'players',
       children: [
-        //{ order: 1, path: 'players', text: 'Dashboard', icon: 'dashboard'},
-        { order: 2, path: 'players', text: 'Players', icon: 'person_search' },
-        { order: 3, path: 'lists/unavailable', text: 'Unavailable', icon: 'highlight_off' },
-        { order: 3, path: 'lists/suspensionrisk', text: 'Suspension risk', icon: 'alarm_on' },
-        { order: 3, path: 'lists/returning', text: 'Returning', icon: 'published_with_changes' },
-        { order: 3, path: 'myteam', text: 'My team', icon: 'groups' },
-        { order: 4, path: 'leaders', text: 'Leaders', icon: 'leaderboard' },
-        { order: 5, path: 'our-picks', text: 'Our picks', icon: 'assistant' }
+        {
+          order: 1,
+          text: 'Players',
+          children: [
+            { order: 1, path: 'all', text: 'All players', icon: 'person_search' },
+            { order: 2, path: 'myteam', text: 'My team', icon: 'groups' },
+            { order: 3, path: 'lists/unavailable', text: 'Unavailable', icon: 'highlight_off' },
+            { order: 4, path: 'lists/suspensionrisk', text: 'Suspension risk', icon: 'alarm_on' },
+            { order: 5, path: 'lists/returning', text: 'Returning', icon: 'published_with_changes' }
+          ]
+        },
+        {
+          order: 2,
+          text: 'Stats',
+          children: [{ order: 1, path: 'lists/pointsEfficiency', text: 'Points efficiency', icon: 'insights' }]
+        },
+        {
+          order: 3,
+          text: 'Tips & Tricks',
+          children: [
+            { order: 3, path: 'leaders', text: 'Leaders', icon: 'leaderboard' },
+            { order: 4, path: 'our-picks', text: 'Our picks', icon: 'assistant' }
+          ]
+        }
       ]
     },
     teams: {

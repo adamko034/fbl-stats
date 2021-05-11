@@ -2,7 +2,7 @@
   <div *ngIf="links">
     <app-view-side-navigation [links]="links"></app-view-side-navigation>
   </div>
-  <div fxFlex class="view-content">
+  <div class="view-content animate__animated animate__fadeIn" fxFlex>
     <ng-content></ng-content>
   </div>
 </div>

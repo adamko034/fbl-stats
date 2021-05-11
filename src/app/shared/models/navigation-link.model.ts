@@ -1,7 +1,7 @@
 export interface NavigationLink {
-  path: string;
   order: number;
   text: string;
+  path?: string;
   children?: NavigationLink[];
   icon?: string;
   //key?: string;
