@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { filter, map, tap } from 'rxjs/operators';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
-import { TeamFormSetAction } from 'src/app/modules/teams/bundesliga/teams-table/actions/team-form-set.action';
+import { TeamFormSetAction } from 'src/app/modules/teams/bundesliga/table/actions/team-form-set.action';
 import { TableTeamConverter } from 'src/app/modules/teams/bundesliga/teams-table/converters/table-team.converter';
 import { TeamsGamesFilter } from 'src/app/modules/teams/bundesliga/teams-table/filters/teams-games.fitler';
 import { TeamsVenueFilter } from 'src/app/modules/teams/bundesliga/teams-table/filters/teams-venue.filter';

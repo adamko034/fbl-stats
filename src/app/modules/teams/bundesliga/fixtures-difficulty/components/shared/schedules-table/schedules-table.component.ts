@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ScheduleTableTeam } from 'src/app/modules/teams/bundesliga/teams-schedules/components/shared/schedules-table/models/schedule-table.model';
+import { ScheduleTableTeam } from 'src/app/modules/teams/bundesliga/fixtures-difficulty/components/shared/schedules-table/models/schedule-table.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
