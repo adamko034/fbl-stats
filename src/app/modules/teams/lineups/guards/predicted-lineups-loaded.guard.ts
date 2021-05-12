@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, mapTo, tap } from 'rxjs/operators';
-import { PredictedLineupsStore } from 'src/app/modules/lineups/store/predicted-lineups.store';
+import { PredictedLineupsStore } from 'src/app/modules/teams/lineups/store/predicted-lineups.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable()

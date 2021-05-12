@@ -35,16 +35,12 @@ export class Navigation {
     },
     teams: {
       order: 2,
-      path: 'fantasy/teams',
-      text: 'teams'
-    },
-    bundesliga: {
-      order: 3,
-      path: 'bundesliga',
-      text: 'bundesliga'
+      path: 'teams',
+      text: 'teams',
+      children: []
     },
     aboutUs: {
-      order: 4,
+      order: 3,
       path: 'about',
       text: 'about'
     }

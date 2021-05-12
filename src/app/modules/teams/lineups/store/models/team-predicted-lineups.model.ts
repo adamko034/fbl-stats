@@ -1,4 +1,4 @@
-import { SourcePredictedLineups } from 'src/app/modules/lineups/store/models/source-predicted-lineups.model';
+import { SourcePredictedLineups } from 'src/app/modules/teams/lineups/store/models/source-predicted-lineups.model';
 
 export interface TeamPredictedLineups {
   shortName: string;

@@ -1,4 +1,4 @@
-import { PredictedLineupPlayer } from 'src/app/modules/lineups/store/models/predicted-lineup-player.model';
+import { PredictedLineupPlayer } from 'src/app/modules/teams/lineups/store/models/predicted-lineup-player.model';
 
 export interface SourcePredictedLineups {
   order: number;

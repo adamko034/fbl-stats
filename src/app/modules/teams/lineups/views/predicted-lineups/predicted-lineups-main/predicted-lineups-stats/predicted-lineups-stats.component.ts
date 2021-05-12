@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { PredictedLineupsStatsPlayer } from 'src/app/modules/lineups/models/predicted-lineups-stats-player.model';
-import { PredictedLineupsStatsPlayers } from 'src/app/modules/lineups/models/predicted-lineups-stats-players.model';
+import { PredictedLineupsStatsPlayer } from 'src/app/modules/teams/lineups/models/predicted-lineups-stats-player.model';
+import { PredictedLineupsStatsPlayers } from 'src/app/modules/teams/lineups/models/predicted-lineups-stats-players.model';
 import { TextValue } from 'src/app/shared/components/text-value-card/models/text-value.model';
 
 interface State {

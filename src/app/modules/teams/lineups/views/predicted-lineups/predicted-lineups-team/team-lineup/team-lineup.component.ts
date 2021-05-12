@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { PredictedLineupPlayer } from 'src/app/modules/lineups/store/models/predicted-lineup-player.model';
-import { SourcePredictedLineups } from 'src/app/modules/lineups/store/models/source-predicted-lineups.model';
+import { PredictedLineupPlayer } from 'src/app/modules/teams/lineups/store/models/predicted-lineup-player.model';
+import { SourcePredictedLineups } from 'src/app/modules/teams/lineups/store/models/source-predicted-lineups.model';
 import { PlayerSubPosition } from 'src/app/store/players/models/palyer-subposition.enum';
 
 @Component({

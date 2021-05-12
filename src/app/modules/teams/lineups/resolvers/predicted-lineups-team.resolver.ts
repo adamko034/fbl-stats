@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { TeamPredictedLineups } from 'src/app/modules/lineups/store/models/team-predicted-lineups.model';
-import { PredictedLineupsStore } from 'src/app/modules/lineups/store/predicted-lineups.store';
+import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
+import { PredictedLineupsStore } from 'src/app/modules/teams/lineups/store/predicted-lineups.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable()

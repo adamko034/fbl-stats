@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { TeamPredictedLineups } from 'src/app/modules/lineups/store/models/team-predicted-lineups.model';
+import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
 
 @Component({
   selector: 'app-predicted-lineups-team',

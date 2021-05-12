@@ -16,12 +16,9 @@ const routes: Routes = [
         path: 'players',
         loadChildren: () => import('./modules/fantasy/fantasy.module').then((m) => m.FantasyModule)
       },
-      {
-        path: 'lineups',
-        loadChildren: () => import('./modules/lineups/predicted-lineups.module').then((m) => m.PredictedLineupsModule)
-      },
+
+      { path: 'teams', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) },
       { path: 'about', loadChildren: () => import('./modules/about-us/about-us.module').then((m) => m.AboutUsModule) },
-      { path: 'bundesliga', loadChildren: () => import('./modules/teams/teams.module').then((m) => m.TeamsModule) },
       { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then((m) => m.AdminModule) }
     ]
   }

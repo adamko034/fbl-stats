@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PredictedLineupsSource } from 'src/app/modules/lineups/store/models/predicted-lineups-source.model';
+import { PredictedLineupsSource } from 'src/app/modules/teams/lineups/store/models/predicted-lineups-source.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
