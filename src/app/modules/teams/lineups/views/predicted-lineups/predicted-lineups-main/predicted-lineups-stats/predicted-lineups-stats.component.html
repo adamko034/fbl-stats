@@ -1,27 +1,35 @@
-<div class="predicted-lineups-stats-container" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px grid">
+<div class="predicted-lineups-stats-container" fxLayout="column" fxLayoutGap="20px">
+  <div class="stats-row" fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="10px grid">
     <app-text-value-card
       class="stats"
       title="Top unavailable (total pts)"
       [items]="state$ | async | field: 'topUnavailable'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top unavailable (last 5 form)"
       [items]="state$ | async | field: 'topFormUnavailable'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top unavailable (popularity)"
       [items]="state$ | async | field: 'topPopularityUnavailable'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top unavailable (leaders)"
       [items]="state$ | async | field: 'top100PopularityUnavailable'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
   </div>
@@ -29,25 +37,37 @@
     <hr />
   </div>
 
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px grid">
-    <app-text-value-card class="stats" title="Top benched (total pts)" [items]="state$ | async | field: 'topBenched'">
+  <div class="stats-row" fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px grid">
+    <app-text-value-card
+      class="stats"
+      title="Top benched (total pts)"
+      [items]="state$ | async | field: 'topBenched'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
+    >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top benched (last 5 form)"
       [items]="state$ | async | field: 'topFormBenched'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top benched (popularity)"
       [items]="state$ | async | field: 'topPopularityBenched'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top benched (leaders)"
       [items]="state$ | async | field: 'top100PopularityBenched'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
   </div>
@@ -56,25 +76,37 @@
     <hr />
   </div>
 
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px grid">
-    <app-text-value-card class="stats" title="Top doubts (total pts)" [items]="state$ | async | field: 'topDoubts'">
+  <div class="stats-row" fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px grid">
+    <app-text-value-card
+      class="stats"
+      title="Top doubts (total pts)"
+      [items]="state$ | async | field: 'topDoubts'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
+    >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top doubts (last 5 form)"
       [items]="state$ | async | field: 'topFormDoubts'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top doubts (popularity)"
       [items]="state$ | async | field: 'topPopularityDoubts'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
     <app-text-value-card
       class="stats"
       title="Top doubts (leaders)"
       [items]="state$ | async | field: 'top100PopularityDoubts'"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
     >
     </app-text-value-card>
   </div>

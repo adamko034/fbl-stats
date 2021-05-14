@@ -17,7 +17,9 @@
     <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: defenders }"></ng-template>
 
     <div fxFlex class="position goalkeeper" fxLayoutAlign="center end">
-      <span class="player">{{ goalkeeper }}</span>
+      <span class="player">
+        <app-player-name-link [name]="goalkeeper" [id]="goalkeeperId"></app-player-name-link>
+      </span>
     </div>
   </div>
 </div>

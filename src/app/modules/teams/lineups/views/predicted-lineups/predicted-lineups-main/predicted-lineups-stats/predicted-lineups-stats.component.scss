@@ -1,5 +1,10 @@
 .predicted-lineups-stats-container {
-  .stats {
-    min-width: 240px;
+  .stats-row {
+    background-color: #fff;
+    padding: 10px 20px 0 20px;
+
+    .stats {
+      min-width: 240px;
+    }
   }
 }

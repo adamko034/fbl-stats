@@ -34,7 +34,7 @@
         >
           <td>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-              <app-team-logo *ngIf="!!item.teamShort" [height]="25" [team]="item.teamShort"></app-team-logo>
+              <app-team-logo *ngIf="!!item.teamShort" [height]="23" [team]="item.teamShort"></app-team-logo>
               <app-player-name-link *ngIf="item.linkId" [name]="item.text" [id]="item.linkId"></app-player-name-link>
               <span *ngIf="!item.linkId" [ngStyle]="item.textStyle">{{ item.text }}</span>
             </div>

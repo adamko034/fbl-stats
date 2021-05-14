@@ -5,7 +5,7 @@ export class Navigation {
     players: {
       order: 1,
       path: 'players',
-      text: 'players',
+      text: 'Players',
       children: [
         {
           order: 1,
@@ -36,7 +36,7 @@ export class Navigation {
     teams: {
       order: 2,
       path: 'teams',
-      text: 'teams',
+      text: 'Teams',
       children: [
         {
           order: 1,
@@ -57,7 +57,7 @@ export class Navigation {
     aboutUs: {
       order: 3,
       path: 'about',
-      text: 'about'
+      text: 'About'
     }
   };
 

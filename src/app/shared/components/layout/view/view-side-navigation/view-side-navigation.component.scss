@@ -33,13 +33,12 @@
           text-decoration: none;
           color: $colorGrey;
 
-          &:hover:not(.link-active) {
+          &:hover {
             background-color: $backgroundBlue;
             color: $colorWhite;
           }
 
           &-active {
-            cursor: default;
             color: $colorWhite;
           }
 

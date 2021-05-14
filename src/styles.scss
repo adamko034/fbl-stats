@@ -1,4 +1,5 @@
 @import '~animate.css/animate.min';
+@import './colors.scss';
 
 $mainColor: #c80a00;
 
@@ -96,11 +97,11 @@ mat-button-toggle.position-active {
 
 .mat-progress-spinner circle,
 .mat-spinner circle {
-  stroke: $mainColor;
+  stroke: $backgroundBlue;
 }
 
 .mat-progress-bar-fill::after {
-  background-color: $mainColor;
+  background-color: $backgroundBlue;
 }
 
 .mat-badge-content {
@@ -158,7 +159,7 @@ mat-button-toggle.position-active {
 
 .hvr-underline-from-center:before,
 .hvr-underline-from-left:before {
-  background: $mainColor !important;
+  background: $backgroundBlue !important;
 }
 
 .hvr-small.hvr-underline-from-center:before {

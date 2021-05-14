@@ -16,6 +16,10 @@ export class TeamLineupComponent {
     return this.lineup?.goalkeeper?.lastName || '';
   }
 
+  public get goalkeeperId(): string {
+    return this.lineup?.goalkeeper?.id;
+  }
+
   public get defenders(): PredictedLineupPlayer[] {
     return this.lineup?.defenders || [];
   }
