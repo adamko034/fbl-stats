@@ -1,0 +1,44 @@
+<app-view-title>
+  <span title>{{ 'Next fixtures based on team table rank' | uppercase }}</span>
+</app-view-title>
+
+<app-filters-content-layout>
+  <div filters>
+    <app-filters-layout>
+      <div gt-xs fxLayoutAlign="center center">
+        <app-fixtures-difficulty-venue-filter
+          (includeVenueChange)="onIncludeVenueCalculationChange($event)"
+        ></app-fixtures-difficulty-venue-filter>
+      </div>
+      <div xs-header>
+        <span>Filters</span>
+      </div>
+      <div xs-content>
+        <app-fixtures-difficulty-venue-filter
+          (includeVenueChange)="onIncludeVenueCalculationChange($event)"
+        ></app-fixtures-difficulty-venue-filter>
+      </div>
+    </app-filters-layout>
+  </div>
+  <div content fxLayout="column" fxLayoutGap="15px">
+    <app-fixtures-difficulty-sort
+      [nextMatchdays]="state.mdsHeader"
+      (sortChange)="onSortChange($event)"
+    ></app-fixtures-difficulty-sort>
+    <div fxLayout="row" fxLayoutGap.gt-xs="40px" fxLayout.lt-sm="column">
+      <app-fixtures-difficulty-fixtures
+        fxFlex.gt-xs="82"
+        [state]="state"
+        [sortBy]="sortBy"
+      ></app-fixtures-difficulty-fixtures>
+      <app-fixtures-difficulty-fixtures-table
+        fxFlexAlign.lt-sm="center"
+        fxFlex.gt-xs="18"
+        ngClass.gt-xs="table"
+        valueColumnHeader="rank"
+        [teams]="scheduleTableTeams"
+        sortDirection="asc"
+      ></app-fixtures-difficulty-fixtures-table>
+    </div>
+  </div>
+</app-filters-content-layout>

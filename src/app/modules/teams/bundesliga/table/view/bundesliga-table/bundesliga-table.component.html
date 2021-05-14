@@ -1,0 +1,10 @@
+<app-view-title>
+  <span title>{{ 'Bundesliga table' | uppercase }}</span>
+</app-view-title>
+<app-filters-content-layout>
+  <app-bundesliga-teams-table-filters
+    filters
+    (filtersChange)="onFiltersChange($event)"
+  ></app-bundesliga-teams-table-filters>
+  <app-bundesliga-teams-table content [teams]="teamsToDisplay"></app-bundesliga-teams-table>
+</app-filters-content-layout>

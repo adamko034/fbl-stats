@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'table',
+    pathMatch: 'full'
+  },
+  {
     path: 'firstgames',
     loadChildren: () => import('./first-games/bundesliga-first-games.module').then((m) => m.BundesligaFirstGamesModule)
   },

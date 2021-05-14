@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TeamsContentComponent } from './views/teams-content/teams-content.component';
 
 // const routes: Routes = [
 //   {
@@ -49,10 +50,25 @@ import { RouterModule, Routes } from '@angular/router';
 // ];
 const routes: Routes = [
   {
-    path: 'bundesliga',
-    loadChildren: () => import('./bundesliga/bundesliga.module').then(m => m.BundesligaModule);
+    path: '',
+    component: TeamsContentComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'bundesliga',
+        pathMatch: 'full'
+      },
+      {
+        path: 'bundesliga',
+        loadChildren: () => import('./bundesliga/bundesliga.module').then((m) => m.BundesligaModule)
+      },
+      {
+        path: 'lineups',
+        loadChildren: () => import('./lineups/predicted-lineups.module').then((m) => m.PredictedLineupsModule)
+      }
+    ]
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

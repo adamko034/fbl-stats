@@ -37,7 +37,22 @@ export class Navigation {
       order: 2,
       path: 'teams',
       text: 'teams',
-      children: []
+      children: [
+        {
+          order: 1,
+          text: 'teams',
+          children: [{ order: 1, text: 'Predicted lineups', path: 'lineups', icon: 'reduce_capacity' }]
+        },
+        {
+          order: 1,
+          text: 'bundesliga',
+          children: [
+            { order: 1, path: 'bundesliga/table', text: 'Table', icon: 'emoji_events' },
+            { order: 2, path: 'bundesliga/fixturesdifficulty', text: 'Fixtures difficulty', icon: 'dynamic_form' },
+            { order: 3, path: 'bundesliga/firstgames', text: 'First games', icon: 'repeat_one' }
+          ]
+        }
+      ]
     },
     aboutUs: {
       order: 3,
