@@ -1,4 +1,4 @@
-@import '/src/colors.scss';
+@import '/src/variables.scss';
 
 .app-content {
   .side-nav-container {
@@ -10,8 +10,8 @@
   .view-nav-placeholder {
     min-width: 200px;
     max-width: 200px;
-    height: 100%;
-    background-color: $backgroundGrey;
+    height: 100vh;
+    background-color: $colorGrey;
   }
 
   .loading {

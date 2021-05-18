@@ -1,7 +1,5 @@
 @import '~animate.css/animate.min';
-@import './colors.scss';
-
-$mainColor: #c80a00;
+@import './variables.scss';
 
 html,
 body {
@@ -53,11 +51,11 @@ mat-button-toggle.position-active {
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
 .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-  background-color: $mainColor;
+  background-color: $colorRed;
 }
 
 .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-  background-color: rgba($color: $mainColor, $alpha: 0.54);
+  background-color: rgba($color: $colorRed, $alpha: 0.54);
 }
 
 .mat-slider-disabled .mat-slider-track-background,
@@ -97,15 +95,15 @@ mat-button-toggle.position-active {
 
 .mat-progress-spinner circle,
 .mat-spinner circle {
-  stroke: $backgroundBlue;
+  stroke: $colorBlue;
 }
 
 .mat-progress-bar-fill::after {
-  background-color: $backgroundBlue;
+  background-color: $colorBlue;
 }
 
 .mat-badge-content {
-  background: $mainColor;
+  background: $colorRed;
 }
 
 .mat-menu-panel {
@@ -113,23 +111,24 @@ mat-button-toggle.position-active {
 }
 
 .mat-ink-bar {
-  background-color: $mainColor !important;
+  background-color: $colorRed !important;
 }
 
 .dot-red {
   height: 10px;
   width: 10px;
-  background-color: $mainColor;
+  background-color: $colorRed;
   border-radius: 50%;
 }
 
-.red {
-  color: $mainColor;
+.main-background {
+  color: #fff;
+  background-color: $colorBlue;
 }
 
 .red-background {
-  color: #fff;
-  background-color: $mainColor;
+  color: $colorWhite;
+  background-color: $colorRed;
 }
 
 .blue {
@@ -159,7 +158,7 @@ mat-button-toggle.position-active {
 
 .hvr-underline-from-center:before,
 .hvr-underline-from-left:before {
-  background: $backgroundBlue !important;
+  background: $colorBlue !important;
 }
 
 .hvr-small.hvr-underline-from-center:before {
@@ -205,8 +204,8 @@ mat-button-toggle.position-active {
   cursor: pointer;
 
   &:hover {
-    border: 2px solid $mainColor;
-    color: $mainColor;
+    border: 2px solid $colorBlue;
+    color: $colorBlue;
   }
 }
 
@@ -240,6 +239,10 @@ mat-button-toggle.position-active {
     display: table;
     border-collapse: collapse;
     margin: 0px;
+  }
+
+  th.mat-table-sticky {
+    top: 45px !important;
   }
   .mat-table-sticky:hover {
     background: unset;

@@ -79,7 +79,7 @@
   <div class="stats-row" fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="10px grid">
     <app-text-value-card
       class="stats"
-      title="Top doubts (total pts)"
+      title="Top varied  (total pts)"
       [items]="state$ | async | field: 'topDoubts'"
       [showInMatCard]="false"
       [titleUnderlined]="'grey'"
@@ -87,7 +87,7 @@
     </app-text-value-card>
     <app-text-value-card
       class="stats"
-      title="Top doubts (last 5 form)"
+      title="Top varied (last 5 form)"
       [items]="state$ | async | field: 'topFormDoubts'"
       [showInMatCard]="false"
       [titleUnderlined]="'grey'"
@@ -95,7 +95,7 @@
     </app-text-value-card>
     <app-text-value-card
       class="stats"
-      title="Top doubts (popularity)"
+      title="Top varied (popularity)"
       [items]="state$ | async | field: 'topPopularityDoubts'"
       [showInMatCard]="false"
       [titleUnderlined]="'grey'"
@@ -103,7 +103,7 @@
     </app-text-value-card>
     <app-text-value-card
       class="stats"
-      title="Top doubts (leaders)"
+      title="Top varied (leaders)"
       [items]="state$ | async | field: 'top100PopularityDoubts'"
       [showInMatCard]="false"
       [titleUnderlined]="'grey'"

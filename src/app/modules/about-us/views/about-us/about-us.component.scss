@@ -1,3 +1,5 @@
+@import '/src/variables.scss';
+
 .about-us-container {
   margin-top: 60px;
   padding: 0 20px;
@@ -26,6 +28,11 @@
       padding: 0 15px;
       font-family: 'Leckerli One', cursive;
       border-radius: 10px;
+    }
+
+    .logo {
+      background-color: $colorRed;
+      color: $colorWhite;
     }
 
     &-rest {

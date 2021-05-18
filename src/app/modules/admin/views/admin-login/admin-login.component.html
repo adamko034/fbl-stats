@@ -8,7 +8,7 @@
         <input matInput type="password" placeholder="Password" formControlName="password" />
       </mat-form-field>
     </form>
-    <button class="red-background" mat-raised-button (click)="login()">Log in</button>
+    <button class="main-background" mat-raised-button (click)="login()">Log in</button>
     <br />
     <div *ngIf="!!loginFailed$ && loginFailed$ | async" class="login-failed red">
       Login failed. Check your email and password.

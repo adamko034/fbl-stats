@@ -1,4 +1,4 @@
-<div class="header" fxLayoutAlign="start center">
+<div class="header sticky" fxLayoutAlign="start center">
   <h1 routerLink="/players" class="header-logo" fxLayoutAlign="start center" fxLayoutGap="10px">
     <img src="favicon.ico" class="header-logo-image" />
     <span>#FBL</span>
@@ -9,16 +9,6 @@
     </div>
   </div>
 </div>
-
-<!-- <div *ngIf="(screen$ | async) > screens.XS" class="header" ngClass.sm="header-sm" fxLayoutAlign="space-between center">
-  <h1 class="name">
-    <span routerLink="home" fxHide.lt-md>FantasyBL-Stats</span>
-    <span fxHide.lt-sm fxHide.gt-sm class="leckerli red-background">F</span>
-  </h1>
-
-  <app-header-navigation></app-header-navigation>
-  <ng-template [ngTemplateOutlet]="newUpdates"></ng-template>
-</div> -->
 
 <div
   *ngIf="(screen$ | async) === screens.XS"

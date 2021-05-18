@@ -1,9 +1,11 @@
+@import '/src/variables.scss';
+
 .switch-container {
   background-color: #fff;
 
   .switch {
     .item-active {
-      background-color: #c80a00;
+      background-color: $colorBlue;
       transition-property: background-color, color;
       transition-duration: 0.2s, 0.2s;
       transition-timing-function: ease-in, ease-in;

@@ -4,7 +4,7 @@
   </button>
   <div class="item" *ngFor="let matchday of matchdaysToDisplay | orderBy: '-'">
     <a [ngClass]="{ 'hvr-shadow': !rla.isActive }" class="link" [routerLink]="matchday">
-      <mat-card #rla="routerLinkActive" routerLinkActive="red-background">
+      <mat-card #rla="routerLinkActive" routerLinkActive="main-background">
         <span>{{ matchdayText }} {{ matchday }}</span>
       </mat-card>
     </a>
