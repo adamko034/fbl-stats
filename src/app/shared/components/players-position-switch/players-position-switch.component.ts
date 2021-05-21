@@ -10,6 +10,7 @@ import { SwitchItem } from '../switch/models/switch-item.model';
 })
 export class PlayersPositionSwitchComponent implements OnInit {
   @Input() selected: PlayerPosition;
+  @Input() showLabel = true;
   @Output() positionChange = new EventEmitter<PlayerPosition>();
 
   public get items(): SwitchItem[] {

@@ -1,17 +1,17 @@
 <div *ngIf="!!state">
   <app-view-title>
-    <h1 title class="view-title-h1">{{ 'players scoring efficiency' | uppercase }}</h1>
-    <div subtitle>
-      <span>Here is a list of top 30 players scoring efficiency.</span>
-    </div>
+    <h1 title class="view-title-h1">{{ 'top 30 players scoring efficiency' | uppercase }}</h1>
   </app-view-title>
-  <mat-card class="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px grid">
-    <app-players-position-switch
-      [selected]="state.position"
-      (positionChange)="onPositionChange($event)"
-    ></app-players-position-switch>
+  <div class="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+    <div>
+      <app-players-position-switch
+        [showLabel]="false"
+        [selected]="state.position"
+        (positionChange)="onPositionChange($event)"
+      ></app-players-position-switch>
+    </div>
 
-    <app-form-field label="Including games">
+    <div>
       <app-switch
         *ngIf="!(mobile$ | async)"
         [items]="typeFilterItems"
@@ -24,17 +24,18 @@
           <mat-option *ngFor="let type of typeFilterItems" [value]="type.value">{{ type.description }}</mat-option>
         </mat-select>
       </mat-form-field>
-    </app-form-field>
+    </div>
 
-    <app-form-field label="Order by">
+    <div>
       <app-switch
         [items]="orderByFilterItems"
         name="orderBys"
         [value]="state.orderBy"
         (switchChange)="onOrderByChange($event)"
       ></app-switch>
-    </app-form-field>
-  </mat-card>
+    </div>
+  </div>
+
   <div class="content" *ngIf="state.data">
     <app-players-list-generic
       [config]="state.config"

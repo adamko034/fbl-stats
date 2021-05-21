@@ -1,10 +1,14 @@
 .first-games-by-matchday-container {
-  .card-content {
-    margin-top: 10px;
+  .matchday {
+    margin-bottom: 20px;
 
-    .date {
-      font-size: 13px;
-      font-weight: 500;
+    .card-content {
+      margin-top: 10px;
+
+      .date {
+        font-size: 13px;
+        font-weight: 500;
+      }
     }
   }
 }

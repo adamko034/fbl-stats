@@ -43,10 +43,10 @@ export class PlayersListScoringChancesComponent implements OnInit {
 
   public get orderByFilterItems(): SwitchItem[] {
     return [
-      { value: '5', description: '5pts and more', descriptionMobile: '>= 5pts' },
-      { value: '10', description: '10pts and more', descriptionMobile: '>= 10pts' },
-      { value: '15', description: '15pts and more', descriptionMobile: '>= 15pts' },
-      { value: '20', description: '20pts and more', descriptionMobile: '>= 20pts' }
+      { value: '5', description: '>= 5pts', descriptionMobile: '>= 5pts' },
+      { value: '10', description: '>= 10pts', descriptionMobile: '>= 10pts' },
+      { value: '15', description: '>= 15pts', descriptionMobile: '>= 15pts' },
+      { value: '20', description: '>= 20pts', descriptionMobile: '>= 20pts' }
     ];
   }
 
