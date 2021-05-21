@@ -1,0 +1,9 @@
+@import '/src/variables.scss';
+
+.view-tabs-navigation-container {
+  position: sticky;
+  top: 44px;
+  z-index: 1000;
+  padding: 0 10px;
+  background-color: $colorWhite;
+}

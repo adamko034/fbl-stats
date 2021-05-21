@@ -111,7 +111,7 @@ mat-button-toggle.position-active {
 }
 
 .mat-ink-bar {
-  background-color: $colorRed !important;
+  background-color: $colorBlue !important;
 }
 
 .dot-red {
@@ -129,6 +129,10 @@ mat-button-toggle.position-active {
 .red-background {
   color: $colorWhite;
   background-color: $colorRed;
+}
+
+.red {
+  color: $colorRed;
 }
 
 .blue {

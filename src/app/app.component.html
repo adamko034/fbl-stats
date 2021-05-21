@@ -13,15 +13,12 @@
 </div>
 
 <ng-template #content>
-  <div fxFlexFill>
+  <div class="content">
     <app-header></app-header>
     <app-social-media-bar></app-social-media-bar>
     <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
-    <div fxFlexFill *ngIf="!loading">
+    <div *ngIf="!loading">
       <router-outlet></router-outlet>
-    </div>
-    <div fxFill *ngIf="loading">
-      <div class="view-nav-placeholder">&nbsp;</div>
     </div>
   </div>
 </ng-template>

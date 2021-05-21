@@ -13,6 +13,7 @@ import { FixturesDifficultyByRankResolver } from './resolvers/fixtures-difficult
 import { FixtureDifficultyColorsService } from './services/fixture-difficulty-colors.service';
 import { FixturesDifficultyByFormComponent } from './view/fixtures-difficulty-by-form/fixtures-difficulty-by-form.component';
 import { FixturesDifficultyByRankComponent } from './view/fixtures-difficulty-by-rank/fixtures-difficulty-by-rank.component';
+import { FixturesDifficultyContentComponent } from './view/fixtures-difficulty-content/fixtures-difficulty-content.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FixturesDifficultyByRankComponent } from './view/fixtures-difficulty-by
     FixturesDifficultyFixturesComponent,
     FixturesDifficultyVenueFilterComponent,
     FixturesDifficultySortComponent,
-    FixturesDifficultyFixturesTableComponent
+    FixturesDifficultyFixturesTableComponent,
+    FixturesDifficultyContentComponent
   ],
   imports: [CommonModule, BundesligaFixturesDifficultyRoutingModule, SharedModule, AngularMaterialModule],
   providers: [

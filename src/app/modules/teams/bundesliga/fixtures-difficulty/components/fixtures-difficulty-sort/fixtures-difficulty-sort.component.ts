@@ -26,8 +26,8 @@ export class FixturesDifficultySortComponent implements OnInit {
   public ngOnInit(): void {
     this.defaultSort = {
       direction: 'desc',
-      sortByItem: this.items.find((i) => i.value === 'next5GamesIndex'),
-      value: '-next5GamesIndex'
+      sortByItem: this.items.find((i) => i.value === 'next3GamesIndex'),
+      value: '-next3GamesIndex'
     };
     this.nextMatchdays.forEach((md) => this.items.push({ value: `games.${md}.gameIndex`, text: `MD ${md}` }));
     this.sortChange.emit(this.defaultSort);

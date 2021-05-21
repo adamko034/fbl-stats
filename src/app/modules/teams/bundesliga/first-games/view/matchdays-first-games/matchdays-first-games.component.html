@@ -2,9 +2,8 @@
   <app-view-title>
     <span title>{{ 'Teams playing on matchdays first game' | uppercase }}</span>
   </app-view-title>
-
-  <div class="matchdays-first-games-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px">
-    <app-first-games-by-matchday></app-first-games-by-matchday>
-    <app-first-games-by-teams></app-first-games-by-teams>
+  <app-view-tabs-navigation [links]="links"></app-view-tabs-navigation>
+  <div class="matchdays-first-games-content">
+    <router-outlet></router-outlet>
   </div>
 </div>

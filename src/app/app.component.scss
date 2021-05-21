@@ -1,17 +1,12 @@
 @import '/src/variables.scss';
 
 .app-content {
+  min-height: 100%;
+
   .side-nav-container {
     mat-sidenav {
       background-color: #fafafa !important;
     }
-  }
-
-  .view-nav-placeholder {
-    min-width: 200px;
-    max-width: 200px;
-    height: 100vh;
-    background-color: $colorGrey;
   }
 
   .loading {

@@ -1,0 +1,14 @@
+<div class="view-tabs-navigation-container">
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      *ngFor="let link of links | orderBy: 'order'"
+      [routerLink]="link.routerLink"
+      routerLinkActive
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+    >
+      {{ link.label }}
+    </a>
+  </nav>
+</div>

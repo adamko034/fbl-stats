@@ -42,6 +42,7 @@ import { FilterPositionComponent } from './components/filter-position/filter-pos
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
+import { ViewTabsNavigationComponent } from './components/layout/view-tabs-navigation/view-tabs-navigation.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
 import { ViewSideNavigationComponent } from './components/layout/view/view-side-navigation/view-side-navigation.component';
 import { ViewComponent } from './components/layout/view/view.component';
@@ -119,7 +120,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ChartDialogComponent,
     ValueDifferenceComponent,
     ViewComponent,
-    ViewSideNavigationComponent
+    ViewSideNavigationComponent,
+    ViewTabsNavigationComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -169,7 +171,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     LengthPipe,
     ShowMoreLinkComponent,
     ValueDifferenceComponent,
-    ViewComponent
+    ViewComponent,
+    ViewTabsNavigationComponent
   ]
 })
 export class SharedModule {

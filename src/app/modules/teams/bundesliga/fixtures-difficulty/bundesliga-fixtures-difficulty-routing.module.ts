@@ -4,24 +4,27 @@ import { FixturesDifficultyByFormResolver } from './resolvers/fixtures-difficult
 import { FixturesDifficultyByRankResolver } from './resolvers/fixtures-difficulty-by-rank.resolver';
 import { FixturesDifficultyByFormComponent } from './view/fixtures-difficulty-by-form/fixtures-difficulty-by-form.component';
 import { FixturesDifficultyByRankComponent } from './view/fixtures-difficulty-by-rank/fixtures-difficulty-by-rank.component';
+import { FixturesDifficultyContentComponent } from './view/fixtures-difficulty-content/fixtures-difficulty-content.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'byRank',
-    pathMatch: 'full'
-  },
-  {
-    path: 'byRank',
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-    component: FixturesDifficultyByRankComponent,
-    resolve: { state: FixturesDifficultyByRankResolver }
-  },
-  {
-    path: 'byForm',
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-    component: FixturesDifficultyByFormComponent,
-    resolve: { state: FixturesDifficultyByFormResolver }
+    component: FixturesDifficultyContentComponent,
+    children: [
+      { path: '', redirectTo: 'byRank', pathMatch: 'full' },
+      {
+        path: 'byRank',
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+        component: FixturesDifficultyByRankComponent,
+        resolve: { state: FixturesDifficultyByRankResolver }
+      },
+      {
+        path: 'byForm',
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+        component: FixturesDifficultyByFormComponent,
+        resolve: { state: FixturesDifficultyByFormResolver }
+      }
+    ]
   }
 ];
 
