@@ -1,4 +1,7 @@
-<app-view-title>
+<app-view [links]="links$ | async">
+  <router-outlet></router-outlet>
+</app-view>
+<!-- <app-view-title>
   <span title>{{ 'Fantasy Bundesliga TOP 100 managers' }}</span>
 </app-view-title>
 <app-view-layout>
@@ -6,4 +9,4 @@
   <div content>
     <router-outlet></router-outlet>
   </div>
-</app-view-layout>
+</app-view-layout> -->

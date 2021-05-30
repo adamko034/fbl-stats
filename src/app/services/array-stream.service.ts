@@ -81,6 +81,11 @@ export class ArrayStream<T> {
     return new ArrayStream<R>(this.array, false);
   }
 
+  public convertQuick<R>(convertFunc: (item: T) => R): ArrayStream<R> {
+    this.array = this.array.map(convertFunc);
+    return new ArrayStream<R>(this.array, false);
+  }
+
   public minBy(predicate: (item: T) => number): number {
     return Math.min(...this.array.map(predicate));
   }

@@ -1,26 +1,20 @@
 <h1 fxHide>Fantasy Bundesliga Stats | Tips & Tricks | Predicted Lineups</h1>
-<div class="app-content">
-  <mat-sidenav-container *ngIf="isMobile$ | async" class="side-nav-container">
-    <mat-sidenav (closed)="closeSidenav()" mode="over" [opened]="sidenavOpened$ | async">
+<div class="app-content animate__animated animate__fadeIn">
+  <mat-sidenav-container class="side-nav-container">
+    <mat-sidenav mode="side" opened>
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
-      <ng-template [ngTemplateOutlet]="content"></ng-template>
+      <div class="content">
+        <app-header></app-header>
+        <app-social-media-bar></app-social-media-bar>
+        <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
+        <div *ngIf="!loading">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
-  <ng-template *ngIf="!(isMobile$ | async)" [ngTemplateOutlet]="content"></ng-template>
 </div>
-
-<ng-template #content>
-  <div class="content">
-    <app-header></app-header>
-    <app-social-media-bar></app-social-media-bar>
-    <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
-    <div *ngIf="!loading">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</ng-template>
 
 <app-toastr></app-toastr>

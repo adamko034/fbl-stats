@@ -1,8 +1,9 @@
-<div class="view-container" fxLayout="row">
-  <div class="view-side-navigation" *ngIf="links">
-    <app-view-side-navigation [links]="links"></app-view-side-navigation>
+<div class="view-container animate__animated animate__fadeIn" fxLayout="column">
+  <div class="view-tabs" *ngIf="links">
+    <app-view-tabs-navigation [links]="links" [disablePagination]="disablePagination"></app-view-tabs-navigation>
   </div>
-  <div class="view-content animate__animated animate__fadeIn" fxFlex>
+
+  <div class="view-content">
     <ng-content></ng-content>
   </div>
 </div>

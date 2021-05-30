@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
-import { PlayerPosition } from '../../../players/models/players-filters';
+import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { OurPicksFiltersService } from '../../services/our-picks-filters.service';
 
 @Component({

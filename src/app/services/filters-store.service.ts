@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import {
-  PlayersFilters,
+  FILTERS_MATCHDAYS_STORAGEKEY,
   PlayerPosition,
-  FILTERS_MATCHDAYS_STORAGEKEY
-} from '../modules/fantasy/players/models/players-filters';
-import { SelectableTeam } from '../modules/fantasy/players/models/selectable-team.model';
+  PlayersFilters
+} from '../modules/fantasy/players/overall/models/players-filters';
+import { SelectableTeam } from '../modules/fantasy/players/overall/models/selectable-team.model';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })

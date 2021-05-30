@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { PlayersUiConverter } from 'src/app/modules/core/players/converters/players-ui.converter';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
+import { PlayersTableFilter } from 'src/app/modules/fantasy/players/overall/filters/players-table.filter';
+import { PlayersFilters } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Game } from 'src/app/store/players/models/game.model';
 import { Player } from 'src/app/store/players/models/player.model';
-import { PlayersTableFilter } from '../../../fantasy/players/filters/players-table.filter';
-import { PlayersFilters } from '../../../fantasy/players/models/players-filters';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersDataService {

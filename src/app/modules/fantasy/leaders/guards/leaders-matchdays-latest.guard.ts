@@ -15,7 +15,7 @@ export class LeadersMatchdayLatestGuard implements CanActivate {
         Logger.logDev('leaders matchdays latest guard, checking if latest passed');
         if (!!route.params.matchday && route.params.matchday === 'latest') {
           Logger.logDev(`leaders matchdays latest guard, latest passed, navigating to matchday ${lastMatchday}`);
-          this.router.navigateByUrl(`/players/leaders/${lastMatchday}`);
+          this.router.navigateByUrl(`/fantasy/leaders/${lastMatchday}`);
         }
 
         return true;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
-import { PlayerPosition } from '../../players/models/players-filters';
+import { PlayerPosition } from '../../players/overall/models/players-filters';
 import { OurPicksFilters } from '../models/our-picks-filters.model';
 
 @Injectable()

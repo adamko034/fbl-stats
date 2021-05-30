@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/models/players-filters';
+import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { MyTeamPlayersFitlersService } from '../../../../services/my-team-players-filters.service';
 

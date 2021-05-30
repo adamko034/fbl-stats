@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
-import { PlayerPosition } from '../../players/models/players-filters';
+import { PlayerPosition } from '../../players/overall/models/players-filters';
 import { OurPicksFilters } from '../models/our-picks-filters.model';
 import { OurPicksPositionFilter } from './our-picks-position.filter';
 import { OurPicksTypesFilter } from './our-picks-types.filters';

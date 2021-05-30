@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/models/players-filters';
+import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { MyTeamPlayer } from '../../../../models/my-team-player.model';
 import { MyTeamTilesDisplaySettingsService } from '../../../../services/my-team-tiles-display-settings.service';

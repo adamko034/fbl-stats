@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
-import { map, distinctUntilChanged } from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { FILTERS_MATCHDAYS_STORAGEKEY } from '../../players/models/players-filters';
+import { FILTERS_MATCHDAYS_STORAGEKEY } from '../../players/overall/models/players-filters';
 import { MyTeamPlayersFilters } from '../models/my-team-players-filters.model';
 
 @Injectable()

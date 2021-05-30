@@ -1,4 +1,15 @@
+@import '/src/variables.scss';
+
 .predicted-lineups-team-navigation-container {
+  background-color: #fff;
+  padding: 5px 0;
+
+  .home-link {
+    transform: scale(1.25);
+    margin-top: 4px;
+    color: $colorGrey;
+  }
+
   .team-link {
     padding: 8px 10px;
     cursor: pointer;

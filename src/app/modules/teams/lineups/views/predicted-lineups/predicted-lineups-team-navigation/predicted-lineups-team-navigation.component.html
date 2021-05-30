@@ -5,6 +5,11 @@
   fxLayoutAlign="center center"
   fxLayoutGap="7px"
 >
+  <div>
+    <a routerLink="/teams/lineups" class="team-link" routerLinkActive="home-link-active">
+      <mat-icon class="home-link">reorder</mat-icon>
+    </a>
+  </div>
   <div *ngFor="let team of teams$ | async | orderBy: 'rank'">
     <a
       routerLinkActive="team-link-active"
@@ -12,7 +17,7 @@
       ngClass.sm="team-link-sm"
       [routerLink]="team.shortName"
     >
-      <app-team-logo *ngIf="(screen$ | async) > screens.SM" [height]="40" [team]="team.shortName"></app-team-logo>
+      <app-team-logo *ngIf="(screen$ | async) > screens.SM" [height]="35" [team]="team.shortName"></app-team-logo>
       <app-team-logo *ngIf="(screen$ | async) <= screens.SM" [height]="30" [team]="team.shortName"></app-team-logo>
     </a>
   </div>

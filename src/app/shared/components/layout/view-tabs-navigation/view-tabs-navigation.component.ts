@@ -9,6 +9,7 @@ import { ViewTabNavigationLink } from './model/view-tab-navigation-link.model';
 })
 export class ViewTabsNavigationComponent {
   @Input() links: ViewTabNavigationLink[];
+  @Input() disablePagination = false;
 
   constructor() {}
 }

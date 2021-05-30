@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Navigation } from 'src/app/resources/navigation';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
 @Component({
@@ -10,7 +9,7 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 })
 export class FantasyContentComponent {
   public get links(): NavigationLink[] {
-    return Navigation.links.players.children;
+    return [];
   }
 
   constructor() {}

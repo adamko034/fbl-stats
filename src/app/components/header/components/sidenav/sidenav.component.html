@@ -1,1 +1,31 @@
-<div class="sidenav"></div>
+<div class="side-nav-container">
+  <div class="sticky">
+    <div class="header" fxLayoutAlign="start center">
+      <h1 routerLink="/players" class="header-logo" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <img src="favicon.ico" class="header-logo-image" />
+        <span>#FBL</span>
+      </h1>
+    </div>
+    <div class="side-nav-section">
+      <nav fxLayout="column" fxLayoutGap="20px">
+        <div *ngFor="let link of links" class="links-section">
+          <span *ngIf="!link.path" class="links-section-title">{{ link.text }}</span>
+          <ul>
+            <li *ngFor="let sublink of link.children">
+              <a
+                class="link"
+                [routerLink]="sublink.path"
+                routerLinkActive="link-active"
+                fxLayoutAlign="start center"
+                fxLayoutGap="10px"
+              >
+                <mat-icon class="link-icon" [inline]="true">{{ sublink.icon }}</mat-icon>
+                <span>{{ sublink.text }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

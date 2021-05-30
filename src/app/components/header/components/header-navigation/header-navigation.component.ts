@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Navigation } from 'src/app/resources/navigation';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
 @Component({
@@ -9,7 +8,7 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
   styleUrls: ['./header-navigation.component.scss']
 })
 export class HeaderNavigationComponent {
-  public links: NavigationLink[] = Object.values(Navigation.links);
+  public links: NavigationLink[] = [];
 
   constructor() {}
 
