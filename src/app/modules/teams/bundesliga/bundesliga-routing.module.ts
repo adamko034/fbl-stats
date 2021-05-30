@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BundesligaContentComponent } from './views/bundesliga-content/bundesliga-content.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'table',
-    pathMatch: 'full'
-  },
-  {
-    path: 'table',
-    loadChildren: () => import('./table/bundesliga-table.module').then((m) => m.BundesligaTableModule)
+    component: BundesligaContentComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'table',
+        pathMatch: 'full'
+      },
+      {
+        path: 'table',
+        loadChildren: () => import('./table/bundesliga-table.module').then((m) => m.BundesligaTableModule)
+      }
+    ]
   }
 ];
 

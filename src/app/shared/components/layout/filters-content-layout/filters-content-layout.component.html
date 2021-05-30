@@ -1,15 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="20px">
-  <div
-    fxLayout="column"
-    fxLayoutAlign="start stretch"
-    fxLayoutGap="20px"
-    fxFlexAlign="center"
-    ngClass.xs="filters-100"
-    ngClass.gt-xs="filters-90"
-    ngClass.gt-sm="filters-80"
-  >
-    <ng-content select="[filters]"></ng-content>
-  </div>
-
+<div fxLayout="column" fxLayoutGap="20px">
+  <ng-content select="[filters]"></ng-content>
+  <ng-content select="[display]"></ng-content>
   <ng-content select="[content]"></ng-content>
 </div>

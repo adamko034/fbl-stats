@@ -45,6 +45,7 @@ import { ViewLayoutComponent } from './components/layout/view-layout/view-layout
 import { ViewTabsNavigationComponent } from './components/layout/view-tabs-navigation/view-tabs-navigation.component';
 import { ViewTitleComponent } from './components/layout/view-title/view-title.component';
 import { ViewComponent } from './components/layout/view/view.component';
+import { WhiteBlockComponent } from './components/layout/white-block/white-block.component';
 import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
 import { MatchdayFixtureComponent } from './components/matchday/matchday-fixture/matchday-fixture.component';
 import { MatchdayComponent } from './components/matchday/matchday.component';
@@ -119,7 +120,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ChartDialogComponent,
     ValueDifferenceComponent,
     ViewComponent,
-    ViewTabsNavigationComponent
+    ViewTabsNavigationComponent,
+    WhiteBlockComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -170,7 +172,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ShowMoreLinkComponent,
     ValueDifferenceComponent,
     ViewComponent,
-    ViewTabsNavigationComponent
+    ViewTabsNavigationComponent,
+    WhiteBlockComponent
   ]
 })
 export class SharedModule {

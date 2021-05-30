@@ -1,16 +1,12 @@
-<div>
-  <mat-card *ngIf="!(isMobile$ | async)">
-    <mat-card-content>
-      <ng-content select="[gt-xs]"></ng-content>
-    </mat-card-content>
-  </mat-card>
+<app-white-block *ngIf="!(isMobile$ | async)">
+  <ng-content></ng-content>
+</app-white-block>
 
-  <app-expansion-panel *ngIf="isMobile$ | async" [opened]="false">
-    <div header>
-      <ng-content select="[xs-header]"></ng-content>
-    </div>
-    <div content>
-      <ng-content select="[xs-content]"></ng-content>
-    </div>
-  </app-expansion-panel>
-</div>
+<app-expansion-panel *ngIf="isMobile$ | async" [opened]="false">
+  <div header>
+    <ng-content select="[xs-header]"></ng-content>
+  </div>
+  <div content>
+    <ng-content select="[xs-content]"></ng-content>
+  </div>
+</app-expansion-panel>

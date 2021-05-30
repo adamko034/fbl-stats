@@ -118,5 +118,13 @@
       }
     }
   },
-  "defaultProject": "fbl"
+  "defaultProject": "fbl",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "changeDetection": "OnPush",
+        "skipTests": true
+      }
+    }
+  }
 }
