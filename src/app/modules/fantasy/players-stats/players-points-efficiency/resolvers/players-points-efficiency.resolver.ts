@@ -3,18 +3,18 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { Logger } from 'src/app/utils/logger';
-import { PlayersListsScoringChancesLoader } from '../loaders/players-lists-scoring-chances.loader';
-import { PlayerListScoringChances } from '../models/player-list-scoring-chances.model';
-import { PlayersListScoringChancesType } from '../models/players-lists-scoring-chancec-type.enum';
+import { PlayerPointsEfficiency } from '../models/player-points-efficiency.model';
+import { PlayersPointsEfficiencyType } from '../models/players-points-efficiency-type.enum';
+import { PlayersPointsEfficiencyLoader } from './players-points-efficiency.loader';
 
 @Injectable()
-export class PlayersListScoringChancesResolver implements Resolve<PlayerListScoringChances[]> {
-  constructor(private loader: PlayersListsScoringChancesLoader) {}
+export class PlayersPointsEffciencyResolver implements Resolve<PlayerPointsEfficiency[]> {
+  constructor(private loader: PlayersPointsEfficiencyLoader) {}
 
-  public resolve(route: ActivatedRouteSnapshot): Observable<PlayerListScoringChances[]> {
+  public resolve(route: ActivatedRouteSnapshot): Observable<PlayerPointsEfficiency[]> {
     let orderBy: number = +route.queryParams.orderBy;
     let position: string = route.queryParams.position;
-    let type: PlayersListScoringChancesType = route.params.type || PlayersListScoringChancesType.OVERALL;
+    let type: PlayersPointsEfficiencyType = route.params.type || PlayersPointsEfficiencyType.OVERALL;
 
     if (isNaN(+orderBy) || (orderBy !== 5 && orderBy !== 10 && orderBy !== 15 && orderBy !== 20)) {
       orderBy = 10;

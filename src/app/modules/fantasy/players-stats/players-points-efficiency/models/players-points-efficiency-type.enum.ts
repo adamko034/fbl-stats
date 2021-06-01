@@ -1,4 +1,4 @@
-export enum PlayersListScoringChancesType {
+export enum PlayersPointsEfficiencyType {
   OVERALL = 'overall',
   LAST5 = 'last5',
   HOME = 'home',

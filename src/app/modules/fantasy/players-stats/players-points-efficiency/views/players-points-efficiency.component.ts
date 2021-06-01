@@ -7,12 +7,12 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
+import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
+import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
-import { PlayerPosition } from '../../../overall/models/players-filters';
-import { PlayersListGenericColumn } from '../../components/players-list-generic/models/players-list-generic-column.model';
-import { PlayersListGenericConfig } from '../../components/players-list-generic/models/players-list-generic-config.model';
-import { PlayersListGenericData } from '../../components/players-list-generic/models/players-list-generic-data.model';
-import { PlayersListGenericRowsConverter } from '../../converters/players-list-generic-rows.converter';
+import { PlayerPosition } from '../../../players/overall/models/players-filters';
+import { PlayersListGenericRowsConverter } from '../converters/players-list-generic-rows.converter';
 
 interface State {
   orderBy: string;
@@ -24,12 +24,12 @@ interface State {
 
 @UntilDestroy()
 @Component({
-  selector: 'app-players-list-scoring-chances',
-  templateUrl: './players-list-scoring-chances.component.html',
-  styleUrls: ['./players-list-scoring-chances.component.scss'],
+  selector: 'app-players-points-efficiency',
+  templateUrl: './players-points-efficiency.component.html',
+  styleUrls: ['./players-points-efficiency.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayersListScoringChancesComponent implements OnInit {
+export class PlayersPointsEfficiencyComponent implements OnInit {
   public state: State;
 
   public typeFilterItems: SwitchItem[] = [
@@ -63,7 +63,7 @@ export class PlayersListScoringChancesComponent implements OnInit {
     this.mobile$ = this.screenSizeService.isMobile$();
     combineLatest([this.route.data, this.route.params, this.route.queryParams])
       .pipe(
-        map(([{ scoringChances }, { type }, { orderBy, position }]) => {
+        map(([{ pointsEfficiency }, { type }, { orderBy, position }]) => {
           let orderByParam = orderBy;
 
           if (
@@ -75,7 +75,7 @@ export class PlayersListScoringChancesComponent implements OnInit {
           }
 
           const columns = this.getColumns(orderByParam);
-          const rows = new ArrayStream(scoringChances)
+          const rows = new ArrayStream(pointsEfficiency)
             .convert(new PlayersListGenericRowsConverter(orderByParam))
             .collect();
           const listConfig = this.getListConfig(orderByParam);

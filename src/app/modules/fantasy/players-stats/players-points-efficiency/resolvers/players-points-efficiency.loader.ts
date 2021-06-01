@@ -6,20 +6,20 @@ import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { Logger } from 'src/app/utils/logger';
-import { PlayerPosition } from '../../overall/models/players-filters';
-import { PlayersListScoringChancesConverter } from '../converters/players-list-scoring-chances.converter';
-import { PlayerListScoringChances } from '../models/player-list-scoring-chances.model';
-import { PlayersListScoringChancesType } from '../models/players-lists-scoring-chancec-type.enum';
+import { PlayerPosition } from '../../../players/overall/models/players-filters';
+import { PlayersPointsEfficiencyConverter } from '../converters/players-points-efficiency.converter';
+import { PlayerPointsEfficiency } from '../models/player-points-efficiency.model';
+import { PlayersPointsEfficiencyType } from '../models/players-points-efficiency-type.enum';
 
 @Injectable()
-export class PlayersListsScoringChancesLoader {
+export class PlayersPointsEfficiencyLoader {
   constructor(private playersStore: PlayersStore, private playerFormCalculator: PlayerFormCalculatorService) {}
 
   public load(
     points: number,
-    type: PlayersListScoringChancesType,
+    type: PlayersPointsEfficiencyType,
     position: string
-  ): Observable<PlayerListScoringChances[]> {
+  ): Observable<PlayerPointsEfficiency[]> {
     Logger.logDev('players lists scoring chances loader');
     const pointsFieldName = `scoringChances.${type}.moreThan${points}ptsPercentage`;
 
@@ -31,7 +31,7 @@ export class PlayersListsScoringChancesLoader {
           )
           .orderBy(pointsFieldName, 'dsc')
           .take(30)
-          .convert(new PlayersListScoringChancesConverter(type, this.playerFormCalculator))
+          .convert(new PlayersPointsEfficiencyConverter(type, this.playerFormCalculator))
           .collect();
       })
     );

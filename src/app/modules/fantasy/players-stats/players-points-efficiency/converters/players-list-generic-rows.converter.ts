@@ -1,12 +1,12 @@
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
-import { PlayersListGenericRowOther } from '../components/players-list-generic/models/players-list-generic-row-other.mode';
-import { PlayersListGenericRow } from '../components/players-list-generic/models/players-list-generic-row.model';
-import { PlayerListScoringChances } from '../models/player-list-scoring-chances.model';
+import { PlayersListGenericRowOther } from 'src/app/shared/components/players-list-generic/models/players-list-generic-row-other.mode';
+import { PlayersListGenericRow } from 'src/app/shared/components/players-list-generic/models/players-list-generic-row.model';
+import { PlayerPointsEfficiency } from '../models/player-points-efficiency.model';
 
-export class PlayersListGenericRowsConverter implements Convertable<PlayerListScoringChances, PlayersListGenericRow> {
+export class PlayersListGenericRowsConverter implements Convertable<PlayerPointsEfficiency, PlayersListGenericRow> {
   constructor(private selectedOrderBy: string) {}
 
-  public convert(items: PlayerListScoringChances[]): PlayersListGenericRow[] {
+  public convert(items: PlayerPointsEfficiency[]): PlayersListGenericRow[] {
     return items.map((x) => {
       return {
         teamShort: x.teamShort,

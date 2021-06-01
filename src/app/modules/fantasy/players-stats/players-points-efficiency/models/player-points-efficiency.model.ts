@@ -1,4 +1,4 @@
-export interface PlayerListScoringChances {
+export interface PlayerPointsEfficiency {
   playerId: string;
   name: string;
   lastName: string;

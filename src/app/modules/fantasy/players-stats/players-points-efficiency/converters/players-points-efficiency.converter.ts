@@ -1,13 +1,13 @@
 import { PlayerFormCalculatorService } from 'src/app/modules/core/players/services/player-form-calculator.service';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
 import { Player } from 'src/app/store/players/models/player.model';
-import { PlayerListScoringChances } from '../models/player-list-scoring-chances.model';
-import { PlayersListScoringChancesType } from '../models/players-lists-scoring-chancec-type.enum';
+import { PlayerPointsEfficiency } from '../models/player-points-efficiency.model';
+import { PlayersPointsEfficiencyType } from '../models/players-points-efficiency-type.enum';
 
-export class PlayersListScoringChancesConverter implements Convertable<Player, PlayerListScoringChances> {
-  constructor(private type: PlayersListScoringChancesType, private formCalculator: PlayerFormCalculatorService) {}
+export class PlayersPointsEfficiencyConverter implements Convertable<Player, PlayerPointsEfficiency> {
+  constructor(private type: PlayersPointsEfficiencyType, private formCalculator: PlayerFormCalculatorService) {}
 
-  public convert(items: Player[]): PlayerListScoringChances[] {
+  public convert(items: Player[]): PlayerPointsEfficiency[] {
     return items.map((player) => {
       const scoringChances = player.scoringChances[this.type];
 
