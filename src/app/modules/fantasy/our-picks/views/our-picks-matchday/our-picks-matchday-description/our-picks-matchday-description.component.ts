@@ -1,7 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 
 @Component({
@@ -10,20 +7,14 @@ import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-ty
   styleUrls: ['./our-picks-matchday-description.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OurPicksMatchdayDescriptionComponent implements OnInit {
-  public matchday$: Observable<number>;
-
+export class OurPicksMatchdayDescriptionComponent {
   public iconsLegend: { icon: string; description: string }[] = [
-    { icon: 'mustHave', description: 'must have player' },
-    { icon: 'premium', description: 'premium pick - high cost player who can score big' },
-    { icon: 'bargain', description: 'bargain pick - max price 8M' },
-    { icon: 'differential', description: 'differential - max popularity 5%' },
-    { icon: OurPicksType.SURPRISING, description: 'surprising pick, player you may not think about' }
+    { icon: 'mustHave', description: 'Must have player' },
+    { icon: 'premium', description: 'Premium pick - high cost player who can score big' },
+    { icon: 'bargain', description: 'Bargain pick - max price 8M' },
+    { icon: 'differential', description: 'Differential - max popularity 5%' },
+    { icon: OurPicksType.SURPRISING, description: 'Surprising pick, player you may not think about' }
   ];
 
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.matchday$ = this.route.data.pipe(map((data) => data.ourPicks?.matchday));
-  }
+  constructor() {}
 }

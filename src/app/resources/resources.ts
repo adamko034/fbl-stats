@@ -10,5 +10,8 @@ export const constants = {
     ligainsider: {
       unavailables: 'https://www.ligainsider.de/bundesliga/verletzte-und-gesperrte-spieler'
     }
+  },
+  properties: {
+    matchdaysCount: 34
   }
 };

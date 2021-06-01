@@ -13,8 +13,10 @@ import { OurPicksPlayersComponent } from './components/our-picks-players/our-pic
 import { OurPicksFiltersExecutor } from './filters/our-picks-filters-executor';
 import { OurPicksLoadedGuard } from './guards/our-picks-loaded.guard';
 import { OurPicksRoutingModule } from './our-picks-routing.module';
+import { OurPicksMatchdaysResolver } from './resolvers/our-picks-matchdays.resolver';
 import { OurPicksDisplaySettingsService } from './services/our-picks-display-settings.service';
 import { OurPicksFiltersService } from './services/our-picks-filters.service';
+import { OurPicksContentComponent } from './views/our-picks-content/our-picks-content.component';
 import { OurPicksMatchdayDescriptionComponent } from './views/our-picks-matchday/our-picks-matchday-description/our-picks-matchday-description.component';
 import { OurPicksMatchdayComponent } from './views/our-picks-matchday/our-picks-matchday.component';
 
@@ -28,9 +30,16 @@ import { OurPicksMatchdayComponent } from './views/our-picks-matchday/our-picks-
     OurPicksFiltersComponent,
     OurPicksFilterTypesComponent,
     OurPicksDisplaySettingsComponent,
-    OurPicksPlayersSimplifiedComponent
+    OurPicksPlayersSimplifiedComponent,
+    OurPicksContentComponent
   ],
   imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
-  providers: [OurPicksLoadedGuard, OurPicksFiltersExecutor, OurPicksFiltersService, OurPicksDisplaySettingsService]
+  providers: [
+    OurPicksLoadedGuard,
+    OurPicksFiltersExecutor,
+    OurPicksFiltersService,
+    OurPicksDisplaySettingsService,
+    OurPicksMatchdaysResolver
+  ]
 })
 export class OurPicksModule {}

@@ -1,10 +1,12 @@
+@import '/src/variables.scss';
+
 .our-picks-filter-types-container {
   .icon-container {
     padding: 5px 0;
   }
 
   .active {
-    background-color: #c80a00;
+    background-color: $colorBlue;
     color: #fff;
   }
 
