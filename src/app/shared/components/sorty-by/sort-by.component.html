@@ -2,17 +2,18 @@
   <span *ngIf="showLabel" class="bold">{{ label }}</span>
   <mat-button-toggle-group name="orderBy">
     <mat-button-toggle
+      class="toggle-without-padding"
       [disableRipple]="true"
       (click)="menuTrigger.menuOpen ? menuTrigger.closeMenu() : menuTrigger.openMenu(); $event.stopPropagation()"
     >
       <button
-        type="button"
         mat-button
         [matMenuTriggerFor]="sortByMenu"
         #menuTrigger="matMenuTrigger"
         (click)="$event.stopPropagation()"
       >
         {{ selectedItem.text }}
+        <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #sortByMenu="matMenu">
         <button type="button" mat-menu-item *ngFor="let item of items" (click)="onSortByChange(item)">

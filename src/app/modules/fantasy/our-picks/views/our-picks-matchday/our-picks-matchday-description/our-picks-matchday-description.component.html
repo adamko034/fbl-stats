@@ -1,24 +1,10 @@
-<div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
-  <div
-    fxFlexAlign="center"
-    fxLayout.xs="column"
-    fxLayoutGap.xs="7px"
-    gdAreas.gt-xs="mustHave premium bargain | differential surprising surprising | firstGame firstGame firstGame"
-    gdGap.gt-xs="10px 40px"
-  >
-    <div
-      *ngFor="let item of iconsLegend"
-      [gdArea.gt-xs]="item.icon"
-      fxLayout="row"
-      fxLayoutAlign="start center"
-      fxLayoutGap="10px"
-    >
-      <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
-      <span>{{ item.description }}</span>
-    </div>
-    <div gdArea="firstGame" fxLayoutAlign="start center" fxLayoutGap="10px">
-      <app-matchday-first-game-indicator></app-matchday-first-game-indicator>
-      <span>Team playing matchday first game</span>
-    </div>
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
+  <div class="item" *ngFor="let item of iconsLegend" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
+    <span class="item-description">{{ item.description }}</span>
+  </div>
+  <div class="item" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <app-matchday-first-game-indicator></app-matchday-first-game-indicator>
+    <span class="item-description">Team playing matchday first game</span>
   </div>
 </div>

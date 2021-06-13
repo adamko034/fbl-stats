@@ -1,15 +1,13 @@
 <div>
-  <mat-card *ngIf="!(isMobile$ | async)">
-    <mat-card-content>
-      <div gdAreas="position form | price popularity | teams teams" gdGap="20px 10px" gdRows="auto auto auto">
-        <app-players-filter-position gdArea="position"></app-players-filter-position>
-        <app-players-filter-matchdays gdArea="form"></app-players-filter-matchdays>
-        <app-players-filter-max-price gdArea="price"></app-players-filter-max-price>
-        <app-players-filter-popularity gdArea="popularity"></app-players-filter-popularity>
-        <app-players-filter-teams gdArea="teams"></app-players-filter-teams>
-      </div>
-    </mat-card-content>
-  </mat-card>
+  <app-white-block *ngIf="!(isMobile$ | async)">
+    <div gdAreas="position form | price popularity | teams teams" gdGap="20px 10px" gdRows="auto auto auto">
+      <app-players-filter-position gdArea="position"></app-players-filter-position>
+      <app-players-filter-matchdays gdArea="form"></app-players-filter-matchdays>
+      <app-players-filter-max-price gdArea="price"></app-players-filter-max-price>
+      <app-players-filter-popularity gdArea="popularity"></app-players-filter-popularity>
+      <app-players-filter-teams gdArea="teams"></app-players-filter-teams>
+    </div>
+  </app-white-block>
 
   <app-expansion-panel *ngIf="isMobile$ | async" [opened]="false">
     <div header fxLayoutAlign="space-between">

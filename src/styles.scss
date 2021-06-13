@@ -329,3 +329,7 @@ table.comparison-table {
 .mat-drawer-inner-container {
   overflow: unset !important;
 }
+
+.toggle-without-padding > .mat-button-toggle-button > .mat-button-toggle-label-content {
+  padding: 0px !important;
+}

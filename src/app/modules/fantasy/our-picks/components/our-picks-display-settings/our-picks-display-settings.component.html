@@ -1,25 +1,23 @@
-<div
-  class="our-picks-display-settings-container"
-  *ngIf="settings$ | async"
-  fxLayout="row"
-  fxLayout.xs="column"
-  fxLayoutGap.xs="10px"
-  fxLayoutAlign="space-evenly center"
->
+<div *ngIf="settings$ | async" class="settings-container" fxLayout="row" fxLayoutGap="10px">
+  <mat-form-field class="view-form-field">
+    <mat-label>View</mat-label>
+    <mat-select [ngModel]="settings$ | async | field: 'view'" (selectionChange)="onViewChange($event.value)">
+      <mat-option value="simplified">Simple</mat-option>
+      <mat-option value="extended">Extended</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <app-switch
-    name="ourPicksViews"
-    [value]="settings$ | async | field: 'view'"
-    [items]="viewItems"
-    (switchChange)="onViewChange($event)"
-  ></app-switch>
-  <app-switch
+    class="extended-view-options"
     *ngIf="(screenLarge$ | async) && (settings$ | async | field: 'view') === Views.EXTENDED"
     name="ouPicksDisplays"
     [value]="settings$ | async | field: 'display'"
     [items]="displayItems"
     (switchChange)="onDisplayChange($event)"
   ></app-switch>
+
   <app-sort-by
+    class="sort-by"
     [showLabel]="false"
     [defaultValue]="settings$ | async | field: 'sortBy'"
     [items]="(settings$ | async | field: 'view') === Views.EXTENDED ? sortsExtended : sortsSimplified"

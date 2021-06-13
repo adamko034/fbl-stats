@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
@@ -26,19 +25,14 @@ export class OurPicksDisplaySettingsComponent implements OnInit {
     { value: OurPicksDisplay.TILES, matIcon: 'grid_view' }
   ];
 
-  public viewItems: SwitchItem[] = [
-    { value: OurPicksView.EXTENDED, description: 'EXTENDED' },
-    { value: OurPicksView.SIMPLIFIED, description: 'SIMPLIFIED' }
-  ];
-
   public sortsSimplified: SortByItem[] = [
-    { value: 'order', text: 'Our order' },
+    { value: 'order', text: 'Relevance' },
     { value: 'price', text: 'Price' },
     { value: 'popularity', text: 'Popularity' }
   ];
 
   public sortsExtended: SortByItem[] = [
-    { value: 'order', text: 'Our order' },
+    { value: 'order', text: 'Relevance' },
     { value: 'price', text: 'Price' },
     { value: 'formPts', text: 'Form' },
     { value: 'popularity', text: 'Popularity' },

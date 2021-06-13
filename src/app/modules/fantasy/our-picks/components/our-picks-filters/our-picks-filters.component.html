@@ -1,4 +1,9 @@
-<app-filters-layout>
+<div gt-xs fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
+  <ng-template *ngTemplateOutlet="positionFilter"></ng-template>
+  <ng-template *ngTemplateOutlet="typesFilter"></ng-template>
+</div>
+
+<!-- <app-filters-layout>
   <div gt-xs fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="space-evenly center">
     <ng-template *ngTemplateOutlet="positionFilter"></ng-template>
     <ng-template *ngTemplateOutlet="typesFilter"></ng-template>
@@ -10,7 +15,7 @@
     <ng-template *ngTemplateOutlet="positionFilter"></ng-template>
     <ng-template *ngTemplateOutlet="typesFilter"></ng-template>
   </div>
-</app-filters-layout>
+</app-filters-layout>-->
 
 <ng-template #positionFilter>
   <app-filter-position [selected]="position$ | async" (positionChange)="onPositionChange($event)"></app-filter-position>

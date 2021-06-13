@@ -9,11 +9,11 @@ import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-ty
 })
 export class OurPicksMatchdayDescriptionComponent {
   public iconsLegend: { icon: string; description: string }[] = [
-    { icon: 'mustHave', description: 'Must have player' },
-    { icon: 'premium', description: 'Premium pick - high cost player who can score big' },
-    { icon: 'bargain', description: 'Bargain pick - max price 8M' },
-    { icon: 'differential', description: 'Differential - max popularity 5%' },
-    { icon: OurPicksType.SURPRISING, description: 'Surprising pick, player you may not think about' }
+    { icon: 'mustHave', description: 'Must have' },
+    { icon: 'premium', description: 'Premium pick' },
+    { icon: 'bargain', description: 'Bargain pick' },
+    { icon: 'differential', description: 'Differential (max popularity 5%)' },
+    { icon: OurPicksType.SURPRISING, description: 'Surprising pick' }
   ];
 
   constructor() {}

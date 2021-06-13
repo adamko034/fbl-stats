@@ -13,7 +13,7 @@ export class OurPicksDisplaySettingsService {
   private defaultValue: OurPicksDisplaySettings = {
     display: OurPicksDisplay.TILES,
     view: OurPicksView.SIMPLIFIED,
-    sortBy: { value: 'order', sortByItem: { text: 'Our order', value: 'order' }, direction: 'asc' }
+    sortBy: { value: 'order', sortByItem: { text: 'Relevance', value: 'order' }, direction: 'asc' }
   };
 
   private settings: OurPicksDisplaySettings = this.getInitialValue();
