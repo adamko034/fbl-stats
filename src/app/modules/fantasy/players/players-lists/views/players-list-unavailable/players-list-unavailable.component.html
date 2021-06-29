@@ -1,16 +1,18 @@
-<app-view-title>
-  <span title>UNAVAILABLE PLAYERS</span>
-  <div subtitle fxLayout="column" fxLayoutGap="10px">
-    <span>Players unavailable for next matchday (MD {{ (lastMatchday$ | async) + 1 }}). Definitely won't play.</span>
-    <span fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="7px">
-      <span>Marked in <a routerLink="/fantasy/players" class="red">Fantasy Players table</a> as: </span
-      ><mat-icon class="red">not_interested</mat-icon></span
-    >
-    <span fxFlexAlign="flex-end" class="source-link"
-      >Source: <a class="red" [href]="source" target="blank">LigaInsider.de</a></span
-    >
-  </div>
-</app-view-title>
-<div *ngIf="players$ | async">
-  <app-players-list-base [players]="players$ | async"></app-players-list-base>
+<div fxLayout="column" fxLayoutGap="15px">
+  <app-view-title>
+    <div subtitle fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <mat-icon class="red">not_interested</mat-icon>
+        <span
+          >Players unavailable for next matchday (MD {{ (lastMatchday$ | async) + 1 }}). Definitely won't play. Source:
+          <a class="red" [href]="source" target="blank">LigaInsider.de</a></span
+        >
+      </div>
+    </div>
+  </app-view-title>
+  <app-white-block>
+    <div *ngIf="players$ | async">
+      <app-players-list-base [players]="players$ | async"></app-players-list-base>
+    </div>
+  </app-white-block>
 </div>

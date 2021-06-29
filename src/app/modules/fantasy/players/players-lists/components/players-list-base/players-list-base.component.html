@@ -21,8 +21,7 @@
     <tbody>
       <tr *ngFor="let player of sorted" class="player" ngClass.lt-sm="player-mobile">
         <td>
-          <app-team-logo fxHide.lt-sm [team]="player.teamShort" [height]="40"></app-team-logo>
-          <app-team-logo fxHide.gt-xs [team]="player.teamShort" [height]="30"></app-team-logo>
+          <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
         </td>
         <td class="player-name">
           <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
