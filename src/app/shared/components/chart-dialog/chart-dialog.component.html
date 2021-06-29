@@ -2,6 +2,21 @@
 <div class="chart-dialog-container">
   <div fxLayout="column" fxLayoutGap="20px">
     <app-chart *ngIf="showChart" [config]="chartDialogConfig"></app-chart>
+    <!-- <div *ngIf="chartDialogConfig.dialogConfig.showLegend" class="legend" fxFlexAlign="end">
+      <span class="legend-title">Legend</span>
+      <div class="legend-content">
+        <ul>
+          <li>
+            <span class="legend-label legend-label-red"></span>
+            <span class="legend-item">{{ chartDialogConfig.dialogConfig.legendRedAxisLabel }}</span>
+          </li>
+          <li>
+            <span class="legend-label legend-label-blue"></span>
+            <span class="legend-item">{{ chartDialogConfig.dialogConfig.legendBlueAxisLabel }}</span>
+          </li>
+        </ul>
+      </div>
+    </div> -->
     <div *ngIf="data" class="table" fxLayoutAlign="center">
       <table class="comparison-table" [ngClass]="{ 'table-mobile': isMobile }">
         <tr>

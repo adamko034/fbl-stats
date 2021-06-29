@@ -65,6 +65,7 @@ export class PlayerDetailsPointsEfficiencyComponent implements OnInit {
     const gamesCount = this.playerGamesService.getGamesCountWithPointsGreaterThan(games, minPoints);
     const percentage = gamesCount.length === 0 ? 0 : Math.round((gamesCount.length / games.length) * 1000) / 10;
 
-    return `${percentage}% (${gamesCount.length}/${games.length})`;
+    return `${percentage}%`;
+    //return `${percentage}% (${gamesCount.length}/${games.length})`;
   }
 }

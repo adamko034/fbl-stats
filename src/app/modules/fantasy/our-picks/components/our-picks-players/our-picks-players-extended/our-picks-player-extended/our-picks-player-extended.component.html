@@ -33,7 +33,7 @@
 
         <div class="player-main-prediction" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
           <a [routerLink]="'/lineups/teams/' + player.team.teamShort" target="_blank">Is predicted to start?</a>
-          <app-prediction-indicator [value]="player.prediction" [height]="20"></app-prediction-indicator>
+          <app-prediction-indicator [value]="player.prediction"></app-prediction-indicator>
         </div>
       </div>
     </div>

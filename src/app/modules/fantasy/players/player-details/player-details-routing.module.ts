@@ -7,7 +7,7 @@ import { PlayerDetailsContentComponent } from './view/player-details-content/pla
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     canActivate: [PositionsStatsLoadedGuard],
     component: PlayerDetailsContentComponent,
     resolve: { player: PlayerDetailsResolver, positions: PositionsStatsResolver }

@@ -7,10 +7,7 @@
       <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
         <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
-        <app-prediction-indicator
-          [value]="player.nextGameAttendancePrediction"
-          [height]="35"
-        ></app-prediction-indicator>
+        <app-prediction-indicator [value]="player.nextGameAttendancePrediction"></app-prediction-indicator>
       </div>
     </div>
     <app-player-tile-fantasy-points [player]="player" fxFlex fxFlexAlign="center"></app-player-tile-fantasy-points>
@@ -27,7 +24,7 @@
     </div>
     <div fxFlex="20" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
       <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
-      <app-prediction-indicator [value]="player.nextGameAttendancePrediction" [height]="35"></app-prediction-indicator>
+      <app-prediction-indicator [value]="player.nextGameAttendancePrediction"></app-prediction-indicator>
     </div>
 
     <app-player-tile-fantasy-points fxFlex [player]="player"></app-player-tile-fantasy-points>

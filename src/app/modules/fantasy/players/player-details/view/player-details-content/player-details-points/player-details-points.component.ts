@@ -12,5 +12,5 @@ export class PlayerDetailsPointsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

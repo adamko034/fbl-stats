@@ -10,7 +10,7 @@ export class PlayerDetailsGameTextValueConverter implements Convertable<PlayerDe
     return items.map((game) => {
       return {
         text: `MD ${game.matchday} (${game.isHome ? 'h' : 'a'})`,
-        value: `${game.points.toString()}pts`,
+        value: `${game.points.toString()}`,
         valueStyle: { color: `'${this.playerDataService.getPointsColor(game.points)}'`, fontWeight: '500' }
       };
     });

@@ -297,10 +297,12 @@ span.view-subtitle-span {
 }
 
 table.comparison-table {
+  border-spacing: 1px;
+
   tr {
     td {
+      font-size: $fontSizeSmall;
       text-align: center;
-      padding-top: 5px;
       vertical-align: middle;
 
       &:first-child {
@@ -314,6 +316,13 @@ table.comparison-table {
 
     td.bolder {
       font-weight: 600;
+    }
+  }
+
+  tr:first-child {
+    td {
+      font-size: $fontSizeSmaller;
+      font-weight: 500;
     }
   }
 
@@ -332,4 +341,8 @@ table.comparison-table {
 
 .toggle-without-padding > .mat-button-toggle-button > .mat-button-toggle-label-content {
   padding: 0px !important;
+}
+
+.font-small {
+  font-size: $fontSizeSmall;
 }

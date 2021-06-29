@@ -1,13 +1,15 @@
 import { ChartData } from './chart-data.model';
+import { ChartDialogConfig } from './chart-dialog-config.model';
 
 export interface ChartConfig {
   data: ChartData[];
-  xAxisLabel: string;
+  xAxisLabel?: string;
   xAxisLabelShort?: string;
-  yAxisLabel: string;
+  yAxisLabel?: string;
   yAxisLabelShort?: string;
   title: string;
   showDialog?: boolean;
+  dialogConfig?: ChartDialogConfig;
   showLabels?: boolean;
   autoScale?: boolean;
   yAxisTicks?: any[];

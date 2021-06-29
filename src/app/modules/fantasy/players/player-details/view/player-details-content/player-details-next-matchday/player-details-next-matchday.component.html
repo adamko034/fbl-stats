@@ -1,52 +1,108 @@
-<mat-card
-  class="player-details-next-matchday-container"
-  fxLayout="row wrap"
-  fxLayoutGap="10px grid"
-  fxLayoutAlign="space-evenly start"
-  fxLayout.lt-sm="column"
-  fxLayoutAlign.lt-sm="center center"
-  fxLayoutGap.lt-sm="20px"
->
-  <div fxLayout="column" class="next-game-info" fxLayoutGap="25px">
-    <div>
-      <h4>MATCHDAY {{ player.nextGame.matchday }}</h4>
-      <span class="next-game-info-date grey">{{
-        player.nextGame.date | epochDate | date: 'EEEE, HH:mm, dd.MM.yyyy'
-      }}</span>
-    </div>
-    <div fxLayoutGap="20px">
-      <app-team-logo [height]="50" [team]="homeTeam.shortName"></app-team-logo>
-      <span>vs.</span>
-      <app-team-logo [height]="50" [team]="awayTeam.shortName"></app-team-logo>
-    </div>
-    <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
-      <app-matchday-first-game-indicator></app-matchday-first-game-indicator>
-      <span>Matchday first game!</span>
-    </div>
-  </div>
-
-  <div>
-    <span class="stats-section-title">Lineup Predictions</span>
-    <div class="stats-section" fxLayout="column" fxLayoutGap="10px">
-      <div *ngFor="let prediction of player.nextGame.lineupPredictions" fxLayout="row" fxLayoutAlign="start center">
-        <span class="prediction-source">{{ prediction.source | ucfirst }} </span>
-        <app-prediction-indicator [showUnknownYet]="true" [value]="prediction.attendance"></app-prediction-indicator>
+<app-white-block>
+  <div
+    class="player-details-next-matchday-container"
+    fxLayout="row wrap"
+    fxLayoutGap="10px grid"
+    fxLayoutAlign="space-evenly start"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayoutGap.lt-sm="20px"
+  >
+    <div fxLayout="column" class="next-game-info" fxLayoutGap="10px">
+      <div>
+        <h4>MATCHDAY {{ player.nextGame.matchday }}</h4>
+        <span class="next-game-info-date grey">{{
+          player.nextGame.date | epochDate | date: 'EEEE, HH:mm, dd.MM.yyyy'
+        }}</span>
       </div>
-      <a fxFlexAlign="flex-end" [routerLink]="'/lineups/teams/' + player.team.shortName">Show more</a>
+      <div fxLayoutGap="20px">
+        <app-team-logo [height]="40" [team]="homeTeam.shortName"></app-team-logo>
+        <span>vs.</span>
+        <app-team-logo [height]="40" [team]="awayTeam.shortName"></app-team-logo>
+      </div>
+      <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="3px">
+        <app-matchday-first-game-indicator appScale="0.8"></app-matchday-first-game-indicator>
+        <span class="font-small">Matchday first game!</span>
+      </div>
+      <div>
+        <mat-chip-list class="mat-chip-list-stacked">
+          <mat-chip class="chip chip-red" fxLayout="row" fxLayoutGap="4px" *ngIf="player.nextGame.isUnavailable"
+            ><mat-icon [appScale]="0.8">not_interested</mat-icon><span>Unavailable !!</span></mat-chip
+          >
+          <mat-chip
+            [disableRipple]="true"
+            class="chip chip-orange"
+            fxLayout="row"
+            fxLayoutGap="4px"
+            *ngIf="player.nextGame.prediction === predictions.Doubt"
+            ><mat-icon [appScale]="0.8">error_outline</mat-icon><span>Varied predictions</span></mat-chip
+          >
+          <mat-chip
+            [disableRipple]="true"
+            class="chip chip-red"
+            fxLayout="row"
+            fxLayoutGap="4px"
+            *ngIf="player.nextGame.prediction === predictions.WillNotPlay"
+            ><mat-icon [appScale]="0.8">highlight_off</mat-icon><span>Not predicted to start</span></mat-chip
+          >
+          <mat-chip
+            [disableRipple]="true"
+            class="chip chip-green"
+            fxLayout="row"
+            fxLayoutGap="4px"
+            *ngIf="player.nextGame.prediction === predictions.WillPlay"
+            ><mat-icon [appScale]="0.8">check_circle</mat-icon><span>Predicted to start</span></mat-chip
+          >
+          <mat-chip
+            [disableRipple]="true"
+            class="chip chip-yellow"
+            fxLayout="row"
+            fxLayoutGap="4px"
+            *ngIf="player.nextGame.isSuspensionRisk"
+          >
+            <app-player-suspension-risk [show]="true"></app-player-suspension-risk>
+            <span>Suspension risk</span>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
     </div>
-  </div>
 
-  <div fxLayout="column">
-    <span class="stats-section-title">Bundesliga Overall</span>
-    <div class="stats-section">
-      <table class="comparison-table">
+    <app-title-underlined-grey>
+      <span title>Lineup predictions</span>
+      <table content class="comparison-table">
+        <tbody>
+          <tr></tr>
+          <tr *ngFor="let prediction of player.nextGame.lineupPredictions">
+            <td>
+              <span>{{ prediction.source | ucfirst }} </span>
+            </td>
+            <td>
+              <app-prediction-indicator
+                [scale]="0.8"
+                [showUnknownYet]="true"
+                [value]="prediction.attendance"
+              ></app-prediction-indicator>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <a fxFlexAlign="flex-end" [routerLink]="'/teams/lineups/' + player.team.shortName">Show more</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </app-title-underlined-grey>
+
+    <app-title-underlined-grey>
+      <span title>Bundesliga overall</span>
+      <table content class="comparison-table">
         <tbody>
           <tr>
             <td></td>
             <td>{{ homeTeam.shortName | uppercase }}</td>
             <td>{{ awayTeam.shortName | uppercase }}</td>
           </tr>
-          <tr class="padding-top">
+          <tr>
             <td>Games</td>
             <td>{{ homeTeam.table.games }}</td>
             <td>{{ awayTeam.table.games }}</td>
@@ -87,20 +143,18 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
+    </app-title-underlined-grey>
 
-  <div fxLayout="column">
-    <span class="stats-section-title">Bundesliga Last 5</span>
-    <div class="stats-section">
-      <table class="comparison-table">
+    <app-title-underlined-grey>
+      <span title>Bundesliga last 5</span>
+      <table content class="comparison-table">
         <tbody>
           <tr>
             <td></td>
             <td>{{ homeTeam.shortName | uppercase }}</td>
             <td>{{ awayTeam.shortName | uppercase }}</td>
           </tr>
-          <tr class="padding-top">
+          <tr>
             <td>Points</td>
             <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
             <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>
@@ -133,6 +187,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </app-title-underlined-grey>
   </div>
-</mat-card>
+</app-white-block>

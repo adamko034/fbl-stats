@@ -7,12 +7,12 @@ import { TextValue } from 'src/app/shared/components/text-value-card/models/text
 import { LeaderPlayer } from 'src/app/store/leaders/models/leader-player.model';
 import { LeadersPlayersCombination } from 'src/app/store/leaders/models/leaders-players-combination.model';
 import { LeadersStar } from 'src/app/store/leaders/models/leaders-star.model';
+import { LeadersTextValueDialgComponent } from '../../../../components/leaders-text-value-dialg/leaders-text-value-dialg.component';
 import {
   LeadersUsageTextValueConfig,
   LeadersUsageTextValueConverter
-} from '../../../converters/leaders-usage-text-value.converter';
-import { LeadersPlayersByPosition } from '../../../models/leaders-players-by-position.model';
-import { LeadersTextValueDialgComponent } from '../../leaders-text-value-dialg/leaders-text-value-dialg.component';
+} from '../../../../converters/leaders-usage-text-value.converter';
+import { LeadersPlayersByPosition } from '../../../../models/leaders-players-by-position.model';
 
 @Component({
   selector: 'app-leaders-players-position',
@@ -32,7 +32,7 @@ export class LeadersPlayersPositionComponent {
       return [];
     }
     var config: LeadersUsageTextValueConfig = {
-      boldMax: true,
+      boldMax: false,
       textField: 'lastName',
       valueType: 'both',
       showTeamLogo: true
@@ -55,7 +55,7 @@ export class LeadersPlayersPositionComponent {
     return new ArrayStream<LeaderPlayer>(this.data.players)
       .filterQuick((p) => p.usageDifference > 0)
       .orderBy('usageDifference', 'dsc')
-      .take(3)
+      .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
   }
@@ -74,7 +74,7 @@ export class LeadersPlayersPositionComponent {
     return new ArrayStream<LeaderPlayer>(this.data.players)
       .filterQuick((p) => p.usageDifference < 0)
       .orderBy('usageDifference', 'asc')
-      .take(3)
+      .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
   }
@@ -85,7 +85,7 @@ export class LeadersPlayersPositionComponent {
     }
 
     var config: LeadersUsageTextValueConfig = {
-      boldMax: true,
+      boldMax: false,
       valueType: 'usage',
       showTeamLogo: true,
       textField: 'lastName'
@@ -93,7 +93,7 @@ export class LeadersPlayersPositionComponent {
 
     return new ArrayStream<LeadersStar>(this.data.stars)
       .orderBy('usage', 'dsc')
-      .take(3)
+      .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
   }
@@ -104,7 +104,7 @@ export class LeadersPlayersPositionComponent {
     }
 
     var config: LeadersUsageTextValueConfig = {
-      boldMax: true,
+      boldMax: false,
       valueType: 'usage',
       textField: 'combination',
       style: { padding: '3px 0' }
@@ -112,21 +112,9 @@ export class LeadersPlayersPositionComponent {
 
     return new ArrayStream<LeadersPlayersCombination>(this.data.combinations)
       .orderBy('usage', 'dsc')
-      .take(3)
+      .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
-  }
-
-  public get showMoreGrowth(): boolean {
-    return (
-      new ArrayStream<LeaderPlayer>(this.data.players).filterQuick((p) => p.usageDifference > 0).collect().length > 3
-    );
-  }
-
-  public get showMoreDrop(): boolean {
-    return (
-      new ArrayStream<LeaderPlayer>(this.data.players).filterQuick((p) => p.usageDifference < 0).collect().length > 3
-    );
   }
 
   constructor(private screenSizeService: ScreenSizeService, private matDialog: MatDialog) {

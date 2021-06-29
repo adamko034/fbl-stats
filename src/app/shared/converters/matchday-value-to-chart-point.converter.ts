@@ -8,6 +8,7 @@ export class MatchdayValueToChartPointConverter implements Convertable<MatchdayV
   public convert(items: MatchdayValue[]): ChartPoint[] {
     return items.map((item) => ({
       name: item.matchday.toString(),
+      order: item.matchday,
       value: item.value,
       valueSuffix: this.suffix,
       valueDiff: item.change

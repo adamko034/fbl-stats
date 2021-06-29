@@ -1,0 +1,50 @@
+<h2 class="players-title">{{ title }}</h2>
+<app-white-block>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="15px">
+    <app-text-value-card
+      [showMoreButton]="true"
+      [showInMatCard]="false"
+      [titleUnderlined]="'grey'"
+      title="Common picks"
+      [items]="commonPlayers"
+      (showMoreClick)="onShowMoreClick('players')"
+    ></app-text-value-card>
+
+    <app-text-value-card
+      [showInMatCard]="false"
+      [showMoreButton]="true"
+      title="Top growth"
+      [titleUnderlined]="'grey'"
+      [items]="topGrowthPlayers"
+      (showMoreClick)="onShowMoreClick('growth')"
+    ></app-text-value-card>
+
+    <app-text-value-card
+      [showInMatCard]="false"
+      [showMoreButton]="true"
+      title="Most drop"
+      [titleUnderlined]="'grey'"
+      [items]="topDropPlayers"
+      (showMoreClick)="onShowMoreClick('drop')"
+    ></app-text-value-card>
+
+    <app-text-value-card
+      [showInMatCard]="false"
+      [showMoreButton]="data.stars?.length > 3"
+      title="Stars"
+      [titleUnderlined]="'grey'"
+      [items]="stars"
+      (showMoreClick)="onShowMoreClick('stars')"
+    ></app-text-value-card>
+
+    <app-text-value-card
+      [showMoreButton]="data.combinations?.length > 3"
+      [showInMatCard]="false"
+      title="Combinations"
+      [items]="combinations"
+      [titleUnderlined]="'grey'"
+      [showBottomBorder]="isMobile$ | async"
+      (showMoreClick)="onShowMoreClick('combinations')"
+    ></app-text-value-card>
+  </div>
+</app-white-block>

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { shortLongMaps } from 'src/app/resources/short-long.static';
 import { LeaderPlayer } from 'src/app/store/leaders/models/leader-player.model';
 import { LeadersPlayers } from 'src/app/store/leaders/models/leaders-players.model';
-import { LeadersPlayersByPosition } from '../../models/leaders-players-by-position.model';
+import { LeadersPlayersByPosition } from '../../../models/leaders-players-by-position.model';
 
 @Component({
   selector: 'app-leaders-players-positions',

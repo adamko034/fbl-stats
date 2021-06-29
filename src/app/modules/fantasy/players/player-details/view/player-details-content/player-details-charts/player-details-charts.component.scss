@@ -1,50 +1,6 @@
-.legend {
-  float: right;
-  &-title {
-    padding-left: 10px;
-    font-size: 15px;
-    font-weight: 500;
-  }
-
-  &-content {
-    padding: 6px;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-
-    ul {
-      padding: 0;
-      list-style: none;
-      display: inline-flex;
-
-      li {
-        display: flex;
-        align-items: center;
-        margin: 10px;
-
-        .legend-label {
-          margin-right: 10px;
-          width: 15px;
-          height: 15px;
-          border-radius: 5px;
-
-          &-red {
-            background-color: rgb(168, 56, 93);
-          }
-
-          &-blue {
-            background-color: rgb(122, 163, 229);
-          }
-        }
-
-        .legend-item {
-          color: rgba($color: #000000, $alpha: 0.6);
-        }
-      }
-    }
-  }
-
-  h2,
-  ul {
-    margin: 0;
-  }
+.chart {
+  width: 270px;
+  height: 150px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }

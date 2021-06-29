@@ -1,3 +1,44 @@
+<app-white-block>
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap.gt-xs="20px grid"
+    fxLayoutAlign="space-evenly start"
+    fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="center center"
+    fxLayoutGap.lt-sm="20px"
+  >
+    <div
+      *ngIf="playedGames.length > 0"
+      class="card-games"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="15px"
+    >
+      <app-title-underlined-grey>
+        <span title>Previous games</span>
+        <div content class="card-games-content">
+          <app-timeline-matchdays [items]="playedGames" order="dsc"></app-timeline-matchdays>
+        </div>
+      </app-title-underlined-grey>
+    </div>
+
+    <div
+      *ngIf="futureGames.length > 0"
+      class="card-games"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="15px"
+    >
+      <app-title-underlined-grey>
+        <span title>Next games</span>
+        <div content class="card-games-content">
+          <app-timeline-matchdays [items]="futureGames" order="asc"></app-timeline-matchdays>
+        </div>
+      </app-title-underlined-grey>
+    </div>
+  </div>
+</app-white-block>
+<!--
 <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="40px">
   <mat-card
     fxLayout="row wrap"
@@ -21,4 +62,4 @@
       <app-timeline-matchdays [items]="futureGames" order="asc"></app-timeline-matchdays>
     </div>
   </mat-card>
-</div>
+</div> -->

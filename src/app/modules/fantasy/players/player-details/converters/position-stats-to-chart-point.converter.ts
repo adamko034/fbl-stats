@@ -8,6 +8,7 @@ export class PositionStatsToChartPointConverter implements Convertable<PositionS
       name: stats.matchday.toString(),
       value: stats.top10PlayersAvgPoints,
       valueDiff: stats.top10PlayersAvgPointsDiff,
+      order: stats.matchday,
       valueSuffix: 'pts'
     }));
   }

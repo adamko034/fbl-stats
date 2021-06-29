@@ -35,7 +35,15 @@ interface TableCell {
 })
 export class ChartDialogComponent implements OnInit {
   public get chartDialogConfig(): ChartConfig {
-    return { ...this.chart.chartConfig, showDialog: false, width: 600, height: 250 };
+    return {
+      ...this.chart.chartConfig,
+      data: this.chart.chartConfig.dialogConfig?.data,
+      showDialog: false,
+      showLegend: this.chart.chartConfig.dialogConfig.showLegend,
+      width: 600,
+      height: 250,
+      title: ''
+    };
   }
 
   public get isMobile(): boolean {

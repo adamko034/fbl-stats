@@ -1,6 +1,8 @@
 <app-text-value-card
   title="Formations"
   [items]="items"
-  [showMoreButton]="true"
+  [showInMatCard]="false"
+  [titleUnderlined]="'grey'"
+  [showMoreButton]="formations.length > 3"
   (showMoreClick)="onShowMoreClick()"
 ></app-text-value-card>

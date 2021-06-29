@@ -64,6 +64,7 @@ import { TitleUnderlinedComponent } from './components/title-underlined/title-un
 import { ValueDifferenceComponent } from './components/value-difference/value-difference.component';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
+import { ScaleDirective } from './directives/scale.directive';
 import { AveragePipe } from './pipes/average.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
@@ -123,7 +124,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
-    PlayersListGenericComponent
+    PlayersListGenericComponent,
+    ScaleDirective
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -176,7 +178,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
-    PlayersListGenericComponent
+    PlayersListGenericComponent,
+    ScaleDirective
   ]
 })
 export class SharedModule {

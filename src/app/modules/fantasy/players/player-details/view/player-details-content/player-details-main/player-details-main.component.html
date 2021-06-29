@@ -1,4 +1,23 @@
-<div fxLayout="row" fxLayout.lt-md="column">
+<app-white-block [noPadding]="true">
+  <div fxLayout="column" class="main" [ngClass]="{ 'main-scroll': !showSubrow }">
+    <div fxLayout="row" class="main-title" fxLayoutAlign="center center" fxLayoutGap="40px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <app-team-logo [height]="30" [team]="player.team.shortName"></app-team-logo>
+        <h2>{{ player.name }}</h2>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <h3>{{ player.position | uppercase }}</h3>
+        <mat-chip-list>
+          <mat-chip>{{ player.fantasy.price }}M</mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+    <app-text-subtext-row [@fadeInOut] [rows]="stats"></app-text-subtext-row>
+    <!-- <app-text-subtext-row *ngIf="isMobile$ | async" [rows]="statsMobile"></app-text-subtext-row> -->
+  </div>
+</app-white-block>
+
+<!-- <div fxLayout="row" fxLayout.lt-md="column">
   <mat-card class="card">
     <div fxLayout="column">
       <div
@@ -57,4 +76,4 @@
       <span>Suspension risk</span>
     </p>
   </mat-card>
-</div>
+</div> -->

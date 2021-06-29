@@ -16,12 +16,12 @@ const routes: Routes = [
       {
         path: 'lists',
         loadChildren: () => import('./players-lists/players-lists.module').then((m) => m.PlayersListsModule)
-      },
-      {
-        path: 'details/:id',
-        loadChildren: () => import('./player-details/player-details.module').then((m) => m.PlayerDetailsModule)
       }
     ]
+  },
+  {
+    path: 'details',
+    loadChildren: () => import('./player-details/player-details.module').then((m) => m.PlayerDetailsModule)
   }
 ];
 

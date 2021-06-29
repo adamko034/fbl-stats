@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { TextValue } from 'src/app/shared/components/text-value-card/models/text-value.model';
 import { LeadersFormation } from 'src/app/store/leaders/models/leaders-formation.model';
-import { LeadersUsageTextValueConverter } from '../../converters/leaders-usage-text-value.converter';
-import { LeadersTextValueDialgComponent } from '../leaders-text-value-dialg/leaders-text-value-dialg.component';
+import { LeadersTextValueDialgComponent } from '../../../../components/leaders-text-value-dialg/leaders-text-value-dialg.component';
+import { LeadersUsageTextValueConverter } from '../../../../converters/leaders-usage-text-value.converter';
 
 @Component({
   selector: 'app-leaders-formations-usage',

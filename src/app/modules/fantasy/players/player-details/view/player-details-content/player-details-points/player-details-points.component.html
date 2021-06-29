@@ -1,16 +1,7 @@
-<mat-card
-  class="player-details-points-container"
-  fxLayout="row wrap"
-  fxLayoutAlign="space-evenly start"
-  fxLayoutGap="30px"
->
-  <section>
+<app-white-block>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="30px">
     <app-player-details-points-by-venue [player]="player"></app-player-details-points-by-venue>
-  </section>
-  <section>
     <app-player-details-top-games [player]="player"></app-player-details-top-games>
-  </section>
-  <section>
     <app-player-details-points-efficiency [player]="player"></app-player-details-points-efficiency>
-  </section>
-</mat-card>
+  </div>
+</app-white-block>

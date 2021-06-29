@@ -1,9 +1,11 @@
-.card {
-  z-index: 1;
-  padding: 0;
+.main {
+  top: 0;
+  position: sticky;
+  z-index: 1000;
 
-  .title {
-    padding: 16px;
+  .main-title {
+    padding-bottom: 1px;
+    padding: 15px 10px;
 
     h2,
     h3 {
@@ -12,55 +14,73 @@
   }
 }
 
-.status-desktop {
-  padding: 7px 0 7px 0px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: -3px;
-  z-index: 0;
-  box-shadow: none;
-
-  p {
-    padding: 7px 10px;
-    display: flex;
-    align-items: center;
-    width: 155px;
-    font-size: 13px;
-    margin: 0;
-
-    span {
-      margin-left: 5px;
-    }
-  }
-
-  p.md-info {
-    padding: 0;
-    font-weight: 550;
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-
-  p.unavailable {
-    background-color: rgba($color: #c80a00, $alpha: 0.7);
-    color: #fff;
-  }
-
-  p.suspension-risk {
-    background-color: rgba($color: #ffff99, $alpha: 0.9);
-    color: rgba($color: #000, $alpha: 0.8);
-  }
-
-  p.should-start {
-    background-color: rgba($color: green, $alpha: 0.8);
-    color: #fff;
-  }
-
-  p.doubt {
-    background-color: rgba($color: orange, $alpha: 0.8);
-    color: #fff;
-  }
+.main-scroll {
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
 }
 
-.status-mobile {
-  margin-left: 0;
+.unavailable {
+  background-color: rgba($color: #c80a00, $alpha: 0.7);
+  color: #fff;
 }
+
+// .card {
+//   z-index: 1;
+//   padding: 0;
+
+//   .title {
+//     padding: 16px;
+
+//     h2,
+//     h3 {
+//       margin: 0;
+//     }
+//   }
+// }
+
+// .status-desktop {
+//   padding: 7px 0 7px 0px;
+//   border-top-left-radius: 0;
+//   border-bottom-left-radius: 0;
+//   margin-left: -3px;
+//   z-index: 0;
+//   box-shadow: none;
+
+//   p {
+//     padding: 7px 10px;
+//     display: flex;
+//     align-items: center;
+//     width: 155px;
+//     font-size: 13px;
+//     margin: 0;
+
+//     span {
+//       margin-left: 5px;
+//     }
+//   }
+
+//   p.md-info {
+//     padding: 0;
+//     font-weight: 550;
+//     font-size: 12px;
+//     margin-bottom: 5px;
+//   }
+
+//   p.suspension-risk {
+//     background-color: rgba($color: #ffff99, $alpha: 0.9);
+//     color: rgba($color: #000, $alpha: 0.8);
+//   }
+
+//   p.should-start {
+//     background-color: rgba($color: green, $alpha: 0.8);
+//     color: #fff;
+//   }
+
+//   p.doubt {
+//     background-color: rgba($color: orange, $alpha: 0.8);
+//     color: #fff;
+//   }
+// }
+
+// .status-mobile {
+//   margin-left: 0;
+// }

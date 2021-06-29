@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { ChartConfig } from 'src/app/shared/components/chart/models/chart-config.model';
+import { ChartPoint } from 'src/app/shared/components/chart/models/chart-point.model';
 import { MatchdayValueToChartPointConverter } from 'src/app/shared/converters/matchday-value-to-chart-point.converter';
 import { PositionStats } from 'src/app/store/positions/models/position-stats.model';
 import { GameToChartPointConverter } from '../../../converters/game-to-chart-point.converter';
@@ -17,22 +18,51 @@ export class PlayerDetailsChartsComponent implements OnInit {
   @Input() player: PlayerDetails;
   @Input() positionStats: PositionStats;
 
+  private get pricesChanges() {
+    return new ArrayStream(this.player.fantasy.history.prices).convert(new MatchdayValueToChartPointConverter('M'));
+  }
+
+  private get popularityChanges() {
+    return new ArrayStream(this.player.fantasy.history.popularity).convert(new MatchdayValueToChartPointConverter('%'));
+  }
+
+  private get leadersPopularityChanges() {
+    return new ArrayStream(this.player.fantasy.history.leadersPopularity).convert(
+      new MatchdayValueToChartPointConverter('%')
+    );
+  }
+
+  private get pointsChanges() {
+    return new ArrayStream(this.player.games)
+      .filterQuick((g) => g.wasPlayed && g.points !== undefined)
+      .convert(new GameToChartPointConverter());
+  }
+
+  private get top10AvgPointsChanges() {
+    return new ArrayStream(this.positionStats.matchdays)
+      .filterQuick((s) => s.matchday >= this.minMatchday)
+      .convert(new PositionStatsToChartPointConverter());
+  }
+
   public get pricesChart(): ChartConfig {
     return {
-      title: 'Price Changes',
-      width: 320,
-      height: 200,
+      title: 'Price changes',
       xAxisLabel: 'Matchday',
-      xAxisLabelShort: 'MD',
       yAxisLabel: 'Price',
       data: [
         {
           name: this.player.name,
-          series: new ArrayStream(this.player.fantasy.history.prices)
-            .convert(new MatchdayValueToChartPointConverter('M'))
-            .collect()
+          series: this.orderByAndGetLast(this.pricesChanges, 'dsc', 10).collect()
         }
       ],
+      dialogConfig: {
+        data: [
+          {
+            name: this.player.name,
+            series: this.pricesChanges.collect()
+          }
+        ]
+      },
       yAxisTicks: [1, 5, 10, 15, 20, 25, 30],
       yScaleMin: 1,
       yScaleMax: 30
@@ -41,20 +71,24 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get popularityChart(): ChartConfig {
     return {
-      title: 'Popularity Changes',
-      width: 320,
-      height: 200,
-      xAxisLabel: 'Matchday',
-      xAxisLabelShort: 'MD',
-      yAxisLabel: 'Popularity',
+      title: 'Popularity changes',
       data: [
         {
           name: this.player.name,
-          series: new ArrayStream(this.player.fantasy.history.popularity)
-            .convert(new MatchdayValueToChartPointConverter('%'))
-            .collect()
+          series: this.orderByAndGetLast(this.popularityChanges, 'dsc', 10).collect()
         }
       ],
+      xAxisLabel: 'Matchday',
+      yAxisLabel: 'Popularity',
+      showDialog: true,
+      dialogConfig: {
+        data: [
+          {
+            name: this.player.name,
+            series: this.popularityChanges.collect()
+          }
+        ]
+      },
       yScaleMin: 0,
       yScaleMax: 100,
       yAxisTicks: [0, 25, 50, 75, 100]
@@ -63,20 +97,24 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get leadersPopularityChart(): ChartConfig {
     return {
-      title: 'Leaders Popularity Changes',
-      width: 320,
-      height: 200,
-      xAxisLabel: 'Matchday',
-      xAxisLabelShort: 'MD',
-      yAxisLabel: 'Leaders popularity',
+      title: 'Leaders popularity changes',
       data: [
         {
           name: this.player.name,
-          series: new ArrayStream(this.player.fantasy.history.leadersPopularity)
-            .convert(new MatchdayValueToChartPointConverter('%'))
-            .collect()
+          series: this.orderByAndGetLast(this.leadersPopularityChanges, 'dsc', 10).collect()
         }
       ],
+      showDialog: true,
+      dialogConfig: {
+        data: [
+          {
+            name: this.player.name,
+            series: this.leadersPopularityChanges.collect()
+          }
+        ]
+      },
+      xAxisLabel: 'Matchday',
+      yAxisLabel: 'Leaders popularity',
       yScaleMin: 0,
       yScaleMax: 100,
       yAxisTicks: [0, 25, 50, 75, 100]
@@ -85,29 +123,34 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   public get pointsChart(): ChartConfig {
     return {
-      title: 'Points Per Matchdays',
-      width: 320,
-      height: 200,
+      title: 'Points per matchday',
       xAxisLabel: 'Matchday',
-      xAxisLabelShort: 'MD',
       yAxisLabel: 'Points',
       data: [
         {
           name: this.player.lastName,
-          series: new ArrayStream(this.player.games)
-            .filterQuick((g) => g.wasPlayed && g.points !== undefined)
-            .convert(new GameToChartPointConverter())
-            .collect()
+          series: this.orderByAndGetLast(this.pointsChanges, 'dsc', 10).collect()
         },
         {
           name: `Top 10 ${this.player.position.toUpperCase()} avg`,
           tableColumnName: 'AVG points',
-          series: new ArrayStream(this.positionStats.matchdays)
-            .filterQuick((s) => s.matchday >= this.minMatchday)
-            .convert(new PositionStatsToChartPointConverter())
-            .collect()
+          series: this.orderByAndGetLast(this.top10AvgPointsChanges, 'dsc', 10).collect()
         }
-      ]
+      ],
+      dialogConfig: {
+        data: [
+          {
+            name: this.player.lastName,
+            series: this.pointsChanges.collect()
+          },
+          {
+            name: `Top 10 ${this.player.position.toUpperCase()} avg`,
+            tableColumnName: 'AVG points',
+            series: this.top10AvgPointsChanges.collect()
+          }
+        ],
+        showLegend: true
+      }
     };
   }
 
@@ -117,5 +160,16 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
+
+  private orderByAndGetLast(
+    arrayStream: ArrayStream<ChartPoint>,
+    orderyBy: 'asc' | 'dsc',
+    lastN: number
+  ): ArrayStream<ChartPoint> {
+    return arrayStream
+      .orderBy('order', orderyBy)
+      .take(lastN)
+      .orderBy('order', orderyBy === 'asc' ? 'dsc' : 'asc');
+  }
 }

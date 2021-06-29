@@ -1,0 +1,25 @@
+<app-white-block *ngIf="matchday">
+  <div fxLayout="row" fxLayoutAlign="space-evenly">
+    <div class="team-points">
+      <app-text-value-card
+        [showInMatCard]="false"
+        [titleUnderlined]="'grey'"
+        title="Team points"
+        [showMoreButton]="false"
+        [items]="teamPoints"
+      ></app-text-value-card>
+    </div>
+    <div class="team-value">
+      <app-text-value-card
+        [showInMatCard]="false"
+        [titleUnderlined]="'grey'"
+        title="Team points"
+        [showMoreButton]="false"
+        [items]="teamValue"
+      ></app-text-value-card>
+    </div>
+    <div>
+      <app-leaders-formations-usage [formations]="matchday.formations"></app-leaders-formations-usage>
+    </div>
+  </div>
+</app-white-block>

@@ -12,7 +12,7 @@ export class ChartComponent implements OnInit {
   @Input() config: ChartConfig;
 
   public get showLabels() {
-    return this.config.showLabels || true;
+    return this.config.showLabels || false;
   }
 
   public get autoScale() {
@@ -41,7 +41,7 @@ export class ChartComponent implements OnInit {
 
   constructor(private matDialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
   public onShowMoreClick(): void {
     this.matDialog.open(ChartDialogComponent, { data: { chartConfig: this.config }, minWidth: 320 });

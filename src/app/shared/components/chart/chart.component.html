@@ -1,11 +1,14 @@
-<div fxLayout="column">
+<div class="chart-container" fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayoutGap="5px">
+    <span fxFlexAlign="center" *ngIf="config.title" class="chart-title">{{ config.title }}</span>
+    <fa-icon
+      class="pointer"
+      *ngIf="showDialog"
+      [icon]="['fas', 'external-link-alt']"
+      (click)="onShowMoreClick()"
+    ></fa-icon>
+  </div>
   <ng-template [ngTemplateOutlet]="chart"></ng-template>
-  <app-show-more-link
-    *ngIf="showDialog"
-    class="link"
-    text="Show data"
-    (showMoreClick)="onShowMoreClick()"
-  ></app-show-more-link>
 </div>
 
 <ng-template #chart>

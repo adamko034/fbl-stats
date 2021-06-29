@@ -1,16 +1,29 @@
 <div fxLayout="row wrap" fxLayoutGap="30px">
-  <app-text-value-card
-    class="top-games-item"
-    title="Best games"
-    [items]="bestGames"
-    [showInMatCard]="false"
-    titleUnderlined="grey"
-  ></app-text-value-card>
-  <app-text-value-card
-    class="top-games-item"
-    title="Worst games"
-    [items]="worstGames"
-    [showInMatCard]="false"
-    titleUnderlined="grey"
-  ></app-text-value-card>
+  <ng-template
+    [ngTemplateOutlet]="table"
+    [ngTemplateOutletContext]="{ title: 'Best games', games: bestGames }"
+  ></ng-template>
+
+  <ng-template
+    [ngTemplateOutlet]="table"
+    [ngTemplateOutletContext]="{ title: 'Worst games', games: worstGames }"
+  ></ng-template>
 </div>
+
+<ng-template #table let-title="title" let-games="games">
+  <app-title-underlined-grey>
+    <span title>{{ title }}</span>
+    <table content class="comparison-table">
+      <tbody>
+        <tr>
+          <td></td>
+          <td>points</td>
+        </tr>
+        <tr *ngFor="let game of games" class="game-row">
+          <td class="game-row-text">{{ game.text }}</td>
+          <td class="game-row-value" [style]="'color:' + getPointsColor(+game.value)">{{ game.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </app-title-underlined-grey>
+</ng-template>

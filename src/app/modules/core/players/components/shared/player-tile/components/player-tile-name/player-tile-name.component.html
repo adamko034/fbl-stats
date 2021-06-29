@@ -1,6 +1,6 @@
 <div class="player-name" fxLayout="row" fxLayoutGap="7px" fxLayoutAlign="start center">
   <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
-  <app-prediction-indicator *ngIf="player.attendance === 0" [value]="0" [height]="35"></app-prediction-indicator>
+  <app-prediction-indicator *ngIf="player.attendance === 0" [value]="0"></app-prediction-indicator>
   <app-player-suspension-risk [show]="player.isSuspensionRisk"></app-player-suspension-risk>
   <app-player-returning [show]="player.isReturning"></app-player-returning>
 </div>

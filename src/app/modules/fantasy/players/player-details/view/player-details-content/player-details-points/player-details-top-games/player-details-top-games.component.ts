@@ -34,4 +34,8 @@ export class PlayerDetailsTopGamesComponent {
   }
 
   constructor(private playersDataservice: PlayersDataService) {}
+
+  public getPointsColor(points: number): string {
+    return this.playersDataservice.getPointsColor(points);
+  }
 }

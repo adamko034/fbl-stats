@@ -12,7 +12,13 @@ export class GameToChartPointConverter implements Convertable<PlayerDetailsGame,
         valueDiff = item.points - previous[0].points;
       }
 
-      return { name: item.matchday.toString(), value: item.points, valueDiff, valueSuffix: 'pts' };
+      return {
+        name: item.matchday.toString(),
+        order: item.matchday,
+        value: item.points,
+        valueDiff,
+        valueSuffix: 'pts'
+      };
     });
   }
 }
