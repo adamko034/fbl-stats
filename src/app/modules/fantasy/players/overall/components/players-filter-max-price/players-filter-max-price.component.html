@@ -1,4 +1,4 @@
-<app-form-field [label]="'Max Price'" labelWidth="18">
+<app-form-field [label]="'Max price'">
   <div fxLayout fxLayoutGap="10px">
     <mat-slider
       class="slider"
@@ -7,7 +7,8 @@
       step="0.1"
       [ngModel]="value"
       fxFlex="80"
-      thumbLabel
+      [thumbLabel]="false"
+      (input)="onThumbMove($event)"
       (change)="onPriceChanged($event)"
     ></mat-slider>
     <span *ngIf="max < 150" fxFlex="15" fxFlexAlign="center" class="bolder">

@@ -43,6 +43,10 @@ export class PlayersFilterMaxPriceComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
   }
 
+  public onThumbMove(change: MatSliderChange): void {
+    this.value = change.value;
+  }
+
   public onPriceChanged(change: MatSliderChange): void {
     const newPrice = change.value === this.max ? null : change.value;
     this.filtersStoreService.updatePrice(newPrice);

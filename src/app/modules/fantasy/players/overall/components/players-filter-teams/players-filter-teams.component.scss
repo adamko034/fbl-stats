@@ -1,7 +1,14 @@
-.select-button {
-  transform: scale(0.7);
+@import '/src/variables.scss';
+
+.teams-selected-span {
+  font-weight: 500;
+  text-decoration-style: dotted;
 }
 
-.chip-info {
-  margin-left: 5px;
+.select-teams-button {
+  color: $colorBlue;
+
+  span {
+    margin-left: 3px;
+  }
 }

@@ -1,14 +1,5 @@
-<div fxLayout.lt-sm="column" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="start center" fxLayoutGap.gt-xs="8px">
-  <span
-    *ngIf="labelWidth !== 0 && !!label"
-    [fxHide.gt-xs]="labelOnlyOnMobile"
-    ngClass.lt-sm="label-mobile"
-    [fxFlex.gt-xs]="labelWidth"
-    >{{ label }}</span
-  >
-  <span *ngIf="labelWidth === 0 && !!label" [fxHide.gt-xs]="labelOnlyOnMobile" ngClass.lt-sm="label-mobile">{{
-    label
-  }}</span>
+<div fxLayout="column" fxLayoutGap="3px">
+  <span *ngIf="!!label" [fxHide.gt-xs]="labelOnlyOnMobile" class="label">{{ label }}</span>
   <div fxFlex>
     <ng-content></ng-content>
   </div>

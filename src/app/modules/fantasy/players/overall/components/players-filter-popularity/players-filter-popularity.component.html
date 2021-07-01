@@ -1,4 +1,4 @@
-<app-form-field [label]="'Max Popularity'" labelWidth="18">
+<app-form-field [label]="'Max popularity'">
   <div fxLayout fxLayoutGap="10px">
     <mat-slider
       class="slider"
@@ -7,7 +7,8 @@
       [step]="1"
       [ngModel]="value"
       fxFlex="80"
-      thumbLabel
+      [thumbLabel]="false"
+      (input)="onThumbMove($event)"
       (change)="onPopularityChanged($event)"
     ></mat-slider>
     <span fxFlex="15" fxFlexAlign="center" class="bolder">

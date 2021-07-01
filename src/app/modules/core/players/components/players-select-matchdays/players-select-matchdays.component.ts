@@ -12,7 +12,6 @@ import { Logger } from 'src/app/utils/logger';
 export class PlayersSelectMatchdaysComponent implements OnChanges {
   @Input() lastMatchday: number;
   @Input() matchdaysCount: number;
-  @Input() labelWidth = 0;
 
   @Output() matchdaysChange = new EventEmitter<number>();
 

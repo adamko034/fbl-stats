@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SelectableTeam } from '../../../models/selectable-team.model';
 
@@ -11,6 +11,10 @@ import { SelectableTeam } from '../../../models/selectable-team.model';
 export class SelectTeamsDialogComponent implements OnInit {
   public searchTerm: string;
   public teams: SelectableTeam[];
+
+  public get isTeamSelected(): boolean {
+    return this.teams?.some((team) => team.selected);
+  }
 
   constructor(
     private dialogRef: MatDialogRef<SelectTeamsDialogComponent>,
@@ -32,6 +36,10 @@ export class SelectTeamsDialogComponent implements OnInit {
           t.name.toLocaleLowerCase().includes(this.searchTerm) || t.short.toLocaleLowerCase().includes(this.searchTerm)
       );
     }
+  }
+
+  public onUnselectAll(): void {
+    this.teams.forEach((team) => (team.selected = false));
   }
 
   public clearSearch(): void {

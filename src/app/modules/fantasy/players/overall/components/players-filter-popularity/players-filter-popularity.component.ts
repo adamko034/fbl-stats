@@ -26,6 +26,10 @@ export class PlayersFilterPopularityComponent implements OnInit, OnDestroy {
     this.destroyed$.next();
   }
 
+  public onThumbMove(change: MatSliderChange) {
+    this.value = change.value;
+  }
+
   public onPopularityChanged(change: MatSliderChange) {
     this.filtersStoreService.updatePopularity(change.value);
   }
