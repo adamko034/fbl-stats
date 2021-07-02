@@ -121,6 +121,10 @@ mat-button-toggle.position-active {
   line-height: 28px !important;
 }
 
+.mat-paginator-range-label {
+  display: none !important;
+}
+
 .dot-red {
   height: 10px;
   width: 10px;

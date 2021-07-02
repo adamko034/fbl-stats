@@ -1,8 +1,15 @@
-<app-form-field>
+<mat-form-field class="view-form-field">
+  <mat-label>View</mat-label>
+  <mat-select [ngModel]="value$ | async" (selectionChange)="onViewChange($event.value)">
+    <mat-option value="table">Table</mat-option>
+    <mat-option value="list">List</mat-option>
+  </mat-select>
+</mat-form-field>
+<!-- <app-form-field>
   <app-switch
     [value]="value$ | async"
     name="viewSwitch"
     [items]="items"
     (switchChange)="onViewChange($event)"
   ></app-switch>
-</app-form-field>
+</app-form-field> -->

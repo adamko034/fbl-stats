@@ -1,9 +1,29 @@
-.display {
-  margin-bottom: 20px;
-}
+@import '/src/variables.scss';
 
 table {
+  margin-top: -10px;
   width: 100%;
+
+  td {
+    font-size: $fontSizeSmall;
+  }
+
+  th:last-of-type,
+  td:last-of-type {
+    padding-right: 0px;
+  }
+
+  tr:not(.header-row) {
+    height: 41px !important;
+  }
+
+  tr.header-row {
+    height: 45px !important;
+  }
+
+  .first-column {
+    padding-left: 15px;
+  }
 
   tr:hover:not(.mat-header-row) {
     background-color: #f0f0f0;
@@ -16,5 +36,9 @@ table {
 
   .total-points {
     font-weight: 500;
+  }
+
+  .my-team-button {
+    width: 45px;
   }
 }

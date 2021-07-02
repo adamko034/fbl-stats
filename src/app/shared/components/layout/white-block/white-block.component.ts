@@ -8,6 +8,13 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 })
 export class WhiteBlockComponent implements OnInit {
   @Input() noPadding = false;
+  @Input() padding: string = '';
+
+  public get style(): any {
+    if (!this.noPadding && !!this.padding) {
+      return { padding: this.padding };
+    }
+  }
 
   constructor() {}
 

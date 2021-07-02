@@ -1,6 +1,6 @@
-<div class="container" fxLayout="column" fxLayoutAlign="center stretch">
-  <app-players-display [key]="DISPLAY_KEY" class="display"></app-players-display>
-  <div class="table-card">
+<app-white-block [noPadding]="true">
+  <div fxLayout="column" fxLayoutAlign="center stretch">
+    <app-players-display [key]="DISPLAY_KEY" class="display"></app-players-display>
     <table
       mat-table
       matSort
@@ -32,8 +32,8 @@
       </ng-container>
 
       <ng-container matColumnDef="No">
-        <th mat-header-cell *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let i = dataIndex">
+        <th mat-header-cell *matHeaderCellDef class="first-column">No.</th>
+        <td mat-cell *matCellDef="let i = dataIndex" class="first-column">
           <span>{{
             dataSource.paginator?.pageIndex === 0
               ? i + 1
@@ -45,21 +45,24 @@
       <ng-container matColumnDef="Team">
         <th mat-header-cell *matHeaderCellDef>Team</th>
         <td mat-cell *matCellDef="let player">
-          <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
+          <app-team-logo [team]="player.teamShort" [height]="23"></app-team-logo>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Next">
         <th mat-header-cell *matHeaderCellDef>Next</th>
         <td mat-cell *matCellDef="let player">
-          <app-player-next-game [height]="30" [nextGame]="player.nextGame"></app-player-next-game>
+          <app-player-next-game [height]="23" [nextGame]="player.nextGame"></app-player-next-game>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="Prediction">
         <th mat-header-cell matTooltip="Predicted Lineups" *matHeaderCellDef>PL</th>
         <td mat-cell *matCellDef="let player">
-          <app-prediction-indicator [value]="player.nextGameAttendancePrediction"></app-prediction-indicator>
+          <app-prediction-indicator
+            [scale]="0.75"
+            [value]="player.nextGameAttendancePrediction"
+          ></app-prediction-indicator>
         </td>
       </ng-container>
 
@@ -71,10 +74,11 @@
       </ng-container>
 
       <ng-container matColumnDef="MT">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let player">
+        <th mat-header-cell *matHeaderCellDef class="my-team-button"></th>
+        <td mat-cell *matCellDef="let player" class="my-team-button">
           <div *ngIf="showAddToMyTeamButton">
             <button
+              [appScale]="0.75"
               matTooltip="Add to My Team"
               mat-icon-button
               *ngIf="!(myTeamPlayers$ | async)?.includes(player.id)"
@@ -86,6 +90,7 @@
 
           <div *ngIf="showDeleteFromMyTeamButton">
             <button
+              [appScale]="0.75"
               mat-icon-button
               matTooltip="Remove from My Team"
               *ngIf="(myTeamPlayers$ | async)?.includes(player.id)"
@@ -100,11 +105,11 @@
       <ng-container matColumnDef="OP">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let player">
-          <app-players-table-add-our-pick [playerId]="player.id"></app-players-table-add-our-pick>
+          <app-players-table-add-our-pick [appScale]="0.75" [playerId]="player.id"></app-players-table-add-our-pick>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="header-row"></tr>
       <tr mat-row *matRowDef="let player; columns: displayedColumns" class="player-details-row"></tr>
 
       <tr class="mat-row" *matNoDataRow>
@@ -112,4 +117,4 @@
       </tr>
     </table>
   </div>
-</div>
+</app-white-block>
