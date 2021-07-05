@@ -29,7 +29,7 @@ export class PlayerAttendancePredictionService {
   }
 
   private allNotPublished(predictions: PlayerNextGamePrediction[]): boolean {
-    return predictions.every((p) => p.attendance === -1);
+    return !predictions || predictions.every((p) => p.attendance === -1);
   }
 
   private allWillPlay(predictions: PlayerNextGamePrediction[]): boolean {

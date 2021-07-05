@@ -3,7 +3,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 @UntilDestroy()
 @Component({
   selector: 'app-players-table-add-our-pick',
@@ -18,7 +18,7 @@ export class PlayersTableAddOurPickComponent implements OnInit {
 
   constructor(
     private ourPicksAdminService: OurPicksAdminService,
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private toastrService: ToastrService
   ) {}
 

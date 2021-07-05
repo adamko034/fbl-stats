@@ -3,7 +3,7 @@ import { MatSliderChange } from '@angular/material/slider';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Component({
   selector: 'app-players-filter-max-price',
@@ -15,7 +15,7 @@ export class PlayersFilterMaxPriceComponent implements OnInit, OnDestroy {
   public value = 0;
   public max = 0;
 
-  constructor(private filtersStoreService: FiltersStoreService, private propertiesService: PropertiesService) {}
+  constructor(private filtersStoreService: FiltersStoreService, private propertiesService: PropertiesStore) {}
 
   public ngOnInit(): void {
     this.propertiesService

@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { constants } from 'src/app/resources/resources';
-import { PropertiesService } from 'src/app/services/properties.service';
 import { Player } from 'src/app/store/players/models/player.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +20,7 @@ export class PlayersListUnavailableComponent implements OnInit {
     return constants.links.ligainsider.unavailables;
   }
 
-  constructor(private route: ActivatedRoute, private propertiesService: PropertiesService) {}
+  constructor(private route: ActivatedRoute, private propertiesService: PropertiesStore) {}
 
   public ngOnInit(): void {
     this.players$ = this.route.data.pipe(map((data) => data.players));

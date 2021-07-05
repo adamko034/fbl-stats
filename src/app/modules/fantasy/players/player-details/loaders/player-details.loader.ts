@@ -21,7 +21,7 @@ export class PlayerDetailsLoader {
         return combineLatest([
           of(player),
           this.teamsStore.select(player.teamShort),
-          this.teamsStore.select(player.nextGame.opponent)
+          !player.nextGame ? of(null) : this.teamsStore.select(player.nextGame.opponent)
         ]);
       }),
       map(([player, team, opponent]) => this.playerDetailsFabric.create(player, team, opponent))

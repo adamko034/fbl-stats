@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Component({
   selector: 'app-players-filter-matchdays',
@@ -12,7 +12,7 @@ export class PlayersFilterMatchdaysComponent implements OnInit {
   public matchdays$: Observable<number>;
   public lastMatchday$: Observable<number>;
 
-  constructor(private propertiesService: PropertiesService, private filtersService: FiltersStoreService) {}
+  constructor(private propertiesService: PropertiesStore, private filtersService: FiltersStoreService) {}
 
   public ngOnInit(): void {
     this.matchdays$ = this.filtersService.selectMatchdays();

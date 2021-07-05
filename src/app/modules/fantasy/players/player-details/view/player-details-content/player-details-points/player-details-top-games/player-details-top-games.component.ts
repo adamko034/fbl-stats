@@ -17,7 +17,7 @@ export class PlayerDetailsTopGamesComponent {
 
   public get bestGames(): TextValue[] {
     return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => g.wasPlayed && g.playerWasAvailable)
+      .filterQuick((g) => g.wasPlayed && g.hasPlayed)
       .orderBy('points', 'dsc')
       .take(5)
       .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
@@ -26,7 +26,7 @@ export class PlayerDetailsTopGamesComponent {
 
   public get worstGames(): TextValue[] {
     return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => g.wasPlayed && g.playerWasAvailable)
+      .filterQuick((g) => g.wasPlayed && g.hasPlayed)
       .orderBy('points', 'asc')
       .take(5)
       .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))

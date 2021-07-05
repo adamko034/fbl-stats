@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { catchError, first, map, take } from 'rxjs/operators';
 import { LastUpdated } from 'src/app/components/header/components/last-udpated/last-updated.model';
 import { ErrorService } from 'src/app/services/error.service';
-import { Properties } from 'src/app/store/properties.model';
 import { environment } from 'src/environments/environment';
 import { OurPicks } from '../store/our-picks/models/our-picks.model';
+import { Properties } from '../store/properties/properties.model';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {

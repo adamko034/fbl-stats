@@ -28,8 +28,7 @@
       <tbody>
         <tr *ngFor="let row of data.rows | orderBy: 'order'" class="player" ngClass.lt-sm="player-mobile">
           <td>
-            <app-team-logo fxHide.lt-sm [team]="row.teamShort" [height]="40"></app-team-logo>
-            <app-team-logo fxHide.gt-xs [team]="row.teamShort" [height]="30"></app-team-logo>
+            <app-team-logo [team]="row.teamShort" [height]="30"></app-team-logo>
           </td>
           <td class="player-name">
             <app-player-name-link [name]="row.playerName" [id]="row.playerId"></app-player-name-link>

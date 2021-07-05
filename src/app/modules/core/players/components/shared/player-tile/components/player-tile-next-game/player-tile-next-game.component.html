@@ -1,4 +1,11 @@
-<div class="player-tile-next-game" fxLayout="row" fxLayoutAlign="start end" fxFlexAlign="end" fxLayoutGap="7px">
+<div
+  class="player-tile-next-game"
+  fxLayout="row"
+  fxLayoutAlign="start end"
+  fxFlexAlign="end"
+  fxLayoutGap="7px"
+  *ngIf="player.nextGame"
+>
   <span>Next:</span>
   <app-player-next-game [nextGame]="player.nextGame" [height]="30"></app-player-next-game>
 </div>

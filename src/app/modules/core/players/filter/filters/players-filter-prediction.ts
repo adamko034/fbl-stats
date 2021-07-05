@@ -11,6 +11,6 @@ export class PlayersFilterPrediction implements PlayersFilter {
   }
 
   public filter(players: Player[]): Player[] {
-    return players.filter((p) => this.determiner.determine(p.nextGame.lineupPredictions) === this.prediction);
+    return players.filter((p) => this.determiner.determine(p.nextGame?.lineupPredictions) === this.prediction);
   }
 }

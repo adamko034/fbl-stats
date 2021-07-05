@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable()
 export class LeadersMatchdayLatestGuard implements CanActivate {
-  constructor(private propertiesService: PropertiesService, private router: Router) {}
+  constructor(private propertiesService: PropertiesStore, private router: Router) {}
 
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.propertiesService.selectLastMatchday().pipe(

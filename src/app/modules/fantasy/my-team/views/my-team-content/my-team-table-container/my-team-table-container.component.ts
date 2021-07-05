@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlayersUiConverter } from 'src/app/modules/core/players/converters/players-ui.converter';
 import { PlayersFilterService } from 'src/app/modules/core/players/filter/players-filter.service';
@@ -7,9 +7,9 @@ import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { PropertiesService } from 'src/app/services/properties.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { Player } from 'src/app/store/players/models/player.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
 import { MyTeamPlayersFitler } from '../../../filters/my-team-players.filter';
 import { MyTeamPlayersFitlersService } from '../../../services/my-team-players-filters.service';
@@ -29,7 +29,7 @@ export class MyTeamTableContainerComponent implements OnInit {
   constructor(
     private myTeamService: MyTeamStore,
     private playersUiConverter: PlayersUiConverter,
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private myTeamPlayersFilters: MyTeamPlayersFitlersService,
     private playersViewService: PlayersViewService
   ) {}

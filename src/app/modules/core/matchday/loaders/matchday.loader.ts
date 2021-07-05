@@ -3,14 +3,14 @@ import { combineLatest, Observable } from 'rxjs';
 import { filter, first, map } from 'rxjs/operators';
 import { Matchday } from 'src/app/modules/core/matchday/models/matchday.model';
 import { MatchdayService } from 'src/app/modules/core/matchday/services/matchday.service';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 
 @Injectable({ providedIn: 'root' })
 export class MatchdayLoader {
   constructor(
     private teamsStore: TeamsStore,
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private matchdayService: MatchdayService
   ) {}
 

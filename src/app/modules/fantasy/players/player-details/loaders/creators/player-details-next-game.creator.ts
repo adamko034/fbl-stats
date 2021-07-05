@@ -15,6 +15,10 @@ export class PlayerDetailsNextGameCreator {
   ) {}
 
   public from(player: Player, opponent: Team): PlayerDetailsNextGame {
+    if (!opponent || !player.nextGame) {
+      return null;
+    }
+
     return {
       date: player.nextGame.date,
       isHome: player.nextGame.isHome,

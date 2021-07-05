@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Injectable({ providedIn: 'root' })
 export class NewUpdatesService {
@@ -9,7 +9,7 @@ export class NewUpdatesService {
   private lastUpdated$: Subscription;
   private currentDate: Date;
 
-  constructor(private propertiesService: PropertiesService) {}
+  constructor(private propertiesService: PropertiesStore) {}
 
   public select(): Observable<boolean> {
     if (!this.lastUpdated$) {

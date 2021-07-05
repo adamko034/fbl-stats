@@ -3,6 +3,6 @@ import { PlayerDetailsGame } from '../../models/player-details-game.model';
 
 export class PlayerDetailsGamesVsTopFilter implements Filterable<PlayerDetailsGame> {
   public filter(items: PlayerDetailsGame[]): PlayerDetailsGame[] {
-    return items.filter((g) => g.wasPlayed && g.playerWasAvailable && g.opponentRank <= 6);
+    return items.filter((g) => g.wasPlayed && g.hasPlayed && g.opponentRank <= 6);
   }
 }

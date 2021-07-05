@@ -11,9 +11,9 @@ import {
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs/internal/Observable';
 import { delay } from 'rxjs/operators';
-import { PropertiesService } from 'src/app/services/properties.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { ScreenSizeService } from './services/screen-size.service';
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   public isMobile$: Observable<boolean>;
 
   constructor(
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private playersStore: PlayersStore,
     private sidenavService: SidenavService,
     private teamsStore: TeamsStore,
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     Logger.logDev('app component, on init, loading data');
-    this.propertiesService.loadLastUpdated();
+    //this.propertiesService.loadLastUpdated();
     this.propertiesService.loadProperties();
     this.playersStore.loadAll();
     this.teamsStore.load();

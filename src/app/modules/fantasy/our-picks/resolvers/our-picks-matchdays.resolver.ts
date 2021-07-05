@@ -3,11 +3,11 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { constants } from 'src/app/resources/resources';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Injectable()
 export class OurPicksMatchdaysResolver implements Resolve<number[]> {
-  constructor(private propertiesService: PropertiesService) {}
+  constructor(private propertiesService: PropertiesStore) {}
 
   public resolve(): Observable<number[]> {
     return this.propertiesService.selectLastMatchday().pipe(

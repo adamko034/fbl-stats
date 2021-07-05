@@ -82,6 +82,14 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     }
   }
 
+  public getValue(item: any, column: { displayName: string; fieldName: string }): string {
+    if (column.displayName.startsWith('MD') && !item[column.fieldName]) {
+      return 'x';
+    }
+
+    return item[column.fieldName];
+  }
+
   public trackColumnsBy(index, column: string): string {
     return column;
   }

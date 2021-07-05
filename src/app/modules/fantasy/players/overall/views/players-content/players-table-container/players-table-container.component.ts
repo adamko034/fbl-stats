@@ -8,8 +8,8 @@ import { PlayersDataService } from 'src/app/modules/core/players/services/player
 import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
-import { PropertiesService } from 'src/app/services/properties.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
 
 @UntilDestroy()
@@ -28,7 +28,7 @@ export class PlayersTableContainerComponent implements OnInit {
 
   constructor(
     private playersStore: PlayersStore,
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private filtersStoreService: FiltersStoreService,
     private playersDataService: PlayersDataService,
     private playersViewService: PlayersViewService,

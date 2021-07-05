@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map, take, withLatestFrom } from 'rxjs/operators';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { FixturesDifficultyState } from '../models/fixtures-difficulty.state';
@@ -9,7 +9,7 @@ import { FixturesDifficultyDeterminer } from './strategies/fixtures-difficulty-d
 
 @Injectable()
 export class FixturesDifficultyLoader {
-  constructor(private teamsFileStoreService: TeamsStore, private propertiesService: PropertiesService) {}
+  constructor(private teamsFileStoreService: TeamsStore, private propertiesService: PropertiesStore) {}
 
   public load(fixturesDifficultyDeterminer: FixturesDifficultyDeterminer): Observable<FixturesDifficultyState> {
     Logger.logDev('teams schedules loader, loading');

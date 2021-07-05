@@ -37,6 +37,10 @@ export class PlayersDataService {
   }
 
   public getPointsColor(points: number): string {
+    if (!points) {
+      return 'black';
+    }
+
     if (points <= 0) {
       return 'darkred';
     }

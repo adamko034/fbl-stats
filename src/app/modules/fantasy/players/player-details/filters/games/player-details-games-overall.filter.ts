@@ -3,6 +3,6 @@ import { PlayerDetailsGame } from '../../models/player-details-game.model';
 
 export class PlayerDetailsGamesOverallFilter implements Filterable<PlayerDetailsGame> {
   public filter(items: PlayerDetailsGame[]): PlayerDetailsGame[] {
-    return items.filter((g) => g.wasPlayed && g.playerWasAvailable);
+    return items.filter((g) => g.wasPlayed && g.hasPlayed);
   }
 }

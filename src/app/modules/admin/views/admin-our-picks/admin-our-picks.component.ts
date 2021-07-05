@@ -8,8 +8,8 @@ import { catchError, map } from 'rxjs/operators';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
-import { PropertiesService } from 'src/app/services/properties.service';
 import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { AdminOurPicksMatchday } from '../../our-picks/models/admin-our-picks-matchday.model';
 
 @UntilDestroy()
@@ -33,7 +33,7 @@ export class AdminOurPicksComponent implements OnInit {
     private route: ActivatedRoute,
     private ourPicksAdminService: OurPicksAdminService,
     private toastrService: ToastrService,
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private changeDetection: ChangeDetectorRef
   ) {}
 

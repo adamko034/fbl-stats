@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PropertiesService } from 'src/app/services/properties.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { MyTeamPlayersFitlersService } from '../../../../services/my-team-players-filters.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class MyTeamFiltersMatchdaysComponent implements OnInit {
   public matchdays$: Observable<number>;
 
   constructor(
-    private propertiesService: PropertiesService,
+    private propertiesService: PropertiesStore,
     private myTeamPlayersFiltersService: MyTeamPlayersFitlersService
   ) {}
 
