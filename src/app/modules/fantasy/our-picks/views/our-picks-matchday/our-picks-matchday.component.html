@@ -4,10 +4,17 @@
   </app-white-block>
 
   <app-filters-content-layout>
-    <app-white-block filters>
-      <div fxLayout="row" fxLayoutAlign="space-evenly center">
-        <app-our-picks-filters></app-our-picks-filters>
-        <app-our-picks-display-settings></app-our-picks-display-settings>
+    <app-white-block filters padding="10px 10px 0 10px">
+      <div
+        class="filters-container"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="15px"
+        fxLayout.lt-md="column"
+        fxLayoutAlign.lt-md="center center"
+      >
+        <app-our-picks-filters class="filters"></app-our-picks-filters>
+        <app-our-picks-display-settings fxFlexAlign="flex-end"></app-our-picks-display-settings>
       </div>
     </app-white-block>
 
