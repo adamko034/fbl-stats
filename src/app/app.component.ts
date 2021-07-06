@@ -9,7 +9,6 @@ import {
   RouterEvent
 } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs/internal/Observable';
 import { delay } from 'rxjs/operators';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
@@ -30,9 +29,13 @@ import { ScreenSizeService } from './services/screen-size.service';
   ]
 })
 export class AppComponent implements OnInit {
+  private isMobile: boolean;
+  private sideNavOpenedOnMobile = false;
   public loading = true;
-  public sidenavOpened$: Observable<boolean>;
-  public isMobile$: Observable<boolean>;
+
+  public get sideNavMode(): string {
+    return this.isMobile ? 'over' : 'side';
+  }
 
   constructor(
     private propertiesService: PropertiesStore,
@@ -50,8 +53,11 @@ export class AppComponent implements OnInit {
     this.playersStore.loadAll();
     this.teamsStore.load();
 
-    this.sidenavOpened$ = this.sidenavService.selectOpened();
-    this.isMobile$ = this.screenSizeService.isMobile$();
+    //this.sidenavOpened$ = this.sidenavService.selectOpened();
+    this.screenSizeService
+      .isMobile$()
+      .pipe(untilDestroyed(this))
+      .subscribe((isMobile) => (this.isMobile = isMobile));
 
     this.router.events.pipe(delay(100), untilDestroyed(this)).subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
@@ -60,11 +66,19 @@ export class AppComponent implements OnInit {
 
       if (event instanceof NavigationEnd || event instanceof NavigationError || event instanceof NavigationCancel) {
         this.loading = false;
+
+        if (this.sideNavOpenedOnMobile) {
+          this.sideNavOpenedOnMobile = false;
+        }
       }
     });
   }
 
-  public closeSidenav(): void {
-    this.sidenavService.close();
+  public isSideNavOpened(): boolean {
+    return !this.isMobile || (this.isMobile && this.sideNavOpenedOnMobile);
+  }
+
+  public toggleSideNav(): void {
+    this.sideNavOpenedOnMobile = !this.sideNavOpenedOnMobile;
   }
 }

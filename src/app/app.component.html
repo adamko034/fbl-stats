@@ -1,15 +1,19 @@
 <h1 fxHide>Fantasy Bundesliga Stats | Tips & Tricks | Predicted Lineups</h1>
-<div class="app-content animate__animated animate__fadeIn">
-  <mat-sidenav-container class="side-nav-container">
-    <mat-sidenav mode="side" opened>
+<div class="app-content">
+  <mat-sidenav-container
+    class="side-nav-container animate__animated animate__fadeIn"
+    autosize
+    (backdropClick)="toggleSideNav()"
+  >
+    <mat-sidenav [mode]="sideNavMode" [opened]="isSideNavOpened()">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="content">
-        <app-header></app-header>
+        <button *ngIf="sideNavMode === 'over'" (click)="toggleSideNav()">open</button>
         <app-social-media-bar></app-social-media-bar>
         <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
-        <div *ngIf="!loading">
+        <div *ngIf="!loading" class="">
           <router-outlet></router-outlet>
         </div>
       </div>

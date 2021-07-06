@@ -9,7 +9,7 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 })
 export class PlayersContentComponent implements OnInit {
   private _links: ViewTabNavigationLink[] = [
-    { label: 'All players', order: 1, routerLink: 'overall' },
+    { label: 'Overall', order: 1, routerLink: 'overall' },
     { label: 'Unavailable', order: 2, routerLink: 'lists/unavailable' },
     { label: 'Returning', order: 2, routerLink: 'lists/returning' },
     { label: 'Suspension risk', order: 2, routerLink: 'lists/suspensionrisk' }

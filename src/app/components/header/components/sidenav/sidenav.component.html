@@ -1,31 +1,41 @@
-<div class="side-nav-container">
-  <div class="sticky">
-    <div class="header" fxLayoutAlign="start center">
-      <h1 routerLink="/players" class="header-logo" fxLayoutAlign="start center" fxLayoutGap="10px">
+<div *ngIf="expanded$ | async" class="sticky side-nav-container side-nav-expanded">
+  <ng-template [ngTemplateOutlet]="content"></ng-template>
+</div>
+
+<div *ngIf="!(expanded$ | async)" class="sticky side-nav-container side-nav-shrinked">
+  <ng-template [ngTemplateOutlet]="content"></ng-template>
+</div>
+
+<ng-template #content>
+  <nav class="content" fxLayout="column">
+    <div class="header">
+      <h1 routerLink="/players" class="header-logo" fxLayoutAlign="center center" fxLayoutGap="10px">
         <img src="favicon.ico" class="header-logo-image" />
-        <span>#FBL</span>
+        <span *ngIf="expanded$ | async">#FBL</span>
       </h1>
     </div>
     <div class="side-nav-section">
       <nav fxLayout="column" fxLayoutGap="20px">
         <div *ngFor="let link of links" class="links-section">
-          <span *ngIf="!link.path" class="links-section-title">{{ link.text }}</span>
+          <div *ngIf="!link.path" class="links-section-title">
+            <span>{{ link.text }}</span>
+          </div>
           <ul>
             <li *ngFor="let sublink of link.children">
-              <a
-                class="link"
-                [routerLink]="sublink.path"
-                routerLinkActive="link-active"
-                fxLayoutAlign="start center"
-                fxLayoutGap="10px"
-              >
+              <a class="link" [routerLink]="sublink.path" routerLinkActive="link-active" fxLayoutGap="10px">
                 <mat-icon class="link-icon" [inline]="true">{{ sublink.icon }}</mat-icon>
-                <span>{{ sublink.text }}</span>
+                <span *ngIf="expanded$ | async">{{ sublink.text }}</span>
               </a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
-  </div>
-</div>
+    <div class="expander" fxLayout="row" fxLayoutAlign="flex-end">
+      <button mat-icon-button (click)="toggleExpand()">
+        <mat-icon *ngIf="expanded$ | async">navigate_before</mat-icon>
+        <mat-icon *ngIf="!(expanded$ | async)">navigate_next</mat-icon>
+      </button>
+    </div>
+  </nav>
+</ng-template>

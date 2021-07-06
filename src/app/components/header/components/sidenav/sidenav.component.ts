@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Navigation } from 'src/app/resources/navigation';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
+import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,10 +10,20 @@ import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
   styleUrls: ['./sidenav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit {
+  public expanded$: Observable<boolean>;
+
   public get links(): NavigationLink[] {
     return Navigation.Links;
   }
 
-  constructor() {}
+  constructor(private guiConfigStore: GuiConfigStore) {}
+
+  public ngOnInit(): void {
+    this.expanded$ = this.guiConfigStore.selectSideNavExpanded();
+  }
+
+  public toggleExpand(): void {
+    this.guiConfigStore.toggleSideNavExpanded();
+  }
 }
