@@ -1,18 +1,26 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { GuiConfigMyTeamDisplay } from 'src/app/store/gui-config/gui-config.model';
+import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 import { MyTeamTilesDisplaySettings } from '../models/my-team-tiles-display-settings.model';
 
 @Injectable()
 export class MyTeamTilesDisplaySettingsService {
-  private readonly STORAGE_KEY = 'MyTeam_DisplaySettings';
-  private settings: MyTeamTilesDisplaySettings;
+  private settings: MyTeamTilesDisplaySettings = { displayed: true, tileOrder: '-price' };
   private settings$ = new ReplaySubject<MyTeamTilesDisplaySettings>(1);
 
-  constructor(private localStorageService: LocalStorageService) {
-    this.settings = this.localStorageService.get<MyTeamTilesDisplaySettings>(this.STORAGE_KEY) || this.initialData();
+  constructor(private guiConfigStore: GuiConfigStore) {
     this.send();
+
+    this.guiConfigStore.selectMyTeamDisplay().subscribe((config) => {
+      if (!!config) {
+        this.settings.displayed = config.showTiles;
+        this.settings.tileOrder = config.tileOrder;
+
+        this.send();
+      }
+    });
   }
 
   public select(): Observable<MyTeamTilesDisplaySettings> {
@@ -46,14 +54,11 @@ export class MyTeamTilesDisplaySettingsService {
   }
 
   private store(): void {
-    this.localStorageService.upsert<MyTeamTilesDisplaySettings>(this.STORAGE_KEY, this.settings);
+    const config: GuiConfigMyTeamDisplay = { showTiles: this.settings.displayed, tileOrder: this.settings.tileOrder };
+    this.guiConfigStore.changeMyTeamDisplay(config);
   }
 
   private send(): void {
     this.settings$.next({ ...this.settings });
-  }
-
-  private initialData(): MyTeamTilesDisplaySettings {
-    return { displayed: true, tileOrder: '-price' };
   }
 }

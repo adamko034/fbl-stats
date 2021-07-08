@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 
 @Component({
   selector: 'app-players-view-switch',
@@ -11,11 +10,6 @@ import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.
 })
 export class PlayersViewSwitchComponent implements OnInit {
   public value$: Observable<PlayersView>;
-
-  public items: SwitchItem[] = [
-    { value: PlayersView.TABLE, matIcon: 'table_chart', isMatIconOutline: true },
-    { value: PlayersView.LIST, matIcon: 'reorder' }
-  ];
 
   constructor(private playersViewService: PlayersViewService) {}
 

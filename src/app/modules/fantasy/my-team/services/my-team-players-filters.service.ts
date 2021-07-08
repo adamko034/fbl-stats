@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { FILTERS_MATCHDAYS_STORAGEKEY } from '../../players/overall/models/players-filters';
 import { MyTeamPlayersFilters } from '../models/my-team-players-filters.model';
 
 @Injectable()
@@ -35,7 +34,7 @@ export class MyTeamPlayersFitlersService {
 
   public updateMatchdays(matchdays: number) {
     this.filters.matchdays = matchdays;
-    this.localStorageService.upsert<number>(FILTERS_MATCHDAYS_STORAGEKEY, matchdays);
+    //this.localStorageService.upsert<number>(FILTERS_MATCHDAYS_STORAGEKEY, matchdays);
     this.send();
   }
 
@@ -45,8 +44,8 @@ export class MyTeamPlayersFitlersService {
   }
 
   private initialData(): MyTeamPlayersFilters {
-    const matchdays = this.localStorageService.get<number>(FILTERS_MATCHDAYS_STORAGEKEY) || 3;
-    return { matchdays, position: 'all' };
+    //const matchdays = this.localStorageService.get<number>(FILTERS_MATCHDAYS_STORAGEKEY) || 3;
+    return { matchdays: 3, position: 'all' };
   }
 
   private send(): void {

@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 
 @Injectable({ providedIn: 'root' })
 export class PlayersViewService {
-  private STORAGE_KEY = 'PlayersView';
-  private view$ = new ReplaySubject<PlayersView>(1);
+  private view$ = new Observable<PlayersView>();
 
-  constructor(private localStorageService: LocalStorageService, private screenSizeService: ScreenSizeService) {
-    this.view$.next(this.getInitial());
+  constructor(private guiConfigStore: GuiConfigStore, private screenSizeService: ScreenSizeService) {
+    this.view$ = combineLatest([this.guiConfigStore.selectPlayersView(), this.screenSizeService.isMobile$()]).pipe(
+      map(([view, isMobile]) => {
+        return isMobile ? PlayersView.LIST : view;
+      })
+    );
   }
 
   public select(): Observable<PlayersView> {
@@ -19,12 +22,6 @@ export class PlayersViewService {
   }
 
   public change(newView: PlayersView) {
-    this.localStorageService.upsert<PlayersView>(this.STORAGE_KEY, newView);
-    this.view$.next(newView);
-  }
-
-  private getInitial(): PlayersView {
-    const fromCache = this.localStorageService.get<PlayersView>(this.STORAGE_KEY) || PlayersView.TABLE;
-    return this.screenSizeService.isMobile() ? PlayersView.LIST : fromCache;
+    this.guiConfigStore.changePlayersView(newView);
   }
 }

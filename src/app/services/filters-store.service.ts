@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import {
-  FILTERS_MATCHDAYS_STORAGEKEY,
-  PlayerPosition,
-  PlayersFilters
-} from '../modules/fantasy/players/overall/models/players-filters';
+import { PlayerPosition, PlayersFilters } from '../modules/fantasy/players/overall/models/players-filters';
 import { SelectableTeam } from '../modules/fantasy/players/overall/models/selectable-team.model';
-import { LocalStorageService } from './local-storage.service';
+import { GuiConfigStore } from '../store/gui-config/gui-config.store';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersStoreService {
@@ -21,20 +17,18 @@ export class FiltersStoreService {
     teams: null
   };
 
-  private filters: ReplaySubject<PlayersFilters>;
+  private filters: ReplaySubject<PlayersFilters> = new ReplaySubject(1);
 
-  constructor(private localStorageService: LocalStorageService) {
-    this.filters = new ReplaySubject(1);
+  constructor(private guiConfigStore: GuiConfigStore) {
+    this.state = { ...this.initialData };
+    this.guiConfigStore.selectPlayersFiltersMatchdays().subscribe((matchdays) => {
+      if (!!matchdays) {
+        this.state.matchdays = matchdays;
+        this.sendFilters();
+      }
+    });
 
-    this.state = this.getInitialData();
     this.sendFilters();
-  }
-
-  private getInitialData(): PlayersFilters {
-    const fromLocalStorage = this.localStorageService.get<number>(FILTERS_MATCHDAYS_STORAGEKEY);
-    const matchdays = fromLocalStorage || this.initialData.matchdays;
-
-    return { ...this.initialData, matchdays };
   }
 
   public selectFilters(): Observable<PlayersFilters> {
@@ -92,7 +86,7 @@ export class FiltersStoreService {
 
   public updateMatchdays(matchdays: number) {
     this.state.matchdays = matchdays;
-    this.localStorageService.upsert<number>(FILTERS_MATCHDAYS_STORAGEKEY, matchdays);
+    this.guiConfigStore.changePlayersFiltersMatchdays(matchdays);
     this.sendFilters();
   }
 
@@ -109,10 +103,6 @@ export class FiltersStoreService {
   public updateName(name: string): void {
     this.state.name = name;
     this.sendFilters();
-  }
-
-  public getCurrentState(): PlayersFilters {
-    return { ...this.state };
   }
 
   private sendFilters(): void {

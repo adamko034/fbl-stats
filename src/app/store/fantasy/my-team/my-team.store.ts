@@ -3,24 +3,29 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { MyTeamPlayerConverter } from 'src/app/modules/fantasy/my-team/converters/my-team-player.converter';
 import { MyTeamPlayer } from 'src/app/modules/fantasy/my-team/models/my-team-player.model';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { GuiConfigStore } from '../../gui-config/gui-config.store';
 
 @Injectable({ providedIn: 'root' })
 export class MyTeamStore {
-  private readonly MY_TEAM_KEY = 'MyTeam';
-
-  private players: Player[];
+  private players: Player[] = [];
   private players$ = new ReplaySubject<Player[]>(1);
 
   constructor(
-    private localStorageService: LocalStorageService,
+    private guiConfigStore: GuiConfigStore,
     private playersStore: PlayersStore,
     private myTeamPlayerConverter: MyTeamPlayerConverter
   ) {
-    this.players = this.getFromLocalStorage();
-    this.send();
+    this.guiConfigStore.selectMyTeamPlayerIds().subscribe((playerIds) => {
+      if (!!playerIds) {
+        const playersFromStore: Player[] = [];
+        playerIds.forEach((id) => playersFromStore.push(this.playersStore.getById(id)));
+
+        this.players = [...playersFromStore];
+        this.send();
+      }
+    });
   }
 
   public selectMyTeamPlayers(): Observable<MyTeamPlayer[]> {
@@ -63,29 +68,10 @@ export class MyTeamStore {
   }
 
   private store(): void {
-    this.localStorageService.upsert<string[]>(
-      this.MY_TEAM_KEY,
-      this.players.map((p) => p.id)
-    );
+    this.guiConfigStore.changeMyTeamPlayerIds(this.players.map((p) => p.id));
   }
 
   private send() {
     this.players$.next([...this.players]);
-  }
-
-  private getFromLocalStorage(): Player[] {
-    const ids = this.getIdsFromLocalStorage();
-    if (ids.length === 0) {
-      return [];
-    }
-
-    const playersFromStore: Player[] = [];
-    ids.forEach((id) => playersFromStore.push(this.playersStore.getById(id)));
-
-    return playersFromStore;
-  }
-
-  private getIdsFromLocalStorage(): string[] {
-    return this.localStorageService.get<string[]>(this.MY_TEAM_KEY) || [];
   }
 }
