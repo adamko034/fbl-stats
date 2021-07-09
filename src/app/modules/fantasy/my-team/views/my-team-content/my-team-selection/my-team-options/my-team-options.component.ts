@@ -10,21 +10,15 @@ import { MyTeamTilesDisplaySettingsService } from '../../../../services/my-team-
 })
 export class MyTeamOptionsComponent implements OnInit {
   public currentOrder$: Observable<string>;
-  public displayed$: Observable<boolean>;
 
   constructor(private myTeamTileOrderService: MyTeamTilesDisplaySettingsService, private myTeamStore: MyTeamStore) {}
 
   public ngOnInit(): void {
     this.currentOrder$ = this.myTeamTileOrderService.selectTileOrder();
-    this.displayed$ = this.myTeamTileOrderService.selectDisplayed();
   }
 
   public onOrderChanged(newOrder: string): void {
     this.myTeamTileOrderService.changeOrder(newOrder);
-  }
-
-  public onShowTilesToggled(): void {
-    this.myTeamTileOrderService.toggleDisplayed();
   }
 
   public onClearMyTeam(): void {

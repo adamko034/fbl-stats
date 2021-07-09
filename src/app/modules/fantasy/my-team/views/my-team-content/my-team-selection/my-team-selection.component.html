@@ -1,49 +1,40 @@
-<div fxLayout="column" fxLayoutGap="30px">
-  <div *ngIf="(screenSize$ | async) > screens.SM" fxLayout="row" fxLayoutAlign="space-evenly center">
-    <app-my-team-player-search></app-my-team-player-search>
-    <app-my-team-totals></app-my-team-totals>
-    <app-my-team-options></app-my-team-options>
-  </div>
-
-  <div *ngIf="(screenSize$ | async) <= screens.SM" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-    <app-my-team-totals></app-my-team-totals>
-    <div fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="space-between center">
+<app-white-block padding="5px 10px 5px 10px">
+  <div fxLayout="column" fxLayoutGap="20px">
+    <div *ngIf="(screenSize$ | async) > screens.SM" fxLayout="row" fxLayoutAlign="space-evenly center">
       <app-my-team-player-search></app-my-team-player-search>
+      <app-my-team-totals></app-my-team-totals>
       <app-my-team-options></app-my-team-options>
     </div>
-  </div>
 
-  <div
-    @tilesDisplay
-    *ngIf="tilesDisplayed$ | async"
-    class="my-team-selection-container"
-    fxLayout="row wrap"
-    fxLayoutGap="15px grid"
-    fxLayout.lt-sm="column"
-  >
-    <app-my-team-selection-tile
-      fxFlex.gt-md="25"
-      fxFlex.gt-xs="48"
-      [position]="positions.GK"
-      [players]="players$ | async | filterBy: ['position']:positions.GK"
-    ></app-my-team-selection-tile>
-    <app-my-team-selection-tile
-      fxFlex.gt-md="25"
-      fxFlex.gt-xs="48"
-      [position]="positions.DEF"
-      [players]="players$ | async | filterBy: ['position']:positions.DEF"
-    ></app-my-team-selection-tile>
-    <app-my-team-selection-tile
-      fxFlex.gt-md="25"
-      fxFlex.gt-xs="48"
-      [position]="positions.MID"
-      [players]="players$ | async | filterBy: ['position']:positions.MID"
-    ></app-my-team-selection-tile>
-    <app-my-team-selection-tile
-      fxFlex.gt-md="25"
-      fxFlex.gt-xs="48"
-      [position]="positions.FOR"
-      [players]="players$ | async | filterBy: ['position']:positions.FOR"
-    ></app-my-team-selection-tile>
+    <div *ngIf="(screenSize$ | async) <= screens.SM" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+      <app-my-team-totals></app-my-team-totals>
+      <div fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="space-between center">
+        <app-my-team-player-search></app-my-team-player-search>
+        <app-my-team-options></app-my-team-options>
+      </div>
+    </div>
+
+    <div @tilesDisplay fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <app-my-team-selection-tile
+        class="tile"
+        [position]="positions.GK"
+        [players]="players$ | async | filterBy: ['position']:positions.GK"
+      ></app-my-team-selection-tile>
+      <app-my-team-selection-tile
+        class="tile"
+        [position]="positions.DEF"
+        [players]="players$ | async | filterBy: ['position']:positions.DEF"
+      ></app-my-team-selection-tile>
+      <app-my-team-selection-tile
+        class="tile"
+        [position]="positions.MID"
+        [players]="players$ | async | filterBy: ['position']:positions.MID"
+      ></app-my-team-selection-tile>
+      <app-my-team-selection-tile
+        class="tile"
+        [position]="positions.FOR"
+        [players]="players$ | async | filterBy: ['position']:positions.FOR"
+      ></app-my-team-selection-tile>
+    </div>
   </div>
-</div>
+</app-white-block>

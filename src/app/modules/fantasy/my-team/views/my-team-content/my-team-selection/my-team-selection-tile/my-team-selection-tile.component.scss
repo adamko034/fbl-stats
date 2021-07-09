@@ -1,30 +1,64 @@
-.tile {
-  &-header {
-    &-text {
-      font-size: 17px;
-      font-weight: 500;
-      border-bottom: 1px solid #c80a00;
-      padding-bottom: 4px;
-      display: flex;
-      justify-content: center;
+// @import '/src/variables.scss';
+table {
+  width: 100%;
+
+  tr {
+    td {
+      padding-top: 2px;
     }
-  }
 
-  .player {
-    padding-left: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-radius: 3px;
-  }
+    td:not(.summary):first-of-type {
+      padding-left: 5px;
+    }
 
-  .player:hover {
-    background-color: rgba($color: #000000, $alpha: 0.05);
-  }
+    td.noplayers {
+      text-align: start;
+    }
 
-  .total {
-    span {
-      font-size: 16px;
+    td.price {
+      text-align: start;
+    }
+
+    td.button {
+      button {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+      }
+    }
+
+    td.summary {
+      padding-top: 5px;
+      font-size: 13px;
       font-weight: 500;
     }
   }
 }
+// .tile {
+//   &-header {
+//     &-text {
+//       font-size: 17px;
+//       font-weight: 500;
+//       border-bottom: 1px solid $colorBlue;
+//       padding-bottom: 4px;
+//       display: flex;
+//       justify-content: center;
+//     }
+//   }
+
+//   .player {
+//     padding: 0;
+//     border-radius: 3px;
+//   }
+
+//   .player:hover {
+//     background-color: rgba($color: #000000, $alpha: 0.05);
+//   }
+
+//   .total {
+//     span {
+//       font-size: 14px;
+//       font-weight: 500;
+//     }
+//   }
+// }

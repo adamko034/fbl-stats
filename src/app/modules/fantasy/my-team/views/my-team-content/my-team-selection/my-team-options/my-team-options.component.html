@@ -2,16 +2,8 @@
   <button mat-button [matMenuTriggerFor]="options">Options<mat-icon>more_vert</mat-icon></button>
 
   <mat-menu #options="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="tiles">Tiles</button>
+    <button mat-menu-item [matMenuTriggerFor]="tileOrderByMenu">Order</button>
     <button mat-menu-item [matMenuTriggerFor]="players">Players</button>
-
-    <mat-menu #tiles="matMenu">
-      <button mat-menu-item fxLayoutGap="8px" fxLayoutAlign="start center" (click)="onShowTilesToggled()">
-        <mat-icon>{{ (displayed$ | async) ? 'visibility_off' : 'visibility' }}</mat-icon>
-        <span>{{ (displayed$ | async) ? 'Hide' : 'Show' }}</span>
-      </button>
-      <button mat-menu-item [disabled]="!(displayed$ | async)" [matMenuTriggerFor]="tileOrderByMenu">Tile order</button>
-    </mat-menu>
 
     <mat-menu #tileOrderByMenu="matMenu" yPosition="below">
       <button

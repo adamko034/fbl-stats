@@ -7,7 +7,7 @@ import { MyTeamTilesDisplaySettings } from '../models/my-team-tiles-display-sett
 
 @Injectable()
 export class MyTeamTilesDisplaySettingsService {
-  private settings: MyTeamTilesDisplaySettings = { displayed: true, tileOrder: '-price' };
+  private settings: MyTeamTilesDisplaySettings = { tileOrder: '-price' };
   private settings$ = new ReplaySubject<MyTeamTilesDisplaySettings>(1);
 
   constructor(private guiConfigStore: GuiConfigStore) {
@@ -15,7 +15,6 @@ export class MyTeamTilesDisplaySettingsService {
 
     this.guiConfigStore.selectMyTeamDisplay().subscribe((config) => {
       if (!!config) {
-        this.settings.displayed = config.showTiles;
         this.settings.tileOrder = config.tileOrder;
 
         this.send();
@@ -33,20 +32,6 @@ export class MyTeamTilesDisplaySettingsService {
       distinctUntilChanged()
     );
   }
-
-  public selectDisplayed(): Observable<boolean> {
-    return this.select().pipe(
-      map((s) => s.displayed),
-      distinctUntilChanged()
-    );
-  }
-
-  public toggleDisplayed(): void {
-    this.settings.displayed = !this.settings.displayed;
-    this.store();
-    this.send();
-  }
-
   public changeOrder(newOrder: string): void {
     this.settings.tileOrder = newOrder;
     this.store();
@@ -54,7 +39,7 @@ export class MyTeamTilesDisplaySettingsService {
   }
 
   private store(): void {
-    const config: GuiConfigMyTeamDisplay = { showTiles: this.settings.displayed, tileOrder: this.settings.tileOrder };
+    const config: GuiConfigMyTeamDisplay = { tileOrder: this.settings.tileOrder };
     this.guiConfigStore.changeMyTeamDisplay(config);
   }
 

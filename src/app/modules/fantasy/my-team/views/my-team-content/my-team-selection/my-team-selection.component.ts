@@ -5,7 +5,6 @@ import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/p
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { MyTeamPlayer } from '../../../models/my-team-player.model';
-import { MyTeamTilesDisplaySettingsService } from '../../../services/my-team-tiles-display-settings.service';
 
 @Component({
   selector: 'app-my-team-selection',
@@ -27,20 +26,14 @@ import { MyTeamTilesDisplaySettingsService } from '../../../services/my-team-til
 export class MyTeamSelectionComponent implements OnInit {
   public positions = PlayerPosition;
   public players$: Observable<MyTeamPlayer[]>;
-  public tilesDisplayed$: Observable<boolean>;
 
   public screenSize$: Observable<ScreenSize>;
   public screens = ScreenSize;
 
-  constructor(
-    private myTeamService: MyTeamStore,
-    private myTeamTilesDisplaySettingsService: MyTeamTilesDisplaySettingsService,
-    private screenSizeService: ScreenSizeService
-  ) {}
+  constructor(private myTeamService: MyTeamStore, private screenSizeService: ScreenSizeService) {}
 
   ngOnInit(): void {
     this.players$ = this.myTeamService.selectMyTeamPlayers();
-    this.tilesDisplayed$ = this.myTeamTilesDisplaySettingsService.selectDisplayed();
     this.screenSize$ = this.screenSizeService.onResize();
   }
 }

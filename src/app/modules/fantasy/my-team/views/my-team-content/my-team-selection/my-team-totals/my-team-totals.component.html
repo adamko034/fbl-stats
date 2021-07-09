@@ -1,4 +1,4 @@
-<mat-card
+<div
   *ngIf="players$ | async"
   ngClass.lt-sm="my-team-totals-card-mobile"
   class="my-team-totals-card"
@@ -8,11 +8,11 @@
 >
   <span class="label bold">My Team:</span>
   <div fxLayoutAlign="start center" fxLayoutGap="4px">
-    <mat-icon class="red">people</mat-icon>
+    <mat-icon>people</mat-icon>
     <span class="label">{{ (players$ | async).length }}</span>
   </div>
   <div fxLayoutAlign="start center" fxLayoutGap="4px">
-    <mat-icon class="red">attach_money</mat-icon>
+    <mat-icon>attach_money</mat-icon>
     <span class="label">{{ players$ | async | sumBy: 'price' }}M</span>
   </div>
-</mat-card>
+</div>

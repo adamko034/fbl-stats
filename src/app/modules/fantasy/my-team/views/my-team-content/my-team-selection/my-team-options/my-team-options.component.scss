@@ -1,5 +1,7 @@
+@import '/src/variables.scss';
+
 .active {
-  color: #c80a00;
+  color: $colorBlue;
   font-weight: 500;
 
   mat-icon {

@@ -16,7 +16,6 @@ export interface GuiConfigMyTeam {
 }
 
 export interface GuiConfigMyTeamDisplay {
-  showTiles?: boolean;
   tileOrder?: string;
 }
 
