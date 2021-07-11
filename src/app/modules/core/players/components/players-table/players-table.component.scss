@@ -1,5 +1,9 @@
 @import '/src/variables.scss';
 
+.table-container {
+  overflow-x: auto;
+}
+
 table {
   margin-top: -10px;
   width: 100%;

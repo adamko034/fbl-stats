@@ -1,20 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged, startWith } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { GuiConfigStore } from '../store/gui-config/gui-config.store';
+
+export interface SidenavConfig {
+  expanded: boolean;
+  openedOnMobile: boolean;
+}
 
 @Injectable({ providedIn: 'root' })
 export class SidenavService {
-  private opened$ = new ReplaySubject<boolean>(1);
+  private config: SidenavConfig = { expanded: true, openedOnMobile: false };
+  private config$ = new ReplaySubject<SidenavConfig>(1);
 
-  public selectOpened(): Observable<boolean> {
-    return this.opened$.pipe(startWith(false), distinctUntilChanged());
+  constructor(private guiConfigStore: GuiConfigStore) {
+    this.guiConfigStore.selectSideNavExpanded().subscribe((expanded) => {
+      this.config.expanded = expanded;
+      this.send();
+    });
+
+    this.send();
   }
 
-  public close(): void {
-    this.opened$.next(false);
+  public toggleOnMobile(): void {
+    this.config.openedOnMobile = !this.config.openedOnMobile;
+    this.send();
   }
 
-  public open(): void {
-    this.opened$.next(true);
+  public toggleExpanded(): void {
+    this.config.expanded = !this.config.expanded;
+    this.guiConfigStore.toggleSideNavExpanded();
+    this.send();
+  }
+
+  public selectSidenavConfig(): Observable<SidenavConfig> {
+    return this.config$.pipe(distinctUntilChanged());
+  }
+
+  private send(): void {
+    this.config$.next({ ...this.config });
   }
 }

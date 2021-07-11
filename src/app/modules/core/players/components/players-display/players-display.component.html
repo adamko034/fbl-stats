@@ -1,14 +1,9 @@
 <div class="players-display-container">
-  <div *ngIf="(screen$ | async) >= screens.SM" fxLayoutAlign="space-between center">
-    <app-players-search [key]="key" fxFlex="40"></app-players-search>
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <app-players-search [key]="key"></app-players-search>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-      <app-players-view-switch></app-players-view-switch>
+      <app-players-view-switch *ngIf="!(isMobile$ | async)"></app-players-view-switch>
       <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
     </div>
-  </div>
-
-  <div *ngIf="(screen$ | async) < screens.SM" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
-    <app-players-search [key]="key"></app-players-search>
-    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
   </div>
 </div>

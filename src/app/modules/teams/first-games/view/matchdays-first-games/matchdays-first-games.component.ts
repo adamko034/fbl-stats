@@ -9,8 +9,8 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 })
 export class MatchdaysFirstGamesComponent {
   private _links: ViewTabNavigationLink[] = [
-    { label: 'Season overall', routerLink: 'overall', order: 2 },
-    { label: 'Next matchdays', routerLink: 'nextmatchdays', order: 1 }
+    { label: 'Season overall', labelMobile: 'First games season overall', routerLink: 'overall', order: 2 },
+    { label: 'Next matchdays', labelMobile: 'Next matchdays first games', routerLink: 'nextmatchdays', order: 1 }
   ];
 
   public get links(): ViewTabNavigationLink[] {

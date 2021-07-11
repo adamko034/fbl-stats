@@ -1,8 +1,7 @@
-<app-view-title>
-  <span title>{{ team$ | async | field: 'longName' | uppercase }}</span>
-</app-view-title>
-
 <div *ngIf="team$ | async" fxLayout="column" fxLayoutGap="15px">
+  <app-view-title>
+    <span title>{{ team$ | async | field: 'longName' | uppercase }}</span>
+  </app-view-title>
   <span class="info"
     >*Players position are in accordance with Fantasy Bundesliga, not with the source lineups. Therfore the lineups may
     sometimes look unexpected (etc. only one winger or no forwards)</span

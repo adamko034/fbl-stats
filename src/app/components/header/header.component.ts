@@ -18,6 +18,6 @@ export class HeaderComponent {
   }
 
   public openSidenav(): void {
-    this.sidenavService.open();
+    //this.sidenavService.openOnMobile();
   }
 }

@@ -10,7 +10,7 @@ import {
 } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { delay } from 'rxjs/operators';
-import { SidenavService } from 'src/app/services/sidenav.service';
+import { SidenavConfig, SidenavService } from 'src/app/services/sidenav.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
@@ -30,7 +30,7 @@ import { ScreenSizeService } from './services/screen-size.service';
 })
 export class AppComponent implements OnInit {
   private isMobile: boolean;
-  private sideNavOpenedOnMobile = false;
+  private sidenavConfig: SidenavConfig;
   public loading = true;
 
   public get sideNavMode(): string {
@@ -59,6 +59,11 @@ export class AppComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((isMobile) => (this.isMobile = isMobile));
 
+    this.sidenavService
+      .selectSidenavConfig()
+      .pipe(untilDestroyed(this))
+      .subscribe((config) => (this.sidenavConfig = config));
+
     this.router.events.pipe(delay(100), untilDestroyed(this)).subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         this.loading = true;
@@ -67,18 +72,18 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd || event instanceof NavigationError || event instanceof NavigationCancel) {
         this.loading = false;
 
-        if (this.sideNavOpenedOnMobile) {
-          this.sideNavOpenedOnMobile = false;
+        if (this.sidenavConfig?.openedOnMobile) {
+          this.sidenavService.toggleOnMobile();
         }
       }
     });
   }
 
   public isSideNavOpened(): boolean {
-    return !this.isMobile || (this.isMobile && this.sideNavOpenedOnMobile);
+    return !this.isMobile || (this.isMobile && this.sidenavConfig?.openedOnMobile);
   }
 
   public toggleSideNav(): void {
-    this.sideNavOpenedOnMobile = !this.sideNavOpenedOnMobile;
+    this.sidenavService.toggleOnMobile();
   }
 }

@@ -1,15 +1,15 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { PlayersDisplaySettingsService } from 'src/app/modules/core/players/services/players-display-settings.service';
-import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Component({
   selector: 'app-players-display',
   templateUrl: './players-display.component.html',
   styleUrls: ['./players-display.component.scss']
 })
-export class PlayersDisplayComponent implements OnInit, AfterViewInit {
+export class PlayersDisplayComponent implements OnInit {
   @Input() key: string;
 
   @ViewChild(MatPaginator, { static: false }) set paginator(matPaginator: MatPaginator) {
@@ -17,9 +17,7 @@ export class PlayersDisplayComponent implements OnInit, AfterViewInit {
       this.displaySettingsService.registerPaginator(this.key, matPaginator);
     }
   }
-
-  public screen$: Observable<ScreenSize>;
-  public screens = ScreenSize;
+  public isMobile$: Observable<boolean>;
 
   constructor(
     private screenSizeService: ScreenSizeService,
@@ -27,10 +25,6 @@ export class PlayersDisplayComponent implements OnInit, AfterViewInit {
   ) {}
 
   public ngOnInit(): void {
-    this.screen$ = this.screenSizeService.onResize();
-  }
-
-  public ngAfterViewInit(): void {
-    // this.displaySettingsService.registerPaginator(this.key, this.paginator);
+    this.isMobile$ = this.screenSizeService.isMobile$();
   }
 }

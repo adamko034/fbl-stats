@@ -1,4 +1,4 @@
-<app-predicted-lineups-team-navigation></app-predicted-lineups-team-navigation>
-<app-view>
+<app-predicted-lineups-team-navigation *ngIf="!(isMobile$ | async)"></app-predicted-lineups-team-navigation>
+<app-view [links]="links">
   <router-outlet></router-outlet>
 </app-view>

@@ -9,8 +9,8 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 })
 export class FixturesDifficultyContentComponent {
   private _links: ViewTabNavigationLink[] = [
-    { label: 'By ranking', routerLink: 'byRank', order: 1 },
-    { label: 'By form', routerLink: 'byForm', order: 2 }
+    { label: 'By ranking', labelMobile: 'Fixtures difficulty by ranking', routerLink: 'byRank', order: 1 },
+    { label: 'By form', labelMobile: 'Fixtures difficulty by form', routerLink: 'byForm', order: 2 }
   ];
 
   public get links(): ViewTabNavigationLink[] {

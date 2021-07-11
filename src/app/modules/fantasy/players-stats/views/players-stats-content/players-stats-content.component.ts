@@ -8,7 +8,9 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersStatsContentComponent {
-  private _links: ViewTabNavigationLink[] = [{ order: 1, label: 'Points efficiency', routerLink: 'pointsefficiency' }];
+  private _links: ViewTabNavigationLink[] = [
+    { order: 1, label: 'Points efficiency', labelMobile: 'Players points efficiency', routerLink: 'pointsefficiency' }
+  ];
 
   public get links(): ViewTabNavigationLink[] {
     return this._links;

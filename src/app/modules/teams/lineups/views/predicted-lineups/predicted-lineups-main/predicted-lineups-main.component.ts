@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-predicted-lineups-main',
@@ -6,11 +6,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./predicted-lineups-main.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PredictedLineupsMainComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class PredictedLineupsMainComponent {
+  constructor() {}
 }

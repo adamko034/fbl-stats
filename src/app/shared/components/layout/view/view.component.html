@@ -1,6 +1,32 @@
 <div class="view-container animate__animated animate__fadeIn" fxLayout="column">
-  <div class="view-tabs" *ngIf="links">
+  <div class="view-tabs" *ngIf="!(isMobile$ | async) && links">
     <app-view-tabs-navigation [links]="links" [disablePagination]="disablePagination"></app-view-tabs-navigation>
+  </div>
+
+  <div class="view-menu" *ngIf="isMobile$ | async">
+    <div fxLayoutAlign="start center" class="view-menu-header">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button *ngIf="!!links && links.length > 1" fxFlexAlign="center" mat-button [matMenuTriggerFor]="menu">
+        <div fxLayoutAlign="start center" fxLayoutGap="3px">
+          <span>{{ activePageLabel() }}</span>
+          <mat-icon>expand_more</mat-icon>
+        </div>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a
+          mat-menu-item
+          *ngFor="let link of links | orderBy: 'order'"
+          [routerLink]="link.routerLink"
+          routerLinkActive
+          #rla="routerLinkActive"
+        >
+          {{ link.labelMobile }}
+        </a>
+      </mat-menu>
+      <span class="single-tab" *ngIf="!!links && links.length == 1">{{ links[0].labelMobile }}</span>
+    </div>
   </div>
 
   <div class="view-content">

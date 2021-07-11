@@ -1,3 +1,5 @@
+@import '/src/variables.scss';
+
 .view-container {
   min-height: 100%;
 
@@ -8,9 +10,28 @@
     z-index: 1000;
   }
 
+  .view-menu {
+    height: 45px;
+    top: 0;
+    position: sticky;
+    z-index: 1000;
+    background-color: $colorGreyBackround;
+    width: 100%;
+
+    &-header {
+      padding: 3px;
+    }
+
+    .single-tab {
+      padding-top: 1px;
+      padding-left: 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
   .view-content {
     min-height: 100%;
-    margin-top: 15px;
     margin-bottom: 20px;
   }
 }
