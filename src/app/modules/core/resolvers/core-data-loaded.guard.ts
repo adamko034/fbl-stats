@@ -32,7 +32,11 @@ export class CoreDataLoadedGuard implements CanActivate {
           !!players &&
           players.length > 0 &&
           !!teams &&
-          teams.length > 0
+          teams.length > 0 &&
+          players.filter((x) => x.position.toLowerCase() === 'gk').length > 0 &&
+          players.filter((x) => x.position.toLowerCase() === 'def').length > 0 &&
+          players.filter((x) => x.position.toLowerCase() === 'mid').length > 0 &&
+          players.filter((x) => x.position.toLowerCase() === 'for').length > 0
         );
       }),
       tap(() => Logger.logDev('core data resolver, got all data')),

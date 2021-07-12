@@ -1,14 +1,8 @@
 <div fxLayout="column" fxLayoutGap="20px" *ngIf="players$ | async">
-  <app-white-block>
-    <div
-      fxLayout.lt-sm="column"
-      fxLayoutAlign.lt-sm="start"
-      fxLayoutGap.lt-sm="10px"
-      fxLayoutAlign="space-evenly center"
-      fxLayoutGap="30px"
-    >
-      <app-my-team-filters-position></app-my-team-filters-position>
-      <app-my-team-filters-matchdays></app-my-team-filters-matchdays>
+  <app-white-block padding="10px 10px 0 10px">
+    <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
+      <app-my-team-filters-position class="filter"></app-my-team-filters-position>
+      <app-my-team-filters-matchdays class="filter"></app-my-team-filters-matchdays>
     </div>
   </app-white-block>
 
