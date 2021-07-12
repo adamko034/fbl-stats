@@ -9,7 +9,7 @@
     </div>
   </app-view-title>
 
-  <app-white-block *ngIf="players$ | async">
+  <app-white-block *ngIf="players$ | async" padding="10px 10px">
     <app-players-list-base [players]="players$ | async"></app-players-list-base>
   </app-white-block>
 </div>

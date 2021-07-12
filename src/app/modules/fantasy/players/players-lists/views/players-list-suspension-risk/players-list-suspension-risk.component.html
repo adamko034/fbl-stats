@@ -1,14 +1,18 @@
 <div fxLayout="column" fxLayoutGap="15px">
   <app-view-title>
-    <div subtitle fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
-      <app-player-suspension-risk [show]="true"></app-player-suspension-risk>
-      <span
-        >Players who have collected 4 yellow cards and so are one yellow card away for being suspended. Source:
-        <a class="red" [href]="source" target="blank">Transfermarkt.de</a></span
-      >
+    <div subtitle fxLayout="column" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+        <app-player-suspension-risk [show]="true"></app-player-suspension-risk>
+        <span>Players who have collected 4 yellow cards and so are one yellow card away for being suspended. </span>
+      </div>
+      <div>
+        <div class="small-mobile" fxLayout="row" fxLayoutAlign="flex-end" fxLayoutGap="3px">
+          <span>Source:</span><a class="blue" [href]="source" target="blank">Transfermarkt.de</a>
+        </div>
+      </div>
     </div>
   </app-view-title>
-  <app-white-block *ngIf="players$ | async">
+  <app-white-block *ngIf="players$ | async" padding="10px 10px">
     <app-players-list-base [players]="players$ | async"></app-players-list-base>
   </app-white-block>
 </div>

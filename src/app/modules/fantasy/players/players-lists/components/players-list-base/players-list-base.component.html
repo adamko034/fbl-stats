@@ -1,4 +1,4 @@
-<div class="players-list-base-container" fxLayoutAlign="center center">
+<div class="players-list-base-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
   <table
     class="table"
     ngClass.lt-md="table-sm"
@@ -15,13 +15,13 @@
       <th mat-sort-header="name">name</th>
       <th mat-sort-header="position">position</th>
       <th fxHide.lt-sm mat-sort-header="price">price</th>
-      <th fxHide.lt-sm mat-sort-header="popularity">popularity</th>
+      <th fxHide.lt-md mat-sort-header="popularity">popularity</th>
       <th fxHide.lt-sm mat-sort-header="totalPoints">total points</th>
     </tr>
     <tbody>
       <tr *ngFor="let player of sorted" class="player" ngClass.lt-sm="player-mobile">
         <td>
-          <app-team-logo [team]="player.teamShort" [height]="30"></app-team-logo>
+          <app-team-logo [team]="player.teamShort" [height]="25"></app-team-logo>
         </td>
         <td class="player-name">
           <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
@@ -38,6 +38,7 @@
       </tr>
     </tbody>
   </table>
+  <span *ngIf="!sorted || sorted.length === 0">No players</span>
 </div>
 
 <ng-template #playerInfo let-title="title" let-value="value">

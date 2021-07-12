@@ -9,8 +9,8 @@ export class TeamLogoStyleDirective implements OnInit {
 
   public ngOnInit(): void {
     if (window.innerWidth < 600 && this.scaleOnMobile) {
-      this.el.nativeElement.height = 30;
-      this.el.nativeElement.width = 30;
+      this.el.nativeElement.height = 25;
+      this.el.nativeElement.width = 25;
       return;
     }
 
