@@ -123,7 +123,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
   }
 
   private changeType(newType: string) {
-    this.router.navigate(['players', 'lists', 'pointsEfficiency', newType], { queryParamsHandling: 'preserve' });
+    this.router.navigate(['fantasy', 'stats', 'pointsefficiency', newType], { queryParamsHandling: 'preserve' });
   }
 
   private getColumns(orderBy: string): PlayersListGenericColumn[] {

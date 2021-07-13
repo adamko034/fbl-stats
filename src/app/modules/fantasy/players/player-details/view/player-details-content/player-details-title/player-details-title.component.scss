@@ -1,0 +1,21 @@
+.title {
+  .back-button {
+    margin-left: 4px;
+  }
+  height: 48px;
+
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+  }
+
+  .price-mobile {
+    padding: 1px 7px;
+    font-size: 12px;
+  }
+}
+
+.scroll {
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+}

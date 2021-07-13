@@ -1,7 +1,8 @@
-<div *ngIf="state$ | async" fxLayout="column" fxLayoutGap="5px">
+<div *ngIf="state$ | async" fxLayout="column">
   <div class="sticky">
-    <app-player-details-main [player]="state$ | async | field: 'player'"></app-player-details-main>
+    <app-player-details-title [player]="state$ | async | field: 'player'"></app-player-details-title>
   </div>
+  <app-player-details-main [player]="state$ | async | field: 'player'"></app-player-details-main>
 
   <div fxLayoutGap="20px" fxLayout="column">
     <app-player-details-next-matchday [player]="state$ | async | field: 'player'"></app-player-details-next-matchday>

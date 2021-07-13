@@ -22,6 +22,7 @@ import { PlayerDetailsPointsByVenueComponent } from './view/player-details-conte
 import { PlayerDetailsPointsEfficiencyComponent } from './view/player-details-content/player-details-points/player-details-points-efficiency/player-details-points-efficiency.component';
 import { PlayerDetailsPointsComponent } from './view/player-details-content/player-details-points/player-details-points.component';
 import { PlayerDetailsTopGamesComponent } from './view/player-details-content/player-details-points/player-details-top-games/player-details-top-games.component';
+import { PlayerDetailsTitleComponent } from './view/player-details-content/player-details-title/player-details-title.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PlayerDetailsTopGamesComponent } from './view/player-details-content/pl
     PlayerDetailsChartsComponent,
     PlayerDetailsPointsComponent,
     PlayerDetailsPointsByVenueComponent,
-    PlayerDetailsPointsEfficiencyComponent
+    PlayerDetailsPointsEfficiencyComponent,
+    PlayerDetailsTitleComponent
   ],
   imports: [CommonModule, PlayerDetailsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [

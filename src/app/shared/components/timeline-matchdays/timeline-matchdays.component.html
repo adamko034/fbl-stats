@@ -6,7 +6,7 @@
     <button *ngIf="order === 'asc'" mat-icon-button [disabled]="isMin" (click)="previousMatchdays()">
       <mat-icon>navigate_before</mat-icon>
     </button>
-    <div fxLayout="row" fxLayoutGap="25px">
+    <div fxLayout="row" fxLayoutGap="15px">
       <div
         class="item"
         *ngFor="let item of displayedItems | orderBy: orderBy"
@@ -15,7 +15,7 @@
       >
         <span class="item-title bold">{{ item.matchday }}</span>
         <span class="item-logo">
-          <app-team-logo [height]="30" [team]="item.opponent"></app-team-logo>
+          <app-team-logo [height]="25" [team]="item.opponent"></app-team-logo>
         </span>
         <div class="item-text" *ngIf="item.wasPlayed" fxLayoutGap="3px" fxLayoutAlign="center center">
           <app-team-form *ngIf="item.result" size="supersmall" [form]="item.result"></app-team-form>

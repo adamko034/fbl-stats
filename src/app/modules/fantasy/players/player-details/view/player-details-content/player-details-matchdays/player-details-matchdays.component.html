@@ -1,19 +1,12 @@
 <app-white-block>
   <div
     fxLayout="row wrap"
-    fxLayoutGap.gt-xs="20px grid"
-    fxLayoutAlign="space-evenly start"
+    fxLayoutGap="15px"
+    fxLayoutAlign="space-evenly"
     fxLayout.lt-sm="column"
     fxLayoutAlign.lt-sm="center center"
-    fxLayoutGap.lt-sm="20px"
   >
-    <div
-      *ngIf="playedGames.length > 0"
-      class="card-games"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      fxLayoutGap="15px"
-    >
+    <div *ngIf="playedGames.length > 0" class="card-games" fxLayoutAlign="center">
       <app-title-underlined-grey>
         <span title>Previous games</span>
         <div content class="card-games-content">
@@ -22,13 +15,7 @@
       </app-title-underlined-grey>
     </div>
 
-    <div
-      *ngIf="futureGames.length > 0"
-      class="card-games"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      fxLayoutGap="15px"
-    >
+    <div *ngIf="futureGames.length > 0" class="card-games" fxLayoutAlign="center">
       <app-title-underlined-grey>
         <span title>Next games</span>
         <div content class="card-games-content">
@@ -38,28 +25,3 @@
     </div>
   </div>
 </app-white-block>
-<!--
-<div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="40px">
-  <mat-card
-    fxLayout="row wrap"
-    fxLayoutGap.gt-xs="20px grid"
-    fxLayoutAlign="space-evenly"
-    fxLayout.lt-sm="column"
-    fxLayoutAlign.lt-sm="center center"
-    fxLayoutGap.lt-sm="20px"
-  >
-    <div class="card-games" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-      <app-title-underlined>
-        <h3>Previous games</h3>
-      </app-title-underlined>
-      <app-timeline-matchdays [items]="playedGames" order="dsc"></app-timeline-matchdays>
-    </div>
-
-    <div class="card-games" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-      <app-title-underlined>
-        <h3>Next games</h3>
-      </app-title-underlined>
-      <app-timeline-matchdays [items]="futureGames" order="asc"></app-timeline-matchdays>
-    </div>
-  </mat-card>
-</div> -->

@@ -16,21 +16,27 @@ export class PlayerDetailsTopGamesComponent {
   @Input() player: PlayerDetails;
 
   public get bestGames(): TextValue[] {
-    return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => g.wasPlayed && g.hasPlayed)
-      .orderBy('points', 'dsc')
-      .take(5)
-      .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
-      .collect();
+    return (
+      new ArrayStream<PlayerDetailsGame>(this.player.games)
+        //.filterQuick((g) => g.wasPlayed && g.hasPlayed)
+        .filterQuick((g) => g.wasPlayed && !!g.points)
+        .orderBy('points', 'dsc')
+        .take(5)
+        .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
+        .collect()
+    );
   }
 
   public get worstGames(): TextValue[] {
-    return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => g.wasPlayed && g.hasPlayed)
-      .orderBy('points', 'asc')
-      .take(5)
-      .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
-      .collect();
+    return (
+      new ArrayStream<PlayerDetailsGame>(this.player.games)
+        //.filterQuick((g) => g.wasPlayed && g.hasPlayed)
+        .filterQuick((g) => g.wasPlayed && !!g.points)
+        .orderBy('points', 'asc')
+        .take(5)
+        .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
+        .collect()
+    );
   }
 
   constructor(private playersDataservice: PlayersDataService) {}

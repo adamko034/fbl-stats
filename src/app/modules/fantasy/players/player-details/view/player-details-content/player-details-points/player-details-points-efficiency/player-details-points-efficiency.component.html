@@ -8,8 +8,8 @@
         <td>last 5</td>
         <td>home</td>
         <td>away</td>
-        <td>vs top 6</td>
-        <td>vs worst 6</td>
+        <td fxHide.lt-md>vs top 6</td>
+        <td fxHide.lt-md>vs worst 6</td>
       </tr>
       <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ field: 'five', points: '5' }"></ng-template>
       <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ field: 'ten', points: '10' }"></ng-template>
@@ -29,7 +29,7 @@
     <td>{{ state[field].last5 }}</td>
     <td>{{ state[field].home }}</td>
     <td>{{ state[field].away }}</td>
-    <td>{{ state[field].vsTop6 }}</td>
-    <td>{{ state[field].vsWorst6 }}</td>
+    <td fxHide.lt-md>{{ state[field].vsTop6 }}</td>
+    <td fxHide.lt-md>{{ state[field].vsWorst6 }}</td>
   </tr>
 </ng-template>

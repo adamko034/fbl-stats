@@ -126,7 +126,7 @@ mat-button-toggle.position-active {
 }
 
 .mat-drawer-backdrop {
-  height: 100vh !important;
+  min-height: 100vh !important;
 }
 
 .mat-tab-link {
@@ -336,6 +336,10 @@ table.comparison-table {
 
       &:not(:last-child) {
         padding-right: 20px;
+
+        @media screen and (max-width: 600px) {
+          padding-right: 12px;
+        }
       }
     }
 

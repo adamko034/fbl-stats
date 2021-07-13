@@ -1,4 +1,4 @@
-<app-white-block>
+<app-white-block padding="10px 10px">
   <div class="players-list-generic-container" fxLayoutAlign="center center">
     <table
       class="table"
@@ -28,7 +28,7 @@
       <tbody>
         <tr *ngFor="let row of data.rows | orderBy: 'order'" class="player" ngClass.lt-sm="player-mobile">
           <td>
-            <app-team-logo [team]="row.teamShort" [height]="30"></app-team-logo>
+            <app-team-logo [team]="row.teamShort" [height]="25" [scaleOnMobile]="true"></app-team-logo>
           </td>
           <td class="player-name">
             <app-player-name-link [name]="row.playerName" [id]="row.playerId"></app-player-name-link>

@@ -1,0 +1,21 @@
+<app-white-block [noPadding]="true">
+  <div fxLayoutAlign="space-between" class="title" [ngClass]="{ scroll: !showSubrow }">
+    <button mat-icon-button class="back-button" (click)="onGoBackClick()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div fxFlex="center" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <app-team-logo fxHide.xs [height]="30" [team]="player.team.shortName"></app-team-logo>
+        <h2 fxHide.lt-sm>{{ player.name }}</h2>
+        <h3 fxHide.gt-xs>{{ player.name }}</h3>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <h3 fxHide.lt-sm>{{ player.position | uppercase }}</h3>
+        <h4 fxHide.gt-xs>{{ player.position | uppercase }}</h4>
+        <mat-chip-list>
+          <mat-chip ngClass.xs="price-mobile">{{ player.fantasy.price }}M</mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </div>
+</app-white-block>

@@ -1,12 +1,12 @@
-<app-white-block *ngIf="player.nextGame">
+<app-white-block *ngIf="player.nextGame" padding="10px 10px 0px 10px">
   <div
+    content
     class="player-details-next-matchday-container"
     fxLayout="row wrap"
-    fxLayoutGap="10px grid"
+    fxLayoutGap="10px"
     fxLayoutAlign="space-evenly start"
     fxLayout.lt-sm="column"
     fxLayoutAlign.lt-sm="center center"
-    fxLayoutGap.lt-sm="20px"
   >
     <div fxLayout="column" class="next-game-info" fxLayoutGap="10px">
       <div>
@@ -94,7 +94,7 @@
     </app-title-underlined-grey>
 
     <app-title-underlined-grey>
-      <span title>Bundesliga overall</span>
+      <span title>Teams</span>
       <table content class="comparison-table">
         <tbody>
           <tr>
@@ -146,7 +146,7 @@
     </app-title-underlined-grey>
 
     <app-title-underlined-grey>
-      <span title>Bundesliga last 5</span>
+      <span title>Teams last 5 games</span>
       <table content class="comparison-table">
         <tbody>
           <tr>
