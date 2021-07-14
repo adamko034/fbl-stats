@@ -8,9 +8,9 @@
       fxLayoutGap="15px"
     >
       <div fxFlexAlign="start" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-        <app-team-logo [team]="player.team.teamShort" [height]="30"></app-team-logo>
+        <app-team-logo [team]="player.team.teamShort" [height]="25"></app-team-logo>
         <div *ngIf="player.order <= 3">
-          <fa-icon [icon]="['fas', 'medal']" size="2x" [appMedalColor]="player.order"></fa-icon>
+          <fa-icon class="order-icon" [icon]="['fas', 'medal']" [appMedalColor]="player.order"></fa-icon>
         </div>
       </div>
 
@@ -28,12 +28,12 @@
         </div>
 
         <div class="player-main-info" fxLayout="row" fxLayoutAlign="start center">
-          <span class="player-main-info-item">Top 100: {{ player.top100Popularity }}%</span>
+          <span class="player-main-info-item">Leaders: {{ player.top100Popularity }}%</span>
         </div>
 
         <div class="player-main-prediction" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
           <a [routerLink]="'/lineups/teams/' + player.team.teamShort" target="_blank">Is predicted to start?</a>
-          <app-prediction-indicator [value]="player.prediction"></app-prediction-indicator>
+          <app-prediction-indicator [appScale]="0.8" [value]="player.prediction"></app-prediction-indicator>
         </div>
       </div>
     </div>
@@ -48,11 +48,19 @@
       fxLayoutGap.gt-xs="5px"
       fxLayoutGap.xs="10px"
     >
-      <app-our-pick-icon [ngClass]="{ hidden: !player.isMustHave }" icon="mustHave"></app-our-pick-icon>
-      <app-our-pick-icon [ngClass]="{ hidden: !player.isPremium }" icon="premium"></app-our-pick-icon>
-      <app-our-pick-icon [ngClass]="{ hidden: !player.isBargain }" icon="bargain"></app-our-pick-icon>
-      <app-our-pick-icon [ngClass]="{ hidden: !player.isDifferential }" icon="differential"></app-our-pick-icon>
-      <app-our-pick-icon [ngClass]="{ hidden: !player.isSurprising }" [icon]="Icons.SURPRISING"></app-our-pick-icon>
+      <app-our-pick-icon class="icon" [ngClass]="{ hidden: !player.isMustHave }" icon="mustHave"></app-our-pick-icon>
+      <app-our-pick-icon class="icon" [ngClass]="{ hidden: !player.isPremium }" icon="premium"></app-our-pick-icon>
+      <app-our-pick-icon class="icon" [ngClass]="{ hidden: !player.isBargain }" icon="bargain"></app-our-pick-icon>
+      <app-our-pick-icon
+        class="icon"
+        [ngClass]="{ hidden: !player.isDifferential }"
+        icon="differential"
+      ></app-our-pick-icon>
+      <app-our-pick-icon
+        class="icon"
+        [ngClass]="{ hidden: !player.isSurprising }"
+        [icon]="Icons.SURPRISING"
+      ></app-our-pick-icon>
     </div>
 
     <div
@@ -69,6 +77,7 @@
     </div>
 
     <div
+      fxHide.sm
       class="player-next-games"
       ngClass.xs="player-next-games-mobile"
       fxLayout="column"
@@ -76,14 +85,15 @@
       fxLayoutGap="10px"
     >
       <div class="md-row" *ngFor="let md of player.team.nextGames | orderBy: 'matchday'">
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
           <span class="md-row-text grey">MD {{ md.matchday }}:</span>
           <div fxLayoutAlign="start center" fxLayoutGap="5px">
-            <app-team-logo [team]="md.opponentShort" [height]="30"></app-team-logo>
+            <app-team-logo [team]="md.opponentShort" [height]="25"></app-team-logo>
             <span class="player-next-games-info">{{ md.opponentRank | numerals }}</span>
             <span class="player-next-games-info">({{ md.isHome ? 'h' : 'a' }})</span>
 
             <span
+              appScale="0.9"
               *ngIf="md.isFirstGame"
               class="green first-game"
               fxLayoutAlign="center center"

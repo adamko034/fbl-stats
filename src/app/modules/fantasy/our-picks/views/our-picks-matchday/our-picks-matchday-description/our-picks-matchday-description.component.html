@@ -1,10 +1,12 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
-  <div class="item" *ngFor="let item of iconsLegend" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
-    <span class="item-description">{{ item.description }}</span>
+<app-white-block>
+  <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
+    <div class="item" *ngFor="let item of iconsLegend" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
+      <span class="item-description">{{ item.description }}</span>
+    </div>
+    <div class="item" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <app-matchday-first-game-indicator></app-matchday-first-game-indicator>
+      <span class="item-description">Team playing matchday first game</span>
+    </div>
   </div>
-  <div class="item" fxLayoutAlign="start center" fxLayoutGap="10px">
-    <app-matchday-first-game-indicator></app-matchday-first-game-indicator>
-    <span class="item-description">Team playing matchday first game</span>
-  </div>
-</div>
+</app-white-block>

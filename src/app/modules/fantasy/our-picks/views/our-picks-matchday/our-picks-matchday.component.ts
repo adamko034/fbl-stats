@@ -1,8 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { OurPicksPlayers } from 'src/app/modules/core/our-picks/models/our-picks-players.model';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-our-picks-matchday',
@@ -10,12 +6,6 @@ import { OurPicksPlayers } from 'src/app/modules/core/our-picks/models/our-picks
   styleUrls: ['./our-picks-matchday.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OurPicksMatchdayComponent implements OnInit {
-  public ourPicks$: Observable<OurPicksPlayers>;
-
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.ourPicks$ = this.route.data.pipe(map((data) => data.ourPicks));
-  }
+export class OurPicksMatchdayComponent {
+  constructor() {}
 }

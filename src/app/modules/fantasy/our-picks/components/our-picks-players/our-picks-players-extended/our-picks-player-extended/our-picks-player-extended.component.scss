@@ -1,10 +1,14 @@
+@import '/src/variables.scss';
+
 .our-picks-player-container {
   padding: 0;
 }
 
 .player {
+  font-size: $fontSizeSmall;
+
   &-main {
-    padding: 16px 0 16px 16px;
+    padding-left: 5px;
 
     &-mobile {
       padding: 16px;
@@ -14,14 +18,16 @@
       width: 180px;
 
       &-text {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 500;
       }
     }
 
-    &-info {
-      font-size: 14px;
+    .order-icon {
+      font-size: 20px;
+    }
 
+    &-info {
       &-item {
         padding-right: 10px;
       }
@@ -34,8 +40,12 @@
 
   &-icons {
     padding: 7px 0;
-    width: 60px;
+    width: 40px;
     background-color: rgba($color: #000000, $alpha: 0.08);
+
+    .icon {
+      transform: scale(0.8);
+    }
 
     &-mobile {
       padding: 10px;
@@ -48,8 +58,7 @@
   }
 
   &-form {
-    width: 100px;
-    margin-left: 20px;
+    margin-left: 10px;
 
     &-mobile {
       width: 100%;
@@ -58,7 +67,7 @@
     }
 
     &-points {
-      width: 25px;
+      width: 17px;
       text-align: right;
     }
   }
@@ -70,15 +79,15 @@
     }
   }
 
+  &-form {
+    margin-right: 15px;
+  }
+
   &-next-games {
-    padding: 16px 16px 16px 0;
+    padding: 5px 5px 5px 8px;
 
     &-mobile {
       padding: 16px;
-    }
-
-    &-info {
-      font-size: 12px;
     }
 
     .first-game {

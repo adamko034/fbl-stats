@@ -1,54 +1,59 @@
-.our-picks-players-simplified {
-  width: 800px;
-  margin: auto;
-}
+table {
+  border-spacing: 0;
+  border-radius: 15px;
+  border: 1px solid #ccc;
 
-.our-picks-players-simplified-mobile {
-  width: 100%;
-}
+  tr {
+    td {
+      padding: 15px 10px;
 
-.admin-our-picks-list {
-  width: 100%;
-  border: solid 1px #ccc;
-  min-height: 60px;
-  display: block;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
-}
+      .icons {
+        .icon {
+          transform: scale(0.8);
+        }
 
-.admin-our-pick {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  background: white;
-  font-size: 14px;
+        .hidden {
+          visibility: hidden;
+        }
 
-  .order {
-    font-size: 20px;
+        .hidden-mobile {
+          display: none;
+        }
+      }
+    }
+
+    td.name {
+      padding-right: 20px;
+    }
+
+    td.order {
+      text-align: center;
+
+      .order-image {
+        font-size: 20px;
+      }
+
+      .order-number {
+        font-weight: 500;
+        font-size: 12px;
+      }
+    }
   }
 
-  .icons {
-    margin-left: 10px;
-
-    .icon {
-      cursor: pointer;
-    }
-
-    .hidden {
-      visibility: hidden;
-    }
-
-    .hidden-mobile {
-      display: none;
+  tr:not(:last-child) {
+    td {
+      border-bottom: 1px solid #ccc;
     }
   }
 }
 
-.admin-our-pick:last-child {
-  border: none;
+table.table-mobile {
+  border: 0;
+
+  tr {
+    td {
+      padding: 15px 5px;
+      font-size: 12px;
+    }
+  }
 }

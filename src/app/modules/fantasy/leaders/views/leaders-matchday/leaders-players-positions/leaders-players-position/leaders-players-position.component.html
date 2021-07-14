@@ -29,6 +29,7 @@
     ></app-text-value-card>
 
     <app-text-value-card
+      *ngIf="!!stars && stars.length > 0"
       [showInMatCard]="false"
       [showMoreButton]="data.stars?.length > 3"
       title="Stars"

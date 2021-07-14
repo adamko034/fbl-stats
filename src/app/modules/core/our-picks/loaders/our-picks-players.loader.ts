@@ -19,13 +19,14 @@ export class OurPicksPlayersLoader {
     Logger.logDev('our picks players loader, loading for MD ' + matchday);
 
     if (!!this.cache[matchday]) {
-      Logger.logDev('our picks players loader, returning cached data');
+      Logger.logDev(`our picks players loader, returning cached data: ${this.cache[matchday].players.length} players`);
       return of(this.cache[matchday]).pipe(first());
     }
 
     return this.ourPicksStore.select(matchday).pipe(
       map((ourPicks: OurPicks) => {
         if (!ourPicks) {
+          Logger.logDev(`our picks players loader, no our picks, returning null`);
           return null;
         }
 
@@ -36,6 +37,8 @@ export class OurPicksPlayersLoader {
         };
 
         this.cache[matchday] = value;
+
+        Logger.logDev(`our picks players loader, returning ${value.players.length} players`);
         return value;
       }),
       first()

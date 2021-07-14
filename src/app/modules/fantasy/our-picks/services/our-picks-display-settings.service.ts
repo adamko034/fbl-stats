@@ -19,6 +19,7 @@ export class OurPicksDisplaySettingsService {
   private settings$ = new ReplaySubject<OurPicksDisplaySettings>(1);
 
   constructor(private guiConfigStore: GuiConfigStore) {
+    this.send();
     this.guiConfigStore.selectOurPicksDisplaySettings().subscribe((guiConfigSettings: GuiConfigOurPicks) => {
       if (!!guiConfigSettings) {
         const { view, display, sortBy } = guiConfigSettings;
