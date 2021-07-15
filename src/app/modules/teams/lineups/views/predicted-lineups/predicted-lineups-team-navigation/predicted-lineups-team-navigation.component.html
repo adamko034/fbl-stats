@@ -1,24 +1,23 @@
 <div
-  class="predicted-lineups-team-navigation-container"
-  ngClass.lt-sm="predicted-lineups-team-navigation-container-mobile"
-  fxLayout="row wrap"
-  fxLayoutAlign="center center"
-  fxLayoutGap="7px"
+  fxLayoutAlign="space-between"
+  [ngClass]="{ scroll: !isScroll }"
+  class="predicted-lineups-team-navigation-container sticky"
 >
-  <div>
+  <div class="home-link">
     <a routerLink="/teams/lineups" class="team-link" routerLinkActive="home-link-active">
-      <mat-icon class="home-link">info</mat-icon>
+      <mat-icon class="home-link-icon">info</mat-icon>
     </a>
   </div>
-  <div *ngFor="let team of teams$ | async | orderBy: 'rank'">
-    <a
-      routerLinkActive="team-link-active"
-      class="team-link hvr-small hvr-underline-from-center"
-      ngClass.sm="team-link-sm"
-      [routerLink]="team.shortName"
-    >
-      <app-team-logo *ngIf="(screen$ | async) > screens.SM" [height]="35" [team]="team.shortName"></app-team-logo>
-      <app-team-logo *ngIf="(screen$ | async) <= screens.SM" [height]="30" [team]="team.shortName"></app-team-logo>
-    </a>
+  <div fxFlex="center" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="7px">
+    <div *ngFor="let team of teams$ | async | orderBy: 'rank'">
+      <a
+        routerLinkActive="team-link-active"
+        class="team-link hvr-small hvr-underline-from-center"
+        ngClass.sm="team-link-sm"
+        [routerLink]="team.shortName"
+      >
+        <app-team-logo [height]="30" [team]="team.shortName"></app-team-logo>
+      </a>
+    </div>
   </div>
 </div>

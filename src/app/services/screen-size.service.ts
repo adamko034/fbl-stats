@@ -3,6 +3,7 @@ import { fromEvent, Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
 export enum ScreenSize {
+  XXS = 0,
   XS = 1,
   SM = 2,
   MD = 3,
@@ -32,18 +33,20 @@ export class ScreenSizeService {
 
   public isMobile$(): Observable<boolean> {
     return this.onResize().pipe(
-      map((screenSize) => screenSize === ScreenSize.XS),
+      map((screenSize) => screenSize <= ScreenSize.XS),
       distinctUntilChanged()
     );
   }
 
   public isMobile(): boolean {
-    return this.mapToScreenSize() === ScreenSize.XS;
+    return this.mapToScreenSize() <= ScreenSize.XS;
   }
 
   private mapToScreenSize(): ScreenSize {
     const width = window.screen.width;
-    if (width < 600) {
+    if (width < 400) {
+      return ScreenSize.XXS;
+    } else if (width < 600) {
       return ScreenSize.XS;
     } else if (width < 960) {
       return ScreenSize.SM;

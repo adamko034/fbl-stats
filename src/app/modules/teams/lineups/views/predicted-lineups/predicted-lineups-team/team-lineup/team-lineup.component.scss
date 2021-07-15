@@ -1,8 +1,4 @@
 .team-lineup-container {
-  &-mobile {
-    transform: scale(0.85);
-  }
-
   .title {
     width: 100%;
     text-align: center;
@@ -51,4 +47,8 @@
       }
     }
   }
+}
+
+.team-lineup-container-scaled {
+  transform: scale(0.8);
 }

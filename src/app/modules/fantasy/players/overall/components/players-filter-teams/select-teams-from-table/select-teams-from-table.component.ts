@@ -50,7 +50,7 @@ export class SelectTeamsFromTableComponent implements OnInit, OnDestroy, AfterVi
 
     this.data.selectedTeams.forEach((team) => this.toggleTeamSelection(team));
     this.responsivenessService.onResize().subscribe((screen) => {
-      if (screen === ScreenSize.XS) {
+      if (screen <= ScreenSize.XS) {
         this.displayedColumns = [...this.columnsMobile];
         return;
       }

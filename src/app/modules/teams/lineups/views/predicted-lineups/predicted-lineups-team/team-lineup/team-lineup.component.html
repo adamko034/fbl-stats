@@ -1,6 +1,6 @@
 <div
   class="team-lineup-container"
-  ngClass.lt-sm="team-lineup-container-mobile"
+  [ngClass]="{ 'team-lineup-container-scaled': (shouldScale$ | async) }"
   fxLayout="column"
   fxLayoutAlign="center center"
 >

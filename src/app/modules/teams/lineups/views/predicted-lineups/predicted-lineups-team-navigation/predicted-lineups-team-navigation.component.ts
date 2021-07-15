@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,6 +16,13 @@ export class PredictedLineupsTeamNavigationComponent implements OnInit {
   public teams$: Observable<Team[]>;
   public screen$: Observable<ScreenSize>;
   public screens = ScreenSize;
+
+  public isScroll = true;
+
+  @HostListener('window:scroll', ['$event'])
+  private setIfShowSubrow(event) {
+    this.isScroll = window.pageYOffset <= 10;
+  }
 
   constructor(private route: ActivatedRoute, private screenSizeService: ScreenSizeService) {}
 

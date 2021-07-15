@@ -4,9 +4,9 @@
   ngClass.lt-sm="predicted-lineups-sources-container-mobile"
   fxLayout="column"
   fxLayoutAlign="center"
-  fxLayoutGap="20px"
+  fxLayoutGap="10px"
 >
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap.gt-xs="20px" fxLayoutGap.xs="10px grid">
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap.gt-xs="20px" fxLayoutGap.xs="7px grid">
     <div *ngFor="let source of sources$ | async">
       <div class="source-item" fxLayoutGap="7px" fxLayoutAlign="start center">
         <span>{{ source.displayName }}</span>

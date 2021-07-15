@@ -1,17 +1,30 @@
 @import '/src/variables.scss';
 
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.scroll {
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+}
+
 .predicted-lineups-team-navigation-container {
   background-color: #fff;
   padding: 5px 0;
 
   .home-link {
-    transform: scale(1.25);
-    margin-top: 4px;
-    color: $colorGrey;
+    margin-top: 10px;
+
+    &-icon {
+      transform: scale(1.5);
+      color: $colorGrey;
+    }
   }
 
   .team-link {
-    padding: 8px 10px;
+    padding: 6px;
     cursor: pointer;
 
     &-active {
