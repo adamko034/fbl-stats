@@ -1,7 +1,4 @@
-<app-filters-content-layout>
-  <app-bundesliga-teams-table-filters
-    filters
-    (filtersChange)="onFiltersChange($event)"
-  ></app-bundesliga-teams-table-filters>
-  <app-bundesliga-teams-table content [teams]="teamsToDisplay"></app-bundesliga-teams-table>
-</app-filters-content-layout>
+<div class="bundesliga-content" fxLayout="column" fxLayoutGap="10px">
+  <app-bundesliga-teams-table-filters (filtersChange)="onFiltersChange($event)"></app-bundesliga-teams-table-filters>
+  <app-bundesliga-teams-table [teams]="teamsToDisplay"></app-bundesliga-teams-table>
+</div>

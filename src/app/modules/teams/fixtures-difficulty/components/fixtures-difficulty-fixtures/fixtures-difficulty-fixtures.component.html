@@ -1,8 +1,42 @@
-<div class="schedules-container">
+<div class="fixtures-container">
+  <!-- <div class="header" fxLayout="row">
+    <div></div>
+    <div class="grid" *ngFor="let md of state.mdsHeader | orderBy">MD {{ md }}</div>
+  </div> -->
+  <div
+    class="team-row"
+    fxLayout="row"
+    fxLayoutGap="15px"
+    *ngFor="let team of state.teams | orderBy: [sortBy.value, 'rank']"
+  >
+    <div class="team-info" fxLayoutAlign="center center" fxLayoutGap="2px" fxLayout="column">
+      <app-team-logo [team]="team.shortName" [height]="35"></app-team-logo>
+      <span class="rank">{{ team.rank | numerals }}</span>
+    </div>
+    <div class="grid">
+      <div *ngFor="let game of getGames(team) | orderBy: 'matchday'">
+        <div
+          [ngStyle]="{ 'background-color': game.color }"
+          class="team-md"
+          fxLayoutAlign="center center"
+          fxLayout="column"
+        >
+          <app-team-logo [team]="game.opponent" [height]="30"></app-team-logo>
+          <span>{{ game.displayedInfo }}</span>
+          <span>{{ game.isHome ? 'home' : 'away' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="schedules-container">
   <ul *ngIf="(screen$ | async) > screens.XS" class="schedules">
     <li class="schedule header">
-      <div fxFlex="10"></div>
-      <div fxFlex="18" fxLayoutAlign="center center" *ngFor="let md of state.mdsHeader | orderBy">MD {{ md }}</div>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxFlex="10"></div>
+        <div fxFlex="12" fxLayoutAlign="center center" *ngFor="let md of state.mdsHeader | orderBy">MD {{ md }}</div>
+      </div>
     </li>
     <li *ngFor="let team of state.teams | orderBy: [sortBy.value, 'rank']">
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="schedule row">
@@ -11,14 +45,14 @@
           <span class="rank">{{ team.rank | numerals }}</span>
         </div>
 
-        <div fxFlex="18" fxFlexAlign="stretch" *ngFor="let game of getGames(team) | orderBy: 'matchday'">
+        <div fxFlex="12" fxFlexAlign="stretch" *ngFor="let game of getGames(team) | orderBy: 'matchday'">
           <div
             [ngStyle]="{ 'background-color': game.color }"
             class="md"
             fxLayoutAlign="center center"
             fxLayout="column"
           >
-            <app-team-logo [team]="game.opponent" [height]="40"></app-team-logo>
+            <app-team-logo [team]="game.opponent" [height]="30"></app-team-logo>
             <span>{{ game.displayedInfo }}</span>
             <span>{{ game.isHome ? 'home' : 'away' }}</span>
           </div>
@@ -27,7 +61,7 @@
     </li>
   </ul>
 
-  <div *ngIf="(screen$ | async) === screens.XS" class="schedules">
+  <div *ngIf="(screen$ | async) <= screens.XS" class="schedules">
     <div
       *ngFor="let team of state.teams | orderBy: [sortBy.value, 'rank']"
       class="schedule schedule-mobile row"
@@ -63,4 +97,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

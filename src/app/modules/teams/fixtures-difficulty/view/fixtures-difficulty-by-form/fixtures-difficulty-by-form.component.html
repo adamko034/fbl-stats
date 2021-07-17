@@ -1,55 +1,43 @@
-<app-filters-content-layout>
-  <div filters>
-    <app-filters-layout>
-      <div gt-xs fxLayout="row" fxLayoutAlign="space-evenly center">
-        <app-fixtures-difficulty-venue-filter
-          (includeVenueChange)="onIncludeVenueCalculationChange($event)"
-        ></app-fixtures-difficulty-venue-filter>
-        <ng-template [ngTemplateOutlet]="formDropdown"></ng-template>
-      </div>
-      <div xs-header>
-        <span>Filters</span>
-      </div>
-      <div xs-content fxLayout="column" fxLayoutGap="15px">
-        <app-fixtures-difficulty-venue-filter
-          (includeVenueChange)="onIncludeVenueCalculationChange($event)"
-        ></app-fixtures-difficulty-venue-filter>
-        <ng-template [ngTemplateOutlet]="formDropdown"></ng-template>
-      </div>
-    </app-filters-layout>
-  </div>
-  <div content fxLayout="column" fxLayoutGap="15px">
-    <app-fixtures-difficulty-sort
-      [nextMatchdays]="state.mdsHeader"
-      (sortChange)="onSortChange($event)"
-    ></app-fixtures-difficulty-sort>
-    <div fxLayout="row" fxLayoutGap.gt-xs="40px" fxLayout.lt-sm="column">
-      <app-fixtures-difficulty-fixtures
-        fxFlex.gt-xs="82"
-        [state]="state"
-        [sortBy]="sortBy"
-      ></app-fixtures-difficulty-fixtures>
-      <app-fixtures-difficulty-fixtures-table
-        fxFlexAlign.lt-sm="center"
-        fxFlex.gt-xs="18"
-        ngClass.gt-xs="table"
-        [valueColumnHeader]="'last ' + includedGames"
-        [teams]="scheduleTableTeams"
-        sortDirection="desc"
-      ></app-fixtures-difficulty-fixtures-table>
+<div fxLayout="column" fxLayoutGap="20px">
+  <app-white-block class="filters">
+    <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
+      <app-fixtures-difficulty-venue-filter
+        (includeVenueChange)="onIncludeVenueCalculationChange($event)"
+      ></app-fixtures-difficulty-venue-filter>
+      <app-form-field>
+        <mat-form-field>
+          <mat-select [ngModel]="includedGames" name="includeGames" (selectionChange)="onFormChange($event)">
+            <mat-option value="2">2 last games</mat-option>
+            <mat-option value="3">3 last games</mat-option>
+            <mat-option value="4">4 last games</mat-option>
+            <mat-option value="5">5 last games</mat-option>
+          </mat-select>
+          <mat-hint>Team form</mat-hint>
+        </mat-form-field>
+      </app-form-field>
     </div>
-  </div>
-</app-filters-content-layout>
+  </app-white-block>
 
-<ng-template #formDropdown>
-  <app-form-field label="Form includes:">
-    <mat-form-field>
-      <mat-select [ngModel]="includedGames" name="includeGames" (selectionChange)="onFormChange($event)">
-        <mat-option value="2">2 last games</mat-option>
-        <mat-option value="3">3 last games</mat-option>
-        <mat-option value="4">4 last games</mat-option>
-        <mat-option value="5">5 last games</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </app-form-field>
-</ng-template>
+  <app-white-block padding="10px 10px 10px 0px">
+    <div fxLayout="column" fxLayoutGap="15px">
+      <app-fixtures-difficulty-sort
+        fxFlexAlign="end"
+        [nextMatchdays]="state.mdsHeader"
+        (sortChange)="onSortChange($event)"
+      ></app-fixtures-difficulty-sort>
+
+      <div
+        class="fixtures-content"
+        ngClass.lt-md="fixtures-content-lt-md"
+        fxLayout.lt-md="column"
+        fxLayoutGap.lt-md="20px"
+      >
+        <app-fixtures-difficulty-fixtures [state]="state" [sortBy]="sortBy"></app-fixtures-difficulty-fixtures>
+        <app-fixtures-difficulty-fixtures-table
+          [valueColumnHeader]="'Last ' + includedGames + '(pts)'"
+          [teams]="scheduleTableTeams"
+        ></app-fixtures-difficulty-fixtures-table>
+      </div>
+    </div>
+  </app-white-block>
+</div>

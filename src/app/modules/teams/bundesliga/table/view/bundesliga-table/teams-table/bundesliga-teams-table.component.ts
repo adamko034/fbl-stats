@@ -31,6 +31,9 @@ export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
   ];
 
   public displayedColumns: string[] = [];
+  public gamesColumnDisplay = 'Games';
+  public pointsColumnDisplay = 'Points';
+  public smallFont = false;
 
   @ViewChild(MatSort)
   public sort: MatSort;
@@ -42,6 +45,10 @@ export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
       .onResize()
       .pipe(untilDestroyed(this))
       .subscribe((screen) => {
+        this.gamesColumnDisplay = 'Games';
+        this.pointsColumnDisplay = 'Points';
+        this.smallFont = false;
+
         if (screen > ScreenSize.SM) {
           this.displayedColumns = [...this.allColumns];
           return;
@@ -53,6 +60,12 @@ export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
         }
 
         if (screen < ScreenSize.SM) {
+          if (screen < ScreenSize.XS) {
+            this.smallFont = true;
+          }
+
+          this.gamesColumnDisplay = 'G';
+          this.pointsColumnDisplay = 'Pts';
           this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg' && c !== 'form');
           return;
         }
