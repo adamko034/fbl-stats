@@ -1,0 +1,29 @@
+<app-white-block>
+  <div fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap.gt-sm="40px">
+      <app-players-position-switch
+        class="fitler"
+        [selected]="filters$ | async | field: 'position'"
+        (positionChange)="updatePosition($event)"
+      ></app-players-position-switch>
+      <app-select-teams
+        class="fitler"
+        [selected]="filters$ | async | field: 'teams'"
+        (selectionChange)="updateTeams($event)"
+      ></app-select-teams>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap.gt-sm="40px">
+      <app-slider-max-price
+        class="fitler"
+        [value]="filters$ | async | field: 'maxPrice'"
+        [max]="26.5"
+        (priceChange)="updateMaxPrice($event)"
+      ></app-slider-max-price>
+      <app-slider-max-popularity
+        class="fitler"
+        [value]="filters$ | async | field: 'maxPopularity'"
+        (popularityChange)="updateMaxPopularity($event)"
+      ></app-slider-max-popularity>
+    </div>
+  </div>
+</app-white-block>

@@ -1,0 +1,26 @@
+.table-container {
+  overflow-x: auto;
+  margin-top: -10px;
+}
+
+.table-responsive th.mat-table-sticky {
+  top: 0px !important;
+}
+
+.display {
+  padding: 5px 0px 0px 10px;
+
+  .search {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.legend {
+  margin: 15px 0 0 25px;
+  span {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba($color: #000000, $alpha: 0.54);
+  }
+}

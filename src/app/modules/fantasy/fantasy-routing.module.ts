@@ -31,6 +31,10 @@ const routes: Routes = [
       {
         path: 'stats',
         loadChildren: () => import('./players-stats/players-stats.module').then((m) => m.PlayersStatsModule)
+      },
+      {
+        path: 'history',
+        loadChildren: () => import('./history/history.module').then((m) => m.HistoryModule)
       }
     ]
   }

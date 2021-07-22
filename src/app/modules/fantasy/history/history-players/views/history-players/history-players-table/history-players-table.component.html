@@ -1,0 +1,149 @@
+<app-white-block [noPadding]="true">
+  <div fxLayout="column">
+    <div class="display" fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+      <mat-form-field class="search">
+        <mat-label>Search by player name</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="text" [formControl]="search" />
+        <button *ngIf="!!search.value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
+    </div>
+
+    <div class="table-container">
+      <table
+        mat-table
+        class="table-responsive"
+        matSort
+        matSortStart="desc"
+        matSortActive="totalPoints"
+        matSortDisableClear
+        matSortDirection="desc"
+        [dataSource]="dataSource"
+      >
+        <ng-container matColumnDef="name" sticky>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let player">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+              <app-team-logo [height]="20" [team]="player.team"></app-team-logo>
+              <span>{{ player.name }}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>Pos</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.position | uppercase }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>$</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.price }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="popularity">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.popularity }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="leadersPopularity">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>L%</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.leadersPopularity }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalPoints">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>TP</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.totalPoints }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="avg">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Avg</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.avg }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstLegPoints">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>1st leg</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.firstLegPoints }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="secondLegPoints">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>2nd leg</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.secondLegPoints }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="homeGamesPoints">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Home</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.homeGamesPoints }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="homeAvg">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Home avg</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.homeAvg }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="awayGamesPoints">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Away</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.awayGamesPoints }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="awayAvg">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>Away avg</th>
+          <td mat-cell *matCellDef="let player">
+            {{ player.awayAvg }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tenPointsEfficiency">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>10pts eff</th>
+          <td mat-cell *matCellDef="let player">{{ player.tenPointsEfficiency }}%</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fifteenPointsEfficiency">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>15pts eff</th>
+          <td mat-cell *matCellDef="let player">{{ player.fifteenPointsEfficiency }}%</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let player; columns: columns"></tr>
+      </table>
+    </div>
+
+    <div class="legend" fxLayout="column">
+      <span>$ - final player price</span>
+      <span>% - final popularity</span>
+      <span>L% - leaders (top 100) popularity after MD34</span>
+      <span>TP - total points</span>
+      <span>Avg - avg points from Fantasy Bundesliga</span>
+      <span>1st leg - points in Hinrunde (1st half of the season)</span>
+      <span>2nd leg - points in Ruckrunde (2nd half of the season)</span>
+      <span>Home / Away - points scored in home / away games</span>
+      <span>10pts eff - % of games with >= 10 points</span>
+      <span>15pts eff - % of games with >= 15 points</span>
+    </div>
+  </div>
+</app-white-block>

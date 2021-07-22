@@ -1,0 +1,14 @@
+@import '/src/variables.scss';
+
+.teams-selected-span {
+  font-weight: 500;
+  text-decoration-style: dotted;
+}
+
+.select-teams-button {
+  color: $colorBlue;
+
+  span {
+    margin-left: 3px;
+  }
+}

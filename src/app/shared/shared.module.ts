@@ -54,7 +54,11 @@ import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.c
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
+import { SelectTeamsModalComponent } from './components/select-teams/select-teams-modal/select-teams-modal.component';
+import { SelectTeamsComponent } from './components/select-teams/select-teams.component';
 import { ShowMoreLinkComponent } from './components/show-more-link/show-more-link.component';
+import { SliderMaxPopularityComponent } from './components/slider-max-popularity/slider-max-popularity.component';
+import { SliderMaxPriceComponent } from './components/slider-max-price/slider-max-price.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
@@ -125,7 +129,11 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
-    ScaleDirective
+    ScaleDirective,
+    SelectTeamsComponent,
+    SelectTeamsModalComponent,
+    SliderMaxPriceComponent,
+    SliderMaxPopularityComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -179,7 +187,10 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
-    ScaleDirective
+    ScaleDirective,
+    SelectTeamsComponent,
+    SliderMaxPopularityComponent,
+    SliderMaxPriceComponent
   ]
 })
 export class SharedModule {
