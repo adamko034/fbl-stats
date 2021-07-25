@@ -10,13 +10,13 @@ export class PositionsStatsLoadedGuard implements CanActivate {
   constructor(private positionsStore: PositionsStore) {}
 
   public canActivate(): Observable<boolean> {
-    Logger.logDev('PositionsStatsLoadedGuard: loading');
+    Logger.logDev('positions stats loaded guard: loading');
     this.positionsStore.load();
 
     return this.positionsStore.select().pipe(
-      tap(() => Logger.logDev('PositionsStatsLoadedGuard: waiting for data')),
+      tap(() => Logger.logDev('positions stats loaded guard: waiting for data')),
       filter((positions) => !!positions),
-      tap(() => Logger.logDev('PositionsStatsLoadedGuard: got data')),
+      tap(() => Logger.logDev('positions stats loaded guard: got data')),
       mapTo(true)
     );
   }

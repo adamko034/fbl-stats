@@ -6,11 +6,9 @@ import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { Logger } from 'src/app/utils/logger';
 import { BundesligaTeamFormSetAction } from '../../actions/bundesliga-team-form-set.action';
-import { BundesligaTableTeamConverter } from '../../converters/bundesliga-table-team.converter';
 import { BundesligaTeamsGamesFilter } from '../../filters/bundesliga-teams-games.fitler';
 import { BundesligaTeamsVenueFilter } from '../../filters/bundesliga-teams-venue.filter';
 import { BundesligaTableFilters } from '../../models/bundesliga-table-filters.model';
-import { BundesligaTableTeam } from '../../models/bundesliga-table-team.model';
 import { BundesligaTableTeamService } from '../../services/bundesliga-table-team.service';
 
 @UntilDestroy()
@@ -20,29 +18,27 @@ import { BundesligaTableTeamService } from '../../services/bundesliga-table-team
   styleUrls: ['./bundesliga-table.component.scss']
 })
 export class BundesligaTableComponent implements OnInit {
-  private allTeams: BundesligaTableTeam[] = [];
+  private allTeams: Team[] = [];
 
-  public teamsToDisplay: BundesligaTableTeam[] = [];
+  public teamsToDisplay: Team[] = [];
+  public noGamesPlayed = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private converter: BundesligaTableTeamConverter,
-    private bundesligaTeamService: BundesligaTableTeamService
-  ) {}
+  constructor(private route: ActivatedRoute, private bundesligaTeamService: BundesligaTableTeamService) {}
 
   ngOnInit(): void {
     Logger.logDev('teams table container component, ng on init');
     this.route.data
       .pipe(
-        filter((data) => !!data?.state),
-        map((data) => data.state),
+        filter((data) => !!data?.allTeams),
+        map((data) => data.allTeams),
         tap((teams) =>
           Logger.logDev(`teams table container component, router subscripion, resolved ${teams.length} teams`)
         ),
         untilDestroyed(this)
       )
       .subscribe((teams: Team[]) => {
-        this.allTeams = new ArrayStream<Team>(teams).convert(this.converter).collect();
+        this.noGamesPlayed = teams[0].gamesPlayed === 0;
+        this.allTeams = [...teams];
         this.filterTeams();
       });
   }
@@ -53,13 +49,11 @@ export class BundesligaTableComponent implements OnInit {
 
   private filterTeams(filters?: BundesligaTableFilters): void {
     if (!filters) {
-      this.teamsToDisplay = new ArrayStream<BundesligaTableTeam>(this.allTeams)
-        .forEach(new BundesligaTeamFormSetAction(5))
-        .collect();
+      this.teamsToDisplay = new ArrayStream<Team>(this.allTeams).forEach(new BundesligaTeamFormSetAction(5)).collect();
       return;
     }
 
-    this.teamsToDisplay = new ArrayStream<BundesligaTableTeam>(this.allTeams)
+    this.teamsToDisplay = new ArrayStream<Team>(this.allTeams)
       .filter(new BundesligaTeamsVenueFilter(filters.venue, this.bundesligaTeamService))
       .filter(new BundesligaTeamsGamesFilter(filters.games, this.bundesligaTeamService))
       .forEach(new BundesligaTeamFormSetAction(filters.games))

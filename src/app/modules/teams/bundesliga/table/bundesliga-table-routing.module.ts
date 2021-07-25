@@ -6,7 +6,7 @@ import { BundesligaTableComponent } from './view/bundesliga-table/bundesliga-tab
 const routes: Routes = [
   {
     path: '',
-    resolve: { state: TeamsResolver },
+    resolve: { allTeams: TeamsResolver },
     component: BundesligaTableComponent
   }
 ];

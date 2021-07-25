@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MatchdaysNavigationService } from 'src/app/services/matchdays-navigation.service';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 
 @Component({
@@ -18,12 +16,5 @@ export class LeadersContentComponent {
     return this._links;
   }
 
-  constructor(private route: ActivatedRoute, private matchdaysService: MatchdaysNavigationService) {}
-
-  // public ngOnInit(): void {
-  //   this.links$ = this.route.data.pipe(
-  //     map((data) => data.matchdaysNumbers),
-  //     map((matchdays: number[]) => this.matchdaysService.toTabNavigationLinks(matchdays))
-  //   );
-  // }
+  constructor() {}
 }

@@ -5,7 +5,7 @@
     ngClass.lt-sm="table-xs"
     matSort
     matSortStart="desc"
-    matSortActive="totalPoints"
+    [matSortActive]="lastMatchday > 0 ? 'totalPoints' : 'price'"
     matSortDisableClear
     matSortDirection="desc"
     (matSortChange)="onSortChange($event)"

@@ -5,7 +5,10 @@
   <app-player-details-main [player]="state$ | async | field: 'player'"></app-player-details-main>
 
   <div fxLayoutGap="20px" fxLayout="column">
-    <app-player-details-next-matchday [player]="state$ | async | field: 'player'"></app-player-details-next-matchday>
+    <app-player-details-next-matchday
+      fxFlexOffset="15px"
+      [player]="state$ | async | field: 'player'"
+    ></app-player-details-next-matchday>
     <app-player-details-charts
       [player]="state$ | async | field: 'player'"
       [positionStats]="state$ | async | field: 'positionStats'"

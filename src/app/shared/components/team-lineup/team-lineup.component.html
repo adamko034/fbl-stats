@@ -1,0 +1,53 @@
+<div class="field" fxLayout="column" fxLayoutAlign="start center">
+  <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: forwards }"></ng-template>
+  <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: midfielders }"></ng-template>
+  <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: defenders }"></ng-template>
+
+  <div *ngIf="goalkeeper" fxFlex class="position goalkeeper" fxLayoutAlign="center end">
+    <div class="player">
+      <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: goalkeeper }"></ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #row let-players="players">
+  <div
+    *ngIf="players.length < 5"
+    class="position"
+    fxFlex="30"
+    fxLayout="row wrap"
+    fxLayoutGap="5px"
+    fxLayoutAlign="space-evenly center"
+  >
+    <div class="player" fxLayout="center center" *ngFor="let player of players | orderBy: 'subPosition'">
+      <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+    </div>
+  </div>
+  <div *ngIf="players.length > 4" class="position" fxFlex="30" fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="player" fxLayout="center center" *ngFor="let player of getWingers(players) | orderBy: 'subPosition'">
+        <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+      <div
+        class="player"
+        [ngClass]="{ 'player-2-lines': isMoreThanFourCentrals(players) }"
+        fxLayout="center center"
+        *ngFor="let player of players | filterBy: ['subPosition']:'2' | orderBy: 'subPosition'"
+      >
+        <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #playerLink let-player="player">
+  <span *ngIf="!!player.id">
+    <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+  </span>
+  <div *ngIf="!player.id" fxLayoutGap="4px" fxLayoutAlign="start center">
+    <app-team-logo *ngIf="player.team" [height]="18" [team]="player.team"></app-team-logo>
+    <span>{{ player.lastName }}</span>
+  </div>
+</ng-template>

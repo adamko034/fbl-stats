@@ -1,7 +1,8 @@
 import { PlayerSubPosition } from 'src/app/store/players/models/palyer-subposition.enum';
 
-export interface PredictedLineupPlayer {
-  id: string;
+export interface LineupPlayer {
+  id?: string;
+  team?: string;
   name: string;
   lastName: string;
   position: string;

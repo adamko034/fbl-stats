@@ -1,16 +1,16 @@
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
-import { BundesligaTableTeam } from '../models/bundesliga-table-team.model';
+import { Team } from 'src/app/store/teams/models/team.model';
 import { BundesligaTableTeamService } from '../services/bundesliga-table-team.service';
 
-export class BundesligaTeamsVenueFilter implements Filterable<BundesligaTableTeam> {
+export class BundesligaTeamsVenueFilter implements Filterable<Team> {
   constructor(private venue: 'all' | 'h' | 'a', private tableTeamsService: BundesligaTableTeamService) {}
 
-  public filter(teams: BundesligaTableTeam[]): BundesligaTableTeam[] {
+  public filter(teams: Team[]): Team[] {
     if (!teams || teams.length === 0 || this.venue === 'all') {
       return teams;
     }
 
-    const newTeams: BundesligaTableTeam[] = [];
+    const newTeams: Team[] = [];
     teams.forEach((team) => {
       let games = team.games.filter((g) => g.wasPlayed);
 

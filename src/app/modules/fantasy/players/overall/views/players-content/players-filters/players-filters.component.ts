@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Component({
   selector: 'app-players-filters',
@@ -9,10 +10,12 @@ import { ScreenSizeService } from 'src/app/services/screen-size.service';
 })
 export class PlayersFiltersComponent implements OnInit {
   public isMobile$: Observable<boolean>;
+  public lastMatchday$: Observable<number>;
 
-  constructor(private screenSizeService: ScreenSizeService) {}
+  constructor(private screenSizeService: ScreenSizeService, private propertiesService: PropertiesStore) {}
 
   ngOnInit() {
     this.isMobile$ = this.screenSizeService.isMobile$();
+    this.lastMatchday$ = this.propertiesService.selectLastMatchday();
   }
 }

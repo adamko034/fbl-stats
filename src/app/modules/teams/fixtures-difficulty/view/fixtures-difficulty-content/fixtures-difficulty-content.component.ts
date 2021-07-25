@@ -1,5 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { first, map } from 'rxjs/operators';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @Component({
   selector: 'app-fixtures-difficulty-content',
@@ -7,15 +10,24 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
   styleUrls: ['./fixtures-difficulty-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FixturesDifficultyContentComponent {
+export class FixturesDifficultyContentComponent implements OnInit {
   private _links: ViewTabNavigationLink[] = [
     { label: 'Fixtures by ranking', labelMobile: 'Fixtures difficulty by ranking', routerLink: 'byRank', order: 1 },
     { label: 'Fixtures by form', labelMobile: 'Fixtures difficulty by form', routerLink: 'byForm', order: 2 }
   ];
 
-  public get links(): ViewTabNavigationLink[] {
-    return this._links;
-  }
+  public links$: Observable<ViewTabNavigationLink[]>;
 
-  constructor() {}
+  constructor(private propertiesStore: PropertiesStore) {}
+
+  public ngOnInit(): void {
+    this.links$ = this.propertiesStore.selectLastMatchday().pipe(
+      first(),
+      map((lastMatchday) => {
+        const onlyByRanking = lastMatchday === 0;
+
+        return this._links.filter((x) => x.routerLink !== 'byForm');
+      })
+    );
+  }
 }

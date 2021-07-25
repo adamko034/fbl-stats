@@ -27,8 +27,7 @@ export class CoreDataLoadedGuard implements CanActivate {
         return (
           !!maxPrice &&
           maxPrice > 0 &&
-          !!lastMachday &&
-          lastMachday > 0 &&
+          lastMachday >= 0 &&
           !!players &&
           players.length > 0 &&
           !!teams &&

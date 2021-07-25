@@ -1,4 +1,7 @@
 <div class="bundesliga-content" fxLayout="column" fxLayoutGap="10px">
-  <app-bundesliga-teams-table-filters (filtersChange)="onFiltersChange($event)"></app-bundesliga-teams-table-filters>
+  <app-bundesliga-teams-table-filters
+    *ngIf="!noGamesPlayed"
+    (filtersChange)="onFiltersChange($event)"
+  ></app-bundesliga-teams-table-filters>
   <app-bundesliga-teams-table [teams]="teamsToDisplay"></app-bundesliga-teams-table>
 </div>

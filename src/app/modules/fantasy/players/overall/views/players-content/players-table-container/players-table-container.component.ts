@@ -50,7 +50,7 @@ export class PlayersTableContainerComponent implements OnInit {
           this.changeDetection.detectChanges();
         }),
         filter(([lastMatchday, filters, playersState]) => {
-          return !!lastMatchday && lastMatchday !== 0 && !!filters && !!playersState;
+          return lastMatchday >= 0 && !!filters && !!playersState;
         }),
         untilDestroyed(this)
       )

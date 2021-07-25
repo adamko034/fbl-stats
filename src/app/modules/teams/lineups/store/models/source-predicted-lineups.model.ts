@@ -1,11 +1,8 @@
-import { PredictedLineupPlayer } from 'src/app/modules/teams/lineups/store/models/predicted-lineup-player.model';
+import { Lineup } from 'src/app/shared/components/team-lineup/models/lineup.model';
 
 export interface SourcePredictedLineups {
   order: number;
   sourceName: string;
   sourceUrl: string;
-  goalkeeper: PredictedLineupPlayer;
-  defenders: PredictedLineupPlayer[];
-  midfielders: PredictedLineupPlayer[];
-  forwards: PredictedLineupPlayer[];
+  lineup: Lineup;
 }

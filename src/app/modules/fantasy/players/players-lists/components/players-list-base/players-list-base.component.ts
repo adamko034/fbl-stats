@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
+@UntilDestroy()
 @Component({
   selector: 'app-players-list-base',
   templateUrl: './players-list-base.component.html',
@@ -15,12 +18,19 @@ export class PlayersListBaseComponent implements OnInit {
     }
   }
 
+  public lastMatchday: number;
   public sorted: Player[] = [];
 
-  constructor() {}
+  constructor(private propertiesStore: PropertiesStore) {}
 
   public ngOnInit(): void {
-    this.onSortChange({ active: 'totalPoints', direction: 'desc' });
+    this.propertiesStore
+      .selectLastMatchday()
+      .pipe(untilDestroyed(this))
+      .subscribe((lastMatchday) => {
+        this.lastMatchday = lastMatchday;
+        this.onSortChange({ active: lastMatchday > 0 ? 'totalPoints' : 'price', direction: 'desc' });
+      });
   }
 
   public onSortChange(sort: Sort): void {

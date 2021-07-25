@@ -3,8 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
+import { Team } from 'src/app/store/teams/models/team.model';
 import { Logger } from 'src/app/utils/logger';
-import { BundesligaTableTeam } from '../../../models/bundesliga-table-team.model';
 
 @UntilDestroy()
 @Component({
@@ -13,9 +13,9 @@ import { BundesligaTableTeam } from '../../../models/bundesliga-table-team.model
   styleUrls: ['./bundesliga-teams-table.component.scss']
 })
 export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
-  @Input() teams: BundesligaTableTeam[];
+  @Input() teams: Team[];
 
-  public dataSource: MatTableDataSource<BundesligaTableTeam> = new MatTableDataSource();
+  public dataSource: MatTableDataSource<Team> = new MatTableDataSource();
   private allColumns = [
     'rank',
     'team',
@@ -48,6 +48,10 @@ export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
         this.gamesColumnDisplay = 'Games';
         this.pointsColumnDisplay = 'Points';
         this.smallFont = false;
+
+        if (this.teams[0].gamesPlayed === 0) {
+          this.allColumns = this.allColumns.filter((x) => x !== 'form');
+        }
 
         if (screen > ScreenSize.SM) {
           this.displayedColumns = [...this.allColumns];

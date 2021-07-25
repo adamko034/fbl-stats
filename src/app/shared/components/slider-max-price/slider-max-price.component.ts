@@ -10,7 +10,7 @@ import { MatSliderChange } from '@angular/material/slider';
 export class SliderMaxPriceComponent {
   @Input() max: number;
   @Input() set value(val: number) {
-    this.valueInternal = val || this.max;
+    this.valueInternal = !val && val != 0 ? this.max : val;
   }
 
   @Output() priceChange = new EventEmitter<number>();

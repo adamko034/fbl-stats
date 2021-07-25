@@ -17,7 +17,7 @@ import { PredictedLineupsSourcesComponent } from './views/predicted-lineups/pred
 import { PredictedLineupsStatsComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-stats/predicted-lineups-stats.component';
 import { PredictedLineupsTeamNavigationComponent } from './views/predicted-lineups/predicted-lineups-team-navigation/predicted-lineups-team-navigation.component';
 import { PredictedLineupsTeamComponent } from './views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
-import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/team-lineup/team-lineup.component';
+import { PredictedTeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/predicted-team-lineup/predicted-team-lineup.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { TeamLineupComponent } from './views/predicted-lineups/predicted-lineups
     PredictedLineupsMatchdayComponent,
     PredictedLineupsMainComponent,
     PredictedLineupsSourcesComponent,
-    TeamLineupComponent,
+    PredictedTeamLineupComponent,
     PredictedLineupsStatsComponent
   ],
   imports: [CommonModule, PredictedLineupsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],

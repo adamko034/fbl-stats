@@ -2,8 +2,10 @@ import { PlayerPosition } from '../../../modules/fantasy/players/overall/models/
 
 export interface HistoryPlayer {
   name: string;
+  lastName: string;
   team: string;
   position: PlayerPosition;
+  subPosition: number;
   totalPoints: number;
   price: number;
   popularity: number;

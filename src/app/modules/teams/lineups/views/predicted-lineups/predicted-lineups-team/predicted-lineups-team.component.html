@@ -16,15 +16,15 @@
     fxLayoutGap.lt-sm="15px"
   >
     <div *ngFor="let sourceLineup of (team$ | async).predictions | orderBy: 'order'">
-      <app-team-lineup [lineup]="sourceLineup"></app-team-lineup>
+      <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
     </div>
   </div>
 </div>
 
 <h2 *ngIf="!(team$ | async)" fxLayout="column" fxLayoutAlign="center center">
   Predicted lineups have not been published yet.
-  <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
+  <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="5px"
     ><span>Stay tuned!</span>
-    <fa-icon class="red" [icon]="['fab', 'twitter']" size="2x"></fa-icon>
+    <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
   </a>
 </h2>

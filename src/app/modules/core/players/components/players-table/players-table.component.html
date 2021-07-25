@@ -5,7 +5,7 @@
       mat-table
       matSort
       matSortStart="desc"
-      matSortActive="form"
+      [matSortActive]="lastMatchday === 0 ? 'price' : 'form'"
       matSortDisableClear
       matSortDirection="desc"
       [dataSource]="dataSource"

@@ -10,7 +10,12 @@
         <app-prediction-indicator [value]="player.nextGameAttendancePrediction"></app-prediction-indicator>
       </div>
     </div>
-    <app-player-tile-fantasy-points [player]="player" fxFlex fxFlexAlign="center"></app-player-tile-fantasy-points>
+    <app-player-tile-fantasy-points
+      *ngIf="!!player.games && player.games.length > 0"
+      [player]="player"
+      fxFlex
+      fxFlexAlign="center"
+    ></app-player-tile-fantasy-points>
   </div>
 
   <div *ngIf="!(isMobile$ | async)" fxLayout="row" fxLayoutAlign="start center">
@@ -27,7 +32,11 @@
       <app-prediction-indicator [value]="player.nextGameAttendancePrediction"></app-prediction-indicator>
     </div>
 
-    <app-player-tile-fantasy-points fxFlex [player]="player"></app-player-tile-fantasy-points>
+    <app-player-tile-fantasy-points
+      fxFlex
+      *ngIf="!!player.games && player.games.length > 0"
+      [player]="player"
+    ></app-player-tile-fantasy-points>
   </div>
 </div>
 

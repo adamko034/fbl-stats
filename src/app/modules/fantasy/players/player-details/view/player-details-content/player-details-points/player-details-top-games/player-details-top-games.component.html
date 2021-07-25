@@ -13,7 +13,17 @@
 <ng-template #table let-title="title" let-games="games">
   <app-title-underlined-grey>
     <span title>{{ title }}</span>
-    <table content class="comparison-table">
+    <table content *ngIf="!games || games.length === 0" class="comparison-table">
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Not applicable</td>
+        </tr>
+      </tbody>
+    </table>
+    <table *ngIf="!!games && games.length > 0" content class="comparison-table">
       <tbody>
         <tr>
           <td></td>

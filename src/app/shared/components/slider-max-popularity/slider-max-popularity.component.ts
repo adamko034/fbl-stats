@@ -9,7 +9,7 @@ import { MatSliderChange } from '@angular/material/slider';
 })
 export class SliderMaxPopularityComponent {
   @Input() set value(val: number) {
-    this.valueInternal = !val ? 100 : val;
+    this.valueInternal = !val && val != 0 ? 100 : val;
   }
   @Output() popularityChange = new EventEmitter<number>();
 

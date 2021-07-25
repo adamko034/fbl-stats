@@ -9,7 +9,7 @@ import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/
 })
 export class PredictionIndicatorComponent {
   @Input() value: PlayerAttendancePrediction;
-  @Input() showUnknownYet = false;
+  @Input() showUnknownYet = true;
   @Input() scale: number;
 
   public cases = PlayerAttendancePrediction;

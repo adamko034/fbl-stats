@@ -1,0 +1,15 @@
+<div
+  class="team-lineup-container"
+  [ngClass]="{ 'team-lineup-container-scaled': (shouldScale$ | async) }"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <div class="title">
+    <span class="source-name">{{ sourceLineup.sourceName }}</span>
+    <a class="link" [href]="sourceLineup.sourceUrl" target="blank"
+      >source
+      <fa-icon [icon]="['fas', 'external-link-alt']"></fa-icon>
+    </a>
+  </div>
+  <app-team-lineup [lineup]="sourceLineup.lineup"></app-team-lineup>
+</div>

@@ -1,4 +1,4 @@
-<app-form-field [label]="'Include MDs'">
+<app-form-field *ngIf="lastMatchday > 0" [label]="'Include MDs'">
   <app-switch
     [value]="matchdays"
     name="form"

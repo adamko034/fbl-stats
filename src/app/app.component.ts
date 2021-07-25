@@ -9,7 +9,6 @@ import {
   RouterEvent
 } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { delay } from 'rxjs/operators';
 import { SidenavConfig, SidenavService } from 'src/app/services/sidenav.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
@@ -64,7 +63,7 @@ export class AppComponent implements OnInit {
       .pipe(untilDestroyed(this))
       .subscribe((config) => (this.sidenavConfig = config));
 
-    this.router.events.pipe(delay(100), untilDestroyed(this)).subscribe((event: RouterEvent) => {
+    this.router.events.pipe(untilDestroyed(this)).subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         this.loading = true;
       }

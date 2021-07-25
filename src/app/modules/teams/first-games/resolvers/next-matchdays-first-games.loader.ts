@@ -18,7 +18,7 @@ export class NextMatchdaysFirstGamesLoader {
   public load(): Observable<MatchdayFirstGames[]> {
     Logger.logDev('next matchdays first games loader, loading');
     return combineLatest([this.propertiesService.selectLastMatchday(), this.teamsStore.selectAll()]).pipe(
-      filter(([lastMatchday, teams]) => !!lastMatchday && lastMatchday > 0 && !!teams && teams.length > 0),
+      filter(([lastMatchday, teams]) => lastMatchday >= 0 && !!teams && teams.length > 0),
       map(([lastMatchday, teams]) => this.matchdayService.getMatchdaysFirstGames(teams, lastMatchday + 1)),
       first()
     );
