@@ -32,7 +32,7 @@ export class TeamMatchdaysFirstsGamesLoader {
         this.fixturesContainsTeam(m.fixtures, team.shortName)
       );
       return {
-        games: teamFirstGames.map((g) => ({ matchday: g.matchday, wasPlayed: g.wasPlayed })),
+        games: teamFirstGames.map((g) => ({ matchday: g.matchdayNumber, wasPlayed: g.wasPlayed })),
         teamLong: team.name,
         teamShort: team.shortName,
         firstGamesCount: teamFirstGames.length,

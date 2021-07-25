@@ -32,7 +32,7 @@ export class MatchdayService {
     }
 
     const teamsIncluded: string[] = [];
-    const matchday: Matchday = { wasPlayed: false, num: matchdayNum, fixtures: {} };
+    const matchday: Matchday = { wasPlayed: false, matchdayNumber: matchdayNum, fixtures: {} };
 
     teams.forEach((team: Team) => {
       if (!teamsIncluded.includes(team.shortName)) {
@@ -102,7 +102,7 @@ export class MatchdayService {
 
     return {
       wasPlayed: matchday.wasPlayed,
-      matchday: matchday.num,
+      matchdayNumber: matchday.matchdayNumber,
       date: firstGame.date,
       fixtures: matchday.fixtures[firstGame.date.toString()]
     };

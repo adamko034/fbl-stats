@@ -13,7 +13,7 @@ export class NextMatchdayResolver implements Resolve<Matchday> {
   public resolve(): Observable<Matchday> {
     Logger.logDev('next matchday resolver, resolving...');
     return this.matchdayLoader
-      .loadForNextMatchday()
-      .pipe(tap((matchday) => Logger.logDev(`next matchday resolver, got matchday ${matchday?.num} data`)));
+      .loadNextMatchday()
+      .pipe(tap((matchday) => Logger.logDev(`next matchday resolver, got matchday ${matchday?.matchdayNumber} data`)));
   }
 }

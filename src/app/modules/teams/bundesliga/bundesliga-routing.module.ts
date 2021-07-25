@@ -15,6 +15,10 @@ const routes: Routes = [
       {
         path: 'table',
         loadChildren: () => import('./table/bundesliga-table.module').then((m) => m.BundesligaTableModule)
+      },
+      {
+        path: 'fixtures',
+        loadChildren: () => import('./fixtures/fixtures-routing.module').then((m) => m.FixturesRoutingModule)
       }
     ]
   }
