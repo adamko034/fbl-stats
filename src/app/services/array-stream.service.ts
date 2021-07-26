@@ -21,6 +21,11 @@ export class ArrayStream<T> {
     return this;
   }
 
+  public forEachQuick(func: (obj: T) => void): ArrayStream<T> {
+    this.array.forEach(func);
+    return this;
+  }
+
   public orderBy(field: string, order: 'asc' | 'dsc' = 'asc'): ArrayStream<T> {
     if (this.array.length > 0) {
       if (isNaN(Number(this.array[0][field])) || field.includes('.')) {

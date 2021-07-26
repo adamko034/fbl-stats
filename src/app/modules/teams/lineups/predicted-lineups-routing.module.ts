@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NextMatchdayResolver } from '../../core/resolvers/next-matchday.resolver';
 import { TeamsResolver } from '../../core/resolvers/teams.resolver';
 import { PredictedLineupsLoadedGuard } from './guards/predicted-lineups-loaded.guard';
 import { PredictedLineupsSourcesResolver } from './resolvers/predicted-lineups-sources.resolver';
@@ -22,7 +21,6 @@ const routes: Routes = [
         component: PredictedLineupsMainComponent,
         resolve: {
           sources: PredictedLineupsSourcesResolver,
-          matchday: NextMatchdayResolver,
           stats: PredictedLineupsStasPlayersResolver
         }
       },

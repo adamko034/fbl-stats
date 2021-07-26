@@ -47,8 +47,6 @@ import { ViewTitleComponent } from './components/layout/view-title/view-title.co
 import { ViewComponent } from './components/layout/view/view.component';
 import { WhiteBlockComponent } from './components/layout/white-block/white-block.component';
 import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
-import { MatchdayFixtureComponent } from './components/matchday/matchday-fixture/matchday-fixture.component';
-import { MatchdayComponent } from './components/matchday/matchday.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
@@ -102,8 +100,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ViewTitleComponent,
     SortByComponent,
     TitleUnderlinedComponent,
-    MatchdayFixtureComponent,
-    MatchdayComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
     FieldPipe,
@@ -162,8 +158,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SortByComponent,
     NgPipesModule,
     TitleUnderlinedComponent,
-    MatchdayComponent,
-    MatchdayFixtureComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
     FieldPipe,

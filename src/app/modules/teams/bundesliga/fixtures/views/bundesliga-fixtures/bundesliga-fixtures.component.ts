@@ -1,4 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 
 @Component({
   selector: 'app-bundesliga-fixtures',
@@ -7,10 +11,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BundesligaFixturesComponent implements OnInit {
+  public matchdays$: Observable<MatchdayFixtures[]>;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.matchdays$ = this.route.data.pipe(map((data) => data.matchdays));
   }
-
 }

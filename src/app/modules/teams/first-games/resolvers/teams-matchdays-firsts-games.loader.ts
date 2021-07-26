@@ -1,50 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { MatchdayFixture } from 'src/app/modules/core/matchday/models/matchday-fixture.model';
-import { MatchdayService } from 'src/app/modules/core/matchday/services/matchday.service';
-import { Team } from 'src/app/store/teams/models/team.model';
+import { FixturesStore } from 'src/app/store/fixtures/fixtures.store';
+import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
+import { TeamProperty } from 'src/app/store/teams/models/team-property.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { TeamMatchdaysFirstGames } from '../models/team-matchdays-first-games.model';
 
 @Injectable()
 export class TeamMatchdaysFirstsGamesLoader {
-  constructor(private teamsStore: TeamsStore, private matchdayService: MatchdayService) {}
+  constructor(private teamsStore: TeamsStore, private fixturesStore: FixturesStore) {}
 
   public load(): Observable<TeamMatchdaysFirstGames[]> {
     Logger.logDev('team matchdays firsts games loader, loading');
-    return this.teamsStore.selectAll().pipe(
-      map((teams: Team[]) => this.createTeamsFirstsGames(teams)),
-      first()
+    return combineLatest([this.teamsStore.selectAllNames(), this.fixturesStore.selectAll()]).pipe(
+      first(),
+      map(([teams, fixtures]) => this.createTeamsFirstGames(teams, fixtures))
     );
   }
 
-  public createTeamsFirstsGames(teams: Team[]): TeamMatchdaysFirstGames[] {
-    const matchdaysFirstFixtures = this.matchdayService.getMatchdaysFirstGames(teams, 1);
+  private createTeamsFirstGames(teams: TeamProperty[], fixtures: MatchdayFixtures[]): TeamMatchdaysFirstGames[] {
+    const teamsFirstGames: TeamMatchdaysFirstGames[] = [];
+    const confirmedFixtures = fixtures.filter((f) => f.isConfirmed);
 
-    if (!matchdaysFirstFixtures) {
-      return [];
+    for (const team of teams) {
+      const fixturesFirstGamesForTeam = confirmedFixtures.filter(
+        (f) =>
+          f.gamesPerDate[f.firstGameDate].filter(
+            (x) => x.homeTeamShort.toLowerCase() === team.short || x.awayTeamShort.toLowerCase() === team.short
+          ).length > 0
+      );
+      teamsFirstGames.push({
+        teamShort: team.short,
+        teamLong: team.name,
+        firstGamesCount: fixturesFirstGamesForTeam.length,
+        firstGamesPlayedCount: fixturesFirstGamesForTeam.filter((x) => x.wasPlayed).length,
+        games: fixturesFirstGamesForTeam.map((f) => ({ matchday: f.matchdayNumber, wasPlayed: f.wasPlayed }))
+      });
     }
 
-    return teams.map((team: Team) => {
-      const teamFirstGames = matchdaysFirstFixtures.filter((m) =>
-        this.fixturesContainsTeam(m.fixtures, team.shortName)
-      );
-      return {
-        games: teamFirstGames.map((g) => ({ matchday: g.matchdayNumber, wasPlayed: g.wasPlayed })),
-        teamLong: team.name,
-        teamShort: team.shortName,
-        firstGamesCount: teamFirstGames.length,
-        firstGamesPlayedCount: teamFirstGames.filter((g) => g.wasPlayed).length
-      };
-    });
-  }
-
-  private fixturesContainsTeam(fixtures: MatchdayFixture[], teamShort: string): boolean {
-    return fixtures.some(
-      (f) =>
-        f.homeShort.toLowerCase() === teamShort.toLowerCase() || f.awayShort.toLowerCase() === teamShort.toLowerCase()
-    );
+    return teamsFirstGames;
   }
 }

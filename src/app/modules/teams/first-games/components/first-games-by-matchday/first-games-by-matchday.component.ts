@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatchdayFirstGames } from 'src/app/modules/core/matchday/models/matchday-first-games.model';
+import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -12,12 +12,12 @@ import { Logger } from 'src/app/utils/logger';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FirstGamesByMatchdayComponent implements OnInit {
-  public matchdays$: Observable<MatchdayFirstGames[]>;
+  public matchdays$: Observable<MatchdayFixtures[]>;
 
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    Logger.logDev('first games by matchday component,, on init');
+    Logger.logDev('first games by matchday component, on init');
     this.matchdays$ = this.route.data.pipe(map((data) => data.matchdays));
   }
 }

@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { FixturesLoadedGuard } from 'src/app/modules/core/guards/fixtures-loaded.guard';
+import { BundesligaFixturesResolver } from './resolvers/bundesliga-fixtures.resolver';
+import { BundesligaFixturesComponent } from './views/bundesliga-fixtures/bundesliga-fixtures.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    canActivate: [FixturesLoadedGuard],
+    resolve: { matchdays: BundesligaFixturesResolver },
+    component: BundesligaFixturesComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FixturesRoutingModule { }
+export class FixturesRoutingModule {}
