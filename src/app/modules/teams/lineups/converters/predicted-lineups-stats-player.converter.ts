@@ -18,7 +18,8 @@ export class PredictedLineupsStatsPlayerConverter implements Convertable<Player,
         top100Popularity: player.top100Popularity,
         totalPoints: player.totalPoints,
         teamShort: player.teamShort,
-        last5Form: this.formCalculator.calculateLastN(player.games, 5)
+        last5Form: this.formCalculator.calculateLastN(player.games, 5),
+        price: player.price
       };
     });
   }

@@ -43,6 +43,26 @@ export class ArrayStream<T> {
     return this;
   }
 
+  public orderByThenBy(
+    firstBy: { field: string; order: 'asc' | 'dsc' },
+    thenBy: { field: string; order: 'asc' | 'dsc' }
+  ): ArrayStream<T> {
+    this.array = this.array.sort((a, b) => {
+      const aFirstNum = +a[firstBy.field];
+      const bFirstNum = +b[firstBy.field];
+      const aSecondNum = +a[thenBy.field];
+      const bSecondNum = +b[thenBy.field];
+
+      if (aFirstNum - bFirstNum === 0) {
+        return thenBy.order === 'asc' ? aSecondNum - bSecondNum : bSecondNum - aSecondNum;
+      }
+
+      return firstBy.order === 'asc' ? aFirstNum - bFirstNum : bFirstNum - aFirstNum;
+    });
+
+    return this;
+  }
+
   public orderByDate(field: string, order: 'asc' | 'desc' = 'asc'): ArrayStream<T> {
     const dateService = new DateService();
     if (this.array.every((item) => dateService.isDate(item[field]))) {

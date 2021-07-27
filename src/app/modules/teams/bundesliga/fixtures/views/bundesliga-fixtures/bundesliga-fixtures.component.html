@@ -1,34 +1,38 @@
-<div class="matchdays-container">
-  <section class="matchday" *ngFor="let matchday of matchdays$ | async">
+<div class="matchdays-container" fxLayout="column">
+  <section class="matchday" *ngFor="let matchday of displayedMatchdays">
     <div class="matchday-number" ngClass.lt-md="matchday-number-lt-md">
       {{ matchday.matchdayNumber }}
     </div>
-    <div class="matchday-content" ngClass.sm="matchday-content-sm" ngClass.xs="matchday-content-xs">
-      <div>
-        <h3 ngClass.lt-sm="matchday-info-xs">Matchday {{ matchday.matchdayNumber }}</h3>
-        <div fxLayout="column">
-          <span class="date">{{ matchday.firstGameDate | epochDate | date: 'EEEE' }}</span>
-          <span class="date">{{ matchday.firstGameDate | epochDate | date: 'dd.MM.yyyy' }}</span>
-          <span class="date">{{ matchday.firstGameDate | epochDate | date: 'HH:mm' }}</span>
+    <div class="matchday-content" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <div
+        *ngFor="let matchdayGames of matchday.gamesPerDate | keyvalue"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="3px"
+      >
+        <div class="date-container" fxLayout="row wrap" fxLayoutGap="3px">
+          <span class="date">{{ matchdayGames.key | epochDate | date: 'EEEE, dd.MM.yyyy HH:mm' }}</span>
+          <!-- <span class="date">{{ matchdayGames.key | epochDate | date: 'dd.MM.yyyy' }}</span>
+          <span class="date">{{ matchdayGames.key | epochDate | date: 'HH:mm' }}</span> -->
         </div>
-      </div>
 
-      <div class="games-container" fxLayout="column" fxLayoutGap="10px">
-        <div *ngFor="let game of matchday.gamesPerDate[matchday.firstGameDate]" class="game">
-          <div class="game-home" fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="7px">
-            <span fxHide.lt-md>{{ game.homeTeamLong }}</span>
-            <span fxHide.gt-sm fxHide.lt-sm>{{ game.homeTeamShort | uppercase }}</span>
-            <app-team-logo [scaleOnMobile]="false" [team]="game.homeTeamShort" [height]="35"></app-team-logo>
-          </div>
+        <div class="games-container" fxLayout="column" fxLayoutGap="10px">
+          <div *ngFor="let game of matchdayGames.value" class="game">
+            <div class="game-home" fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="7px">
+              <span fxHide.lt-sm> {{ game.homeTeamLong }}</span>
+              <span fxHide.gt-xs>{{ game.homeTeamShort | uppercase }}</span>
+              <app-team-logo [scaleOnMobile]="false" [team]="game.homeTeamShort" [height]="30"></app-team-logo>
+            </div>
 
-          <div fxLayoutAlign="center center">
-            <b>:</b>
-          </div>
+            <div fxLayoutAlign="center center">
+              <b>:</b>
+            </div>
 
-          <div class="game-away" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="7px">
-            <app-team-logo [team]="game.awayTeamShort" [scaleOnMobile]="false" [height]="35"></app-team-logo>
-            <span fxHide.lt-md>{{ game.awayTeamLong }}</span>
-            <span fxHide.gt-sm fxHide.lt-sm>{{ game.awayTeamShort | uppercase }}</span>
+            <div class="game-away" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="7px">
+              <app-team-logo [team]="game.awayTeamShort" [scaleOnMobile]="false" [height]="30"></app-team-logo>
+              <span fxHide.lt-sm>{{ game.awayTeamLong }}</span>
+              <span fxHide.gt-xs>{{ game.awayTeamShort | uppercase }}</span>
+            </div>
           </div>
         </div>
       </div>

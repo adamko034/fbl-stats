@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'fixtures',
-        loadChildren: () => import('./fixtures/fixtures-routing.module').then((m) => m.FixturesRoutingModule)
+        loadChildren: () => import('./fixtures/fixtures.module').then((m) => m.FixturesModule)
       }
     ]
   }

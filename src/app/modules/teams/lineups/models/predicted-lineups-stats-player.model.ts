@@ -7,4 +7,5 @@ export interface PredictedLineupsStatsPlayer {
   popularity: number;
   top100Popularity: number;
   last5Form: number;
+  price: number;
 }

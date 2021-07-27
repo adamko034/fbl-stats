@@ -101,7 +101,7 @@ export class PredictedLineupsStasPlayersResolver implements Resolve<PredictedLin
     }
     return arrayStream
       .convert<PredictedLineupsStatsPlayer>(this.playerConverter)
-      .orderBy(field, 'dsc')
+      .orderByThenBy({ field, order: 'dsc' }, { field: 'price', order: 'dsc' })
       .take(n)
       .collect();
   }

@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { fromEvent } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 
+@UntilDestroy()
 @Component({
   selector: 'app-bundesliga-fixtures',
   templateUrl: './bundesliga-fixtures.component.html',
@@ -11,11 +13,32 @@ import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixture
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BundesligaFixturesComponent implements OnInit {
-  public matchdays$: Observable<MatchdayFixtures[]>;
+  private allMatchdays: MatchdayFixtures[];
 
-  constructor(private route: ActivatedRoute) {}
+  public displayedMatchdays: MatchdayFixtures[];
+
+  constructor(private route: ActivatedRoute, private changeDetection: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    this.matchdays$ = this.route.data.pipe(map((data) => data.matchdays));
+    this.route.data
+      .pipe(
+        map((data) => data.matchdays),
+        untilDestroyed(this)
+      )
+      .subscribe((matchdays) => {
+        this.allMatchdays = matchdays;
+        this.displayedMatchdays = this.allMatchdays.slice(0, 5);
+      });
+
+    fromEvent(window, 'scroll')
+      .pipe(
+        map(() => Math.round(window.scrollY / 2000) + 1),
+        distinctUntilChanged(),
+        untilDestroyed(this)
+      )
+      .subscribe((part) => {
+        this.displayedMatchdays = this.allMatchdays.slice(0, 5 * part);
+        this.changeDetection.detectChanges();
+      });
   }
 }

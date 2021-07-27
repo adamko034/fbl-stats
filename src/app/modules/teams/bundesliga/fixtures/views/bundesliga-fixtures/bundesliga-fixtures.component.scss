@@ -1,0 +1,12 @@
+.matchday-content {
+  padding: 15px 0 15px 7px;
+
+  .games-container {
+    font-size: 13px;
+
+    .game {
+      display: grid;
+      grid-template-columns: 1fr 0.1fr 1fr;
+    }
+  }
+}
