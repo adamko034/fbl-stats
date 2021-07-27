@@ -31,11 +31,21 @@
         </div>
       </nav>
     </div>
-    <div class="expander" fxLayout="row" fxLayoutAlign="flex-end">
-      <button mat-icon-button (click)="toggleExpand()">
-        <mat-icon *ngIf="expanded$ | async">navigate_before</mat-icon>
-        <mat-icon *ngIf="!(expanded$ | async)">navigate_next</mat-icon>
-      </button>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <a class="social-media" href="https://www.facebook.com/Fantasybl-stats-108481224674753" target="blank">
+          <fa-icon class="social-media-icon" [icon]="['fab', 'facebook-f']"></fa-icon>
+        </a>
+        <a class="social-media" href="https://twitter.com/FantasyblS" target="blank">
+          <fa-icon class="social-media-icon" [icon]="['fab', 'twitter']"></fa-icon>
+        </a>
+      </div>
+      <div class="expander" fxLayout="row" fxLayoutAlign="flex-end">
+        <button mat-icon-button (click)="toggleExpand()">
+          <mat-icon *ngIf="expanded$ | async">navigate_before</mat-icon>
+          <mat-icon *ngIf="!(expanded$ | async)">navigate_next</mat-icon>
+        </button>
+      </div>
     </div>
   </nav>
 </ng-template>

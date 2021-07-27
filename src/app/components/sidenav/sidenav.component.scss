@@ -130,6 +130,21 @@
       }
     }
   }
+
+  .social-media {
+    margin-bottom: 5px;
+    &-icon {
+      font-size: 20px;
+      color: #fff;
+    }
+
+    &:hover {
+      .social-media-icon {
+        color: $colorRed;
+        transition: color ease-in-out 0.3s;
+      }
+    }
+  }
 }
 
 .side-nav-shrinked {

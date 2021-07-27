@@ -16,12 +16,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderNavigationComponent } from './components/header/components/header-navigation/header-navigation.component';
 import { LastUdpatedComponent } from './components/header/components/last-udpated/last-udpated.component';
 import { NewUpdatesComponent } from './components/header/components/new-updates/new-updates.component';
-import { SidenavComponent } from './components/header/components/sidenav/sidenav.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SocialMediaBarComponent } from './components/social-media-bar/social-media-bar.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToastrComponent } from './components/toastr/toastr.component';
 import { AboutUsComponent } from './modules/about-us/views/about-us/about-us.component';
 @NgModule({
@@ -32,10 +30,8 @@ import { AboutUsComponent } from './modules/about-us/views/about-us/about-us.com
     LastUdpatedComponent,
     NewUpdatesComponent,
     ImageLazyLoadingDirective,
-    HeaderNavigationComponent,
     SidenavComponent,
-    AboutUsComponent,
-    SocialMediaBarComponent
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
