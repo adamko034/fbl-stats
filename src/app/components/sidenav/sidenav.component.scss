@@ -9,6 +9,7 @@
 .side-nav-container {
   background-color: $colorGrey;
   height: 100vh;
+  min-height: fit-content;
 
   .content {
     height: 100vh;
