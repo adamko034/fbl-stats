@@ -11,9 +11,12 @@
         fxLayoutGap="3px"
       >
         <div class="date-container" fxLayout="row wrap" fxLayoutGap="3px">
-          <span class="date">{{ matchdayGames.key | epochDate | date: 'EEEE, dd.MM.yyyy HH:mm' }}</span>
-          <!-- <span class="date">{{ matchdayGames.key | epochDate | date: 'dd.MM.yyyy' }}</span>
-          <span class="date">{{ matchdayGames.key | epochDate | date: 'HH:mm' }}</span> -->
+          <span *ngIf="isDate(matchdayGames.key); else toBeDecided" class="date">{{
+            matchdayGames.key | epochDate | date: 'EEEE, dd.MM.yyyy HH:mm'
+          }}</span>
+          <ng-template #toBeDecided>
+            <span class="date">Date to be decided</span>
+          </ng-template>
         </div>
 
         <div class="games-container" fxLayout="column" fxLayoutGap="10px">
