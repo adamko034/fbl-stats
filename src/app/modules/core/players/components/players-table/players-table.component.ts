@@ -43,6 +43,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   public dataSource: MatTableDataSource<any>;
   public myTeamPlayers$: Observable<string[]>;
   public lastMatchday = 0;
+  public includeGames = 0;
 
   constructor(
     private myTeamService: MyTeamStore,
@@ -127,17 +128,17 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
       data = this.playersDataService.flatten(this.players);
       const exPlayer = this.players[0];
       this.lastMatchday = new ArrayStream<Game>(exPlayer.games).maxBy((g) => g.matchday);
-      const includedMatchdays = exPlayer.games.length;
+      this.includeGames = exPlayer.games.length;
 
-      this.prepareTableColumns(this.lastMatchday, includedMatchdays);
+      this.prepareTableColumns(this.lastMatchday);
     }
 
     return data;
   }
 
-  private prepareTableColumns(lastMatchday: number, matchdays: number): void {
+  private prepareTableColumns(lastMatchday: number): void {
     this.columns = this.getDefaulColumns();
-    for (let i = lastMatchday; i > lastMatchday - matchdays; i--) {
+    for (let i = lastMatchday; i > lastMatchday - this.includeGames; i--) {
       if (i > 0) {
         this.columns.push({ displayName: `MD ${i}`, fieldName: i.toString() });
       }
