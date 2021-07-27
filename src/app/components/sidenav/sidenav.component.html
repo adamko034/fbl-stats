@@ -1,4 +1,4 @@
-<div *ngIf="expanded$ | async" class="sticky side-nav-container side-nav-expanded">
+<div *ngIf="expanded$ | async" class="sticky side-nav-container side-nav-expanded" [style.height]="height">
   <ng-template [ngTemplateOutlet]="content"></ng-template>
 </div>
 
@@ -7,7 +7,7 @@
 </div>
 
 <ng-template #content>
-  <nav class="content" fxLayout="column">
+  <nav class="content" [style.height]="height" fxLayout="column">
     <div class="header">
       <h1 routerLink="/" class="header-logo" fxLayoutAlign="center center" fxLayoutGap="10px">
         <img src="favicon.ico" class="header-logo-image" />

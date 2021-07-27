@@ -17,6 +17,10 @@ export class SidenavComponent implements OnInit {
     return Navigation.Links;
   }
 
+  public get height() {
+    return `${window.innerHeight}px`;
+  }
+
   constructor(private guiConfigStore: GuiConfigStore) {}
 
   public ngOnInit(): void {
