@@ -35,6 +35,10 @@ const routes: Routes = [
       {
         path: 'history',
         loadChildren: () => import('./history/history.module').then((m) => m.HistoryModule)
+      },
+      {
+        path: 'usefullinks',
+        loadChildren: () => import('./useful-links/useful-links.module').then((m) => m.UsefulLinksModule)
       }
     ]
   }
