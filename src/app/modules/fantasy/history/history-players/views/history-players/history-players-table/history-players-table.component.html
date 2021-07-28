@@ -29,7 +29,8 @@
           <td mat-cell *matCellDef="let player">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
               <app-team-logo [height]="20" [team]="player.team"></app-team-logo>
-              <span>{{ player.name }}</span>
+              <span fxHide.lt-sm>{{ player.name }}</span>
+              <span fxHide.gt-xs>{{ player.lastName }}</span>
             </div>
           </td>
         </ng-container>

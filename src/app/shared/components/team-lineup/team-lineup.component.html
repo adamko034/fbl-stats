@@ -47,7 +47,7 @@
     <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
   </span>
   <div *ngIf="!player.id" fxLayoutGap="4px" fxLayoutAlign="start center">
-    <app-team-logo *ngIf="player.team" [height]="18" [team]="player.team"></app-team-logo>
+    <app-team-logo *ngIf="player.team" appScale="0.8" [team]="player.team"></app-team-logo>
     <span>{{ player.lastName }}</span>
   </div>
 </ng-template>
