@@ -8,8 +8,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class TeamLogoComponent {
   @Input() team: string;
-  @Input() height: number;
+  @Input() height: number = 25;
   @Input() scaleOnMobile = true;
+
+  public get heightPx() {
+    return `${this.height}px`;
+  }
 
   constructor() {}
 }
