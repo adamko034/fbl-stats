@@ -1,4 +1,4 @@
-<div *ngIf="!!state && lastMatchday > 0">
+<div>
   <div class="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
     <div>
       <app-players-position-switch
@@ -33,15 +33,15 @@
     </div>
   </div>
 
-  <div class="content" *ngIf="state.data">
+  <div class="content" *ngIf="state.data && lastMatchday > 0">
     <app-players-list-generic
       [config]="state.config"
       [data]="state.data"
       (sortChange)="onSortChange($event)"
     ></app-players-list-generic>
   </div>
-</div>
 
-<div class="follow-us" *ngIf="lastMatchday == 0">
-  <app-follow-us-to-stay-tuned text=" Players stats will be available after MD 1."></app-follow-us-to-stay-tuned>
+  <div class="follow-us" *ngIf="lastMatchday == 0">
+    <app-follow-us-to-stay-tuned text=" Players stats will be available after MD 1."></app-follow-us-to-stay-tuned>
+  </div>
 </div>
