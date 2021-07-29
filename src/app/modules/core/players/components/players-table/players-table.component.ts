@@ -127,7 +127,10 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     if (!!this.players && this.players.length > 0) {
       data = this.playersDataService.flatten(this.players);
       const exPlayer = this.players[0];
-      this.lastMatchday = new ArrayStream<Game>(exPlayer.games).maxBy((g) => g.matchday);
+      this.lastMatchday =
+        !!exPlayer.games && exPlayer.games.length > 0
+          ? new ArrayStream<Game>(exPlayer.games).maxBy((g) => g.matchday)
+          : 0;
       this.includeGames = exPlayer.games.length;
 
       this.prepareTableColumns(this.lastMatchday);
