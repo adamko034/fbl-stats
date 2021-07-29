@@ -11,6 +11,7 @@ import { PlayersListGenericColumn } from 'src/app/shared/components/players-list
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersListGenericRowsConverter } from '../converters/players-list-generic-rows.converter';
 
@@ -30,6 +31,12 @@ interface State {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersPointsEfficiencyComponent implements OnInit {
+  private _lastMatchday: number;
+
+  public get lastMatchday(): number {
+    return this._lastMatchday;
+  }
+
   public state: State;
 
   public typeFilterItems: SwitchItem[] = [
@@ -56,14 +63,21 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private changeDetection: ChangeDetectorRef,
-    private screenSizeService: ScreenSizeService
+    private screenSizeService: ScreenSizeService,
+    private propertiesStore: PropertiesStore
   ) {}
 
   public ngOnInit(): void {
     this.mobile$ = this.screenSizeService.isMobile$();
-    combineLatest([this.route.data, this.route.params, this.route.queryParams])
+    combineLatest([
+      this.route.data,
+      this.route.params,
+      this.route.queryParams,
+      this.propertiesStore.selectLastMatchday()
+    ])
       .pipe(
-        map(([{ pointsEfficiency }, { type }, { orderBy, position }]) => {
+        map(([{ pointsEfficiency }, { type }, { orderBy, position }, lastMatchday]) => {
+          this._lastMatchday = lastMatchday;
           let orderByParam = orderBy;
 
           if (

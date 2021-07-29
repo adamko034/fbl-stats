@@ -39,6 +39,7 @@ import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
+import { FollowUsToStayTunedComponent } from './components/follow-us-to-stay-tuned/follow-us-to-stay-tuned.component';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
@@ -131,7 +132,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SelectTeamsModalComponent,
     SliderMaxPriceComponent,
     SliderMaxPopularityComponent,
-    TeamLineupComponent
+    TeamLineupComponent,
+    FollowUsToStayTunedComponent
   ],
   imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
   exports: [
@@ -187,7 +189,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SelectTeamsComponent,
     SliderMaxPopularityComponent,
     SliderMaxPriceComponent,
-    TeamLineupComponent
+    TeamLineupComponent,
+    FollowUsToStayTunedComponent
   ]
 })
 export class SharedModule {
