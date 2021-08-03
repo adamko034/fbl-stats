@@ -3,9 +3,7 @@
     <div subtitle fxLayout="column" fxLayoutGap="10px">
       <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
         <mat-icon class="red">not_interested</mat-icon>
-        <span>
-          Players unavailable for next matchday (MD {{ (lastMatchday$ | async) + 1 }}). Definitely won't play.
-        </span>
+        <span>Players who are now injured or suspended for the next MD. </span>
       </div>
       <div class="small-mobile" fxLayout="row" fxLayoutAlign="flex-end" fxLayoutGap="3px">
         <span>Source:</span><a class="blue" [href]="source" target="blank">LigaInsider.de</a>
