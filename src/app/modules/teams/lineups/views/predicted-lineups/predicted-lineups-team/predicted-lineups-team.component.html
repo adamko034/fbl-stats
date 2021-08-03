@@ -9,13 +9,13 @@
   <div
     class="lineups-container"
     fxLayout="row wrap"
-    fxLayoutGap="15px grid"
+    fxLayoutGap="15px"
     fxLayoutAlign="space-evenly center"
     fxLayout.lt-sm="column"
     fxLayoutAlign.lt-sm="center center"
     fxLayoutGap.lt-sm="15px"
   >
-    <div *ngFor="let sourceLineup of (team$ | async).predictions | orderBy: 'order'">
+    <div class="lineup" *ngFor="let sourceLineup of (team$ | async).predictions | orderBy: 'order'">
       <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
     </div>
   </div>

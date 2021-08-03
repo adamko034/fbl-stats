@@ -15,7 +15,8 @@
   padding: 5px 0;
 
   .home-link {
-    margin-top: 10px;
+    margin-top: 8px;
+    margin-left: 3px;
 
     &-icon {
       transform: scale(1.5);
@@ -23,17 +24,27 @@
     }
   }
 
-  .team-link {
-    padding: 6px;
-    cursor: pointer;
+  .team-link-container {
+    height: 40px;
 
-    &-active {
-      background-color: rgba(#000, 0.2);
-      border-radius: 20px;
-    }
+    .team-link {
+      padding: 6px;
+      cursor: pointer;
 
-    &-sm {
-      padding: 5px 8px;
+      &:hover:not(.team-link-active) {
+        background-color: rgba($colorBlue, 0.4);
+        border-radius: 20px;
+        transition: background-color 0.5s ease-in-out;
+      }
+
+      &-active {
+        background-color: rgba(#000, 0.2);
+        border-radius: 20px;
+      }
+
+      &-sm {
+        padding: 5px 8px;
+      }
     }
   }
 }
