@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HistorySeasonPlayersLoadedGuard } from '../guards/history-season-players-loaded.guard';
 import { HistorySummaryResolver } from './resolvers/history-summary.resolver';
 import { HistorySummaryComponent } from './views/history-summary/history-summary.component';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [HistorySeasonPlayersLoadedGuard],
     resolve: { history: HistorySummaryResolver },
     component: HistorySummaryComponent
   }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { Logger } from 'src/app/utils/logger';
 import { FilesService } from '../files.service';
+import { HistoryBundesligaTeam } from './models/history-bundesliga-team.model';
 import { HistoryPlayer } from './models/history-player.model';
 import { History } from './models/history.model';
 
@@ -14,21 +15,38 @@ export class HistoryStore {
 
   constructor(private filesService: FilesService) {}
 
-  public load(season: string): void {
-    if (!this.state[season]) {
-      Logger.logDev(`history state, loading season ${season} from file`);
+  public loadPlayers(season: string): void {
+    if (!this.state[season] || !this.state[season].players) {
+      Logger.logDev(`history state, loading season ${season} players from file`);
       const filePath = `\\history\\${season}\\players`;
 
-      combineLatest([this.filesService.getJson<HistoryPlayer>(filePath)])
+      this.filesService
+        .getJson<HistoryPlayer>(filePath)
         .pipe(first())
-        .subscribe(([players]) => {
-          this.state[season] = { season, players };
+        .subscribe((players) => {
+          this.state[season] = { ...this.state[season], season, players };
+          this.send();
+        });
+    }
+  }
+
+  public loadBundesligaTeams(season: string): void {
+    if (!this.state[season] || !this.state[season].bundesligaTeams) {
+      Logger.logDev(`history state, loading season ${season} bundesliga from file`);
+      const filePath = `\\history\\${season}\\bundesliga`;
+
+      this.filesService
+        .getJson<HistoryBundesligaTeam>(filePath)
+        .pipe(first())
+        .subscribe((bundesligaTeams) => {
+          this.state[season] = { ...this.state[season], season, bundesligaTeams };
           this.send();
         });
     }
   }
 
   public selectSeason(season: string): Observable<History> {
+    Logger.logDev(`history store, selecting history for season ${season}`);
     return this.history$.pipe(map((s) => s[season]));
   }
 

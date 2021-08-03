@@ -6,18 +6,18 @@ import { HistoryStore } from 'src/app/store/history/history.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable()
-export class HistorySeasonLoadedGuard implements CanActivate {
+export class HistorySeasonPlayersLoadedGuard implements CanActivate {
   constructor(private store: HistoryStore) {}
 
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const season = route.params.season;
-    Logger.logDev(`history season loaded guard, loading for season ${season}`);
+    const season = route.parent.parent.params.season;
+    Logger.logDev(`history season players loaded guard, loading for season ${season}`);
 
-    this.store.load(season);
+    this.store.loadPlayers(season);
 
     return this.store.selectSeason(season).pipe(
-      filter((historySeason) => !!historySeason),
-      tap((_) => Logger.logDev('history season loaded guard, data loaded')),
+      filter((historySeason) => !!historySeason && !!historySeason.players),
+      tap((_) => Logger.logDev('history season players loaded guard, data loaded')),
       mapTo(true)
     );
   }

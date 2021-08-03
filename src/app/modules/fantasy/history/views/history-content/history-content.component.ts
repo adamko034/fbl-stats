@@ -11,6 +11,7 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 export class HistoryContentComponent implements OnInit {
   private _links: ViewTabNavigationLink[] = [
     { label: 'Players', labelMobile: `${this.season} players`, order: 2, routerLink: 'players' },
+    { label: 'Bundesliga', labelMobile: `${this.season} Bundesliga`, order: 3, routerLink: 'bundesliga' },
     { label: 'Summary', labelMobile: `${this.season} summary`, order: 1, routerLink: 'summary' }
   ];
 
