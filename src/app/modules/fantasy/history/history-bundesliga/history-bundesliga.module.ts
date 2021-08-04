@@ -5,12 +5,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HistoryBundesligaLoadedGuard } from './guards/history-bundesliga-loaded.guard';
 import { HistoryBundesligaRoutingModule } from './history-bundesliga-routing.module';
 import { HistoryBundesligaResolver } from './resolvers/history-bundesliga.resolver';
-import { HistoryBundesligaFiltersComponent } from './views/history-bundesliga/history-bundesliga-filters/history-bundesliga-filters.component';
-import { HistoryBundesligaTableComponent } from './views/history-bundesliga/history-bundesliga-table/history-bundesliga-table.component';
 import { HistoryBundesligaComponent } from './views/history-bundesliga/history-bundesliga.component';
 
 @NgModule({
-  declarations: [HistoryBundesligaComponent, HistoryBundesligaFiltersComponent, HistoryBundesligaTableComponent],
+  declarations: [HistoryBundesligaComponent],
   imports: [CommonModule, HistoryBundesligaRoutingModule, SharedModule, AngularMaterialModule],
   providers: [HistoryBundesligaLoadedGuard, HistoryBundesligaResolver]
 })

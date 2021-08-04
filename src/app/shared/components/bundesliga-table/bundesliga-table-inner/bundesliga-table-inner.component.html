@@ -1,1 +1,105 @@
-<p>bundesliga-table-inner works!</p>
+<div>
+  <table
+    mat-table
+    matSort
+    matSortStart="desc"
+    matSortActive="rank"
+    matSortDisableClear
+    matSortDirection="asc"
+    [dataSource]="dataSource"
+    class="table-responsive"
+    [ngClass]="{ 'small-font': smallFont }"
+  >
+    <ng-container matColumnDef="team">
+      <th mat-header-cell *matHeaderCellDef>Team</th>
+      <td mat-cell *matCellDef="let team">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+          <app-team-logo [team]="team.teamShort" [height]="25"></app-team-logo>
+          <span fxHide.lt-md>{{ team.teamLong }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rank">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank</th>
+      <td class="rank" mat-cell *matCellDef="let team">
+        <span>{{ team.rank }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="points">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Pts</th>
+      <td mat-cell *matCellDef="let team">
+        <span
+          ><strong>{{ team.points }}</strong></span
+        >
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gamesPlayed">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>GP</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.gamesPlayed }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wins">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Wins">W</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.wins }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="draws">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Draws">D</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.draws }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="losses">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Losses">L</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.losses }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="goals">
+      <th mat-header-cell *matHeaderCellDef>Goals</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.goalsScored }} : {{ team.goalsConceded }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gspg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Goals Scored Per Game">Gspg</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ getGoalsPerGame(team.goalsScored, team.gamesPlayed) }} </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gcpg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Goals Conceded Per Game">Gcpg</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ getGoalsPerGame(team.goalsConceded, team.gamesPlayed) }} </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="form">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last {{ teams[0].last5.length }}</th>
+      <td mat-cell *matCellDef="let team">
+        <app-team-form [form]="team.form" [showLabels]="false" mode="dot"></app-team-form>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="diff">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Diff</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ getGoalsDiff(team) }}</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

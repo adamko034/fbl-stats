@@ -4,4 +4,6 @@ export interface HistoryBundesligaStats {
   losses: number;
   goalsScored: number;
   goalsConceded: number;
+  gamesPlayed: number;
+  points: number;
 }

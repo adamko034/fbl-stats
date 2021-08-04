@@ -1,7 +1,23 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <app-bundesliga-table-filters
-    *ngIf="config.showFilters"
+    *ngIf="configInner.showFilters"
+    [config]="configInner"
+    [filters]="filtersInner"
     (filtersChange)="onFiltersChange($event)"
-  ></app-bundesliga-teams-table-filters>
-  <app-bundesliga-table-inner [teams]="teamsToDisplay"></app-bundesliga-table-inner>
+  ></app-bundesliga-table-filters>
+  <app-bundesliga-table-inner
+    *ngIf="!!data && data.length > 0"
+    [teams]="data"
+    [config]="configInner"
+  ></app-bundesliga-table-inner>
+  <div class="legend" fxLayout="column">
+    <span>GP - games played</span>
+    <span>Pts - points</span>
+    <span>W - wins</span>
+    <span>D - draws</span>
+    <span>L - losses</span>
+    <span>Diff - goals difference</span>
+    <span>Gspg - goals scored per game</span>
+    <span>Gcpg - goals conceded per game</span>
+  </div>
 </div>
