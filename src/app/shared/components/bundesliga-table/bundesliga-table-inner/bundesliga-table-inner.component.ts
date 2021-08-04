@@ -10,7 +10,8 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
+import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { Logger } from 'src/app/utils/logger';
 import { BundesligaTableConfig } from '../models/bundesliga-table-config.model';
 import { BundesligaTableTeam } from '../models/bundesliga-table-team.model';
@@ -39,6 +40,8 @@ export class BundesligaTableInnerComponent implements OnInit {
     'diff',
     'gspg',
     'gcpg',
+    'cs',
+    'fts',
     'form'
   ];
 
@@ -61,24 +64,26 @@ export class BundesligaTableInnerComponent implements OnInit {
           this.allColumns = this.allColumns.filter((x) => x !== 'form');
         }
 
-        if (screen > ScreenSize.SM) {
-          this.displayedColumns = [...this.allColumns];
-        }
+        this.displayedColumns = [...this.allColumns];
 
-        if (screen === ScreenSize.SM) {
-          this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg');
-        }
+        // if (screen > ScreenSize.SM) {
+        //   this.displayedColumns = [...this.allColumns];
+        // }
 
-        if (screen < ScreenSize.SM) {
-          this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg' && c !== 'form');
-        }
+        // if (screen === ScreenSize.SM) {
+        //   this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg');
+        // }
 
-        if (screen < ScreenSize.XS) {
-          this.smallFont = true;
-          this.displayedColumns = this.allColumns.filter(
-            (c) => c !== 'gspg' && c !== 'gcpg' && c !== 'form' && c !== 'diff' && c !== 'gamesPlayed'
-          );
-        }
+        // if (screen < ScreenSize.SM) {
+        //   this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg' && c !== 'form');
+        // }
+
+        // if (screen < ScreenSize.XS) {
+        //   this.smallFont = true;
+        //   this.displayedColumns = this.allColumns.filter(
+        //     (c) => c !== 'gspg' && c !== 'gcpg' && c !== 'form' && c !== 'diff' && c !== 'gamesPlayed'
+        //   );
+        // }
 
         this.changeDetection.detectChanges();
       });
@@ -87,6 +92,10 @@ export class BundesligaTableInnerComponent implements OnInit {
   public ngOnChanges(changes: SimpleChanges): void {
     if (!!changes.teams && !changes.teams.isFirstChange()) {
       this.dataSource.data = this.teams;
+
+      if (['cs', 'diff', 'fts'].includes(this.sort.active)) {
+        this.onSortChange({ active: this.sort.active, direction: this.sort.direction === 'asc' ? 'asc' : 'desc' });
+      }
     }
   }
 
@@ -97,12 +106,18 @@ export class BundesligaTableInnerComponent implements OnInit {
   }
 
   public getGoalsDiff(team: BundesligaTableTeam): string {
-    const diff = team.goalsScored - team.goalsConceded;
-
-    return `${diff < 0 ? '-' : '+'}${diff}`;
+    return `${team.goalsDiff > 0 ? '+' : ''}${team.goalsDiff}`;
   }
 
-  public getGoalsPerGame(goals: number, games: number): number {
-    return Math.round((goals / games) * 10) / 10;
+  public onSortChange(sort: { active: string; direction: 'asc' | 'desc' }): void {
+    if (['cs', 'diff', 'fts'].includes(sort.active)) {
+      const fields = { cs: 'cleanSheets', diff: 'goalsDiff', fts: 'failedToScore' };
+      const orderBy: { field: string; order: 'asc' | 'dsc' } = {
+        field: fields[sort.active],
+        order: sort.direction === 'asc' ? 'asc' : 'dsc'
+      };
+      const thenBy: { field: string; order: 'asc' | 'dsc' } = { field: 'rank', order: 'asc' };
+      this.dataSource.data = new ArrayStream<BundesligaTableTeam>(this.teams).orderByThenBy(orderBy, thenBy).collect();
+    }
   }
 }

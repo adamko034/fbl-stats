@@ -9,5 +9,10 @@ export interface BundesligaTableTeam {
   losses: number;
   goalsScored: number;
   goalsConceded: number;
+  cleanSheets: number;
+  gspg: number;
+  gcpg: number;
+  goalsDiff: number;
+  failedToScore: number;
   last5?: string;
 }

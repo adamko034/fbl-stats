@@ -60,9 +60,38 @@ export class HistoryBundesligaComponent implements OnInit {
 
     this._tableTeams = this._historyTeams.map((historyTeam: HistoryBundesligaTeam) => {
       const { teamShort, teamLong, rank } = historyTeam;
-      const { wins, draws, losses, goalsScored, goalsConceded, gamesPlayed, points } = historyTeam[this.filters.type];
+      const {
+        wins,
+        draws,
+        losses,
+        goalsScored,
+        goalsConceded,
+        gamesPlayed,
+        points,
+        cleanSheets,
+        gspg,
+        gcpg,
+        goalsDiff,
+        failedToScore
+      } = historyTeam[this.filters.type];
 
-      return { teamShort, teamLong, wins, draws, losses, goalsConceded, goalsScored, gamesPlayed, points, rank };
+      return {
+        teamShort,
+        teamLong,
+        wins,
+        draws,
+        losses,
+        goalsConceded,
+        goalsScored,
+        gamesPlayed,
+        points,
+        rank,
+        cleanSheets,
+        gspg,
+        gcpg,
+        goalsDiff,
+        failedToScore
+      };
     });
   }
 }

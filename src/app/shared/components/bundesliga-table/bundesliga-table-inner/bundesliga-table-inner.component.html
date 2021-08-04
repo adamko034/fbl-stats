@@ -1,4 +1,4 @@
-<div>
+<div class="bundesliga-table-container" fxLayout="column" fxLayoutAlign="center stretch">
   <table
     mat-table
     matSort
@@ -6,12 +6,15 @@
     matSortActive="rank"
     matSortDisableClear
     matSortDirection="asc"
+    (matSortChange)="onSortChange($event)"
     [dataSource]="dataSource"
-    class="table-responsive"
     [ngClass]="{ 'small-font': smallFont }"
+    ngClass.lt-md="table-sm"
+    ngClass.lt-sm="table-sm"
+    class="table-responsive"
   >
-    <ng-container matColumnDef="team">
-      <th mat-header-cell *matHeaderCellDef>Team</th>
+    <ng-container matColumnDef="team" sticky>
+      <th mat-header-cell *matHeaderCellDef sticky class="team">Team</th>
       <td mat-cell *matCellDef="let team">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
           <app-team-logo [team]="team.teamShort" [height]="25"></app-team-logo>
@@ -21,7 +24,7 @@
     </ng-container>
 
     <ng-container matColumnDef="rank">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="rank">Rank</th>
       <td class="rank" mat-cell *matCellDef="let team">
         <span>{{ team.rank }}</span>
       </td>
@@ -74,14 +77,14 @@
     <ng-container matColumnDef="gspg">
       <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Goals Scored Per Game">Gspg</th>
       <td mat-cell *matCellDef="let team">
-        <span>{{ getGoalsPerGame(team.goalsScored, team.gamesPlayed) }} </span>
+        <span>{{ team.gspg }} </span>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="gcpg">
       <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Goals Conceded Per Game">Gcpg</th>
       <td mat-cell *matCellDef="let team">
-        <span>{{ getGoalsPerGame(team.goalsConceded, team.gamesPlayed) }} </span>
+        <span>{{ team.gcpg }} </span>
       </td>
     </ng-container>
 
@@ -99,7 +102,21 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <ng-container matColumnDef="cs">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Clean sheets">CS</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.cleanSheets }}%</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fts">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Failed to score">FTS</th>
+      <td mat-cell *matCellDef="let team">
+        <span>{{ team.failedToScore }}%</span>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

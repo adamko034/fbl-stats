@@ -6,4 +6,9 @@ export interface HistoryBundesligaStats {
   goalsConceded: number;
   gamesPlayed: number;
   points: number;
+  cleanSheets: number;
+  gspg: number;
+  gcpg: number;
+  goalsDiff: number;
+  failedToScore: number;
 }
