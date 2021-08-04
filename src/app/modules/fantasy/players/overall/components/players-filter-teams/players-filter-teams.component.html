@@ -2,6 +2,15 @@
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
     <span *ngIf="!isTeamSelected()">No teams selected.</span>
     <span class="teams-selected-span" *ngIf="isTeamSelected()">{{ selectedTeamsCount }} teams selected</span>
+    <button
+      *ngIf="selectedTeamsCount > 0"
+      mat-icon-button
+      class="red button-clear"
+      [appScale]="0.7"
+      (click)="clearSelection()"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
     <button fxHide.lt-sm mat-stroked-button class="select-teams-button" [appScale]="0.9" (click)="openDialog()">
       <mat-icon>input</mat-icon>
       <span>Select teams</span>

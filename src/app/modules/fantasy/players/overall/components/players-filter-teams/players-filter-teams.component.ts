@@ -67,6 +67,11 @@ export class PlayersFilterTeamsComponent implements OnInit {
       });
   }
 
+  public clearSelection(): void {
+    this.selectedTeams.forEach((t) => (t.selected = false));
+    this.sendSelectedTeams();
+  }
+
   private sendSelectedTeams(): void {
     const teamsToSend = this.getSelectedTeams();
     this.fitlersStoreService.updateTeams(teamsToSend.length > 0 ? teamsToSend : null);

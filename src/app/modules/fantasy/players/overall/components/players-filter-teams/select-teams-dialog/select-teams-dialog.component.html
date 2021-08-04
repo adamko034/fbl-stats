@@ -24,16 +24,19 @@
     >
       <mat-checkbox [(ngModel)]="team.selected">
         <div fxHide.lt-sm fxLayoutGap="3px" fxLayoutAlign="start center">
-          <app-team-logo fxHide.lt-lg [team]="team.short" [height]="20"></app-team-logo>
+          <app-team-logo [team]="team.short" [appScale]="0.9" [height]="20"></app-team-logo>
           <span>{{ team.name }}</span>
         </div>
-        <span fxHide.gt-xs>{{ team.short | uppercase }}</span>
+        <div fxHide.gt-xs fxLayoutGap="3px" fxLayoutAlign="start center">
+          <app-team-logo [team]="team.short" [appScale]="0.8" [height]="20"></app-team-logo>
+          <span>{{ team.short | uppercase }}</span>
+        </div>
       </mat-checkbox>
     </div>
   </div>
   <mat-dialog-actions class="actions">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [disabled]="!isTeamSelected" (click)="onUnselectAll()">Unselect all</button>
+    <button fxHide.lt-sm mat-button [disabled]="!isTeamSelected" (click)="onUnselectAll()">Unselect all</button>
     <button class="main-background" mat-button (click)="close()">Confirm</button>
   </mat-dialog-actions>
 </div>
