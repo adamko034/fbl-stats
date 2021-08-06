@@ -21,8 +21,13 @@
 
       a {
         color: $colorGrey;
-        font-size: 12px;
+        font-size: 13px;
         text-decoration: none;
+
+        &:hover {
+          font-weight: 500;
+          color: #000;
+        }
       }
     }
   }
