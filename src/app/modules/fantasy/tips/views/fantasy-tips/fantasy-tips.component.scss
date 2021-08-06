@@ -5,6 +5,7 @@
 
   h2 {
     margin: 0;
+    margin-bottom: 5px;
     text-align: center;
   }
 
@@ -15,7 +16,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
     .tip-link {
-      padding: 10px 3px;
+      padding: 10px 3px 3px 3px;
       background-color: #fff;
       border-radius: 5px;
 
@@ -27,6 +28,19 @@
         &:hover {
           font-weight: 500;
           color: #000;
+        }
+      }
+
+      .categories {
+        .category {
+          background-color: rgba(0, 0, 0, 0.4);
+          color: #fff;
+          padding: 0px 5px;
+          font-size: 10px;
+          font-weight: 500;
+          border-top-left-radius: 6px;
+          line-height: 18px;
+          border-top-right-radius: 6px;
         }
       }
     }

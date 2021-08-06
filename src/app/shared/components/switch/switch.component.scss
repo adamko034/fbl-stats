@@ -5,6 +5,7 @@
 
   .switch {
     .item-active {
+      font-size: $fontSizeSmall;
       background-color: $colorBlue;
       transition-property: background-color, color;
       transition-duration: 0.2s, 0.2s;

@@ -1,7 +1,16 @@
 <app-view [links]="links">
   <div class="fantasy-tips-container" fxLayout="column" fxLayoutGap="10px">
     <app-white-block>
-      <h2>Matchday {{ tips$ | async | field: 'matchday' }} tips</h2>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <h2>Matchday {{ tips.matchday }} tips</h2>
+        <app-form-field label="Category">
+          <app-switch
+            [items]="categories$ | async"
+            [value]="selectedCategory"
+            (switchChange)="onCategoryChange($event)"
+          ></app-switch>
+        </app-form-field>
+      </div>
     </app-white-block>
 
     <div class="tip">
@@ -9,12 +18,18 @@
         class="tip-link"
         fxLayout="column"
         fxLayoutAlign="center center"
-        *ngFor="let tip of tips$ | async | field: 'links' | orderBy: 'order'"
+        fxLayoutGap="5px"
+        *ngFor="let tip of filteredLinks | orderBy: 'order'"
       >
         <a [href]="tip.url" target="_blank" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1px">
           <span>{{ tip.title }}</span>
           <mat-icon [appScale]="0.6">open_in_new</mat-icon>
         </a>
+        <div class="categories" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <span class="category" *ngFor="let category of tip.categories">
+            {{ category }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
