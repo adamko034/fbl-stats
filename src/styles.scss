@@ -261,6 +261,11 @@ mat-button-toggle.position-active {
   width: 100%;
   overflow-x: auto;
 
+  td,
+  th {
+    font-size: $fontSizeSmall;
+  }
+
   .mat-table {
     width: 100%;
     max-width: 100%;

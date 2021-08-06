@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'usefullinks',
         loadChildren: () => import('./useful-links/useful-links.module').then((m) => m.UsefulLinksModule)
+      },
+      {
+        path: 'tips',
+        loadChildren: () => import('./tips/tips.module').then((m) => m.TipsModule)
       }
     ]
   }

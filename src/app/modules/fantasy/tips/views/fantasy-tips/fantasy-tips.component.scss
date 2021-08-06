@@ -1,0 +1,29 @@
+@import '/src/variables.scss';
+
+.fantasy-tips-container {
+  margin-top: 10px;
+
+  h2 {
+    margin: 0;
+    text-align: center;
+  }
+
+  .tip {
+    padding: 0 20px;
+    display: grid;
+    grid-gap: 10px 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    .tip-link {
+      padding: 10px 3px;
+      background-color: #fff;
+      border-radius: 5px;
+
+      a {
+        color: $colorGrey;
+        font-size: 12px;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<app-view [links]="links">
+  <div class="fantasy-tips-container" fxLayout="column" fxLayoutGap="10px">
+    <app-white-block>
+      <h2>Matchday {{ tips$ | async | field: 'matchday' }} tips</h2>
+    </app-white-block>
+
+    <div class="tip">
+      <div
+        class="tip-link"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        *ngFor="let tip of tips$ | async | field: 'links' | orderBy: 'order'"
+      >
+        <a [href]="tip.url" target="_blank" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1px">
+          <span>{{ tip.title }}</span>
+          <mat-icon [appScale]="0.6">open_in_new</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</app-view>

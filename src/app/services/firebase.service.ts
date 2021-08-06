@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
 import { ErrorService } from 'src/app/services/error.service';
 import { OurPicks } from '../store/our-picks/models/our-picks.model';
+import { Logger } from '../utils/logger';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
@@ -29,5 +30,10 @@ export class FirebaseService {
           return [];
         })
       );
+  }
+
+  public getFantasyTips(matchday: number): Observable<any> {
+    Logger.logDev(`firebase service, loading fantasy tips from firebase for doc ${matchday}`);
+    return this.firestore.collection('tips').doc(matchday.toString()).valueChanges().pipe(first());
   }
 }
