@@ -1,11 +1,6 @@
-<app-view-layout>
-  <div navigation fxLayout="row" fxLayoutAlign="center">
-    <div fxFlex="95" fxLayoutAlign="space-between">
-      <span>&nbsp;</span>
-      <button mat-raised-button class="main-background" (click)="logout()">Logout</button>
-    </div>
-  </div>
-  <div content>
+<app-view [links]="links">
+  <div class="admin-container">
+    <button mat-raised-button class="logout main-background" (click)="logout()">Logout</button>
     <router-outlet></router-outlet>
   </div>
-</app-view-layout>
+</app-view>

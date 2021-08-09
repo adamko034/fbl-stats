@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
-import { FantasyTipLink } from '../../models/fantasy-tip-link.model';
-import { FantasyTips } from '../../models/fantasy-tips.model';
+import { FantasyTipLink } from 'src/app/store/tips/models/fantasy-tip-link.model';
+import { FantasyTips } from 'src/app/store/tips/models/fantasy-tips.model';
 
 @UntilDestroy()
 @Component({
@@ -26,7 +25,7 @@ export class FantasyTipsComponent implements OnInit {
 
   public tips: FantasyTips;
   public filteredLinks: FantasyTipLink[];
-  public categories$: Observable<SwitchItem[]>;
+  public categories: SwitchItem[];
   public selectedCategory: string = 'all';
 
   constructor(private route: ActivatedRoute) {}
@@ -37,32 +36,11 @@ export class FantasyTipsComponent implements OnInit {
         map((data) => data.tips),
         untilDestroyed(this)
       )
-      .subscribe((tips) => {
+      .subscribe((tips: FantasyTips) => {
         this.tips = tips;
+        this.categories = this.getCategoriesSwitchItems(tips.categories);
         this.filteredLinks = [...tips.links];
       });
-    this.categories$ = this.route.data.pipe(
-      map((data) => data.tips),
-      map((tips: FantasyTips) => {
-        if (!tips || !tips.links) {
-          return [];
-        }
-
-        const categories = ['all'];
-        tips.links.forEach((link) => {
-          link.categories.forEach((category) => {
-            if (!categories.includes(category.toLowerCase())) {
-              categories.push(category.toLowerCase());
-            }
-          });
-        });
-
-        return categories.sort().map((category) => ({
-          value: category,
-          description: `${category[0].toUpperCase()}${category.slice(1)}`
-        }));
-      })
-    );
   }
 
   public onCategoryChange(newCategory: string): void {
@@ -71,5 +49,16 @@ export class FantasyTipsComponent implements OnInit {
       newCategory === 'all'
         ? [...this.tips.links]
         : this.tips.links.filter((link) => link.categories.includes(newCategory.toLowerCase()));
+  }
+
+  public openInNewTab(url: string): void {
+    window.open(url, '_blank');
+  }
+
+  private getCategoriesSwitchItems(categories: string[]): SwitchItem[] {
+    return categories.sort().map((category) => ({
+      value: category,
+      description: `${category[0].toUpperCase()}${category.slice(1)}`
+    }));
   }
 }

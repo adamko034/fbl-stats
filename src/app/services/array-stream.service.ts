@@ -76,6 +76,35 @@ export class ArrayStream<T> {
     return this;
   }
 
+  public distinctFlat<R>(field: string): string[] {
+    const distinct: string[] = [];
+    this.array.forEach((item: T) => {
+      item[field].forEach((field: string) => {
+        if (!distinct.includes(field.toLowerCase())) {
+          distinct.push(field.toLowerCase());
+        }
+      });
+    });
+
+    return distinct;
+  }
+
+  public moveItem(fromIndex: number, toIndex: number): ArrayStream<T> {
+    var element = this.array[fromIndex];
+    this.array.splice(fromIndex, 1);
+    this.array.splice(toIndex, 0, element);
+
+    return this;
+  }
+
+  public reorder(orderFieldName: string = 'order'): ArrayStream<T> {
+    for (let i = 0; i < this.array.length; i++) {
+      this.array[i][orderFieldName] = i + 1;
+    }
+
+    return this;
+  }
+
   public forEach(action: Actionable<T>) {
     this.array = action.exec(this.array);
     return this;

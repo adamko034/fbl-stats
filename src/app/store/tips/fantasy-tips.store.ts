@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Logger } from 'src/app/utils/logger';
-import { FantasyTips } from '../models/fantasy-tips.model';
+import { FantasyTipLink } from './models/fantasy-tip-link.model';
+import { FantasyTips } from './models/fantasy-tips.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class FantasyTipsStore {
   private _state: { [matchday: string]: FantasyTips } = {};
   private state$: ReplaySubject<{ [matchday: string]: FantasyTips }> = new ReplaySubject(1);
@@ -18,6 +20,12 @@ export class FantasyTipsStore {
       .getFantasyTips(matchday)
       .pipe(first())
       .subscribe((tips: FantasyTips) => {
+        if (!tips) {
+          this._state[matchday] = { matchday, links: [], categories: [] };
+          return;
+        }
+
+        tips.categories = this.extractCategories(tips);
         this._state[tips.matchday] = tips;
         this.send();
       });
@@ -29,5 +37,9 @@ export class FantasyTipsStore {
 
   private send(): void {
     this.state$.next({ ...this._state });
+  }
+
+  private extractCategories(tips: FantasyTips): string[] {
+    return new ArrayStream<FantasyTipLink>(tips.links).distinctFlat('categories').concat(['all']);
   }
 }

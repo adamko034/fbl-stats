@@ -1,0 +1,40 @@
+<h2 matDialogTitle>New Tip Link</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <app-form-field>
+        <mat-form-field>
+          <input matInput formControlName="title" placeholder="Title" required />
+        </mat-form-field>
+      </app-form-field>
+
+      <app-form-field>
+        <mat-form-field>
+          <input matInput formControlName="url" placeholder="Url" required />
+        </mat-form-field>
+      </app-form-field>
+
+      <app-form-field>
+        <div fxLayout="column">
+          <mat-form-field class="shorter">
+            <mat-label>New category</mat-label>
+            <input matInput formControlName="newCategory" />
+            <button mat-icon-button class="blue" matSuffix (click)="addCategory()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-chip-list>
+            <mat-chip *ngFor="let category of categories" (removed)="removeCategory(category)">
+              {{ category }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </app-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" class="main-background" mat-raised-button cdkFocusInitial (click)="submit()">Add</button>
+</mat-dialog-actions>

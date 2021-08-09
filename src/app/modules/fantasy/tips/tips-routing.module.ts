@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FantasyTipsLoadedGuard } from './guards/fantasy-tips-loaded.guard';
-import { FantasyTipsResolver } from './resolvers/fantasy-tips.resolver';
+import { FantasyTipsLoadedGuard } from '../../core/tips/guards/fantasy-tips-loaded.guard';
+import { FantasyTipsResolver } from '../../core/tips/resolvers/fantasy-tips.resolver';
 import { FantasyTipsComponent } from './views/fantasy-tips/fantasy-tips.component';
 
 const routes: Routes = [

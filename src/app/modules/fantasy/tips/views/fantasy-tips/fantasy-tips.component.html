@@ -5,7 +5,7 @@
         <h2>Matchday {{ tips.matchday }} tips</h2>
         <app-form-field label="Category">
           <app-switch
-            [items]="categories$ | async"
+            [items]="categories"
             [value]="selectedCategory"
             (switchChange)="onCategoryChange($event)"
           ></app-switch>
@@ -20,11 +20,12 @@
         fxLayoutAlign="center center"
         fxLayoutGap="5px"
         *ngFor="let tip of filteredLinks | orderBy: 'order'"
+        (click)="openInNewTab(tip.url); $event.stopPropagation()"
       >
-        <a [href]="tip.url" target="_blank" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1px">
+        <div class="title" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1px">
           <span>{{ tip.title }}</span>
           <mat-icon [appScale]="0.6">open_in_new</mat-icon>
-        </a>
+        </div>
         <div class="categories" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
           <span class="category" *ngFor="let category of tip.categories">
             {{ category }}

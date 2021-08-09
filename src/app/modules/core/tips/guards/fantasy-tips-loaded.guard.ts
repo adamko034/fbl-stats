@@ -3,10 +3,10 @@ import { CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, mapTo, switchMap, tap } from 'rxjs/operators';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
+import { FantasyTipsStore } from 'src/app/store/tips/fantasy-tips.store';
 import { Logger } from 'src/app/utils/logger';
-import { FantasyTipsStore } from '../store/fantasy-tips.store';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class FantasyTipsLoadedGuard implements CanActivate {
   constructor(private propertiesStore: PropertiesStore, private fantasyTipsStore: FantasyTipsStore) {}
 

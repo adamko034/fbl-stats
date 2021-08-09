@@ -3,11 +3,11 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, switchMap, tap } from 'rxjs/operators';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
+import { FantasyTipsStore } from 'src/app/store/tips/fantasy-tips.store';
+import { FantasyTips } from 'src/app/store/tips/models/fantasy-tips.model';
 import { Logger } from 'src/app/utils/logger';
-import { FantasyTips } from '../models/fantasy-tips.model';
-import { FantasyTipsStore } from '../store/fantasy-tips.store';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class FantasyTipsResolver implements Resolve<Observable<FantasyTips>> {
   constructor(private propertiesStore: PropertiesStore, private fantasyTipsStore: FantasyTipsStore) {}
 

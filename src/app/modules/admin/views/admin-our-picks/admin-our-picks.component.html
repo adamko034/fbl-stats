@@ -1,5 +1,5 @@
-<div class="admin-our-picks-container" fxLayout="row">
-  <div fxFlex="20">
+<div class="admin-our-picks-container">
+  <div class="admin-our-picks-search">
     <app-admin-our-picks-player-search
       [selected]="players"
       [lastMatchday]="lastMatchday$ | async"
@@ -81,6 +81,7 @@
           </div>
         </div>
       </div>
+
       <div fxLayoutGap="7px" fxFlexAlign="end">
         <button [disabled]="!isChange" mat-raised-button class="green-background" (click)="save()">Save</button>
         <button [disabled]="isChange" mat-raised-button class="main-background" (click)="publish()">

@@ -1,6 +1,15 @@
+.admin-our-picks-container {
+  padding: 0 10px;
+
+  .admin-our-picks-search {
+    z-index: 2;
+    position: absolute;
+    top: 56px;
+    left: 5px;
+  }
+}
+
 .admin-our-picks-list {
-  width: 900px;
-  margin: auto;
   border: solid 1px #ccc;
   min-height: 60px;
   display: block;
