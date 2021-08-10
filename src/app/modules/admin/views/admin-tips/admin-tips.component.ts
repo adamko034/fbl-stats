@@ -70,7 +70,7 @@ export class AdminTipsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((res: FantasyTipLink) => {
       if (!!res) {
         const { categories, title, url } = res;
-        this.displayedLinks.unshift({ isNew: true, categories, title, url, order: 0 });
+        this.displayedLinks.unshift({ isAdminNew: true, isNew: true, categories, title, url, order: 0 });
 
         this.reorder();
         this.isChange = true;
@@ -81,15 +81,23 @@ export class AdminTipsComponent implements OnInit {
 
   public save(): void {
     const tipsLink: FantasyTipLink[] = this.displayedLinks.map((adminTip) => {
-      const { categories, title, url, order } = adminTip;
-      return { categories, title, url, order };
+      const { categories, title, url, order, isNew } = adminTip;
+      return { categories, title, url, order, isNew };
     });
 
     const tipsToSave: FantasyTips = { matchday: this.tips.matchday, links: tipsLink };
     this.service.save(tipsToSave).subscribe(() => {
-      this.displayedLinks.forEach((l) => (l.isNew = false));
+      this.displayedLinks.forEach((l) => (l.isAdminNew = false));
       this.isChange = false;
+      this.toastrService.success('Fantasy tip saved');
+      this.changeDetector.detectChanges();
     });
+  }
+
+  public markAsNew(tip: FantasyTipLink): void {
+    tip.isNew = !tip.isNew;
+    this.isChange = true;
+    this.changeDetector.detectChanges();
   }
 
   private mapFantasyLinksToAdmin() {
@@ -101,8 +109,8 @@ export class AdminTipsComponent implements OnInit {
     this.displayedLinks =
       [
         ...this.tips.links.map((l) => {
-          const { categories, title, url, order } = l;
-          return { isNew: false, categories, title, url, order };
+          const { categories, title, url, order, isNew } = l;
+          return { isNew: isNew || false, categories, title, url, order, isAdminNew: false };
         })
       ] || [];
   }

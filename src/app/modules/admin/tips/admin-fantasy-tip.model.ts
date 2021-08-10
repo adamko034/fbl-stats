@@ -3,5 +3,6 @@ export interface AdminFantasyTip {
   url: string;
   order: number;
   categories: string[];
+  isAdminNew: boolean;
   isNew: boolean;
 }

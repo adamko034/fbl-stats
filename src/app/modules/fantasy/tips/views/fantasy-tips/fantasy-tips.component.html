@@ -25,9 +25,9 @@
         <div class="title" fxLayout="row" fxLayoutAlign="center">
           <span>{{ tip.title }}</span>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <div></div>
-          <div class="categories" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div class="tip-link-sub">
+          <div class="new red"><span *ngIf="tip.isNew">NEW!</span></div>
+          <div class="categories" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
             <span class="category" *ngFor="let category of tip.categories">
               {{ category }}
             </span>

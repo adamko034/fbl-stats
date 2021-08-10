@@ -16,11 +16,15 @@
     >
       <div
         class="tips-link"
-        [ngClass]="{ 'tips-link-new': link.isNew }"
+        [ngClass]="{ 'tips-link-new': link.isAdminNew }"
         *ngFor="let link of displayedLinks | orderBy: 'order'"
         cdkDrag
       >
-        <span>{{ link.order }}</span>
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+          <span>{{ link.order }}</span>
+          <span *ngIf="link.isNew" class="new red">NEW!</span>
+        </div>
+
         <div fxLayout="column">
           <span>{{ link.title }}</span>
           <a [href]="link.url">{{ link.url }}</a>
@@ -28,9 +32,14 @@
             <span *ngFor="let category of link.categories">{{ category }}</span>
           </div>
         </div>
-        <button mat-icon-button class="red delete-button" (click)="onDelete(link.order)">
-          <mat-icon>delete</mat-icon>
-        </button>
+        <div class="tips-link-actions" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <button mat-icon-button class="blue mark-as-new-button" (click)="markAsNew(link)">
+            <mat-icon>new_releases</mat-icon>
+          </button>
+          <button mat-icon-button class="red delete-button" (click)="onDelete(link.order)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>

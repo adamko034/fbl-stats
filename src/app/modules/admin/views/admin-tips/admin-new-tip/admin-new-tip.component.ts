@@ -38,7 +38,8 @@ export class AdminNewTipComponent implements OnInit {
         title: this.form.get('title').value,
         url: this.form.get('url').value,
         categories: this.categories,
-        order: 0
+        order: 0,
+        isNew: true
       };
       this.dialogRef.close(tip);
     }

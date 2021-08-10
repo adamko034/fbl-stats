@@ -23,11 +23,15 @@
     .tips-link {
       padding: 16px;
       display: grid;
-      grid-template-columns: 40px minmax(50px, 1fr) 40px;
+      grid-template-columns: 40px minmax(50px, 1fr) 60px;
       grid-gap: 20px;
       border-bottom: 1px solid black;
       cursor: pointer;
       background: #fff;
+
+      .new {
+        font-weight: 500;
+      }
 
       a {
         text-overflow: ellipsis;
