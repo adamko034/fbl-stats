@@ -27,6 +27,9 @@ export class PropertiesStore {
   //       }
   //     });
   // }
+  public selectBudgetPlayerMaxPrice(): Observable<number> {
+    return this.selectProperties().pipe(map((props) => props.budgetPlayerMaxPrice));
+  }
 
   public selectPlayerMaxPrice(): Observable<number> {
     return this.selectProperties().pipe(map((properties) => properties.playerMaxPrice));

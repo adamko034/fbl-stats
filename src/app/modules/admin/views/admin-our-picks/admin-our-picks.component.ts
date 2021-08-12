@@ -21,6 +21,7 @@ import { AdminOurPicksMatchday } from '../../our-picks/models/admin-our-picks-ma
 export class AdminOurPicksComponent implements OnInit {
   public state: AdminOurPicksMatchday;
   public lastMatchday$: Observable<number>;
+  public budgetPlayerMaxPrice$: Observable<number>;
 
   public get players(): OurPicksPlayer[] {
     return this.state?.ourPicks?.players;
@@ -48,6 +49,7 @@ export class AdminOurPicksComponent implements OnInit {
       });
 
     this.lastMatchday$ = this.propertiesService.selectLastMatchday();
+    this.budgetPlayerMaxPrice$ = this.propertiesService.selectBudgetPlayerMaxPrice();
   }
 
   public onPlayerSelected(player: OurPicksPlayer): void {

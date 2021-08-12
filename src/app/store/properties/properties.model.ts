@@ -1,6 +1,7 @@
 export interface Properties {
   lastMatchday: number;
   playerMaxPrice: number;
+  budgetPlayerMaxPrice: number;
   lineupSources: { [sourceName: string]: LineupsSourceProperty };
 }
 

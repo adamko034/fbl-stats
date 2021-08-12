@@ -47,7 +47,7 @@
             ></app-our-pick-icon>
             <app-our-pick-icon
               class="icon"
-              [ngClass]="{ hidden: player.price > 8 }"
+              [ngClass]="{ hidden: player.price > (budgetPlayerMaxPrice$ | async) }"
               [icon]="Icons.BARGAIN"
               [color]="getIconColor(Icons.BARGAIN, player.playerId)"
               [showTooltip]="false"
