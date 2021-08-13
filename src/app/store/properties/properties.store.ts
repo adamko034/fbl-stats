@@ -8,25 +8,9 @@ import { LineupsSource, LineupsSourceProperty, Properties } from './properties.m
 export class PropertiesStore {
   private properties$ = new ReplaySubject<Properties>(1);
   private state: Properties;
-  private lastUpdated$ = new ReplaySubject<Date>(1);
 
   constructor(private filesService: FilesService) {}
 
-  // public update() {
-  //   this.state = null;
-  //   this.loadProperties();
-  // }
-
-  // public loadLastUpdated() {
-  //   this.firebaseService
-  //     .getLastUpdated()
-  //     .pipe(takeUntil(this.destroyed$))
-  //     .subscribe((lastUpdated) => {
-  //       if (lastUpdated) {
-  //         this.lastUpdated$.next(new Date(lastUpdated.date));
-  //       }
-  //     });
-  // }
   public selectBudgetPlayerMaxPrice(): Observable<number> {
     return this.selectProperties().pipe(map((props) => props.budgetPlayerMaxPrice));
   }
@@ -43,7 +27,7 @@ export class PropertiesStore {
   }
 
   public selectLastUpdated(): Observable<Date> {
-    return this.lastUpdated$.asObservable();
+    return this.selectProperties().pipe(map((props) => props.lastUpdated));
   }
 
   public selectLineupSources(source: LineupsSource): Observable<LineupsSourceProperty> {

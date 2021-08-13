@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
-import { NewUpdatesService } from 'src/app/components/header/components/new-updates/services/new-updates.service';
+import { takeUntil } from 'rxjs/operators';
 import { ErrorService } from 'src/app/services/error.service';
 
 @Component({
@@ -14,11 +13,7 @@ import { ErrorService } from 'src/app/services/error.service';
 export class ToastrComponent implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
 
-  constructor(
-    private toastrService: ToastrService,
-    private errorService: ErrorService,
-    private newUpdatesService: NewUpdatesService
-  ) {}
+  constructor(private toastrService: ToastrService, private errorService: ErrorService) {}
 
   public ngOnInit(): void {
     this.errorService
@@ -29,14 +24,6 @@ export class ToastrComponent implements OnInit, OnDestroy {
           this.showErrorToastr(error);
         }
       });
-
-    this.newUpdatesService
-      .select()
-      .pipe(
-        filter((newUpdate) => newUpdate),
-        takeUntil(this.destroyed$)
-      )
-      .subscribe(() => this.showNewUpdatesToastr());
   }
 
   public showErrorToastr(message: string) {

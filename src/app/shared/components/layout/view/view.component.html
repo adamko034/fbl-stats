@@ -30,6 +30,19 @@
   </div>
 
   <div class="view-content">
-    <ng-content></ng-content>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+
+    <div class="footer" fxLayout="row" fxLayoutAlign="flex-end start">
+      <div class="last-udpated" fxLayoutAlign="start center" fxLayoutGap="4px">
+        <div fxLayoutAlign="start center">
+          <mat-icon appScale="0.8">sync</mat-icon>
+          <span class="footer-section">Last updated:</span>
+        </div>
+
+        <span>{{ lastUpdated$ | async | amTimeAgo }}</span>
+      </div>
+    </div>
   </div>
 </div>

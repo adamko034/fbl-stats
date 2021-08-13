@@ -32,6 +32,19 @@
 
   .view-content {
     min-height: 100%;
-    margin-bottom: 20px;
+
+    .content {
+      min-height: 86vh;
+    }
+
+    .footer {
+      color: $colorGrey;
+      font-size: $fontSizeSmall;
+      padding: 15px 40px;
+
+      .footer-section {
+        font-weight: 500;
+      }
+    }
   }
 }

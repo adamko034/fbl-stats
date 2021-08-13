@@ -21,6 +21,7 @@ import {
   faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ExpansionPanelComponent } from 'src/app/shared/components/expansion-panel/expansion-panel.component';
@@ -141,7 +142,15 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     BundesligaTableFiltersComponent,
     BundesligaTableInnerComponent
   ],
-  imports: [CommonModule, AngularMaterialModule, FontAwesomeModule, RouterModule, NgPipesModule, NgxChartsModule],
+  imports: [
+    CommonModule,
+    MomentModule,
+    AngularMaterialModule,
+    FontAwesomeModule,
+    RouterModule,
+    NgPipesModule,
+    NgxChartsModule
+  ],
   exports: [
     TeamLogoComponent,
     TeamLogoSourceDirective,
