@@ -23,8 +23,9 @@ export class MyTeamStore {
         playerIds.forEach((id) => playersFromStore.push(this.playersStore.getById(id)));
 
         this.players = [...playersFromStore];
-        this.send();
       }
+
+      this.send();
     });
   }
 

@@ -39,7 +39,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   private destroyed$ = new Subject<void>();
 
   public columns = [];
-  public displayedColumns: string[];
+  public displayedColumns: string[] = [];
   public dataSource: MatTableDataSource<any>;
   public myTeamPlayers$: Observable<string[]>;
   public lastMatchday = 0;
@@ -132,10 +132,9 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
           ? new ArrayStream<Game>(exPlayer.games).maxBy((g) => g.matchday)
           : 0;
       this.includeGames = exPlayer.games.length;
-
-      this.prepareTableColumns(this.lastMatchday);
     }
 
+    this.prepareTableColumns(this.lastMatchday);
     return data;
   }
 
