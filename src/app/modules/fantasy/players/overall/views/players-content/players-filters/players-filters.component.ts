@@ -1,21 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { PropertiesStore } from 'src/app/store/properties/properties.store';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-players-filters',
   templateUrl: './players-filters.component.html',
-  styleUrls: ['./players-filters.component.scss']
+  styleUrls: ['./players-filters.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayersFiltersComponent implements OnInit {
-  public isMobile$: Observable<boolean>;
-  public lastMatchday$: Observable<number>;
-
-  constructor(private screenSizeService: ScreenSizeService, private propertiesService: PropertiesStore) {}
-
-  ngOnInit() {
-    this.isMobile$ = this.screenSizeService.isMobile$();
-    this.lastMatchday$ = this.propertiesService.selectLastMatchday();
-  }
+export class PlayersFiltersComponent {
+  constructor() {}
 }

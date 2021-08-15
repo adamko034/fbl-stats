@@ -1,9 +1,12 @@
-<app-form-field *ngIf="lastMatchday > 0" [label]="'Include MDs'">
+<app-form-field [label]="'Include MDs'">
   <app-switch
+    *ngIf="lastMatchday > 0"
     [value]="matchdays"
     name="form"
     [items]="items"
     [additionalItem]="moreItem"
     (switchChange)="onFormChanged($event)"
   ></app-switch>
+
+  <span *ngIf="lastMatchday === 0">No matchdays played yet</span>
 </app-form-field>

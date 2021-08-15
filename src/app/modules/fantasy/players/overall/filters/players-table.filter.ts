@@ -1,7 +1,9 @@
+import { PlayersFilterAvailbility } from 'src/app/modules/core/players/filter/filters/players-filter-availability';
 import { PlayersFilterGames } from 'src/app/modules/core/players/filter/filters/players-filter-games';
 import { PlayersFilterName } from 'src/app/modules/core/players/filter/filters/players-filter-name';
 import { PlayersFilterPopularity } from 'src/app/modules/core/players/filter/filters/players-filter-popularity';
 import { PlayersFilterPosition } from 'src/app/modules/core/players/filter/filters/players-filter-position';
+import { PlayersFilterPrediction } from 'src/app/modules/core/players/filter/filters/players-filter-prediction';
 import { PlayersFilterPrice } from 'src/app/modules/core/players/filter/filters/players-filter-price';
 import { PlayersFilterTeams } from 'src/app/modules/core/players/filter/filters/players-filter-teams';
 import { PlayersFilterService } from 'src/app/modules/core/players/filter/players-filter.service';
@@ -28,7 +30,9 @@ export class PlayersTableFilter implements Filterable<Player> {
       new PlayersFilterPrice(this.playersFilters.price),
       new PlayersFilterPopularity(this.playersFilters.popularity),
       new PlayersFilterTeams(this.playersFilters.teams),
-      new PlayersFilterGames(this.lastMatchday, this.playersFilters.matchdays)
+      new PlayersFilterGames(this.lastMatchday, this.playersFilters.matchdays),
+      new PlayersFilterAvailbility(this.playersFilters.hideUnavailable),
+      new PlayersFilterPrediction(this.playersFilters.prediction)
     ];
 
     this.playersFilterService.registerFilters(filters);

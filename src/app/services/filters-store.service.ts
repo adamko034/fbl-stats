@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { PlayerPosition, PlayersFilters } from '../modules/fantasy/players/overall/models/players-filters';
+import {
+  PlayerPosition,
+  PlayersFilters,
+  PlayersPrediciton
+} from '../modules/fantasy/players/overall/models/players-filters';
 import { SelectableTeam } from '../modules/fantasy/players/overall/models/selectable-team.model';
 import { GuiConfigStore } from '../store/gui-config/gui-config.store';
 
@@ -14,7 +18,9 @@ export class FiltersStoreService {
     name: '',
     price: null,
     popularity: 100,
-    teams: null
+    teams: null,
+    hideUnavailable: null,
+    prediction: null
   };
 
   private filters: ReplaySubject<PlayersFilters> = new ReplaySubject(1);
@@ -74,6 +80,14 @@ export class FiltersStoreService {
     return this.filters.pipe(map((filters) => filters.name));
   }
 
+  public selectHideUnavailable(): Observable<boolean> {
+    return this.filters.pipe(map((filters) => filters.hideUnavailable));
+  }
+
+  public selectPredictions(): Observable<PlayersPrediciton> {
+    return this.filters.pipe(map((filters) => filters.prediction));
+  }
+
   public updatePrice(newPrice: number) {
     this.state.price = newPrice;
     this.sendFilters();
@@ -102,6 +116,16 @@ export class FiltersStoreService {
 
   public updateName(name: string): void {
     this.state.name = name;
+    this.sendFilters();
+  }
+
+  public updateHideUnavailable(newValue: boolean) {
+    this.state.hideUnavailable = newValue;
+    this.sendFilters();
+  }
+
+  public updatePrediction(newValue?: PlayersPrediciton) {
+    this.state.prediction = newValue;
     this.sendFilters();
   }
 

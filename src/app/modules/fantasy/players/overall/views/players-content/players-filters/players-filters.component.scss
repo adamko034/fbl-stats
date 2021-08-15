@@ -1,6 +1,9 @@
-.filter {
-  margin-bottom: 15px;
-  width: 300px;
-  max-width: 300px;
-  min-width: 300px;
+.grid {
+  display: grid;
+  grid-gap: 10px 25px;
+  grid-template-columns: repeat(auto-fill, 300px);
+
+  .filter {
+    height: 60px;
+  }
 }

@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { PlayersPrediciton } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { PlayersFilter } from '../../../core/players/filter/filters/players-filter';
-import { PlayersFilterAvailable } from '../../../core/players/filter/filters/players-filter-available';
+import { PlayersFilterAvailbility } from '../../../core/players/filter/filters/players-filter-availability';
 import { PlayersFilterPopularityGreater } from '../../../core/players/filter/filters/players-filter-popularity-greater';
 import { PlayersFilterTop100PopularityGreater } from '../../../core/players/filter/filters/players-filter-popularity-greater copy';
 import { PlayersFilterPrediction } from '../../../core/players/filter/filters/players-filter-prediction';
-import { PlayersFilterUnavailable } from '../../../core/players/filter/filters/players-filter-unavailable';
-import { PlayerAttendancePrediction } from '../../../core/players/models/player-attendance-prediction.enum';
 import { PredictedLineupsStatsPlayerConverter } from '../converters/predicted-lineups-stats-player.converter';
 import { PredictedLineupsStatsPlayer } from '../models/predicted-lineups-stats-player.model';
 import { PredictedLineupsStatsPlayers } from '../models/predicted-lineups-stats-players.model';
@@ -53,22 +52,22 @@ export class PredictedLineupsStasPlayersResolver implements Resolve<PredictedLin
   }
 
   private getAvailablePlayers(players: Player[]): Player[] {
-    return new ArrayStream<Player>(players).filter(new PlayersFilterAvailable()).collect();
+    return new ArrayStream<Player>(players).filter(new PlayersFilterAvailbility(true)).collect();
   }
 
   private getUnavailablePlayers(players: Player[]): Player[] {
-    return new ArrayStream<Player>(players).filter(new PlayersFilterUnavailable()).collect();
+    return new ArrayStream<Player>(players).filter(new PlayersFilterAvailbility(false)).collect();
   }
 
   private getBenchedPlayers(availablePlayers: Player[]): Player[] {
     return new ArrayStream<Player>(availablePlayers)
-      .filter(new PlayersFilterPrediction(PlayerAttendancePrediction.WillNotPlay))
+      .filter(new PlayersFilterPrediction(PlayersPrediciton.Benched))
       .collect();
   }
 
   private getDoubtsPlayers(availablePlayers: Player[]): Player[] {
     return new ArrayStream<Player>(availablePlayers)
-      .filter(new PlayersFilterPrediction(PlayerAttendancePrediction.Doubt))
+      .filter(new PlayersFilterPrediction(PlayersPrediciton.Varied))
       .collect();
   }
 

@@ -19,6 +19,8 @@ import { SmartSelectionTeamsService } from './services/smart-selection-teams.ser
 import { PlayersFiltersComponent } from './views/players-content/players-filters/players-filters.component';
 import { PlayersOverallContentComponent } from './views/players-content/players-overall-content.component';
 import { PlayersTableContainerComponent } from './views/players-content/players-table-container/players-table-container.component';
+import { PlayersFilterHideUnavailableComponent } from './components/players-filter-hide-unavailable/players-filter-hide-unavailable.component';
+import { PlayersFilterPredictionComponent } from './components/players-filter-prediction/players-filter-prediction.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { PlayersTableContainerComponent } from './views/players-content/players-
     PlayersFiltersComponent,
     SelectTeamsDialogComponent,
     PlayersFilterPositionComponent,
-    PlayersFilterMatchdaysComponent
+    PlayersFilterMatchdaysComponent,
+    PlayersFilterHideUnavailableComponent,
+    PlayersFilterPredictionComponent
   ],
   imports: [
     CommonModule,

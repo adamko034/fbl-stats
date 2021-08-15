@@ -1,13 +1,19 @@
-<app-white-block padding="10px 20px 0 20px">
-  <div fxLayout="column">
-    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="40px">
+<app-white-block padding="20px 10px 10px 20px">
+  <div class="grid">
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
       <app-players-filter-position class="filter"></app-players-filter-position>
-      <app-players-filter-matchdays *ngIf="(lastMatchday$ | async) > 0" class="filter"></app-players-filter-matchdays>
-      <app-players-filter-teams class="filter"></app-players-filter-teams>
-    </div>
-    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="40px">
       <app-players-filter-max-price class="filter"></app-players-filter-max-price>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+      <app-players-filter-teams class="filter"></app-players-filter-teams>
       <app-players-filter-popularity class="filter"></app-players-filter-popularity>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="10px">
+      <app-players-filter-matchdays class="filter"></app-players-filter-matchdays>
+      <app-players-filter-prediction class="filter"></app-players-filter-prediction>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+      <app-players-filter-hide-unavailable class="filter"></app-players-filter-hide-unavailable>
     </div>
   </div>
 </app-white-block>

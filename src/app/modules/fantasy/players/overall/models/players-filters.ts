@@ -7,6 +7,16 @@ export interface PlayersFilters {
   popularity: number;
   teams: SelectableTeam[];
   name: string;
+  hideUnavailable?: boolean;
+  prediction?: PlayersPrediciton;
+}
+
+export enum PlayersPrediciton {
+  All = -1,
+  Benched = 0,
+  Varied = 1,
+  VariedAndPlay = 2,
+  WillPlay = 3
 }
 
 export enum PlayerPosition {
