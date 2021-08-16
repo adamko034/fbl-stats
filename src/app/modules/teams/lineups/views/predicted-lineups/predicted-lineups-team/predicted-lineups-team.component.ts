@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
+import { Player } from 'src/app/store/players/models/player.model';
 
 @Component({
   selector: 'app-predicted-lineups-team',
@@ -11,11 +12,14 @@ import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PredictedLineupsTeamComponent implements OnInit {
-  public team$: Observable<TeamPredictedLineups>;
+  public teamPredictions$: Observable<TeamPredictedLineups>;
+  public players$: Observable<Player[]>;
+  public defenders$: Observable<Player>;
 
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.team$ = this.route.data.pipe(map((data) => data.team));
+    this.teamPredictions$ = this.route.data.pipe(map((data) => data.teamPredictions));
+    this.players$ = this.route.data.pipe(map((data) => data.players));
   }
 }

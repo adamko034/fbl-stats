@@ -6,5 +6,6 @@ export interface LineupPlayer {
   name: string;
   lastName: string;
   position: string;
+  available?: boolean;
   subPosition: PlayerSubPosition;
 }

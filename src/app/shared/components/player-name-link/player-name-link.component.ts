@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class PlayerNameLinkComponent {
   @Input() name: string;
   @Input() id: string;
+  @Input() showUnavailable = false;
   @Input() target: string = '_self';
 
   constructor() {}
