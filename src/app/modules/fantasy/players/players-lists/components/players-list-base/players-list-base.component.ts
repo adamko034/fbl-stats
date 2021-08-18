@@ -36,7 +36,9 @@ export class PlayersListBaseComponent implements OnInit {
   public onSortChange(sort: Sort): void {
     if (!!sort.active) {
       const direction = sort.direction === 'asc' ? 'asc' : 'dsc';
-      this.sorted = new ArrayStream<Player>(this.sorted).orderBy(sort.active, direction).collect();
+      this.sorted = new ArrayStream<Player>(this.sorted)
+        .orderByThenBy({ field: sort.active, order: direction }, { field: 'price', order: 'dsc' })
+        .collect();
     }
   }
 }

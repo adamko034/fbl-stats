@@ -4,6 +4,7 @@ import { LeadersPlayers } from './leaders-players.model';
 
 export interface LeadersMatchday {
   matchday: number;
+  managersCount: number;
   formations: LeadersFormation[];
   points: MinMaxAvg;
   teamValue: MinMaxAvg;

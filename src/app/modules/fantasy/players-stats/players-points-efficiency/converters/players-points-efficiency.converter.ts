@@ -13,6 +13,10 @@ export class PlayersPointsEfficiencyConverter implements Convertable<Player, Pla
 
       return {
         lastName: player.lastName,
+        popularity: player.popularity,
+        position: player.position,
+        price: player.price,
+        totalPoints: player.totalPoints,
         moreThan10PtsGamesCount: scoringChances.moreThan10ptsGamesCount,
         moreThan10PtsPercentage: scoringChances.moreThan10ptsPercentage,
         moreThan15PtsGamesCount: scoringChances.moreThan15ptsGamesCount,

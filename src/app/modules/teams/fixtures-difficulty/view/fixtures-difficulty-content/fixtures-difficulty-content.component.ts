@@ -24,9 +24,11 @@ export class FixturesDifficultyContentComponent implements OnInit {
     this.links$ = this.propertiesStore.selectLastMatchday().pipe(
       first(),
       map((lastMatchday) => {
-        const onlyByRanking = lastMatchday === 0;
+        if (lastMatchday <= 1) {
+          return this._links.filter((x) => x.routerLink !== 'byForm');
+        }
 
-        return this._links.filter((x) => x.routerLink !== 'byForm');
+        return this._links;
       })
     );
   }

@@ -12,6 +12,11 @@ export class PlayersListGenericRowsConverter implements Convertable<PlayerPoints
         teamShort: x.teamShort,
         playerId: x.playerId,
         playerName: x.name,
+        playerNameShort: x.lastName,
+        position: x.position,
+        popularity: x.popularity,
+        totalPoints: x.totalPoints,
+        price: x.price,
         otherValues: [
           this.getOtherValue('5', 1, x.moreThan5PtsPercentage, x.moreThan5PtsGamesCount, x.gamesCount),
           this.getOtherValue('10', 2, x.moreThan10PtsPercentage, x.moreThan10PtsGamesCount, x.gamesCount),

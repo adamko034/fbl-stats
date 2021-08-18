@@ -9,7 +9,7 @@ export class Navigation {
         {
           order: 1,
           text: 'Players',
-          path: 'fantasy/players/overall',
+          path: 'fantasy/players',
           icon: 'person_search'
         },
         {

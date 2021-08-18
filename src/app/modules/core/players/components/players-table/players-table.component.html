@@ -5,7 +5,7 @@
       mat-table
       matSort
       matSortStart="desc"
-      [matSortActive]="lastMatchday === 0 ? 'price' : 'form'"
+      matSortActive="form"
       matSortDisableClear
       matSortDirection="desc"
       [dataSource]="dataSource"
@@ -16,6 +16,7 @@
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let item">
           <div fxLayout fxLayoutAlign="start center" fxLayoutGap="5px">
+            <app-team-logo [team]="item.teamShort" appScale="0.7"></app-team-logo>
             <app-player-name-link [name]="item.name" [id]="item.id"></app-player-name-link>
             <mat-icon appScale="0.8" *ngIf="item.attendance === 0" class="red">not_interested</mat-icon>
             <app-player-suspension-risk appScale="0.8" [show]="item.isSuspensionRisk"></app-player-suspension-risk>
@@ -118,8 +119,10 @@
     </table>
 
     <div class="legend" fxLayout="column">
-      <span>PL - predicted to start in next game</span>
+      <span>$ - price</span>
       <span>% - popularity</span>
+      <span>L% - leaders (top 500) popularity</span>
+      <span>PL - predicted to start in next game</span>
       <span>TP - total points</span>
       <span>Avg - avg points from Fantasy Bundesliga</span>
       <span>Form - last {{ includeGames > 0 ? includeGames : '' }} games points</span>

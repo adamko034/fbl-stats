@@ -14,12 +14,12 @@ export class LeadersUsageTextValueConverter<T> implements Convertable<T, TextVal
   constructor(private config: LeadersUsageTextValueConfig) {}
 
   public convert(items: T[]): TextValue[] {
-    const max = new ArrayStream(items).maxBy((p) => p['usage']);
+    const max = new ArrayStream(items).maxBy((p) => p['usagePercentage']);
 
     return items.map((item: T) => ({
-      bold: this.config.boldMax ? item['usage'] === max : false,
+      bold: this.config.boldMax ? item['usagePercentage'] === max : false,
       text: item[this.config.textField],
-      value: this.isValueType('usage') ? `${item['usage']}%` : null,
+      value: this.isValueType('usage') ? `${item['usagePercentage']}%` : null,
       textStyle: this.config.style,
       change: this.isValueType('difference') ? item['usageDifference'] : null,
       teamShort: !!this.config.showTeamLogo ? item['teamShort'] : null,

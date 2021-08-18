@@ -3,6 +3,10 @@ export interface PlayerPointsEfficiency {
   name: string;
   lastName: string;
   teamShort: string;
+  position: string;
+  totalPoints: number;
+  popularity: number;
+  price: number;
   moreThan5PtsGamesCount: number;
   moreThan5PtsPercentage: number;
   moreThan10PtsGamesCount: number;

@@ -32,7 +32,8 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       nextGame,
       position,
       isSuspensionRisk,
-      isReturning
+      isReturning,
+      top100Popularity
     } = { ...player } as Player;
     return {
       id,
@@ -45,6 +46,7 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       totalPoints,
       avgPoints,
       games,
+      leadersPopularity: top100Popularity,
       attendance,
       nextGameAttendancePrediction: predicion,
       form: this.playerFormCalculator.calculate(games),

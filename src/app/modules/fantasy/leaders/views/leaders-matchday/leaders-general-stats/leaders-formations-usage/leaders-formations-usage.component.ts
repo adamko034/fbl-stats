@@ -24,7 +24,7 @@ export class LeadersFormationsUsageComponent {
   public get items(): TextValue[] {
     if (!!this.formations) {
       return new ArrayStream<LeadersFormation>(this.formations)
-        .orderBy('usage', 'dsc')
+        .orderBy('usagePercentage', 'dsc')
         .take(3)
         .convert(this.converter)
         .collect();
@@ -35,7 +35,7 @@ export class LeadersFormationsUsageComponent {
 
   public onShowMoreClick(): void {
     const values = new ArrayStream<LeadersFormation>(this.formations)
-      .orderBy('usage', 'dsc')
+      .orderBy('usagePercentage', 'dsc')
       .convert(this.converter)
       .collect();
     const data = { values, title: 'Formations' };

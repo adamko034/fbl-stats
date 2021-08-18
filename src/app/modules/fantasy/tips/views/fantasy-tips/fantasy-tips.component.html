@@ -3,13 +3,17 @@
     <app-white-block>
       <div fxLayout="column" fxLayoutAlign="center center">
         <h2>Matchday {{ tips.matchday }} tips</h2>
-        <app-form-field label="Category">
+        <app-form-field *ngIf="tips.links.length > 0" label="Category">
           <app-switch
             [items]="categories"
             [value]="selectedCategory"
             (switchChange)="onCategoryChange($event)"
           ></app-switch>
         </app-form-field>
+        <app-follow-us-to-stay-tuned
+          *ngIf="tips.links.length == 0"
+          text="Sorry, there are no tips & hints links so far."
+        ></app-follow-us-to-stay-tuned>
       </div>
     </app-white-block>
 

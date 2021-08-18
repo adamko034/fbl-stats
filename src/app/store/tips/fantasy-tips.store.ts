@@ -22,6 +22,7 @@ export class FantasyTipsStore {
       .subscribe((tips: FantasyTips) => {
         if (!tips) {
           this._state[matchday] = { matchday, links: [], categories: [] };
+          this.send();
           return;
         }
 

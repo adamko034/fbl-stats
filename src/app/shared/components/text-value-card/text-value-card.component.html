@@ -58,7 +58,7 @@
       </table>
     </div>
     <span
-      *ngIf="showMoreButton"
+      *ngIf="showMoreButton && items.length > 0"
       fxLayoutAlign="flex-end center"
       class="more-button hvr-icon-forward red bold pointer"
       (click)="onShowMoreClick()"
