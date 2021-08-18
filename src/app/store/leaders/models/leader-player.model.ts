@@ -6,6 +6,7 @@ export interface LeaderPlayer {
   position: string;
   matchdayPoints: number;
   usage: number;
+  usagePercentage: number;
   teamShort: string;
   usageDifference: number;
 }

@@ -39,7 +39,7 @@ export class LeadersPlayersPositionComponent {
     };
 
     return new ArrayStream<LeaderPlayer>([...this.data.players])
-      .orderBy('usage', 'dsc')
+      .orderBy('usagePercentage', 'dsc')
       .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
@@ -92,7 +92,7 @@ export class LeadersPlayersPositionComponent {
     };
 
     return new ArrayStream<LeadersStar>(this.data.stars)
-      .orderBy('usage', 'dsc')
+      .orderBy('usagePercentage', 'dsc')
       .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
@@ -111,7 +111,7 @@ export class LeadersPlayersPositionComponent {
     };
 
     return new ArrayStream<LeadersPlayersCombination>(this.data.combinations)
-      .orderBy('usage', 'dsc')
+      .orderBy('usagePercentage', 'dsc')
       .take(5)
       .convert(new LeadersUsageTextValueConverter(config))
       .collect();
@@ -125,7 +125,7 @@ export class LeadersPlayersPositionComponent {
     let dataValues = [];
     let config: LeadersUsageTextValueConfig;
     let title;
-    let orderBy = { field: 'usage', sort: 'dsc' };
+    let orderBy = { field: 'usagePercentage', sort: 'dsc' };
 
     if (type === 'players') {
       dataValues = this.data.players;

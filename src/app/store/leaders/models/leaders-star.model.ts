@@ -3,5 +3,6 @@ export interface LeadersStar {
   lastName: string;
   name: string;
   usage: number;
+  usagePercentage: number;
   teamShort: string;
 }

@@ -147,20 +147,22 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     }
 
     this.displayedColumns = this.columns.map((c) => c.fieldName);
-    this.displayedColumns.unshift('Team');
-    this.displayedColumns.unshift('Position');
-    this.displayedColumns.unshift('Name');
-    this.displayedColumns.unshift('No');
-    this.displayedColumns.splice(4, 0, 'Next');
-    this.displayedColumns.splice(5, 0, 'Prediction');
+    this.displayedColumns.splice(0, 0, 'No');
+    this.displayedColumns.splice(1, 0, 'Name');
+
+    this.displayedColumns.splice(2, 0, 'Position');
+
+    this.displayedColumns.splice(6, 0, 'Next');
+    this.displayedColumns.splice(7, 0, 'Prediction');
     this.displayedColumns.push('MT');
     this.displayedColumns.push('OP');
   }
 
   private getDefaulColumns() {
     return [
-      { displayName: 'Price', fieldName: 'price' },
+      { displayName: '$', fieldName: 'price' },
       { displayName: '%', fieldName: 'popularity' },
+      { displayName: 'L%', fieldName: 'leadersPopularity' },
       { displayName: 'TP', fieldName: 'totalPoints' },
       { displayName: 'Avg', fieldName: 'avgPoints' },
       { displayName: 'Form', fieldName: 'form' }

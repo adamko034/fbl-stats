@@ -13,11 +13,14 @@
     >
       <thead>
         <tr>
-          <th mat-sort-header="teamShort" [disabled]="!config.sortByTeamEnabled">team</th>
           <th mat-sort-header="playerName" [disabled]="!config.sortByPlayerEnabled">player</th>
+          <th>pos</th>
+          <th fxHide.xs>$</th>
+          <th fxHide.xs>%</th>
+          <th fxHide.md fxHide.xs>TP</th>
           <th
             *ngFor="let column of data.columns | orderBy: 'order'"
-            [fxHide.lt-sm]="column.hideOnMobile"
+            [fxHide.lt-md]="column.hideOnMobile"
             [mat-sort-header]="column.fieldName"
             [ngClass]="{ active: column.fieldName === config.defaultSortFieldName }"
           >
@@ -27,14 +30,23 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of data.rows | orderBy: 'order'" class="player" ngClass.lt-sm="player-mobile">
-          <td>
-            <app-team-logo [team]="row.teamShort" [height]="25" [scaleOnMobile]="true"></app-team-logo>
-          </td>
           <td class="player-name">
-            <app-player-name-link [name]="row.playerName" [id]="row.playerId"></app-player-name-link>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+              <app-team-logo [team]="row.teamShort" appScale="0.8" [scaleOnMobile]="true"></app-team-logo>
+              <app-player-name-link fxHide.lt-lg [name]="row.playerName" [id]="row.playerId"></app-player-name-link>
+              <app-player-name-link
+                fxHide.gt-md
+                [name]="row.playerNameShort"
+                [id]="row.playerId"
+              ></app-player-name-link>
+            </div>
           </td>
+          <td>{{ row.position | uppercase }}</td>
+          <td fxHide.xs>{{ row.price }}M</td>
+          <td fxHide.xs>{{ row.popularity }}</td>
+          <td fxHide.md fxHide.xs>{{ row.totalPoints }}</td>
           <td
-            [fxHide.lt-sm]="other.hideOnMobile"
+            [fxHide.lt-md]="other.hideOnMobile"
             [ngClass]="{ active: other.key === config.defaultSortFieldName }"
             *ngFor="let other of row.otherValues | orderBy: 'order'"
           >
@@ -46,9 +58,9 @@
   </div>
 </app-white-block>
 
-<ng-template #playerInfo let-title="title" let-value="value">
+<!-- <ng-template #playerInfo let-title="title" let-value="value">
   <div fxLayout="column" class="player-info" fxLayoutAlign="center center">
     <span class="player-info-title">{{ title }}</span>
     <span>{{ value }}</span>
   </div>
-</ng-template>
+</ng-template> -->

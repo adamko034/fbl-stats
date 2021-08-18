@@ -29,7 +29,7 @@ export class PlayersPointsEfficiencyLoader {
           .filterQuick(
             (p) => !position || position == PlayerPosition.ALL || p.position.toLowerCase() === position.toLowerCase()
           )
-          .orderBy(pointsFieldName, 'dsc')
+          .orderByThenBy({ field: pointsFieldName, order: 'dsc' }, { field: 'totalPoints', order: 'dsc' })
           .take(30)
           .convert(new PlayersPointsEfficiencyConverter(type, this.playerFormCalculator))
           .collect();

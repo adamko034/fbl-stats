@@ -48,10 +48,10 @@ export class ArrayStream<T> {
     thenBy: { field: string; order: 'asc' | 'dsc' }
   ): ArrayStream<T> {
     this.array = this.array.sort((a, b) => {
-      const aFirstNum = +a[firstBy.field];
-      const bFirstNum = +b[firstBy.field];
-      const aSecondNum = +a[thenBy.field];
-      const bSecondNum = +b[thenBy.field];
+      const aFirstNum = +this.getField(a, firstBy.field);
+      const bFirstNum = +this.getField(b, firstBy.field);
+      const aSecondNum = +this.getField(a, thenBy.field);
+      const bSecondNum = +this.getField(b, thenBy.field);
 
       if (aFirstNum - bFirstNum === 0) {
         return thenBy.order === 'asc' ? aSecondNum - bSecondNum : bSecondNum - aSecondNum;
@@ -156,5 +156,16 @@ export class ArrayStream<T> {
     const newArray = [];
     array.forEach((a) => newArray.push({ ...a }));
     return newArray;
+  }
+
+  private getField(obj: any, path: string): any {
+    var split = path.split('.');
+
+    if (split.length == 1) {
+      return obj[path];
+    }
+
+    const shifted = split.shift();
+    return this.getField(obj[shifted], split.join('.'));
   }
 }

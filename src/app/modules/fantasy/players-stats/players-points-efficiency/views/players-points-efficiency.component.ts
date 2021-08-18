@@ -143,25 +143,25 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
   private getColumns(orderBy: string): PlayersListGenericColumn[] {
     return [
       {
-        order: 1,
+        order: 2,
         fieldName: 'moreThan5PtsPercentage',
         displayName: '>= 5pts',
         hideOnMobile: orderBy !== '5'
       },
       {
-        order: 2,
+        order: 3,
         fieldName: 'moreThan10PtsPercentage',
         displayName: '>= 10pts',
         hideOnMobile: orderBy !== '10'
       },
       {
-        order: 3,
+        order: 4,
         fieldName: 'moreThan15PtsPercentage',
         displayName: '>= 15pts',
         hideOnMobile: orderBy !== '15'
       },
       {
-        order: 4,
+        order: 5,
         fieldName: 'moreThan20PtsPercentage',
         displayName: '>= 20pts',
         hideOnMobile: orderBy !== '20'

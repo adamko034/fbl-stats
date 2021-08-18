@@ -4,7 +4,7 @@
     [value]="matchdays"
     name="form"
     [items]="items"
-    [additionalItem]="moreItem"
+    [additionalItem]="lastMatchday > 5 ? moreItem : null"
     (switchChange)="onFormChanged($event)"
   ></app-switch>
 
