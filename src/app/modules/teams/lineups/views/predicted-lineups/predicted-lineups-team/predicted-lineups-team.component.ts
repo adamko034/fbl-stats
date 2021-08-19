@@ -18,7 +18,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
   public absences$: Observable<Player[]>;
   public players$: Observable<Player[]>;
 
-  private hideBenchedChange$ = new BehaviorSubject<boolean>(false);
+  private hideBenchedChange$ = new BehaviorSubject<boolean>(true);
 
   constructor(private route: ActivatedRoute) {}
 
