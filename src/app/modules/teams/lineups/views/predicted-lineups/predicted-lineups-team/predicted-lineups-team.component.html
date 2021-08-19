@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="20px">
-  <!-- <div *ngIf="teamPredictions$ | async" fxLayout="column" fxLayoutGap="15px">
+  <div *ngIf="teamPredictions$ | async" fxLayout="column" fxLayoutGap="15px">
     <app-view-title>
       <span title>{{ teamPredictions$ | async | field: 'longName' | uppercase }}</span>
     </app-view-title>
@@ -23,7 +23,7 @@
         <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <h2 *ngIf="!(teamPredictions$ | async)" fxLayout="column" fxLayoutAlign="center center">
     Predicted lineups have not been published yet.
@@ -35,7 +35,7 @@
 
   <app-white-block>
     <div fxlayout="column" fxLayoutGap="20px">
-      <div class="predictions-list" fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="center">
+      <div class="predictions-list" fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="space-evenly">
         <div>
           <app-title-underlined-grey>
             <div title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
@@ -51,11 +51,7 @@
                 <td>%</td>
                 <td>TP</td>
               </tr>
-              <tr
-                *ngFor="
-                  let player of players$ | async | filterBy: ['attendance']:0 | orderBy: ['-totalPoints', '-price']
-                "
-              >
+              <tr *ngFor="let player of absences$ | async | orderBy: ['-totalPoints', '-price']">
                 <td><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></td>
                 <td>{{ player.position | uppercase }}</td>
                 <td>{{ player.price }}M</td>
@@ -68,9 +64,12 @@
 
         <div>
           <app-title-underlined-grey>
-            <div title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-              <span title>Predicions list</span>
-              <mat-icon appScale="0.8">checklist_rtl</mat-icon>
+            <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="4px">
+              <div>
+                <span>Predicions list</span>
+                <mat-icon appScale="0.8">checklist_rtl</mat-icon>
+              </div>
+              <mat-checkbox (change)="onHideBenchedChange($event)">Hide benched</mat-checkbox>
             </div>
 
             <table content class="comparison-table">
@@ -80,13 +79,9 @@
                 <td>$</td>
                 <td fxHide.lt-md>%</td>
                 <td>TP</td>
-                <td fxHide.xs>kicker</td>
-                <td fxHide.xs>bundesliga.de</td>
-                <td fxHide.xs>ligainsider</td>
-
-                <td fxHide.gt-xs>KK</td>
-                <td fxHide.gt-xs>BL</td>
-                <td fxHide.gt-xs>LI</td>
+                <td>KK</td>
+                <td>BL</td>
+                <td>LI</td>
               </tr>
               <ng-template
                 [ngTemplateOutlet]="predictions"
@@ -117,14 +112,15 @@
           </app-title-underlined-grey>
         </div>
       </div>
+
       <div class="legend" fxLayout="column">
         <span>Pos - position</span>
         <span>$ - price</span>
         <span>TP - total points</span>
         <span fxHide.lt-md>% - popularity</span>
-        <span fxHide.gt-xs>KK - kicker.de</span>
-        <span fxHide.gt-xs>BL - bundesliga.de</span>
-        <span fxHide.gt-xs>LI - ligainsider</span>
+        <span>KK - kicker.de</span>
+        <span>BL - bundesliga.de</span>
+        <span>LI - ligainsider</span>
       </div>
     </div>
   </app-white-block>
@@ -137,8 +133,14 @@
     <td>{{ player.price }}M</td>
     <td fxHide.lt-md>{{ player.popularity }}</td>
     <td>{{ player.totalPoints }}</td>
-    <td>yes</td>
-    <td>yes</td>
-    <td>no</td>
+    <td>
+      <app-prediction-indicator scale="0.7" [value]="getPrediction(player, 'kicker')"></app-prediction-indicator>
+    </td>
+    <td>
+      <app-prediction-indicator scale="0.7" [value]="getPrediction(player, 'bundesliga')"></app-prediction-indicator>
+    </td>
+    <td>
+      <app-prediction-indicator scale="0.7" [value]="getPrediction(player, 'ligainsider')"></app-prediction-indicator>
+    </td>
   </tr>
 </ng-template>
