@@ -65,11 +65,11 @@
         <div>
           <app-title-underlined-grey>
             <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="4px">
-              <div>
+              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
                 <span>Predicions list</span>
                 <mat-icon appScale="0.8">checklist_rtl</mat-icon>
               </div>
-              <mat-checkbox (change)="onHideBenchedChange($event)">Hide benched</mat-checkbox>
+              <mat-checkbox (change)="onShowAllPlayersChange($event)">Show all players</mat-checkbox>
             </div>
 
             <table content class="comparison-table">

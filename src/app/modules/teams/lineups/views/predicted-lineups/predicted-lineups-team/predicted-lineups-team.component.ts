@@ -18,7 +18,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
   public absences$: Observable<Player[]>;
   public players$: Observable<Player[]>;
 
-  private hideBenchedChange$ = new BehaviorSubject<boolean>(true);
+  private showAllPlayersChange$ = new BehaviorSubject<boolean>(false);
 
   constructor(private route: ActivatedRoute) {}
 
@@ -31,11 +31,11 @@ export class PredictedLineupsTeamComponent implements OnInit {
         return players.filter((p) => p.attendance === 0);
       })
     );
-    this.players$ = combineLatest([this.hideBenchedChange$, this.route.data]).pipe(
-      map(([hideBenched, data]) => {
+    this.players$ = combineLatest([this.showAllPlayersChange$, this.route.data]).pipe(
+      map(([showAll, data]) => {
         var players: Player[] = data.players;
 
-        if (hideBenched) {
+        if (!showAll) {
           players = players.filter(
             (p) => !p.nextGame.lineupPredictions.every((l) => l.attendance === PlayerAttendancePrediction.WillNotPlay)
           );
@@ -56,7 +56,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
     return predictions[0].attendance;
   }
 
-  public onHideBenchedChange(matChange: MatCheckboxChange): void {
-    this.hideBenchedChange$.next(matChange.checked);
+  public onShowAllPlayersChange(matChange: MatCheckboxChange): void {
+    this.showAllPlayersChange$.next(matChange.checked);
   }
 }
