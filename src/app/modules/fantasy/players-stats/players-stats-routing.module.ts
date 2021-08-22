@@ -18,6 +18,11 @@ const routes: Routes = [
           import('./players-points-efficiency/players-points-efficiency.module').then(
             (m) => m.PlayersPointsEfficiencyModule
           )
+      },
+      {
+        path: 'gamesplayed',
+        loadChildren: () =>
+          import('./players-games-played/players-games-played.module').then((m) => m.PlayersGamesPlayedModule)
       }
     ]
   }

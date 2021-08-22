@@ -9,7 +9,8 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 })
 export class PlayersStatsContentComponent {
   private _links: ViewTabNavigationLink[] = [
-    { order: 1, label: 'Points efficiency', labelMobile: 'Players points efficiency', routerLink: 'pointsefficiency' }
+    { order: 2, label: 'Points efficiency', labelMobile: 'Players points efficiency', routerLink: 'pointsefficiency' },
+    { order: 1, label: 'Games played', labelMobile: 'Players games played', routerLink: 'gamesplayed' }
   ];
 
   public get links(): ViewTabNavigationLink[] {
