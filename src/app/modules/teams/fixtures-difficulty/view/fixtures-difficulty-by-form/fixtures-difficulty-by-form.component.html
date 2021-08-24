@@ -7,10 +7,9 @@
       <app-form-field>
         <mat-form-field>
           <mat-select [ngModel]="includedGames" name="includeGames" (selectionChange)="onFormChange($event)">
-            <mat-option value="2">2 last games</mat-option>
-            <mat-option value="3">3 last games</mat-option>
-            <mat-option value="4">4 last games</mat-option>
-            <mat-option value="5">5 last games</mat-option>
+            <mat-option *ngFor="let includeGame of includeGames" [value]="includeGame"
+              >{{ includeGame }} last games</mat-option
+            >
           </mat-select>
           <mat-hint>Team form</mat-hint>
         </mat-form-field>

@@ -37,7 +37,10 @@ export class PredictedLineupsTeamComponent implements OnInit {
 
         if (!showAll) {
           players = players.filter(
-            (p) => !p.nextGame.lineupPredictions.every((l) => l.attendance === PlayerAttendancePrediction.WillNotPlay)
+            (p) =>
+              !p.nextGame.lineupPredictions
+                .filter((l) => l.attendance !== PlayerAttendancePrediction.UnknownYet)
+                .every((l) => l.attendance === PlayerAttendancePrediction.WillNotPlay)
           );
         }
 

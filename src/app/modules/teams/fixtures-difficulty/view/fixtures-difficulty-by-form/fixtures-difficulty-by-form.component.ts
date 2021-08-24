@@ -6,6 +6,7 @@ import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { SortBy } from 'src/app/shared/components/sorty-by/models/sort-by.model';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
 import { FixturesDifficultyTableValueByForm } from '../../converters/fixtures-difficulty-table-value-by-form';
 import { FixturesDifficultyConverter } from '../../converters/fixtures-difficulty.converter';
@@ -22,6 +23,7 @@ import { FixtureDifficultyColorsService } from '../../services/fixture-difficult
 })
 export class FixturesDifficultyByFormComponent implements OnInit {
   public includedGames: string;
+  public includeGames: string[] = [];
   public state: FixturesDifficultyState;
 
   public sortBy: SortBy;
@@ -39,21 +41,27 @@ export class FixturesDifficultyByFormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private fixtureDifficultyColorService: FixtureDifficultyColorsService
+    private fixtureDifficultyColorService: FixtureDifficultyColorsService,
+    private propertiesStore: PropertiesStore
   ) {}
 
   public ngOnInit(): void {
     Logger.logDev('teams schedules component by form, ng on init');
-    combineLatest([this.route.queryParams, this.route.data])
+    combineLatest([this.route.queryParams, this.route.data, this.propertiesStore.selectLastMatchday()])
       .pipe(
-        map(([params, data]) => {
-          return [params.matchdays || '5', data.state];
+        map(([params, data, lastMatchday]) => {
+          return [params.matchdays || '5', data.state, lastMatchday];
         }),
         untilDestroyed(this)
       )
-      .subscribe(([matchdays, state]) => {
+      .subscribe(([matchdays, state, lastMatchday]) => {
         this.includedGames = matchdays;
         this.state = state;
+
+        const maxGamesIncluded = lastMatchday <= 5 ? lastMatchday : 5;
+        for (let i = 2; i <= maxGamesIncluded; i++) {
+          this.includeGames.push(i.toString());
+        }
       });
   }
 

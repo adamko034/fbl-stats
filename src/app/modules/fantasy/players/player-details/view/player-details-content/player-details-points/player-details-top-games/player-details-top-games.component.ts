@@ -19,7 +19,7 @@ export class PlayerDetailsTopGamesComponent {
     return (
       new ArrayStream<PlayerDetailsGame>(this.player.games)
         //.filterQuick((g) => g.wasPlayed && g.hasPlayed)
-        .filterQuick((g) => g.wasPlayed && !!g.points)
+        .filterQuick((g) => g.wasPlayed && g.points != null)
         .orderBy('points', 'dsc')
         .take(5)
         .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
@@ -31,7 +31,7 @@ export class PlayerDetailsTopGamesComponent {
     return (
       new ArrayStream<PlayerDetailsGame>(this.player.games)
         //.filterQuick((g) => g.wasPlayed && g.hasPlayed)
-        .filterQuick((g) => g.wasPlayed && !!g.points)
+        .filterQuick((g) => g.wasPlayed && g.points != null)
         .orderBy('points', 'asc')
         .take(5)
         .convert(new PlayerDetailsGameTextValueConverter(this.playersDataservice))
