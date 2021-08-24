@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FixturesByFormMatchdaysGuard } from './guards/fixtures-by-form-matchdays.guard';
 import { FixturesDifficultyByFormResolver } from './resolvers/fixtures-difficulty-by-form.resolver';
 import { FixturesDifficultyByRankResolver } from './resolvers/fixtures-difficulty-by-rank.resolver';
 import { FixturesDifficultyByFormComponent } from './view/fixtures-difficulty-by-form/fixtures-difficulty-by-form.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'byForm',
+        canActivate: [FixturesByFormMatchdaysGuard],
         runGuardsAndResolvers: 'paramsOrQueryParamsChange',
         component: FixturesDifficultyByFormComponent,
         resolve: { state: FixturesDifficultyByFormResolver }

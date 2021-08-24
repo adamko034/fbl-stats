@@ -1,3 +1,5 @@
+@import '/src/variables.scss';
+
 h3 {
   margin-bottom: 0;
 }
@@ -6,6 +8,7 @@ h3 {
   margin-top: 10px;
 
   .text-value-table {
+    font-size: $fontSizeSmall;
     width: 100%;
     min-width: 150px;
     border-collapse: collapse;
@@ -21,11 +24,10 @@ h3 {
 
     td:nth-child(2) {
       float: right;
-      min-width: 25px;
     }
 
     .item-diff {
-      width: 45px;
+      width: 50px;
     }
   }
 

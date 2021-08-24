@@ -7,6 +7,7 @@ import { FixturesDifficultyFixturesComponent } from './components/fixtures-diffi
 import { FixturesDifficultySortComponent } from './components/fixtures-difficulty-sort/fixtures-difficulty-sort.component';
 import { FixturesDifficultyVenueFilterComponent } from './components/fixtures-difficulty-venue-filter/fixtures-difficulty-venue-filter.component';
 import { FixturesDifficultyRoutingModule } from './fixtures-difficulty-routing.module';
+import { FixturesByFormMatchdaysGuard } from './guards/fixtures-by-form-matchdays.guard';
 import { FixturesDifficultyLoader } from './loaders/fixtures-difficulty.loader';
 import { FixturesDifficultyByFormResolver } from './resolvers/fixtures-difficulty-by-form.resolver';
 import { FixturesDifficultyByRankResolver } from './resolvers/fixtures-difficulty-by-rank.resolver';
@@ -30,7 +31,8 @@ import { FixturesDifficultyContentComponent } from './view/fixtures-difficulty-c
     FixturesDifficultyLoader,
     FixturesDifficultyByRankResolver,
     FixturesDifficultyByFormResolver,
-    FixtureDifficultyColorsService
+    FixtureDifficultyColorsService,
+    FixturesByFormMatchdaysGuard
   ]
 })
 export class FixturesDifficultyModule {}
