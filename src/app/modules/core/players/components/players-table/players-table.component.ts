@@ -85,7 +85,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   }
 
   public getValue(item: any, column: { displayName: string; fieldName: string }): string {
-    if (column.displayName.startsWith('MD') && !item[column.fieldName]) {
+    if (column.displayName.startsWith('MD') && item[column.fieldName] == null) {
       return 'x';
     }
 
