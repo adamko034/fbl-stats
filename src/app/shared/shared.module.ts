@@ -54,6 +54,7 @@ import { WhiteBlockComponent } from './components/layout/white-block/white-block
 import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
@@ -140,7 +141,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FollowUsToStayTunedComponent,
     BundesligaTableComponent,
     BundesligaTableFiltersComponent,
-    BundesligaTableInnerComponent
+    BundesligaTableInnerComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
@@ -206,7 +208,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SliderMaxPriceComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    BundesligaTableComponent
+    BundesligaTableComponent,
+    PieChartComponent
   ]
 })
 export class SharedModule {

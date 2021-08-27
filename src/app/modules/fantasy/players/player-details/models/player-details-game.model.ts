@@ -10,4 +10,5 @@ export interface PlayerDetailsGame extends Game {
   result?: number;
   resultText?: string;
   isFirstGame: boolean;
+  started: boolean;
 }

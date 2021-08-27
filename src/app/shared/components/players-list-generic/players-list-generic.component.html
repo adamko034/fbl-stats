@@ -16,8 +16,8 @@
           <th mat-sort-header="playerName" [disabled]="!config.sortByPlayerEnabled">player</th>
           <th>pos</th>
           <th fxHide.xs>$</th>
-          <th fxHide.xs>%</th>
-          <th fxHide.md fxHide.xs>TP</th>
+          <th fxHide.md fxHide.xs>%</th>
+          <th>TP</th>
           <th
             *ngFor="let column of data.columns | orderBy: 'order'"
             [fxHide.lt-md]="column.hideOnMobile"
@@ -43,8 +43,8 @@
           </td>
           <td>{{ row.position | uppercase }}</td>
           <td fxHide.xs>{{ row.price }}M</td>
-          <td fxHide.xs>{{ row.popularity }}</td>
-          <td fxHide.md fxHide.xs>{{ row.totalPoints }}</td>
+          <td fxHide.md fxHide.xs>{{ row.popularity }}</td>
+          <td>{{ row.totalPoints }}</td>
           <td
             [fxHide.lt-md]="other.hideOnMobile"
             [ngClass]="{ active: other.key === config.defaultSortFieldName }"
@@ -57,10 +57,3 @@
     </table>
   </div>
 </app-white-block>
-
-<!-- <ng-template #playerInfo let-title="title" let-value="value">
-  <div fxLayout="column" class="player-info" fxLayoutAlign="center center">
-    <span class="player-info-title">{{ title }}</span>
-    <span>{{ value }}</span>
-  </div>
-</ng-template> -->

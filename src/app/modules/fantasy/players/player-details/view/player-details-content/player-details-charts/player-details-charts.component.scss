@@ -1,6 +1,15 @@
 .chart {
   width: 270px;
   height: 150px;
-  margin-top: 15px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pie-charts {
+  margin-top: -25px;
+
+  .chart-pie {
+    width: 150px;
+    height: 150px;
+  }
 }

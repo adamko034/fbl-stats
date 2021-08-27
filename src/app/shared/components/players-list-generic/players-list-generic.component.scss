@@ -2,27 +2,25 @@
 
 .players-list-generic-container {
   .table {
-    font-size: $fontSizeSmall;
+    font-size: 12px;
     border-collapse: collapse;
+
+    tr:nth-child(even) {
+      background-color: rgba($color: $colorBlue, $alpha: 0.06);
+    }
+
+    tbody tr:hover {
+      background-color: rgba($color: $colorBlue, $alpha: 0.2);
+    }
 
     td,
     th {
-      padding: 5px 20px;
+      padding: 3px 20px;
     }
 
     th.active,
     td.active {
       background-color: rgba($color: #000, $alpha: 0.05);
-    }
-
-    th.active {
-      border-top-left-radius: 7px;
-      border-top-right-radius: 7px;
-    }
-
-    tr > td.active:last-of-type {
-      border-bottom-left-radius: 7px;
-      border-bottom-right-radius: 7px;
     }
 
     th {
@@ -46,7 +44,7 @@
     td,
     th {
       padding: 3px 10px;
-      font-size: 13px;
+      font-size: 11px;
     }
   }
 }

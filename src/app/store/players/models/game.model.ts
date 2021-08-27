@@ -3,4 +3,5 @@ export interface Game {
   points?: number;
   hasPlayed: boolean;
   hasPlayedMoreThan70Min: boolean;
+  started: boolean;
 }

@@ -12,6 +12,7 @@ export interface PlayerUi {
   popularity: number;
   totalPoints: number;
   avgPoints: number;
+  gamesStarted: number;
   attendance: number;
   form: number;
   leadersPopularity: number;

@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'pointsefficiency',
+        redirectTo: 'gamesplayed',
         pathMatch: 'full'
       },
       {
