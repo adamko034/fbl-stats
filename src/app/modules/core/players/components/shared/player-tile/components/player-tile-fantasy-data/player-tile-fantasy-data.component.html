@@ -1,6 +1,8 @@
-<div fxLayout="row" fxLayoutGap="8px" class="player-stats grey">
+<div fxLayout="row wrap" fxLayoutGap="8px" class="player-stats grey">
   <span>$: {{ player.price }}M</span>
   <span>%: {{ player.popularity }}</span>
   <span>TP: {{ player.totalPoints }}</span>
   <span>AVG: {{ player.avgPoints }}</span>
+  <span>L%: {{ player.leadersPopularity }}</span>
+  <span>GS%: {{ player.gamesStarted }}</span>
 </div>

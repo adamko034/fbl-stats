@@ -21,6 +21,19 @@
           [player]="player"
         ></app-player-tile>
       </div>
+      <div class="legend" fxLayout="column">
+        <span>$ - price</span>
+        <span>% - popularity</span>
+        <span>L% - leaders (top 500) popularity</span>
+        <span>GS% - percentage of games started</span>
+        <span>PL - predicted to start in next game</span>
+        <span>TP - total points</span>
+        <span>Avg - avg points from Fantasy Bundesliga</span>
+        <span
+          >Form - last {{ playersToDisplay[0].games.length > 0 ? playersToDisplay[0].games.length : '' }} games
+          points</span
+        >
+      </div>
     </div>
 
     <app-player-tile-no-records *ngIf="playersToDisplay.length === 0"></app-player-tile-no-records>

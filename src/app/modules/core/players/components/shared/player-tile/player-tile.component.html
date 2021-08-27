@@ -7,7 +7,10 @@
       <app-player-tile-fantasy-data [player]="player"></app-player-tile-fantasy-data>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
         <app-player-tile-next-game [player]="player"></app-player-tile-next-game>
-        <app-prediction-indicator [value]="player.nextGameAttendancePrediction"></app-prediction-indicator>
+        <app-prediction-indicator
+          appScale="0.8"
+          [value]="player.nextGameAttendancePrediction"
+        ></app-prediction-indicator>
       </div>
     </div>
     <app-player-tile-fantasy-points
@@ -42,9 +45,10 @@
 
 <ng-template #teamLogoSecion>
   <div fxLayout="column" fxLayoutAlign="start center">
-    <app-team-logo [team]="player.teamShort" [height]="40"></app-team-logo>
+    <app-team-logo [team]="player.teamShort" [height]="25"></app-team-logo>
     <div *ngIf="showAddToMyTeamButton">
       <button
+        appScale="0.8"
         matTooltip="Add to My Team"
         mat-icon-button
         *ngIf="!(myTeamPlayers$ | async)?.includes(player.id)"
@@ -55,6 +59,7 @@
     </div>
     <div *ngIf="showRemoveFromMyTeamButton">
       <button
+        appScale="0.8"
         matTooltip="Remove from My Team"
         mat-icon-button
         *ngIf="(myTeamPlayers$ | async)?.includes(player.id)"

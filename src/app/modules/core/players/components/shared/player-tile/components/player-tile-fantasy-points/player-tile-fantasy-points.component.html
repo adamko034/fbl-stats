@@ -6,7 +6,7 @@
       [ngClass]="getScoreColor(game.points)"
       *ngFor="let game of player.games | orderBy: '-matchday'; trackBy: trackGamesBy"
     >
-      {{ game.points ? game.points : 'x' }}
+      {{ game.points == null ? 'x' : game.points }}
     </span>
   </div>
 </div>
