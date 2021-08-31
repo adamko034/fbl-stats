@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
 import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
 import { Player } from 'src/app/store/players/models/player.model';
+import { TeamNavigation } from 'src/app/store/properties/properties.model';
 
 @Component({
   selector: 'app-predicted-lineups-team',
@@ -14,6 +15,7 @@ import { Player } from 'src/app/store/players/models/player.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PredictedLineupsTeamComponent implements OnInit {
+  public teamsNavigation$: Observable<TeamNavigation[]>;
   public teamPredictions$: Observable<TeamPredictedLineups>;
   public absences$: Observable<Player[]>;
   public players$: Observable<Player[]>;
@@ -23,6 +25,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.teamsNavigation$ = this.route.data.pipe(map((data) => data.teamsNavigation));
     this.teamPredictions$ = this.route.data.pipe(map((data) => data.teamPredictions));
     this.absences$ = this.route.data.pipe(
       map((data) => {

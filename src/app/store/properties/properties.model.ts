@@ -4,6 +4,12 @@ export interface Properties {
   budgetPlayerMaxPrice: number;
   lastUpdated: Date;
   lineupSources: { [sourceName: string]: LineupsSourceProperty };
+  teamsNavigation: TeamNavigation[];
+}
+
+export interface TeamNavigation {
+  teamShort: string;
+  order: number;
 }
 
 export enum LineupsSource {

@@ -10,18 +10,21 @@ import { Team } from 'src/app/store/teams/models/team.model';
 @UntilDestroy()
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'app-predicted-lineups-content',
-  templateUrl: './predicted-lineups-content.component.html',
-  styleUrls: ['./predicted-lineups-content.component.scss']
+  selector: 'app-predicted-lineups',
+  templateUrl: './predicted-lineups.component.html',
+  styleUrls: ['./predicted-lineups.component.scss']
 })
-export class PredictedLineupsContentComponent implements OnInit {
-  private _links: ViewTabNavigationLink[];
-
-  public isMobile$: Observable<boolean>;
+export class PredictedLineupsComponent implements OnInit {
+  private _links: ViewTabNavigationLink[] = [
+    { label: 'Predicted lineups', order: 1, labelMobile: 'Teams predicted lineups', routerLink: 'teams' },
+    { label: 'Sources', order: 2, labelMobile: 'Predicted lineups sources', routerLink: 'sources' }
+  ];
 
   public get links(): ViewTabNavigationLink[] {
     return this._links;
   }
+
+  public isMobile$: Observable<boolean>;
 
   constructor(private screenService: ScreenSizeService, private route: ActivatedRoute) {}
 
@@ -33,14 +36,13 @@ export class PredictedLineupsContentComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe((teams: Team[]) => {
-        this._links = teams.map((team: Team) => ({
-          order: team.rank,
-          routerLink: team.shortName,
-          labelMobile: team.name,
-          label: team.name
-        }));
-
-        this._links.push({ label: 'Summary', labelMobile: 'Summary', routerLink: '/teams/lineups', order: 0 });
+        // this._links = teams.map((team: Team) => ({
+        //   order: team.rank,
+        //   routerLink: team.shortName,
+        //   labelMobile: team.name,
+        //   label: team.name
+        // }));
+        // this._links.push({ label: 'Summary', labelMobile: 'Summary', routerLink: '/teams/lineups', order: 0 });
       });
   }
 }

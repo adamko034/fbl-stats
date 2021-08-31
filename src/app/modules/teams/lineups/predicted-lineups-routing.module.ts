@@ -1,41 +1,45 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TeamPlayersResolver } from '../../core/resolvers/team-players.resolver';
-import { TeamsResolver } from '../../core/resolvers/teams.resolver';
+import { TeamsNavigationResolver } from '../../core/resolvers/teams-navigation.resolver';
 import { PredictedLineupsLoadedGuard } from './guards/predicted-lineups-loaded.guard';
 import { PredictedLineupsSourcesResolver } from './resolvers/predicted-lineups-sources.resolver';
 import { PredictedLineupsStasPlayersResolver } from './resolvers/predicted-lineups-stats-players.resolver';
 import { PredictedLineupTeamResolver } from './resolvers/predicted-lineups-team.resolver';
-import { PredictedLineupsContentComponent } from './views/predicted-lineups/predicted-lineups-content.component';
-import { PredictedLineupsMainComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-main.component';
-import { PredictedLineupsTeamComponent } from './views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
+import { PredictedLineupsTeamComponent } from './view/predicted-lineups-team/predicted-lineups-team.component';
+import { PredictedLineupsTeamsComponent } from './view/predicted-lineups-teams/predicted-lineups-teams.component';
+import { PredictedLineupsComponent } from './view/predicted-lineups.component';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [PredictedLineupsLoadedGuard],
-    component: PredictedLineupsContentComponent,
-    resolve: { teams: TeamsResolver },
-    children: [
-      {
-        path: '',
-        component: PredictedLineupsMainComponent,
-        resolve: {
-          sources: PredictedLineupsSourcesResolver,
-          stats: PredictedLineupsStasPlayersResolver
-        }
-      },
-      {
-        path: ':team',
-        component: PredictedLineupsTeamComponent,
-        resolve: { teamPredictions: PredictedLineupTeamResolver, players: TeamPlayersResolver }
-      }
-    ]
+    redirectTo: 'teams/summary',
+    pathMatch: 'full'
   },
   {
     path: '',
-    redirectTo: 'teams',
-    pathMatch: 'full'
+    canActivate: [PredictedLineupsLoadedGuard],
+    component: PredictedLineupsComponent,
+    children: [
+      {
+        path: 'teams/summary',
+        component: PredictedLineupsTeamsComponent,
+        resolve: {
+          sources: PredictedLineupsSourcesResolver,
+          stats: PredictedLineupsStasPlayersResolver,
+          teamsNavigation: TeamsNavigationResolver
+        }
+      },
+      {
+        path: 'teams/:team',
+        component: PredictedLineupsTeamComponent,
+        resolve: {
+          teamsNavigation: TeamsNavigationResolver,
+          teamPredictions: PredictedLineupTeamResolver,
+          players: TeamPlayersResolver
+        }
+      }
+    ]
   }
 ];
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map, take } from 'rxjs/operators';
 import { FilesService } from '../files.service';
-import { LineupsSource, LineupsSourceProperty, Properties } from './properties.model';
+import { LineupsSource, LineupsSourceProperty, Properties, TeamNavigation } from './properties.model';
 
 @Injectable({ providedIn: 'root' })
 export class PropertiesStore {
@@ -34,6 +34,10 @@ export class PropertiesStore {
     return this.selectProperties().pipe(map((properties) => properties.lineupSources[source]));
   }
 
+  public selectTeamsNavigation(): Observable<TeamNavigation[]> {
+    return this.selectProperties().pipe(map((props) => props.teamsNavigation));
+  }
+
   private selectProperties(): Observable<Properties> {
     return this.properties$.asObservable();
   }
@@ -46,13 +50,5 @@ export class PropertiesStore {
         this.state = { ...properties };
         this.properties$.next({ ...this.state });
       });
-    // this.firebaseService
-    //   .getProperties()
-    //   .pipe(takeUntil(this.destroyed$), distinctUntilChanged())
-    //   .subscribe((properties) => {
-    //     Logger.logDev('properties store service, properties loaded');
-    //     this.state = { ...properties };
-    //     this.properties$.next({ ...this.state });
-    //   });
   }
 }

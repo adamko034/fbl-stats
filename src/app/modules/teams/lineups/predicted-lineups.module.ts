@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FblCoreModule } from '../../core/fbl-core.module';
+import { PredictedLineupsTeamNavigationComponent } from './components/predicted-lineups-team-navigation/predicted-lineups-team-navigation.component';
 import { PredictedLineupsStatsPlayerConverter } from './converters/predicted-lineups-stats-player.converter';
 import { PredictedLineupsLoadedGuard } from './guards/predicted-lineups-loaded.guard';
 import { PredictedLineupsRoutingModule } from './predicted-lineups-routing.module';
@@ -10,20 +11,19 @@ import { PredictedLineupsSourcesResolver } from './resolvers/predicted-lineups-s
 import { PredictedLineupsStasPlayersResolver } from './resolvers/predicted-lineups-stats-players.resolver';
 import { PredictedLineupTeamResolver } from './resolvers/predicted-lineups-team.resolver';
 import { PredictedLineupsStore } from './store/predicted-lineups.store';
-import { PredictedLineupsContentComponent } from './views/predicted-lineups/predicted-lineups-content.component';
-import { PredictedLineupsMainComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-main.component';
-import { PredictedLineupsSourcesComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-sources/predicted-lineups-sources.component';
-import { PredictedLineupsStatsComponent } from './views/predicted-lineups/predicted-lineups-main/predicted-lineups-stats/predicted-lineups-stats.component';
-import { PredictedLineupsTeamNavigationComponent } from './views/predicted-lineups/predicted-lineups-team-navigation/predicted-lineups-team-navigation.component';
-import { PredictedLineupsTeamComponent } from './views/predicted-lineups/predicted-lineups-team/predicted-lineups-team.component';
-import { PredictedTeamLineupComponent } from './views/predicted-lineups/predicted-lineups-team/predicted-team-lineup/predicted-team-lineup.component';
+import { PredictedLineupsTeamComponent } from './view/predicted-lineups-team/predicted-lineups-team.component';
+import { PredictedTeamLineupComponent } from './view/predicted-lineups-team/predicted-team-lineup/predicted-team-lineup.component';
+import { PredictedLineupsSourcesComponent } from './view/predicted-lineups-teams/predicted-lineups-sources/predicted-lineups-sources.component';
+import { PredictedLineupsStatsComponent } from './view/predicted-lineups-teams/predicted-lineups-stats/predicted-lineups-stats.component';
+import { PredictedLineupsTeamsComponent } from './view/predicted-lineups-teams/predicted-lineups-teams.component';
+import { PredictedLineupsComponent } from './view/predicted-lineups.component';
 
 @NgModule({
   declarations: [
-    PredictedLineupsContentComponent,
+    PredictedLineupsComponent,
     PredictedLineupsTeamNavigationComponent,
     PredictedLineupsTeamComponent,
-    PredictedLineupsMainComponent,
+    PredictedLineupsTeamsComponent,
     PredictedLineupsSourcesComponent,
     PredictedTeamLineupComponent,
     PredictedLineupsStatsComponent

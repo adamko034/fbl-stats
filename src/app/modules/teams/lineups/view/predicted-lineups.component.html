@@ -1,4 +1,8 @@
-<div *ngIf="!(isMobile$ | async)" fxlayout="column" fxLayoutGap="15px">
+<app-view [links]="links">
+  <router-outlet></router-outlet>
+</app-view>
+
+<!-- <div *ngIf="!(isMobile$ | async)" fxlayout="column" fxLayoutGap="15px">
   <app-predicted-lineups-team-navigation></app-predicted-lineups-team-navigation>
   <app-view>
     <router-outlet></router-outlet>
@@ -9,4 +13,4 @@
   <div class="content-mobile">
     <router-outlet></router-outlet>
   </div>
-</app-view>
+</app-view> -->

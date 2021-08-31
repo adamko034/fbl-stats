@@ -1,4 +1,5 @@
 <div fxLayout="column" fxLayoutGap="20px">
+  <app-predicted-lineups-team-navigation [teams]="teamsNavigation$ | async"></app-predicted-lineups-team-navigation>
   <app-predicted-lineups-sources fxFlexAlign="center" ngClass.lt-sm="mobile"></app-predicted-lineups-sources>
   <app-predicted-lineups-stats></app-predicted-lineups-stats>
 </div>

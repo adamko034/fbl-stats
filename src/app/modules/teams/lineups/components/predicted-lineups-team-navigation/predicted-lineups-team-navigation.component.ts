@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, HostListener, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
-import { Team } from 'src/app/store/teams/models/team.model';
+import { TeamNavigation } from 'src/app/store/properties/properties.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -13,7 +11,8 @@ import { Logger } from 'src/app/utils/logger';
   styleUrls: ['./predicted-lineups-team-navigation.component.scss']
 })
 export class PredictedLineupsTeamNavigationComponent implements OnInit {
-  public teams$: Observable<Team[]>;
+  @Input() teams: TeamNavigation[];
+
   public screen$: Observable<ScreenSize>;
   public screens = ScreenSize;
 
@@ -24,11 +23,10 @@ export class PredictedLineupsTeamNavigationComponent implements OnInit {
     this.isScroll = window.pageYOffset <= 10;
   }
 
-  constructor(private route: ActivatedRoute, private screenSizeService: ScreenSizeService) {}
+  constructor(private screenSizeService: ScreenSizeService) {}
 
   public ngOnInit(): void {
     Logger.logDev('lineups teams list component, ng on init');
-    this.teams$ = this.route.data.pipe(map((data) => data.teams));
     this.screen$ = this.screenSizeService.onResize();
   }
 }
