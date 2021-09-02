@@ -18,7 +18,9 @@ export class NextMatchdaysFirstGamesResolver implements Resolve<MatchdayFixtures
       tap(([firstGames, lastMatchday]) =>
         Logger.logDev(`next matchdays first games resolver, matchday greater than ${lastMatchday}`)
       ),
-      map(([firstGames, lastMatchday]) => firstGames.filter((f) => f.matchdayNumber > lastMatchday && f.isConfirmed)),
+      map(([firstGames, lastMatchday]) =>
+        firstGames.filter((f) => f.matchdayNumber > lastMatchday && f.matchdayNumber != 34 && f.isConfirmed)
+      ),
       first(),
       tap((matchdaysFixutres) =>
         Logger.logDev(`next matchdays first games resolver, got ${matchdaysFixutres?.length} confirmed matchdayss`)
