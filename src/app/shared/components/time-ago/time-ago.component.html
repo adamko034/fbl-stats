@@ -1,0 +1,2 @@
+<span *ngIf="!isEpochDate" [ngStyle]="style">{{ date | timeAgo }}</span>
+<span *ngIf="isEpochDate" [ngStyle]="style">{{ epochDate | epochDate | timeAgo }}</span>
