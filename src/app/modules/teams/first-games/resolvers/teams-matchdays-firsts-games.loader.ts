@@ -12,11 +12,19 @@ import { TeamMatchdaysFirstGames } from '../models/team-matchdays-first-games.mo
 export class TeamMatchdaysFirstsGamesLoader {
   constructor(private teamsStore: TeamsStore, private fixturesStore: FixturesStore) {}
 
-  public load(): Observable<TeamMatchdaysFirstGames[]> {
+  public load(showAll: boolean): Observable<TeamMatchdaysFirstGames[]> {
     Logger.logDev('team matchdays firsts games loader, loading');
     return combineLatest([this.teamsStore.selectAllNames(), this.fixturesStore.selectAll()]).pipe(
       first(),
-      map(([teams, fixtures]) => this.createTeamsFirstGames(teams, fixtures))
+      map(([teams, fixtures]) => {
+        let includeFixtures = fixtures;
+
+        if (!showAll) {
+          includeFixtures = fixtures.filter((f) => !f.wasPlayed && f.matchdayNumber != 34);
+        }
+
+        return this.createTeamsFirstGames(teams, includeFixtures);
+      })
     );
   }
 
