@@ -13,7 +13,12 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'teams/summary',
+    redirectTo: 'next/summary',
+    pathMatch: 'full'
+  },
+  {
+    path: 'next',
+    redirectTo: 'next/summary',
     pathMatch: 'full'
   },
   {
@@ -22,7 +27,7 @@ const routes: Routes = [
     component: PredictedLineupsComponent,
     children: [
       {
-        path: 'teams/summary',
+        path: 'next/summary',
         component: PredictedLineupsTeamsComponent,
         resolve: {
           sources: PredictedLineupsSourcesResolver,
@@ -31,7 +36,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'teams/:team',
+        path: 'next/:team',
         component: PredictedLineupsTeamComponent,
         resolve: {
           teamsNavigation: TeamsNavigationResolver,

@@ -16,7 +16,7 @@ import { Team } from 'src/app/store/teams/models/team.model';
 })
 export class PredictedLineupsComponent implements OnInit {
   private _links: ViewTabNavigationLink[] = [
-    { label: 'Predicted lineups', order: 1, labelMobile: 'Teams predicted lineups', routerLink: 'teams' },
+    { label: 'Next matchday', order: 1, labelMobile: 'Next matchday', routerLink: 'next' },
     { label: 'Sources', order: 2, labelMobile: 'Predicted lineups sources', routerLink: 'sources' }
   ];
 

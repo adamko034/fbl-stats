@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TeamNavigation } from 'src/app/store/properties/properties.model';
+import { PredictedLineupsSource } from '../../store/models/predicted-lineups-source.model';
 
 @Component({
   selector: 'app-predicted-lineups-teams',
@@ -12,10 +13,12 @@ import { TeamNavigation } from 'src/app/store/properties/properties.model';
 })
 export class PredictedLineupsTeamsComponent {
   public teamsNavigation$: Observable<TeamNavigation[]>;
+  public sources$: Observable<PredictedLineupsSource[]>;
 
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
     this.teamsNavigation$ = this.route.data.pipe(map((data) => data.teamsNavigation));
+    this.sources$ = this.route.data.pipe(map((data) => data.sources));
   }
 }

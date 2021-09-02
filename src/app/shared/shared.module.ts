@@ -67,6 +67,7 @@ import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { TeamLineupComponent } from './components/team-lineup/team-lineup.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
+import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey/title-underlined-grey.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
@@ -142,7 +143,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     BundesligaTableComponent,
     BundesligaTableFiltersComponent,
     BundesligaTableInnerComponent,
-    PieChartComponent
+    PieChartComponent,
+    TimeAgoComponent
   ],
   imports: [
     CommonModule,
@@ -209,7 +211,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
     BundesligaTableComponent,
-    PieChartComponent
+    PieChartComponent,
+    TimeAgoComponent
   ]
 })
 export class SharedModule {

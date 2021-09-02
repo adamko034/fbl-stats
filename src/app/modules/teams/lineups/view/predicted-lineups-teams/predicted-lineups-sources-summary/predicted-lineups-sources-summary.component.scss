@@ -1,0 +1,50 @@
+// @import '/src/variables.scss';
+
+// .sources-card {
+//   padding: 0;
+
+//   .source {
+//     max-width: 200px;
+//     min-width: 200px;
+//     width: 100%;
+
+//     .title {
+//       height: 50px;
+//       font-weight: 500;
+//       color: #fff;
+//     }
+
+//     &:not(:last-child) {
+//       border-right: 1px solid rgba($color: #000000, $alpha: 0.2);
+//     }
+
+//     .content {
+//       height: 200px;
+//     }
+//   }
+
+//   .source-bundesliga {
+//     border-right: 1px solid #fff;
+//     .title {
+//       border-top-left-radius: 4px;
+//       //background-color: rgba($color: #c80a00, $alpha: 0.2);
+//       background: linear-gradient(180deg, #c80a00 0%, rgba($color: #c80a00, $alpha: 0.2) 100%);
+//     }
+//   }
+
+//   .source-kicker {
+//     border-right: 1px solid #fff;
+//     .title {
+//       //background-color: rgba($color: #c00, $alpha: 0.2);
+//       background: linear-gradient(180deg, #c00 0%, rgba($color: #c00, $alpha: 0.2) 100%);
+//     }
+//   }
+
+//   .source-ligainsider {
+//     .title {
+//       //background-color: rgba($color: #006d5f, $alpha: 0.2);
+//       background: linear-gradient(180deg, #006d5f 0%, rgba($color: #006d5f, $alpha: 0.2) 100%);
+//       border-top-right-radius: 4px;
+//     }
+//   }
+// }
