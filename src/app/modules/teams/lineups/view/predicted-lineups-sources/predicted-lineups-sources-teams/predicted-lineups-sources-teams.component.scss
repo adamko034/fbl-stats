@@ -1,0 +1,41 @@
+@import '/src/variables.scss';
+
+.source-accuracy-change {
+  cursor: pointer;
+}
+
+table {
+  margin-bottom: 20px;
+  tr {
+    td {
+      min-width: auto;
+      line-height: 23px;
+    }
+
+    td.best {
+      background-color: green;
+      color: #fff;
+    }
+
+    td.worst {
+      background-color: $colorRed;
+      color: #fff;
+    }
+  }
+}
+
+table.teams {
+  td:not(:first-child) {
+    text-align: start;
+  }
+}
+
+table.sources {
+  tr {
+    td:not(:first-child) {
+      // padding-right: 10px;
+      // padding-left: 5px;
+      min-width: 60px;
+    }
+  }
+}

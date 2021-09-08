@@ -14,6 +14,7 @@ export interface Player {
   position: string;
   popularity: number;
   price: number;
+  last5: number;
   games: Game[];
   attendance: number;
   nextGame: PlayerNextGame;

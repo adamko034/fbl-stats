@@ -1,0 +1,27 @@
+.container {
+  margin-top: 20px;
+
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(530px, 1fr));
+    grid-column-gap: 20px;
+  }
+
+  .summary-xs {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin-bottom: 40px;
+  }
+
+  .summary-md {
+    margin-bottom: 40px;
+  }
+
+  .chart {
+    margin-top: 50px;
+    height: 150px;
+
+    .chart-inner {
+      width: 100%;
+    }
+  }
+}

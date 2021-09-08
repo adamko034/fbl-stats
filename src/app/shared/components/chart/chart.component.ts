@@ -39,6 +39,14 @@ export class ChartComponent implements OnInit {
     return this.config.showDialog === undefined ? true : this.config.showDialog;
   }
 
+  public get colors(): any {
+    return this.config.colors === undefined ? 'cool' : { domain: this.config.colors };
+  }
+
+  public get animations() {
+    return !!this.config.animations ? this.config.animations : false;
+  }
+
   constructor(private matDialog: MatDialog) {}
 
   public ngOnInit(): void {}

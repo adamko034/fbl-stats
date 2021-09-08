@@ -1,0 +1,84 @@
+<app-white-block padding="10px 20px 10px 20px">
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="30px">
+    <app-title-underlined-grey>
+      <span title>Teams accuracy</span>
+      <table
+        content
+        matSort
+        matSortDirection="desc"
+        matSortStart="desc"
+        [matSortDisableClear]="true"
+        matSortActive="lastMd"
+        (matSortChange)="onSortChange($event)"
+        class="comparison-table teams"
+      >
+        <tr>
+          <td></td>
+          <td mat-sort-header="lastMd">Last MD</td>
+          <td mat-sort-header="last5">Last 5</td>
+          <td mat-sort-header="season">Season</td>
+        </tr>
+        <tr *ngFor="let team of sorted">
+          <td>
+            <app-team-logo height="21" [team]="team.teamShort"></app-team-logo>
+          </td>
+          <td>{{ team.lastMd }}%</td>
+          <td>{{ team.last5 }}%</td>
+          <td>{{ team.season }}%</td>
+        </tr>
+      </table>
+    </app-title-underlined-grey>
+
+    <app-title-underlined-grey>
+      <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <span>Sources accuracy</span>
+        <div fxLayoutAlign="start center" class="source-accuracy-change" [matMenuTriggerFor]="menuSourceValueType">
+          <span>{{ sourceValueTypeDisplay[sourceValueType] }}</span>
+          <mat-icon appScale="0.9">arrow_right</mat-icon>
+        </div>
+      </div>
+
+      <table content class="comparison-table sources">
+        <tr>
+          <td></td>
+          <td *ngFor="let index of [0, 1, 2]">{{ sources[index].displayName }}</td>
+        </tr>
+        <tr *ngFor="let team of teamsSorted$ | async | orderBy: 'order'">
+          <td>
+            <app-team-logo height="21" [team]="team.teamShort"></app-team-logo>
+          </td>
+          <td
+            [ngClass]="{ best: isBest(index, team.teamShort), worst: isWorst(index, team.teamShort) }"
+            *ngFor="let index of [0, 1, 2]"
+          >
+            {{ getSourceAccuracy(index, team.teamShort) }}%
+          </td>
+        </tr>
+      </table>
+    </app-title-underlined-grey>
+  </div>
+</app-white-block>
+
+<mat-menu #menuSourceValueType="matMenu">
+  <button
+    (click)="onSourceValueTypeChange('lastMdAccuracy')"
+    mat-menu-item
+    [disabled]="sourceValueType === 'lastMdAccuracy'"
+  >
+    Last MD
+  </button>
+  <button
+    (click)="onSourceValueTypeChange('last5Accuracy')"
+    mat-menu-item
+    [disabled]="sourceValueType === 'last5Accuracy'"
+  >
+    Last 5 MDs
+  </button>
+  <button
+    (click)="onSourceValueTypeChange('avgSeasonAccuracy')"
+    mat-menu-item
+    [disabled]="sourceValueType === 'avgSeasonAccuracy'"
+  >
+    Season
+  </button>
+</mat-menu>

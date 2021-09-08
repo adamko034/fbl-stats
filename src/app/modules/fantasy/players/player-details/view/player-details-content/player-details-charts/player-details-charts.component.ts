@@ -155,7 +155,8 @@ export class PlayerDetailsChartsComponent implements OnInit {
             series: this.top10AvgPointsChanges.collect()
           }
         ],
-        showLegend: true
+        showLegend: true,
+        columns: ['MD', this.player.lastName, 'MD avg points']
       }
     };
   }
@@ -202,14 +203,14 @@ export class PlayerDetailsChartsComponent implements OnInit {
       totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed).length,
       name: '70min',
       value: this.player.games.filter((g) => g.hasPlayedMoreThan70Min).length,
-      label: 'On field for >= 70min'
+      label: '70 min'
     };
 
     this._gamesWon = {
       totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed).length,
       name: 'Won',
       value: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.result === 1).length,
-      label: 'Games won when played'
+      label: 'Games won'
     };
   }
 

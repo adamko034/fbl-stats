@@ -5,4 +5,6 @@ export interface ChartDialogConfig {
   showLegend?: boolean;
   legendBlueAxisLabel?: string;
   legendRedAxisLabel?: string;
+  columns?: string[];
+  showDiff?: false;
 }

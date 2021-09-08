@@ -1,10 +1,41 @@
-.predicted-lineups-stats-container {
-  .stats-row {
-    background-color: #fff;
-    padding: 10px 20px 0 20px;
+table {
+  margin-bottom: 30px;
+  tr {
+    td {
+      font-size: 11px;
+      line-height: 15px;
+      text-align: start;
+    }
 
-    .stats {
-      min-width: 240px;
+    td:first-child {
+      font-weight: 500;
+    }
+
+    td.prediction {
+      text-align: center;
+    }
+  }
+
+  tr.header {
+    td {
+      padding-top: 7px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+table.table-lt-md {
+  tr {
+    td:not(:last-child) {
+      padding-right: 10px;
+    }
+  }
+}
+
+table.table-lt-sm {
+  tr {
+    td:not(:last-child) {
+      padding-right: 5px;
     }
   }
 }

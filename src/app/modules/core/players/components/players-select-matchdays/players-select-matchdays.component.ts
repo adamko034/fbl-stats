@@ -30,7 +30,7 @@ export class PlayersSelectMatchdaysComponent implements OnChanges {
         }
       }
 
-      this.matchdays = this.lastMatchday < 5 ? this.lastMatchday : this.matchdaysCount;
+      this.matchdays = this.lastMatchday < 2 ? this.lastMatchday : this.matchdaysCount;
       this.moreItem = {
         value: this.matchdays > 5 ? this.matchdays : -1,
         matIcon: 'more_vert',

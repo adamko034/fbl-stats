@@ -42,7 +42,8 @@ export class ChartDialogComponent implements OnInit {
       showLegend: this.chart.chartConfig.dialogConfig.showLegend,
       width: 600,
       height: 250,
-      title: ''
+      title: '',
+      legendPosition: 'below'
     };
   }
 
@@ -52,6 +53,12 @@ export class ChartDialogComponent implements OnInit {
 
   public get showChart(): boolean {
     return this.screenSize > ScreenSize.SM;
+  }
+
+  public get showDiff(): boolean {
+    return this.chartDialogConfig.dialogConfig.showDiff === undefined
+      ? true
+      : this.chartDialogConfig.dialogConfig.showDiff;
   }
 
   public data: TableData;
@@ -76,9 +83,16 @@ export class ChartDialogComponent implements OnInit {
   }
 
   private createMultipleSeriesData() {
-    const columns = this.createInitialColumns();
-    columns.push({ display: `${this.chartDialogConfig.data[1].tableColumnName}`, order: 3 });
-    columns.push({ display: 'Diff', order: 4 });
+    // const columns = this.createInitialColumns();
+    // columns.push({ display: `${this.chartDialogConfig.data[1].tableColumnName}`, order: 3 });
+    // columns.push({ display: 'Diff', order: 4 });
+    const columns: TableColumn[] = [];
+    for (let i = 0; i < this.chartDialogConfig.dialogConfig.columns.length; i++) {
+      columns.push({ display: this.chartDialogConfig.dialogConfig.columns[i], order: i });
+    }
+    if (this.showDiff) {
+      columns.push({ display: 'Diff', order: this.chartDialogConfig.dialogConfig.columns.length });
+    }
 
     const rows: TableRow[] = [];
 
@@ -92,12 +106,19 @@ export class ChartDialogComponent implements OnInit {
             value: point.value,
             displayValue: `${point.value}${point.valueSuffix || ''}`
           };
-          const previousColumnValue = existingRow.cells.find((x) => x.columnOrder == 2).value;
-          const diff = Math.round((+previousColumnValue - point.value) * 10) / 10;
-          const diffCell: TableCell = { columnOrder: 4, isDiffCell: true, displayValue: diff.toString(), value: diff };
-
           existingRow.cells.push(valueCell);
-          existingRow.cells.push(diffCell);
+
+          if (this.showDiff) {
+            const previousColumnValue = existingRow.cells.find((x) => x.columnOrder == 2).value;
+            const diff = Math.round((+previousColumnValue - point.value) * 10) / 10;
+            const diffCell: TableCell = {
+              columnOrder: 4,
+              isDiffCell: true,
+              displayValue: diff.toString(),
+              value: diff
+            };
+            existingRow.cells.push(diffCell);
+          }
         } else {
           const row: TableRow = {
             id: point.name,

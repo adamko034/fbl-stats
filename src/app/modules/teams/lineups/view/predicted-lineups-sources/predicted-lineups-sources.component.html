@@ -1,0 +1,14 @@
+<div class="container" fxLayout="column" fxLayoutGap="20px">
+  <app-white-block padding="10px 10px 20px 10px">
+    <div class="summary" ngClass.lt-sm="summary-xs" ngClass.lt-lg="summary-md">
+      <app-predicted-lineups-sources-summary [sources]="sources"></app-predicted-lineups-sources-summary>
+      <div class="chart">
+        <app-chart class="chart-inner" [config]="sourcesByMatchdayChartConfig"></app-chart>
+      </div>
+    </div>
+  </app-white-block>
+  <app-predicted-lineups-sources-teams
+    [teams]="teams$ | async"
+    [sources]="sources"
+  ></app-predicted-lineups-sources-teams>
+</div>

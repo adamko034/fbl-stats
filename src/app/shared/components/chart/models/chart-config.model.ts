@@ -17,6 +17,8 @@ export interface ChartConfig {
   yScaleMin?: number;
   yScaleMax?: number;
   showLegend?: boolean;
+  colors?: string[];
+  animations?: boolean;
   legendPosition?: 'below' | 'right';
   width?: number;
   height?: number;
