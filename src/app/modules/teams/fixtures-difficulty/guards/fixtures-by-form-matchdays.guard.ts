@@ -13,13 +13,11 @@ export class FixturesByFormMatchdaysGuard implements CanActivate {
 
     return this.propertiesStore.selectLastMatchday().pipe(
       map((lastMatchday) => {
-        if (lastMatchday < 5) {
-          if (!!matchdays && lastMatchday === +matchdays) {
-            return true;
-          }
-
-          this.router.navigate(['teams', 'fixturesdifficulty', 'byForm'], { queryParams: { matchdays: lastMatchday } });
+        if (!!matchdays && lastMatchday >= +matchdays) {
+          return true;
         }
+
+        this.router.navigate(['teams', 'fixturesdifficulty', 'byForm'], { queryParams: { matchdays: lastMatchday } });
       })
     );
   }

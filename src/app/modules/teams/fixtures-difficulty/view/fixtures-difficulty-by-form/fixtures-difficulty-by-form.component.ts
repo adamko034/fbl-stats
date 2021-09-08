@@ -58,6 +58,7 @@ export class FixturesDifficultyByFormComponent implements OnInit {
         this.includedGames = matchdays;
         this.state = state;
 
+        this.includeGames = [];
         const maxGamesIncluded = lastMatchday <= 5 ? lastMatchday : 5;
         for (let i = 2; i <= maxGamesIncluded; i++) {
           this.includeGames.push(i.toString());
