@@ -54,6 +54,7 @@ export class PredictedLineupsStatsComponent implements OnInit {
           benched: this.filterPlayers(
             data.players,
             sort.benched,
+            new PlayersFilterAvailbility(true),
             new PlayersFilterPrediction(PlayersPrediciton.Benched)
           ),
           varied: this.filterPlayers(data.players, sort.varied, new PlayersFilterPrediction(PlayersPrediciton.Varied))
@@ -96,13 +97,20 @@ export class PredictedLineupsStatsComponent implements OnInit {
     this.sortDisplay[key] = displayName;
   }
 
-  private filterPlayers(players: Player[], sort: { field: string; order: 'asc' | 'dsc' }, filter: Filterable<Player>) {
+  private filterPlayers(
+    players: Player[],
+    sort: { field: string; order: 'asc' | 'dsc' },
+    filter: Filterable<Player>,
+    filterSecond?: Filterable<Player>
+  ) {
     const orderBy = { field: sort?.field || 'last5', order: sort?.order || 'dsc' };
 
-    return new ArrayStream<Player>(players)
-      .filter(filter)
-      .orderByThenBy(orderBy, { field: 'totalPrice', order: 'dsc' })
-      .take(10)
-      .collect();
+    let arrayStream = new ArrayStream<Player>(players).filter(filter);
+
+    if (filterSecond != null) {
+      arrayStream = arrayStream.filter(filterSecond);
+    }
+
+    return arrayStream.orderByThenBy(orderBy, { field: 'totalPrice', order: 'dsc' }).take(10).collect();
   }
 }
