@@ -58,6 +58,7 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
+import { PlayersTableGenericComponent } from './components/players-table-generic/players-table-generic.component';
 import { SelectTeamsModalComponent } from './components/select-teams/select-teams-modal/select-teams-modal.component';
 import { SelectTeamsComponent } from './components/select-teams/select-teams.component';
 import { ShowMoreLinkComponent } from './components/show-more-link/show-more-link.component';
@@ -144,7 +145,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     BundesligaTableFiltersComponent,
     BundesligaTableInnerComponent,
     PieChartComponent,
-    TimeAgoComponent
+    TimeAgoComponent,
+    PlayersTableGenericComponent
   ],
   imports: [
     CommonModule,
@@ -212,7 +214,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FollowUsToStayTunedComponent,
     BundesligaTableComponent,
     PieChartComponent,
-    TimeAgoComponent
+    TimeAgoComponent,
+    PlayersTableGenericComponent
   ]
 })
 export class SharedModule {

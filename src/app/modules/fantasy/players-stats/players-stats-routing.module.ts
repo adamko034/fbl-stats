@@ -9,8 +9,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'gamesplayed',
+        redirectTo: 'points',
         pathMatch: 'full'
+      },
+      {
+        path: 'points',
+        loadChildren: () =>
+          import('./players-stats-points/players-stats-points.module').then((m) => m.PlayersStatsPointsModule)
       },
       {
         path: 'pointsefficiency',

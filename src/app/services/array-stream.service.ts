@@ -11,6 +11,16 @@ export class ArrayStream<T> {
     this.array = deepClone ? this.cloneDeep(array) : array;
   }
 
+  public concat(array: T[], pos?: number): ArrayStream<T> {
+    if (pos == undefined) {
+      this.array = this.array.concat(array);
+      return this;
+    }
+
+    this.array.splice(pos, 0, array);
+    return this;
+  }
+
   public filter(filterable: Filterable<T>) {
     this.array = filterable.filter(this.array);
     return this;
