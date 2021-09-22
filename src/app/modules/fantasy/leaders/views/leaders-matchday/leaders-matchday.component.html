@@ -1,5 +1,4 @@
 <div class="leaders-container" fxLayout="column">
-  <h2 class="title" fxFlexAlign="center">Top 500 managers overall</h2>
   <div *ngIf="matchday$ | async" fxLayout="column" fxLayoutGap="15px">
     <app-leaders-general-stats [matchday]="matchday$ | async"></app-leaders-general-stats>
     <app-leaders-players-positions [players]="(matchday$ | async).players"></app-leaders-players-positions>
