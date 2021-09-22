@@ -28,17 +28,16 @@ export class LeadersStore {
     }
   }
 
+  public selectTop500(): Observable<LeadersMatchday> {
+    return this.state$.pipe(map((state) => state.top500));
+  }
+
+  public selectTop100(): Observable<LeadersMatchday> {
+    return this.state$.pipe(map((state) => state.top100));
+  }
+
   public loaded(): Observable<boolean> {
     return this.state$.pipe(map((state) => !!state));
-  }
-
-  public selectMatchdayNumbers(): Observable<number[]> {
-    return this.state$.pipe(map((state) => state.matchdays.map((m) => m.matchday)));
-  }
-
-  public selectLeadersMatchday(matchday: number): Observable<LeadersMatchday> {
-    Logger.logDev(`leaders store, selecting matchday ${+matchday}`);
-    return this.state$.pipe(map((state) => state.matchdays.find((m) => m.matchday === +matchday)));
   }
 
   private send() {
