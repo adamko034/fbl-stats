@@ -1,12 +1,12 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <app-white-block>
     <div>
-      <app-players-stats-points-filters></app-players-stats-points-filters>
+      <app-players-stats-points-filters [filters]="filters$ | async"></app-players-stats-points-filters>
     </div>
   </app-white-block>
   <app-white-block>
     <div>
-      <app-players-stats-points-table [players]="players$ | async"></app-players-stats-points-table>
+      <!-- <app-players-stats-points-table [players]="players$ | async"></app-players-stats-points-table> -->
     </div>
   </app-white-block>
 </div>

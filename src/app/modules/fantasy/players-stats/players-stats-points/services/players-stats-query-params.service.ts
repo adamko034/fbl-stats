@@ -9,6 +9,7 @@ export class PlayersStatsQueryParamsService {
   };
 
   public convertToFilters(params: any): PlayersStatsPointsFilters {
+    console.log(params);
     const filters: PlayersStatsPointsFilters = { type: params.type, calculations: params.calc };
     return { ...this._default, ...filters };
   }

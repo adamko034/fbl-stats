@@ -1,1 +1,6 @@
-<p>players-stats-points-filters works!</p>
+<div *ngIf="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+  <app-switch name="types" [items]="types" [value]="filters.type"></app-switch>
+  <app-switch name="calc" [items]="calculations" [value]="filters.calculations"></app-switch>
+</div>
+
+{{ filters | json }}
