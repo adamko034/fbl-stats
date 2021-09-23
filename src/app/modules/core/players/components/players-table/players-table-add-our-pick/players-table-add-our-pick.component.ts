@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
+
 @UntilDestroy()
 @Component({
   selector: 'app-players-table-add-our-pick',
@@ -13,6 +14,7 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
 })
 export class PlayersTableAddOurPickComponent implements OnInit {
   @Input() playerId: number;
+  @Input() name: string;
 
   private nextMatchday: number;
 
@@ -36,6 +38,6 @@ export class PlayersTableAddOurPickComponent implements OnInit {
     this.ourPicksAdminService
       .insert(this.playerId, this.nextMatchday)
       .pipe(untilDestroyed(this))
-      .subscribe(() => this.toastrService.success('Saved', 'Our Picks'));
+      .subscribe(() => this.toastrService.success(`Added ${this.name}`, 'Our Picks'));
   }
 }
