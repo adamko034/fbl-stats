@@ -32,8 +32,14 @@ export class PlayerDetailsChartsComponent implements OnInit {
     return new ArrayStream(this.player.fantasy.history.popularity).convert(new MatchdayValueToChartPointConverter('%'));
   }
 
-  private get leadersPopularityChanges() {
-    return new ArrayStream(this.player.fantasy.history.leadersPopularity).convert(
+  private get top500PopularityChanges() {
+    return new ArrayStream(this.player.fantasy.history.top500Popularity).convert(
+      new MatchdayValueToChartPointConverter('%')
+    );
+  }
+
+  private get top100PopularityChanges() {
+    return new ArrayStream(this.player.fantasy.history.top100Popularity).convert(
       new MatchdayValueToChartPointConverter('%')
     );
   }
@@ -101,13 +107,13 @@ export class PlayerDetailsChartsComponent implements OnInit {
     };
   }
 
-  public get leadersPopularityChart(): ChartConfig {
+  public get top100PopularityChart(): ChartConfig {
     return {
-      title: 'Leaders popularity changes',
+      title: 'Top 100 popularity changes',
       data: [
         {
           name: this.player.name,
-          series: this.orderByAndGetLast(this.leadersPopularityChanges, 'dsc', 10).collect()
+          series: this.orderByAndGetLast(this.top100PopularityChanges, 'dsc', 10).collect()
         }
       ],
       showDialog: true,
@@ -115,12 +121,34 @@ export class PlayerDetailsChartsComponent implements OnInit {
         data: [
           {
             name: this.player.name,
-            series: this.leadersPopularityChanges.collect()
+            series: this.top100PopularityChanges.collect()
           }
         ]
       },
-      xAxisLabel: 'Matchday',
-      yAxisLabel: 'Leaders popularity',
+      yScaleMin: 0,
+      yScaleMax: 100,
+      yAxisTicks: [0, 25, 50, 75, 100]
+    };
+  }
+
+  public get top500PopularityChart(): ChartConfig {
+    return {
+      title: 'Top 500 popularity changes',
+      data: [
+        {
+          name: this.player.name,
+          series: this.orderByAndGetLast(this.top500PopularityChanges, 'dsc', 10).collect()
+        }
+      ],
+      showDialog: true,
+      dialogConfig: {
+        data: [
+          {
+            name: this.player.name,
+            series: this.top500PopularityChanges.collect()
+          }
+        ]
+      },
       yScaleMin: 0,
       yScaleMax: 100,
       yAxisTicks: [0, 25, 50, 75, 100]
