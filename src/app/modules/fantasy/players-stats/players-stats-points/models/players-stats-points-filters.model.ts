@@ -1,4 +1,6 @@
+import { PlayersStatsPointsType } from './players-stats-points-type.enum';
+
 export interface PlayersStatsPointsFilters {
-  type: 'bundesliga' | 'main' | 'defence' | 'goalkeeping' | 'attacking';
+  type: PlayersStatsPointsType;
   calculations: 'overall' | 'last5';
 }

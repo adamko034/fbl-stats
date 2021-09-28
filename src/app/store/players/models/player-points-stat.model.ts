@@ -1,8 +1,6 @@
 export interface PlayerPointsStat {
-  gamesPlayed70Min: number;
   bundesligaGoals: number;
   bundesligaAssits: number;
-  gamesPlayed: number;
   assists: number;
   causedPenalities: number;
   playedMinutes: number;

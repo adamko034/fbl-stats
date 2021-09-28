@@ -1,4 +1,4 @@
-import { PlayerPointsStats } from 'src/app/store/players/models/player-points-stats.model';
+import { TableCell } from 'src/app/shared/models/table-cell.model';
 
 export interface PlayersStatsPointsPlayer {
   id: string;
@@ -7,5 +7,6 @@ export interface PlayersStatsPointsPlayer {
   teamShort: string;
   position: string;
   price: number;
-  points: PlayerPointsStats;
+  totalPoints: number;
+  stats: TableCell[];
 }

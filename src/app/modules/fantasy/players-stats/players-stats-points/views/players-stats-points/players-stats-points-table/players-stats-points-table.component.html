@@ -1,1 +1,56 @@
-<p>players-stats-points-table works!</p>
+<div>
+  <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
+
+  <table
+    mat-table
+    matSort
+    matSortStart="desc"
+    [matSortActive]="defaultSort"
+    matSortDisableClear
+    matSortDirection="desc"
+    (matSortChange)="onSortChange($event)"
+    class="table-responsive"
+    [dataSource]="dataSource"
+  >
+    <ng-container matColumnDef="name" sticky>
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let player">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <app-team-logo [height]="20" [team]="player.teamShort"></app-team-logo>
+          <span>{{ player.name }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>Pos</th>
+      <td mat-cell *matCellDef="let player">
+        {{ player.position | uppercase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>$</th>
+      <td mat-cell *matCellDef="let player">
+        {{ player.price }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalPoints">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>TP</th>
+      <td mat-cell *matCellDef="let player">
+        {{ player.totalPoints }}
+      </td>
+    </ng-container>
+
+    <ng-container *ngFor="let statHeader of statsHeaders" [matColumnDef]="statHeader">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>{{ statHeader }}</th>
+      <td mat-cell *matCellDef="let player">
+        {{ getCellValue(player, statHeader) }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let player; columns: columns"></tr>
+  </table>
+</div>

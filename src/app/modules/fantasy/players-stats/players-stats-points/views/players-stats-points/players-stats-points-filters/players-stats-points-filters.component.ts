@@ -13,10 +13,9 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
 
   private _types: SwitchItem[] = [
     { value: 'bundesliga', description: 'Bundesliga' },
-    { value: 'main', description: 'Main' },
-    { value: 'defence', description: 'Defence' },
-    { value: 'goalkeeping', description: 'Goalkeeping' },
-    { value: 'attacking', description: 'Attacking' }
+    { value: 'offensive', description: 'Offensive' },
+    { value: 'defensive', description: 'Defensive' },
+    { value: 'goalkeeping', description: 'Goalkeeping' }
   ];
 
   private _calcs: SwitchItem[] = [

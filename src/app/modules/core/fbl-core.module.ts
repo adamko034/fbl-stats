@@ -21,6 +21,7 @@ import { PlayersViewSwitchComponent } from './players/components/players-display
 import { SelectMoreMatchdaysDialogComponent } from './players/components/players-select-matchdays/select-more-form-dialog/select-more-matchdays-dialog.component';
 import { PlayersTableAddOurPickComponent } from './players/components/players-table/players-table-add-our-pick/players-table-add-our-pick.component';
 import { PlayersPickerComponent } from './players/picker/components/players-picker/players-picker.component';
+import { TeamService } from './teams/services/team.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PlayersPickerComponent } from './players/picker/components/players-pick
     PlayersTableAddOurPickComponent,
     PlayersPickerComponent
   ],
+  providers: [TeamService],
   imports: [CommonModule, SharedModule, AngularMaterialModule, RouterModule],
   exports: [
     PlayersListComponent,
