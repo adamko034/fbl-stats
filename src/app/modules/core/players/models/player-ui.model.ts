@@ -15,7 +15,8 @@ export interface PlayerUi {
   gamesStarted: number;
   attendance: number;
   form: number;
-  leadersPopularity: number;
+  top100Popularity: number;
+  top500Popularity: number;
   games: Game[];
   isSuspensionRisk: boolean;
   isReturning: boolean;

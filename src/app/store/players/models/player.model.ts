@@ -22,6 +22,7 @@ export interface Player {
   isSuspensionRisk: boolean;
   isReturning: boolean;
   top100Popularity: number;
+  top500Popularity: number;
   scoringChances: PlayerScoringChances;
   fantasyHistory: PlayerFantasyHistory;
 }

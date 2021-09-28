@@ -34,6 +34,7 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       isSuspensionRisk,
       isReturning,
       top100Popularity,
+      top500Popularity,
       gamesStartedPercentage
     } = { ...player } as Player;
     return {
@@ -48,7 +49,8 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       avgPoints,
       games,
       gamesStarted: Math.round(gamesStartedPercentage),
-      leadersPopularity: top100Popularity,
+      top100Popularity,
+      top500Popularity,
       attendance,
       nextGameAttendancePrediction: predicion,
       form: this.playerFormCalculator.calculate(games),
