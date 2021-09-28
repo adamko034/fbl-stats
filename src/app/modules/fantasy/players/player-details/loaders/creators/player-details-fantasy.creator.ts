@@ -15,6 +15,7 @@ export class PlayerDetailsFantasyCreator {
       popularity: player.popularity,
       totalPoints: player.totalPoints,
       top100Popularity: player.top100Popularity,
+      top500Popularity: player.top500Popularity,
       last5,
       lastMD: this.formCalculator.getLastMD(player.games),
       seasonAvg: player.avgPoints,

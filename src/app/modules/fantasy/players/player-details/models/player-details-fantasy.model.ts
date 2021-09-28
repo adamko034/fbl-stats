@@ -8,6 +8,7 @@ export interface PlayerDetailsFantasy {
   last5: number;
   lastMD: number;
   top100Popularity: number;
+  top500Popularity: number;
   seasonAvg: number;
   last5Avg: number;
   bestGame: Game;

@@ -21,12 +21,13 @@ export class PlayerDetailsMainComponent {
         order: 1,
         items: [
           { order: 1, text: `${this.player?.fantasy.popularity.toString()}%`, subtext: 'popularity' },
-          { order: 2, text: this.player?.fantasy.totalPoints.toString(), subtext: 'total points' },
+          { order: 2, text: this.player?.fantasy.totalPoints.toString(), subtext: 'TP' },
           { order: 3, text: this.player?.fantasy.lastMD?.toString() || 'x', subtext: 'last MD' },
           { order: 4, text: this.player?.fantasy.last5?.toString() || 'x', subtext: 'last 5' },
           { order: 5, text: this.player?.fantasy.seasonAvg.toString(), subtext: 'season avg' },
           { order: 6, text: this.player?.fantasy.last5Avg.toString(), subtext: 'last 5 avg' },
-          { order: 7, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'leaders %' },
+          { order: 7, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'top100 %' },
+          { order: 7, text: this.player?.fantasy.top500Popularity.toString(), subtext: 'top500 %' },
           { order: 8, text: this.player?.fantasy.pointsPer1M.toString(), subtext: 'pts / 1M' }
         ]
       }
@@ -38,9 +39,10 @@ export class PlayerDetailsMainComponent {
       {
         order: 1,
         items: [
-          { order: 1, text: this.player?.fantasy.totalPoints.toString(), subtext: 'total pts' },
+          { order: 1, text: this.player?.fantasy.totalPoints.toString(), subtext: 'TP' },
           { order: 1, text: this.player?.fantasy.popularity.toString(), subtext: '%' },
-          { order: 2, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'leaders %' },
+          { order: 2, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'top100 %' },
+          { order: 2, text: this.player?.fantasy.top500Popularity.toString(), subtext: 'top500 %' },
           { order: 3, text: this.player?.fantasy.lastMD.toString(), subtext: 'last MD' },
           { order: 2, text: this.player?.fantasy.pointsPer1M.toString(), subtext: 'pts/1M' }
         ]

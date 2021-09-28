@@ -99,7 +99,11 @@
       <ng-container matColumnDef="OP">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let player">
-          <app-players-table-add-our-pick [appScale]="0.75" [playerId]="player.id"></app-players-table-add-our-pick>
+          <app-players-table-add-our-pick
+            [appScale]="0.75"
+            [playerId]="player.id"
+            [name]="player.name"
+          ></app-players-table-add-our-pick>
         </td>
       </ng-container>
 
@@ -114,7 +118,8 @@
     <div class="legend" fxLayout="column">
       <span>$ - price</span>
       <span>% - popularity</span>
-      <span>L% - leaders (top 500) popularity</span>
+      <span>L100% - leaders top 100 popularity</span>
+      <span>L500% - leaders top 500 popularity</span>
       <span>GS% - percentage of games started</span>
       <span>PL - predicted to start in next game</span>
       <span>TP - total points</span>

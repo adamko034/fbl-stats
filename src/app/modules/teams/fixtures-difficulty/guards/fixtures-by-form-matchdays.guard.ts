@@ -17,7 +17,10 @@ export class FixturesByFormMatchdaysGuard implements CanActivate {
           return true;
         }
 
-        this.router.navigate(['teams', 'fixturesdifficulty', 'byForm'], { queryParams: { matchdays: lastMatchday } });
+        const redirectMatchdays = lastMatchday <= 5 ? lastMatchday : 5;
+        this.router.navigate(['teams', 'fixturesdifficulty', 'byForm'], {
+          queryParams: { matchdays: redirectMatchdays }
+        });
       })
     );
   }

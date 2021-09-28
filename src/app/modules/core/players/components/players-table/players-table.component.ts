@@ -152,8 +152,8 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
 
     this.displayedColumns.splice(2, 0, 'Position');
 
-    this.displayedColumns.splice(7, 0, 'Next');
-    this.displayedColumns.splice(8, 0, 'Prediction');
+    this.displayedColumns.splice(8, 0, 'Next');
+    this.displayedColumns.splice(9, 0, 'Prediction');
     this.displayedColumns.push('MT');
     this.displayedColumns.push('OP');
   }
@@ -162,7 +162,8 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
     return [
       { displayName: '$', fieldName: 'price' },
       { displayName: '%', fieldName: 'popularity' },
-      { displayName: 'L%', fieldName: 'leadersPopularity' },
+      { displayName: 'L100%', fieldName: 'top100Popularity' },
+      { displayName: 'L500%', fieldName: 'top500Popularity' },
       { displayName: 'GS%', fieldName: 'gamesStarted' },
       { displayName: 'TP', fieldName: 'totalPoints' },
       { displayName: 'Avg', fieldName: 'avgPoints' },

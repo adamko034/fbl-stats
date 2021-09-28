@@ -1,16 +1,17 @@
-<app-white-block>
+<app-white-block padding="10px 10px 0 10px">
   <div fxlayout="column">
     <div class="pie-charts" fxLayoutAlign="space-evenly center" fxLayoutAlign.lt-md="center center" fxLayout="row wrap">
-      <app-pie-chart class="chart chart-pie" [config]="gamesPlayedChart"></app-pie-chart>
-      <app-pie-chart class="chart chart-pie" [config]="gamesStartedChart"></app-pie-chart>
-      <app-pie-chart class="chart chart-pie" [config]="games70MinChart"></app-pie-chart>
-      <app-pie-chart class="chart chart-pie" [config]="gamesWonChart"></app-pie-chart>
+      <app-pie-chart class="chart-pie" [config]="gamesPlayedChart"></app-pie-chart>
+      <app-pie-chart class="chart-pie" [config]="gamesStartedChart"></app-pie-chart>
+      <app-pie-chart class="chart-pie" [config]="games70MinChart"></app-pie-chart>
+      <app-pie-chart class="chart-pie" [config]="gamesWonChart"></app-pie-chart>
     </div>
 
     <div fxLayoutAlign="space-evenly center" fxLayoutAlign.lt-md="center center" fxLayout="row wrap">
       <app-chart class="chart" [config]="pricesChart"></app-chart>
       <app-chart class="chart" [config]="popularityChart"></app-chart>
-      <app-chart class="chart" [config]="leadersPopularityChart"></app-chart>
+      <app-chart class="chart" [config]="top100PopularityChart"></app-chart>
+      <app-chart class="chart" [config]="top500PopularityChart"></app-chart>
       <app-chart class="chart" [config]="pointsChart"></app-chart>
     </div>
   </div>

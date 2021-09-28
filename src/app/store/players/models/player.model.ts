@@ -18,10 +18,12 @@ export interface Player {
   last5: number;
   games: Game[];
   attendance: number;
+  gamesStartedPercentage: number;
   nextGame: PlayerNextGame;
   isSuspensionRisk: boolean;
   isReturning: boolean;
   top100Popularity: number;
+  top500Popularity: number;
   scoringChances: PlayerScoringChances;
   fantasyHistory: PlayerFantasyHistory;
   pointsStats: PlayerPointsStats;

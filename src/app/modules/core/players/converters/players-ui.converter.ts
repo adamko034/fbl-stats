@@ -17,9 +17,6 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
   }
 
   private toUiSingle(player: Player): PlayerUi {
-    const gamesStartedPercentage = Math.round(
-      (player.games.filter((g) => g.started).length / player.games.length) * 100
-    );
     const predicion = this.playerAttendacePredictionService.determine(player.nextGame?.lineupPredictions);
     const {
       id,
@@ -36,7 +33,9 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       position,
       isSuspensionRisk,
       isReturning,
-      top100Popularity
+      top100Popularity,
+      top500Popularity,
+      gamesStartedPercentage
     } = { ...player } as Player;
     return {
       id,
@@ -49,8 +48,9 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
       totalPoints,
       avgPoints,
       games,
-      gamesStarted: gamesStartedPercentage,
-      leadersPopularity: top100Popularity,
+      gamesStarted: Math.round(gamesStartedPercentage),
+      top100Popularity,
+      top500Popularity,
       attendance,
       nextGameAttendancePrediction: predicion,
       form: this.playerFormCalculator.calculate(games),
