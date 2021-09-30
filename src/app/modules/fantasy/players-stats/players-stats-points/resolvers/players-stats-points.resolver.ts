@@ -4,6 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
+import { Logger } from 'src/app/utils/logger';
 import { PlayersStatsPointsConverter } from '../converters/players-stats-points.converter';
 import { PlayersStatsPointsPlayer } from '../models/players-stats-points-player.model';
 import { PlayersStatsQueryParamsService } from '../services/players-stats-query-params.service';
@@ -19,6 +20,7 @@ export class PlayersStatsPointsResolver implements Resolve<Observable<PlayersSta
 
   public resolve(route: ActivatedRouteSnapshot): Observable<PlayersStatsPointsPlayer[]> {
     const filters = this.queryParamsService.convertToFilters(route.queryParams);
+    Logger.logDev(`players stats points resolver: resolving with filters: ${JSON.stringify(filters)}`);
 
     return combineLatest([this.playersStore.selectPlayers(), this.teamsStore.selectAll()]).pipe(
       map(([players, teams]) => {

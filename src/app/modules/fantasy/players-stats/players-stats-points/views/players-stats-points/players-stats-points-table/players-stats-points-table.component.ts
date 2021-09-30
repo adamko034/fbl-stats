@@ -4,13 +4,16 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { Logger } from 'src/app/utils/logger';
 import { PlayersStatsPointsPlayer } from '../../../models/players-stats-points-player.model';
 
 @Component({
@@ -19,21 +22,25 @@ import { PlayersStatsPointsPlayer } from '../../../models/players-stats-points-p
   styleUrls: ['./players-stats-points-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit {
+export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() players: PlayersStatsPointsPlayer[];
-  @Input() defaultSort: string;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _columns: string[];
-  private _statsHeaders: string[];
+  private _defaultSort: string;
+  private _statsHeaders: { header: string; tooltip: string }[];
 
   public get columns(): string[] {
     return this._columns;
   }
 
-  public get statsHeaders(): string[] {
+  public get defaultSort(): string {
+    return this._defaultSort;
+  }
+
+  public get statsHeaders(): { header: string; tooltip: string }[] {
     return this._statsHeaders;
   }
 
@@ -41,20 +48,21 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit {
 
   constructor(private changeDetection: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  public ngOnChanges(changes: SimpleChanges): void {
+    this._defaultSort = this.players[0]?.stats.filter((s) => s.defaultSort)[0]?.header || 'TP';
+
+    if (!!changes.players && changes.players.currentValue.length > 0 && !changes.players.isFirstChange()) {
+      this.prepareDataSource();
+    }
+  }
+
+  public ngOnInit(): void {
+    // this._defaultSort = this.players[0]?.stats.filter((s) => !!s.defaultSort)[0]?.header;
+    // console.log(this._defaultSort);
+  }
 
   public ngAfterViewInit(): void {
-    if (!this.dataSource) {
-      this.dataSource = new MatTableDataSource<PlayersStatsPointsPlayer>();
-      this.dataSource.data = [...this.players];
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-      this.appendStatsColumns();
-      this.onSortChange({ active: this.defaultSort, direction: 'desc' });
-
-      this.changeDetection.detectChanges();
-    }
+    this.prepareDataSource();
   }
 
   public getCellValue(player: PlayersStatsPointsPlayer, header: string): number {
@@ -62,6 +70,10 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit {
   }
 
   public onSortChange(sort: Sort): void {
+    if (!sort) {
+      return;
+    }
+
     this.paginator.firstPage();
 
     if (sort.active === 'totalPoints') {
@@ -84,9 +96,27 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit {
     });
   }
 
+  private prepareDataSource() {
+    Logger.logDev(`players stats points table, preparing data source`);
+
+    if (!this.dataSource) {
+      this.dataSource = new MatTableDataSource<PlayersStatsPointsPlayer>();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+
+    this.dataSource.data = [...this.players];
+
+    this.appendStatsColumns();
+    this.onSortChange({ active: this._defaultSort, direction: 'desc' });
+    this.paginator.firstPage();
+
+    this.changeDetection.detectChanges();
+  }
+
   private appendStatsColumns() {
-    this._statsHeaders = this.players[0].stats.map((s) => s.header);
+    this._statsHeaders = this.players[0]?.stats?.map((s) => ({ header: s.header, tooltip: s.description })) || [];
     this._columns = ['name', 'position', 'price', 'totalPoints'];
-    this._columns.push(...this._statsHeaders);
+    this._columns.push(...this._statsHeaders.map((s) => s.header));
   }
 }

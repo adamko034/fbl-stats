@@ -1,17 +1,14 @@
-<div fxLayout="column" fxLayoutGap="20px">
-  <app-white-block>
+<div fxLayout="column" fxLayoutGap="10px">
+  <app-white-block padding="20px 10px 20px 10px">
     <div>
       <app-players-stats-points-filters
         [filters]="state$ | async | field: 'filters'"
       ></app-players-stats-points-filters>
     </div>
   </app-white-block>
-  <app-white-block>
+  <app-white-block padding="0px 0px 10px 0px">
     <div>
-      <app-players-stats-points-table
-        [defaultSort]="state$ | async | field: 'sort'"
-        [players]="state$ | async | field: 'players'"
-      ></app-players-stats-points-table>
+      <app-players-stats-points-table [players]="state$ | async | field: 'players'"></app-players-stats-points-table>
     </div>
   </app-white-block>
 </div>

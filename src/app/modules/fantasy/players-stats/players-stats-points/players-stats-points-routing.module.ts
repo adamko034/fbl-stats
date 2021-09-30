@@ -4,7 +4,12 @@ import { PlayersStatsPointsResolver } from './resolvers/players-stats-points.res
 import { PlayersStatsPointsComponent } from './views/players-stats-points/players-stats-points.component';
 
 const routes: Routes = [
-  { path: '', resolve: { players: PlayersStatsPointsResolver }, component: PlayersStatsPointsComponent }
+  {
+    path: '',
+    resolve: { players: PlayersStatsPointsResolver },
+    component: PlayersStatsPointsComponent,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+  }
 ];
 
 @NgModule({

@@ -271,7 +271,7 @@ mat-button-toggle.position-active {
 
   td,
   th {
-    font-size: $fontSizeSmall;
+    font-size: 12px;
   }
 
   .mat-table {
@@ -292,6 +292,7 @@ mat-button-toggle.position-active {
   .mat-row,
   .mat-header-row {
     display: table-row;
+    height: 35px;
   }
   .mat-cell,
   .mat-header-cell {
