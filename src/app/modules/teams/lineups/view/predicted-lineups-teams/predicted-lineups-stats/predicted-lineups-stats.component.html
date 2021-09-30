@@ -14,21 +14,21 @@
     ></ng-template>
     <ng-template
       [ngTemplateOutlet]="playersTable"
+      [ngTemplateOutletContext]="{ players: state$ | async | field: 'varied', title: 'Top varied', key: 'varied' }"
+    ></ng-template>
+    <ng-template
+      [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{
         players: state$ | async | field: 'started',
         title: 'Top starts',
         key: 'started'
       }"
     ></ng-template>
-    <ng-template
-      [ngTemplateOutlet]="playersTable"
-      [ngTemplateOutletContext]="{ players: state$ | async | field: 'varied', title: 'Top varied', key: 'varied' }"
-    ></ng-template>
   </div>
 </app-white-block>
 
 <ng-template #playersTable let-players="players" let-key="key" let-title="title">
-  <app-title-underlined-grey *ngIf="!!players && players.length > 0">
+  <app-title-underlined-grey *ngIf="!!players && players.length > 0" class="stats" ngClass.lt-md="stats-lt-md">
     <div title>
       <span>{{ title }} (by {{ sortDisplay[key] }})</span>
     </div>

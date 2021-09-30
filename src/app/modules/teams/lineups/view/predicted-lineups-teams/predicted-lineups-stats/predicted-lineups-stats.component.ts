@@ -79,7 +79,6 @@ export class PredictedLineupsStatsComponent implements OnInit {
   }
 
   private setSortDisplay(key: string, fieldName: string) {
-    console.log(key + ' ' + fieldName);
     let displayName = fieldName;
 
     switch (fieldName) {

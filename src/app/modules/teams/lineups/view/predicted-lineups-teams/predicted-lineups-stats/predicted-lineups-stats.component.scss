@@ -1,5 +1,15 @@
+.stats {
+  min-width: 570px;
+
+  &-lt-md {
+    min-width: 90%;
+  }
+}
+
 table {
   margin-bottom: 30px;
+  width: 100%;
+
   tr {
     td {
       font-size: 11px;

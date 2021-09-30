@@ -64,9 +64,6 @@ export class PlayersGamesPlayedComponent implements OnInit {
       map((params) => {
         this._orderBy = params.orderBy || 'gamesStartedPercentage';
         this._position = params.position || PlayerPosition.ALL;
-
-        console.log(this._orderBy);
-
         return {
           defaultSortDirection: 'desc',
           defaultSortFieldName: this._orderBy,
