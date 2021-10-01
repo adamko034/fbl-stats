@@ -11,6 +11,12 @@
     height: 35px;
   }
 
+  .table-row-data {
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.05);
+    }
+  }
+
   th.mat-header-cell:first-of-type {
     top: 0 !important;
   }
@@ -22,7 +28,7 @@
 
   th:first-of-type,
   td:first-of-type {
-    padding-left: 10px;
+    padding-left: 15px;
   }
 }
 
