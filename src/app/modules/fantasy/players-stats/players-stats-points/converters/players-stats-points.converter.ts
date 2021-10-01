@@ -74,9 +74,9 @@ export class PlayersStatsPointsConverter {
         },
         { order: 10, value: allStats.bundesligaYellowCards, header: 'Y', description: 'Yellow cards' },
         { order: 11, value: allStats.bundesligaRedCards, header: 'R', description: 'Red cards' },
-        { order: 12, value: wonGamesCount, header: 'W', description: 'Games won' },
-        { order: 13, value: drawGamesCount, header: 'D', description: 'Games draw' },
-        { order: 14, value: lostGamesCount, header: 'L', description: 'Games lost' }
+        { order: 12, hideOnMd: true, value: wonGamesCount, header: 'W', description: 'Games won' },
+        { order: 13, hideOnMd: true, value: drawGamesCount, header: 'D', description: 'Games draw' },
+        { order: 14, hideOnMd: true, value: lostGamesCount, header: 'L', description: 'Games lost' }
       ];
     }
 

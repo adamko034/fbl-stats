@@ -1,6 +1,13 @@
 <div *ngIf="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-  <app-switch name="types" [items]="types" [value]="filters.type" (switchChange)="onTypeChange($event)"></app-switch>
   <app-switch
+    class="filter"
+    name="types"
+    [items]="types"
+    [value]="filters.type"
+    (switchChange)="onTypeChange($event)"
+  ></app-switch>
+  <app-switch
+    class="filter"
     *ngIf="isFantasy()"
     name="fantasyTypes"
     [items]="fantasyTypes"

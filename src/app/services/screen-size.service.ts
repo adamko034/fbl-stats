@@ -42,6 +42,10 @@ export class ScreenSizeService {
     return this.mapToScreenSize() <= ScreenSize.XS;
   }
 
+  public currentSize(): ScreenSize {
+    return this.mapToScreenSize();
+  }
+
   private mapToScreenSize(): ScreenSize {
     const width = window.screen.width;
     if (width < 400) {

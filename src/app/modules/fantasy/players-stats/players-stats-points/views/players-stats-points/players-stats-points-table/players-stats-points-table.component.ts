@@ -12,9 +12,14 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Logger } from 'src/app/utils/logger';
+import { PlayersStatsPointsFilters } from '../../../models/players-stats-points-filters.model';
 import { PlayersStatsPointsPlayer } from '../../../models/players-stats-points-player.model';
+import { PlayersStatsQueryParamsService } from '../../../services/players-stats-query-params.service';
 
 @Component({
   selector: 'app-players-stats-points-table',
@@ -24,13 +29,14 @@ import { PlayersStatsPointsPlayer } from '../../../models/players-stats-points-p
 })
 export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() players: PlayersStatsPointsPlayer[];
+  @Input() type: string;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   private _columns: string[];
   private _defaultSort: string;
-  private _statsHeaders: { header: string; tooltip: string }[];
+  private _statsHeaders: { header: string; tooltip: string; hideOnMd: boolean }[];
 
   public get columns(): string[] {
     return this._columns;
@@ -44,9 +50,15 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit, 
     return this._statsHeaders;
   }
 
+  public filters$: Observable<PlayersStatsPointsFilters>;
   public dataSource: MatTableDataSource<PlayersStatsPointsPlayer>;
 
-  constructor(private changeDetection: ChangeDetectorRef) {}
+  constructor(
+    private changeDetection: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router,
+    private queryParamsService: PlayersStatsQueryParamsService
+  ) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     this._defaultSort = this.players[0]?.stats.filter((s) => s.defaultSort)[0]?.header || 'TP';
@@ -57,8 +69,7 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit, 
   }
 
   public ngOnInit(): void {
-    // this._defaultSort = this.players[0]?.stats.filter((s) => !!s.defaultSort)[0]?.header;
-    // console.log(this._defaultSort);
+    this.filters$ = this.route.queryParams.pipe(map((params) => this.queryParamsService.convertToFilters(params)));
   }
 
   public ngAfterViewInit(): void {
@@ -96,6 +107,10 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit, 
     });
   }
 
+  public onPositionChange(position: string): void {
+    this.router.navigate([], { relativeTo: this.route, queryParams: { pos: position }, queryParamsHandling: 'merge' });
+  }
+
   private prepareDataSource() {
     Logger.logDev(`players stats points table, preparing data source`);
 
@@ -115,7 +130,8 @@ export class PlayersStatsPointsTableComponent implements OnInit, AfterViewInit, 
   }
 
   private appendStatsColumns() {
-    this._statsHeaders = this.players[0]?.stats?.map((s) => ({ header: s.header, tooltip: s.description })) || [];
+    this._statsHeaders =
+      this.players[0]?.stats?.map((s) => ({ header: s.header, tooltip: s.description, hideOnMd: s.hideOnMd })) || [];
     this._columns = ['name', 'position', 'price', 'totalPoints'];
     this._columns.push(...this._statsHeaders.map((s) => s.header));
   }

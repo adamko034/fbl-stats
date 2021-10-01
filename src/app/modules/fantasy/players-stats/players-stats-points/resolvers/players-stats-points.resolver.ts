@@ -5,6 +5,7 @@ import { first, map } from 'rxjs/operators';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
+import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersStatsPointsConverter } from '../converters/players-stats-points.converter';
 import { PlayersStatsPointsPlayer } from '../models/players-stats-points-player.model';
 import { PlayersStatsQueryParamsService } from '../services/players-stats-query-params.service';
@@ -24,6 +25,13 @@ export class PlayersStatsPointsResolver implements Resolve<Observable<PlayersSta
 
     return combineLatest([this.playersStore.selectPlayers(), this.teamsStore.selectAll()]).pipe(
       map(([players, teams]) => {
+        if (filters.position === PlayerPosition.ALL) {
+          return { players, teams };
+        }
+
+        return { players: players.filter((p) => p.position === filters.position), teams };
+      }),
+      map(({ players, teams }) => {
         return players.map((player) => {
           const team = teams.filter((t) => t.shortName === player.teamShort)[0];
           return this.converter.convert(player, team, filters);

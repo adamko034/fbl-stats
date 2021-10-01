@@ -11,7 +11,7 @@ export class PlayersStatsContentComponent {
   private _links: ViewTabNavigationLink[] = [
     { order: 3, label: 'Points efficiency', labelMobile: 'Players points efficiency', routerLink: 'pointsefficiency' },
     { order: 2, label: 'Games played', labelMobile: 'Players games played', routerLink: 'gamesplayed' },
-    { order: 1, label: 'Fantasy points', labelMobile: 'Fantasy points', routerLink: 'points' }
+    { order: 1, label: 'Overall', labelMobile: 'Overall stats', routerLink: 'points' }
   ];
 
   public get links(): ViewTabNavigationLink[] {

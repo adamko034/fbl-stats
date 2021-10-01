@@ -4,4 +4,5 @@ export interface TableCell {
   order: number;
   description: string;
   defaultSort?: boolean;
+  hideOnMd?: boolean;
 }
