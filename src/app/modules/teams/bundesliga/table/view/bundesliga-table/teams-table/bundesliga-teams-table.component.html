@@ -1,4 +1,4 @@
-<div>
+<div fxLayout="column" fxLayoutGap="10px">
   <table
     mat-table
     matSort
@@ -12,9 +12,9 @@
   >
     <ng-container matColumnDef="team">
       <th mat-header-cell *matHeaderCellDef>Team</th>
-      <td mat-cell *matCellDef="let team">
+      <td class="team" mat-cell *matCellDef="let team">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-          <app-team-logo [team]="team.shortName" [height]="25"></app-team-logo>
+          <app-team-logo [team]="team.shortName" [height]="20"></app-team-logo>
           <span fxHide.lt-md>{{ team.name }}</span>
         </div>
       </td>
@@ -88,11 +88,19 @@
     <ng-container matColumnDef="form">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Last {{ teams[0].form.length }}</th>
       <td mat-cell *matCellDef="let team">
-        <app-team-form [form]="team.form" [showLabels]="false" mode="dot"></app-team-form>
+        <app-team-form [form]="team.form" [showLabels]="false" mode="dot" [size]="'small'"></app-team-form>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <div class="legend" fxLayout="column">
+    <span>W - Wins</span>
+    <span>D - Draws</span>
+    <span>L - Looses</span>
+    <span>GSPG - Goals scored per game</span>
+    <span>GCPG - Goals conceded per game</span>
+  </div>
 </div>

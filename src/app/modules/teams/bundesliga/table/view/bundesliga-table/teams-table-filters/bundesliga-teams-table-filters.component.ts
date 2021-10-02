@@ -16,17 +16,17 @@ export class BundesligaTeamsTableFiltersComponent {
   };
 
   public venues: SwitchItem[] = [
-    { value: 'all', description: 'overall' },
-    { value: 'h', description: 'home' },
-    { value: 'a', description: 'away' }
+    { value: 'all', description: 'Overall' },
+    { value: 'h', description: 'Home' },
+    { value: 'a', description: 'Away' }
   ];
 
   public games: SwitchItem[] = [
-    { value: 0, description: 'all' },
-    { value: 2, description: 'last 2' },
-    { value: 3, description: 'last 3' },
-    { value: 4, description: 'last 4' },
-    { value: 5, description: 'last 5' }
+    { value: 0, description: 'All' },
+    { value: 2, description: 'Last 2' },
+    { value: 3, description: 'Last 3' },
+    { value: 4, description: 'Last 4' },
+    { value: 5, description: 'Last 5' }
   ];
 
   constructor() {}
