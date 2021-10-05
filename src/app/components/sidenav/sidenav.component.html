@@ -32,12 +32,23 @@
       </nav>
     </div>
     <div fxLayout="column">
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <div class="socials" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
         <a class="social-media" href="https://www.facebook.com/Fantasybl-stats-108481224674753" target="blank">
           <fa-icon class="social-media-icon" [icon]="['fab', 'facebook-f']"></fa-icon>
         </a>
         <a class="social-media" href="https://twitter.com/FantasyblS" target="blank">
           <fa-icon class="social-media-icon" [icon]="['fab', 'twitter']"></fa-icon>
+        </a>
+      </div>
+      <div *ngIf="false" class="bmc" fxLayout="row" fxLayoutAlign="start center">
+        <a>
+          <div fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-icon>sports_bar</mat-icon>
+            <div [fxHide]="!(expanded$ | async)" fxLayout="column" fxLayoutAlign="start center">
+              <span>Do you like it?</span>
+              <span>Buy me a beer</span>
+            </div>
+          </div>
         </a>
       </div>
       <div class="expander" fxLayout="row" fxLayoutAlign="flex-end">

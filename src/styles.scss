@@ -399,6 +399,11 @@ table.comparison-table {
   }
 }
 
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+}
+
 .custom-select .mat-form-field-infix {
   border-top: 0px !important;
 }

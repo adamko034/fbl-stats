@@ -132,17 +132,43 @@
     }
   }
 
-  .social-media {
-    margin-bottom: 5px;
-    &-icon {
-      font-size: 20px;
-      color: #fff;
-    }
+  .bmc {
+    height: 40px;
+    background-color: rgba($color: $colorBlue, $alpha: 0.4);
 
-    &:hover {
-      .social-media-icon {
-        color: $colorBlue;
-        transition: color ease-in-out 0.3s;
+    a {
+      cursor: pointer;
+      font-size: 11px;
+      color: rgba($color: #fff, $alpha: 0.8);
+      width: 100%;
+      padding-left: 20px;
+
+      &:hover {
+        color: #fff;
+        transition: color ease-in-out 0.5s;
+      }
+
+      span {
+        line-height: 1.5;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .socials {
+    height: 40px;
+
+    .social-media {
+      &-icon {
+        font-size: 18px;
+        color: $colorGreyLight;
+      }
+
+      &:hover {
+        .social-media-icon {
+          color: $colorWhite;
+          transition: color ease-in-out 0.3s;
+        }
       }
     }
   }
