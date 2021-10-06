@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TeamService } from 'src/app/modules/core/teams/services/team.service';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MathHelper } from 'src/app/shared/helpers/math.helper';
+import { CalculationsType } from 'src/app/shared/models/calculations-type.enum';
 import { TableCell } from 'src/app/shared/models/table-cell.model';
+import { Game } from 'src/app/store/players/models/game.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { PlayersStatsPointsFilters } from '../models/players-stats-points-filters.model';
@@ -22,7 +25,16 @@ export class PlayersStatsPointsConverter {
 
   private getStats(player: Player, team: Team, filters: PlayersStatsPointsFilters): TableCell[] {
     const allStats = player.pointsStats[filters.calculations];
-    const playedGames = player.games.filter((g) => g.hasPlayed);
+    let playedGames = player.games.filter((g) => g.hasPlayed);
+
+    if (filters.calculations === CalculationsType.LAST5) {
+      playedGames = new ArrayStream<Game>(player.games)
+        .orderBy('matchday', 'dsc')
+        .take(5)
+        .filterQuick((g) => g.hasPlayed)
+        .collect();
+    }
+
     const playedMatchdays = playedGames.map((g) => g.matchday);
     const playedGamesCount = playedGames.length;
 
@@ -38,7 +50,7 @@ export class PlayersStatsPointsConverter {
         .filter((m) => playedMatchdays.includes(m)).length;
 
       return [
-        { order: 1, value: playedGamesCount, header: 'GP', description: 'Games played', defaultSort: true },
+        { order: 1, value: playedGamesCount, header: 'GP', description: 'Games played' },
         {
           order: 2,
           value: playedGames.filter((g) => g.hasPlayedMoreThan70Min).length,
@@ -50,7 +62,8 @@ export class PlayersStatsPointsConverter {
           order: 4,
           value: MathHelper.divideAndRound(allStats.bundesligaGoals, playedGamesCount),
           header: 'GpG',
-          description: 'Goals per game'
+          description: 'Goals per game',
+          defaultSort: true
         },
         { order: 5, value: allStats.bundesligaAssits, header: 'A', description: 'Assists' },
         {
@@ -83,12 +96,13 @@ export class PlayersStatsPointsConverter {
     if (filters.type === PlayersStatsPointsType.FANTASY && filters.subType === PlayersStatsPointsSubType.ATTACKING) {
       return [
         { order: 0.9, header: 'GP', value: playedGamesCount, description: 'Games played' },
-        { order: 1, header: 'G', value: allStats.goals, description: 'Goals points', defaultSort: true },
+        { order: 1, header: 'G', value: allStats.goals, description: 'Goals points' },
         {
           order: 2,
           header: 'GpG',
           value: MathHelper.divideAndRound(allStats.goals, playedGamesCount),
-          description: 'Goals points per game'
+          description: 'Goals points per game',
+          defaultSort: true
         },
         { order: 3, header: 'A', value: allStats.assists, description: 'Assists points' },
         {
@@ -115,14 +129,15 @@ export class PlayersStatsPointsConverter {
     if (filters.type === PlayersStatsPointsType.FANTASY && filters.subType === PlayersStatsPointsSubType.DEFENCE) {
       return [
         { order: 1, header: 'GP', value: playedGamesCount, description: 'Games played' },
-        { order: 2, header: 'WD', value: allStats.wonDuels, description: 'Won duels points', defaultSort: true },
+        { order: 2, header: 'WD', value: allStats.wonDuels, description: 'Won duels points' },
         {
           order: 3,
           header: 'WDpG',
           value: MathHelper.divideAndRound(allStats.wonDuels, playedGamesCount),
-          description: 'Won duels points per game'
+          description: 'Won duels points per game',
+          defaultSort: true
         },
-        { order: 4, header: 'GC', value: allStats.goalsConceeded, description: 'Goals conceeded points' },
+        { order: 4, header: 'GC', value: allStats.goalsConceeded, description: 'Goals conceded points' },
         { order: 5, header: 'CS', value: allStats.cleanSheet, description: 'Clean sheet points' },
         { order: 6, header: 'CPen', value: allStats.causedPenalities, description: 'Caused penalties points' },
         { order: 7, header: 'ShS', value: allStats.shotsSaved, description: 'Shots saved points' },

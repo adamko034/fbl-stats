@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CalculationsType } from 'src/app/shared/models/calculations-type.enum';
 import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersStatsPointsFilters } from '../models/players-stats-points-filters.model';
 import { PlayersStatsPointsSubType } from '../models/players-stats-points-subtype.enum';
@@ -7,7 +8,7 @@ import { PlayersStatsPointsType } from '../models/players-stats-points-type.enum
 @Injectable()
 export class PlayersStatsQueryParamsService {
   private _default: PlayersStatsPointsFilters = {
-    calculations: 'overall',
+    calculations: CalculationsType.OVERALL,
     type: PlayersStatsPointsType.BUNDESLIGA,
     subType: PlayersStatsPointsSubType.GENERAL,
     position: PlayerPosition.ALL

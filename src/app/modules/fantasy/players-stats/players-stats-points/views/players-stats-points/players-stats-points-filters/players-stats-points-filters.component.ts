@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { CalculationsType } from 'src/app/shared/models/calculations-type.enum';
 import { PlayersStatsPointsFilters } from '../../../models/players-stats-points-filters.model';
 import { PlayersStatsPointsType } from '../../../models/players-stats-points-type.enum';
 
@@ -25,8 +26,8 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
   ];
 
   private _calcs: SwitchItem[] = [
-    { value: 'overall', description: 'Overall' },
-    { value: 'last5', description: 'Last 5' }
+    { value: CalculationsType.OVERALL, description: 'Overall' },
+    { value: CalculationsType.LAST5, description: 'Last 5 games' }
   ];
 
   public get types(): SwitchItem[] {
@@ -48,7 +49,7 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
   public onTypeChange(newType: string): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { type: newType }
+      queryParams: { type: newType, calc: this.filters.calculations }
     });
   }
 
