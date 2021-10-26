@@ -5,4 +5,5 @@ export interface TableCell {
   description: string;
   defaultSort?: boolean;
   hideOnMd?: boolean;
+  includeInTotal?: boolean;
 }

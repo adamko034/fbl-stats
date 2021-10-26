@@ -10,7 +10,7 @@ const routes: Routes = [
     path: ':id',
     canActivate: [PositionsStatsLoadedGuard],
     component: PlayerDetailsContentComponent,
-    resolve: { player: PlayerDetailsResolver, positions: PositionsStatsResolver }
+    resolve: { player: PlayerDetailsResolver, positionsStats: PositionsStatsResolver }
   }
 ];
 

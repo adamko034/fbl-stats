@@ -6,8 +6,8 @@ export class PositionStatsToChartPointConverter implements Convertable<PositionS
   public convert(items: PositionStatsMatchday[]): ChartPoint[] {
     return items.map((stats) => ({
       name: stats.matchday.toString(),
-      value: stats.top10PlayersAvgPoints,
-      valueDiff: stats.top10PlayersAvgPointsDiff,
+      value: stats.avgPoints,
+      valueDiff: stats.avgPointsDiff,
       order: stats.matchday,
       valueSuffix: 'pts'
     }));

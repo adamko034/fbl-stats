@@ -8,7 +8,10 @@
   </app-white-block>
   <app-white-block padding="0px 0px 10px 0px">
     <div>
-      <app-players-stats-points-table [players]="state$ | async | field: 'players'"></app-players-stats-points-table>
+      <app-players-stats-points-table
+        [players]="state$ | async | field: 'players'"
+        [filters]="state$ | async | field: 'filters'"
+      ></app-players-stats-points-table>
     </div>
   </app-white-block>
 </div>

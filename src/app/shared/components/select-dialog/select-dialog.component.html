@@ -1,0 +1,24 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+  <span class="selected-span" *ngIf="selectedCount() === 0">{{ noItemsSelectedLabel }}</span>
+  <span class="selected-span" *ngIf="selectedCount() > 0">{{ selectedItemsLabel }}</span>
+  <button
+    [fxHide.lt-sm]="changeToIconOnMobile"
+    mat-stroked-button
+    class="open-dialog-button"
+    [appScale]="0.9"
+    (click)="openDialog()"
+  >
+    <mat-icon>input</mat-icon>
+    <span>{{ openDialogLabel }}</span>
+  </button>
+  <button
+    fxHide.gt-xs
+    [fxShow.lt-sm]="changeToIconOnMobile"
+    mat-icon-button
+    class="main-background"
+    [appScale]="0.8"
+    (click)="openDialog()"
+  >
+    <mat-icon>input</mat-icon>
+  </button>
+</div>

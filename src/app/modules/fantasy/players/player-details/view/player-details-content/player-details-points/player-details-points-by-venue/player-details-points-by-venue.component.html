@@ -11,7 +11,7 @@
         </tr>
         <tr class="padding-top">
           <td>Games</td>
-          <td>{{ player.games | filterBy: ['wasPlayed']:true | field: 'length' }}</td>
+          <td>{{ player.games | filterBy: ['hasPlayed']:true | field: 'length' }}</td>
           <td>{{ homeGames.length }}</td>
           <td>{{ awayGames.length }}</td>
         </tr>

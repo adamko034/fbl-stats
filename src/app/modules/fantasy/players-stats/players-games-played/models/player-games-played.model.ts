@@ -13,6 +13,6 @@ export interface PlayerGamesPlayed {
   gamesStartedPercentage: number;
   allGamesCount: number;
   playedMoreThan70Min: number;
-  playedMoreThan70MinPercentageAll: number;
-  playedMoreThan70MinPercentagePlayed: number;
+  //playedMoreThan70MinPercentageAll: number;
+  playedMoreThan70MinPercentage: number;
 }

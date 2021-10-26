@@ -59,8 +59,11 @@ import { PlayerNameLinkComponent } from './components/player-name-link/player-na
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
 import { PlayersTableGenericComponent } from './components/players-table-generic/players-table-generic.component';
+import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
+import { SelectDialogComponent } from './components/select-dialog/select-dialog.component';
 import { SelectTeamsModalComponent } from './components/select-teams/select-teams-modal/select-teams-modal.component';
 import { SelectTeamsComponent } from './components/select-teams/select-teams.component';
+import { SelectComponent } from './components/select/select.component';
 import { ShowMoreLinkComponent } from './components/show-more-link/show-more-link.component';
 import { SliderMaxPopularityComponent } from './components/slider-max-popularity/slider-max-popularity.component';
 import { SliderMaxPriceComponent } from './components/slider-max-price/slider-max-price.component';
@@ -146,7 +149,10 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     BundesligaTableInnerComponent,
     PieChartComponent,
     TimeAgoComponent,
-    PlayersTableGenericComponent
+    PlayersTableGenericComponent,
+    SelectComponent,
+    SelectDialogComponent,
+    SelectDialogDialogComponent
   ],
   imports: [
     CommonModule,
@@ -215,7 +221,9 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     BundesligaTableComponent,
     PieChartComponent,
     TimeAgoComponent,
-    PlayersTableGenericComponent
+    PlayersTableGenericComponent,
+    SelectComponent,
+    SelectDialogComponent
   ]
 })
 export class SharedModule {

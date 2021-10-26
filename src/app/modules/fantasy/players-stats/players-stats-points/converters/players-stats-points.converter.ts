@@ -57,13 +57,12 @@ export class PlayersStatsPointsConverter {
           header: 'GP70',
           description: 'Games played 70min'
         },
-        { order: 3, value: allStats.bundesligaGoals, header: 'G', description: 'Goals' },
+        { order: 3, value: allStats.bundesligaGoals, header: 'G', description: 'Goals', defaultSort: true },
         {
           order: 4,
           value: MathHelper.divideAndRound(allStats.bundesligaGoals, playedGamesCount),
           header: 'GpG',
-          description: 'Goals per game',
-          defaultSort: true
+          description: 'Goals per game'
         },
         { order: 5, value: allStats.bundesligaAssits, header: 'A', description: 'Assists' },
         {
@@ -96,58 +95,107 @@ export class PlayersStatsPointsConverter {
     if (filters.type === PlayersStatsPointsType.FANTASY && filters.subType === PlayersStatsPointsSubType.ATTACKING) {
       return [
         { order: 0.9, header: 'GP', value: playedGamesCount, description: 'Games played' },
-        { order: 1, header: 'G', value: allStats.goals, description: 'Goals points' },
+        { order: 1, header: 'G', value: allStats.goals, description: 'Goals', includeInTotal: true },
         {
           order: 2,
           header: 'GpG',
           value: MathHelper.divideAndRound(allStats.goals, playedGamesCount),
-          description: 'Goals points per game',
+          description: 'Goals per game',
           defaultSort: true
         },
-        { order: 3, header: 'A', value: allStats.assists, description: 'Assists points' },
+        { order: 3, header: 'A', value: allStats.assists, description: 'Assists', includeInTotal: true },
         {
           order: 4,
           header: 'ApG',
           value: MathHelper.divideAndRound(allStats.assists, playedGamesCount),
-          description: 'Assists points per game'
+          description: 'Assists per game'
         },
-        { order: 5, header: 'Sh', value: allStats.shotsOnGoal, description: 'Shots on goal points' },
+        {
+          order: 5,
+          header: 'Sh',
+          value: allStats.shotsOnGoal,
+          description: 'Shots on goal',
+          includeInTotal: true
+        },
         {
           order: 6,
           header: 'ShpG',
           value: MathHelper.divideAndRound(allStats.shotsOnGoal, playedGamesCount),
-          description: 'Shots on goal points per game'
+          description: 'Shots on goal per game'
         },
-        { order: 7, header: '2G', value: allStats.twoGoals, description: 'Two goals points' },
-        { order: 8, header: '3G', value: allStats.threeGoals, description: 'Three goals points' },
-        { order: 9, header: 'WG', value: allStats.winningGoal, description: 'Winning goal points' },
-        { order: 10, header: 'Pen', value: allStats.scoredPenalties, description: 'Converted penalties points' },
-        { order: 11, header: 'MPen', value: allStats.missedPenalties, description: 'Missed penalties points' }
+        {
+          order: 6.5,
+          header: 'PtS',
+          value: allStats.passesToShot,
+          description: 'Passes to shot',
+          includeInTotal: true
+        },
+        { order: 7, header: '2G', value: allStats.twoGoals, description: 'Two goals', includeInTotal: true },
+        { order: 8, header: '3G', value: allStats.threeGoals, description: 'Three goals', includeInTotal: true },
+        {
+          order: 9,
+          header: 'WG',
+          value: allStats.winningGoal,
+          description: 'Winning goal',
+          includeInTotal: true
+        },
+        {
+          order: 10,
+          header: 'Pen',
+          value: allStats.scoredPenalties,
+          description: 'Converted penalties',
+          includeInTotal: true
+        },
+        {
+          order: 11,
+          header: 'MPen',
+          value: allStats.missedPenalties,
+          description: 'Missed penalties',
+          includeInTotal: true
+        }
       ];
     }
 
     if (filters.type === PlayersStatsPointsType.FANTASY && filters.subType === PlayersStatsPointsSubType.DEFENCE) {
       return [
         { order: 1, header: 'GP', value: playedGamesCount, description: 'Games played' },
-        { order: 2, header: 'WD', value: allStats.wonDuels, description: 'Won duels points' },
+        { order: 2, header: 'WD', value: allStats.wonDuels, description: 'Won duels', includeInTotal: true },
         {
           order: 3,
           header: 'WDpG',
           value: MathHelper.divideAndRound(allStats.wonDuels, playedGamesCount),
-          description: 'Won duels points per game',
+          description: 'Won duels per game',
           defaultSort: true
         },
-        { order: 4, header: 'GC', value: allStats.goalsConceeded, description: 'Goals conceded points' },
-        { order: 5, header: 'CS', value: allStats.cleanSheet, description: 'Clean sheet points' },
-        { order: 6, header: 'CPen', value: allStats.causedPenalities, description: 'Caused penalties points' },
-        { order: 7, header: 'ShS', value: allStats.shotsSaved, description: 'Shots saved points' },
+        {
+          order: 4,
+          header: 'GC',
+          value: allStats.goalsConceeded,
+          description: 'Goals conceded',
+          includeInTotal: true
+        },
+        { order: 5, header: 'CS', value: allStats.cleanSheet, description: 'Clean sheet', includeInTotal: true },
+        {
+          order: 6,
+          header: 'CPen',
+          value: allStats.causedPenalities,
+          description: 'Caused penalties',
+          includeInTotal: true
+        },
+        {
+          order: 7,
+          header: 'ShS',
+          value: allStats.shotsSaved,
+          description: 'Shots saved',
+          includeInTotal: true
+        },
         {
           order: 8,
           header: 'ShSpG',
           value: MathHelper.divideAndRound(allStats.shotsSaved, playedGamesCount),
-          description: 'Shots saved points per game'
+          description: 'Shots saved per game'
         },
-        { order: 9, header: 'SPen', value: allStats.penaltySaved, description: 'Saved penalties points' }
+        { order: 9, header: 'SPen', value: allStats.penaltySaved, description: 'Saved penalties' }
       ];
     }
 
@@ -158,15 +206,34 @@ export class PlayersStatsPointsConverter {
           order: 2,
           header: 'PM',
           value: allStats.playedMinutes,
-          description: 'Played minutes points',
-          defaultSort: true
+          description: 'Played minutes',
+          defaultSort: true,
+          includeInTotal: true
         },
-        { order: 3, header: 'WT', value: allStats.winningTeam, description: 'Winning team points' },
-        { order: 4, header: 'LT', value: allStats.loosingTeam, description: 'Loosing team points' },
-        { order: 5, header: 'Y', value: allStats.yellowCard, description: 'Yellow card points' },
-        { order: 6, header: 'SY', value: allStats.secondYellowCard, description: 'Second yellow card points' },
-        { order: 7, header: 'R', value: allStats.redCard, description: 'Red card points' },
-        { order: 8, header: 'OG', value: allStats.ownGoals, description: 'Own goal points' }
+        {
+          order: 3,
+          header: 'WT',
+          value: allStats.winningTeam,
+          description: 'Winning team',
+          includeInTotal: true
+        },
+        {
+          order: 4,
+          header: 'LT',
+          value: allStats.loosingTeam,
+          description: 'Loosing team',
+          includeInTotal: true
+        },
+        { order: 5, header: 'Y', value: allStats.yellowCard, description: 'Yellow card', includeInTotal: true },
+        {
+          order: 6,
+          header: 'SY',
+          value: allStats.secondYellowCard,
+          description: 'Second yellow card',
+          includeInTotal: true
+        },
+        { order: 7, header: 'R', value: allStats.redCard, description: 'Red card', includeInTotal: true },
+        { order: 8, header: 'OG', value: allStats.ownGoals, description: 'Own goal', includeInTotal: true }
       ];
     }
   }

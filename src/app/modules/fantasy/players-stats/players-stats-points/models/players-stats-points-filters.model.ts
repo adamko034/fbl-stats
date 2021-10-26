@@ -8,4 +8,5 @@ export interface PlayersStatsPointsFilters {
   subType: PlayersStatsPointsSubType;
   calculations: CalculationsType;
   position: PlayerPosition;
+  selectedColumns?: string[];
 }

@@ -21,7 +21,8 @@ export class PlayersPointsEfficiencyLoader {
     position: string
   ): Observable<PlayerPointsEfficiency[]> {
     Logger.logDev('players lists scoring chances loader');
-    const pointsFieldName = `scoringChances.${type}.moreThan${points}ptsPercentage`;
+    const pointsPercentageFieldName = `scoringChances.${type}.moreThan${points}ptsPercentage`;
+    const pointsFieldName = `scoringChances.${type}.moreThan${points}ptsGamesCount`;
 
     return this.playersStore.selectPlayers().pipe(
       map((players) => {
@@ -29,7 +30,7 @@ export class PlayersPointsEfficiencyLoader {
           .filterQuick(
             (p) => !position || position == PlayerPosition.ALL || p.position.toLowerCase() === position.toLowerCase()
           )
-          .orderByThenBy({ field: pointsFieldName, order: 'dsc' }, { field: 'totalPoints', order: 'dsc' })
+          .orderByThenBy({ field: pointsPercentageFieldName, order: 'dsc' }, { field: pointsFieldName, order: 'dsc' })
           .take(30)
           .convert(new PlayersPointsEfficiencyConverter(type, this.playerFormCalculator))
           .collect();

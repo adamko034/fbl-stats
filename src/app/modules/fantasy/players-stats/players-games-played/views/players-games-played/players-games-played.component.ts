@@ -26,7 +26,7 @@ export class PlayersGamesPlayedComponent implements OnInit {
     { value: 'gamesPlayedPercentage', description: 'Played' },
     { value: 'gamesStartedPercentage', description: 'Started' },
     // { value: 'playedMoreThan70MinPercentageAll', description: '>= 70min' },
-    { value: 'playedMoreThan70MinPercentagePlayed', description: '70min' }
+    { value: 'playedMoreThan70MinPercentage', description: '70min' }
   ];
   private _selectedType = 'gamesStarted';
 
@@ -120,8 +120,8 @@ export class PlayersGamesPlayedComponent implements OnInit {
       {
         order: 4,
         displayName: '70min',
-        hideOnMobile: this._orderBy !== 'playedMoreThan70MinPercentagePlayed',
-        fieldName: 'playedMoreThan70MinPercentagePlayed'
+        hideOnMobile: this._orderBy !== 'playedMoreThan70MinPercentage',
+        fieldName: 'playedMoreThan70MinPercentage'
       }
     ];
   }

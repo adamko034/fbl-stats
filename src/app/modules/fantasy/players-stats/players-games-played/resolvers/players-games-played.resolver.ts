@@ -32,7 +32,11 @@ export class PlayersGamesPlayedResolver implements Resolve<Observable<PlayerGame
   private getStats(players: Player[], lastMatchday: number, orderBy: string): PlayerGamesPlayed[] {
     return new ArrayStream<Player>(players)
       .convert<PlayerGamesPlayed>(new PlayersToGamesPlayedConverter(lastMatchday))
-      .orderByThenBy({ field: orderBy, order: 'dsc' }, { field: 'totalPoints', order: 'dsc' })
+      .orderByThenBy(
+        { field: orderBy, order: 'dsc' },
+        { field: orderBy.replace('Percentage', ''), order: 'dsc' },
+        { field: 'totalPoints', order: 'dsc' }
+      )
       .take(30)
       .collect();
   }

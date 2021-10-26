@@ -1,0 +1,13 @@
+@import '/src/variables.scss';
+
+.selected-span {
+  font-size: $fontSizeSmaller;
+}
+
+.open-dialog-button {
+  color: $colorBlue;
+
+  span {
+    margin-left: 3px;
+  }
+}

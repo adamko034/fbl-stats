@@ -30,8 +30,8 @@ export class PlayersToGamesPlayedConverter implements Convertable<Player, Player
       gamesStarted,
       gamesStartedPercentage: this.percentage(gamesStarted, this.lastMatchday),
       playedMoreThan70Min,
-      playedMoreThan70MinPercentageAll: this.percentage(playedMoreThan70Min, this.lastMatchday),
-      playedMoreThan70MinPercentagePlayed: this.percentage(playedMoreThan70Min, gamesPlayed)
+      //playedMoreThan70MinPercentageAll: this.percentage(playedMoreThan70Min, this.lastMatchday),
+      playedMoreThan70MinPercentage: this.percentage(playedMoreThan70Min, gamesPlayed)
     };
   }
 

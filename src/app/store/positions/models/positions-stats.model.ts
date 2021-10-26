@@ -1,8 +1,7 @@
-import { PositionStats } from './position-stats.model';
+import { PositionsStatsMatchdays } from './positions-stats-matchdays.model';
 
 export interface PositionsStats {
-  goalkeepers: PositionStats;
-  defenders: PositionStats;
-  midfielders: PositionStats;
-  forwards: PositionStats;
+  overall: PositionsStatsMatchdays;
+  overallTop20: PositionsStatsMatchdays;
+  top10EachPosition: PositionsStatsMatchdays;
 }

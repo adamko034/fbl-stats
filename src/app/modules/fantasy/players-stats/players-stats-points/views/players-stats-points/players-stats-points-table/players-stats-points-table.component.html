@@ -1,13 +1,18 @@
 <div fxLayout="column">
   <div>
-    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <div class="display" fxLayout="row wrap" fxLayoutAlign="space-between center">
       <app-players-position-switch
-        class="position"
         [showLabel]="false"
-        [selected]="filters$ | async | field: 'position'"
+        [selected]="filters.position"
         (positionChange)="onPositionChange($event)"
       ></app-players-position-switch>
-      <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
+      <app-select-dialog
+        class="columns"
+        *ngIf="shouldShowSelectColumnsDialog()"
+        [config]="selectColumnsDialogConfig"
+        (change)="onSelectedColumnsChange($event)"
+      ></app-select-dialog>
+      <mat-paginator fxFlexAlign="flex-end" showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
     </div>
 
     <div class="table-container">
@@ -54,12 +59,23 @@
         </ng-container>
 
         <ng-container *ngFor="let statHeader of statsHeaders" [matColumnDef]="statHeader.header">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef [matTooltip]="statHeader.tooltip">
+          <th
+            mat-header-cell
+            mat-sort-header
+            *matHeaderCellDef
+            [matTooltip]="statHeader.tooltip"
+            [ngClass]="{ 'column-active': statHeader.isActive }"
+          >
             {{ statHeader.header }}
           </th>
-          <td mat-cell *matCellDef="let player">
+          <td mat-cell *matCellDef="let player" [ngClass]="{ 'column-active': statHeader.isActive }">
             {{ getCellValue(player, statHeader.header) }}
           </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef matTooltip="Total">Total*</th>
+          <td mat-cell *matCellDef="let player">{{ getTotal(player) }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="columns" class="table-row"></tr>
@@ -68,13 +84,12 @@
     </div>
   </div>
 
-  <div class="legend">
-    <span *ngIf="(filters$ | async | field: 'type') === 'bundesliga'">
-      *Bundesliga stats are calculated using fantasy points and based on their scoring rules.
+  <div class="legend" fxLayout="column" fxLayoutGap="10px">
+    <span *ngIf="filters.type === 'bundesliga'">
+      Bundesliga stats are calculated using fantasy points and based on their scoring rules.
     </span>
-    <span *ngIf="(filters$ | async | field: 'type') === 'fantasy'">
-      *Fantasy bundesliga stats are taken directly from the official app.
-    </span>
+    <span *ngIf="filters.type === 'fantasy'"> Fantasy bundesliga stats are taken directly from the official app. </span>
+    <span>*Total - sum of values from grey columns</span>
   </div>
 
   <div class="legend legend-points">

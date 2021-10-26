@@ -46,8 +46,8 @@ export class PlayedGamesToListGenericConverter implements Convertable<PlayerGame
         // ),
         this.getOtherValue(
           4,
-          'playedMoreThan70MinPercentagePlayed',
-          player.playedMoreThan70MinPercentagePlayed,
+          'playedMoreThan70MinPercentage',
+          player.playedMoreThan70MinPercentage,
           player.playedMoreThan70Min,
           player.gamesPlayed
         )

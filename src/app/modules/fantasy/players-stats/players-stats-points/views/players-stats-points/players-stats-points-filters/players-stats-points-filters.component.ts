@@ -56,7 +56,7 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
   public onSubTypeChange(newType: string): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { sub: newType },
+      queryParams: { sub: newType, cols: null },
       queryParamsHandling: 'merge'
     });
   }
@@ -70,6 +70,6 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
   }
 
   public isFantasy(): boolean {
-    return this.filters.type !== PlayersStatsPointsType.BUNDESLIGA;
+    return this.filters.type === PlayersStatsPointsType.FANTASY;
   }
 }

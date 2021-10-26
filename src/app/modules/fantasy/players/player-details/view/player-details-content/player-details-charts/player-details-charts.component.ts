@@ -4,7 +4,8 @@ import { ChartConfig } from 'src/app/shared/components/chart/models/chart-config
 import { ChartPoint } from 'src/app/shared/components/chart/models/chart-point.model';
 import { PieChartConfig } from 'src/app/shared/components/pie-chart/models/pie-chart-config.model';
 import { MatchdayValueToChartPointConverter } from 'src/app/shared/converters/matchday-value-to-chart-point.converter';
-import { PositionStats } from 'src/app/store/positions/models/position-stats.model';
+import { PositionStatsMatchday } from 'src/app/store/positions/models/position-stats-matchday.model';
+import { PositionsStats } from 'src/app/store/positions/models/positions-stats.model';
 import { GameToChartPointConverter } from '../../../converters/game-to-chart-point.converter';
 import { PositionStatsToChartPointConverter } from '../../../converters/position-stats-to-chart-point.converter';
 import { PlayerDetails } from '../../../models/player-details.model';
@@ -17,7 +18,7 @@ import { PlayerDetails } from '../../../models/player-details.model';
 })
 export class PlayerDetailsChartsComponent implements OnInit {
   @Input() player: PlayerDetails;
-  @Input() positionStats: PositionStats;
+  @Input() positionsStats: PositionsStats;
 
   private _gamesPlayedChart: PieChartConfig;
   private _gamesStartedChart: PieChartConfig;
@@ -51,7 +52,10 @@ export class PlayerDetailsChartsComponent implements OnInit {
   }
 
   private get top10AvgPointsChanges() {
-    return new ArrayStream(this.positionStats.matchdays)
+    const top10PositionStats: PositionStatsMatchday[] =
+      this.positionsStats.top10EachPosition.positions[this.player.position];
+
+    return new ArrayStream(top10PositionStats)
       .filterQuick((s) => s.matchday >= this.minMatchday)
       .convert(new PositionStatsToChartPointConverter());
   }

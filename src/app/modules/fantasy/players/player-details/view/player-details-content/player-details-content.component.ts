@@ -2,13 +2,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { shortLongMaps } from 'src/app/resources/short-long.static';
-import { PositionStats } from 'src/app/store/positions/models/position-stats.model';
+import { PositionsStats } from 'src/app/store/positions/models/positions-stats.model';
 import { PlayerDetails } from '../../models/player-details.model';
 
 interface State {
   player: PlayerDetails;
-  positionStats: PositionStats;
+  positionsStats: PositionsStats;
 }
 
 @Component({
@@ -23,8 +22,6 @@ export class PlayerDetailsContentComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.state$ = this.route.data.pipe(
-      map(({ player, positions }) => ({ player, positionStats: positions[shortLongMaps.positions[player.position]] }))
-    );
+    this.state$ = this.route.data.pipe(map(({ player, positionsStats }) => ({ player, positionsStats })));
   }
 }

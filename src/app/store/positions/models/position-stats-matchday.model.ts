@@ -1,5 +1,11 @@
 export interface PositionStatsMatchday {
   matchday: number;
-  top10PlayersAvgPoints: number;
-  top10PlayersAvgPointsDiff: number;
+  position: string;
+  playersCount: number;
+  totalPrice: number;
+  avgPrice: number;
+  avgPriceDiff: number;
+  totalPoints: number;
+  avgPoints: number;
+  avgPointsDiff: number;
 }

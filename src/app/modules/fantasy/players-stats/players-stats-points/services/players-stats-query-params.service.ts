@@ -10,7 +10,7 @@ export class PlayersStatsQueryParamsService {
   private _default: PlayersStatsPointsFilters = {
     calculations: CalculationsType.OVERALL,
     type: PlayersStatsPointsType.BUNDESLIGA,
-    subType: PlayersStatsPointsSubType.GENERAL,
+    subType: PlayersStatsPointsSubType.ATTACKING,
     position: PlayerPosition.ALL
   };
 
@@ -19,13 +19,15 @@ export class PlayersStatsQueryParamsService {
       type: params.type,
       subType: params.sub,
       calculations: params.calc,
-      position: params.pos
+      position: params.pos,
+      selectedColumns: params.cols
     };
     const filters = {
       type: filtersFromParam.type ?? this._default.type,
       calculations: filtersFromParam.calculations ?? this._default.calculations,
       subType: filtersFromParam.subType ?? this._default.subType,
-      position: filtersFromParam.position ?? this._default.position
+      position: filtersFromParam.position ?? this._default.position,
+      selectedColumns: filtersFromParam.selectedColumns ?? null
     };
 
     return filters;

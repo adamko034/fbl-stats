@@ -55,7 +55,8 @@ export class ArrayStream<T> {
 
   public orderByThenBy(
     firstBy: { field: string; order: 'asc' | 'dsc' },
-    thenBy: { field: string; order: 'asc' | 'dsc' }
+    thenBy: { field: string; order: 'asc' | 'dsc' },
+    lastBy?: { field: string; order: 'asc' | 'dsc' }
   ): ArrayStream<T> {
     this.array = this.array.sort((a, b) => {
       const aFirstNum = +this.getField(a, firstBy.field);
@@ -64,6 +65,13 @@ export class ArrayStream<T> {
       const bSecondNum = +this.getField(b, thenBy.field);
 
       if (aFirstNum - bFirstNum === 0) {
+        if (aSecondNum - bSecondNum === 0 && lastBy != null) {
+          const aThirdNum = +this.getField(a, lastBy.field);
+          const bThirdNum = +this.getField(b, lastBy.field);
+
+          return lastBy.order === 'asc' ? aThirdNum - bThirdNum : bThirdNum - aThirdNum;
+        }
+
         return thenBy.order === 'asc' ? aSecondNum - bSecondNum : bSecondNum - aSecondNum;
       }
 
@@ -156,6 +164,10 @@ export class ArrayStream<T> {
 
   public maxBy(predicate: (item: T) => number): number {
     return Math.max(...this.array.map(predicate));
+  }
+
+  public sumBy(predicate: (item: T) => number): number {
+    return this.array.map(predicate).reduce((a, b) => a + b, 0);
   }
 
   public collect(): T[] {
