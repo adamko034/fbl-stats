@@ -10,7 +10,14 @@
     <app-admin-our-picks-totals [state]="state"></app-admin-our-picks-totals>
     <div fxLayout="column" fxLayoutGap="10px">
       <div *ngIf="!!players" cdkDropList class="admin-our-picks-list" (cdkDropListDropped)="drop($event)">
-        <div class="admin-our-pick" fxLayout="row" fxLayoutGap="10px" *ngFor="let player of players" cdkDrag>
+        <div
+          class="admin-our-pick"
+          [ngClass]="{ active: player.order === nextToMove }"
+          fxLayout="row"
+          fxLayoutGap="10px"
+          *ngFor="let player of players"
+          cdkDrag
+        >
           <span fxFlex="5">{{ player.order }}</span>
           <span fxFlex class="bold"
             ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link

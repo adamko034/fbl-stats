@@ -22,6 +22,7 @@ export class AdminOurPicksComponent implements OnInit {
   public state: AdminOurPicksMatchday;
   public lastMatchday$: Observable<number>;
   public budgetPlayerMaxPrice$: Observable<number>;
+  public nextToMove = 0;
 
   public get players(): OurPicksPlayer[] {
     return this.state?.ourPicks?.players;
@@ -61,6 +62,8 @@ export class AdminOurPicksComponent implements OnInit {
   public drop(event: CdkDragDrop<string[]>) {
     this.arraymove(this.state.ourPicks.players, event.previousIndex, event.currentIndex);
     this.reorderPlayers();
+
+    this.nextToMove = event.previousIndex + 2;
 
     this.isChange = true;
   }
