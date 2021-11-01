@@ -1,5 +1,6 @@
 export enum PlayersStatsPointsSubType {
   DEFENCE = 'defensive',
   ATTACKING = 'offensive',
-  GENERAL = 'general'
+  GENERAL = 'general',
+  ALL = 'all'
 }

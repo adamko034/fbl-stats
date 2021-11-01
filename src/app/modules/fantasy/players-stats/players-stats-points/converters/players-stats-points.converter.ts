@@ -195,7 +195,7 @@ export class PlayersStatsPointsConverter {
           value: MathHelper.divideAndRound(allStats.shotsSaved, playedGamesCount),
           description: 'Shots saved per game'
         },
-        { order: 9, header: 'SPen', value: allStats.penaltySaved, description: 'Saved penalties' }
+        { order: 9, header: 'SPen', value: allStats.penaltySaved, description: 'Saved penalties', includeInTotal: true }
       ];
     }
 
@@ -234,6 +234,112 @@ export class PlayersStatsPointsConverter {
         },
         { order: 7, header: 'R', value: allStats.redCard, description: 'Red card', includeInTotal: true },
         { order: 8, header: 'OG', value: allStats.ownGoals, description: 'Own goal', includeInTotal: true }
+      ];
+    }
+
+    if (filters.type === PlayersStatsPointsType.FANTASY && filters.subType === PlayersStatsPointsSubType.ALL) {
+      return [
+        { order: 1, header: 'GP', value: playedGamesCount, description: 'Games played' },
+        { order: 2, header: 'G', value: allStats.goals, description: 'Goals', includeInTotal: true },
+        { order: 3, header: 'A', value: allStats.assists, description: 'Assists', includeInTotal: true },
+        {
+          order: 4,
+          header: 'Sh',
+          value: allStats.shotsOnGoal,
+          description: 'Shots on goal',
+          includeInTotal: true
+        },
+        {
+          order: 5,
+          header: 'PtS',
+          value: allStats.passesToShot,
+          description: 'Passes to shot',
+          includeInTotal: true
+        },
+        { order: 7, header: '2G', value: allStats.twoGoals, description: 'Two goals', includeInTotal: true },
+        { order: 8, header: '3G', value: allStats.threeGoals, description: 'Three goals', includeInTotal: true },
+        {
+          order: 9,
+          header: 'WG',
+          value: allStats.winningGoal,
+          description: 'Winning goal',
+          includeInTotal: true
+        },
+        {
+          order: 10,
+          header: 'Pen',
+          value: allStats.scoredPenalties,
+          description: 'Converted penalties',
+          includeInTotal: true
+        },
+        {
+          order: 11,
+          header: 'MPen',
+          value: allStats.missedPenalties,
+          description: 'Missed penalties',
+          includeInTotal: true
+        },
+        { order: 12, header: 'WD', value: allStats.wonDuels, description: 'Won duels', includeInTotal: true },
+        {
+          order: 13,
+          header: 'GC',
+          value: allStats.goalsConceeded,
+          description: 'Goals conceded',
+          includeInTotal: true
+        },
+        { order: 14, header: 'CS', value: allStats.cleanSheet, description: 'Clean sheet', includeInTotal: true },
+        {
+          order: 15,
+          header: 'CPen',
+          value: allStats.causedPenalities,
+          description: 'Caused penalties',
+          includeInTotal: true
+        },
+        {
+          order: 16,
+          header: 'ShS',
+          value: allStats.shotsSaved,
+          description: 'Shots saved',
+          includeInTotal: true
+        },
+        {
+          order: 17,
+          header: 'SPen',
+          value: allStats.penaltySaved,
+          description: 'Saved penalties',
+          includeInTotal: true
+        },
+        {
+          order: 18,
+          header: 'PM',
+          value: allStats.playedMinutes,
+          description: 'Played minutes',
+          includeInTotal: true
+        },
+        {
+          order: 19,
+          header: 'WT',
+          value: allStats.winningTeam,
+          description: 'Winning team',
+          includeInTotal: true
+        },
+        {
+          order: 20,
+          header: 'LT',
+          value: allStats.loosingTeam,
+          description: 'Loosing team',
+          includeInTotal: true
+        },
+        { order: 21, header: 'Y', value: allStats.yellowCard, description: 'Yellow card', includeInTotal: true },
+        {
+          order: 22,
+          header: 'SY',
+          value: allStats.secondYellowCard,
+          description: 'Second yellow card',
+          includeInTotal: true
+        },
+        { order: 23, header: 'R', value: allStats.redCard, description: 'Red card', includeInTotal: true },
+        { order: 24, header: 'OG', value: allStats.ownGoals, description: 'Own goal', includeInTotal: true }
       ];
     }
   }

@@ -22,7 +22,8 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
   private _fantasyTypes: SwitchItem[] = [
     { value: 'general', description: 'General' },
     { value: 'offensive', description: 'Offensive' },
-    { value: 'defensive', description: 'Defensive' }
+    { value: 'defensive', description: 'Defensive' },
+    { value: 'all', description: 'All' }
   ];
 
   private _calcs: SwitchItem[] = [
