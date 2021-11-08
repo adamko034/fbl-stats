@@ -1,0 +1,24 @@
+<app-white-block padding="20px 10px 0 10px">
+  <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
+    <app-filter-position
+      class="filters"
+      [selected]="filters$ | async | field: 'position'"
+      (positionChange)="onPositionChange($event)"
+    ></app-filter-position>
+
+    <app-switch
+      class="filters"
+      name="types"
+      [value]="filters$ | async | field: 'type'"
+      [items]="types"
+      (switchChange)="onTypeChange($event)"
+    ></app-switch>
+    <app-switch
+      class="filters"
+      name="games"
+      [value]="filters$ | async | field: 'includeGames'"
+      [items]="games"
+      (switchChange)="onGamesChange($event)"
+    ></app-switch>
+  </div>
+</app-white-block>
