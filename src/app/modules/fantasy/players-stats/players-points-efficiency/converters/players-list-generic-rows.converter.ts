@@ -4,7 +4,7 @@ import { PlayersListGenericRow } from 'src/app/shared/components/players-list-ge
 import { PlayerPointsEfficiency } from '../models/player-points-efficiency.model';
 
 export class PlayersListGenericRowsConverter implements Convertable<PlayerPointsEfficiency, PlayersListGenericRow> {
-  constructor(private selectedOrderBy: string) {}
+  constructor() {}
 
   public convert(items: PlayerPointsEfficiency[]): PlayersListGenericRow[] {
     return items.map((x) => {
@@ -37,7 +37,6 @@ export class PlayersListGenericRowsConverter implements Convertable<PlayerPoints
     return {
       order,
       value: `${percentage}% (${count}/${allCount})`,
-      hideOnMobile: this.selectedOrderBy !== field,
       key: `moreThan${field}PtsPercentage`
     };
   }

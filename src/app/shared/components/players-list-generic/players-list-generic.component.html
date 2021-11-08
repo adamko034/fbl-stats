@@ -13,14 +13,17 @@
     >
       <thead>
         <tr>
-          <th mat-sort-header="playerName" [disabled]="!config.sortByPlayerEnabled">player</th>
-          <th>pos</th>
+          <th mat-sort-header="playerName" [disabled]="!config.sortByPlayerEnabled">Player</th>
+          <th>Pos</th>
           <th fxHide.xs>$</th>
           <th fxHide.md fxHide.xs>%</th>
           <th>TP</th>
           <th
             *ngFor="let column of data.columns | orderBy: 'order'"
-            [fxHide.lt-md]="column.hideOnMobile"
+            [fxHide.lt-md]="
+              ['lg', 'md'].includes(config.hideNotActiveBreakPoint) && column.fieldName !== config.defaultSortFieldName
+            "
+            [fxHide.lt-lg]="config.hideNotActiveBreakPoint === 'lg' && column.fieldName !== config.defaultSortFieldName"
             [mat-sort-header]="column.fieldName"
             [ngClass]="{ active: column.fieldName === config.defaultSortFieldName }"
           >
@@ -46,7 +49,10 @@
           <td fxHide.md fxHide.xs>{{ row.popularity }}</td>
           <td>{{ row.totalPoints }}</td>
           <td
-            [fxHide.lt-md]="other.hideOnMobile"
+            [fxHide.lt-md]="
+              ['md', 'lg'].includes(config.hideNotActiveBreakPoint) && other.key !== config.defaultSortFieldName
+            "
+            [fxHide.lt-lg]="config.hideNotActiveBreakPoint === 'lg' && other.key !== config.defaultSortFieldName"
             [ngClass]="{ active: other.key === config.defaultSortFieldName }"
             *ngFor="let other of row.otherValues | orderBy: 'order'"
           >

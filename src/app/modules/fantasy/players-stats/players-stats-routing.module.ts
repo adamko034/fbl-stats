@@ -28,6 +28,13 @@ const routes: Routes = [
         path: 'gamesplayed',
         loadChildren: () =>
           import('./players-games-played/players-games-played.module').then((m) => m.PlayersGamesPlayedModule)
+      },
+      {
+        path: 'avgpoints',
+        loadChildren: () =>
+          import('./players-stats-avg-points/players-stats-avg-points.module').then(
+            (m) => m.PlayersStatsAvgPointsModule
+          )
       }
     ]
   }

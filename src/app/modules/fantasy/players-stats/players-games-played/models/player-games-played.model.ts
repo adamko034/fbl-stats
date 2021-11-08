@@ -1,12 +1,6 @@
-export interface PlayerGamesPlayed {
-  id: string;
-  name: string;
-  lastName: string;
-  position: string;
-  popularity: number;
-  price: number;
-  totalPoints: number;
-  teamShort: string;
+import { PlayerCore } from 'src/app/modules/core/players/models/player-core.model';
+
+export interface PlayerGamesPlayed extends PlayerCore {
   gamesPlayed: number;
   gamesPlayedPercentage: number;
   gamesStarted: number;

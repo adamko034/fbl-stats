@@ -68,7 +68,8 @@ export class PlayersGamesPlayedComponent implements OnInit {
           defaultSortDirection: 'desc',
           defaultSortFieldName: this._orderBy,
           sortByPlayerEnabled: false,
-          sortByTeamEnabled: false
+          sortByTeamEnabled: false,
+          hideNotActiveBreakPoint: 'md'
         };
       })
     );
@@ -93,7 +94,7 @@ export class PlayersGamesPlayedComponent implements OnInit {
 
   private getListData(players: PlayerGamesPlayed[]): PlayersListGenericRow[] {
     return new ArrayStream<PlayerGamesPlayed>(players)
-      .convert<PlayersListGenericRow>(new PlayedGamesToListGenericConverter(this._orderBy))
+      .convert<PlayersListGenericRow>(new PlayedGamesToListGenericConverter())
       .collect();
   }
 

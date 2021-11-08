@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { PlayerGamesService } from 'src/app/modules/core/players/services/player-games.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { PlayerDetailsGamesFilters } from '../../../../filters/player-details-games.filters';
 import { PlayerDetailsGameFilter } from '../../../../models/enums/player-details-game-filter.enum';
@@ -16,17 +17,17 @@ export class PlayerDetailsPointsByVenueComponent {
 
   public get homeGames(): PlayerDetailsGame[] {
     return new ArrayStream(this.player.games)
-      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.HOME))
+      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.HOME, this.playerGamesService))
       .collect();
   }
 
   public get awayGames(): PlayerDetailsGame[] {
     return new ArrayStream(this.player.games)
-      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.AWAY))
+      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.AWAY, this.playerGamesService))
       .collect();
   }
 
-  constructor() {}
+  constructor(private playerGamesService: PlayerGamesService) {}
 
   public calculatePointsPer1M(points: number): number {
     return Math.round((points / this.player.fantasy.price) * 10) / 10;

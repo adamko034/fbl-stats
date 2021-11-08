@@ -4,7 +4,7 @@ import { PlayersListGenericRow } from 'src/app/shared/components/players-list-ge
 import { PlayerGamesPlayed } from '../models/player-games-played.model';
 
 export class PlayedGamesToListGenericConverter implements Convertable<PlayerGamesPlayed, PlayersListGenericRow> {
-  constructor(private orderByField: string) {}
+  constructor() {}
 
   public convert(items: PlayerGamesPlayed[]): PlayersListGenericRow[] {
     return items.map((item) => this.convertSingle(item));
@@ -64,7 +64,6 @@ export class PlayedGamesToListGenericConverter implements Convertable<PlayerGame
   ): PlayersListGenericRowOther {
     return {
       order,
-      hideOnMobile: this.orderByField !== fieldName,
       key: fieldName,
       value: `${percentage}% (${count}/${allCount})`
     };

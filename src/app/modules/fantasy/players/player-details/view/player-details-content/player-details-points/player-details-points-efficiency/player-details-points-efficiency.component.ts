@@ -61,7 +61,7 @@ export class PlayerDetailsPointsEfficiencyComponent implements OnInit {
   }
 
   private createStateRowValue(minPoints: number, filter: PlayerDetailsGameFilter): string {
-    const games = new PlayerDetailsGamesFilters(filter).filter(this.player.games);
+    const games = new PlayerDetailsGamesFilters(filter, this.playerGamesService).filter(this.player.games);
     const gamesCount = this.playerGamesService.getGamesCountWithPointsGreaterThan(games, minPoints);
     const percentage = gamesCount.length === 0 ? 0 : Math.round((gamesCount.length / games.length) * 1000) / 10;
 

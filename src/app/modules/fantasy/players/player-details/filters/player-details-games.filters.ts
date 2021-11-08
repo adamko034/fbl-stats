@@ -1,3 +1,4 @@
+import { PlayerGamesService } from 'src/app/modules/core/players/services/player-games.service';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
 import { PlayerDetailsGameFilter } from '../models/enums/player-details-game-filter.enum';
 import { PlayerDetailsGame } from '../models/player-details-game.model';
@@ -9,7 +10,7 @@ import { PlayerDetailsGamesVsTopFilter } from './games/player-details-games-vsTo
 import { PlayerDetailsGamesVsWorstFilter } from './games/player-details-games-vsWorst.filter';
 
 export class PlayerDetailsGamesFilters implements Filterable<PlayerDetailsGame> {
-  constructor(private filterType: PlayerDetailsGameFilter) {}
+  constructor(private filterType: PlayerDetailsGameFilter, private playersGamesService: PlayerGamesService) {}
 
   public filter(items: PlayerDetailsGame[]): PlayerDetailsGame[] {
     const filterClass = this.createFilter();
@@ -25,7 +26,7 @@ export class PlayerDetailsGamesFilters implements Filterable<PlayerDetailsGame> 
       case PlayerDetailsGameFilter.HOME:
         return new PlayerDetailsGamesHomeFilter();
       case PlayerDetailsGameFilter.LAST5:
-        return new PlayerDetailsGamesLast5Filter();
+        return new PlayerDetailsGamesLast5Filter(this.playersGamesService);
       case PlayerDetailsGameFilter.VsTOP6:
         return new PlayerDetailsGamesVsTopFilter();
       case PlayerDetailsGameFilter.VsWORST6:

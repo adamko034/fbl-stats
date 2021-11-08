@@ -89,9 +89,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
           }
 
           const columns = this.getColumns(orderByParam);
-          const rows = new ArrayStream(pointsEfficiency)
-            .convert(new PlayersListGenericRowsConverter(orderByParam))
-            .collect();
+          const rows = new ArrayStream(pointsEfficiency).convert(new PlayersListGenericRowsConverter()).collect();
           const listConfig = this.getListConfig(orderByParam);
 
           return {
@@ -174,7 +172,8 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
       defaultSortDirection: 'desc',
       defaultSortFieldName: `moreThan${orderBy}PtsPercentage`,
       sortByTeamEnabled: false,
-      sortByPlayerEnabled: false
+      sortByPlayerEnabled: false,
+      hideNotActiveBreakPoint: 'md'
     };
   }
 

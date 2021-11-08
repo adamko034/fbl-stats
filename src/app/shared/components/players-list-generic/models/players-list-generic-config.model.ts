@@ -3,4 +3,5 @@ export interface PlayersListGenericConfig {
   defaultSortDirection: 'desc' | 'asc';
   sortByTeamEnabled: boolean;
   sortByPlayerEnabled: boolean;
+  hideNotActiveBreakPoint: 'md' | 'lg';
 }
