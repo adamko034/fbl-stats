@@ -27,7 +27,11 @@
       </th>
       <td class="rank" mat-cell *matCellDef="let team">
         <div fxLayout="row" fxLayoutAlign="center center">
-          <span>{{ team.rank }}</span>
+          <div>
+            <span style="visibility: hidden" *ngIf="team.rank < 10">0</span>
+            <span>{{ team.rank }}</span>
+          </div>
+
           <span *ngIf="team.previousRank != 0">
             <mat-icon appScale="0.8" class="rank-diff green" *ngIf="team.rank < team.previousRank"
               >keyboard_arrow_up</mat-icon
@@ -152,12 +156,12 @@
     <span>GP - Games played</span>
     <span>W - Wins</span>
     <span>D - Draws</span>
-    <span>L - Looses</span>
+    <span>L - Losses</span>
     <span>GS - Goals scored</span>
     <span>GC - Goals conceded</span>
     <span>GSPG - Goals scored per game</span>
     <span>GCPG - Goals conceded per game</span>
-    <span>CS - Clean sheets percentage</span>
-    <span>FtS - Failed to score percentage</span>
+    <span>CS - Clean sheets</span>
+    <span>FtS - Failed to score</span>
   </div>
 </div>
