@@ -1,16 +1,13 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <app-white-block>
     <div>
-      <app-bundesliga-teams-table-filters
-        *ngIf="!noGamesPlayed"
-        (filtersChange)="onFiltersChange($event)"
-      ></app-bundesliga-teams-table-filters>
+      <app-bundesliga-teams-table-filters [filters]="filters$ | async"></app-bundesliga-teams-table-filters>
     </div>
   </app-white-block>
 
   <app-white-block>
-    <div fxLayout="row" fxLayoutAlign="center center">
-      <app-bundesliga-teams-table [teams]="teamsToDisplay"></app-bundesliga-teams-table>
+    <div fxLayout="row" fxLayoutAlign="space-evenly">
+      <app-bundesliga-teams-table [teams]="teams$ | async"></app-bundesliga-teams-table>
     </div>
   </app-white-block>
 </div>

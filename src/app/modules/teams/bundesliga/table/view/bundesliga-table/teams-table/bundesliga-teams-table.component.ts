@@ -1,21 +1,31 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
-import { Team } from 'src/app/store/teams/models/team.model';
 import { Logger } from 'src/app/utils/logger';
+import { TeamsBundesligaTableTeam } from '../../../models/teams-bundesliga-table-team.model';
 
 @UntilDestroy()
 @Component({
   selector: 'app-bundesliga-teams-table',
   templateUrl: './bundesliga-teams-table.component.html',
-  styleUrls: ['./bundesliga-teams-table.component.scss']
+  styleUrls: ['./bundesliga-teams-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
-  @Input() teams: Team[];
+  @Input() teams: TeamsBundesligaTableTeam[];
 
-  public dataSource: MatTableDataSource<Team> = new MatTableDataSource();
+  public dataSource: MatTableDataSource<TeamsBundesligaTableTeam> = new MatTableDataSource();
   private allColumns = [
     'rank',
     'team',
@@ -24,42 +34,82 @@ export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
     'wins',
     'draws',
     'losses',
-    'goals',
+    'goalsScored',
+    'goalsConceded',
+    'goalsDiff',
     'gspg',
     'gcpg',
+    'cleanSheetsPercentage',
+    'failedToScorePercentage',
     'form'
   ];
 
+  private mdColumns = [
+    'rank',
+    'team',
+    'points',
+    'gamesPlayed',
+    'wins',
+    'draws',
+    'losses',
+    'goalsScored',
+    'goalsConceded',
+    'goalsDiff',
+    'cleanSheetsPercentage',
+    'failedToScorePercentage',
+    'form'
+  ];
+
+  private smColumns = [
+    'rank',
+    'team',
+    'points',
+    'gamesPlayed',
+    'wins',
+    'draws',
+    'losses',
+    'goalsScored',
+    'goalsConceded',
+    'goalsDiff'
+  ];
+
+  private xsColumns = ['rank', 'team', 'points', 'gamesPlayed', 'wins', 'draws', 'losses', 'goals'];
+
   public displayedColumns: string[] = [];
-  public gamesColumnDisplay = 'Games';
-  public pointsColumnDisplay = 'Points';
   public smallFont = false;
 
   @ViewChild(MatSort)
   public sort: MatSort;
 
-  constructor(private screenSizeService: ScreenSizeService) {}
+  constructor(private screenSizeService: ScreenSizeService, private changeDetection: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.screenSizeService
       .onResize()
       .pipe(untilDestroyed(this))
       .subscribe((screen) => {
-        this.gamesColumnDisplay = 'Games';
-        this.pointsColumnDisplay = 'Points';
         this.smallFont = false;
 
         if (this.teams[0].gamesPlayed === 0) {
           this.allColumns = this.allColumns.filter((x) => x !== 'form');
+          this.changeDetection.detectChanges();
         }
 
-        if (screen > ScreenSize.SM) {
+        if (screen > ScreenSize.MD) {
           this.displayedColumns = [...this.allColumns];
+          this.changeDetection.detectChanges();
+          return;
+        }
+
+        if (screen === ScreenSize.MD) {
+          this.displayedColumns = [...this.mdColumns];
+          this.changeDetection.detectChanges();
           return;
         }
 
         if (screen === ScreenSize.SM) {
-          this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg');
+          this.displayedColumns = [...this.smColumns];
+          this.changeDetection.detectChanges();
           return;
         }
 
@@ -68,9 +118,8 @@ export class BundesligaTeamsTableComponent implements OnChanges, AfterViewInit {
             this.smallFont = true;
           }
 
-          this.gamesColumnDisplay = 'G';
-          this.pointsColumnDisplay = 'Pts';
-          this.displayedColumns = this.allColumns.filter((c) => c !== 'gspg' && c !== 'gcpg' && c !== 'form');
+          this.displayedColumns = [...this.xsColumns];
+          this.changeDetection.detectChanges();
           return;
         }
       });

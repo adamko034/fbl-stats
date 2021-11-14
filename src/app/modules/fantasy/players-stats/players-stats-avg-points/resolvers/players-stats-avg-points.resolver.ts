@@ -10,6 +10,7 @@ import { Logger } from 'src/app/utils/logger';
 import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersStatsAvgPointsConverter } from '../converters/players-stats-avg-points.converter';
 import { PlayerStatsAvgPoints } from '../models/player-stats-avg-points.model';
+import { PlayersStatsAvgPointsType } from '../models/players-stats-avg-points-type.enum';
 import { PlayersStatsAvgPointsQueryParamsService } from '../services/players-stats-avg-points-query-params.service';
 
 @Injectable()
@@ -30,11 +31,32 @@ export class PlayersStatsAvgPointsResolver implements Resolve<Observable<PlayerS
         const players = this.filterByPosition(allPlayers, filters.position);
         const stats = this.converter.fromPlayers(players, teams, filters.includeGames);
 
-        return new ArrayStream<PlayerStatsAvgPoints>(stats).orderBy(filters.type, 'dsc').take(30).collect();
+        return new ArrayStream<PlayerStatsAvgPoints>(stats)
+          .orderByThenBy(
+            { field: filters.type, order: 'dsc' },
+            { field: this.getGamesPlayedFieldName(filters.type), order: 'dsc' }
+          )
+          .take(30)
+          .collect();
       }),
       tap((_) => Logger.logDev('players stats avg points resolver, got data')),
       first()
     );
+  }
+
+  private getGamesPlayedFieldName(type: PlayersStatsAvgPointsType): string {
+    switch (type) {
+      case PlayersStatsAvgPointsType.AWAY:
+        return 'awayGamesPlayed';
+      case PlayersStatsAvgPointsType.HOME:
+        return 'homeGamesPlayed';
+      case PlayersStatsAvgPointsType.OVERALL:
+        return 'gamesPlayedTotal';
+      case PlayersStatsAvgPointsType.VSBOTTOM:
+        return 'vsBottomGamesPlayed';
+      default:
+        return 'vsTopGamesPlayed';
+    }
   }
 
   private filterByPosition(allPlayers: Player[], position: PlayerPosition): Player[] {

@@ -170,6 +170,10 @@ export class ArrayStream<T> {
     return this.array.map(predicate).reduce((a, b) => a + b, 0);
   }
 
+  public countBy<R>(predicate: (item: T) => R): number {
+    return this.array.filter(predicate).length;
+  }
+
   public collect(): T[] {
     return this.array;
   }

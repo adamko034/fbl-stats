@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
-import { BundesligaTableFilters } from '../../../models/bundesliga-table-filters.model';
+import { TeamsBundesligaTableFilters } from '../../../models/teams-bundesliga-table-filters.model';
 
 @Component({
   selector: 'app-bundesliga-teams-table-filters',
@@ -8,12 +9,7 @@ import { BundesligaTableFilters } from '../../../models/bundesliga-table-filters
   styleUrls: ['./bundesliga-teams-table-filters.component.scss']
 })
 export class BundesligaTeamsTableFiltersComponent {
-  @Output() filtersChange = new EventEmitter<BundesligaTableFilters>();
-
-  public filters: BundesligaTableFilters = {
-    games: 0,
-    venue: 'all'
-  };
+  @Input() filters: TeamsBundesligaTableFilters;
 
   public venues: SwitchItem[] = [
     { value: 'all', description: 'Overall' },
@@ -29,19 +25,13 @@ export class BundesligaTeamsTableFiltersComponent {
     { value: 5, description: 'Last 5' }
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   public onVenueChange(newValue: 'all' | 'h' | 'a') {
-    this.filters.venue = newValue;
-    this.emit();
+    this.router.navigate([], { queryParams: { venue: newValue }, queryParamsHandling: 'merge' });
   }
 
   public onGamesChange(newValue: number): void {
-    this.filters.games = newValue;
-    this.emit();
-  }
-
-  private emit(): void {
-    this.filtersChange.emit(this.filters);
+    this.router.navigate([], { queryParams: { games: newValue }, queryParamsHandling: 'merge' });
   }
 }

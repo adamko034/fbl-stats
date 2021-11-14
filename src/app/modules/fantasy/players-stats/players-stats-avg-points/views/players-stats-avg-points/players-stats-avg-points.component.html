@@ -7,6 +7,9 @@
         [config]="listConfig$ | async"
         (sortChange)="onSortChange($event)"
       ></app-players-list-generic>
+      <div class="legend">
+        <span>*(points / games played)</span>
+      </div>
     </div>
   </app-white-block>
 </div>
