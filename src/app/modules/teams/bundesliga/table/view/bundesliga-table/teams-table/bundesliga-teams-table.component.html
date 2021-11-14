@@ -10,7 +10,7 @@
     class="table-responsive"
     [ngClass]="{ 'small-font': smallFont }"
   >
-    <ng-container matColumnDef="team" sticky>
+    <ng-container matColumnDef="team">
       <th mat-header-cell *matHeaderCellDef>Team</th>
       <td class="team" mat-cell *matCellDef="let team">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
@@ -20,13 +20,24 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="rank" sticky>
+    <ng-container matColumnDef="rank">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         <span fxHide.lt-sm>Rank</span>
         <span fxHide.gt-xs></span>
       </th>
       <td class="rank" mat-cell *matCellDef="let team">
-        <span>{{ team.rank }}</span>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <span>{{ team.rank }}</span>
+          <span *ngIf="team.previousRank != 0">
+            <mat-icon appScale="0.8" class="rank-diff green" *ngIf="team.rank < team.previousRank"
+              >keyboard_arrow_up</mat-icon
+            >
+            <mat-icon appScale="0.8" class="rank-diff red" *ngIf="team.rank > team.previousRank"
+              >keyboard_arrow_down</mat-icon
+            >
+            <span class="rank-diff-no-change" *ngIf="team.rank == team.previousRank">--</span>
+          </span>
+        </div>
       </td>
     </ng-container>
 

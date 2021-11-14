@@ -2,6 +2,7 @@ export interface TeamsBundesligaTableTeam {
   shortName: string;
   name: string;
   rank: number;
+  previousRank: number;
   rankFiltered: number;
   points: number;
   gamesPlayed: number;

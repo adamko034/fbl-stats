@@ -52,6 +52,7 @@ export class TeamsGamesFitlerAndCalculate implements Actionable<Team> {
       form: this.resultIndicatorService.fromResultArray(games.map((g) => g.result)),
       games,
       rank: team.rank,
+      previousRank: team.previousRank,
       gcpg: Math.round((goalsConceded / games.length) * 10) / 10 || 0,
       gspg: Math.round((goalsScored / games.length) * 10) / 10 || 0,
       last2Games: team.last2Games,

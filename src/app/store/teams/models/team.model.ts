@@ -6,6 +6,7 @@ export interface Team {
   name: string;
   gamesPlayed: number;
   rank: number;
+  previousRank: number;
   points: number;
   wins: number;
   draws: number;

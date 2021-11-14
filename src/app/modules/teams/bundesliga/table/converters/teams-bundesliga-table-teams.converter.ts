@@ -26,7 +26,8 @@ export class TeamsBundesligaTableTeamsConverter implements Convertable<Team, Tea
       gcpg,
       shortName,
       name,
-      rank
+      rank,
+      previousRank
     } = team;
     const cleanSheets = new ArrayStream<Fixture>(team.games).countBy((g) => g.goalsConceded === 0);
     const failedToScore = new ArrayStream<Fixture>(team.games).countBy((g) => g.goalsScored === 0);
@@ -46,6 +47,7 @@ export class TeamsBundesligaTableTeamsConverter implements Convertable<Team, Tea
       gspg,
       gcpg,
       rank,
+      previousRank,
       rankFiltered: rank,
       cleanSheets,
       cleanSheetsPercentage: MathHelper.divideAndRoundPercentage(cleanSheets, gamesPlayed),

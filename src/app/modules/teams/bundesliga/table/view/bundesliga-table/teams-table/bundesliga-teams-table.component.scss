@@ -20,6 +20,14 @@ table {
 
     td.rank {
       text-align: center;
+
+      .rank-diff {
+        padding-top: 3px;
+      }
+
+      .rank-diff-no-change {
+        padding: 0 8px;
+      }
     }
 
     td.team {
