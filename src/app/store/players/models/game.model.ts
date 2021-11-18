@@ -4,4 +4,6 @@ export interface Game {
   hasPlayed: boolean;
   hasPlayedMoreThan70Min: boolean;
   started: boolean;
+  goals: number;
+  assists: number;
 }

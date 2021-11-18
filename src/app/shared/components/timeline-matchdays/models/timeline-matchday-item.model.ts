@@ -5,6 +5,10 @@ export interface TimelineMatchdayItem {
   isHome: boolean;
   wasPlayed: boolean;
   hasPlayed: boolean;
+  hasStarted?: boolean;
+  hasPlayed70min?: boolean;
+  goalsScored?: number;
+  assists?: number;
   points?: number;
   result?: string;
   resultText?: string;

@@ -6,9 +6,11 @@ import { faFacebook, faFacebookF, faTwitter } from '@fortawesome/free-brands-svg
 import {
   faArrowDown,
   faArrowUp,
+  faBullseye,
   faCrown,
   faEquals,
   faExternalLinkAlt,
+  faFutbol,
   faMedal,
   faPiggyBank,
   faQuestion,
@@ -37,6 +39,7 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
 import { BundesligaTableFiltersComponent } from './components/bundesliga-table/bundesliga-table-filters/bundesliga-table-filters.component';
 import { BundesligaTableInnerComponent } from './components/bundesliga-table/bundesliga-table-inner/bundesliga-table-inner.component';
 import { BundesligaTableComponent } from './components/bundesliga-table/bundesliga-table.component';
@@ -44,6 +47,10 @@ import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.com
 import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { FollowUsToStayTunedComponent } from './components/follow-us-to-stay-tuned/follow-us-to-stay-tuned.component';
+import { GoalsIconsComponent } from './components/goals-icons/goals-icons.component';
+import { HasCameFromBenchIconComponent } from './components/has-came-from-bench-icon/has-came-from-bench-icon.component';
+import { HasPlayedSeventyMinutesIconComponent } from './components/has-played-seventy-minutes-icon/has-played-seventy-minutes-icon.component';
+import { HasStartedIconComponent } from './components/has-started-icon/has-started-icon.component';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
@@ -152,7 +159,12 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     PlayersTableGenericComponent,
     SelectComponent,
     SelectDialogComponent,
-    SelectDialogDialogComponent
+    SelectDialogDialogComponent,
+    GoalsIconsComponent,
+    AssistsIconsComponent,
+    HasStartedIconComponent,
+    HasCameFromBenchIconComponent,
+    HasPlayedSeventyMinutesIconComponent
   ],
   imports: [
     CommonModule,
@@ -246,7 +258,9 @@ export class SharedModule {
       faStar,
       faUserPlus,
       faMedal,
-      faQuestion
+      faQuestion,
+      faBullseye,
+      faFutbol
     );
   }
 }

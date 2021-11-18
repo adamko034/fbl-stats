@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="103"
+   height="103"
+   viewBox="0 0 27.252085 27.252085"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="pitch4.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="px"
+     showgrid="false"
+     borderlayer="false"
+     showborder="false"
+     inkscape:zoom="3.7362414"
+     inkscape:cx="47.373813"
+     inkscape:cy="82.034315"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     lock-margins="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px"
+     inkscape:snap-object-midpoints="false"
+     inkscape:snap-others="true" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="2">
+      <stop
+         id="9"
+         stop-color="#2e3436" />
+      <stop
+         id="A"
+         offset="1"
+         stop-color="#2e3436"
+         stop-opacity="0" />
+    </linearGradient>
+    <linearGradient
+       id="3">
+      <stop
+         id="B"
+         stop-color="#fff" />
+      <stop
+         id="C"
+         offset="1"
+         stop-color="#fff"
+         stop-opacity="0" />
+    </linearGradient>
+    <linearGradient
+       id="4">
+      <stop
+         id="D"
+         stop-color="#fff"
+         stop-opacity="0.8" />
+      <stop
+         id="E"
+         offset="1"
+         stop-color="#fff"
+         stop-opacity="0" />
+    </linearGradient>
+    <radialGradient
+       cx="20.687"
+       cy="46.616001"
+       r="12.228"
+       id="5"
+       xlink:href="#2"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.8204677,0,0,0.1341645,4.4416214,38.87484)" />
+    <linearGradient
+       y1="4.5500002"
+       x2="0"
+       y2="44.23"
+       id="6"
+       xlink:href="#4"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       x1="18.389"
+       y1="-12.905"
+       x2="34.681"
+       y2="29.688"
+       id="7"
+       xlink:href="#3"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.47980035,0.384701)">
+    <rect
+       style="fill:none;fill-opacity:0.145161;stroke:#333333;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2864"
+       width="26.458334"
+       height="26.458334"
+       x="-0.082925327"
+       y="0.012174021"
+       inkscape:export-filename="D:\code\fbl-stats_front\src\assets\icons\pitch4.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path3315"
+       cx="13.146241"
+       cy="13.241342"
+       rx="2.9134893"
+       ry="2.6473277"
+       inkscape:export-filename="D:\code\fbl-stats_front\src\assets\icons\pitch4.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#ffffff;stroke:#333333;stroke-width:0.798943;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M -0.50076882,13.232142 26.137188,13.15018"
+       id="path3432"
+       inkscape:export-filename="D:\code\fbl-stats_front\src\assets\icons\pitch4.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="path5891"
+       style="fill:#ffffff;stroke:#333333;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 2.9176554e58,-12.378197 A 1.4588277e58,0 0 0 0 9.9057336e45,-12.378197 4.9528668e45,0 0 0 0 7.6166418e29,-12.378197 4.9528668e45,0 -180 0 0 9.9057336e45,-12.378197 Z" />
+    <path
+       id="path6554"
+       style="fill:none;stroke:#333333;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 18.954521,26.178785 v 0 -3.751396 H 7.3379612 v 3.751396"
+       inkscape:export-filename="D:\code\fbl-stats_front\src\assets\icons\pitch4.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="path7038"
+       style="fill:none;stroke:#333333;stroke-width:0.79375;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 18.954521,0.12316047 v 0 3.75139503 H 7.3379612 V 0.12316047"
+       inkscape:export-filename="D:\code\fbl-stats_front\src\assets\icons\pitch4.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       aria-label="70"
+       transform="matrix(0.82571016,0,0,1.0508605,0.07939332,2.0991151)"
+       id="text25649"
+       style="font-size:15.6517px;line-height:1.25;fill:#00aa00;stroke:#000000;stroke-width:0.78259">
+      <path
+         id="path41800"
+         style="font-weight:bold;font-size:20.869px;-inkscape-font-specification:'sans-serif, Bold';fill:#00dc00;fill-opacity:1;stroke-width:0.782591"
+         d="m 23.019332,2.7056387 c -1.114101,2e-7 -2.072513,0.1667504 -2.874122,0.4996218 -0.801608,0.3328714 -1.45372,0.8321382 -1.956424,1.497881 -0.502703,0.6725363 -0.869516,1.4947028 -1.100488,2.4661439 -0.230972,0.9714411 -0.346242,2.1160154 -0.346242,3.4339146 0,1.27714 0.112081,2.411606 0.33626,3.403427 0.224179,0.985028 0.587803,1.810236 1.090507,2.475978 0.49591,0.665743 1.14421,1.168544 1.945818,1.508209 0.801609,0.339664 1.77021,0.509456 2.904691,0.509456 1.15486,0 2.126027,-0.166258 2.914049,-0.49913 0.788022,-0.339664 1.433133,-0.838931 1.935837,-1.497881 0.489116,-0.645363 0.849553,-1.471063 1.080525,-2.476471 0.230972,-1.0122 0.346242,-2.156775 0.346242,-3.433914 0,-1.2771402 -0.112082,-2.4014968 -0.33626,-3.3729379 C 28.735546,6.2417018 28.375734,5.4200267 27.879823,4.7542839 27.37712,4.0749546 26.731385,3.565087 25.943363,3.2254224 25.15534,2.8789643 24.180985,2.7056389 23.019332,2.7056387 Z M 2.3539788,3.0115094 V 5.9158056 H 10.149106 L 3.0165178,18.184564 H 7.3772972 L 14.245369,6.0279256 V 3.0115094 Z M 23.019332,5.5081421 c 0.835575,0 1.432929,0.3906199 1.792973,1.1718487 0.360045,0.7744355 0.540263,2.0786934 0.540263,3.9128832 0,1.813809 -0.183407,3.118067 -0.550245,3.912882 -0.366838,0.794816 -0.961003,1.192503 -1.782991,1.192503 -0.821988,0 -1.416777,-0.397687 -1.783615,-1.192503 -0.366838,-0.794815 -0.550244,-2.092498 -0.550244,-3.892721 0,-1.8477757 0.180218,-3.1586087 0.540262,-3.9330442 0.360045,-0.7812288 0.958022,-1.1718487 1.793597,-1.1718487 z" />
+    </g>
+  </g>
+</svg>

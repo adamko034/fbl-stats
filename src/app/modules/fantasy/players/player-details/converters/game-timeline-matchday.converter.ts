@@ -17,7 +17,11 @@ export class GameTimelineMatchdayConverter implements Convertable<PlayerDetailsG
         hasPlayed,
         wasPostponed,
         opponentRank,
-        isFirstGame
+        isFirstGame,
+        started,
+        hasPlayedMoreThan70Min,
+        goals,
+        assists
       }) => ({
         date,
         result: this.resultNumberToText(result),
@@ -30,7 +34,11 @@ export class GameTimelineMatchdayConverter implements Convertable<PlayerDetailsG
         wasPostponed,
         opponent,
         opponentRank,
-        isFirstGame
+        isFirstGame,
+        hasStarted: started,
+        hasPlayed70min: hasPlayedMoreThan70Min,
+        goalsScored: goals,
+        assists
       })
     );
   }

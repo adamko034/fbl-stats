@@ -33,7 +33,7 @@ export class PlayerDetailsGamesCreator {
       isMatchdayFirstGame
     } = fixture;
     const playerGame = playerGames.find((g) => g.matchday === matchday);
-    const { hasPlayed, points, hasPlayedMoreThan70Min, started } = playerGame || {};
+    const { hasPlayed, points, hasPlayedMoreThan70Min, started, goals, assists } = playerGame || {};
 
     return {
       matchday,
@@ -49,7 +49,9 @@ export class PlayerDetailsGamesCreator {
       hasPlayed,
       hasPlayedMoreThan70Min,
       isFirstGame: isMatchdayFirstGame,
-      started
+      started,
+      goals,
+      assists
     };
   }
 }
