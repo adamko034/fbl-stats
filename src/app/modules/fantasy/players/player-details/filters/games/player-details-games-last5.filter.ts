@@ -6,8 +6,8 @@ export class PlayerDetailsGamesLast5Filter implements Filterable<PlayerDetailsGa
   constructor(private playersGamesService: PlayerGamesService) {}
 
   public filter(items: PlayerDetailsGame[]): PlayerDetailsGame[] {
-    const played = items.filter((g) => g.wasPlayed && !!g.points);
-    //const played = items.filter((g) => g.wasPlayed && g.hasPlayed);
+    //const played = items.filter((g) => g.wasPlayed && !!g.points);
+    const played = items.filter((g) => g.wasPlayed && g.hasPlayed);
     return this.playersGamesService.getLastNGames<PlayerDetailsGame>(played, 5);
   }
 }
