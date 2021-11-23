@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
-import { OurPicksStore } from 'src/app/store/our-picks/our-picks.store';
+import { MatchdayTipsOurPicksStore } from 'src/app/store/matchday-tips/our-picks/matchday-tips-our-picks.store';
 import { Logger } from 'src/app/utils/logger';
 
 @Injectable()
 export class AdminOurPicksLoadedGuard implements CanActivate {
-  constructor(private store: OurPicksStore) {}
+  constructor(private store: MatchdayTipsOurPicksStore) {}
 
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
     if (!route.params.matchday || isNaN(+route.params.matchday)) {

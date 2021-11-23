@@ -1,0 +1,18 @@
+<div class="our-picks-players-container" fxLayoutAlign="center center">
+  <div
+    *ngIf="!!display && foundPlayers"
+    [fxLayout.gt-md]="display === displays.LIST ? 'column' : 'row wrap'"
+    fxLayout.lt-lg="column"
+    fxLayoutGap.lt-lg="20px"
+    fxLayoutAlign="center center"
+    fxLayoutGap.gt-md="30px grid"
+  >
+    <div *ngFor="let player of ourPicks.players">
+      <app-matchday-tips-our-picks-player-extended [player]="player"></app-matchday-tips-our-picks-player-extended>
+    </div>
+  </div>
+
+  <div *ngIf="!foundPlayers" fxLayoutAlign="center center">
+    <span>No players matching filters criteria.</span>
+  </div>
+</div>

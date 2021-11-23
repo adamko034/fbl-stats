@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
 import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
 import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
-import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
+import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { AdminOurPicksMatchday } from '../../our-picks/models/admin-our-picks-matchday.model';
 
@@ -69,7 +69,7 @@ export class AdminOurPicksComponent implements OnInit {
   }
 
   public save() {
-    const ourPicksDto: OurPicks = {
+    const ourPicksDto: MatchdayTipsOurPick = {
       matchday: this.state.ourPicks.matchday,
       published: false,
       players: this.state.ourPicks.players.map((p) => ({ order: p.order, playerId: p.playerId })),

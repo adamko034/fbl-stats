@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MatchdayLatestGuard } from '../core/guards/matchday-latest.guard';
-import { FantasyTipsLoadedGuard } from '../core/tips/guards/fantasy-tips-loaded.guard';
-import { FantasyTipsResolver } from '../core/tips/resolvers/fantasy-tips.resolver';
+import { MatchdayTipsLinksLoadedGuard } from '../core/tips/guards/matchday-tips-links-loaded.guard';
+import { MatchdayTipsLinksResolver } from '../core/tips/resolvers/matchday-tips-links.resolver';
 import { AdminLoggedGuard } from './guard/admin-logged.guard';
 import { AdminOurPicksLoadedGuard } from './guard/admin-our-picks-loaded.guard';
 import { AdminOurPicksResolver } from './resolvers/admin-our-picks.resolver';
@@ -40,8 +40,8 @@ const routes: Routes = [
       },
       {
         path: 'tips',
-        canActivate: [FantasyTipsLoadedGuard],
-        resolve: { tips: FantasyTipsResolver },
+        canActivate: [MatchdayTipsLinksLoadedGuard],
+        resolve: { tips: MatchdayTipsLinksResolver },
         component: AdminTipsComponent
       }
     ]

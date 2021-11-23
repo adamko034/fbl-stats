@@ -6,8 +6,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { FantasyTipLink } from 'src/app/store/tips/models/fantasy-tip-link.model';
-import { FantasyTips } from 'src/app/store/tips/models/fantasy-tips.model';
+import { MatchdayTipsLink } from 'src/app/store/matchday-tips/links/models/matchday-tips-link.model';
+import { MatchdaysTipsLinks } from 'src/app/store/matchday-tips/links/models/matchday-tips-links.model';
 import { AdminFantasyTip } from '../../tips/admin-fantasy-tip.model';
 import { AdminFantasyTipsService } from '../../tips/admin-fantasy-tips.service';
 import { AdminNewTipComponent } from './admin-new-tip/admin-new-tip.component';
@@ -20,7 +20,7 @@ import { AdminNewTipComponent } from './admin-new-tip/admin-new-tip.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminTipsComponent implements OnInit {
-  private tips: FantasyTips;
+  private tips: MatchdaysTipsLinks;
 
   public displayedLinks: AdminFantasyTip[];
   public isChange: boolean = false;
@@ -39,7 +39,7 @@ export class AdminTipsComponent implements OnInit {
         map((data) => data.tips),
         untilDestroyed(this)
       )
-      .subscribe((tips: FantasyTips) => {
+      .subscribe((tips: MatchdaysTipsLinks) => {
         this.tips = tips;
         this.mapFantasyLinksToAdmin();
       });
@@ -67,7 +67,7 @@ export class AdminTipsComponent implements OnInit {
   public openNewLinkDialog(): void {
     const dialogRef = this.matDialog.open(AdminNewTipComponent);
 
-    dialogRef.afterClosed().subscribe((res: FantasyTipLink) => {
+    dialogRef.afterClosed().subscribe((res: MatchdayTipsLink) => {
       if (!!res) {
         const { categories, title, url } = res;
         this.displayedLinks.unshift({ isAdminNew: true, isNew: true, categories, title, url, order: 0 });
@@ -80,12 +80,12 @@ export class AdminTipsComponent implements OnInit {
   }
 
   public save(): void {
-    const tipsLink: FantasyTipLink[] = this.displayedLinks.map((adminTip) => {
+    const tipsLink: MatchdayTipsLink[] = this.displayedLinks.map((adminTip) => {
       const { categories, title, url, order, isNew } = adminTip;
       return { categories, title, url, order, isNew };
     });
 
-    const tipsToSave: FantasyTips = { matchday: this.tips.matchday, links: tipsLink };
+    const tipsToSave: MatchdaysTipsLinks = { matchday: this.tips.matchday, links: tipsLink };
     this.service.save(tipsToSave).subscribe(() => {
       this.displayedLinks.forEach((l) => (l.isAdminNew = false));
       this.isChange = false;
@@ -94,7 +94,7 @@ export class AdminTipsComponent implements OnInit {
     });
   }
 
-  public markAsNew(tip: FantasyTipLink): void {
+  public markAsNew(tip: MatchdayTipsLink): void {
     tip.isNew = !tip.isNew;
     this.isChange = true;
     this.changeDetector.detectChanges();

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { OurPick } from 'src/app/store/our-picks/models/our-pick.model';
-import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
-import { OurPicksStore } from 'src/app/store/our-picks/our-picks.store';
+import { MatchdayTipsOurPicksStore } from 'src/app/store/matchday-tips/our-picks/matchday-tips-our-picks.store';
+import { MatchdayTipOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-pick.model';
+import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { Logger } from 'src/app/utils/logger';
 import { OurPicksPlayer } from '../models/our-picks-player.model';
 import { OurPicksPlayers } from '../models/our-picks-players.model';
@@ -13,7 +13,7 @@ import { OurPicksPlayerLoader } from './our-picks-player.loader';
 export class OurPicksPlayersLoader {
   private cache: { [matchday: number]: OurPicksPlayers } = {};
 
-  constructor(private ourPicksStore: OurPicksStore, private ourPicksPlayerLoader: OurPicksPlayerLoader) {}
+  constructor(private ourPicksStore: MatchdayTipsOurPicksStore, private ourPicksPlayerLoader: OurPicksPlayerLoader) {}
 
   public load(matchday: number): Observable<OurPicksPlayers> {
     Logger.logDev('our picks players loader, loading for MD ' + matchday);
@@ -24,7 +24,7 @@ export class OurPicksPlayersLoader {
     }
 
     return this.ourPicksStore.select(matchday).pipe(
-      map((ourPicks: OurPicks) => {
+      map((ourPicks: MatchdayTipsOurPick) => {
         if (!ourPicks) {
           Logger.logDev(`our picks players loader, no our picks, returning null`);
           return null;
@@ -45,12 +45,12 @@ export class OurPicksPlayersLoader {
     );
   }
 
-  private getPlayers(picks: OurPicks, matchday: number): OurPicksPlayer[] {
+  private getPlayers(picks: MatchdayTipsOurPick, matchday: number): OurPicksPlayer[] {
     if (!picks || !picks.players) {
       return [];
     }
 
-    return picks.players.map((pick: OurPick) =>
+    return picks.players.map((pick: MatchdayTipOurPick) =>
       this.ourPicksPlayerLoader.load(pick.playerId, matchday - 1, pick.order, picks)
     );
   }

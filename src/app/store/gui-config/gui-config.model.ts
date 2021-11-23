@@ -1,6 +1,6 @@
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
-import { OurPicksDisplay } from 'src/app/modules/fantasy/our-picks/models/our-picks-display.enum';
-import { OurPicksView } from 'src/app/modules/fantasy/our-picks/models/our-picks-view.enum';
+import { OurPicksDisplay } from 'src/app/modules/fantasy/matchday-tips/matchday-tips-our-picks/models/our-picks-display.enum';
+import { OurPicksView } from 'src/app/modules/fantasy/matchday-tips/matchday-tips-our-picks/models/our-picks-view.enum';
 import { SortBy } from 'src/app/shared/components/sorty-by/models/sort-by.model';
 
 export interface GuiConfig {

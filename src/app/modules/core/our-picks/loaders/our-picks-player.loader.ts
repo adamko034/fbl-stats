@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
+import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { Team } from 'src/app/store/teams/models/team.model';
@@ -19,7 +19,7 @@ export class OurPicksPlayerLoader {
     private predictionService: PlayerAttendancePredictionService
   ) {}
 
-  public load(id: number, matchday: number, order?: number, currentPicks?: OurPicks): OurPicksPlayer {
+  public load(id: number, matchday: number, order?: number, currentPicks?: MatchdayTipsOurPick): OurPicksPlayer {
     const player = this.playersStore.getById(id.toString());
     const team = this.teamsStore.getBy(player.teamShort);
     const matchdays = this.getPreviousMatchdays(player, matchday);

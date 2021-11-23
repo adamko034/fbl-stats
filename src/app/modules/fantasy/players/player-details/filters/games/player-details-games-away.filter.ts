@@ -4,6 +4,6 @@ import { PlayerDetailsGame } from '../../models/player-details-game.model';
 export class PlayerDetailsGamesAwayFilter implements Filterable<PlayerDetailsGame> {
   public filter(items: PlayerDetailsGame[]): PlayerDetailsGame[] {
     //return items.filter((g) => g.wasPlayed && g.hasPlayed && !g.isHome);
-    return items.filter((g) => g.wasPlayed && !!g.points && !g.isHome);
+    return items.filter((g) => g.wasPlayed && g.hasPlayed && !g.isHome);
   }
 }

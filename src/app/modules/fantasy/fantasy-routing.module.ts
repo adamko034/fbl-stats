@@ -25,10 +25,6 @@ const routes: Routes = [
         loadChildren: () => import('./my-team/my-team.module').then((m) => m.MyTeamModule)
       },
       {
-        path: 'our-picks',
-        loadChildren: () => import('./our-picks/our-picks.module').then((m) => m.OurPicksModule)
-      },
-      {
         path: 'stats',
         loadChildren: () => import('./players-stats/players-stats.module').then((m) => m.PlayersStatsModule)
       },
@@ -42,7 +38,7 @@ const routes: Routes = [
       },
       {
         path: 'tips',
-        loadChildren: () => import('./tips/tips.module').then((m) => m.TipsModule)
+        loadChildren: () => import('./matchday-tips/matchday-tips.module').then((m) => m.MatchdayTipsModule)
       }
     ]
   }

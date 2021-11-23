@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FantasyTipLink } from 'src/app/store/tips/models/fantasy-tip-link.model';
+import { MatchdayTipsLink } from 'src/app/store/matchday-tips/links/models/matchday-tips-link.model';
 
 @Component({
   selector: 'app-admin-new-tip',
@@ -34,7 +34,7 @@ export class AdminNewTipComponent implements OnInit {
 
   public submit(): void {
     if (this.form.valid) {
-      const tip: FantasyTipLink = {
+      const tip: MatchdayTipsLink = {
         title: this.form.get('title').value,
         url: this.form.get('url').value,
         categories: this.categories,

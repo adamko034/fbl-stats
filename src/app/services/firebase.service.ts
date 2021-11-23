@@ -3,15 +3,15 @@ import { AngularFirestore, Query } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
 import { ErrorService } from 'src/app/services/error.service';
-import { OurPicks } from '../store/our-picks/models/our-picks.model';
-import { FantasyTips } from '../store/tips/models/fantasy-tips.model';
+import { MatchdaysTipsLinks } from '../store/matchday-tips/links/models/matchday-tips-links.model';
+import { MatchdayTipsOurPick } from '../store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { Logger } from '../utils/logger';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   constructor(private firestore: AngularFirestore, private errorService: ErrorService) {}
 
-  public getOurPicks(matchday: number, onlyPublished: boolean): Observable<OurPicks> {
+  public getOurPicks(matchday: number, onlyPublished: boolean): Observable<MatchdayTipsOurPick> {
     return this.firestore
       .collection('our-picks', (ref) => {
         let query: Query = ref.where('matchday', '==', matchday);
@@ -38,7 +38,7 @@ export class FirebaseService {
     return this.firestore.collection('tips').doc(matchday.toString()).valueChanges().pipe(first());
   }
 
-  public saveFantasyTips(tips: FantasyTips): Observable<void> {
+  public saveFantasyTips(tips: MatchdaysTipsLinks): Observable<void> {
     return from(this.firestore.collection('tips').doc(tips.matchday.toString()).set(tips));
   }
 }

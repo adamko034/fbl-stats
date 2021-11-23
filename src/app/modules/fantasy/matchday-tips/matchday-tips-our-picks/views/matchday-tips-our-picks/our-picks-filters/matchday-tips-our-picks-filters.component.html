@@ -1,0 +1,14 @@
+<app-white-block>
+  <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" fxLayoutAlign.lt-md="center center">
+    <app-filter-position
+      class="filters"
+      [selected]="position$ | async"
+      (positionChange)="onPositionChange($event)"
+    ></app-filter-position>
+    <app-matchday-tips-our-picks-filter-types
+      class="filters"
+      [selected]="types$ | async"
+      (typesChange)="onTypesChange($event)"
+    ></app-matchday-tips-our-picks-filter-types>
+  </div>
+</app-white-block>

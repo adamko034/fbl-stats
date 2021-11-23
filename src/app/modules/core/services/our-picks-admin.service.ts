@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { from, Observable } from 'rxjs';
-import { OurPicks } from 'src/app/store/our-picks/models/our-picks.model';
+import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -25,7 +25,7 @@ export class OurPicksAdminService {
     );
   }
 
-  public save(ourPicks: OurPicks): Observable<void> {
+  public save(ourPicks: MatchdayTipsOurPick): Observable<void> {
     const matchday = this.getDevProdMatchday(ourPicks.matchday);
     return from(
       this.firestore

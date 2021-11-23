@@ -1,0 +1,42 @@
+<div class="fantasy-tips-container" fxLayout="column" fxLayoutGap="10px">
+  <app-white-block>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h2>Matchday {{ tips.matchday }} tips</h2>
+      <app-form-field *ngIf="tips.links.length > 0" label="Category">
+        <app-switch
+          [items]="categories"
+          [value]="selectedCategory"
+          (switchChange)="onCategoryChange($event)"
+        ></app-switch>
+      </app-form-field>
+      <app-follow-us-to-stay-tuned
+        *ngIf="tips.links.length == 0"
+        text="Sorry, there are no tips & hints links so far."
+      ></app-follow-us-to-stay-tuned>
+    </div>
+  </app-white-block>
+
+  <div class="tip">
+    <a
+      [href]="tip.url"
+      target="_blank"
+      class="tip-link"
+      fxLayout="column"
+      fxLayoutGap="5px"
+      *ngFor="let tip of filteredLinks | orderBy: 'order'"
+    >
+      <div class="title" fxLayout="row" fxLayoutAlign="center">
+        <span>{{ tip.title }}</span>
+      </div>
+      <div class="tip-link-sub">
+        <div class="new red"><span *ngIf="tip.isNew">NEW!</span></div>
+        <div class="categories" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <span class="category" *ngFor="let category of tip.categories">
+            {{ category }}
+          </span>
+        </div>
+        <mat-icon [appScale]="0.6">open_in_new</mat-icon>
+      </div>
+    </a>
+  </div>
+</div>
