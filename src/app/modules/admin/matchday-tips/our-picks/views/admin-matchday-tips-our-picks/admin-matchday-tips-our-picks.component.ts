@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
 import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
-import { AdminMatchdayTipsOurPicksService } from 'src/app/modules/core/services/our-picks-admin.service';
+import { AdminMatchdayTipsOurPicksService } from 'src/app/modules/core/matchday-tips/our-picks/services/admin-matchay-tips-our-picks.service';
 import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { AdminMatchdayTipsOurPicksMatchday } from '../../models/admin-matchday-tips-our-picks.model';
