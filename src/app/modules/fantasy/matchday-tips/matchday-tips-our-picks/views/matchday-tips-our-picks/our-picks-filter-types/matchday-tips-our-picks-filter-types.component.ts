@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
+import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 
 @Component({
   selector: 'app-matchday-tips-our-picks-filter-types',
@@ -8,15 +8,15 @@ import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-ty
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchdayTipsOurPicksFilterTypesComponent implements OnInit {
-  @Input() selected: OurPicksType[];
+  @Input() selected: MatchdayTipsOurPicksType[];
 
-  @Output() typesChange = new EventEmitter<OurPicksType[]>();
+  @Output() typesChange = new EventEmitter<MatchdayTipsOurPicksType[]>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  public onClick(value: OurPicksType) {
+  public onClick(value: MatchdayTipsOurPicksType) {
     const isAdding = !this.selected || !this.selected.includes(value);
     const newTypes = isAdding
       ? !!this.selected
@@ -26,7 +26,7 @@ export class MatchdayTipsOurPicksFilterTypesComponent implements OnInit {
     this.typesChange.emit(newTypes);
   }
 
-  public isSelected(type: OurPicksType): boolean {
+  public isSelected(type: MatchdayTipsOurPicksType): boolean {
     if (!this.selected || this.selected.length === 0) {
       return false;
     }

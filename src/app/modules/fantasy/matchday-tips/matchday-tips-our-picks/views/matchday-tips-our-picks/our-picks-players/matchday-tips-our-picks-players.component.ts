@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
-import { OurPicksPlayers } from 'src/app/modules/core/our-picks/models/our-picks-players.model';
+import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
+import { MatchdayTipsOurPicksPlayers } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-players.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { OurPicksFiltersExecutor } from '../../../filters/our-picks-filters-executor';
-import { OurPicksView } from '../../../models/our-picks-view.enum';
-import { OurPicksDisplaySettingsService } from '../../../services/our-picks-display-settings.service';
-import { OurPicksFiltersService } from '../../../services/our-picks-filters.service';
+import { MatchdayTipsOurPicksFiltersExecutor } from '../../../filters/matchday-tips-our-picks-filters-executor';
+import { MatchdayTipsOurPicksView } from '../../../models/matchday-tips-our-picks-view.enum';
+import { MatchdayTipsOurPicksDisplaySettingsService } from '../../../services/matchday-tips-our-picks-display-settings.service';
+import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-tips-our-picks-filters.service';
 
 @Component({
   selector: 'app-matchday-tips-our-picks-players',
@@ -17,17 +17,17 @@ import { OurPicksFiltersService } from '../../../services/our-picks-filters.serv
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
-  public ourPicks$: Observable<OurPicksPlayers>;
-  public view$: Observable<OurPicksView>;
+  public ourPicks$: Observable<MatchdayTipsOurPicksPlayers>;
+  public view$: Observable<MatchdayTipsOurPicksView>;
 
-  public Views = OurPicksView;
+  public Views = MatchdayTipsOurPicksView;
 
   constructor(
     private route: ActivatedRoute,
-    private settingsService: OurPicksDisplaySettingsService,
-    private filtersService: OurPicksFiltersService,
-    private filtersExecutor: OurPicksFiltersExecutor,
-    private displaySettings: OurPicksDisplaySettingsService
+    private settingsService: MatchdayTipsOurPicksDisplaySettingsService,
+    private filtersService: MatchdayTipsOurPicksFiltersService,
+    private filtersExecutor: MatchdayTipsOurPicksFiltersExecutor,
+    private displaySettings: MatchdayTipsOurPicksDisplaySettingsService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
           playersToDisplay = this.filtersExecutor.filter(playersToDisplay, filters);
         }
 
-        playersToDisplay = new ArrayStream<OurPicksPlayer>(playersToDisplay)
+        playersToDisplay = new ArrayStream<MatchdayTipsOurPicksPlayer>(playersToDisplay)
           .orderBy(sortBy.sortByItem.value, sortBy.direction === 'asc' ? 'asc' : 'dsc')
           .collect();
 

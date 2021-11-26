@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
+import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 
 @Component({
   selector: 'app-matchday-tips-our-picks-description',
@@ -13,7 +13,7 @@ export class MatchdayTipsOurPicksDescriptionComponent {
     { icon: 'premium', description: 'Premium pick' },
     { icon: 'bargain', description: 'Bargain pick' },
     { icon: 'differential', description: 'Differential (max popularity 5%)' },
-    { icon: OurPicksType.SURPRISING, description: 'Surprising pick' }
+    { icon: MatchdayTipsOurPicksType.SURPRISING, description: 'Surprising pick' }
   ];
 
   constructor() {}

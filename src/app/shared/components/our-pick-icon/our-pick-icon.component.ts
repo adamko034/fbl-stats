@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 
 @Component({
   selector: 'app-our-pick-icon',
@@ -8,11 +8,11 @@ import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-ty
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OurPickIconComponent {
-  @Input() icon: OurPicksType;
+  @Input() icon: MatchdayTipsOurPicksType;
   @Input() color;
   @Input() showTooltip = true;
 
-  public Icons = OurPicksType;
+  public Icons = MatchdayTipsOurPicksType;
 
   constructor() {}
 }

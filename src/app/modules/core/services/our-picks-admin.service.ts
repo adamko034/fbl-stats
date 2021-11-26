@@ -6,7 +6,7 @@ import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/model
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class OurPicksAdminService {
+export class AdminMatchdayTipsOurPicksService {
   constructor(private firestore: AngularFirestore) {}
 
   public insert(playerId: number, matchday: number): Observable<void> {

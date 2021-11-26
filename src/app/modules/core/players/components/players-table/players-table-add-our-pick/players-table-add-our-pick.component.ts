@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
-import { OurPicksAdminService } from 'src/app/modules/core/services/our-picks-admin.service';
+import { AdminMatchdayTipsOurPicksService } from 'src/app/modules/core/services/our-picks-admin.service';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
 @UntilDestroy()
@@ -19,7 +19,7 @@ export class PlayersTableAddOurPickComponent implements OnInit {
   private nextMatchday: number;
 
   constructor(
-    private ourPicksAdminService: OurPicksAdminService,
+    private ourPicksAdminService: AdminMatchdayTipsOurPicksService,
     private propertiesService: PropertiesStore,
     private toastrService: ToastrService
   ) {}

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
+import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
-import { OurPicksFiltersService } from '../../../services/our-picks-filters.service';
+import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-tips-our-picks-filters.service';
 
 @Component({
   selector: 'app-matchday-tips-our-picks-filters',
@@ -13,9 +13,9 @@ import { OurPicksFiltersService } from '../../../services/our-picks-filters.serv
 })
 export class MatchdayTipsOurPicksFiltersComponent implements OnInit {
   public position$: Observable<PlayerPosition>;
-  public types$: Observable<OurPicksType[]>;
+  public types$: Observable<MatchdayTipsOurPicksType[]>;
 
-  constructor(private filtersService: OurPicksFiltersService) {}
+  constructor(private filtersService: MatchdayTipsOurPicksFiltersService) {}
 
   public ngOnInit(): void {
     this.position$ = this.filtersService.selectAll().pipe(
@@ -29,7 +29,7 @@ export class MatchdayTipsOurPicksFiltersComponent implements OnInit {
     this.filtersService.updatePosition(position);
   }
 
-  public onTypesChange(types: OurPicksType[]): void {
+  public onTypesChange(types: MatchdayTipsOurPicksType[]): void {
     this.filtersService.updateTypes(types);
   }
 }

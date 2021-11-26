@@ -38,7 +38,7 @@ export class FirebaseService {
     return this.firestore.collection('tips').doc(matchday.toString()).valueChanges().pipe(first());
   }
 
-  public saveFantasyTips(tips: MatchdaysTipsLinks): Observable<void> {
-    return from(this.firestore.collection('tips').doc(tips.matchday.toString()).set(tips));
+  public saveMatchdayTipsLink(links: MatchdaysTipsLinks): Observable<void> {
+    return from(this.firestore.collection('tips').doc(links.matchday.toString()).set(links));
   }
 }

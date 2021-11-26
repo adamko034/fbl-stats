@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { OurPicksFiltersExecutor } from './filters/our-picks-filters-executor';
-import { OurPicksLoadedGuard } from './guards/our-picks-loaded.guard';
-import { OurPicksRoutingModule } from './matchday-tips-our-picks-routing.module';
-import { OurPicksMatchdaysResolver } from './resolvers/our-picks-matchdays.resolver';
-import { OurPicksDisplaySettingsService } from './services/our-picks-display-settings.service';
-import { OurPicksFiltersService } from './services/our-picks-filters.service';
+import { MatchdayTipsOurPicksFiltersExecutor } from './filters/matchday-tips-our-picks-filters-executor';
+import { MatchdayTipsOurPicksLoadedGuard } from './guards/matchday-tips-our-picks-loaded.guard';
+import { MatchdayTipsOurPicksRoutingModule } from './matchday-tips-our-picks-routing.module';
+import { MatchdayTipsOurPicksDisplaySettingsService } from './services/matchday-tips-our-picks-display-settings.service';
+import { MatchdayTipsOurPicksFiltersService } from './services/matchday-tips-our-picks-filters.service';
 import { MatchdayTipsOurPicksComponent } from './views/matchday-tips-our-picks/matchday-tips-our-picks.component';
 import { MatchdayTipsOurPicksDescriptionComponent } from './views/matchday-tips-our-picks/our-picks-description/matchday-tips-our-picks-description.component';
 import { MatchdayTipsOurPicksDisplaySettingsComponent } from './views/matchday-tips-our-picks/our-picks-display-settings/matchday-tips-our-picks-display-settings.component';
@@ -31,13 +30,12 @@ import { MatchdayTipsOurPicksPlayersSimplifiedComponent } from './views/matchday
     MatchdayTipsOurPicksPlayersSimplifiedComponent,
     MatchdayTipsOurPicksComponent
   ],
-  imports: [CommonModule, OurPicksRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
+  imports: [CommonModule, MatchdayTipsOurPicksRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
   providers: [
-    OurPicksLoadedGuard,
-    OurPicksFiltersExecutor,
-    OurPicksFiltersService,
-    OurPicksDisplaySettingsService,
-    OurPicksMatchdaysResolver
+    MatchdayTipsOurPicksLoadedGuard,
+    MatchdayTipsOurPicksFiltersExecutor,
+    MatchdayTipsOurPicksFiltersService,
+    MatchdayTipsOurPicksDisplaySettingsService
   ]
 })
 export class OurPicksModule {}

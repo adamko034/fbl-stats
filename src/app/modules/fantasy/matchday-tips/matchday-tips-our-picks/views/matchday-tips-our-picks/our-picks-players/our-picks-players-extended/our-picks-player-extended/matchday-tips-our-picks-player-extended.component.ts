@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { OurPicksPlayer } from 'src/app/modules/core/our-picks/models/our-picks-player.model';
-import { OurPicksType } from 'src/app/modules/core/our-picks/models/our-picks-type.enum';
+import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
+import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 import { PlayersDataService } from 'src/app/modules/core/players/services/players-data.service';
 
 @Component({
@@ -10,9 +10,9 @@ import { PlayersDataService } from 'src/app/modules/core/players/services/player
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchdayTipsOurPicksPlayerExtendedComponent implements OnInit {
-  @Input() player: OurPicksPlayer;
+  @Input() player: MatchdayTipsOurPicksPlayer;
 
-  public Icons = OurPicksType;
+  public Icons = MatchdayTipsOurPicksType;
 
   constructor(private playersDataService: PlayersDataService) {}
 

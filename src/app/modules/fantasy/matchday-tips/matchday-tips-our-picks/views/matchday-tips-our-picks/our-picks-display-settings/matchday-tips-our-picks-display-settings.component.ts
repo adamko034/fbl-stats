@@ -5,10 +5,10 @@ import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.serv
 import { SortByItem } from 'src/app/shared/components/sorty-by/models/sort-by-item.model';
 import { SortBy } from 'src/app/shared/components/sorty-by/models/sort-by.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
-import { OurPicksDisplaySettings } from '../../../models/our-picks-display-settings.model';
-import { OurPicksDisplay } from '../../../models/our-picks-display.enum';
-import { OurPicksView } from '../../../models/our-picks-view.enum';
-import { OurPicksDisplaySettingsService } from '../../../services/our-picks-display-settings.service';
+import { MatchdayTipsOurPicksDisplaySettings } from '../../../models/matchday-tips-our-picks-display-settings.model';
+import { MatchdayTipsOurPicksDisplay } from '../../../models/matchday-tips-our-picks-display.enum';
+import { MatchdayTipsOurPicksView } from '../../../models/matchday-tips-our-picks-view.enum';
+import { MatchdayTipsOurPicksDisplaySettingsService } from '../../../services/matchday-tips-our-picks-display-settings.service';
 
 @Component({
   selector: 'app-matchday-tips-our-picks-display-settings',
@@ -17,12 +17,12 @@ import { OurPicksDisplaySettingsService } from '../../../services/our-picks-disp
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchdayTipsOurPicksDisplaySettingsComponent implements OnInit {
-  public settings$: Observable<OurPicksDisplaySettings>;
+  public settings$: Observable<MatchdayTipsOurPicksDisplaySettings>;
   public screenLarge$: Observable<boolean>;
 
   public displayItems: SwitchItem[] = [
-    { value: OurPicksDisplay.LIST, matIcon: 'reorder' },
-    { value: OurPicksDisplay.TILES, matIcon: 'grid_view' }
+    { value: MatchdayTipsOurPicksDisplay.LIST, matIcon: 'reorder' },
+    { value: MatchdayTipsOurPicksDisplay.TILES, matIcon: 'grid_view' }
   ];
 
   public sortsSimplified: SortByItem[] = [
@@ -39,20 +39,23 @@ export class MatchdayTipsOurPicksDisplaySettingsComponent implements OnInit {
     { value: 'top100Popularity', text: 'Top 100 popularity' }
   ];
 
-  public Views = OurPicksView;
+  public Views = MatchdayTipsOurPicksView;
 
-  constructor(private service: OurPicksDisplaySettingsService, private screenSizeService: ScreenSizeService) {}
+  constructor(
+    private service: MatchdayTipsOurPicksDisplaySettingsService,
+    private screenSizeService: ScreenSizeService
+  ) {}
 
   public ngOnInit(): void {
     this.settings$ = this.service.selectAll();
     this.screenLarge$ = this.screenSizeService.onResize().pipe(map((size) => size > ScreenSize.MD));
   }
 
-  public onDisplayChange(newDisplay: OurPicksDisplay): void {
+  public onDisplayChange(newDisplay: MatchdayTipsOurPicksDisplay): void {
     this.service.updateDisplay(newDisplay);
   }
 
-  public onViewChange(newView: OurPicksView): void {
+  public onViewChange(newView: MatchdayTipsOurPicksView): void {
     this.service.udpateView(newView);
   }
 
