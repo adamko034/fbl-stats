@@ -14,6 +14,7 @@ import { AdminMatchdayTipsOurPicksResolver } from './matchday-tips/our-picks/res
 import { AdminMatchdayTipsOurPicksPlayerSearchComponent } from './matchday-tips/our-picks/views/admin-matchday-tips-our-picks/admin-matchday-tips-our-picks-player-search/admin-matchday-tips-our-picks-player-search.component';
 import { AdminMatchdayTipsOurPicksTotalsComponent } from './matchday-tips/our-picks/views/admin-matchday-tips-our-picks/admin-matchday-tips-our-picks-totals/admin-matchday-tips-our-picks-totals.component';
 import { AdminMatchdayTipsOurPicksComponent } from './matchday-tips/our-picks/views/admin-matchday-tips-our-picks/admin-matchday-tips-our-picks.component';
+import { LinkPreviewService } from './services/link-preview.service';
 import { AdminLoginComponent } from './views/admin-login/admin-login.component';
 import { AdminComponent } from './views/admin/admin.component';
 
@@ -33,7 +34,8 @@ import { AdminComponent } from './views/admin/admin.component';
     AdminMatchdayTipsOurPicksLoadedGuard,
     AdminMatchdayTipsOurPicksResolver,
     AdminMatchdayTipsOurPicksLoader,
-    AdminMatchdayTipsLinksService
+    AdminMatchdayTipsLinksService,
+    LinkPreviewService
   ]
 })
 export class AdminModule {}

@@ -1,7 +1,16 @@
 <h2 matDialogTitle>New Tip Link</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography dialog-content">
   <form [formGroup]="form">
     <div fxLayout="column" fxLayoutGap="10px">
+      <app-form-field>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+          <mat-form-field>
+            <input matInput formControlName="url" placeholder="Url" required (blur)="getLinkPreview()" />
+          </mat-form-field>
+          <mat-spinner diameter="30" *ngIf="linkLoading"></mat-spinner>
+        </div>
+      </app-form-field>
+
       <app-form-field>
         <mat-form-field>
           <input matInput formControlName="title" placeholder="Title" required />
@@ -10,7 +19,7 @@
 
       <app-form-field>
         <mat-form-field>
-          <input matInput formControlName="url" placeholder="Url" required />
+          <input matInput formControlName="host" placeholder="Source" required />
         </mat-form-field>
       </app-form-field>
 
@@ -31,10 +40,22 @@
           </mat-chip-list>
         </div>
       </app-form-field>
+
+      <span>{{ form.get('description').value }}</span>
+      <img style="width: 100px" [src]="form.get('imageUrl').value" />
     </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button type="submit" class="main-background" mat-raised-button cdkFocusInitial (click)="submit()">Add</button>
+  <button
+    [disabled]="submitDisabled()"
+    type="submit"
+    class="main-background"
+    mat-raised-button
+    cdkFocusInitial
+    (click)="submit()"
+  >
+    Add
+  </button>
 </mat-dialog-actions>

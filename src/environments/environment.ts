@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: 'fantasybl-stats.appspot.com',
     messagingSenderId: '158019324122',
     appId: '1:158019324122:web:d98497c332adeb3f44fde3'
-  }
+  },
+  linkPreviewApiKey: 'c38748f735036b3fc5ee5cd3612f9171'
 };
 
 /*

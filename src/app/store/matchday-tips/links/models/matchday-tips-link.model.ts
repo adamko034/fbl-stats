@@ -4,4 +4,7 @@ export interface MatchdayTipsLink {
   order: number;
   isNew: boolean;
   categories: string[];
+  description: string;
+  imageUrl: string;
+  source: string;
 }

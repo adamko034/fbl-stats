@@ -69,8 +69,7 @@ export class AdminMatchdayTipsLinksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res: MatchdayTipsLink) => {
       if (!!res) {
-        const { categories, title, url } = res;
-        this.displayedLinks.unshift({ isAdminNew: true, isNew: true, categories, title, url, order: 0 });
+        this.displayedLinks.unshift({ ...res, isAdminNew: true, isNew: true, order: 0 });
 
         this.reorder();
         this.isChange = true;
@@ -81,8 +80,8 @@ export class AdminMatchdayTipsLinksComponent implements OnInit {
 
   public save(): void {
     const tipsLink: MatchdayTipsLink[] = this.displayedLinks.map((adminTip) => {
-      const { categories, title, url, order, isNew } = adminTip;
-      return { categories, title, url, order, isNew };
+      const { categories, title, url, order, isNew, imageUrl, description, source } = adminTip;
+      return { categories, title, url, order, isNew, imageUrl, description, source };
     });
 
     const tipsToSave: MatchdaysTipsLinks = { matchday: this.tips.matchday, links: tipsLink };
@@ -109,8 +108,7 @@ export class AdminMatchdayTipsLinksComponent implements OnInit {
     this.displayedLinks =
       [
         ...this.tips.links.map((l) => {
-          const { categories, title, url, order, isNew } = l;
-          return { isNew: isNew || false, categories, title, url, order, isAdminNew: false };
+          return { ...l, isNew: l.isNew || false, isAdminNew: false };
         })
       ] || [];
   }
