@@ -6,7 +6,7 @@ import { LinkPreview } from '../models/link-preview.model';
 
 @Injectable()
 export class LinkPreviewService {
-  private readonly LINK_API_URL = 'http://api.linkpreview.net/?key={0}&q={1}';
+  private readonly LINK_API_URL = 'https://api.linkpreview.net/?key={0}&q={1}';
 
   constructor(private http: HttpClient) {}
 
