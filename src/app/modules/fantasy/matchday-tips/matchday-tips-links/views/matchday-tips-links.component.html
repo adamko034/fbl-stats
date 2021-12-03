@@ -21,12 +21,12 @@
         [href]="link.url"
         target="blank"
         class="link-container"
-        ngClass.lt-md="link-container-mobile"
+        ngClass.lt-sm="link-container-mobile"
         fxLayout="row"
         *ngFor="let link of filteredLinks"
         width="120"
       >
-        <div class="link-image" fxLayoutAlign="start center">
+        <div class="link-image" fxLayoutAlign="start center" [style]="'background-image: url(' + link.imageUrl + ')'">
           <img [src]="link.imageUrl" />
         </div>
         <div class="link-content" fxLayout="column" fxLayoutAlign="space-between">
