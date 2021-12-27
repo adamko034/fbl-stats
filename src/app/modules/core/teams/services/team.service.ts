@@ -16,12 +16,18 @@ export class TeamService {
     return this.getMatchdaysByResult(team, -1);
   }
 
-  public getTeamHomeMatchdays(team: Team): number[] {
-    return this.getMatchdaysByVenue(team, true);
+  public getPlayedMatchdaysByVenue(team: Team, venue: 'all' | 'h' | 'a'): number[] {
+    return this.getPlayedGamesByVenue(team, venue).map((g) => g.matchday);
   }
 
-  public getTeamAwayMatchdays(team: Team): number[] {
-    return this.getMatchdaysByVenue(team, false);
+  public getPlayedGamesByVenue(team: Team, venue: 'all' | 'h' | 'a'): Fixture[] {
+    const played = this.getPlayedGames(team);
+    return this.filterByVenue(played, venue);
+  }
+
+  public getPlayedWonMatchdaysByVenue(team: Team, venue: 'all' | 'h' | 'a'): number[] {
+    const gamesByVenue = this.getPlayedGamesByVenue(team, venue);
+    return this.filterByResult(gamesByVenue, 1).map((g) => g.matchday);
   }
 
   public getPlayedMatchdaysVsBottom(team: Team, bottomN: number = 6): number[] {
@@ -36,12 +42,6 @@ export class TeamService {
       .map((g) => g.matchday);
   }
 
-  private getMatchdaysByVenue(team: Team, isHome: boolean): number[] {
-    return this.getPlayedGames(team)
-      .filter((g) => g.isHome === isHome)
-      .map((g) => g.matchday);
-  }
-
   private getMatchdaysByResult(team: Team, result: number): number[] {
     return this.getPlayedGames(team)
       .filter((g) => g.result === result)
@@ -50,5 +50,17 @@ export class TeamService {
 
   private getPlayedGames(team: Team): Fixture[] {
     return team.games.filter((g) => g.wasPlayed && g.result !== null);
+  }
+
+  private filterByVenue(games: Fixture[], venue: 'all' | 'h' | 'a'): Fixture[] {
+    if (venue === 'all') {
+      return games;
+    }
+
+    return venue === 'h' ? games.filter((g) => g.isHome) : games.filter((g) => !g.isHome);
+  }
+
+  private filterByResult(games: Fixture[], result: number): Fixture[] {
+    return games.filter((g) => g.result !== null && g.result === result);
   }
 }

@@ -41,6 +41,10 @@ export class TeamsStore {
     }
   }
 
+  public selectState(): Observable<TeamsState> {
+    return this.state$.asObservable();
+  }
+
   public select(teamShort: string): Observable<Team> {
     return this.state$.pipe(
       distinctUntilChanged(),

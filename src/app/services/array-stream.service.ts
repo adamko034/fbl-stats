@@ -94,6 +94,10 @@ export class ArrayStream<T> {
     return this;
   }
 
+  public distinct<R>(predicate: (item: T) => R): R[] {
+    return [...new Set<R>(this.array.map(predicate))];
+  }
+
   public distinctFlat<R>(field: string): string[] {
     const distinct: string[] = [];
     this.array.forEach((item: T) => {

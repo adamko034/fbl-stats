@@ -87,6 +87,10 @@ export class PlayersStore {
     return this.players$.pipe(map((players) => players.find((p) => p.id.toString() === id.toLocaleLowerCase())));
   }
 
+  public selectByIds(ids: string[]): Observable<Player[]> {
+    return this.players$.pipe(map((players) => players.filter((p) => ids.includes(p.id.toString()))));
+  }
+
   public getById(id: string): Player {
     return this.state.find((p) => p.id.toString() === id.toString());
   }

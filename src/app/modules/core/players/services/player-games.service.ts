@@ -19,13 +19,13 @@ export class PlayerGamesService {
 
   public getHomePlayedGames(player: Player, team: Team): Game[] {
     const playedGames = player.games.filter((g) => g.hasPlayed);
-    const homeMatchdays = this.teamService.getTeamHomeMatchdays(team);
+    const homeMatchdays = this.teamService.getPlayedMatchdaysByVenue(team, 'h');
     return playedGames.filter((g) => homeMatchdays.includes(g.matchday));
   }
 
   public getAwayPlayedGames(player: Player, team: Team) {
     const playedGames = player.games.filter((g) => g.hasPlayed);
-    const homeMatchdays = this.teamService.getTeamAwayMatchdays(team);
+    const homeMatchdays = this.teamService.getPlayedMatchdaysByVenue(team, 'a');
     return playedGames.filter((g) => homeMatchdays.includes(g.matchday));
   }
 
@@ -39,7 +39,21 @@ export class PlayerGamesService {
     return this.getPlayedGames(player).filter((g) => vsTopMatchdays.includes(g.matchday));
   }
 
-  private getPlayedGames(player: Player): Game[] {
+  public getPlayedGames(player: Player): Game[] {
     return player.games.filter((g) => g.hasPlayed);
+  }
+
+  public getStartedGames(player: Player, team: Team, venue: 'all' | 'h' | 'a'): Game[] {
+    const gamesStarted = player.games.filter((g) => g.started);
+    const teamGames = this.teamService.getPlayedMatchdaysByVenue(team, venue);
+
+    return gamesStarted.filter((g) => teamGames.includes(g.matchday));
+  }
+
+  public get70PlusGames(player: Player, team: Team, venue: 'all' | 'h' | 'a'): Game[] {
+    const games = player.games.filter((g) => g.hasPlayedMoreThan70Min);
+    const teamGames = this.teamService.getPlayedMatchdaysByVenue(team, venue);
+
+    return games.filter((g) => teamGames.includes(g.matchday));
   }
 }

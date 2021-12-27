@@ -75,6 +75,7 @@ import { ShowMoreLinkComponent } from './components/show-more-link/show-more-lin
 import { SliderMaxPopularityComponent } from './components/slider-max-popularity/slider-max-popularity.component';
 import { SliderMaxPriceComponent } from './components/slider-max-price/slider-max-price.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
+import { TeamGameAgainstComponent } from './components/team-game-against/team-game-against.component';
 import { TeamLineupComponent } from './components/team-lineup/team-lineup.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
@@ -164,7 +165,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     AssistsIconsComponent,
     HasStartedIconComponent,
     HasCameFromBenchIconComponent,
-    HasPlayedSeventyMinutesIconComponent
+    HasPlayedSeventyMinutesIconComponent,
+    TeamGameAgainstComponent
   ],
   imports: [
     CommonModule,
@@ -235,7 +237,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TimeAgoComponent,
     PlayersTableGenericComponent,
     SelectComponent,
-    SelectDialogComponent
+    SelectDialogComponent,
+    TeamGameAgainstComponent
   ]
 })
 export class SharedModule {

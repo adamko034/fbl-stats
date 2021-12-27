@@ -20,7 +20,8 @@ export class Navigation {
         },
         { order: 3, path: 'fantasy/stats', text: 'Stats', icon: 'insights' },
         { order: 4, path: 'fantasy/leaders', text: 'Leaders', icon: 'leaderboard' },
-        { order: 6, path: 'fantasy/tips', text: 'Matchday tips', icon: 'batch_prediction' }
+        { order: 6, path: 'fantasy/tips', text: 'Matchday tips', icon: 'batch_prediction' },
+        { order: 7, path: 'fantasy/compare', text: 'Compare', icon: 'compare' }
       ]
     },
     {

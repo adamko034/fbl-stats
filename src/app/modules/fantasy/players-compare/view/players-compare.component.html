@@ -1,0 +1,12 @@
+<app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
+
+<app-white-block>
+  <div>
+    <app-players-compare-comparison-general
+      [players]="state$ | async | field: 'players'"
+      [teams]="state$ | async | field: 'teams'"
+      [lastMatchday]="state$ | async | field: 'lastMatchday'"
+    ></app-players-compare-comparison-general>
+  </div>
+</app-white-block>
+<!-- {{ state$ | async | json }} -->

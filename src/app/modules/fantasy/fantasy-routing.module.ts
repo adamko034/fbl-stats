@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'tips',
         loadChildren: () => import('./matchday-tips/matchday-tips.module').then((m) => m.MatchdayTipsModule)
+      },
+      {
+        path: 'compare',
+        loadChildren: () => import('./players-compare/players-compare.module').then((m) => m.PlayersCompareModule)
       }
     ]
   }

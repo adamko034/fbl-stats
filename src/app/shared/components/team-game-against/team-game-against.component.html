@@ -1,0 +1,18 @@
+<div *ngIf="config" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+  <span *ngIf="config.showMdLabel" class="grey">MD {{ team.md }}:</span>
+  <div fxLayoutAlign="start center" fxLayoutGap="2px">
+    <app-team-logo [team]="team.shortName" [height]="config.teamLogoHeight"></app-team-logo>
+    <span [ngClass]="{ 'smaller-font': config.smallerFont }" *ngIf="config.showRank">{{ team.rank | numerals }}</span>
+    <span [ngClass]="{ 'smaller-font': config.smallerFont }">({{ team.isHome ? 'h' : 'a' }})</span>
+
+    <span
+      appScale="0.9"
+      *ngIf="team.isFirstGame && config.showFirstGame"
+      class="green first-game"
+      fxLayoutAlign="center center"
+      matTooltip="matchday first game"
+      >1</span
+    >
+    <span *ngIf="!team.isFirstGame" class="placeholder">&nbsp;</span>
+  </div>
+</div>

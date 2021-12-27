@@ -1,0 +1,17 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+  <div class="player-card" *ngFor="let player of players">
+    <mat-card>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <app-team-logo [team]="player.teamShort"></app-team-logo>
+          <div fxLayout="column">
+            <span class="player-card-name"
+              ><app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link
+            ></span>
+            <!-- <span class="player-card-position">{{ player.position | uppercase }}</span> -->
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

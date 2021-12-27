@@ -1,0 +1,317 @@
+<div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="space-evenly">
+  <!-- <div class="wrapper" [style]="'max-width: ' + players.length * 100 + 'px'"> -->
+  <div class="wrapper">
+    <app-title-underlined-grey>
+      <span title>Fantasy Bundesliga</span>
+      <div content>
+        <div class="players-compare-wrapper">
+          <table class="comparison-table">
+            <tr>
+              <td></td>
+              <td *ngFor="let player of players">
+                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+              </td>
+            </tr>
+            <tr>
+              <td>Team</td>
+              <td *ngFor="let player of players">
+                <app-team-logo [team]="player.teamShort" [height]="14"></app-team-logo>
+              </td>
+            </tr>
+            <tr>
+              <td>Pos</td>
+              <td *ngFor="let player of players">{{ player.position | uppercase }}</td>
+            </tr>
+            <tr>
+              <td>$</td>
+              <td *ngFor="let player of players">{{ player.price }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>%</td>
+              <td *ngFor="let player of players">{{ player.popularity }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Top100 %</td>
+              <td *ngFor="let player of players">{{ player.top100Popularity }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Top500 %</td>
+              <td *ngFor="let player of players">{{ player.top500Popularity }}</td>
+            </tr>
+            <tr>
+              <td>Next 3</td>
+              <td *ngFor="let player of players">
+                <div
+                  *ngFor="let game of player.games | orderBy: '-matchday' | take: 3"
+                  fxLayout="column"
+                  fxLayoutAlign="start center"
+                >
+                  <app-team-game-against
+                    [team]="createGameAgainst(player.teamShort, game.matchday)"
+                    [config]="{ teamLogoHeight: 14, showFirstGame: false, smallerFont: true }"
+                  ></app-team-game-against>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </app-title-underlined-grey>
+  </div>
+
+  <div class="wrapper">
+    <app-title-underlined-grey>
+      <span title>Games</span>
+      <div content>
+        <div class="players-compare-wrapper">
+          <table class="comparison-table">
+            <tr>
+              <td></td>
+              <td *ngFor="let player of players">
+                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+              </td>
+            </tr>
+            <tr>
+              <td>GP</td>
+              <td *ngFor="let player of players">
+                {{ getGamesPlayedPercentage(player, 'all') }}
+              </td>
+            </tr>
+            <tr>
+              <td>GS</td>
+              <td *ngFor="let player of players">
+                {{ getGamesStarted(player, 'all') }}
+              </td>
+            </tr>
+            <tr>
+              <td>+70'</td>
+              <td *ngFor="let player of players">
+                {{ getGames70(player, 'all') }}
+              </td>
+            </tr>
+            <tr>
+              <td>Won</td>
+              <td *ngFor="let player of players">
+                {{ getGamesWon(player, 'all', false) }}
+              </td>
+            </tr>
+            <tr>
+              <td>Won if played</td>
+              <td *ngFor="let player of players">
+                {{ getGamesWon(player, 'all', true) }}
+              </td>
+            </tr>
+            <tr class="grey-row">
+              <td>Home GP</td>
+              <td *ngFor="let player of players">
+                {{ getGamesPlayedPercentage(player, 'h') }}
+              </td>
+            </tr>
+            <tr class="grey-row">
+              <td>Home GS</td>
+              <td *ngFor="let player of players">
+                {{ getGamesStarted(player, 'h') }}
+              </td>
+            </tr>
+            <tr class="grey-row">
+              <td>Home +70'</td>
+              <td *ngFor="let player of players">
+                {{ getGames70(player, 'h') }}
+              </td>
+            </tr>
+            <tr class="grey-row">
+              <td>Home won</td>
+              <td *ngFor="let player of players">
+                {{ getGamesWon(player, 'h', false) }}
+              </td>
+            </tr>
+            <tr class="grey-row">
+              <td>Home won if played</td>
+              <td *ngFor="let player of players">
+                {{ getGamesWon(player, 'h', true) }}
+              </td>
+            </tr>
+            <tr>
+              <td>Away GP</td>
+              <td *ngFor="let player of players">
+                {{ getGamesPlayedPercentage(player, 'a') }}
+              </td>
+            </tr>
+            <tr>
+              <td>Away GS</td>
+              <td *ngFor="let player of players">
+                {{ getGamesStarted(player, 'a') }}
+              </td>
+            </tr>
+            <tr>
+              <td>Away +70'</td>
+              <td *ngFor="let player of players">
+                {{ getGames70(player, 'a') }}
+              </td>
+            </tr>
+            <tr>
+              <td>Away won</td>
+              <td *ngFor="let player of players">
+                {{ getGamesWon(player, 'a', false) }}
+              </td>
+            </tr>
+            <tr>
+              <td>Away won if played</td>
+              <td *ngFor="let player of players">
+                {{ getGamesWon(player, 'a', true) }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </app-title-underlined-grey>
+  </div>
+
+  <!-- <div class="wrapper" [style]="'max-width: ' + players.length * 100 + 'px'"> -->
+  <div class="wrapper">
+    <app-title-underlined-grey>
+      <span title>Points: all games</span>
+      <div content>
+        <div class="players-compare-wrapper">
+          <table class="comparison-table">
+            <tr>
+              <td></td>
+              <td *ngFor="let player of players">
+                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+              </td>
+            </tr>
+            <tr>
+              <td>Last MD</td>
+              <td *ngFor="let player of players">{{ getPointsTotal(player, 1) }}</td>
+            </tr>
+            <tr>
+              <td>Last 2</td>
+              <td *ngFor="let player of players">{{ getPointsTotal(player, 2) }}</td>
+            </tr>
+            <tr>
+              <td>Last 2 AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 2) }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last 4</td>
+              <td *ngFor="let player of players">{{ getPointsTotal(player, 4) }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last 4 AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 4) }}</td>
+            </tr>
+            <tr>
+              <td>Last 6</td>
+              <td *ngFor="let player of players">{{ getPointsTotal(player, 6) }}</td>
+            </tr>
+            <tr>
+              <td>Last 6 AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 6) }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </app-title-underlined-grey>
+  </div>
+
+  <ng-template
+    [ngTemplateOutlet]="tablePoints"
+    [ngTemplateOutletContext]="{ title: 'Points: all games (only played)', venue: 'all' }"
+  ></ng-template>
+
+  <ng-template
+    [ngTemplateOutlet]="tablePoints"
+    [ngTemplateOutletContext]="{ title: 'Points: home games (only played)', venue: 'h' }"
+  ></ng-template>
+
+  <ng-template
+    [ngTemplateOutlet]="tablePoints"
+    [ngTemplateOutletContext]="{ title: 'Points: away games (only played)', venue: 'a' }"
+  ></ng-template>
+</div>
+
+<ng-template #tablePoints let-venue="venue" let-title="title">
+  <!-- <div class="wrapper" [style]="'max-width: ' + players.length * 100 + 'px'"> -->
+  <div class="wrapper">
+    <app-title-underlined-grey>
+      <span title>{{ title }}</span>
+      <div content>
+        <div class="players-compare-wrapper">
+          <table class="comparison-table">
+            <tr>
+              <td></td>
+              <td *ngFor="let player of players">
+                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+              </td>
+            </tr>
+
+            <tr>
+              <td>GP</td>
+              <td *ngFor="let player of players">{{ getGamesPlayed(player, venue, 0).length }}</td>
+            </tr>
+            <tr>
+              <td>Points</td>
+              <td *ngFor="let player of players">{{ getPointsByVenue(player, venue, 0) }}</td>
+            </tr>
+            <tr>
+              <td>AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsByVenue(player, venue, 0) }}</td>
+            </tr>
+            <tr>
+              <td>+10pts</td>
+              <td *ngFor="let player of players">{{ getEfficiency(player, venue, '10') }}</td>
+            </tr>
+            <tr>
+              <td>+15pts</td>
+              <td *ngFor="let player of players">{{ getEfficiency(player, venue, '15') }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last game</td>
+              <td *ngFor="let player of players">{{ getPointsByVenue(player, venue, 1) }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last 2</td>
+              <td *ngFor="let player of players">{{ getPointsByVenue(player, venue, 2) }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last 2 AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsByVenue(player, venue, 2) }}</td>
+            </tr>
+            <tr>
+              <td>Last 4</td>
+              <td *ngFor="let player of players">{{ getPointsByVenue(player, venue, 4) }}</td>
+            </tr>
+            <tr>
+              <td>Last 4 AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsByVenue(player, venue, 4) }}</td>
+            </tr>
+            <tr *ngIf="venue === 'all'">
+              <td>Last 4 +10pts</td>
+              <td *ngFor="let player of players">{{ getEfficiencyText(player.scoringChances.last4, '10') }}</td>
+            </tr>
+            <tr *ngIf="venue === 'all'">
+              <td>Last 4 +15pts</td>
+              <td *ngFor="let player of players">{{ getEfficiencyText(player.scoringChances.last4, '15') }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last 6</td>
+              <td *ngFor="let player of players">{{ getPointsByVenue(player, venue, 6) }}</td>
+            </tr>
+            <tr class="grey-row">
+              <td>Last 6 AVG</td>
+              <td *ngFor="let player of players">{{ getAvgPointsByVenue(player, venue, 6) }}</td>
+            </tr>
+            <tr class="grey-row" *ngIf="venue === 'all'">
+              <td>Last 6 +10pts</td>
+              <td *ngFor="let player of players">{{ getEfficiencyText(player.scoringChances.last6, '10') }}</td>
+            </tr>
+            <tr class="grey-row" *ngIf="venue === 'all'">
+              <td>Last 6 +15pts</td>
+              <td *ngFor="let player of players">{{ getEfficiencyText(player.scoringChances.last6, '15') }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </app-title-underlined-grey>
+  </div>
+</ng-template>

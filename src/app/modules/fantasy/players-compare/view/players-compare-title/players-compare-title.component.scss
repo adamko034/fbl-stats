@@ -1,0 +1,17 @@
+@import '/src/variables.scss';
+
+.player-card {
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  margin-bottom: 15px;
+
+  &-name {
+    font-weight: 500;
+  }
+
+  &-position {
+    font-size: $fontSizeSmall;
+    color: $colorGrey;
+  }
+}
