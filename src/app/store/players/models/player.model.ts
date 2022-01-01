@@ -1,5 +1,6 @@
 import { Game } from 'src/app/store/players/models/game.model';
 import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
+import { PlayerSubPosition } from './palyer-subposition.enum';
 import { PlayerFantasyHistory } from './player-fantasy-history.model';
 import { PlayerPointsStats } from './player-points-stats.model';
 import { PlayerScoringChances } from './player-scoring-chances.model';
@@ -13,6 +14,7 @@ export interface Player {
   totalPoints: number;
   avgPoints: number;
   position: string;
+  subPosition: PlayerSubPosition;
   popularity: number;
   price: number;
   last5: number;

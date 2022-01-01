@@ -9,6 +9,7 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 })
 export class MatchdayTipsComponent {
   private _links: ViewTabNavigationLink[] = [
+    { order: 0, label: 'Best team', labelMobile: 'Best team', routerLink: 'bestteam' },
     { order: 1, label: 'Our picks', labelMobile: 'Our picks', routerLink: 'ourpicks' },
     { order: 2, label: 'Links', labelMobile: 'Links', routerLink: 'links' }
   ];

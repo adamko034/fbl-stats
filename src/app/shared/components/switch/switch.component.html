@@ -1,4 +1,4 @@
-<div class="switch-container">
+<div class="switch-container" fxShow.gt-xs [fxHide.xs]="showSelectOnMobile">
   <div class="switch">
     <mat-button-toggle-group [value]="value" [name]="name">
       <mat-button-toggle
@@ -21,3 +21,12 @@
     </mat-button-toggle-group>
   </div>
 </div>
+
+<mat-form-field [fxShow.xs]="showSelectOnMobile" fxHide.gt-xs>
+  <mat-label>{{ selectLabel }}</mat-label>
+  <mat-select [ngModel]="value" (selectionChange)="onChange($event.value)">
+    <mat-option *ngFor="let item of items" [value]="item.value">
+      {{ item.description }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

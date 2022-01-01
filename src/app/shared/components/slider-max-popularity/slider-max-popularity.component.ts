@@ -8,6 +8,7 @@ import { MatSliderChange } from '@angular/material/slider';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderMaxPopularityComponent {
+  @Input() label = 'Max popularity';
   @Input() set value(val: number) {
     this.valueInternal = !val && val != 0 ? 100 : val;
   }

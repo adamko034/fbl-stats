@@ -1,0 +1,24 @@
+.team-table {
+  tr:first-child {
+    td:first-child {
+      text-align: center;
+    }
+  }
+}
+
+.team-table > .def,
+.team-table > .mid,
+.team-table > .for {
+  td {
+    padding-top: 15px;
+  }
+}
+
+.team-table > .gk ~ .gk,
+.team-table > .def ~ .def,
+.team-table > .mid ~ .mid,
+.team-table > .for ~ .for {
+  td {
+    padding-top: 3px;
+  }
+}

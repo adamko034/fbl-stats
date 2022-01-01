@@ -47,16 +47,14 @@
 </ng-template>
 
 <ng-template #playerLink let-player="player">
-  <div *ngIf="!!player.id" fxLayout="row" fxLayoutAlign="start center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+    <app-team-logo *ngIf="player.team" [height]="14" [team]="player.team"></app-team-logo>
     <app-player-name-link
+      *ngIf="!!player.id"
       [ngClass]="{ 'red bold': !player.available }"
       [name]="player.lastName"
       [id]="player.id"
     ></app-player-name-link>
-    <mat-icon appScale="0.8" *ngIf="!player.available" class="red">not_interested</mat-icon>
-  </div>
-  <div *ngIf="!player.id" fxLayoutGap="4px" fxLayoutAlign="start center">
-    <app-team-logo *ngIf="player.team" appScale="0.8" [team]="player.team"></app-team-logo>
-    <span>{{ player.lastName }}</span>
+    <span *ngIf="!player.id">{{ player.lastName }}</span>
   </div>
 </ng-template>
