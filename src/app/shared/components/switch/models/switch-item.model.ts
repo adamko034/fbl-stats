@@ -4,4 +4,5 @@ export interface SwitchItem {
   descriptionMobile?: string;
   matIcon?: string;
   isMatIconOutline?: boolean;
+  hidden?: boolean;
 }

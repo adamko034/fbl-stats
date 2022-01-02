@@ -1,0 +1,14 @@
+<div fxLayout="column" fxLayoutGap="20px">
+  <app-matchday-tips-top-team-filters
+    [filters]="state$ | async | field: 'filters'"
+    [maxPrice]="state$ | async | field: 'maxPrice'"
+    [lastMatchday]="state$ | async | field: 'lastMatchday'"
+  ></app-matchday-tips-top-team-filters>
+
+  <app-white-block padding="20px 20px 20px 20px">
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+      <app-team-lineup class="lineup" [lineup]="lineup$ | async"></app-team-lineup>
+      <app-team-players-table [config]="playersTableConfig" [players]="playersTable$ | async"></app-team-players-table>
+    </div>
+  </app-white-block>
+</div>

@@ -6,4 +6,5 @@ export interface Game {
   started: boolean;
   goals: number;
   assists: number;
+  isHome: boolean;
 }

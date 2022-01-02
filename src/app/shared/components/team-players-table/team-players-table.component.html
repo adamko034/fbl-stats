@@ -1,0 +1,40 @@
+<app-title-underlined-grey>
+  <span title>{{ config.title }}</span>
+  <table content class="comparison-table team-table">
+    <tr>
+      <td>Name</td>
+      <td *ngFor="let column of config.columns">{{ column.header }}</td>
+    </tr>
+    <tr class="gk" *ngFor="let player of players | filterBy: ['position']:'gk'">
+      <ng-template [ngTemplateOutlet]="tablePlayerRow" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+    </tr>
+    <tr class="def" *ngFor="let player of players | filterBy: ['position']:'def'">
+      <ng-template [ngTemplateOutlet]="tablePlayerRow" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+    </tr>
+    <tr class="mid" *ngFor="let player of players | filterBy: ['position']:'mid'">
+      <ng-template [ngTemplateOutlet]="tablePlayerRow" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+    </tr>
+    <tr class="for" *ngFor="let player of players | filterBy: ['position']:'for'">
+      <ng-template [ngTemplateOutlet]="tablePlayerRow" [ngTemplateOutletContext]="{ player: player }"></ng-template>
+    </tr>
+  </table>
+</app-title-underlined-grey>
+
+<ng-template #tablePlayerRow let-player="player">
+  <td>
+    <div fxLayoutAlign="start center" fxLayoutGap="5px">
+      <app-team-logo *ngIf="config.showTeamLogo" [height]="13" [team]="player.teamShort"></app-team-logo>
+      <span *ngIf="!player.id" [ngClass]="{ 'red bold': !player.available }">{{ player.name }}</span>
+      <app-player-name-link
+        [name]="player.name"
+        [id]="player.id"
+        [ngClass]="{ 'red bold': !player.available }"
+      ></app-player-name-link>
+    </div>
+  </td>
+  <td *ngFor="let column of config.columns">
+    <span *ngIf="!!player[column.objectFieldName]">{{ player[column.objectFieldName] }}</span>
+    <span *ngIf="!!player.other[column.objectFieldName]">{{ player.other[column.objectFieldName] }}</span>
+    <span *ngIf="column.suffix">{{ column.suffix }}</span>
+  </td>
+</ng-template>

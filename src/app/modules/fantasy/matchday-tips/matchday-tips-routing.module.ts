@@ -13,6 +13,11 @@ const routes: Routes = [
     component: MatchdayTipsComponent,
     children: [
       {
+        path: 'bestteam',
+        loadChildren: () =>
+          import('./matchday-tips-top-team/matchday-tips-top-team.module').then((m) => m.MatchdayTipsTopTeamModule)
+      },
+      {
         path: 'links',
         loadChildren: () =>
           import('./matchday-tips-links/matchday-tips-links.module').then((m) => m.MatchdayTipsLinksModule)
