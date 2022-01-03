@@ -1,0 +1,45 @@
+@import '/src/variables.scss';
+
+table.comparison-table {
+  tr {
+    td {
+      font-size: 11px;
+      font-weight: 500;
+    }
+    td:not(:last-child) {
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: center;
+    }
+  }
+
+  tr:not(:first-child) {
+    td:not(:first-child) {
+      font-size: 12px;
+    }
+  }
+}
+
+.column-red {
+  background-color: $colorRed;
+}
+
+.column-orange {
+  background-color: $colorOrange;
+}
+
+.column-yellow {
+  background-color: $colorYellow;
+}
+
+.column-greenlight {
+  background-color: $colorGreenLight;
+}
+
+.column-greendark {
+  background-color: $colorGreenDark;
+}
+
+.column-grey {
+  background-color: $colorGreyBackround;
+}

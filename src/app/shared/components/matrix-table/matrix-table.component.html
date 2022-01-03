@@ -1,0 +1,10 @@
+<table class="comparison-table">
+  <tr>
+    <td></td>
+    <td *ngFor="let row of rows | orderBy: 'order'">{{ row.text }}</td>
+  </tr>
+  <tr *ngFor="let row of rows | orderBy: 'order'">
+    <td>{{ row.text }}</td>
+    <td [ngClass]="getColorClass(col)" *ngFor="let col of row.columns">{{ col.text }}</td>
+  </tr>
+</table>

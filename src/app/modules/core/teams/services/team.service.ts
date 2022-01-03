@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TeamService {
   public getTeamWinningMatchdays(team: Team): number[] {
     return this.getMatchdaysByResult(team, 1);
@@ -40,6 +41,15 @@ export class TeamService {
     return this.getPlayedGames(team)
       .filter((g) => g.opponentRank <= topN)
       .map((g) => g.matchday);
+  }
+
+  public getFirstMatchdayWithMissingDate(team: Team): number {
+    const missingDates = new ArrayStream<Fixture>(team.games)
+      .orderBy('matchday', 'asc')
+      .filterQuick((g) => g.date === 0)
+      .collect();
+
+    return missingDates.length === 0 ? 34 : missingDates[0].matchday;
   }
 
   private getMatchdaysByResult(team: Team, result: number): number[] {

@@ -7,9 +7,10 @@ import { PlayersCompareStateResolver } from './routing/players-compare-state.res
 import { PlayersCompareComponent } from './view/players-compare.component';
 import { PlayersCompareTitleComponent } from './view/players-compare-title/players-compare-title.component';
 import { PlayersCompareComparisonGeneralComponent } from './view/players-compare-comparison-general/players-compare-comparison-general.component';
+import { PlayersCompareKickoffTimesComponent } from './view/players-compare-kickoff-times/players-compare-kickoff-times.component';
 
 @NgModule({
-  declarations: [PlayersCompareComponent, PlayersCompareTitleComponent, PlayersCompareComparisonGeneralComponent],
+  declarations: [PlayersCompareComponent, PlayersCompareTitleComponent, PlayersCompareComparisonGeneralComponent, PlayersCompareKickoffTimesComponent],
   imports: [CommonModule, PlayersCompareRoutingModule, SharedModule, AngularMaterialModule],
   providers: [PlayersCompareStateResolver]
 })

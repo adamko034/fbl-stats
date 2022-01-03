@@ -38,6 +38,10 @@
               <td>Top500 %</td>
               <td *ngFor="let player of players">{{ player.top500Popularity }}</td>
             </tr>
+            <tr class="grey-row">
+              <td>TP</td>
+              <td *ngFor="let player of players">{{ player.totalPoints }}</td>
+            </tr>
             <tr>
               <td>Next 3</td>
               <td *ngFor="let player of players">

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { first, map, tap, withLatestFrom } from 'rxjs/operators';
+import { first, map, withLatestFrom } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
@@ -37,8 +37,7 @@ export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCo
         });
         return { players, teams, lastMatchday };
       }),
-      first(),
-      tap((state) => console.log(state))
+      first()
     );
   }
 }

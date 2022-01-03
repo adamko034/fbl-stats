@@ -1,12 +1,23 @@
-<app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
+<div fxLayout="column" fxLayoutGap="20px">
+  <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
 
-<app-white-block>
-  <div>
-    <app-players-compare-comparison-general
-      [players]="state$ | async | field: 'players'"
-      [teams]="state$ | async | field: 'teams'"
-      [lastMatchday]="state$ | async | field: 'lastMatchday'"
-    ></app-players-compare-comparison-general>
-  </div>
-</app-white-block>
-<!-- {{ state$ | async | json }} -->
+  <app-white-block>
+    <div>
+      <app-players-compare-kickoff-times
+        [players]="state$ | async | field: 'players'"
+        [teams]="state$ | async | field: 'teams'"
+        [lastMatchday]="state$ | async | field: 'lastMatchday'"
+      ></app-players-compare-kickoff-times>
+    </div>
+  </app-white-block>
+
+  <app-white-block>
+    <div>
+      <app-players-compare-comparison-general
+        [players]="state$ | async | field: 'players'"
+        [teams]="state$ | async | field: 'teams'"
+        [lastMatchday]="state$ | async | field: 'lastMatchday'"
+      ></app-players-compare-comparison-general>
+    </div>
+  </app-white-block>
+</div>
