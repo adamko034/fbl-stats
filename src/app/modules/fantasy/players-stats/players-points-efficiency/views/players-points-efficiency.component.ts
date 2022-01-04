@@ -32,7 +32,6 @@ interface State {
 })
 export class PlayersPointsEfficiencyComponent implements OnInit {
   private _lastMatchday: number;
-
   public get lastMatchday(): number {
     return this._lastMatchday;
   }
@@ -48,14 +47,12 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
     { value: 'vsWorst6', description: 'vs worst 6' }
   ];
 
-  public get orderByFilterItems(): SwitchItem[] {
-    return [
-      { value: '5', description: '>= 5pts', descriptionMobile: '>= 5pts' },
-      { value: '10', description: '>= 10pts', descriptionMobile: '>= 10pts' },
-      { value: '15', description: '>= 15pts', descriptionMobile: '>= 15pts' },
-      { value: '20', description: '>= 20pts', descriptionMobile: '>= 20pts' }
-    ];
-  }
+  public orderByFilterItems: SwitchItem[] = [
+    { value: '5', description: '>= 5pts', descriptionMobile: '>= 5pts' },
+    { value: '10', description: '>= 10pts', descriptionMobile: '>= 10pts' },
+    { value: '15', description: '>= 15pts', descriptionMobile: '>= 15pts' },
+    { value: '20', description: '>= 20pts', descriptionMobile: '>= 20pts' }
+  ];
 
   public mobile$: Observable<boolean>;
 

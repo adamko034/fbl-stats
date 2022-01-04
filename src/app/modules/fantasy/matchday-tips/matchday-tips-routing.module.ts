@@ -5,7 +5,7 @@ import { MatchdayTipsComponent } from './views/matchday-tips/matchday-tips.compo
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'ourpicks',
+    redirectTo: 'bestteam',
     pathMatch: 'full'
   },
   {

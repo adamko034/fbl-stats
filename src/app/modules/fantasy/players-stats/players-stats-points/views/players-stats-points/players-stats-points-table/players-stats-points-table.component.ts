@@ -69,6 +69,7 @@ export class PlayersStatsPointsTableComponent implements AfterViewInit, OnChange
 
   public ngAfterViewInit(): void {
     this.prepareDataSource();
+    console.log('after view init');
   }
 
   public getCellValue(player: PlayersStatsPointsPlayer, header: string): number {

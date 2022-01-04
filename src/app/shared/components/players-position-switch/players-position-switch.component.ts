@@ -9,18 +9,20 @@ import { SwitchItem } from '../switch/models/switch-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersPositionSwitchComponent implements OnInit {
+  private _items = [
+    { value: PlayerPosition.GK, description: 'GK' },
+    { value: PlayerPosition.DEF, description: 'DEF' },
+    { value: PlayerPosition.MID, description: 'MID' },
+    { value: PlayerPosition.FOR, description: 'FOR' },
+    { value: PlayerPosition.ALL, description: 'ALL' }
+  ];
+
   @Input() selected: PlayerPosition;
   @Input() showLabel = true;
   @Output() positionChange = new EventEmitter<PlayerPosition>();
 
   public get items(): SwitchItem[] {
-    return [
-      { value: PlayerPosition.GK.toString(), description: 'GK' },
-      { value: PlayerPosition.DEF, description: 'DEF' },
-      { value: PlayerPosition.MID, description: 'MID' },
-      { value: PlayerPosition.FOR, description: 'FOR' },
-      { value: PlayerPosition.ALL, description: 'ALL' }
-    ];
+    return this._items;
   }
 
   constructor() {}
