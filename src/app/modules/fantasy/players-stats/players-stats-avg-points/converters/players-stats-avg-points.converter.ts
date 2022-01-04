@@ -24,19 +24,19 @@ export class PlayersStatsAvgPointsConverter {
     gamesPlayed = this.filterGames(gamesPlayed, lastNGames);
     const totalGamesPoints = this.getSumPoints(gamesPlayed);
 
-    let homeGames = this.playersGamesService.getHomePlayedGames(player, team);
+    let homeGames = this.playersGamesService.getHomePlayedGames(player);
     homeGames = this.filterGames(homeGames, lastNGames);
     const homeGamesPoints = this.getSumPoints(homeGames);
 
-    let awayGames = this.playersGamesService.getAwayPlayedGames(player, team);
+    let awayGames = this.playersGamesService.getAwayPlayedGames(player);
     awayGames = this.filterGames(awayGames, lastNGames);
     const awayGamesPoints = this.getSumPoints(awayGames);
 
-    let vsBottomGames = this.playersGamesService.getVsBottomPlayedGames(player, team);
+    let vsBottomGames = this.playersGamesService.getVsBottomPlayedGames(player);
     vsBottomGames = this.filterGames(vsBottomGames, lastNGames);
     const vsBottomPoints = this.getSumPoints(vsBottomGames);
 
-    let vsTopGames = this.playersGamesService.getVsTopPlayedGames(player, team);
+    let vsTopGames = this.playersGamesService.getVsTopPlayedGames(player);
     vsTopGames = this.filterGames(vsTopGames, lastNGames);
     const vsTopPoints = this.getSumPoints(vsTopGames);
 

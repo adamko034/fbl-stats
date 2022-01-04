@@ -62,6 +62,10 @@ export class TeamsStore {
     );
   }
 
+  public selectAllAsObject(): Observable<{ [teamShort: string]: Team }> {
+    return this.state$.asObservable();
+  }
+
   public selectAllWithoutGames(): Observable<Team[]> {
     return this.state$.pipe(
       distinctUntilChanged(),

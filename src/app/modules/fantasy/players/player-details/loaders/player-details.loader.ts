@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, Observable, of } from 'rxjs';
-import { filter, map, mergeMap, tap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { PlayerDetails } from '../models/player-details.model';
@@ -12,22 +13,19 @@ export class PlayerDetailsLoader {
   constructor(
     private playersStore: PlayersStore,
     private teamsStore: TeamsStore,
-    private playerDetailsFabric: PlayerDetailsFabric
+    private playerDetailsFabric: PlayerDetailsFabric,
+    private propertiesStore: PropertiesStore
   ) {}
 
   public load(id: number): Observable<PlayerDetails> {
     Logger.logDev('player details loader, loading, id: ' + id.toString());
-    return this.playersStore.selectById(id.toString()).pipe(
-      filter((player) => !!player),
-      tap((player) => Logger.logDev(`player details loader, got player from state ${player.name}`)),
-      mergeMap((player) => {
-        return combineLatest([
-          of(player),
-          this.teamsStore.select(player.teamShort),
-          !player.nextGame ? of(null) : this.teamsStore.select(player.nextGame.opponent)
-        ]);
-      }),
-      map(([player, team, opponent]) => this.playerDetailsFabric.create(player, team, opponent)),
+    return combineLatest([
+      this.playersStore.selectById(id.toString()),
+      this.teamsStore.selectAllAsObject(),
+      this.propertiesStore.selectLastMatchday()
+    ]).pipe(
+      filter(([player, teams, lastMatchday]) => !!player && !!teams),
+      map(([player, teams, lastMatchday]) => this.playerDetailsFabric.create(player, teams, lastMatchday)),
       tap((playerDetails) => Logger.logDev(`player details loader, created details for ${playerDetails.name}`))
     );
   }

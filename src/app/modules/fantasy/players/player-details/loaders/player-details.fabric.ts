@@ -16,15 +16,17 @@ export class PlayerDetailsFabric {
     private nextOpponentCreator: PlayerDetailsNextGameCreator
   ) {}
 
-  public create(player: Player, team: Team, opponent: Team): PlayerDetails {
+  public create(player: Player, teams: { [teamShort: string]: Team }, lastMatchday: number): PlayerDetails {
+    const nextOpponent = teams[player.nextGame.opponent];
+
     return {
       name: player.name,
       lastName: player.lastName,
       position: player.position,
-      team: this.teamCreator.from(team),
+      team: this.teamCreator.from(teams[player.teamShort]),
       fantasy: this.fantasyCreator.from(player),
-      games: this.gamesCreator.from(player, team),
-      nextGame: this.nextOpponentCreator.from(player, opponent)
+      games: this.gamesCreator.from(player, teams, lastMatchday),
+      nextGame: this.nextOpponentCreator.from(player, nextOpponent)
     };
   }
 }
