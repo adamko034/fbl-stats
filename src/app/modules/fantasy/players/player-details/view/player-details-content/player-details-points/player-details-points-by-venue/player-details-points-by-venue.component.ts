@@ -15,19 +15,28 @@ import { PlayerDetails } from '../../../../models/player-details.model';
 export class PlayerDetailsPointsByVenueComponent {
   @Input() player: PlayerDetails;
 
+  private _homeGames: PlayerDetailsGame[] = [];
+  private _awayGames: PlayerDetailsGame[] = [];
+
   public get homeGames(): PlayerDetailsGame[] {
-    return new ArrayStream(this.player.games)
-      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.HOME, this.playerGamesService))
-      .collect();
+    return this._homeGames;
   }
 
   public get awayGames(): PlayerDetailsGame[] {
-    return new ArrayStream(this.player.games)
-      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.AWAY, this.playerGamesService))
-      .collect();
+    return this._awayGames;
   }
 
   constructor(private playerGamesService: PlayerGamesService) {}
+
+  public ngOnInit(): void {
+    this._homeGames = new ArrayStream(this.player.games)
+      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.HOME, this.playerGamesService))
+      .collect();
+
+    this._awayGames = new ArrayStream(this.player.games)
+      .filter(new PlayerDetailsGamesFilters(PlayerDetailsGameFilter.AWAY, this.playerGamesService))
+      .collect();
+  }
 
   public calculatePointsPer1M(points: number): number {
     return Math.round((points / this.player.fantasy.price) * 10) / 10;
