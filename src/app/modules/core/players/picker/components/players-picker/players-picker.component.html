@@ -1,5 +1,6 @@
 <div>
   <button
+    *ngIf="type === 'button'"
     mat-button
     class="main-background"
     (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
@@ -10,6 +11,17 @@
     Add player
     <mat-icon *ngIf="opened">arrow_drop_up</mat-icon>
     <mat-icon *ngIf="!opened">arrow_drop_down</mat-icon>
+  </button>
+  <button
+    *ngIf="type === 'icon'"
+    class="main-background"
+    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+    (menuClosed)="opened = trigger.menuOpen"
+    mat-icon-button
+    [matMenuTriggerFor]="searchMenuOurPick"
+    #trigger="matMenuTrigger"
+  >
+    <mat-icon>add_circle_outline</mat-icon>
   </button>
   <mat-menu #searchMenuOurPick="matMenu">
     <form class="menu-form">

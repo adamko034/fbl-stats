@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { PlayerGamesService } from 'src/app/modules/core/players/services/player-games.service';
-import { TeamService } from 'src/app/modules/core/teams/services/team.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { TeamGameAgainst } from 'src/app/shared/components/team-game-against/team-game-against.model';
 import { MathHelper } from 'src/app/shared/helpers/math.helper';
@@ -16,22 +15,39 @@ import { Team } from 'src/app/store/teams/models/team.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersCompareComparisonGeneralComponent implements OnInit {
+  private _nextFourMatchdays: number[] = [];
+
   @Input() players: Player[];
   @Input() teams: { [teamShort: string]: Team };
   @Input() lastMatchday: number;
 
-  constructor(private playerGamesService: PlayerGamesService, private teamService: TeamService) {}
+  public get nextFourMatchdays(): number[] {
+    return this._nextFourMatchdays;
+  }
 
-  ngOnInit(): void {}
+  constructor(private playerGamesService: PlayerGamesService) {}
+
+  public ngOnInit(): void {
+    this._nextFourMatchdays = [
+      this.lastMatchday + 1,
+      this.lastMatchday + 2,
+      this.lastMatchday + 3,
+      this.lastMatchday + 4
+    ].filter((md) => md <= 34);
+  }
 
   public getPointsTotal(player: Player, mds: number): string {
     return this.getPoints(player.games, mds);
   }
 
-  public getAvgPointsTotal(player: Player, mds: number): number {
+  public getAvgPointsTotal(player: Player, mds: number): string {
     const points = this.getPointsTotal(player, mds);
 
-    return MathHelper.divideAndRound(+points, mds);
+    if (isNaN(+points)) {
+      return 'x';
+    }
+
+    return MathHelper.divideAndRound(+points, mds).toString();
   }
 
   public getPointsByVenue(player: Player, venue: 'h' | 'a' | 'all', mds: number): string {
@@ -48,19 +64,7 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
   }
 
   public getGamesPlayed(player: Player, venue: 'h' | 'a' | 'all', mds: number): Game[] {
-    let games: Game[];
-    if (venue === 'all') {
-      games = this.playerGamesService.getPlayedGames(player);
-    }
-
-    if (venue === 'h') {
-      games = this.playerGamesService.getHomePlayedGames(player, this.getTeam(player));
-    }
-
-    if (venue === 'a') {
-      games = this.playerGamesService.getAwayPlayedGames(player, this.getTeam(player));
-    }
-
+    const games = this.playerGamesService.getPlayedGamesByVenue(player, venue);
     return mds === 0 ? games : new ArrayStream<Game>(games).orderBy('matchday', 'dsc').take(mds).collect();
   }
 
@@ -93,45 +97,46 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
 
   public getGamesPlayedPercentage(player: Player, venue: 'all' | 'h' | 'a') {
     const gamesPlayed = this.getGamesPlayed(player, venue, 0);
-    const teamGamesPlayed = this.teamService.getPlayedMatchdaysByVenue(this.getTeam(player), venue);
+    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue);
 
-    return `${MathHelper.divideAndRoundPercentage(gamesPlayed.length, teamGamesPlayed.length)}% (${
-      gamesPlayed.length
-    }/${teamGamesPlayed.length})`;
+    return `${MathHelper.divideAndRoundPercentage(gamesPlayed.length, allGames.length)}% (${gamesPlayed.length}/${
+      allGames.length
+    })`;
   }
 
   public getGamesStarted(player: Player, venue: 'all' | 'h' | 'a'): string {
-    const teamMatchdays = this.teamService.getPlayedMatchdaysByVenue(this.getTeam(player), venue);
-    const gamesStarted = this.playerGamesService.getStartedGames(player, this.getTeam(player), venue);
+    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue);
+    const gamesStarted = this.playerGamesService.getStartedGames(player, venue);
 
-    return `${MathHelper.divideAndRoundPercentage(gamesStarted.length, teamMatchdays.length)}% (${
-      gamesStarted.length
-    }/${teamMatchdays.length})`;
+    return `${MathHelper.divideAndRoundPercentage(gamesStarted.length, allGames.length)}% (${gamesStarted.length}/${
+      allGames.length
+    })`;
   }
 
   public getGames70(player: Player, venue: 'all' | 'h' | 'a'): string {
-    const teamMatchdays = this.teamService.getPlayedMatchdaysByVenue(this.getTeam(player), venue);
-    const games70 = this.playerGamesService.get70PlusGames(player, this.getTeam(player), venue);
+    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue);
+    const games70 = this.playerGamesService.get70PlusGames(player, venue);
 
-    return `${MathHelper.divideAndRoundPercentage(games70.length, teamMatchdays.length)}% (${games70.length}/${
-      teamMatchdays.length
+    return `${MathHelper.divideAndRoundPercentage(games70.length, allGames.length)}% (${games70.length}/${
+      allGames.length
     })`;
   }
 
   public getGamesWon(player: Player, venue: 'all' | 'h' | 'a', ifPlayed: boolean): string {
-    const teamGames = this.teamService.getPlayedGamesByVenue(this.getTeam(player), venue);
-    const teamGamesWon = this.teamService.getPlayedWonMatchdaysByVenue(this.getTeam(player), venue);
-    const gamesByVenuePlayed = this.getGamesPlayed(player, venue, 0);
-    const gamesWon = gamesByVenuePlayed.filter((g) => teamGamesWon.includes(g.matchday));
+    const allGamesByVenue = this.playerGamesService.getGamesByVenue(player.games, venue);
+    const gamesWon = this.playerGamesService.getGamesWonByVenue(player, venue);
+
+    const allGamesPlayedByVenue = this.playerGamesService.getPlayedGamesByVenue(player, venue);
+    const gamesPlayedWon = this.playerGamesService.getGamesPlayedWonByVenue(player, venue);
 
     if (ifPlayed) {
-      return `${MathHelper.divideAndRoundPercentage(gamesWon.length, gamesByVenuePlayed.length)}% (${gamesWon.length}/${
-        gamesByVenuePlayed.length
-      })`;
+      return `${MathHelper.divideAndRoundPercentage(gamesPlayedWon.length, allGamesPlayedByVenue.length)}% (${
+        gamesPlayedWon.length
+      }/${allGamesPlayedByVenue.length})`;
     }
 
-    return `${MathHelper.divideAndRoundPercentage(gamesWon.length, teamGames.length)}% (${gamesWon.length}/${
-      teamGames.length
+    return `${MathHelper.divideAndRoundPercentage(gamesWon.length, allGamesByVenue.length)}% (${gamesWon.length}/${
+      allGamesByVenue.length
     })`;
   }
 

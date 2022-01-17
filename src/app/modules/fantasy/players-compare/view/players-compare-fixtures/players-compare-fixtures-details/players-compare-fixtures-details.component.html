@@ -1,0 +1,54 @@
+<app-title-underlined-grey layoutAlign="start start">
+  <span title>Fixtures comparison (MD{{ lastMatchday + 1 }} - MD{{ lastMatchday + nextMatchdaysCount }})</span>
+  <div content>
+    <div fxLayout="column">
+      <table class="comparison-table">
+        <tr>
+          <td [appSticky]="{ position: 'left' }"></td>
+          <td *ngFor="let player of players">
+            <app-player-name-link [id]="player.id" [name]="player.lastName"></app-player-name-link>
+          </td>
+        </tr>
+        <tr>
+          <td [appSticky]="{ position: 'left' }">First games</td>
+          <td *ngFor="let player of players">
+            <span [innerHtml]="getBoldableString(keys.FIRST_GAMES, player.id)"></span>
+          </td>
+        </tr>
+        <tr>
+          <td [appSticky]="{ position: 'left' }">Standalone</td>
+          <td *ngFor="let player of players">
+            <span [innerHtml]="getBoldableString(keys.STANDALONE, player.id)"></span>
+          </td>
+        </tr>
+        <tr>
+          <td [appSticky]="{ position: 'left' }">Home</td>
+          <td *ngFor="let player of players">
+            <span [innerHtml]="getBoldableString(keys.HOME, player.id)"></span>
+          </td>
+        </tr>
+        <tr>
+          <td [appSticky]="{ position: 'left' }">Away</td>
+          <td *ngFor="let player of players">
+            <span [innerHtml]="getBoldableString(keys.AWAY, player.id)"></span>
+          </td>
+        </tr>
+        <tr>
+          <td [appSticky]="{ position: 'left' }">Vs top 6</td>
+          <td *ngFor="let player of players">
+            <span [innerHtml]="getBoldableString(keys.VS_TOP, player.id)"></span>
+          </td>
+        </tr>
+        <tr>
+          <td [appSticky]="{ position: 'left' }">Vs bottom 6</td>
+          <td *ngFor="let player of players">
+            <span [innerHtml]="getBoldableString(keys.VS_BOTTOM, player.id)"></span>
+          </td>
+        </tr>
+      </table>
+      <div class="legend">
+        <span>*Number of games in next {{ nextMatchdaysCount }} matchdays</span>
+      </div>
+    </div>
+  </div>
+</app-title-underlined-grey>

@@ -10,13 +10,15 @@ import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { PlayersCompareState } from '../models/players-compare-state.model';
+import { PlayersCompareIdsCacheService } from '../services/players-compare-ids-store.service';
 
 @Injectable()
 export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCompareState>> {
   constructor(
     private playersStore: PlayersStore,
     private teamsStore: TeamsStore,
-    private propertiesStore: PropertiesStore
+    private propertiesStore: PropertiesStore,
+    private idsCache: PlayersCompareIdsCacheService
   ) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<PlayersCompareState> {
@@ -27,7 +29,14 @@ export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCo
     return this.playersStore.selectByIds(ids).pipe(
       withLatestFrom(this.teamsStore.selectState(), this.propertiesStore.selectLastMatchday()),
       map(([players, teamsState, lastMatchday]) => {
-        players = new ArrayStream<Player>(players).orderBy('id', 'asc').collect();
+        const ordered: Player[] = [];
+
+        ids.forEach((id) => {
+          var player = players.find((p) => p.id.toString() === id);
+          if (player) {
+            ordered.push(player);
+          }
+        });
 
         const teamsShortName = new ArrayStream<Player>(players).distinct((p) => p.teamShort);
         const teams: { [teamShort: string]: Team } = {};
@@ -35,9 +44,18 @@ export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCo
         teamsShortName.forEach((teamShort) => {
           teams[teamShort] = teamsState[teamShort];
         });
-        return { players, teams, lastMatchday };
+
+        this.cachePlayersIds(ordered, ids);
+        return { players: ordered, teams, lastMatchday };
       }),
       first()
     );
+  }
+
+  private cachePlayersIds(players: Player[], ids: string[]): void {
+    if (players.length !== ids.length) {
+      Logger.logDev('players compare state resolver, loaded different ids than provided from url, caching');
+      this.idsCache.set(players.map((p) => p.id.toString()));
+    }
   }
 }

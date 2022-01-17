@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -15,6 +16,8 @@ import { PlayerPickerService } from '../../services/player-picker.service';
 })
 export class PlayersPickerComponent implements OnInit {
   @Input() excluded: number[];
+  @Input() closeAfterSelect: boolean = false;
+  @Input() type: 'button' | 'icon' = 'button';
   @Output() playerSelected = new EventEmitter<PlayerPicker>();
 
   public foundPlayers$: Observable<PlayerPicker[]>;
@@ -22,6 +25,7 @@ export class PlayersPickerComponent implements OnInit {
   public opened = false;
 
   @ViewChild(MatInput) searchInput;
+  @ViewChild('trigger') trigger: MatMenuTrigger;
 
   constructor(private pickerService: PlayerPickerService) {}
 
@@ -41,6 +45,11 @@ export class PlayersPickerComponent implements OnInit {
   public onPlayerSelected(selectedValue: string) {
     const values = selectedValue.split(';');
     this.playerSearch.setValue(null);
+
+    if (this.closeAfterSelect) {
+      this.trigger.closeMenu();
+    }
+
     this.playerSelected.emit({ id: values[0], name: values[1] });
   }
 

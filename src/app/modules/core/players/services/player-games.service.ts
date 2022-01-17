@@ -38,19 +38,35 @@ export class PlayerGamesService {
 
   public getStartedGames(player: Player, venue: 'all' | 'h' | 'a'): Game[] {
     const gamesStarted = player.games.filter((g) => g.started);
-    return this.filterGamesByVenue(gamesStarted, venue);
+    return this.getGamesByVenue(gamesStarted, venue);
   }
 
   public get70PlusGames(player: Player, venue: 'all' | 'h' | 'a'): Game[] {
     const games = player.games.filter((g) => g.hasPlayedMoreThan70Min);
-    return this.filterGamesByVenue(games, venue);
+    return this.getGamesByVenue(games, venue);
   }
 
-  private filterGamesByVenue(games: Game[], venue: 'all' | 'h' | 'a'): Game[] {
+  public getPlayedGamesByVenue(player: Player, venue: 'all' | 'h' | 'a'): Game[] {
+    return this.getGamesByVenue(this.getPlayedGames(player), venue);
+  }
+
+  public getGamesByVenue(games: Game[], venue: 'all' | 'h' | 'a'): Game[] {
     if (venue === 'all') {
       return games;
     }
 
     return games.filter((g) => (venue === 'h' ? g.isHome : !g.isHome));
+  }
+
+  public getGamesPlayedWonByVenue(player: Player, venue: 'all' | 'h' | 'a') {
+    return this.gamesWon(this.getPlayedGamesByVenue(player, venue));
+  }
+
+  public getGamesWonByVenue(player: Player, venue: 'all' | 'h' | 'a') {
+    return this.gamesWon(this.getGamesByVenue(player.games, venue));
+  }
+
+  private gamesWon(games: Game[]): Game[] {
+    return games.filter((g) => g.result > 0);
   }
 }

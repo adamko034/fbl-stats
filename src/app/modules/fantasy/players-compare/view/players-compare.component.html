@@ -1,23 +1,30 @@
-<div fxLayout="column" fxLayoutGap="20px">
-  <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
+<app-view [links]="links">
+  <div fxLayout="column">
+    <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
 
-  <app-white-block>
-    <div>
-      <app-players-compare-kickoff-times
+    <app-white-block *ngIf="showPlayers$ | async | reverseBoolean">
+      <div fxLayoutAlign="center center">
+        <h2>Add players to compare</h2>
+      </div>
+    </app-white-block>
+
+    <div fxLayout="column" fxLayoutGap="15px">
+      <app-players-compare-fixtures
+        *ngIf="showPlayers$ | async"
         [players]="state$ | async | field: 'players'"
         [teams]="state$ | async | field: 'teams'"
         [lastMatchday]="state$ | async | field: 'lastMatchday'"
-      ></app-players-compare-kickoff-times>
-    </div>
-  </app-white-block>
+      ></app-players-compare-fixtures>
 
-  <app-white-block>
-    <div>
-      <app-players-compare-comparison-general
-        [players]="state$ | async | field: 'players'"
-        [teams]="state$ | async | field: 'teams'"
-        [lastMatchday]="state$ | async | field: 'lastMatchday'"
-      ></app-players-compare-comparison-general>
+      <app-white-block *ngIf="showPlayers$ | async">
+        <div>
+          <app-players-compare-comparison-general
+            [players]="state$ | async | field: 'players'"
+            [teams]="state$ | async | field: 'teams'"
+            [lastMatchday]="state$ | async | field: 'lastMatchday'"
+          ></app-players-compare-comparison-general>
+        </div>
+      </app-white-block>
     </div>
-  </app-white-block>
-</div>
+  </div>
+</app-view>

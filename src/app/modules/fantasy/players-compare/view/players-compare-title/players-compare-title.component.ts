@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
 import { PlayerCompareCard } from '../../models/player-compare-card.model';
+import { PlayersCompareNavigationService } from '../../services/players-compare-navigation.service';
 
 @Component({
   selector: 'app-players-compare-title',
@@ -10,7 +12,17 @@ import { PlayerCompareCard } from '../../models/player-compare-card.model';
 export class PlayersCompareTitleComponent implements OnInit {
   @Input() players: PlayerCompareCard[];
 
-  constructor() {}
+  constructor(private navigationService: PlayersCompareNavigationService) {}
 
   ngOnInit(): void {}
+
+  public onPlayerRemove(player: PlayerCompareCard): void {
+    //this.toastrService.success(`Removed ${player.name}`);
+    this.navigationService.removePlayer(player.id);
+  }
+
+  public onPlayerSelected({ id, name }: PlayerPicker): void {
+    //this.toastrService.success(`Added ${name}`);
+    this.navigationService.addPlayer(id.toString());
+  }
 }

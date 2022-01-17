@@ -3,4 +3,5 @@ export interface PlayerCompareCard {
   teamShort: string;
   position: string;
   id: string;
+  price: number;
 }

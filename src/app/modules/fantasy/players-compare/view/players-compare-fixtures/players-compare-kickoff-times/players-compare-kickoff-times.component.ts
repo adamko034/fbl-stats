@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
 import { TeamService } from 'src/app/modules/core/teams/services/team.service';
 import { TeamsKickOffTimesService } from 'src/app/modules/core/teams/services/teams-kickoff-times.service';
 import { MatrixTableColor } from 'src/app/shared/components/matrix-table/models/matrix-table-color.enum';
@@ -14,26 +14,41 @@ import { Team } from 'src/app/store/teams/models/team.model';
   styleUrls: ['./players-compare-kickoff-times.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayersCompareKickoffTimesComponent implements OnInit {
-  private _min: number = 34;
+export class PlayersCompareKickoffTimesComponent implements OnChanges {
   private _max: number = 0;
 
   @Input() players: Player[];
   @Input() teams: { [teamShort: string]: Team };
   @Input() lastMatchday: number;
-  @Input() matchdaysIncluded: number = 0;
+  @Input() matchdaysCount: number = 0;
+
+  public get includeNextMatchdaysCount(): number {
+    return this.matchdaysCount === 0 ? this._max : this.matchdaysCount;
+  }
 
   public matrix: MatrixTableRow[] = [];
 
-  constructor(private teamsKickOffTimesService: TeamsKickOffTimesService, private teamService: TeamService) {}
+  constructor(
+    private teamsKickOffTimesService: TeamsKickOffTimesService,
+    private teamService: TeamService,
+    private changeDetection: ChangeDetectorRef
+  ) {}
 
-  public ngOnInit(): void {
+  public ngOnChanges(): void {
+    this._max = 0;
+
+    this.setData();
+    this.setMax();
+    this.setColors();
+
+    this.changeDetection.detectChanges();
+  }
+
+  private setData(): void {
+    this.matrix = [];
     for (let i: number = 0; i < this.players.length; i++) {
       this.matrix.push(this.playerToMatrixRow(this.players[i], i));
     }
-
-    this.setMax();
-    this.setColors();
   }
 
   private playerToMatrixRow(player: Player, order: number): MatrixTableRow {
@@ -54,24 +69,25 @@ export class PlayersCompareKickoffTimesComponent implements OnInit {
       const differentKickOffTimes = this.teamsKickOffTimesService.getDifferentKickoffTimes(
         team,
         otherTeam,
-        this.lastMatchday + 1
+        this.lastMatchday + 1,
+        this.matchdaysCount === 0 ? 0 : this.lastMatchday + this.matchdaysCount
       );
       cols.push({ id: otherPlayer.id, text: differentKickOffTimes.length.toString(), color: MatrixTableColor.GREY });
-
-      if (differentKickOffTimes.length < this._min) {
-        this._min = differentKickOffTimes.length;
-      }
     }
 
     return { id, text: lastName, columns: cols, order };
   }
 
   private setMax(): void {
-    this._max = this.matchdaysIncluded;
+    this._max = this.matchdaysCount;
 
     if (this._max === 0) {
-      const nextUnknownMatchday = this.teamService.getFirstMatchdayWithMissingDate(this.teams['fcb']);
-      this._max = nextUnknownMatchday - (this.lastMatchday + 1);
+      const team = this.teams[this.players[0].teamShort];
+
+      if (team) {
+        const nextUnknownMatchday = this.teamService.getFirstMatchdayWithMissingDate(team);
+        this._max = nextUnknownMatchday - (this.lastMatchday + 1);
+      }
     }
   }
 
@@ -80,7 +96,7 @@ export class PlayersCompareKickoffTimesComponent implements OnInit {
       row.columns
         .filter((col) => col.text !== '' && !isNaN(+col.text))
         .forEach((col) => {
-          const colorIndex = MathHelper.normalizeTo(+col.text, this._min, this._max, 5);
+          const colorIndex = MathHelper.normalizeTo(+col.text, 0, this._max, 5);
           //const colorIndex = MathHelper.normalizeTo(+col.text, 0, 2, 5);
           col.color = colorIndex;
         });

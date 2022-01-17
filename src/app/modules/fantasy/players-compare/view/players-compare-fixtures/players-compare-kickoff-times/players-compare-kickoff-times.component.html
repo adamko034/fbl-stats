@@ -1,0 +1,15 @@
+<app-title-underlined-grey layoutAlign="start start">
+  <span title
+    >Different kick-off times (MD{{ lastMatchday + 1 }} - MD{{ lastMatchday + includeNextMatchdaysCount }})
+  </span>
+  <div content>
+    <div fxLayout="column">
+      <app-matrix-table class="kick-off-times" *ngIf="matrix" [rows]="matrix"></app-matrix-table>
+      <div class="legend">
+        <span [appSticky]="{ position: 'left', px: 10 }"
+          >*Number of different kick-off times in next {{ includeNextMatchdaysCount }} matchdays</span
+        >
+      </div>
+    </div>
+  </div>
+</app-title-underlined-grey>

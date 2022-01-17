@@ -9,4 +9,5 @@ export interface Game {
   goals: number;
   assists: number;
   isHome: boolean;
+  result: number;
 }

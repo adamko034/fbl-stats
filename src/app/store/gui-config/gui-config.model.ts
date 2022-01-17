@@ -8,6 +8,12 @@ export interface GuiConfig {
   players: GuiConfigPlayers;
   ourPicks?: GuiConfigOurPicks;
   myTeam?: GuiConfigMyTeam;
+  comparePlayers?: GuiConfigComparePlayers;
+}
+
+export interface GuiConfigComparePlayers {
+  includeMatchdays?: number;
+  ids?: string[];
 }
 
 export interface GuiConfigMyTeam {

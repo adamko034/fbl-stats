@@ -7,7 +7,6 @@ export interface PlayerDetailsGame extends Game {
   opponent: string;
   opponentRank: number;
   isHome: boolean;
-  result?: number;
   resultText?: string;
   isFirstGame: boolean;
   started: boolean;

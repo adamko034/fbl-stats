@@ -1,17 +1,32 @@
-<div fxLayout="row wrap" fxLayoutAlign="space-evenly">
-  <div class="player-card" *ngFor="let player of players">
-    <mat-card>
-      <div fxLayout="column">
-        <div fxLayout="row" fxLayoutGap="10px">
-          <app-team-logo [team]="player.teamShort"></app-team-logo>
-          <div fxLayout="column">
-            <span class="player-card-name"
-              ><app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link
-            ></span>
-            <!-- <span class="player-card-position">{{ player.position | uppercase }}</span> -->
-          </div>
-        </div>
+<div class="container">
+  <div class="title-container">
+    <app-players-picker
+      class="picker"
+      [type]="(players | arrayEmpty) ? 'button' : 'icon'"
+      [excluded]="players | pluck: 'id'"
+      [closeAfterSelect]="true"
+      (playerSelected)="onPlayerSelected($event)"
+    ></app-players-picker>
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+      <div class="player-card" *ngFor="let player of players">
+        <mat-card>
+          <mat-card-content fxLayoutAlign="center">
+            <div fxLayout="column">
+              <span class="player-card-name"
+                ><app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link
+              ></span>
+              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <app-team-logo [team]="player.teamShort" [height]="20"></app-team-logo>
+                <span class="player-card-position">{{ player.position | uppercase }}</span>
+                <span class="player-card-position">{{ player.price }}M</span>
+              </div>
+            </div>
+            <button class="remove-button" mat-mini-fab (click)="onPlayerRemove(player)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-card-content>
+        </mat-card>
       </div>
-    </mat-card>
+    </div>
   </div>
 </div>

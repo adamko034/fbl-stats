@@ -12,13 +12,14 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersDisplaySettings } from 'src/app/modules/core/players/models/players-display-settings.model';
 import { PlayersDataService } from 'src/app/modules/core/players/services/players-data.service';
 import { PlayersDisplaySettingsService } from 'src/app/modules/core/players/services/players-display-settings.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
+import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 import { Game } from 'src/app/store/players/models/game.model';
 import { Logger } from 'src/app/utils/logger';
 
@@ -35,6 +36,8 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
 
   @ViewChild(MatSort) sort: MatSort;
 
+  public cachedCompareIds$: Observable<string[]>;
+
   public readonly DISPLAY_KEY = 'table';
   private destroyed$ = new Subject<void>();
 
@@ -48,7 +51,8 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   constructor(
     private myTeamService: MyTeamStore,
     private playersDataService: PlayersDataService,
-    private displaySettingsService: PlayersDisplaySettingsService
+    private displaySettingsService: PlayersDisplaySettingsService,
+    private guiConfigStore: GuiConfigStore
   ) {}
 
   public ngOnChanges(change: SimpleChanges) {
@@ -61,6 +65,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   ngOnInit() {
     Logger.logDev('players table componenet, on init');
     this.myTeamPlayers$ = this.myTeamService.selectPlayersId();
+    this.cachedCompareIds$ = this.guiConfigStore.selectComparePlayersConfig().pipe(map((config) => config.ids));
   }
 
   public ngAfterViewInit(): void {

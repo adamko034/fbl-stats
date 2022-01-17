@@ -3,7 +3,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { GuiConfig, GuiConfigMyTeamDisplay, GuiConfigOurPicks } from './gui-config.model';
+import { GuiConfig, GuiConfigComparePlayers, GuiConfigMyTeamDisplay, GuiConfigOurPicks } from './gui-config.model';
 
 @Injectable({ providedIn: 'root' })
 export class GuiConfigStore {
@@ -85,6 +85,20 @@ export class GuiConfigStore {
 
   public changeMyTeamDisplay(config: GuiConfigMyTeamDisplay): void {
     this.config.myTeam = { ...this.config.myTeam, display: config };
+    this.send();
+  }
+
+  public selectComparePlayersConfig(): Observable<GuiConfigComparePlayers> {
+    return this.config$.pipe(map((config) => config.comparePlayers));
+  }
+
+  public changeComparePlayersMatchdaysCount(fixturesCount: number): void {
+    this.config.comparePlayers = { ...this.config.comparePlayers, includeMatchdays: fixturesCount };
+    this.send();
+  }
+
+  public changeComparePlayersIds(ids: string[]): void {
+    this.config.comparePlayers = { ...this.config.comparePlayers, ids };
     this.send();
   }
 

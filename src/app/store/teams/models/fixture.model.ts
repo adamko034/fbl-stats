@@ -8,6 +8,7 @@ export interface Fixture {
   wasPlayed: boolean;
   wasPostponed: boolean;
   isMatchdayFirstGame: boolean;
+  isStandaloneFixture: boolean;
   result?: number;
   resultText?: string;
   goalsScored?: number;

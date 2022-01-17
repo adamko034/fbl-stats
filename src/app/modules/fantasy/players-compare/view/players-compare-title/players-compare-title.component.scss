@@ -1,9 +1,21 @@
 @import '/src/variables.scss';
+.container {
+  padding: 10px;
+
+  .title-container {
+    display: grid;
+    grid-template-columns: 50px auto;
+  }
+}
+
+.picker {
+  margin-top: 15px;
+}
 
 .player-card {
-  width: 250px;
-  min-width: 250px;
-  max-width: 250px;
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
   margin-bottom: 15px;
 
   &-name {
@@ -13,5 +25,20 @@
   &-position {
     font-size: $fontSizeSmall;
     color: $colorGrey;
+  }
+}
+
+.remove-button {
+  background-color: $colorGreyLight;
+  color: #000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: scale(0.5);
+
+  &:hover {
+    background-color: $colorRed;
+    color: #fff;
+    transform: scale(0.7);
   }
 }

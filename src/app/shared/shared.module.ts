@@ -89,11 +89,17 @@ import { ValueDifferenceComponent } from './components/value-difference/value-di
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { ScaleDirective } from './directives/scale.directive';
+import { StickyHorizontalDirective } from './directives/sticky-horizontal.directive';
+import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
+import { StickyDirective } from './directives/sticky.directive';
+import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
+import { ArrayNotEmptyPipe } from './pipes/array-not-empty.pipe';
 import { AveragePipe } from './pipes/average.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
 import { LengthPipe } from './pipes/length.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
+import { ReverseBooleanPipe } from './pipes/reverse-boolean.pipe';
 import { TakePipe } from './pipes/take.pipe';
 import { WherePipe } from './pipes/where.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
@@ -170,7 +176,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     HasPlayedSeventyMinutesIconComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
-    MatrixTableComponent
+    MatrixTableComponent,
+    StickyHorizontalDirective,
+    StickyDirective,
+    StickyWrapperDirective,
+    ArrayEmptyPipe,
+    ArrayNotEmptyPipe,
+    ReverseBooleanPipe
   ],
   imports: [
     CommonModule,
@@ -244,7 +256,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SelectDialogComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
-    MatrixTableComponent
+    MatrixTableComponent,
+    StickyHorizontalDirective,
+    StickyDirective,
+    StickyWrapperDirective,
+    ArrayEmptyPipe,
+    ArrayNotEmptyPipe,
+    ReverseBooleanPipe
   ]
 })
 export class SharedModule {

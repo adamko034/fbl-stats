@@ -49,7 +49,73 @@ export class TeamService {
       .filterQuick((g) => g.date === 0)
       .collect();
 
-    return missingDates.length === 0 ? 34 : missingDates[0].matchday;
+    return missingDates.length === 0 ? 35 : missingDates[0].matchday;
+  }
+
+  public getFirstGames(team: Team, fromMatchday?: number, takeNextN?: number): Fixture[] {
+    const stream = new ArrayStream<Fixture>(team.games)
+      .filterQuick((g) => fromMatchday == null || g.matchday >= fromMatchday)
+      .filterQuick((g) => g.matchday < 34)
+      .filterQuick((g) => g.date != 0)
+      .filterQuick((g) => g.isMatchdayFirstGame);
+
+    if (takeNextN != null) {
+      return stream.orderBy('matchday', 'asc').take(takeNextN).collect();
+    }
+
+    return stream.collect();
+  }
+
+  public getStandaloneGames(team: Team, fromMatchday?: number, takeNextN?: number): Fixture[] {
+    let stream = new ArrayStream<Fixture>(team.games)
+      .filterQuick((g) => fromMatchday == null || g.matchday >= fromMatchday)
+      .filterQuick((g) => g.matchday < 34)
+      .filterQuick((g) => g.date != 0);
+
+    if (takeNextN != null) {
+      stream = stream.orderBy('matchday', 'asc').take(takeNextN);
+    }
+
+    return stream.filterQuick((g) => g.isStandaloneFixture).collect();
+  }
+
+  public getGamesByVenue(team: Team, venue: 'h' | 'a', fromMatchday?: number, takeNextN?: number): Fixture[] {
+    let stream = new ArrayStream<Fixture>(team.games).filterQuick(
+      (g) => fromMatchday == null || g.matchday >= fromMatchday
+    );
+
+    if (takeNextN != null) {
+      stream = stream.orderBy('matchday', 'asc').take(takeNextN);
+    }
+
+    return stream.filterQuick((g) => (venue === 'h' ? g.isHome : !g.isHome)).collect();
+  }
+
+  public getGamesByOpponentRank(
+    team: Team,
+    rank: 'top6' | 'bottom6',
+    fromMatchday?: number,
+    takeNextN?: number
+  ): Fixture[] {
+    let stream = new ArrayStream<Fixture>(team.games).filterQuick(
+      (g) => fromMatchday === null || g.matchday >= fromMatchday
+    );
+
+    if (takeNextN != null) {
+      stream = stream.orderBy('matchday', 'asc').take(takeNextN);
+    }
+
+    return stream
+      .filterQuick((g) => {
+        if (rank === 'top6') {
+          return g.opponentRank <= 6;
+        }
+
+        return g.opponentRank >= 13;
+      })
+      .collect();
+
+    return stream.collect();
   }
 
   private getMatchdaysByResult(team: Team, result: number): number[] {
