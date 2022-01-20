@@ -8,7 +8,7 @@ export class PlayersCompareIdsCacheService {
   constructor(private guiStore: GuiConfigStore) {}
 
   public get(): Observable<string[]> {
-    return this.guiStore.selectComparePlayersConfig().pipe(map((config) => config.ids ?? []));
+    return this.guiStore.selectComparePlayersConfig().pipe(map((config) => config?.ids ?? []));
   }
 
   public set(ids: string[]): void {
