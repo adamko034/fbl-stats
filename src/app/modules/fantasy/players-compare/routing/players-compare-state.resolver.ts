@@ -45,7 +45,10 @@ export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCo
           teams[teamShort] = teamsState[teamShort];
         });
 
-        this.cachePlayersIds(ordered, ids);
+        if (route.queryParams.fromQuickLink !== 'true') {
+          this.cachePlayersIds(ordered, ids);
+        }
+
         return { players: ordered, teams, lastMatchday };
       }),
       first()

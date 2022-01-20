@@ -32,8 +32,6 @@ export class BoldableValuesService {
         }
       });
     });
-
-    console.log(this._values);
   }
 
   public getBoldableValue(key: string, id: string): string {

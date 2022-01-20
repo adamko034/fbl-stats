@@ -89,7 +89,6 @@ import { ValueDifferenceComponent } from './components/value-difference/value-di
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { ScaleDirective } from './directives/scale.directive';
-import { StickyHorizontalDirective } from './directives/sticky-horizontal.directive';
 import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
 import { StickyDirective } from './directives/sticky.directive';
 import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
@@ -177,7 +176,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
     MatrixTableComponent,
-    StickyHorizontalDirective,
     StickyDirective,
     StickyWrapperDirective,
     ArrayEmptyPipe,
@@ -257,7 +255,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
     MatrixTableComponent,
-    StickyHorizontalDirective,
     StickyDirective,
     StickyWrapperDirective,
     ArrayEmptyPipe,

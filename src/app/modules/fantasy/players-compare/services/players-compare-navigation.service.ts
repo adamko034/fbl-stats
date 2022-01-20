@@ -15,14 +15,20 @@ export class PlayersCompareNavigationService {
       return;
     }
 
-    this.router.navigate([], { queryParams: { ids: withoutRemoved }, queryParamsHandling: 'merge' });
+    this.router.navigate([], {
+      queryParams: { fromQuickLink: null, ids: withoutRemoved },
+      queryParamsHandling: 'merge'
+    });
   }
 
   public addPlayer(id: string): void {
     const currentIds = this.currentIds();
     const newIds = [...currentIds, id];
 
-    this.router.navigate([], { queryParams: { cleared: null, ids: newIds }, queryParamsHandling: 'merge' });
+    this.router.navigate([], {
+      queryParams: { fromQuickLink: null, cleared: null, ids: newIds },
+      queryParamsHandling: 'merge'
+    });
   }
 
   private currentIds(): string[] {

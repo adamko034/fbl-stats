@@ -11,7 +11,7 @@ export class PlayersCompareIdsCacheGuard implements CanActivate {
 
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
     Logger.logDev('player compare ids cache guard, invoked');
-    if (route.queryParams.fromQuickLink) {
+    if (route.queryParams.fromQuickLink === 'true') {
       Logger.logDev('player compare ids cache guard, from quick link, not caching, accepting');
       return true;
     }
