@@ -15,16 +15,17 @@
   <button
     *ngIf="type === 'icon'"
     class="main-background"
+    matTooltip="Add player"
     (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
     (menuClosed)="opened = trigger.menuOpen"
     mat-icon-button
     [matMenuTriggerFor]="searchMenuOurPick"
     #trigger="matMenuTrigger"
   >
-    <mat-icon>add_circle_outline</mat-icon>
+    <mat-icon>add</mat-icon>
   </button>
   <mat-menu #searchMenuOurPick="matMenu">
-    <form class="menu-form">
+    <form class="menu-form" (click)="opened = true; $event.stopPropagation()">
       <mat-form-field>
         <input type="text" matInput [formControl]="playerSearch" [matAutocomplete]="ourPicksAuto" />
         <mat-hint>Min 2 characters ({{ playerSearch.value?.length || 0 }}/2)</mat-hint>

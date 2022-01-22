@@ -1,22 +1,15 @@
 <app-view [links]="links">
-  <div fxLayout="column">
+  <div fxLayout="column" *ngIf="showPlayers$ | async">
     <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
-
-    <app-white-block *ngIf="showPlayers$ | async | reverseBoolean">
-      <div fxLayoutAlign="center center">
-        <h2>Add players to compare</h2>
-      </div>
-    </app-white-block>
 
     <div fxLayout="column" fxLayoutGap="15px">
       <app-players-compare-fixtures
-        *ngIf="showPlayers$ | async"
         [players]="state$ | async | field: 'players'"
         [teams]="state$ | async | field: 'teams'"
         [lastMatchday]="state$ | async | field: 'lastMatchday'"
       ></app-players-compare-fixtures>
 
-      <app-white-block *ngIf="showPlayers$ | async">
+      <app-white-block>
         <div>
           <app-players-compare-comparison-general
             [players]="state$ | async | field: 'players'"
@@ -26,5 +19,53 @@
         </div>
       </app-white-block>
     </div>
+  </div>
+
+  <div class="no-players-selected" fxLayout="column" fxLayoutGap="20px" *ngIf="showPlayers$ | async | reverseBoolean">
+    <app-white-block>
+      <div fxLayoutAlign="center center">
+        <span class="text-span">Add players to compare</span>
+        <app-players-picker
+          [type]="'button'"
+          [excluded]="state$ | async | field: 'players' | pluck: 'id'"
+          [closeAfterSelect]="true"
+          (playerSelected)="onPlayerSelected($event)"
+        ></app-players-picker>
+      </div>
+    </app-white-block>
+
+    <app-white-block>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div fxLayoutAlign="center center">
+          <span class="text-span">Or generate comparison of top players</span>
+        </div>
+        <div
+          class="generate-filters-container"
+          fxLayout="row wrap"
+          fxLayoutAlign="space-evenly flex-end"
+          fxLayoutGap="20px"
+        >
+          <app-players-position-switch
+            [selected]="generateOptions.position"
+            (positionChange)="onPositionChange($event)"
+          ></app-players-position-switch>
+
+          <app-form-field label="Count">
+            <mat-form-field class="input-number mat-form-field-no-padding">
+              <input matInput type="number" min="1" [(ngModel)]="generateOptions.count" />
+            </mat-form-field>
+          </app-form-field>
+
+          <app-slider-max-price
+            class="slider-price"
+            [max]="maxPrice"
+            [value]="generateOptions.maxPrice"
+            (priceChange)="onMaxPriceChange($event)"
+          ></app-slider-max-price>
+
+          <button class="main-background" mat-button (click)="generateComparison()">Generate</button>
+        </div>
+      </div>
+    </app-white-block>
   </div>
 </app-view>

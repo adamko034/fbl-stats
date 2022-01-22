@@ -17,12 +17,14 @@ export class PlayersCompareTitleComponent implements OnInit {
   ngOnInit(): void {}
 
   public onPlayerRemove(player: PlayerCompareCard): void {
-    //this.toastrService.success(`Removed ${player.name}`);
     this.navigationService.removePlayer(player.id);
   }
 
   public onPlayerSelected({ id, name }: PlayerPicker): void {
-    //this.toastrService.success(`Added ${name}`);
     this.navigationService.addPlayer(id.toString());
+  }
+
+  public onClearSelection(): void {
+    this.navigationService.clearAllPlayers();
   }
 }

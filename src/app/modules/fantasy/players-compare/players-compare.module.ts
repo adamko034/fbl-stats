@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BoldableValuesService } from '../../core/boldable-values/boldable-values.service';
 import { FblCoreModule } from '../../core/fbl-core.module';
 import { PlayersCompareRoutingModule } from './players-compare-routing.module';
+import { PlayersCompareBestGksGuard } from './routing/players-compare-bestgks.guard';
 import { PlayersCompareIdsCacheGuard } from './routing/players-compare-ids-cache.guard';
 import { PlayersCompareQuickLinkGuard } from './routing/players-compare-quick-link.guard';
 import { PlayersCompareStateResolver } from './routing/players-compare-state.resolver';
@@ -37,7 +38,8 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     PlayersCompareIdsCacheGuard,
     BoldableValuesService,
     PlayersCompareQuickLinkLoaderFactory,
-    PlayersCompareQuickLinkGuard
+    PlayersCompareQuickLinkGuard,
+    PlayersCompareBestGksGuard
   ]
 })
 export class PlayersCompareModule {}

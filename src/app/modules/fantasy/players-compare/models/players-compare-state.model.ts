@@ -5,4 +5,5 @@ export interface PlayersCompareState {
   players: Player[];
   teams: { [short: string]: Team };
   lastMatchday: number;
+  maxPrice: number;
 }

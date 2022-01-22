@@ -1,7 +1,7 @@
 import { PlayerPosition } from '../../players/overall/models/players-filters';
 
 export interface PlayersCompareQuickLinkFilters {
-  count: number;
+  count?: number;
   maxPrice?: number;
   position?: PlayerPosition;
 }

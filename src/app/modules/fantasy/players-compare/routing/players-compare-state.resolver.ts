@@ -27,8 +27,12 @@ export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCo
     Logger.logDev(`players compare state resolver, resolving ids: ${ids.join(',')}`);
 
     return this.playersStore.selectByIds(ids).pipe(
-      withLatestFrom(this.teamsStore.selectState(), this.propertiesStore.selectLastMatchday()),
-      map(([players, teamsState, lastMatchday]) => {
+      withLatestFrom(
+        this.teamsStore.selectState(),
+        this.propertiesStore.selectLastMatchday(),
+        this.propertiesStore.selectPlayerMaxPrice()
+      ),
+      map(([players, teamsState, lastMatchday, maxPrice]) => {
         const ordered: Player[] = [];
 
         ids.forEach((id) => {
@@ -49,7 +53,7 @@ export class PlayersCompareStateResolver implements Resolve<Observable<PlayersCo
           this.cachePlayersIds(ordered, ids);
         }
 
-        return { players: ordered, teams, lastMatchday };
+        return { players: ordered, teams, lastMatchday, maxPrice };
       }),
       first()
     );

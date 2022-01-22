@@ -6,6 +6,11 @@ import { PlayersCompareStateResolver } from './routing/players-compare-state.res
 import { PlayersCompareComponent } from './view/players-compare.component';
 
 const routes: Routes = [
+  // {
+  //   path: 'bestgks',
+  //   runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+  //   canActivate: [PlayersCompareBestGksGuard]
+  // },
   {
     path: ':type',
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',

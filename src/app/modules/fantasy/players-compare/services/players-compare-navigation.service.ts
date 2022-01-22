@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PlayersCompareQuickLinkFilters } from '../models/players-compare-quick-link-filters.model';
 
 @Injectable()
 export class PlayersCompareNavigationService {
@@ -11,7 +12,7 @@ export class PlayersCompareNavigationService {
     let withoutRemoved = ids.filter((id) => id != idToRemove);
 
     if (withoutRemoved.length === 0) {
-      this.router.navigate([], { queryParams: { cleared: 'true', ids: null }, queryParamsHandling: 'merge' });
+      this.clearAllPlayers();
       return;
     }
 
@@ -29,6 +30,14 @@ export class PlayersCompareNavigationService {
       queryParams: { fromQuickLink: null, cleared: null, ids: newIds },
       queryParamsHandling: 'merge'
     });
+  }
+
+  public clearAllPlayers(): void {
+    this.router.navigate([], { queryParams: { cleared: 'true', ids: null } });
+  }
+
+  public goToTop(filters: PlayersCompareQuickLinkFilters) {
+    this.router.navigate(['fantasy', 'compare', 'top'], { queryParams: filters });
   }
 
   private currentIds(): string[] {

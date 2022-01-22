@@ -1,0 +1,24 @@
+.no-players-selected {
+  margin-top: 20px;
+
+  .text-span {
+    font-weight: 500;
+    margin-right: 10px;
+  }
+
+  .generate-filters-container {
+    margin-top: 20px;
+
+    & > * {
+      margin-bottom: 15px;
+    }
+
+    .input-number {
+      width: 80px;
+    }
+
+    .slider-price {
+      width: 250px;
+    }
+  }
+}

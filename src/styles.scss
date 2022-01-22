@@ -412,3 +412,10 @@ table.comparison-table {
   width: 24px;
   height: 24px;
 }
+
+.mat-form-field-no-padding {
+  margin-bottom: -0.8em;
+  .mat-form-field-infix {
+    border-top: 0;
+  }
+}

@@ -1,12 +1,24 @@
 <div class="container">
   <div class="title-container">
-    <app-players-picker
-      class="picker"
-      [type]="(players | arrayEmpty) ? 'button' : 'icon'"
-      [excluded]="players | pluck: 'id'"
-      [closeAfterSelect]="true"
-      (playerSelected)="onPlayerSelected($event)"
-    ></app-players-picker>
+    <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="5px">
+      <app-players-picker
+        class="picker"
+        [type]="'icon'"
+        [excluded]="players | pluck: 'id'"
+        [closeAfterSelect]="true"
+        (playerSelected)="onPlayerSelected($event)"
+      ></app-players-picker>
+
+      <button
+        mat-icon-button
+        class="red-background clear-selection-button"
+        matTooltip="Clear selection"
+        (click)="onClearSelection()"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+
     <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
       <div class="player-card" *ngFor="let player of players">
         <mat-card>

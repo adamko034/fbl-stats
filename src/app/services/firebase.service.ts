@@ -3,6 +3,7 @@ import { AngularFirestore, Query } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
 import { catchError, first, map } from 'rxjs/operators';
 import { ErrorService } from 'src/app/services/error.service';
+import { CompareBestGks } from '../store/compare/models/compare-best-gks.model';
 import { MatchdaysTipsLinks } from '../store/matchday-tips/links/models/matchday-tips-links.model';
 import { MatchdayTipsOurPick } from '../store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { Logger } from '../utils/logger';
@@ -38,7 +39,16 @@ export class FirebaseService {
     return this.firestore.collection('tips').doc(matchday.toString()).valueChanges().pipe(first());
   }
 
+  public getCompare(): Observable<any> {
+    Logger.logDev('firebase service, loading compare state');
+    return this.firestore.collection('compare').doc('general').valueChanges().pipe(first());
+  }
+
   public saveMatchdayTipsLink(links: MatchdaysTipsLinks): Observable<void> {
     return from(this.firestore.collection('tips').doc(links.matchday.toString()).set(links));
+  }
+
+  public saveCompareBestGks(bestGks: CompareBestGks) {
+    return from(this.firestore.collection('compare').doc('general').set({ bestgks: bestGks }, { merge: true }));
   }
 }
