@@ -24,8 +24,12 @@ export class PlayersCompareQuickLinkGuard implements CanActivate {
 
     return idsLoader.loadIds(filters).pipe(
       tap((ids) => Logger.logDev(`players compare quick link guard, got ids: ${ids.join(',')}`)),
-      tap((ids) => this.router.navigate(['fantasy', 'compare'], { queryParams: { fromQuickLink: 'true', ids } })),
-      mapTo(true)
+      tap((ids) =>
+        this.router.navigate(['fantasy', 'compare'], {
+          queryParams: { fromQuickLink: 'true', ids }
+        })
+      ),
+      mapTo(false)
     );
   }
 

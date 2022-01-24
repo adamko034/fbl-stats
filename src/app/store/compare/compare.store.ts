@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import { first, map, tap } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Logger } from 'src/app/utils/logger';
 import { CompareBestGks } from './models/compare-best-gks.model';
@@ -14,10 +14,7 @@ export class CompareStore {
   constructor(private firebase: FirebaseService) {}
 
   public loaded(): Observable<boolean> {
-    return this._state$.pipe(
-      tap((state) => console.log(state)),
-      map((state) => state.loaded)
-    );
+    return this._state$.pipe(map((state) => state.loaded));
   }
 
   public load(): void {

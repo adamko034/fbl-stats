@@ -40,6 +40,10 @@ export class PlayersCompareNavigationService {
     this.router.navigate(['fantasy', 'compare', 'top'], { queryParams: filters });
   }
 
+  public goToBestGks() {
+    this.router.navigate(['fantasy', 'compare', 'bestgks']);
+  }
+
   private currentIds(): string[] {
     return this.route.snapshot.queryParamMap.getAll('ids') ?? [];
   }
