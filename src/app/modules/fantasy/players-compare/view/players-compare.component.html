@@ -21,16 +21,23 @@
     </div>
   </div>
 
-  <div class="no-players-selected" fxLayout="column" fxLayoutGap="20px" *ngIf="showPlayers$ | async | reverseBoolean">
+  <div class="no-players-selected" fxLayout="column" fxLayoutGap="30px" *ngIf="showPlayers$ | async | reverseBoolean">
     <app-white-block>
       <div fxLayoutAlign="center center">
         <span class="text-span">Add players to compare</span>
         <app-players-picker
           [type]="'button'"
-          [excluded]="state$ | async | field: 'players' | pluck: 'id'"
+          [filters]="{ excludedIds: state$ | async | field: 'players' | pluck: 'id' }"
           [closeAfterSelect]="true"
           (playerSelected)="onPlayerSelected($event)"
         ></app-players-picker>
+      </div>
+    </app-white-block>
+
+    <app-white-block>
+      <div fxLayoutAlign="center center">
+        <span class="text-span">Check the comparison for popular Goalkeepers:</span>
+        <a [href]="bestGksLink">here</a>
       </div>
     </app-white-block>
 

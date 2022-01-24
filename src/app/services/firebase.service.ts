@@ -49,6 +49,6 @@ export class FirebaseService {
   }
 
   public saveCompareBestGks(bestGks: CompareBestGks) {
-    return from(this.firestore.collection('compare').doc('general').set({ bestgks: bestGks }, { merge: true }));
+    return from(this.firestore.collection('compare').doc('general').set({ bestGks: bestGks }, { merge: true }));
   }
 }

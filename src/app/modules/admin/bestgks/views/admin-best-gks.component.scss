@@ -1,0 +1,33 @@
+.picker {
+  position: absolute;
+  top: 50px;
+  margin: 5px 0 0 5px;
+}
+
+.best-gks-container {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 20px;
+  width: max-content;
+  margin: 50px auto 20px auto;
+
+  .goalkeeper {
+    padding: 5px 15px;
+    display: grid;
+    grid-template-columns: 40px 170px 70px 80px 70px;
+
+    & > * {
+      margin: auto 0 auto 0;
+    }
+  }
+
+  .actions {
+    position: relative;
+    top: 20px;
+    right: -30px;
+
+    button.disabled {
+      background-color: rgba($color: #000000, $alpha: 0.2);
+    }
+  }
+}

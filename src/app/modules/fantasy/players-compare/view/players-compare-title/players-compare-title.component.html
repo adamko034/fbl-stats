@@ -4,7 +4,7 @@
       <app-players-picker
         class="picker"
         [type]="'icon'"
-        [excluded]="players | pluck: 'id'"
+        [filters]="{ excludedIds: players | pluck: 'id' }"
         [closeAfterSelect]="true"
         (playerSelected)="onPlayerSelected($event)"
       ></app-players-picker>

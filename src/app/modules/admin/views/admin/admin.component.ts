@@ -13,7 +13,8 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 export class AdminComponent implements OnInit {
   private _links: ViewTabNavigationLink[] = [
     { order: 1, labelMobile: 'Links', label: 'Links', routerLink: 'tips/links' },
-    { order: 2, label: 'Our picks', labelMobile: 'Our picks', routerLink: 'tips/our-picks' }
+    { order: 2, label: 'Our picks', labelMobile: 'Our picks', routerLink: 'tips/our-picks' },
+    { order: 3, label: 'Best GKs', labelMobile: 'Best GKs', routerLink: 'bestgks' }
   ];
 
   public get links(): ViewTabNavigationLink[] {

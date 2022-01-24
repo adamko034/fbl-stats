@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -37,10 +37,16 @@ export class PlayersCompareComponent implements OnInit {
   public links: ViewTabNavigationLink[] = [
     { label: 'Compare players', labelMobile: 'Compare players', order: 1, routerLink: '' }
   ];
+  public bestGksLink: string;
 
-  constructor(private route: ActivatedRoute, private navigationService: PlayersCompareNavigationService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private navigationService: PlayersCompareNavigationService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
+    this.bestGksLink = this.router.createUrlTree(['fantasy', 'compare', 'bestgks']).toString();
     this.state$ = this.route.data.pipe(map((data) => data.state));
     this.showPlayers$ = this.state$.pipe(map((state) => state.players.length > 0));
     this.playersCards$ = this.state$.pipe(

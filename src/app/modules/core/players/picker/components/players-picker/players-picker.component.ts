@@ -4,8 +4,9 @@ import { MatInput } from '@angular/material/input';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { PlayerPicker } from '../../models/player-picker.model';
+import { PlayersPickerFilters } from '../../models/players-picker-fitlers.model';
 import { PlayerPickerService } from '../../services/player-picker.service';
 
 @UntilDestroy()
@@ -15,7 +16,7 @@ import { PlayerPickerService } from '../../services/player-picker.service';
   styleUrls: ['./players-picker.component.scss']
 })
 export class PlayersPickerComponent implements OnInit {
-  @Input() excluded: number[];
+  @Input() filters: PlayersPickerFilters;
   @Input() closeAfterSelect: boolean = false;
   @Input() type: 'button' | 'icon' = 'button';
   @Output() playerSelected = new EventEmitter<PlayerPicker>();
@@ -54,8 +55,6 @@ export class PlayersPickerComponent implements OnInit {
   }
 
   private searchPlayersAndFilterAlreadySelected(term: string): Observable<PlayerPicker[]> {
-    return this.pickerService
-      .search(term)
-      .pipe(map((players) => players.filter((p) => this.excluded.findIndex((id) => id === p.id) < 0)));
+    return this.pickerService.search(this.filters, term);
   }
 }

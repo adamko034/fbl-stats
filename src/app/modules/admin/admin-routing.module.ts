@@ -49,6 +49,10 @@ const routes: Routes = [
             component: AdminMatchdayTipsLinksComponent
           }
         ]
+      },
+      {
+        path: 'bestgks',
+        loadChildren: () => import('./bestgks/admin-bestgks.module').then((m) => m.AdminBestgksModule)
       }
     ]
   },

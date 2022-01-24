@@ -1,1 +1,4 @@
-<app-players-picker [excluded]="excluded" (playerSelected)="onPlayerSelected($event)"></app-players-picker>
+<app-players-picker
+  [filters]="{ excludedIds: excluded }"
+  (playerSelected)="onPlayerSelected($event)"
+></app-players-picker>

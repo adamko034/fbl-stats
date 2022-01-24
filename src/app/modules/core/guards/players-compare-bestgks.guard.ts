@@ -5,7 +5,7 @@ import { filter, mapTo, tap } from 'rxjs/operators';
 import { CompareStore } from 'src/app/store/compare/compare.store';
 import { Logger } from 'src/app/utils/logger';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PlayersCompareBestGksGuard implements CanActivate {
   constructor(private compareStore: CompareStore) {}
 
