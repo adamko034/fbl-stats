@@ -23,24 +23,6 @@
         </mat-form-field>
       </app-form-field>
 
-      <app-form-field>
-        <div fxLayout="column">
-          <mat-form-field class="shorter">
-            <mat-label>New category</mat-label>
-            <input matInput formControlName="newCategory" />
-            <button mat-icon-button class="blue" matSuffix (click)="addCategory()">
-              <mat-icon>add</mat-icon>
-            </button>
-          </mat-form-field>
-          <mat-chip-list>
-            <mat-chip *ngFor="let category of categories" (removed)="removeCategory(category)">
-              {{ category }}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-          </mat-chip-list>
-        </div>
-      </app-form-field>
-
       <span>{{ form.get('description').value }}</span>
       <img style="width: 100px" [src]="form.get('imageUrl').value" />
     </div>

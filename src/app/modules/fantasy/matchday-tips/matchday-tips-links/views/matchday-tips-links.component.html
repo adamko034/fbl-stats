@@ -1,13 +1,79 @@
-<div fxLayout="column" fxLayoutGap="10px">
+<app-white-block>
+  <div class="links-grid" fxLayout="row wrap" fxLayout.lt-lg="column" fxLayoutAlign.lt-lg="center center">
+    <div class="links-comparison" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="15px">
+      <h4>Players comparison</h4>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ count: 10 }">
+          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <span>Top 10 players overall</span>
+        </a>
+
+        <a class="link" [routerLink]="['/fantasy', 'compare', 'bestgks']">
+          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <span>Popular goalkeepers</span>
+        </a>
+
+        <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ position: 'def', count: 10 }">
+          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <span>Best defenders</span>
+        </a>
+
+        <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ position: 'mid', count: 10 }">
+          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <span>Best midfielders</span>
+        </a>
+
+        <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ position: 'for', count: 10 }">
+          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <span>Best forwards</span>
+        </a>
+
+        <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ maxPrice: 10, count: 10 }">
+          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <span>Top 10 budget picks</span>
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="links$ | async | arrayEmpty">
+      <app-follow-us-to-stay-tuned text="Sorry, there are no tips & hints links so far."></app-follow-us-to-stay-tuned>
+    </div>
+
+    <div *ngIf="links$ | async | arrayNotEmpty" class="container" fxLayout="column" fxLayoutGap="20px">
+      <a
+        [href]="link.url"
+        target="blank"
+        class="link-container"
+        ngClass.lt-sm="link-container-mobile"
+        fxLayout="row"
+        *ngFor="let link of links$ | async"
+        width="120"
+      >
+        <div class="link-image" fxLayoutAlign="start center" [style]="'background-image: url(' + link.imageUrl + ')'">
+          <img [src]="link.imageUrl" />
+        </div>
+        <div class="link-content" fxLayout="column" fxLayoutAlign="space-between">
+          <div class="link-title">
+            <h4>{{ link.title }}</h4>
+          </div>
+
+          <div class="link-description">{{ link.description }}</div>
+
+          <div class="link-bottom-info">
+            <span>&nbsp;</span>
+            <span class="link-host">{{ link.source }}</span>
+            <div fxHide.lt-sm class="new red"><span *ngIf="link.isNew">NEW!</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</app-white-block>
+
+<!-- <div fxLayout="column" fxLayoutGap="10px">
   <app-white-block padding="5px 10px 5px">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <app-form-field *ngIf="tips.links.length > 0" label="Category">
-        <app-switch
-          [items]="categories"
-          [value]="selectedCategory"
-          (switchChange)="onCategoryChange($event)"
-        ></app-switch>
-      </app-form-field>
+      <app-form-field *ngIf="tips.links.length > 0" label="Category"> cateogry </app-form-field>
       <app-follow-us-to-stay-tuned
         *ngIf="tips.links.length == 0"
         text="Sorry, there are no tips & hints links so far."
@@ -50,4 +116,4 @@
       </a>
     </div>
   </app-white-block>
-</div>
+</div> -->

@@ -28,9 +28,6 @@
         <div fxLayout="column">
           <span>{{ link.title }}</span>
           <a [href]="link.url">{{ link.url }}</a>
-          <div fxLayout="row" fxLayoutGap="10px">
-            <span *ngFor="let category of link.categories">{{ category }}</span>
-          </div>
           <span>{{ link.description }}</span>
           <img class="link-image" *ngIf="link.imageUrl" [src]="link.imageUrl" />
         </div>

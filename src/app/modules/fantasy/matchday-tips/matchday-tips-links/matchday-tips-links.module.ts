@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AngularEmojisModule } from 'angular-emojis';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatchdayTipsLinksRoutingModule } from './matchday-tips-links-routing.module';
@@ -7,6 +8,6 @@ import { MatchdayTipsLinksComponent } from './views/matchday-tips-links.componen
 
 @NgModule({
   declarations: [MatchdayTipsLinksComponent],
-  imports: [CommonModule, MatchdayTipsLinksRoutingModule, SharedModule, AngularMaterialModule]
+  imports: [CommonModule, MatchdayTipsLinksRoutingModule, SharedModule, AngularMaterialModule, AngularEmojisModule]
 })
 export class MatchdayTipsLinksModule {}

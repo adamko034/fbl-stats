@@ -15,7 +15,6 @@ import { MatchdayTipsLink } from 'src/app/store/matchday-tips/links/models/match
 export class AdminMatchdayTipsNewLinkComponent implements OnInit {
   public linkLoading = false;
   public form: FormGroup;
-  public categories: string[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +27,6 @@ export class AdminMatchdayTipsNewLinkComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: [''],
       url: [''],
-      newCategory: [''],
       description: [''],
       imageUrl: [''],
       host: ['']
@@ -53,24 +51,9 @@ export class AdminMatchdayTipsNewLinkComponent implements OnInit {
           this.form.get('imageUrl').setValue(link.image);
           this.form.get('host').setValue(new URL(link.url).hostname);
 
-          const title = link.title.toLowerCase();
-          if (title.includes('pick') || title.includes('player') || title.includes('differential')) {
-            this.categories.push('players');
-            this.changeDetection.detectChanges();
-          }
-
           this.linkLoading = false;
         }
       });
-  }
-
-  public addCategory(): void {
-    this.categories.push(this.form.get('newCategory').value);
-    this.form.get('newCategory').setValue('');
-  }
-
-  public removeCategory(category: string): void {
-    this.categories = this.categories.filter((x) => x !== category);
   }
 
   public submit(): void {
@@ -80,7 +63,6 @@ export class AdminMatchdayTipsNewLinkComponent implements OnInit {
         url: this.form.get('url').value,
         description: this.form.get('description').value,
         imageUrl: this.form.get('imageUrl').value,
-        categories: this.categories,
         source: this.form.get('host').value,
         order: 0,
         isNew: true
@@ -90,6 +72,6 @@ export class AdminMatchdayTipsNewLinkComponent implements OnInit {
   }
 
   public submitDisabled(): boolean {
-    return !this.form.valid || this.categories.length === 0;
+    return !this.form.valid;
   }
 }

@@ -3,7 +3,6 @@ export interface MatchdayTipsLink {
   url: string;
   order: number;
   isNew: boolean;
-  categories: string[];
   description: string;
   imageUrl: string;
   source: string;

@@ -80,8 +80,8 @@ export class AdminMatchdayTipsLinksComponent implements OnInit {
 
   public save(): void {
     const tipsLink: MatchdayTipsLink[] = this.displayedLinks.map((adminTip) => {
-      const { categories, title, url, order, isNew, imageUrl, description, source } = adminTip;
-      return { categories, title, url, order, isNew, imageUrl, description, source };
+      const { title, url, order, isNew, imageUrl, description, source } = adminTip;
+      return { title, url, order, isNew, imageUrl, description, source };
     });
 
     const tipsToSave: MatchdaysTipsLinks = { matchday: this.tips.matchday, links: tipsLink };
