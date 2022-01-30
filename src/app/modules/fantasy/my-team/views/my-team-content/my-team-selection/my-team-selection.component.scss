@@ -1,3 +1,25 @@
+.selection-container {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 200px 1fr max-content;
+
+  .options {
+    text-align: right;
+  }
+}
+
+.totals {
+  margin: auto;
+}
+
+.compare-link {
+  text-decoration: none;
+
+  span {
+    text-decoration: underline;
+  }
+}
+
 .tile {
   max-width: 300px;
   width: 100%;

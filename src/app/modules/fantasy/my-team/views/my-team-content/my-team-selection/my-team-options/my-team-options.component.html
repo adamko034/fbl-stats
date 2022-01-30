@@ -1,5 +1,5 @@
 <div ngClass.lt-sm="my-team-tile-order-mobile">
-  <button mat-button [matMenuTriggerFor]="options">Options<mat-icon>more_vert</mat-icon></button>
+  <button mat-button [matMenuTriggerFor]="options"><mat-icon>more_vert</mat-icon>Options</button>
 
   <mat-menu #options="matMenu">
     <button mat-menu-item [matMenuTriggerFor]="tileOrderByMenu">Order</button>
@@ -7,7 +7,7 @@
 
     <mat-menu #tileOrderByMenu="matMenu" yPosition="below">
       <button
-        [ngClass]="{ active: (currentOrder$ | async) === 'teamShort' }"
+        [ngClass]="{ active: settings.tileOrder === 'teamShort' }"
         mat-menu-item
         fxLayoutGap="8px"
         fxLayoutAlign="start center"
@@ -17,7 +17,7 @@
         <span>Team</span>
       </button>
       <button
-        [ngClass]="{ active: (currentOrder$ | async) === 'price' }"
+        [ngClass]="{ active: settings.tileOrder === 'price' }"
         mat-menu-item
         fxLayoutGap="8px"
         fxLayoutAlign="start center"
@@ -27,7 +27,7 @@
         <span>Price: from low</span>
       </button>
       <button
-        [ngClass]="{ active: (currentOrder$ | async) === '-price' }"
+        [ngClass]="{ active: settings.tileOrder === '-price' }"
         mat-menu-item
         fxLayoutGap="8px"
         fxLayoutAlign="start center"

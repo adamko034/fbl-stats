@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
+import { Player } from 'src/app/store/players/models/player.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -17,14 +18,14 @@ export class PlayerTileComponent implements OnInit {
   @Input() showRemoveFromMyTeamButton: boolean;
 
   public isMobile$: Observable<boolean>;
-  public myTeamPlayers$: Observable<string[]>;
+  public myTeamPlayers$: Observable<Player[]>;
 
   constructor(private myTeamService: MyTeamStore, private screenSizeService: ScreenSizeService) {}
 
   public ngOnInit(): void {
     Logger.logDev('player tile component, ' + this.player.name + ', on init');
     this.isMobile$ = this.screenSizeService.isMobile$();
-    this.myTeamPlayers$ = this.myTeamService.selectPlayersId();
+    this.myTeamPlayers$ = this.myTeamService.select();
   }
 
   public addToMyTeam(playerId: string) {

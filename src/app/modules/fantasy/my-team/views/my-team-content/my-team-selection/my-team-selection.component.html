@@ -1,40 +1,66 @@
-<app-white-block padding="10px 10px 5px 10px">
-  <div fxLayout="column" fxLayoutGap="20px">
-    <div *ngIf="(screenSize$ | async) > screens.SM" fxLayout="row" fxLayoutAlign="space-evenly center">
-      <app-my-team-player-search></app-my-team-player-search>
-      <app-my-team-totals></app-my-team-totals>
-      <app-my-team-options></app-my-team-options>
+<div fxLayout="column" fxLayoutGap="20px">
+  <app-white-block>
+    <div class="selection-container" *ngIf="screenSize$ | async | isGreaterEqualThan: screens.MD">
+      <div class="selection-actions" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <ng-template [ngTemplateOutlet]="actions"></ng-template>
+      </div>
+      <app-my-team-totals class="totals" [players]="players"></app-my-team-totals>
+      <app-my-team-options class="options" [settings]="settings"></app-my-team-options>
     </div>
 
-    <div *ngIf="(screenSize$ | async) <= screens.SM" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-      <app-my-team-totals></app-my-team-totals>
-      <div fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="space-between center">
-        <app-my-team-player-search></app-my-team-player-search>
-        <app-my-team-options></app-my-team-options>
+    <div *ngIf="screenSize$ | async | isLessEqualThan: screens.SM" fxLayout="column">
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <ng-template [ngTemplateOutlet]="actions"></ng-template>
+      </div>
+      <div class="totals">
+        <app-my-team-totals class="totals" [players]="players"></app-my-team-totals>
       </div>
     </div>
+  </app-white-block>
 
-    <div @tilesDisplay fxLayout="row wrap" fxLayoutAlign="space-between start">
+  <app-white-block padding="10px 5px 0px 10px">
+    <div @tilesDisplay fxLayout="row wrap" fxLayoutAlign="space-evenly start">
       <app-my-team-selection-tile
         class="tile"
         [position]="positions.GK"
-        [players]="players$ | async | filterBy: ['position']:positions.GK"
+        [players]="players | filterBy: ['position']:positions.GK"
+        [displaySettings]="settings"
       ></app-my-team-selection-tile>
       <app-my-team-selection-tile
         class="tile"
         [position]="positions.DEF"
-        [players]="players$ | async | filterBy: ['position']:positions.DEF"
+        [players]="players | filterBy: ['position']:positions.DEF"
+        [displaySettings]="settings"
       ></app-my-team-selection-tile>
       <app-my-team-selection-tile
         class="tile"
         [position]="positions.MID"
-        [players]="players$ | async | filterBy: ['position']:positions.MID"
+        [players]="players | filterBy: ['position']:positions.MID"
+        [displaySettings]="settings"
       ></app-my-team-selection-tile>
       <app-my-team-selection-tile
         class="tile"
         [position]="positions.FOR"
-        [players]="players$ | async | filterBy: ['position']:positions.FOR"
+        [players]="players | filterBy: ['position']:positions.FOR"
+        [displaySettings]="settings"
       ></app-my-team-selection-tile>
     </div>
-  </div>
-</app-white-block>
+  </app-white-block>
+</div>
+<ng-template #actions>
+  <app-players-picker
+    (playerSelected)="onPlayerSelected($event)"
+    [type]="'normal'"
+    [filters]="{ excludedIds: players | pluck: 'id' }"
+  ></app-players-picker>
+  <button mat-button>
+    <a
+      class="compare-link"
+      [routerLink]="['/fantasy', 'compare']"
+      [queryParams]="{ fromQuickLink: 'true', ids: players | pluck: 'id' }"
+    >
+      <angular-emojis name="point_right" [size]="18"></angular-emojis>
+      <span> Compare</span>
+    </a>
+  </button>
+</ng-template>

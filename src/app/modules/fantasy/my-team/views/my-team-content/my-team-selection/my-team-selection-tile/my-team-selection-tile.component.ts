@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
-import { MyTeamPlayer } from '../../../../models/my-team-player.model';
-import { MyTeamTilesDisplaySettingsService } from '../../../../services/my-team-tiles-display-settings.service';
+import { Player } from 'src/app/store/players/models/player.model';
+import { MyTeamTilesDisplaySettings } from '../../../../models/my-team-tiles-display-settings.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,9 +11,10 @@ import { MyTeamTilesDisplaySettingsService } from '../../../../services/my-team-
   templateUrl: './my-team-selection-tile.component.html',
   styleUrls: ['./my-team-selection-tile.component.scss']
 })
-export class MyTeamSelectionTileComponent implements OnInit {
+export class MyTeamSelectionTileComponent {
   @Input() position: PlayerPosition;
-  @Input() players: MyTeamPlayer[];
+  @Input() players: Player[];
+  @Input() displaySettings: MyTeamTilesDisplaySettings;
 
   public orderBy$: Observable<string>;
 
@@ -30,11 +31,7 @@ export class MyTeamSelectionTileComponent implements OnInit {
     }
   }
 
-  constructor(private myTeamService: MyTeamStore, private myTeamTileOrderService: MyTeamTilesDisplaySettingsService) {}
-
-  public ngOnInit(): void {
-    this.orderBy$ = this.myTeamTileOrderService.selectTileOrder();
-  }
+  constructor(private myTeamService: MyTeamStore) {}
 
   public onPlayerRemove(id: string): void {
     this.myTeamService.remove(id);

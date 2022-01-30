@@ -1,10 +1,13 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
 import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
-import { MyTeamPlayer } from '../../../models/my-team-player.model';
+import { Player } from 'src/app/store/players/models/player.model';
+import { MyTeamTilesDisplaySettings } from '../../../models/my-team-tiles-display-settings.model';
 
 @Component({
   selector: 'app-my-team-selection',
@@ -24,16 +27,26 @@ import { MyTeamPlayer } from '../../../models/my-team-player.model';
   ]
 })
 export class MyTeamSelectionComponent implements OnInit {
+  @Input() players: Player[];
+  @Input() settings: MyTeamTilesDisplaySettings;
+
   public positions = PlayerPosition;
-  public players$: Observable<MyTeamPlayer[]>;
 
   public screenSize$: Observable<ScreenSize>;
   public screens = ScreenSize;
 
-  constructor(private myTeamService: MyTeamStore, private screenSizeService: ScreenSizeService) {}
+  constructor(
+    private screenSizeService: ScreenSizeService,
+    private myTeamStore: MyTeamStore,
+    private toastrService: ToastrService
+  ) {}
 
-  ngOnInit(): void {
-    this.players$ = this.myTeamService.selectMyTeamPlayers();
+  public ngOnInit(): void {
     this.screenSize$ = this.screenSizeService.onResize();
+  }
+
+  public onPlayerSelected(player: PlayerPicker) {
+    this.myTeamStore.add(player.id.toString());
+    this.toastrService.success(`${player.name} was added.`, null, { positionClass: 'toast-top-center' });
   }
 }

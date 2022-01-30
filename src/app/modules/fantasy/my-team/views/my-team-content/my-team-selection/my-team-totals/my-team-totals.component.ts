@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
-import { MyTeamPlayer } from '../../../../models/my-team-player.model';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Player } from 'src/app/store/players/models/player.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,12 +7,8 @@ import { MyTeamPlayer } from '../../../../models/my-team-player.model';
   templateUrl: './my-team-totals.component.html',
   styleUrls: ['./my-team-totals.component.scss']
 })
-export class MyTeamTotalsComponent implements OnInit {
-  public players$: Observable<MyTeamPlayer[]>;
+export class MyTeamTotalsComponent {
+  @Input() players: Player[];
 
-  constructor(private myTeamService: MyTeamStore) {}
-
-  ngOnInit(): void {
-    this.players$ = this.myTeamService.selectMyTeamPlayers();
-  }
+  constructor() {}
 }

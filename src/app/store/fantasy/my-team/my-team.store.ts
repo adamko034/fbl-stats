@@ -1,78 +1,87 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged, map } from 'rxjs/operators';
-import { MyTeamPlayerConverter } from 'src/app/modules/fantasy/my-team/converters/my-team-player.converter';
-import { MyTeamPlayer } from 'src/app/modules/fantasy/my-team/models/my-team-player.model';
+import { combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { first, map } from 'rxjs/operators';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { Logger } from 'src/app/utils/logger';
 import { GuiConfigStore } from '../../gui-config/gui-config.store';
+
+interface MyTeamStoreState {
+  loaded: boolean;
+  allPlayers: Player[];
+  myTeamPlayers: Player[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class MyTeamStore {
-  private players: Player[] = [];
-  private players$ = new ReplaySubject<Player[]>(1);
+  private state: MyTeamStoreState = { loaded: false, myTeamPlayers: [], allPlayers: [] };
+  private state$ = new ReplaySubject<MyTeamStoreState>(1);
 
-  constructor(
-    private guiConfigStore: GuiConfigStore,
-    private playersStore: PlayersStore,
-    private myTeamPlayerConverter: MyTeamPlayerConverter
-  ) {
-    this.guiConfigStore.selectMyTeamPlayerIds().subscribe((playerIds) => {
-      if (!!playerIds) {
-        const playersFromStore: Player[] = [];
-        playerIds.forEach((id) => playersFromStore.push(this.playersStore.getById(id)));
-
-        this.players = [...playersFromStore];
-      }
-
-      this.send();
-    });
-  }
-
-  public selectMyTeamPlayers(): Observable<MyTeamPlayer[]> {
-    return this.select().pipe(map((players) => this.myTeamPlayerConverter.convert(players)));
-  }
-
-  public select(): Observable<Player[]> {
-    return this.players$.pipe();
-  }
-
-  public selectPlayersId(): Observable<string[]> {
-    return this.selectMyTeamPlayers().pipe(
-      map((p) => p.map((mt) => mt.id)),
-      distinctUntilChanged()
-    );
-  }
-
-  public searchPlayers(term: string): Observable<MyTeamPlayer[]> {
-    return this.playersStore.searchPlayers(term).pipe(map((players) => this.myTeamPlayerConverter.convert(players)));
-  }
-
-  public add(playerId: string) {
-    const player = this.playersStore.getById(playerId);
-    this.players.push(player);
-
-    this.store();
+  constructor(private guiConfigStore: GuiConfigStore, private playersStore: PlayersStore) {
     this.send();
   }
 
+  public loaded(): Observable<boolean> {
+    return this.state$.pipe(map((state) => state.loaded));
+  }
+
+  public load(): void {
+    if (!this.state.loaded) {
+      Logger.logDev('my team store, data not loaded, loading from local storage');
+      combineLatest([this.playersStore.selectPlayers(), this.guiConfigStore.selectMyTeamPlayerIds()])
+        .pipe(first())
+        .subscribe(([allPlayers, myTeamPlayersIds]) => {
+          let myTeamPlayers = [];
+
+          if (!!myTeamPlayersIds) {
+            myTeamPlayersIds.forEach((id) => {
+              const player = allPlayers.find((p) => p.id === id);
+              if (player) {
+                myTeamPlayers.push(player);
+              }
+            });
+          }
+
+          Logger.logDev(`my team store, loaded, players count ${myTeamPlayers.length}`);
+          this.state = { loaded: true, allPlayers, myTeamPlayers };
+          this.send();
+        });
+    }
+  }
+
+  public select(): Observable<Player[]> {
+    return this.state$.pipe(map((state) => state.myTeamPlayers));
+  }
+
+  public add(playerId: string) {
+    Logger.logDev(`my team store, adding player, player id: ${playerId}`);
+    const player = this.state.allPlayers.find((p) => p.id.toString() === playerId);
+
+    if (player) {
+      Logger.logDev(`my team store, adding player, player name: ${player.name}`);
+      this.state.myTeamPlayers = [...this.state.myTeamPlayers, player];
+      this.store();
+      this.send();
+    }
+  }
+
   public remove(playerId: string) {
-    this.players = this.players.filter((p) => p.id !== playerId);
+    this.state.myTeamPlayers = [...this.state.myTeamPlayers.filter((p) => p.id.toString() !== playerId.toString())];
     this.store();
     this.send();
   }
 
   public clear(): void {
-    this.players = [];
+    this.state.myTeamPlayers = [];
     this.store();
     this.send();
   }
 
   private store(): void {
-    this.guiConfigStore.changeMyTeamPlayerIds(this.players.map((p) => p.id));
+    this.guiConfigStore.changeMyTeamPlayerIds(this.state.myTeamPlayers.map((p) => p.id));
   }
 
   private send() {
-    this.players$.next([...this.players]);
+    this.state$.next({ ...this.state });
   }
 }

@@ -83,10 +83,6 @@ export class PlayersStore {
     );
   }
 
-  // public searchByPositionAndTerm(positions: PlayerPosition[], term: string): Observable<Player[]> {
-
-  // }
-
   public selectById(id: string): Observable<Player> {
     return this.players$.pipe(map((players) => players.find((p) => p.id.toString() === id.toLocaleLowerCase())));
   }

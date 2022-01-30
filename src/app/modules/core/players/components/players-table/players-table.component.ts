@@ -21,6 +21,7 @@ import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 import { Game } from 'src/app/store/players/models/game.model';
+import { Player } from 'src/app/store/players/models/player.model';
 import { Logger } from 'src/app/utils/logger';
 
 @Component({
@@ -44,7 +45,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
   public columns = [];
   public displayedColumns: string[] = [];
   public dataSource: MatTableDataSource<any>;
-  public myTeamPlayers$: Observable<string[]>;
+  public myTeamPlayers$: Observable<Player[]>;
   public lastMatchday = 0;
   public includeGames = 0;
 
@@ -64,7 +65,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
 
   ngOnInit() {
     Logger.logDev('players table componenet, on init');
-    this.myTeamPlayers$ = this.myTeamService.selectPlayersId();
+    this.myTeamPlayers$ = this.myTeamService.select();
     this.cachedCompareIds$ = this.guiConfigStore.selectComparePlayersConfig().pipe(map((config) => config.ids));
   }
 

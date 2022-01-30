@@ -1,21 +1,25 @@
-<div fxLayout="column" fxLayoutGap="20px" *ngIf="players$ | async">
-  <app-white-block padding="10px 10px 0 10px">
+<app-white-block padding="10px 10px 0 10px">
+  <div fxLayout="column">
     <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
-      <app-my-team-filters-position class="filter"></app-my-team-filters-position>
-      <app-my-team-filters-matchdays class="filter"></app-my-team-filters-matchdays>
+      <app-my-team-filters-position [position]="filters.position" class="filter"></app-my-team-filters-position>
+      <app-my-team-filters-matchdays
+        [lastMatchday]="lastMatchday"
+        [matchdays]="filters.matchdays"
+        class="filter"
+      ></app-my-team-filters-matchdays>
     </div>
-  </app-white-block>
 
-  <app-players-table
-    *ngIf="(view$ | async) === views.TABLE"
-    [players]="players$ | async"
-    [showDeleteFromMyTeamButton]="true"
-  ></app-players-table>
+    <app-players-table
+      *ngIf="(view$ | async) === views.TABLE"
+      [players]="playersUi"
+      [showDeleteFromMyTeamButton]="true"
+    ></app-players-table>
 
-  <app-players-list
-    [showAddToMyTeamButton]="false"
-    [showRemoveFromMyTeamButton]="true"
-    *ngIf="(view$ | async) === views.LIST"
-    [players]="players$ | async"
-  ></app-players-list>
-</div>
+    <app-players-list
+      [showAddToMyTeamButton]="false"
+      [showRemoveFromMyTeamButton]="true"
+      *ngIf="(view$ | async) === views.LIST"
+      [players]="playersUi"
+    ></app-players-list>
+  </div>
+</app-white-block>

@@ -9,7 +9,7 @@
       <tr *ngIf="!players || players.length == 0">
         <td class="noplayers" colspan="4">No players added</td>
       </tr>
-      <tr *ngFor="let player of players | orderBy: (orderBy$ | async)">
+      <tr *ngFor="let player of players | orderBy: displaySettings.tileOrder">
         <td>
           <div fxLayoutGap="5px" fxLayoutAlign="start center">
             <app-team-logo [team]="player.teamShort" [height]="20"></app-team-logo>

@@ -1,18 +1,18 @@
 <div
-  *ngIf="players$ | async"
-  ngClass.lt-sm="my-team-totals-card-mobile"
-  class="my-team-totals-card"
+  class="totals"
+  ngClass.lt-sm="totals-mobile"
+  fxLayout="row"
   fxLayoutAlign="start center"
-  fxLayoutGap="20px"
-  fxLayoutAlign.lt-sm="center center"
+  fxLayoutGap.gt-xs="30px"
+  fxLayoutGap.lt-sm="20px"
 >
   <span class="label bold">My Team:</span>
   <div fxLayoutAlign="start center" fxLayoutGap="4px">
     <mat-icon>people</mat-icon>
-    <span class="label">{{ (players$ | async).length }}</span>
+    <span class="label">{{ players.length }}</span>
   </div>
   <div fxLayoutAlign="start center" fxLayoutGap="4px">
     <mat-icon>attach_money</mat-icon>
-    <span class="label">{{ players$ | async | sumBy: 'price' }}M</span>
+    <span class="label">{{ players | sumBy: 'price' }}M</span>
   </div>
 </div>

@@ -92,6 +92,7 @@ import { ScaleDirective } from './directives/scale.directive';
 import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
 import { StickyDirective } from './directives/sticky.directive';
 import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
+import { ArrayIncludesPipe } from './pipes/array-includes.pipe';
 import { ArrayNotEmptyPipe } from './pipes/array-not-empty.pipe';
 import { AveragePipe } from './pipes/average.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
@@ -180,7 +181,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     StickyWrapperDirective,
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
-    ReverseBooleanPipe
+    ReverseBooleanPipe,
+    ArrayIncludesPipe
   ],
   imports: [
     CommonModule,
@@ -259,7 +261,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     StickyWrapperDirective,
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
-    ReverseBooleanPipe
+    ReverseBooleanPipe,
+    ArrayIncludesPipe
   ]
 })
 export class SharedModule {

@@ -51,7 +51,7 @@
         appScale="0.8"
         matTooltip="Add to My Team"
         mat-icon-button
-        *ngIf="!(myTeamPlayers$ | async)?.includes(player.id)"
+        *ngIf="myTeamPlayers$ | async | pluck: 'id' | arrayIncludes: player.id | reverseBoolean"
         (click)="addToMyTeam(player.id); $event.stopPropagation()"
       >
         <mat-icon class="green">group_add</mat-icon>

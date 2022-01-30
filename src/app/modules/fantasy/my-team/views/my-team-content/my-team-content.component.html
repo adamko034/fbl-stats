@@ -1,6 +1,13 @@
 <app-view [links]="links">
   <div fxLayout="column" fxLayoutGap="20px">
-    <app-my-team-selection></app-my-team-selection>
-    <app-my-team-table-container></app-my-team-table-container>
+    <app-my-team-selection
+      [players]="state$ | async | field: 'players'"
+      [settings]="state$ | async | field: 'displaySettings'"
+    ></app-my-team-selection>
+    <app-my-team-table-container
+      [players]="state$ | async | field: 'players'"
+      [filters]="state$ | async | field: 'filters'"
+      [lastMatchday]="state$ | async | field: 'lastMatchday'"
+    ></app-my-team-table-container>
   </div>
 </app-view>

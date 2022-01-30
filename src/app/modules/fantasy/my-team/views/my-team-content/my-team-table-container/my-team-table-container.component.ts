@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs';
 import { PlayersUiConverter } from 'src/app/modules/core/players/converters/players-ui.converter';
 import { PlayersFilterService } from 'src/app/modules/core/players/filter/players-filter.service';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
 import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { Player } from 'src/app/store/players/models/player.model';
-import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
 import { MyTeamPlayersFitler } from '../../../filters/my-team-players.filter';
-import { MyTeamPlayersFitlersService } from '../../../services/my-team-players-filters.service';
+import { MyTeamPlayersFilters } from '../../../models/my-team-players-filters.model';
 
 @Component({
   selector: 'app-my-team-table-container',
@@ -21,40 +18,37 @@ import { MyTeamPlayersFitlersService } from '../../../services/my-team-players-f
   providers: [PlayersFilterService]
 })
 export class MyTeamTableContainerComponent implements OnInit {
-  public players$: Observable<PlayerUi[]>;
-  public view$: Observable<PlayersView>;
+  @Input() players: Player[];
+  @Input() lastMatchday: number;
+  @Input() filters: MyTeamPlayersFilters;
 
+  private _playersUi: PlayerUi[] = [];
+  public get playersUi(): PlayerUi[] {
+    return this._playersUi;
+  }
+
+  public view$: Observable<PlayersView>;
   public views = PlayersView;
 
-  constructor(
-    private myTeamService: MyTeamStore,
-    private playersUiConverter: PlayersUiConverter,
-    private propertiesService: PropertiesStore,
-    private myTeamPlayersFilters: MyTeamPlayersFitlersService,
-    private playersViewService: PlayersViewService
-  ) {}
+  constructor(private playersUiConverter: PlayersUiConverter, private playersViewService: PlayersViewService) {}
 
   public ngOnInit(): void {
     this.view$ = this.playersViewService.select();
-    this.players$ = combineLatest([
-      this.myTeamService.select(),
-      this.myTeamPlayersFilters.select(),
-      this.propertiesService.selectLastMatchday()
-    ]).pipe(
-      map(([players, filters, lastMatchday]) => {
-        Logger.logDev('my tam table container, on init subscription');
-        const filter = new MyTeamPlayersFitler(filters, lastMatchday);
+    this.setPlayersUi();
+  }
 
-        if (!players || players.length === 0) {
-          return [];
-        }
+  public ngOnChanges(simpleChanges: SimpleChanges): void {
+    if (simpleChanges.players || simpleChanges.filters) {
+      Logger.logDev('my team table container, got players changes, setting players ui');
+      this.setPlayersUi();
+    }
+  }
 
-        return new ArrayStream<Player>(players)
-          .filter(filter)
-          .convert(this.playersUiConverter)
-          .orderBy('form', 'dsc')
-          .collect();
-      })
-    );
+  private setPlayersUi() {
+    this._playersUi = new ArrayStream<Player>(this.players)
+      .filter(new MyTeamPlayersFitler(this.filters, this.lastMatchday))
+      .convert(this.playersUiConverter)
+      .orderBy('form', 'dsc')
+      .collect();
   }
 }

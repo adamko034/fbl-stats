@@ -13,6 +13,16 @@
     <mat-icon *ngIf="!opened">arrow_drop_down</mat-icon>
   </button>
   <button
+    mat-button
+    *ngIf="type === 'normal'"
+    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+    (menuClosed)="opened = trigger.menuOpen"
+    [matMenuTriggerFor]="searchMenuOurPick"
+    #trigger="matMenuTrigger"
+  >
+    <mat-icon>add</mat-icon>Add
+  </button>
+  <button
     *ngIf="type === 'icon'"
     class="main-background"
     matTooltip="Add player"

@@ -18,7 +18,7 @@ import { PlayerPickerService } from '../../services/player-picker.service';
 export class PlayersPickerComponent implements OnInit {
   @Input() filters: PlayersPickerFilters;
   @Input() closeAfterSelect: boolean = false;
-  @Input() type: 'button' | 'icon' = 'button';
+  @Input() type: 'button' | 'icon' | 'normal' = 'button';
   @Output() playerSelected = new EventEmitter<PlayerPicker>();
 
   public foundPlayers$: Observable<PlayerPicker[]>;

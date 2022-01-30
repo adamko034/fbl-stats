@@ -1,12 +1,25 @@
-.my-team-totals-card {
-  padding: 20px 30px;
+@import '/src/variables.scss';
+
+.totals {
+  padding: 10px 30px;
+  background-color: $colorGreyBackround;
+  border-radius: 10px;
+  width: max-content;
 
   .label {
     font-size: 17px;
   }
 }
 
-.my-team-totals-card-mobile {
-  padding: 20px 20px;
-  width: 100%;
+.totals-mobile {
+  padding: 10px 20px;
 }
+// .my-team-totals-card {
+//   .label {
+//     font-size: 17px;
+//   }
+// }
+
+// .my-team-totals-card-mobile {
+//   width: 100%;
+// }
