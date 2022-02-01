@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prod": "ng build --prod --output-hashing=all"
+    "prod": "ng build --prod --output-hashing=all",
+    "mobile": "ng serve --host 0.0.0.0"
   },
   "private": true,
   "dependencies": {

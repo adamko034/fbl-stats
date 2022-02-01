@@ -2,16 +2,6 @@
   <mat-progress-spinner [diameter]="50" [mode]="'indeterminate'"></mat-progress-spinner>
 </div>
 
-<div [fxHide]="loading" [ngSwitch]="view$ | async">
-  <app-players-list
-    [showRemoveFromMyTeamButton]="false"
-    [showAddToMyTeamButton]="true"
-    *ngSwitchCase="PlayersViews.LIST"
-    [players]="playersToDisplay"
-  ></app-players-list>
-  <app-players-table
-    *ngSwitchCase="PlayersViews.TABLE"
-    [players]="playersToDisplay"
-    [showAddToMyTeamButton]="true"
-  ></app-players-table>
+<div [fxHide]="loading">
+  <app-players-table [players]="playersToDisplay" [showAddToMyTeamButton]="true"></app-players-table>
 </div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { GuiConfig, GuiConfigComparePlayers, GuiConfigMyTeamDisplay, GuiConfigOurPicks } from './gui-config.model';
 
@@ -23,20 +22,8 @@ export class GuiConfigStore {
     );
   }
 
-  public selectPlayersView(): Observable<PlayersView> {
-    return this.config$.pipe(
-      map((x) => x.players?.view || PlayersView.TABLE),
-      distinctUntilChanged()
-    );
-  }
-
   public toggleSideNavExpanded(): void {
     this.config.sidenavExpanded = !this.config.sidenavExpanded;
-    this.send();
-  }
-
-  public changePlayersView(view: PlayersView): void {
-    this.config.players = { ...this.config.players, view };
     this.send();
   }
 
@@ -116,6 +103,6 @@ export class GuiConfigStore {
   }
 
   private defaultConfig(): GuiConfig {
-    return { sidenavExpanded: true, players: { view: PlayersView.TABLE } };
+    return { sidenavExpanded: true };
   }
 }

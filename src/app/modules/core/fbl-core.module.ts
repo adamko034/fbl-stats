@@ -17,7 +17,6 @@ import { PlayerTileNextGameComponent } from 'src/app/modules/core/players/compon
 import { PlayerTileComponent } from 'src/app/modules/core/players/components/shared/player-tile/player-tile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersDisplayComponent } from './players/components/players-display/players-display.component';
-import { PlayersViewSwitchComponent } from './players/components/players-display/players-view-switch/players-view-switch.component';
 import { SelectMoreMatchdaysDialogComponent } from './players/components/players-select-matchdays/select-more-form-dialog/select-more-matchdays-dialog.component';
 import { PlayersTableAddOurPickComponent } from './players/components/players-table/players-table-add-our-pick/players-table-add-our-pick.component';
 import { PlayersPickerComponent } from './players/picker/components/players-picker/players-picker.component';
@@ -37,7 +36,6 @@ import { PlayersPickerComponent } from './players/picker/components/players-pick
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
     SelectMoreMatchdaysDialogComponent,
-    PlayersViewSwitchComponent,
     PlayersDisplayComponent,
     PlayersSearchComponent,
     PlayersTableAddOurPickComponent,
@@ -57,7 +55,6 @@ import { PlayersPickerComponent } from './players/picker/components/players-pick
     PlayerTileNameComponent,
     PlayerTileNextGameComponent,
     PlayersSelectMatchdaysComponent,
-    PlayersViewSwitchComponent,
     PlayersSearchComponent,
     PlayersPickerComponent
   ]

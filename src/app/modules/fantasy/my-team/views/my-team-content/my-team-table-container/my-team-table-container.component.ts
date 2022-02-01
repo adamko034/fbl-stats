@@ -1,10 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
 import { PlayersUiConverter } from 'src/app/modules/core/players/converters/players-ui.converter';
 import { PlayersFilterService } from 'src/app/modules/core/players/filter/players-filter.service';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
-import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
-import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Logger } from 'src/app/utils/logger';
@@ -27,13 +24,9 @@ export class MyTeamTableContainerComponent implements OnInit {
     return this._playersUi;
   }
 
-  public view$: Observable<PlayersView>;
-  public views = PlayersView;
-
-  constructor(private playersUiConverter: PlayersUiConverter, private playersViewService: PlayersViewService) {}
+  constructor(private playersUiConverter: PlayersUiConverter) {}
 
   public ngOnInit(): void {
-    this.view$ = this.playersViewService.select();
     this.setPlayersUi();
   }
 

@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { PlayerUi } from 'src/app/modules/core/players/models/player-ui.model';
-import { PlayersView } from 'src/app/modules/core/players/models/players-view.enum';
 import { PlayersDataService } from 'src/app/modules/core/players/services/players-data.service';
-import { PlayersViewService } from 'src/app/modules/core/players/services/players-view.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FiltersStoreService } from 'src/app/services/filters-store.service';
 import { PlayersStore } from 'src/app/store/players/players.store';
@@ -22,22 +20,17 @@ import { Logger } from 'src/app/utils/logger';
 export class PlayersTableContainerComponent implements OnInit {
   public loading = true;
   public playersToDisplay: PlayerUi[];
-  public PlayersViews = PlayersView;
-
-  public view$: Observable<PlayersView>;
 
   constructor(
     private playersStore: PlayersStore,
     private propertiesService: PropertiesStore,
     private filtersStoreService: FiltersStoreService,
     private playersDataService: PlayersDataService,
-    private playersViewService: PlayersViewService,
     private changeDetection: ChangeDetectorRef
   ) {}
 
   public ngOnInit() {
     Logger.logDev('players table container component, ng on init');
-    this.view$ = this.playersViewService.select();
 
     combineLatest([
       this.propertiesService.selectLastMatchday(),
