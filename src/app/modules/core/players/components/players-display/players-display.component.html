@@ -7,9 +7,6 @@
       [items]="sortItems"
       (sortByChange)="onSortChange($event)"
     ></app-sort-by>
-    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-      <app-players-view-switch *ngIf="!(isMobile$ | async)"></app-players-view-switch>
-      <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
-    </div>
+    <mat-paginator showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
   </div>
 </div>

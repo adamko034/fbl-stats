@@ -1,6 +1,6 @@
 <app-white-block [noPadding]="true">
   <div class="table-container" fxLayout="column" fxLayoutAlign="center stretch">
-    <app-players-display [key]="DISPLAY_KEY" class="display"></app-players-display>
+    <app-players-display [appSticky]="{ position: 'left' }" [key]="DISPLAY_KEY" class="display"></app-players-display>
     <table
       mat-table
       matSort

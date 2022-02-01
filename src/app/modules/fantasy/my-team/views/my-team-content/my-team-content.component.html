@@ -9,5 +9,10 @@
       [filters]="state$ | async | field: 'filters'"
       [lastMatchday]="state$ | async | field: 'lastMatchday'"
     ></app-my-team-table-container>
+
+    <app-my-team-kick-off-times
+      [players]="state$ | async | field: 'players'"
+      [nextMatchdayFixtures]="state$ | async | field: 'nextMatchdayFixtures'"
+    ></app-my-team-kick-off-times>
   </div>
 </app-view>

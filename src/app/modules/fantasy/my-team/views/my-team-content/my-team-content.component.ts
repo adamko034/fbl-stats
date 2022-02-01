@@ -3,6 +3,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
+import { FixturesStore } from 'src/app/store/fixtures/fixtures.store';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
 import { MyTeamState } from '../../models/my-team-state.model';
@@ -26,7 +27,8 @@ export class MyTeamContentComponent implements OnInit {
     private myTeamStore: MyTeamStore,
     private myTeamFiltersService: MyTeamPlayersFitlersService,
     private myTeamDisplaySettingsService: MyTeamTilesDisplaySettingsService,
-    private protertiesStore: PropertiesStore
+    private protertiesStore: PropertiesStore,
+    private fixturesStore: FixturesStore
   ) {}
 
   public ngOnInit(): void {
@@ -34,10 +36,14 @@ export class MyTeamContentComponent implements OnInit {
       this.myTeamStore.select(),
       this.myTeamFiltersService.select(),
       this.myTeamDisplaySettingsService.select(),
-      this.protertiesStore.selectLastMatchday()
+      this.protertiesStore.selectLastMatchday(),
+      this.fixturesStore.selectAll()
     ]).pipe(
       tap((_) => Logger.logDev('my team content component, got state')),
-      map(([players, filters, displaySettings, lastMatchday]) => ({ players, filters, displaySettings, lastMatchday }))
+      map(([players, filters, displaySettings, lastMatchday, fixtures]) => {
+        const nextMatchdayFixtures = fixtures.find((f) => f.matchdayNumber === lastMatchday + 1);
+        return { players, filters, displaySettings, lastMatchday, nextMatchdayFixtures };
+      })
     );
   }
 }
