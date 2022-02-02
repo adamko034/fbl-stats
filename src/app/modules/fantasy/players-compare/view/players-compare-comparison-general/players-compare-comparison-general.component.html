@@ -1,235 +1,247 @@
-<div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="space-around">
-  <div class="wrapper" appStickyWrapper>
-    <app-title-underlined-grey layoutAlign="start start">
-      <span title [appSticky]="{ position: 'left' }">Fantasy Bundesliga</span>
-      <div content>
-        <div class="players-compare-wrapper">
-          <table class="comparison-table">
-            <tr>
-              <td [appSticky]="{ position: 'left' }"></td>
-              <td *ngFor="let player of players">
-                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Team</td>
-              <td *ngFor="let player of players">
-                <app-team-logo [team]="player.teamShort" [height]="16"></app-team-logo>
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Pos</td>
-              <td *ngFor="let player of players">{{ player.position | uppercase }}</td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">$</td>
-              <td *ngFor="let player of players">{{ player.price }}</td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">%</td>
-              <td *ngFor="let player of players">{{ player.popularity }}</td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Top100 %</td>
-              <td *ngFor="let player of players">{{ player.top100Popularity }}</td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Top500 %</td>
-              <td *ngFor="let player of players">{{ player.top500Popularity }}</td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">TP</td>
-              <td *ngFor="let player of players">{{ player.totalPoints }}</td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Next 4</td>
-              <td *ngFor="let player of players">
-                <div
-                  *ngFor="let matchday of nextFourMatchdays | orderBy"
-                  fxLayout="column"
-                  fxLayoutAlign="start center"
-                >
-                  <app-team-game-against
-                    [team]="createGameAgainst(player.teamShort, matchday)"
-                    [config]="{ teamLogoHeight: 15, showFirstGame: false, smallerFont: true }"
-                  ></app-team-game-against>
-                </div>
-              </td>
-            </tr>
-          </table>
+<div fxLayout="column">
+  <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="space-around">
+    <div class="wrapper" appStickyWrapper>
+      <app-title-underlined-grey layoutAlign="start start">
+        <span title [appSticky]="{ position: 'left' }">Fantasy Bundesliga</span>
+        <div content>
+          <div class="players-compare-wrapper">
+            <table class="comparison-table">
+              <tr>
+                <td [appSticky]="{ position: 'left' }"></td>
+                <td *ngFor="let player of players">
+                  <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Team</td>
+                <td *ngFor="let player of players">
+                  <app-team-logo [team]="player.teamShort" [height]="16"></app-team-logo>
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Pos</td>
+                <td *ngFor="let player of players">{{ player.position | uppercase }}</td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">$</td>
+                <td *ngFor="let player of players">{{ player.price }}</td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">%</td>
+                <td *ngFor="let player of players">{{ player.popularity }}</td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Top100 %</td>
+                <td *ngFor="let player of players">{{ player.top100Popularity }}</td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Top500 %</td>
+                <td *ngFor="let player of players">{{ player.top500Popularity }}</td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">TP</td>
+                <td *ngFor="let player of players">{{ player.totalPoints }}</td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Next 4</td>
+                <td *ngFor="let player of players">
+                  <div
+                    *ngFor="let matchday of nextFourMatchdays | orderBy"
+                    fxLayout="column"
+                    fxLayoutAlign="start center"
+                  >
+                    <app-team-game-against
+                      [team]="createGameAgainst(player.teamShort, matchday)"
+                      [config]="{ teamLogoHeight: 15, showFirstGame: false, smallerFont: true }"
+                    ></app-team-game-against>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
-    </app-title-underlined-grey>
+      </app-title-underlined-grey>
+    </div>
+
+    <div class="wrapper" appStickyWrapper>
+      <app-title-underlined-grey layoutAlign="start start">
+        <span title [appSticky]="{ position: 'left' }">Games</span>
+        <div content>
+          <div class="players-compare-wrapper">
+            <table class="comparison-table">
+              <tr>
+                <td [appSticky]="{ position: 'left' }"></td>
+                <td *ngFor="let player of players">
+                  <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">GP</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesPlayedPercentage(player, 'all') }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">GS</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesStarted(player, 'all') }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">+70'</td>
+                <td *ngFor="let player of players">
+                  {{ getGames70(player, 'all') }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Won</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesWon(player, 'all', false) }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Won if played</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesWon(player, 'all', true) }}
+                </td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Home GP</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesPlayedPercentage(player, 'h') }}
+                </td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Home GS</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesStarted(player, 'h') }}
+                </td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Home +70'</td>
+                <td *ngFor="let player of players">
+                  {{ getGames70(player, 'h') }}
+                </td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Home won</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesWon(player, 'h', false) }}
+                </td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Home won if played</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesWon(player, 'h', true) }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Away GP</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesPlayedPercentage(player, 'a') }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Away GS</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesStarted(player, 'a') }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Away +70'</td>
+                <td *ngFor="let player of players">
+                  {{ getGames70(player, 'a') }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Away won</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesWon(player, 'a', false) }}
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Away won if played</td>
+                <td *ngFor="let player of players">
+                  {{ getGamesWon(player, 'a', true) }}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </app-title-underlined-grey>
+    </div>
+
+    <div class="wrapper" appStickyWrapper>
+      <app-title-underlined-grey layoutAlign="start start">
+        <span title [appSticky]="{ position: 'left' }">Points: all games</span>
+        <div content>
+          <div class="players-compare-wrapper">
+            <table class="comparison-table">
+              <tr>
+                <td [appSticky]="{ position: 'left' }"></td>
+                <td *ngFor="let player of players">
+                  <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+                </td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Last MD</td>
+                <td *ngFor="let player of players">{{ getPointsTotal(player, 1) }}</td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Last 2</td>
+                <td *ngFor="let player of players">{{ getPointsTotal(player, 2) }}</td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Last 2 AVG</td>
+                <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 2) }}</td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Last 4</td>
+                <td *ngFor="let player of players">{{ getPointsTotal(player, 4) }}</td>
+              </tr>
+              <tr class="grey-row">
+                <td [appSticky]="{ position: 'left' }">Last 4 AVG</td>
+                <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 4) }}</td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Last 6</td>
+                <td *ngFor="let player of players">{{ getPointsTotal(player, 6) }}</td>
+              </tr>
+              <tr>
+                <td [appSticky]="{ position: 'left' }">Last 6 AVG</td>
+                <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 6) }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </app-title-underlined-grey>
+    </div>
+
+    <ng-template
+      [ngTemplateOutlet]="tablePoints"
+      [ngTemplateOutletContext]="{ title: 'Points: all games (only played)', venue: 'all' }"
+    ></ng-template>
+
+    <ng-template
+      [ngTemplateOutlet]="tablePoints"
+      [ngTemplateOutletContext]="{ title: 'Points: home games (only played)', venue: 'h' }"
+    ></ng-template>
+
+    <ng-template
+      [ngTemplateOutlet]="tablePoints"
+      [ngTemplateOutletContext]="{ title: 'Points: away games (only played)', venue: 'a' }"
+    ></ng-template>
   </div>
 
-  <div class="wrapper" appStickyWrapper>
-    <app-title-underlined-grey layoutAlign="start start">
-      <span title [appSticky]="{ position: 'left' }">Games</span>
-      <div content>
-        <div class="players-compare-wrapper">
-          <table class="comparison-table">
-            <tr>
-              <td [appSticky]="{ position: 'left' }"></td>
-              <td *ngFor="let player of players">
-                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">GP</td>
-              <td *ngFor="let player of players">
-                {{ getGamesPlayedPercentage(player, 'all') }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">GS</td>
-              <td *ngFor="let player of players">
-                {{ getGamesStarted(player, 'all') }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">+70'</td>
-              <td *ngFor="let player of players">
-                {{ getGames70(player, 'all') }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Won</td>
-              <td *ngFor="let player of players">
-                {{ getGamesWon(player, 'all', false) }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Won if played</td>
-              <td *ngFor="let player of players">
-                {{ getGamesWon(player, 'all', true) }}
-              </td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Home GP</td>
-              <td *ngFor="let player of players">
-                {{ getGamesPlayedPercentage(player, 'h') }}
-              </td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Home GS</td>
-              <td *ngFor="let player of players">
-                {{ getGamesStarted(player, 'h') }}
-              </td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Home +70'</td>
-              <td *ngFor="let player of players">
-                {{ getGames70(player, 'h') }}
-              </td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Home won</td>
-              <td *ngFor="let player of players">
-                {{ getGamesWon(player, 'h', false) }}
-              </td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Home won if played</td>
-              <td *ngFor="let player of players">
-                {{ getGamesWon(player, 'h', true) }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Away GP</td>
-              <td *ngFor="let player of players">
-                {{ getGamesPlayedPercentage(player, 'a') }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Away GS</td>
-              <td *ngFor="let player of players">
-                {{ getGamesStarted(player, 'a') }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Away +70'</td>
-              <td *ngFor="let player of players">
-                {{ getGames70(player, 'a') }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Away won</td>
-              <td *ngFor="let player of players">
-                {{ getGamesWon(player, 'a', false) }}
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Away won if played</td>
-              <td *ngFor="let player of players">
-                {{ getGamesWon(player, 'a', true) }}
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </app-title-underlined-grey>
+  <div class="legend legend-grid">
+    <span>TP - total points</span>
+    <span>GP - games played</span>
+    <span>GS - games started</span>
+    <span>+70' - played more than 70 minutes</span>
+    <span>+10pts - +10 points efficiency</span>
+    <span>+15pts - +15 points efficiency</span>
+    <span></span>
   </div>
-
-  <div class="wrapper" appStickyWrapper>
-    <app-title-underlined-grey layoutAlign="start start">
-      <span title [appSticky]="{ position: 'left' }">Points: all games</span>
-      <div content>
-        <div class="players-compare-wrapper">
-          <table class="comparison-table">
-            <tr>
-              <td [appSticky]="{ position: 'left' }"></td>
-              <td *ngFor="let player of players">
-                <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
-              </td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Last MD</td>
-              <td *ngFor="let player of players">{{ getPointsTotal(player, 1) }}</td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Last 2</td>
-              <td *ngFor="let player of players">{{ getPointsTotal(player, 2) }}</td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Last 2 AVG</td>
-              <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 2) }}</td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Last 4</td>
-              <td *ngFor="let player of players">{{ getPointsTotal(player, 4) }}</td>
-            </tr>
-            <tr class="grey-row">
-              <td [appSticky]="{ position: 'left' }">Last 4 AVG</td>
-              <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 4) }}</td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Last 6</td>
-              <td *ngFor="let player of players">{{ getPointsTotal(player, 6) }}</td>
-            </tr>
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Last 6 AVG</td>
-              <td *ngFor="let player of players">{{ getAvgPointsTotal(player, 6) }}</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </app-title-underlined-grey>
-  </div>
-
-  <ng-template
-    [ngTemplateOutlet]="tablePoints"
-    [ngTemplateOutletContext]="{ title: 'Points: all games (only played)', venue: 'all' }"
-  ></ng-template>
-
-  <ng-template
-    [ngTemplateOutlet]="tablePoints"
-    [ngTemplateOutletContext]="{ title: 'Points: home games (only played)', venue: 'h' }"
-  ></ng-template>
-
-  <ng-template
-    [ngTemplateOutlet]="tablePoints"
-    [ngTemplateOutletContext]="{ title: 'Points: away games (only played)', venue: 'a' }"
-  ></ng-template>
 </div>
 
 <ng-template #tablePoints let-venue="venue" let-title="title">
