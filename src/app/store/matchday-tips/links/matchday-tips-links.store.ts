@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { ArrayStream } from 'src/app/services/array-stream.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Logger } from 'src/app/utils/logger';
-import { MatchdayTipsLink } from './models/matchday-tips-link.model';
 import { MatchdaysTipsLinks } from './models/matchday-tips-links.model';
 
 @Injectable({ providedIn: 'root' })
@@ -21,12 +19,11 @@ export class MatchdayTipsLinksStore {
       .pipe(first())
       .subscribe((tips: MatchdaysTipsLinks) => {
         if (!tips) {
-          this._state[matchday] = { matchday, links: [], categories: [] };
+          this._state[matchday] = { matchday, links: [] };
           this.send();
           return;
         }
 
-        tips.categories = this.extractCategories(tips);
         this._state[tips.matchday] = tips;
         this.send();
       });
@@ -38,9 +35,5 @@ export class MatchdayTipsLinksStore {
 
   private send(): void {
     this.state$.next({ ...this._state });
-  }
-
-  private extractCategories(tips: MatchdaysTipsLinks): string[] {
-    return new ArrayStream<MatchdayTipsLink>(tips.links).distinctFlat('categories').concat(['all']);
   }
 }

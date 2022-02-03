@@ -3,15 +3,9 @@
     <div fxLayout="column" fxLayoutGap="15px">
       <mat-form-field class="select">
         <mat-label>Include matchdays</mat-label>
-        <mat-select
-          [value]="filters$ | async | field: 'includeMatchdays'"
-          (valueChange)="onMatchdaysCountChange($event)"
-        >
+        <mat-select [value]="includeMatchdays$ | async" (valueChange)="onMatchdaysCountChange($event)">
           <mat-option [value]="0">All</mat-option>
-          <mat-option [value]="2">Next 2</mat-option>
-          <mat-option [value]="3">Next 3</mat-option>
-          <mat-option [value]="4">Next 4</mat-option>
-          <mat-option [value]="6">Next 6</mat-option>
+          <mat-option *ngFor="let md of possibleNextMatchdays" [value]="md">Next {{ md }}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -22,14 +16,14 @@
           [players]="players"
           [teams]="teams"
           [lastMatchday]="lastMatchday"
-          [matchdaysCount]="filters$ | async | field: 'includeMatchdays'"
+          [matchdaysCount]="includeMatchdays$ | async"
         ></app-players-compare-kickoff-times>
         <app-players-compare-fixtures-details
           appStickyWrapper
           [players]="players"
           [teams]="teams"
           [lastMatchday]="lastMatchday"
-          [matchdaysCount]="filters$ | async | field: 'includeMatchdays'"
+          [matchdaysCount]="includeMatchdays$ | async"
         ></app-players-compare-fixtures-details>
       </div>
     </div>

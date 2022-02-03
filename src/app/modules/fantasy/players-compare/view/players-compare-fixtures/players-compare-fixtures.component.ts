@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TeamService } from 'src/app/modules/core/teams/services/team.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Team } from 'src/app/store/teams/models/team.model';
-import { PlayersCompareFixturesFilters } from '../../models/players-compare-fixtures-filters.model';
 import { PlayersCompareFixturesService } from '../../services/players-compare-fixtures.service';
 
 @Component({
@@ -17,15 +17,39 @@ export class PlayersCompareFixturesComponent implements OnInit {
   @Input() teams: { [teamShort: string]: Team };
   @Input() lastMatchday: number;
 
-  public filters$: Observable<PlayersCompareFixturesFilters>;
+  private _posstibleNextMatchdays: number[];
+  public get possibleNextMatchdays(): number[] {
+    return this._posstibleNextMatchdays;
+  }
+
+  public includeMatchdays$: Observable<number>;
 
   constructor(private fixturesService: PlayersCompareFixturesService, private teamService: TeamService) {}
 
   public ngOnInit(): void {
-    this.filters$ = this.fixturesService.selectFilters();
+    this.setPossibleNextMatchdays();
+    this.includeMatchdays$ = this.fixturesService.selectFilters().pipe(
+      map((filters) => {
+        const maxMatchdays = Math.max(...this._posstibleNextMatchdays);
+
+        return filters?.includeMatchdays > maxMatchdays ? 0 : filters.includeMatchdays;
+      })
+    );
   }
 
   public onMatchdaysCountChange(count: number): void {
     this.fixturesService.changeMatchdays(count);
+  }
+
+  private setPossibleNextMatchdays(): void {
+    const nextUnknownMatchday = this.teamService.getFirstMatchdayWithMissingDate(Object.values(this.teams)[0]);
+    const nextMatchday = this.lastMatchday + 1;
+
+    const matchdays = [];
+    for (let i = 1; i <= nextUnknownMatchday - nextMatchday; i++) {
+      matchdays.push(i);
+    }
+
+    this._posstibleNextMatchdays = matchdays;
   }
 }
