@@ -1,5 +1,8 @@
 <div class="field" fxLayout="column" fxLayoutAlign="start center">
-  <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: forwards }"></ng-template>
+  <ng-template
+    [ngTemplateOutlet]="row"
+    [ngTemplateOutletContext]="{ players: forwards, marginTop: '35' }"
+  ></ng-template>
   <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: midfielders }"></ng-template>
   <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: defenders }"></ng-template>
 
@@ -10,7 +13,7 @@
   </div>
 </div>
 
-<ng-template #row let-players="players">
+<ng-template #row let-players="players" let-marginTop="marginTop">
   <div
     *ngIf="players.length < 5"
     class="position"
@@ -23,7 +26,15 @@
       <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
     </div>
   </div>
-  <div *ngIf="players.length > 4" class="position" fxFlex="30" fxLayout="column" fxLayoutGap="10px">
+
+  <div
+    *ngIf="players.length > 4"
+    class="position"
+    fxFlex="30"
+    fxLayout="column"
+    fxLayoutGap="10px"
+    [ngStyle]="{ 'margin-top': !marginTop ? 'unset' : marginTop + 'px' }"
+  >
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div
         class="player"
