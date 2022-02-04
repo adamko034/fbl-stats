@@ -10,11 +10,12 @@ interface MyTeamStoreState {
   loaded: boolean;
   allPlayers: Player[];
   myTeamPlayers: Player[];
+  kickOffTimesMatchdays: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class MyTeamStore {
-  private state: MyTeamStoreState = { loaded: false, myTeamPlayers: [], allPlayers: [] };
+  private state: MyTeamStoreState = { loaded: false, kickOffTimesMatchdays: 3, myTeamPlayers: [], allPlayers: [] };
   private state$ = new ReplaySubject<MyTeamStoreState>(1);
 
   constructor(private guiConfigStore: GuiConfigStore, private playersStore: PlayersStore) {
@@ -28,9 +29,13 @@ export class MyTeamStore {
   public load(): void {
     if (!this.state.loaded) {
       Logger.logDev('my team store, data not loaded, loading from local storage');
-      combineLatest([this.playersStore.selectPlayers(), this.guiConfigStore.selectMyTeamPlayerIds()])
+      combineLatest([
+        this.playersStore.selectPlayers(),
+        this.guiConfigStore.selectMyTeamPlayerIds(),
+        this.guiConfigStore.selectMyTeamKickOffTimesMatchdays()
+      ])
         .pipe(first())
-        .subscribe(([allPlayers, myTeamPlayersIds]) => {
+        .subscribe(([allPlayers, myTeamPlayersIds, kickOffTimesMatchdays]) => {
           let myTeamPlayers = [];
 
           if (!!myTeamPlayersIds) {
@@ -43,14 +48,24 @@ export class MyTeamStore {
           }
 
           Logger.logDev(`my team store, loaded, players count ${myTeamPlayers.length}`);
-          this.state = { loaded: true, allPlayers, myTeamPlayers };
+          this.state = { loaded: true, allPlayers, myTeamPlayers, kickOffTimesMatchdays: kickOffTimesMatchdays ?? 3 };
           this.send();
         });
     }
   }
 
-  public select(): Observable<Player[]> {
+  public select(): Observable<{ players: Player[]; kickOffTimesMatchdays: number }> {
+    return this.state$.pipe(
+      map((state) => ({ players: state.myTeamPlayers, kickOffTimesMatchdays: state.kickOffTimesMatchdays }))
+    );
+  }
+
+  public selectPlayers(): Observable<Player[]> {
     return this.state$.pipe(map((state) => state.myTeamPlayers));
+  }
+
+  public selectKickOffTimesMatchdays(): Observable<number> {
+    return this.state$.pipe(map((state) => state.kickOffTimesMatchdays));
   }
 
   public add(playerId: string) {
@@ -74,6 +89,12 @@ export class MyTeamStore {
   public clear(): void {
     this.state.myTeamPlayers = [];
     this.store();
+    this.send();
+  }
+
+  public changeKickOffTimesMatchdays(matchdaysCount: number): void {
+    this.state.kickOffTimesMatchdays = matchdaysCount;
+    this.guiConfigStore.changeMyTeamKickOffMatchdays(matchdaysCount);
     this.send();
   }
 

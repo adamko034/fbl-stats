@@ -17,6 +17,7 @@ import { MyTeamTotalsComponent } from './views/my-team-content/my-team-selection
 import { MyTeamFiltersMatchdaysComponent } from './views/my-team-content/my-team-table-container/my-team-filters-matchdays/my-team-filters-matchdays.component';
 import { MyTeamFiltersPositionComponent } from './views/my-team-content/my-team-table-container/my-team-filters-position/my-team-filters-position.component';
 import { MyTeamTableContainerComponent } from './views/my-team-content/my-team-table-container/my-team-table-container.component';
+import { MyTeamKickOffTimesMatchdayComponent } from './views/my-team-content/my-team-kick-off-times/my-team-kick-off-times-matchday/my-team-kick-off-times-matchday.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MyTeamTableContainerComponent } from './views/my-team-content/my-team-t
     MyTeamTotalsComponent,
     MyTeamFiltersMatchdaysComponent,
     MyTeamFiltersPositionComponent,
-    MyTeamKickOffTimesComponent
+    MyTeamKickOffTimesComponent,
+    MyTeamKickOffTimesMatchdayComponent
   ],
   imports: [
     CommonModule,

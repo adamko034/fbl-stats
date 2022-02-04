@@ -8,5 +8,7 @@ export interface MyTeamState {
   filters: MyTeamPlayersFilters;
   displaySettings: MyTeamTilesDisplaySettings;
   lastMatchday: number;
-  nextMatchdayFixtures: MatchdayFixtures;
+  lastKnownMatchday: number;
+  kickOffTimesMatchdays: number;
+  nextFixtures: MatchdayFixtures[];
 }

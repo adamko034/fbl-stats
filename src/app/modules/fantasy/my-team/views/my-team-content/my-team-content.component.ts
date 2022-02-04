@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { ArrayStream } from 'src/app/services/array-stream.service';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { FixturesStore } from 'src/app/store/fixtures/fixtures.store';
+import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
-import { Logger } from 'src/app/utils/logger';
 import { MyTeamState } from '../../models/my-team-state.model';
 import { MyTeamPlayersFitlersService } from '../../services/my-team-players-filters.service';
 import { MyTeamTilesDisplaySettingsService } from '../../services/my-team-tiles-display-settings.service';
@@ -37,12 +38,24 @@ export class MyTeamContentComponent implements OnInit {
       this.myTeamFiltersService.select(),
       this.myTeamDisplaySettingsService.select(),
       this.protertiesStore.selectLastMatchday(),
-      this.fixturesStore.selectAll()
+      this.fixturesStore.selectAll(),
+      this.protertiesStore.selectLastKnownMatchday()
     ]).pipe(
-      tap((_) => Logger.logDev('my team content component, got state')),
-      map(([players, filters, displaySettings, lastMatchday, fixtures]) => {
-        const nextMatchdayFixtures = fixtures.find((f) => f.matchdayNumber === lastMatchday + 1);
-        return { players, filters, displaySettings, lastMatchday, nextMatchdayFixtures };
+      map(([myTeam, filters, displaySettings, lastMatchday, fixtures, lastKnownMatchday]) => {
+        const nextFixtures = new ArrayStream<MatchdayFixtures>(fixtures)
+          .filterQuick((f) => f.matchdayNumber > lastMatchday)
+          .orderBy('matchdayNumber', 'asc')
+          .collect();
+
+        return {
+          players: myTeam.players,
+          kickOffTimesMatchdays: myTeam.kickOffTimesMatchdays,
+          filters,
+          displaySettings,
+          lastKnownMatchday,
+          lastMatchday,
+          nextFixtures
+        };
       })
     );
   }

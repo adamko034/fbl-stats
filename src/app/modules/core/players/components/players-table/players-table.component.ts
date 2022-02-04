@@ -65,7 +65,7 @@ export class PlayersTableComponent implements OnChanges, OnInit, AfterViewInit, 
 
   ngOnInit() {
     Logger.logDev('players table componenet, on init');
-    this.myTeamPlayers$ = this.myTeamService.select();
+    this.myTeamPlayers$ = this.myTeamService.selectPlayers();
     this.cachedCompareIds$ = this.guiConfigStore.selectComparePlayersConfig().pipe(map((config) => config.ids));
   }
 

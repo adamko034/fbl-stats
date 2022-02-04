@@ -1,0 +1,47 @@
+<app-white-block padding="10px 0 10px 0">
+  <div appStickyWrapper>
+    <h2 class="matchday-info" [appSticky]="{ position: 'left' }">Matchday {{ nextMatchdayFixtures.matchdayNumber }}</h2>
+    <div class="container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center center">
+      <div class="section" *ngFor="let kickOffTimes of data | orderBy: 'date'">
+        <div fxLayout="column" fxLayoutGap="20px">
+          <div fxLayout="column">
+            <span class="section-title">{{ kickOffTimes.date | epochDate | date: 'EEEE, HH:mm' }}</span>
+            <span class="section-subtitle">{{ kickOffTimes.date | epochDate | date: 'dd.MM.yyyy' }}</span>
+            <div class="timeline" [appSticky]="{ position: 'left' }" fxLayout="row" fxLayoutAlign="center center">
+              <svg class="timeline-line" height="5">
+                <line x1="0" y1="0" x2="100%" y2="0"></line>
+              </svg>
+              <svg class="timeline-dot" height="20" width="20">
+                <circle cx="10" cy="11" r="5"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <div fxLayout="column" fxLayoutGap="15px">
+            <div *ngFor="let position of ['gk', 'def', 'mid', 'for']">
+              <ng-template
+                [ngTemplateOutlet]="players"
+                [ngTemplateOutletContext]="{ position: position, players: kickOffTimes[position] }"
+              ></ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-white-block>
+
+<ng-template #players let-position="position" let-players="players">
+  <div fxLayout="column" class="position" [ngClass]="getSectionPositionColorClass(position, players.length)">
+    <span>{{ position | uppercase }}</span>
+    <div fxLayout="column" fxLayoutGap="3px" [ngStyle.gt-xs]="{ height: getSectionPositionHeight(position) }">
+      <div class="player" *ngFor="let player of players" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="7px">
+        <app-team-logo [height]="15" [team]="player.teamShort"></app-team-logo>
+        <app-player-name-link [id]="player.id" [name]="player.name"></app-player-name-link>
+      </div>
+      <div *ngIf="players | arrayEmpty">
+        <span>--</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

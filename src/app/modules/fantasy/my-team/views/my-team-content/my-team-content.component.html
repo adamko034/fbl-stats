@@ -11,8 +11,11 @@
     ></app-my-team-table-container>
 
     <app-my-team-kick-off-times
+      *ngIf="state$ | async | field: 'players' | arrayNotEmpty"
       [players]="state$ | async | field: 'players'"
-      [nextMatchdayFixtures]="state$ | async | field: 'nextMatchdayFixtures'"
+      [nextMatchdaysFixtures]="state$ | async | field: 'nextFixtures'"
+      [kickOffTimesMatchdays]="state$ | async | field: 'kickOffTimesMatchdays'"
+      [lastKnownMatchday]="state$ | async | field: 'lastKnownMatchday'"
     ></app-my-team-kick-off-times>
   </div>
 </app-view>

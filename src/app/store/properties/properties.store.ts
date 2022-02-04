@@ -26,6 +26,13 @@ export class PropertiesStore {
     );
   }
 
+  public selectLastKnownMatchday(): Observable<number> {
+    return this.selectProperties().pipe(
+      map((properties) => properties.lastKnownMatchday),
+      distinctUntilChanged()
+    );
+  }
+
   public selectLastUpdated(): Observable<Date> {
     return this.selectProperties().pipe(map((props) => props.lastUpdated));
   }

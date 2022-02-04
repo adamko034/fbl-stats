@@ -18,6 +18,7 @@ export interface GuiConfigComparePlayers {
 export interface GuiConfigMyTeam {
   playerIds?: string[];
   display?: GuiConfigMyTeamDisplay;
+  kickOffTimesMatchdays?: number;
 }
 
 export interface GuiConfigMyTeamDisplay {

@@ -1,44 +1,19 @@
-<app-white-block padding="10px 0 10px 0">
-  <div appStickyWrapper class="container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center center">
-    <div class="section" *ngFor="let kickOffTimes of data | orderBy: 'date'">
-      <div fxLayout="column" fxLayoutGap="20px">
-        <div fxLayout="column">
-          <span class="section-title">{{ kickOffTimes.date | epochDate | date: 'EEEE, HH:mm' }}</span>
-          <span>{{ kickOffTimes.date | epochDate | date: 'dd.MM.yyyy' }}</span>
-          <div class="timeline" [appSticky]="{ position: 'left' }" fxLayout="row" fxLayoutAlign="center center">
-            <svg class="timeline-line" height="5">
-              <line x1="0" y1="0" x2="100%" y2="0"></line>
-            </svg>
-            <svg class="timeline-dot" height="20" width="20">
-              <circle cx="10" cy="11" r="5"></circle>
-            </svg>
-          </div>
-        </div>
-
-        <div fxLayout="column" fxLayoutGap="15px">
-          <div *ngFor="let position of ['gk', 'def', 'mid', 'for']">
-            <ng-template
-              [ngTemplateOutlet]="players"
-              [ngTemplateOutletContext]="{ position: position, players: kickOffTimes[position] }"
-            ></ng-template>
-          </div>
-        </div>
-      </div>
-    </div>
+<app-white-block padding="10px 10px 0 10px">
+  <div>
+    <mat-form-field>
+      <mat-label>Include matchdays</mat-label>
+      <mat-select [value]="kickOffTimesMatchdays" (valueChange)="onNextMatchdaysChanged($event)">
+        <mat-option [value]="0">All</mat-option>
+        <mat-option [value]="1">Next matchday</mat-option>
+        <mat-option *ngFor="let md of nextMatchdays" [value]="md">Next {{ md }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 </app-white-block>
-
-<ng-template #players let-position="position" let-players="players">
-  <div fxLayout="column" class="position" [ngClass]="getSectionPositionColorClass(position, players.length)">
-    <span>{{ position | uppercase }}</span>
-    <div fxLayout="column" fxLayoutGap="3px" [ngStyle.gt-xs]="{ height: getSectionPositionHeight(position) }">
-      <div class="player" *ngFor="let player of players" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="7px">
-        <app-team-logo [height]="15" [team]="player.teamShort"></app-team-logo>
-        <app-player-name-link [id]="player.id" [name]="player.name"></app-player-name-link>
-      </div>
-      <div *ngIf="players | arrayEmpty">
-        <span>--</span>
-      </div>
-    </div>
-  </div>
-</ng-template>
+<div fxLayout="column" fxLayoutGap="7px" *ngIf="matchdaysFixtures | arrayNotEmpty">
+  <app-my-team-kick-off-times-matchday
+    *ngFor="let nextMatchdayFixtures of matchdaysFixtures"
+    [players]="players"
+    [nextMatchdayFixtures]="nextMatchdayFixtures"
+  ></app-my-team-kick-off-times-matchday>
+</div>

@@ -32,6 +32,13 @@ export class MyTeamPlayersFitlersService {
     );
   }
 
+  public selectKickOffTimesMatchdays(): Observable<number> {
+    return this.select().pipe(
+      map((f) => f.kickOffTimesMatchdays),
+      distinctUntilChanged()
+    );
+  }
+
   public updateMatchdays(matchdays: number) {
     this.filters.matchdays = matchdays;
     //this.localStorageService.upsert<number>(FILTERS_MATCHDAYS_STORAGEKEY, matchdays);

@@ -65,6 +65,13 @@ export class GuiConfigStore {
     );
   }
 
+  public selectMyTeamKickOffTimesMatchdays(): Observable<number> {
+    return this.config$.pipe(
+      map((x) => x.myTeam?.kickOffTimesMatchdays),
+      distinctUntilChanged()
+    );
+  }
+
   public changeMyTeamPlayerIds(ids: string[]): void {
     this.config.myTeam = { ...this.config.myTeam, playerIds: ids };
     this.send();
@@ -86,6 +93,11 @@ export class GuiConfigStore {
 
   public changeComparePlayersIds(ids: string[]): void {
     this.config.comparePlayers = { ...this.config.comparePlayers, ids };
+    this.send();
+  }
+
+  public changeMyTeamKickOffMatchdays(matchdaysCount: number): void {
+    this.config.myTeam = { ...this.config.myTeam, kickOffTimesMatchdays: matchdaysCount };
     this.send();
   }
 
