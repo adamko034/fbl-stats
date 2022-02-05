@@ -6,10 +6,12 @@ export interface MatchdayTipsTopTeamPlayer {
   lastName: string;
   price: number;
   popularity: number;
+  top100Popularity: number;
   top500Popularity: number;
   points: number;
   teamShort: string;
   position: string;
   subPosition: PlayerSubPosition;
   available: boolean;
+  gamesPlayed: number;
 }

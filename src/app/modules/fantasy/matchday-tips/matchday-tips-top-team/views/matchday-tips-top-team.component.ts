@@ -29,7 +29,9 @@ export class MatchdayTipsTopTeamComponent implements OnInit {
         { header: 'Pos', objectFieldName: 'position' },
         { header: '$', objectFieldName: 'price', suffix: 'M' },
         { header: '%', objectFieldName: 'popularity', suffix: '%' },
+        { header: 'top100 %', objectFieldName: 'top100Popularity', suffix: '%' },
         { header: 'top500 %', objectFieldName: 'top500Popularity', suffix: '%' },
+        { header: 'GP', objectFieldName: 'gamesPlayed' },
         { header: 'Pts', objectFieldName: 'points' }
       ]
     };
@@ -57,8 +59,19 @@ export class MatchdayTipsTopTeamComponent implements OnInit {
         return new ArrayStream<MatchdayTipsTopTeamPlayer>(team.firstLineup)
           .concat(team.bench)
           .convertQuick<TeamPlayersTablePlayer>((player) => {
-            const { id, lastName, points, available, position, teamShort, popularity, top500Popularity, price } =
-              player;
+            const {
+              id,
+              lastName,
+              points,
+              available,
+              position,
+              teamShort,
+              popularity,
+              top100Popularity,
+              top500Popularity,
+              price,
+              gamesPlayed
+            } = player;
             return {
               id,
               price,
@@ -67,7 +80,12 @@ export class MatchdayTipsTopTeamComponent implements OnInit {
               popularity,
               teamShort,
               available,
-              other: { points: points.toString(), top500Popularity: top500Popularity.toString() }
+              other: {
+                gamesPlayed: gamesPlayed.toString(),
+                points: points.toString(),
+                top100Popularity: top100Popularity.toString(),
+                top500Popularity: top500Popularity.toString()
+              }
             };
           })
           .collect();

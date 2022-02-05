@@ -3,7 +3,7 @@ import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/p
 import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Logger } from 'src/app/utils/logger';
-import { MyTeamKickOffTimes } from './my-team-kick-off-times.model';
+import { MyTeamKickOffTimes } from '../my-team-kick-off-times.model';
 
 @Component({
   selector: 'app-my-team-kick-off-times-matchday',
