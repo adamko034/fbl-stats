@@ -2,7 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map, take } from 'rxjs/operators';
 import { FilesService } from '../files.service';
-import { LineupsSource, LineupsSourceProperty, Properties, TeamNavigation } from './properties.model';
+import {
+  LineupsSource,
+  LineupsSourceProperty,
+  Properties,
+  TeamNavigation,
+  UnlimitedTransfers
+} from './properties.model';
 
 @Injectable({ providedIn: 'root' })
 export class PropertiesStore {
@@ -43,6 +49,10 @@ export class PropertiesStore {
 
   public selectTeamsNavigation(): Observable<TeamNavigation[]> {
     return this.selectProperties().pipe(map((props) => props.teamsNavigation));
+  }
+
+  public selectUnlimitedTransfers(): Observable<UnlimitedTransfers> {
+    return this.selectProperties().pipe(map((props) => props.unlimitedTransfers));
   }
 
   private selectProperties(): Observable<Properties> {

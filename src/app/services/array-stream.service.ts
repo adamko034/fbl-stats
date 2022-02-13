@@ -132,6 +132,14 @@ export class ArrayStream<T> {
     return this;
   }
 
+  public dropOne(index: number): ArrayStream<T> {
+    if (index < this.array.length) {
+      this.array.splice(index, 1);
+    }
+
+    return this;
+  }
+
   public takeFirst(): T {
     return this.array[0];
   }

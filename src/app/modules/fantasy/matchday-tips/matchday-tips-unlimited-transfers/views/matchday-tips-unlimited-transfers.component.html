@@ -1,0 +1,109 @@
+<div class="container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <mat-card *ngIf="next$ | async; else noUnlimitedTransfers">
+    <mat-card-title>Next unlimited transfers</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column">
+        <div class="unlimited-transfers" fxLayout="row" fxLayoutAlign="center center">
+          <table>
+            <tr>
+              <td>
+                <span>When:</span>
+              </td>
+              <td>
+                <span>in {{ next$ | async | field: 'start' | daysBetweenNow }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Matchday:</span></td>
+              <td>
+                <span>{{ next$ | async | field: 'matchday' }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Matchdays until:</span></td>
+              <td>
+                <span>{{ (next$ | async | field: 'matchday') - 1 - (state$ | async | field: 'lastMatchday') }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td><span>Dates:</span></td>
+              <td>
+                <span
+                  >{{ next$ | async | field: 'start' | date: 'dd.MM.yyyy' }} -
+                  {{ next$ | async | field: 'end' | date: 'dd.MM.yyyy' }}</span
+                >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="source" fxLayout="row" fxLayoutAlign="flex-end">
+          <a
+            [href]="state$ | async | field: 'unlimitedTransfers' | field: 'source'"
+            target="_blank"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+          >
+            <span>Source</span>
+            <mat-icon appScale="0.6">open_in_new</mat-icon>
+          </a>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <ng-template #noUnlimitedTransfers>
+    <mat-card>
+      <mat-card-content>
+        <h3>No more unlimited transfers planned</h3>
+        <div class="source" fxLayout="row" fxLayoutAlign="flex-end">
+          <a
+            [href]="state$ | async | field: 'unlimitedTransfers' | field: 'source'"
+            target="_blank"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+          >
+            <span>Source</span>
+            <mat-icon appScale="0.6">open_in_new</mat-icon>
+          </a>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+
+  <mat-card *ngIf="future$ | async | arrayNotEmpty">
+    <mat-card-title>Future</mat-card-title>
+    <mat-card-content>
+      <ng-template
+        [ngTemplateOutlet]="unlimitedTransfersList"
+        [ngTemplateOutletContext]="{ data: future$ | async }"
+      ></ng-template>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="previous$ | async | arrayNotEmpty">
+    <mat-card-title>Previous</mat-card-title>
+    <mat-card-content>
+      <ng-template
+        [ngTemplateOutlet]="unlimitedTransfersList"
+        [ngTemplateOutletContext]="{ data: previous$ | async }"
+      ></ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #unlimitedTransfersList let-data="data">
+  <div fxLayout="column" fxLayoutAlign="center center" class="unlimited-transfers-list">
+    <div *ngFor="let ut of data" class="unlimited-transfers">
+      <table>
+        <tr>
+          <td>Matchday:</td>
+          <td>{{ ut.matchday }}</td>
+        </tr>
+        <tr>
+          <td>Dates:</td>
+          <td>{{ ut.start | date: 'dd.MM.yyyy' }} - {{ ut.end | date: 'dd.MM.yyyy' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-template>

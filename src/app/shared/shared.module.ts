@@ -95,6 +95,7 @@ import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
 import { ArrayIncludesPipe } from './pipes/array-includes.pipe';
 import { ArrayNotEmptyPipe } from './pipes/array-not-empty.pipe';
 import { AveragePipe } from './pipes/average.pipe';
+import { DaysBetweenNowPipe } from './pipes/days-between-now.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
 import { LengthPipe } from './pipes/length.pipe';
@@ -182,7 +183,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
     ReverseBooleanPipe,
-    ArrayIncludesPipe
+    ArrayIncludesPipe,
+    DaysBetweenNowPipe
   ],
   imports: [
     CommonModule,
@@ -262,7 +264,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
     ReverseBooleanPipe,
-    ArrayIncludesPipe
+    ArrayIncludesPipe,
+    DaysBetweenNowPipe
   ]
 })
 export class SharedModule {

@@ -6,6 +6,18 @@ export interface Properties {
   lastUpdated: Date;
   lineupSources: { [sourceName: string]: LineupsSourceProperty };
   teamsNavigation: TeamNavigation[];
+  unlimitedTransfers: UnlimitedTransfers;
+}
+
+export interface UnlimitedTransfers {
+  source: string;
+  dates: UnlimitedTransfersDate[];
+}
+
+export interface UnlimitedTransfersDate {
+  matchday: number;
+  endDate: Date;
+  startDate: Date;
 }
 
 export interface TeamNavigation {

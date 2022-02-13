@@ -26,6 +26,13 @@ const routes: Routes = [
         path: 'ourpicks',
         loadChildren: () =>
           import('./matchday-tips-our-picks/matchday-tips-our-picks.module').then((m) => m.OurPicksModule)
+      },
+      {
+        path: 'unlimitedtransfers',
+        loadChildren: () =>
+          import('./matchday-tips-unlimited-transfers/matchday-tips-unlimited-transfers.module').then(
+            (m) => m.MatchdayTipsUnlimitedTransfersModule
+          )
       }
     ]
   }
