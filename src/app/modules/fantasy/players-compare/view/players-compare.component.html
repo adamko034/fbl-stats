@@ -3,11 +3,28 @@
     <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
 
     <div fxLayout="column" fxLayoutGap="15px">
-      <app-players-compare-fixtures
-        [players]="state$ | async | field: 'players'"
-        [teams]="state$ | async | field: 'teams'"
-        [lastMatchday]="state$ | async | field: 'lastMatchday'"
-      ></app-players-compare-fixtures>
+      <app-white-block padding="10px 10px 0 10px">
+        <div fxLayout="column" fxLayoutGap="10px">
+          <app-players-compare-filters></app-players-compare-filters>
+
+          <div fxLayout="column" fxLayoutGap="20px">
+            <app-players-compare-fixtures
+              [players]="state$ | async | field: 'players'"
+              [teams]="state$ | async | field: 'teams'"
+              [lastMatchday]="state$ | async | field: 'lastMatchday'"
+              [includeMatchdays]="filters$ | async | field: 'includeMatchdays'"
+            ></app-players-compare-fixtures>
+
+            <app-players-compare-games
+              [players]="state$ | async | field: 'players'"
+              [teams]="state$ | async | field: 'teams'"
+              [lastMatchday]="state$ | async | field: 'lastMatchday'"
+              [filters]="filters$ | async"
+            >
+            </app-players-compare-games>
+          </div>
+        </div>
+      </app-white-block>
 
       <app-white-block>
         <div>

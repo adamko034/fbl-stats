@@ -1,7 +1,7 @@
 <app-title-underlined-grey layoutAlign="start start">
   <span title>Fixtures comparison (MD{{ lastMatchday + 1 }} - MD{{ lastMatchday + nextMatchdaysCount }})</span>
   <div content>
-    <div fxLayout="column">
+    <div>
       <table class="comparison-table">
         <tr>
           <td [appSticky]="{ position: 'left' }"></td>
@@ -47,7 +47,7 @@
         </tr>
       </table>
       <div class="legend">
-        <span>*Number of games in next {{ nextMatchdaysCount }} matchdays</span>
+        <span [appSticky]="{ position: 'left' }">*Number of games in next {{ nextMatchdaysCount }} matchdays</span>
       </div>
     </div>
   </div>

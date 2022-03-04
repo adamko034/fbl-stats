@@ -1,0 +1,26 @@
+<app-title-underlined-grey layoutAlign="start start">
+  <span title>Next games</span>
+  <div content>
+    <table class="comparison-table">
+      <tr>
+        <td [appSticky]="{ position: 'left' }"></td>
+        <td *ngFor="let md of mds">MD{{ md }}</td>
+      </tr>
+      <tr *ngFor="let player of players">
+        <td [appSticky]="{ position: 'left' }">
+          <app-player-name-link [id]="player.id" [name]="player.lastName"></app-player-name-link>
+        </td>
+        <td *ngFor="let md of mds" class="game" [ngClass]="getTeamDifficultClass(player, md)">
+          <app-team-game-against
+            [team]="getTeamAgainst(player, md)"
+            [config]="teamAgainstConfig"
+          ></app-team-game-against>
+        </td>
+      </tr>
+    </table>
+    <div class="legend">
+      <span [appSticky]="{ position: 'left' }">1 - matchday first game</span><br />
+      <span [appSticky]="{ position: 'left' }">S - standalone game</span>
+    </div>
+  </div>
+</app-title-underlined-grey>

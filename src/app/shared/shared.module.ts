@@ -46,11 +46,15 @@ import { BundesligaTableComponent } from './components/bundesliga-table/bundesli
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
+import { FirstGameIconComponent } from './components/first-game-icon/first-game-icon.component';
 import { FollowUsToStayTunedComponent } from './components/follow-us-to-stay-tuned/follow-us-to-stay-tuned.component';
 import { GoalsIconsComponent } from './components/goals-icons/goals-icons.component';
 import { HasCameFromBenchIconComponent } from './components/has-came-from-bench-icon/has-came-from-bench-icon.component';
 import { HasPlayedSeventyMinutesIconComponent } from './components/has-played-seventy-minutes-icon/has-played-seventy-minutes-icon.component';
 import { HasStartedIconComponent } from './components/has-started-icon/has-started-icon.component';
+import { IconWrapperComponent } from './components/icon-wrapper/icon-wrapper.component';
+import { IncludeFutureMatchdaysDropdownComponent } from './components/include-future-matchdays-dropdown/include-future-matchdays-dropdown.component';
+import { IncludePastMatchdaysDropdownComponent } from './components/include-past-matchdays-dropdown/include-past-matchdays-dropdown.component';
 import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
@@ -76,6 +80,7 @@ import { ShowMoreLinkComponent } from './components/show-more-link/show-more-lin
 import { SliderMaxPopularityComponent } from './components/slider-max-popularity/slider-max-popularity.component';
 import { SliderMaxPriceComponent } from './components/slider-max-price/slider-max-price.component';
 import { SortByComponent } from './components/sorty-by/sort-by.component';
+import { StandaloneGameIconComponent } from './components/standalone-game-icon/standalone-game-icon.component';
 import { TeamGameAgainstComponent } from './components/team-game-against/team-game-against.component';
 import { TeamLineupComponent } from './components/team-lineup/team-lineup.component';
 import { TeamPlayersTableComponent } from './components/team-players-table/team-players-table.component';
@@ -89,6 +94,7 @@ import { ValueDifferenceComponent } from './components/value-difference/value-di
 import { AuthenticatedDirective } from './directives/authenticated.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { ScaleDirective } from './directives/scale.directive';
+import { SizeDirective } from './directives/size.directive';
 import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
 import { StickyDirective } from './directives/sticky.directive';
 import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
@@ -184,7 +190,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ArrayNotEmptyPipe,
     ReverseBooleanPipe,
     ArrayIncludesPipe,
-    DaysBetweenNowPipe
+    DaysBetweenNowPipe,
+    FirstGameIconComponent,
+    SizeDirective,
+    IconWrapperComponent,
+    StandaloneGameIconComponent,
+    IncludeFutureMatchdaysDropdownComponent,
+    IncludePastMatchdaysDropdownComponent
   ],
   imports: [
     CommonModule,
@@ -265,7 +277,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     ArrayNotEmptyPipe,
     ReverseBooleanPipe,
     ArrayIncludesPipe,
-    DaysBetweenNowPipe
+    DaysBetweenNowPipe,
+    FirstGameIconComponent,
+    SizeDirective,
+    IconWrapperComponent,
+    StandaloneGameIconComponent,
+    IncludeFutureMatchdaysDropdownComponent,
+    IncludePastMatchdaysDropdownComponent
   ]
 })
 export class SharedModule {

@@ -49,7 +49,7 @@ export class MyTeamContentComponent implements OnInit {
 
         return {
           players: myTeam.players,
-          kickOffTimesMatchdays: myTeam.kickOffTimesMatchdays,
+          kickOffTimesMatchdays: 0,
           filters,
           displaySettings,
           lastKnownMatchday,

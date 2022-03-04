@@ -7,7 +7,9 @@ import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 import { PlayerPosition } from '../../players/overall/models/players-filters';
 import { PlayerCompareCard } from '../models/player-compare-card.model';
+import { PlayersCompareFixturesFilters } from '../models/players-compare-fixtures-filters.model';
 import { PlayersCompareState } from '../models/players-compare-state.model';
+import { PlayersCompareFiltersService } from '../services/players-compare-filters.service';
 import { PlayersCompareNavigationService } from '../services/players-compare-navigation.service';
 
 interface GenereateOptions {
@@ -27,6 +29,7 @@ export class PlayersCompareComponent implements OnInit {
   public playersCards$: Observable<PlayerCompareCard[]>;
   public state$: Observable<PlayersCompareState>;
   public showPlayers$: Observable<boolean>;
+  public filters$: Observable<PlayersCompareFixturesFilters>;
 
   public generateOptions: GenereateOptions = {
     position: PlayerPosition.ALL,
@@ -42,6 +45,7 @@ export class PlayersCompareComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private navigationService: PlayersCompareNavigationService,
+    private fitlersService: PlayersCompareFiltersService,
     private router: Router
   ) {}
 
@@ -49,6 +53,7 @@ export class PlayersCompareComponent implements OnInit {
     this.bestGksLink = this.router.createUrlTree(['fantasy', 'compare', 'bestgks']).toString();
     this.state$ = this.route.data.pipe(map((data) => data.state));
     this.showPlayers$ = this.state$.pipe(map((state) => state.players.length > 0));
+    this.filters$ = this.fitlersService.selectFilters();
     this.playersCards$ = this.state$.pipe(
       map((state) =>
         state.players.map(({ name, teamShort, position, id, price }) => ({ name, teamShort, position, price, id }))

@@ -3,5 +3,8 @@ export interface TeamGameAgainst {
   md: number;
   rank: number;
   isHome: boolean;
-  isFirstGame: boolean;
+  isFirstGame?: boolean;
+  isStandalone?: boolean;
+  result?: string;
+  points?: number;
 }

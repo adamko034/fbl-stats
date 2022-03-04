@@ -1,4 +1,4 @@
-<app-white-block padding="10px 10px 0 10px">
+<!-- <app-white-block padding="10px 10px 0 10px">
   <div>
     <mat-form-field>
       <mat-label>Include matchdays</mat-label>
@@ -9,7 +9,8 @@
       </mat-select>
     </mat-form-field>
   </div>
-</app-white-block>
+</app-white-block> -->
+
 <div fxLayout="column" fxLayoutGap="7px" *ngIf="matchdaysFixtures | arrayNotEmpty">
   <app-my-team-kick-off-times-matchday
     *ngFor="let nextMatchdayFixtures of matchdaysFixtures"

@@ -44,7 +44,7 @@ export class PlayersCompareFixturesDetailsComponent implements OnChanges {
   private needToRecalculate(changes: SimpleChanges): boolean {
     return (
       (changes.matchdaysCount && changes.matchdaysCount.currentValue != changes.matchdaysCount.previousValue) ||
-      (changes.players && changes.players.currentValue.length != changes.players.previousValue.lenght)
+      (changes.players && changes.players.currentValue.length != changes.players.previousValue?.lenght)
     );
   }
 

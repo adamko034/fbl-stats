@@ -1,0 +1,10 @@
+<div fxLayoutGap="30px">
+  <app-include-future-matchdays-dropdown
+    [value]="includeMatchdays$ | async"
+    (change)="onIncludeMatchdaysChange($event)"
+  ></app-include-future-matchdays-dropdown>
+  <app-include-past-matchdays-dropdown
+    [value]="includePastMatchdays$ | async"
+    (change)="onIncludePastMatchdaysChange($event)"
+  ></app-include-past-matchdays-dropdown>
+</div>

@@ -1,0 +1,17 @@
+<div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-around">
+  <app-players-compare-games-previous
+    class="games-previous"
+    appStickyWrapper
+    [players]="players"
+    [teams]="teams"
+    [lastMatchday]="lastMatchday"
+    [matchdays]="filters.includePastMatchdays"
+  ></app-players-compare-games-previous>
+  <app-players-compare-games-next
+    appStickyWrapper
+    [players]="players"
+    [teams]="teams"
+    [lastMatchday]="lastMatchday"
+    [matchdays]="filters.includeMatchdays"
+  ></app-players-compare-games-next>
+</div>

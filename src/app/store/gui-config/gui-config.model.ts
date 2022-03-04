@@ -11,7 +11,6 @@ export interface GuiConfig {
 }
 
 export interface GuiConfigComparePlayers {
-  includeMatchdays?: number;
   ids?: string[];
 }
 

@@ -15,15 +15,15 @@ import { Team } from 'src/app/store/teams/models/team.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersCompareKickoffTimesComponent implements OnChanges {
-  private _max: number = 0;
-
   @Input() players: Player[];
   @Input() teams: { [teamShort: string]: Team };
   @Input() lastMatchday: number;
   @Input() matchdaysCount: number = 0;
 
+  private _max: number = 0;
+
   public get includeNextMatchdaysCount(): number {
-    return this.matchdaysCount === 0 ? this._max : this.matchdaysCount;
+    return this._max;
   }
 
   public matrix: MatrixTableRow[] = [];
@@ -81,11 +81,11 @@ export class PlayersCompareKickoffTimesComponent implements OnChanges {
   private setMax(): void {
     this._max = this.matchdaysCount;
 
-    if (this._max === 0) {
-      const team = this.teams[this.players[0].teamShort];
+    const team = this.teams[this.players[0].teamShort];
+    if (team) {
+      const nextUnknownMatchday = this.teamService.getFirstMatchdayWithMissingDate(team);
 
-      if (team) {
-        const nextUnknownMatchday = this.teamService.getFirstMatchdayWithMissingDate(team);
+      if (this.matchdaysCount + this.lastMatchday >= nextUnknownMatchday) {
         this._max = nextUnknownMatchday - (this.lastMatchday + 1);
       }
     }

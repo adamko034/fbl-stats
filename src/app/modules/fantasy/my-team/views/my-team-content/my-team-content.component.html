@@ -4,6 +4,7 @@
       [players]="state$ | async | field: 'players'"
       [settings]="state$ | async | field: 'displaySettings'"
     ></app-my-team-selection>
+
     <app-my-team-table-container
       [players]="state$ | async | field: 'players'"
       [filters]="state$ | async | field: 'filters'"

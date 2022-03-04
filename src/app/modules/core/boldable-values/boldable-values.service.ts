@@ -35,6 +35,10 @@ export class BoldableValuesService {
   }
 
   public getBoldableValue(key: string, id: string): string {
+    if (!this._values) {
+      return '';
+    }
+
     const boldValue = this._values[key].boldValue;
     const items = this._values[key].items;
 

@@ -23,12 +23,23 @@ export class TeamGameAgainstComponent implements OnInit {
       showRank: true,
       teamLogoHeight: 20,
       showFirstGame: true,
+      showFistGameOrStandaloneInSecondRow: false,
+      showStandalone: false,
+      boldTextIfHome: false,
       ...this._config
     };
   }
 
   public get showMdLabel(): boolean {
     return this.config.showMdLabel;
+  }
+
+  public get showSecondRow(): boolean {
+    return (
+      this.config.showPoints ||
+      this.config.showResult ||
+      (this.config.showFistGameOrStandaloneInSecondRow && (this.config.showFirstGame || this.config.showStandalone))
+    );
   }
 
   constructor() {}

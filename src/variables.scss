@@ -14,3 +14,24 @@ $colorGreenDark: rgb(92, 177, 98);
 $colorYellow: gold;
 $colorOrange: rgb(255, 136, 8);
 // $colorRed: #c72626;
+
+$gameDifficultRed: rgba(
+  $color: $colorRed,
+  $alpha: 0.25
+);
+$gameDifficultOrange: rgba(
+  $color: $colorOrange,
+  $alpha: 0.4
+);
+$gameDifficultYellow: rgba(
+  $color: $colorYellow,
+  $alpha: 0.5
+);
+$gameDifficultGreen: rgba(
+  $color: $colorGreenDark,
+  $alpha: 0.6
+);
+$gameDifficultLightGreen: rgba(
+  $color: $colorGreenLight,
+  $alpha: 0.5
+);

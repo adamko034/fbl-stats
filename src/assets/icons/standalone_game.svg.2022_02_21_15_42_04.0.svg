@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="25.100323mm"
+   height="25.100325mm"
+   viewBox="0 0 25.100322 25.100324"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="standalone_game.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.5585297"
+     inkscape:cx="106.70191"
+     inkscape:cy="67.030685"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-text-baseline="true" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-61.927507,-81.857476)">
+    <path
+       id="path846"
+       style="fill:none;stroke:#008000;stroke-width:2.595"
+       d="M 85.73033,94.407639 A 11.252662,11.252663 0 0 1 74.477669,105.6603 11.252662,11.252663 0 0 1 63.225007,94.407639 11.252662,11.252663 0 0 1 74.477669,83.154976 11.252662,11.252663 0 0 1 85.73033,94.407639 Z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';stroke-width:0.264583;font-weight:bold;font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       x="71.441437"
+       y="95.40448"
+       id="text8546"><tspan
+         sodipodi:role="line"
+         id="tspan8544"
+         style="stroke-width:0.264583;-inkscape-font-specification:'sans-serif, Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:16.93330002px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+         x="71.441437"
+         y="95.40448">S</tspan></text>
+  </g>
+</svg>

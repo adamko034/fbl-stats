@@ -1,31 +1,18 @@
-<app-white-block>
-  <div>
-    <div fxLayout="column" fxLayoutGap="15px">
-      <mat-form-field class="select">
-        <mat-label>Include matchdays</mat-label>
-        <mat-select [value]="includeMatchdays$ | async" (valueChange)="onMatchdaysCountChange($event)">
-          <mat-option [value]="0">All</mat-option>
-          <mat-option *ngFor="let md of possibleNextMatchdays" [value]="md">Next {{ md }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-players-compare-kickoff-times
-          *ngIf="players.length > 1"
-          appStickyWrapper
-          [players]="players"
-          [teams]="teams"
-          [lastMatchday]="lastMatchday"
-          [matchdaysCount]="includeMatchdays$ | async"
-        ></app-players-compare-kickoff-times>
-        <app-players-compare-fixtures-details
-          appStickyWrapper
-          [players]="players"
-          [teams]="teams"
-          [lastMatchday]="lastMatchday"
-          [matchdaysCount]="includeMatchdays$ | async"
-        ></app-players-compare-fixtures-details>
-      </div>
-    </div>
-  </div>
-</app-white-block>
+<div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+  <app-players-compare-kickoff-times
+    class="kick-off-times"
+    *ngIf="players.length > 1"
+    appStickyWrapper
+    [players]="players"
+    [teams]="teams"
+    [lastMatchday]="lastMatchday"
+    [matchdaysCount]="includeMatchdays"
+  ></app-players-compare-kickoff-times>
+  <app-players-compare-fixtures-details
+    appStickyWrapper
+    [players]="players"
+    [teams]="teams"
+    [lastMatchday]="lastMatchday"
+    [matchdaysCount]="includeMatchdays"
+  ></app-players-compare-fixtures-details>
+</div>

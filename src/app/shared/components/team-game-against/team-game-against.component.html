@@ -1,18 +1,33 @@
-<div *ngIf="config" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-  <span *ngIf="config.showMdLabel" class="grey">MD {{ team.md }}:</span>
-  <div fxLayoutAlign="start center" fxLayoutGap="2px">
-    <app-team-logo [team]="team.shortName" [height]="config.teamLogoHeight"></app-team-logo>
-    <span [ngClass]="{ 'smaller-font': config.smallerFont }" *ngIf="config.showRank">{{ team.rank | numerals }}</span>
-    <span [ngClass]="{ 'smaller-font': config.smallerFont }">({{ team.isHome ? 'h' : 'a' }})</span>
+<div *ngIf="config" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+    <span *ngIf="config.showMdLabel" class="grey">MD {{ team.md }}:</span>
+    <div fxLayoutAlign="start center" fxLayoutGap="2px">
+      <app-team-logo [team]="team.shortName" [height]="config.teamLogoHeight"></app-team-logo>
+      <span
+        [ngClass]="{ 'smaller-font': config.smallerFont, bold: config.boldTextIfHome && team.isHome }"
+        *ngIf="config.showRank"
+        >{{ team.rank | numerals }}</span
+      >
+      <span [ngClass]="{ 'smaller-font': config.smallerFont, bold: config.boldTextIfHome && team.isHome }"
+        >({{ team.isHome ? 'h' : 'a' }})</span
+      >
 
-    <span
-      appScale="0.9"
-      *ngIf="team.isFirstGame && config.showFirstGame"
-      class="green first-game"
-      fxLayoutAlign="center center"
-      matTooltip="matchday first game"
-      >1</span
-    >
-    <span *ngIf="!team.isFirstGame" class="placeholder">&nbsp;</span>
+      <app-first-game-icon
+        *ngIf="!config.showFistGameOrStandaloneInSecondRow && config.showFirstGame && team.isFirstGame"
+      ></app-first-game-icon>
+      <span *ngIf="!team.isFirstGame" class="placeholder">&nbsp;</span>
+    </div>
+  </div>
+
+  <div *ngIf="showSecondRow" class="second-row" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span *ngIf="config.showResult">{{ team.result }} </span>
+    <span *ngIf="config.showPoints && team.points != null" class="points">{{ team.points }}pts</span>
+    <span *ngIf="config.showPoints && team.points === null" class="points">x</span>
+    <span *ngIf="config.showFirstGame && team.isFirstGame">
+      <app-first-game-icon></app-first-game-icon>
+    </span>
+    <span *ngIf="config.showStandalone && team.isStandalone">
+      <app-standalone-game-icon></app-standalone-game-icon>
+    </span>
   </div>
 </div>

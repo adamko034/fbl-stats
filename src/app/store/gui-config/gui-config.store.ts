@@ -86,11 +86,6 @@ export class GuiConfigStore {
     return this.config$.pipe(map((config) => config.comparePlayers));
   }
 
-  public changeComparePlayersMatchdaysCount(fixturesCount: number): void {
-    this.config.comparePlayers = { ...this.config.comparePlayers, includeMatchdays: fixturesCount };
-    this.send();
-  }
-
   public changeComparePlayersIds(ids: string[]): void {
     this.config.comparePlayers = { ...this.config.comparePlayers, ids };
     this.send();

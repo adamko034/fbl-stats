@@ -6,8 +6,11 @@
     <div fxLayout="column">
       <app-matrix-table class="kick-off-times" *ngIf="matrix" [rows]="matrix"></app-matrix-table>
       <div class="legend">
-        <span [appSticky]="{ position: 'left', px: 10 }"
+        <span [appSticky]="{ position: 'left' }"
           >*Number of different kick-off times in next {{ includeNextMatchdaysCount }} matchdays</span
+        ><br />
+        <span [appSticky]="{ position: 'left' }" *ngIf="includeNextMatchdaysCount < matchdaysCount"
+          >**Only matchdays with established kick-off times are displayed</span
         >
       </div>
     </div>

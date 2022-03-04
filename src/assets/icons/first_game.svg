@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="25.100323mm"
+   height="25.100325mm"
+   viewBox="0 0 25.100322 25.100324"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="first_game.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.5585297"
+     inkscape:cx="106.70191"
+     inkscape:cy="67.030685"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:snap-text-baseline="true" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-61.927507,-81.857476)">
+    <path
+       id="path846"
+       style="fill:none;stroke:#008000;stroke-width:2.595"
+       d="M 85.73033,94.407639 A 11.252662,11.252663 0 0 1 74.477669,105.6603 11.252662,11.252663 0 0 1 63.225007,94.407639 11.252662,11.252663 0 0 1 74.477669,83.154976 11.252662,11.252663 0 0 1 85.73033,94.407639 Z" />
+    <g
+       aria-label="1"
+       id="text2518"
+       style="font-weight:bold;font-size:16.9333px;line-height:1.25;-inkscape-font-specification:'sans-serif, Bold';fill:#008000;stroke-width:0.1">
+      <path
+         d="m 78.58697,100.57986 h -8.218604 v -2.149738 h 2.596219 v -6.507084 h -2.596219 v -2.009176 q 0.595312,0 1.141014,-0.06614 0.545702,-0.07441 0.909503,-0.248047 0.429947,-0.206705 0.644921,-0.537434 0.214973,-0.330728 0.248046,-0.826821 h 2.736778 v 10.194707 h 2.538342 z"
+         id="path5592" />
+    </g>
+  </g>
+</svg>
