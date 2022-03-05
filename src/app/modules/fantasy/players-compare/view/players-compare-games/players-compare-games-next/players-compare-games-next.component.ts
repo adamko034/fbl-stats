@@ -36,7 +36,7 @@ export class PlayersCompareGamesNextComponent implements OnChanges {
   constructor() {}
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.matchdays.currentValue && this.lastMatchday) {
+    if (changes.matchdays?.currentValue && this.lastMatchday) {
       this._mds = [];
       for (let md = this.lastMatchday + 1; md <= this.lastMatchday + this.matchdays; md++) {
         this._mds.push(md);
