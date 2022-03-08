@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlayersFilterAvailbility } from 'src/app/modules/core/players/filter/filters/players-filter-availability';
+import { PlayersFilterNextGameNotPostponed } from 'src/app/modules/core/players/filter/filters/players-filter-next-game-not-postopned';
 import { PlayersFilterPrediction } from 'src/app/modules/core/players/filter/filters/players-filter-prediction';
 import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
@@ -50,7 +51,12 @@ export class PredictedLineupsStatsComponent implements OnInit {
             sort.started,
             new PlayersFilterPrediction(PlayersPrediciton.WillPlay)
           ),
-          unavailable: this.filterPlayers(data.players, sort.unavailable, new PlayersFilterAvailbility(false)),
+          unavailable: this.filterPlayers(
+            data.players,
+            sort.unavailable,
+            new PlayersFilterAvailbility(false),
+            new PlayersFilterNextGameNotPostponed()
+          ),
           benched: this.filterPlayers(
             data.players,
             sort.benched,
@@ -64,7 +70,7 @@ export class PredictedLineupsStatsComponent implements OnInit {
   }
 
   public getPrediction(player: Player, source: string): PlayerAttendancePrediction {
-    var predictions = player.nextGame.lineupPredictions.filter((l) => l.source === source);
+    var predictions = player.nextGame?.lineupPredictions?.filter((l) => l.source === source);
 
     if (!predictions || predictions.length === 0) {
       return PlayerAttendancePrediction.UnknownYet;

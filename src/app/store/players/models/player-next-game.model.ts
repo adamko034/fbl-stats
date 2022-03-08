@@ -3,6 +3,7 @@ import { PlayerNextGamePrediction } from 'src/app/store/players/models/player-ne
 export interface PlayerNextGame {
   isHome: boolean;
   opponent: string;
+  isPostponed: boolean;
   lineupPredictions: PlayerNextGamePrediction[];
   date: number;
   matchday: number;

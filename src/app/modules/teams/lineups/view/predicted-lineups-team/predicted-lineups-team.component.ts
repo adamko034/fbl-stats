@@ -15,6 +15,9 @@ import { TeamNavigation } from 'src/app/store/properties/properties.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PredictedLineupsTeamComponent implements OnInit {
+  public predictionsNotPublished$: Observable<boolean>;
+  public predictionsAvailable$: Observable<boolean>;
+  public gameIsPostponed$: Observable<boolean>;
   public teamsNavigation$: Observable<TeamNavigation[]>;
   public teamPredictions$: Observable<TeamPredictedLineups>;
   public absences$: Observable<Player[]>;
@@ -25,6 +28,14 @@ export class PredictedLineupsTeamComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.predictionsNotPublished$ = this.route.data.pipe(map((data) => !data.teamPredictions));
+    this.predictionsAvailable$ = this.route.data.pipe(
+      map((data) => data.teamPredictions && !data.teamPredictions.gameIsPostponed)
+    );
+    this.gameIsPostponed$ = this.route.data.pipe(
+      map((data) => data.teamPredictions && data.teamPredictions.gameIsPostponed)
+    );
+
     this.teamsNavigation$ = this.route.data.pipe(map((data) => data.teamsNavigation));
     this.teamPredictions$ = this.route.data.pipe(map((data) => data.teamPredictions));
     this.absences$ = this.route.data.pipe(

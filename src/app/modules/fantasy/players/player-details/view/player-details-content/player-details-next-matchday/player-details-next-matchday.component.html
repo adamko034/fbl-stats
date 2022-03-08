@@ -20,10 +20,17 @@
         <span>vs.</span>
         <app-team-logo [height]="40" [team]="awayTeam.shortName"></app-team-logo>
       </div>
-      <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="3px">
-        <app-matchday-first-game-indicator appScale="0.8"></app-matchday-first-game-indicator>
-        <span class="font-small">Matchday first game!</span>
+      <div fxLayout="column" fxLayoutGap="5px">
+        <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <app-first-game-icon size="18"></app-first-game-icon>
+          <span class="font-small">Matchday first game</span>
+        </div>
+        <div *ngIf="player.nextGame.isPostponed" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <app-postponed-game-icon size="18"></app-postponed-game-icon>
+          <span class="font-small">Game is postponed!</span>
+        </div>
       </div>
+
       <div>
         <mat-chip-list class="mat-chip-list-stacked">
           <mat-chip class="chip chip-red" fxLayout="row" fxLayoutGap="4px" *ngIf="player.nextGame.isUnavailable"
@@ -67,7 +74,7 @@
       </div>
     </div>
 
-    <app-title-underlined-grey>
+    <app-title-underlined-grey *ngIf="player.nextGame.lineupPredictions">
       <span title>Lineup predictions</span>
       <table content class="comparison-table">
         <tbody>

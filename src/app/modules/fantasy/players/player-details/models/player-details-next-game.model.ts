@@ -10,6 +10,7 @@ export interface PlayerDetailsNextGame {
   matchday: number;
   isUnavailable: boolean;
   isSuspensionRisk: boolean;
+  isPostponed: boolean;
   prediction: PlayerAttendancePrediction;
   lineupPredictions: PlayerNextGamePrediction[];
 }

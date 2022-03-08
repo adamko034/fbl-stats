@@ -71,6 +71,7 @@ import { PlayerNameLinkComponent } from './components/player-name-link/player-na
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
 import { PlayersTableGenericComponent } from './components/players-table-generic/players-table-generic.component';
+import { PostponedGameIconComponent } from './components/postponed-game-icon/postponed-game-icon.component';
 import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
 import { SelectDialogComponent } from './components/select-dialog/select-dialog.component';
 import { SelectTeamsModalComponent } from './components/select-teams/select-teams-modal/select-teams-modal.component';
@@ -196,7 +197,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     IconWrapperComponent,
     StandaloneGameIconComponent,
     IncludeFutureMatchdaysDropdownComponent,
-    IncludePastMatchdaysDropdownComponent
+    IncludePastMatchdaysDropdownComponent,
+    PostponedGameIconComponent
   ],
   imports: [
     CommonModule,
@@ -283,7 +285,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     IconWrapperComponent,
     StandaloneGameIconComponent,
     IncludeFutureMatchdaysDropdownComponent,
-    IncludePastMatchdaysDropdownComponent
+    IncludePastMatchdaysDropdownComponent,
+    PostponedGameIconComponent
   ]
 })
 export class SharedModule {

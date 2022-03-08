@@ -33,6 +33,6 @@ export class PlayersFilterPrediction implements PlayersFilter {
         break;
     }
 
-    return players.filter((p) => playerPredictions.includes(this.determiner.determine(p.nextGame?.lineupPredictions)));
+    return players.filter((p) => playerPredictions.includes(this.determiner.determine(p.nextGame)));
   }
 }

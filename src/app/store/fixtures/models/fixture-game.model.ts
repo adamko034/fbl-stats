@@ -3,4 +3,5 @@ export interface FixturesGame {
   awayTeamShort: string;
   homeTeamLong: string;
   awayTeamLong: string;
+  isPostponed: boolean;
 }

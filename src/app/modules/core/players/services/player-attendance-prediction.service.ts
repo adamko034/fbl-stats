@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
 import { PlayerNextGamePrediction } from 'src/app/store/players/models/player-next-game-prediction.model';
+import { PlayerNextGame } from 'src/app/store/players/models/player-next-game.model';
 
 @Injectable({ providedIn: 'root' })
 export class PlayerAttendancePredictionService {
-  public determine(predictions: PlayerNextGamePrediction[]): PlayerAttendancePrediction {
+  public determine(playerNextGame: PlayerNextGame): PlayerAttendancePrediction {
+    if (playerNextGame?.isPostponed) {
+      return PlayerAttendancePrediction.UNAVAILABLE_POSTPONED;
+    }
+
+    const predictions = playerNextGame?.lineupPredictions;
     if (this.allNotPublished(predictions)) {
       return PlayerAttendancePrediction.UnknownYet;
     }

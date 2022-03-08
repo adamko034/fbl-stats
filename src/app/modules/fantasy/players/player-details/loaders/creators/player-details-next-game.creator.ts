@@ -25,7 +25,8 @@ export class PlayerDetailsNextGameCreator {
       lineupPredictions: player.nextGame.lineupPredictions,
       isSuspensionRisk: player.isSuspensionRisk,
       isUnavailable: player.attendance === 0,
-      prediction: this.playerPredictionService.determine(player.nextGame.lineupPredictions),
+      isPostponed: player.nextGame.isPostponed,
+      prediction: this.playerPredictionService.determine(player.nextGame),
       isFirstGame: opponent.games?.find((g) => g.matchday === player.nextGame.matchday)?.isMatchdayFirstGame || false
     };
   }

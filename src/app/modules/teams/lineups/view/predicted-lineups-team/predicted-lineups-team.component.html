@@ -1,127 +1,130 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <app-predicted-lineups-team-navigation [teams]="teamsNavigation$ | async"></app-predicted-lineups-team-navigation>
-  <div *ngIf="teamPredictions$ | async" fxLayout="column" fxLayoutGap="15px">
-    <app-view-title>
-      <span title>{{ teamPredictions$ | async | field: 'longName' | uppercase }}</span>
-    </app-view-title>
-    <span class="info"
-      >*Players position are in accordance with Fantasy Bundesliga. Therfore the lineups may sometimes look unexpected
-      (etc. only one winger or no forwards)</span
-    >
-    <div
-      class="lineups-container"
-      fxLayout="row wrap"
-      fxLayoutGap="15px"
-      fxLayoutAlign="space-evenly center"
-      fxLayout.lt-sm="column"
-      fxLayoutAlign.lt-sm="center center"
-      fxLayoutGap.lt-sm="15px"
-    >
-      <div
-        class="lineup"
-        *ngFor="let sourceLineup of teamPredictions$ | async | field: 'predictions' | orderBy: 'order'"
+
+  <app-white-block>
+    <div *ngIf="predictionsAvailable$ | async" fxLayout="column" fxLayoutGap="15px">
+      <app-view-title>
+        <span title>{{ teamPredictions$ | async | field: 'longName' | uppercase }}</span>
+      </app-view-title>
+      <span class="info"
+        >*Players position are in accordance with Fantasy Bundesliga. Therfore the lineups may sometimes look unexpected
+        (etc. only one winger or no forwards)</span
       >
-        <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
+      <div
+        class="lineups-container"
+        fxLayout="row wrap"
+        fxLayoutGap="15px"
+        fxLayoutAlign="space-evenly center"
+        fxLayout.lt-sm="column"
+        fxLayoutAlign.lt-sm="center center"
+        fxLayoutGap.lt-sm="15px"
+      >
+        <div
+          class="lineup"
+          *ngFor="let sourceLineup of teamPredictions$ | async | field: 'predictions' | orderBy: 'order'"
+        >
+          <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
+        </div>
       </div>
     </div>
-  </div>
 
-  <h2 *ngIf="!(teamPredictions$ | async)" fxLayout="column" fxLayoutAlign="center center">
-    Predicted lineups have not been published yet.
-    <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="5px"
-      ><span>Stay tuned!</span>
-      <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
-    </a>
-  </h2>
+    <h2 *ngIf="predictionsNotPublished$ | async" fxLayout="column" fxLayoutAlign="center center">
+      Predicted lineups have not been published yet.
+      <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="5px"
+        ><span>Stay tuned!</span>
+        <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
+      </a>
+    </h2>
+
+    <h2 fxLayoutAlign="center center" *ngIf="gameIsPostponed$ | async">
+      Next game is postponed - predictions are irrevelant.
+    </h2>
+  </app-white-block>
 
   <app-white-block>
     <div fxlayout="column" fxLayoutGap="20px">
       <div class="predictions-list" fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="space-evenly">
-        <div>
-          <app-title-underlined-grey>
-            <div title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-              <span>Confirmed absences</span>
-              <mat-icon class="red" appScale="0.8">not_interested</mat-icon>
+        <app-title-underlined-grey>
+          <div title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+            <span>Confirmed absences</span>
+            <mat-icon class="red" appScale="0.8">not_interested</mat-icon>
+          </div>
+
+          <table content class="comparison-table">
+            <tr>
+              <td>Player</td>
+              <td>Pos</td>
+              <td>$</td>
+              <td>%</td>
+              <td>TP</td>
+            </tr>
+            <tr *ngFor="let player of absences$ | async | orderBy: ['-totalPoints', '-price']">
+              <td><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></td>
+              <td>{{ player.position | uppercase }}</td>
+              <td>{{ player.price }}M</td>
+              <td>{{ player.popularity }}</td>
+              <td>{{ player.totalPoints }}</td>
+            </tr>
+          </table>
+        </app-title-underlined-grey>
+
+        <app-title-underlined-grey *ngIf="predictionsAvailable$ | async">
+          <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="4px">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+              <span>Predicions list</span>
+              <mat-icon appScale="0.8">checklist_rtl</mat-icon>
             </div>
+            <mat-checkbox (change)="onShowAllPlayersChange($event)">Show all players</mat-checkbox>
+          </div>
 
-            <table content class="comparison-table">
-              <tr>
-                <td>Player</td>
-                <td>Pos</td>
-                <td>$</td>
-                <td>%</td>
-                <td>TP</td>
-              </tr>
-              <tr *ngFor="let player of absences$ | async | orderBy: ['-totalPoints', '-price']">
-                <td><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></td>
-                <td>{{ player.position | uppercase }}</td>
-                <td>{{ player.price }}M</td>
-                <td>{{ player.popularity }}</td>
-                <td>{{ player.totalPoints }}</td>
-              </tr>
-            </table>
-          </app-title-underlined-grey>
-        </div>
-
-        <div>
-          <app-title-underlined-grey>
-            <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="4px">
-              <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-                <span>Predicions list</span>
-                <mat-icon appScale="0.8">checklist_rtl</mat-icon>
-              </div>
-              <mat-checkbox (change)="onShowAllPlayersChange($event)">Show all players</mat-checkbox>
-            </div>
-
-            <table content class="comparison-table">
-              <tr>
-                <td>Player</td>
-                <td fxHide.sm>Pos</td>
-                <td>$</td>
-                <td fxHide.lt-md>%</td>
-                <td>TP</td>
-                <td>KK</td>
-                <td>BL</td>
-                <td>LI</td>
-              </tr>
-              <ng-template
-                [ngTemplateOutlet]="predictions"
-                [ngTemplateOutletContext]="{ players: players$ | async, position: 'gk' }"
-              ></ng-template>
-              <tr>
-                <td colspan="100%">&nbsp;</td>
-              </tr>
-              <ng-template
-                [ngTemplateOutlet]="predictions"
-                [ngTemplateOutletContext]="{ players: players$ | async, position: 'def' }"
-              ></ng-template>
-              <tr>
-                <td colspan="100%">&nbsp;</td>
-              </tr>
-              <ng-template
-                [ngTemplateOutlet]="predictions"
-                [ngTemplateOutletContext]="{ players: players$ | async, position: 'mid' }"
-              ></ng-template>
-              <tr>
-                <td colspan="100%">&nbsp;</td>
-              </tr>
-              <ng-template
-                [ngTemplateOutlet]="predictions"
-                [ngTemplateOutletContext]="{ players: players$ | async, position: 'for' }"
-              ></ng-template>
-            </table>
-          </app-title-underlined-grey>
-        </div>
+          <table content class="comparison-table">
+            <tr>
+              <td>Player</td>
+              <td fxHide.sm>Pos</td>
+              <td>$</td>
+              <td fxHide.lt-md>%</td>
+              <td>TP</td>
+              <td>KK</td>
+              <td>BL</td>
+              <td>LI</td>
+            </tr>
+            <ng-template
+              [ngTemplateOutlet]="predictions"
+              [ngTemplateOutletContext]="{ players: players$ | async, position: 'gk' }"
+            ></ng-template>
+            <tr>
+              <td colspan="100%">&nbsp;</td>
+            </tr>
+            <ng-template
+              [ngTemplateOutlet]="predictions"
+              [ngTemplateOutletContext]="{ players: players$ | async, position: 'def' }"
+            ></ng-template>
+            <tr>
+              <td colspan="100%">&nbsp;</td>
+            </tr>
+            <ng-template
+              [ngTemplateOutlet]="predictions"
+              [ngTemplateOutletContext]="{ players: players$ | async, position: 'mid' }"
+            ></ng-template>
+            <tr>
+              <td colspan="100%">&nbsp;</td>
+            </tr>
+            <ng-template
+              [ngTemplateOutlet]="predictions"
+              [ngTemplateOutletContext]="{ players: players$ | async, position: 'for' }"
+            ></ng-template>
+          </table>
+        </app-title-underlined-grey>
       </div>
 
-      <div class="legend" fxLayout="column">
+      <div class="legend legend-grid">
         <span>Pos - position</span>
         <span>$ - price</span>
         <span>TP - total points</span>
         <span fxHide.lt-md>% - popularity</span>
         <span>KK - kicker.de</span>
         <span>BL - bundesliga.de</span>
-        <span>LI - ligainsider</span>
+        <span>LI - ligainsider.de</span>
       </div>
     </div>
   </app-white-block>

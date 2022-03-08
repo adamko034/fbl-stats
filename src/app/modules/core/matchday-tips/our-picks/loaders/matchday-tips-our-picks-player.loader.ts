@@ -54,7 +54,7 @@ export class MatchdayTipsOurPicksPlayerLoader {
       popularity: player.popularity,
       formPts,
       matchdays,
-      prediction: this.predictionService.determine(player.nextGame?.lineupPredictions),
+      prediction: this.predictionService.determine(player.nextGame),
       totalPoints: player.totalPoints,
       nextGame: this.getNextGame(ourPicksTeam.nextGames)
     };

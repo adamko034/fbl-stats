@@ -9,6 +9,7 @@
         fxLayout="column"
         fxLayoutAlign="center center"
         fxLayoutGap="3px"
+        class="matchday-games"
       >
         <div class="date-container" fxLayout="row wrap" fxLayoutGap="3px">
           <span *ngIf="isDate(matchdayGames.key); else toBeDecided" class="date">{{
@@ -19,8 +20,8 @@
           </ng-template>
         </div>
 
-        <div class="games-container" fxLayout="column" fxLayoutGap="10px">
-          <div *ngFor="let game of matchdayGames.value" class="game">
+        <div class="games-container" fxLayout="column" fxLayoutGap="10px" fxFlexAlign="stretch">
+          <div *ngFor="let game of matchdayGames.value" class="game" [ngClass]="{ 'game-postponed': game.isPostponed }">
             <div class="game-home" fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="7px">
               <span fxHide.lt-sm> {{ game.homeTeamLong }}</span>
               <span fxHide.gt-xs>{{ game.homeTeamShort | uppercase }}</span>
@@ -35,6 +36,10 @@
               <app-team-logo [team]="game.awayTeamShort" [scaleOnMobile]="false" [height]="30"></app-team-logo>
               <span fxHide.lt-sm>{{ game.awayTeamLong }}</span>
               <span fxHide.gt-xs>{{ game.awayTeamShort | uppercase }}</span>
+            </div>
+
+            <div class="game-indicators" fxLayout="row" fxLayoutAlign="start center">
+              <app-postponed-game-icon *ngIf="game.isPostponed" size="17"></app-postponed-game-icon>
             </div>
           </div>
         </div>

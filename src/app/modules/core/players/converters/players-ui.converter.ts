@@ -17,7 +17,7 @@ export class PlayersUiConverter implements Convertable<Player, PlayerUi> {
   }
 
   private toUiSingle(player: Player): PlayerUi {
-    const predicion = this.playerAttendacePredictionService.determine(player.nextGame?.lineupPredictions);
+    const predicion = this.playerAttendacePredictionService.determine(player.nextGame);
     const {
       id,
       name,

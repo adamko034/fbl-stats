@@ -3,5 +3,6 @@ import { SourcePredictedLineups } from 'src/app/modules/teams/lineups/store/mode
 export interface TeamPredictedLineups {
   shortName: string;
   longName: string;
+  gameIsPostponed: boolean;
   predictions: SourcePredictedLineups[];
 }
