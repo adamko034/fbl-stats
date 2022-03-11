@@ -7,6 +7,7 @@ export interface Fixture {
   opponentRank: number;
   wasPlayed: boolean;
   wasPostponed: boolean;
+  matchdayPlayed: boolean;
   isMatchdayFirstGame: boolean;
   isStandaloneFixture: boolean;
   result?: number;

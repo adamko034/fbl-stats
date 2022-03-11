@@ -36,8 +36,15 @@ export class TeamsGamesFitlerAndCalculate implements Actionable<Team> {
     const draws = games.filter((g) => g.result === 0).length;
     const wins = games.filter((g) => g.result === 1).length;
 
-    games.map((g) => g.resultText.split(':')[1]).forEach((g) => (goalsConceded += +g));
-    games.map((g) => g.resultText.split(':')[0]).forEach((g) => (goalsScored += +g));
+    games
+      .filter((g) => g.resultText)
+      .map((g) => g.resultText.split(':')[1])
+      .forEach((g) => (goalsConceded += +g));
+
+    games
+      .filter((g) => g.resultText)
+      .map((g) => g.resultText.split(':')[0])
+      .forEach((g) => (goalsScored += +g));
 
     return {
       name: team.name,

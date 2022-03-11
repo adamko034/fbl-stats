@@ -21,7 +21,8 @@ export class PlayersCompareGamesPreviousComponent implements OnChanges {
     teamLogoHeight: 17,
     smallerFont: true,
     showResult: true,
-    showPoints: true
+    showPoints: true,
+    showPostponed: true
   };
   public get teamAgainstConfig(): TeamGameAgainstConfig {
     return this._teamAgainstConfig;
@@ -53,7 +54,8 @@ export class PlayersCompareGamesPreviousComponent implements OnChanges {
       rank: teamGame?.opponentRank,
       isHome: teamGame?.isHome,
       result: teamGame?.resultText,
-      points: playerGame?.points
+      points: playerGame?.points,
+      isPostponed: teamGame?.wasPostponed
     };
   }
 

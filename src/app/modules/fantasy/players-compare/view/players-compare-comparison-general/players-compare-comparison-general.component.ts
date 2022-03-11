@@ -16,6 +16,7 @@ import { Team } from 'src/app/store/teams/models/team.model';
 })
 export class PlayersCompareComparisonGeneralComponent implements OnInit {
   private _nextFourMatchdays: number[] = [];
+  private _includeOnlyValidGames = true;
 
   @Input() players: Player[];
   @Input() teams: { [teamShort: string]: Team };
@@ -64,7 +65,7 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
   }
 
   public getGamesPlayed(player: Player, venue: 'h' | 'a' | 'all', mds: number): Game[] {
-    const games = this.playerGamesService.getPlayedGamesByVenue(player, venue);
+    const games = this.playerGamesService.getPlayedGamesByVenue(player, venue, this._includeOnlyValidGames);
     return mds === 0 ? games : new ArrayStream<Game>(games).orderBy('matchday', 'dsc').take(mds).collect();
   }
 
@@ -75,7 +76,8 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
       isHome: game.isHome,
       isFirstGame: game.isMatchdayFirstGame,
       rank: game.opponentRank,
-      shortName: game.opponent
+      shortName: game.opponent,
+      isPostponed: game.wasPostponed
     };
   }
 
@@ -97,7 +99,7 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
 
   public getGamesPlayedPercentage(player: Player, venue: 'all' | 'h' | 'a') {
     const gamesPlayed = this.getGamesPlayed(player, venue, 0);
-    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue);
+    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue, this._includeOnlyValidGames);
 
     return `${MathHelper.divideAndRoundPercentage(gamesPlayed.length, allGames.length)}% (${gamesPlayed.length}/${
       allGames.length
@@ -105,8 +107,8 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
   }
 
   public getGamesStarted(player: Player, venue: 'all' | 'h' | 'a'): string {
-    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue);
-    const gamesStarted = this.playerGamesService.getStartedGames(player, venue);
+    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue, this._includeOnlyValidGames);
+    const gamesStarted = this.playerGamesService.getStartedGames(player, venue, this._includeOnlyValidGames);
 
     return `${MathHelper.divideAndRoundPercentage(gamesStarted.length, allGames.length)}% (${gamesStarted.length}/${
       allGames.length
@@ -114,8 +116,8 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
   }
 
   public getGames70(player: Player, venue: 'all' | 'h' | 'a'): string {
-    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue);
-    const games70 = this.playerGamesService.get70PlusGames(player, venue);
+    const allGames = this.playerGamesService.getGamesByVenue(player.games, venue, this._includeOnlyValidGames);
+    const games70 = this.playerGamesService.get70PlusGames(player, venue, this._includeOnlyValidGames);
 
     return `${MathHelper.divideAndRoundPercentage(games70.length, allGames.length)}% (${games70.length}/${
       allGames.length
@@ -123,11 +125,15 @@ export class PlayersCompareComparisonGeneralComponent implements OnInit {
   }
 
   public getGamesWon(player: Player, venue: 'all' | 'h' | 'a', ifPlayed: boolean): string {
-    const allGamesByVenue = this.playerGamesService.getGamesByVenue(player.games, venue);
-    const gamesWon = this.playerGamesService.getGamesWonByVenue(player, venue);
+    const allGamesByVenue = this.playerGamesService.getGamesByVenue(player.games, venue, this._includeOnlyValidGames);
+    const gamesWon = this.playerGamesService.getGamesWonByVenue(player, venue, this._includeOnlyValidGames);
 
-    const allGamesPlayedByVenue = this.playerGamesService.getPlayedGamesByVenue(player, venue);
-    const gamesPlayedWon = this.playerGamesService.getGamesPlayedWonByVenue(player, venue);
+    const allGamesPlayedByVenue = this.playerGamesService.getPlayedGamesByVenue(
+      player,
+      venue,
+      this._includeOnlyValidGames
+    );
+    const gamesPlayedWon = this.playerGamesService.getGamesPlayedWonByVenue(player, venue, this._includeOnlyValidGames);
 
     if (ifPlayed) {
       return `${MathHelper.divideAndRoundPercentage(gamesPlayedWon.length, allGamesPlayedByVenue.length)}% (${

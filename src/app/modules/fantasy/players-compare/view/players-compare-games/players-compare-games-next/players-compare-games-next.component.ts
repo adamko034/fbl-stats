@@ -22,7 +22,8 @@ export class PlayersCompareGamesNextComponent implements OnChanges {
     teamLogoHeight: 17,
     smallerFont: true,
     boldTextIfHome: true,
-    showFistGameOrStandaloneInSecondRow: true
+    showFistGameOrStandaloneInSecondRow: true,
+    showPostponed: true
   };
   public get teamAgainstConfig(): TeamGameAgainstConfig {
     return this._teamAgainstConfig;
@@ -77,7 +78,8 @@ export class PlayersCompareGamesNextComponent implements OnChanges {
       rank: teamGame?.opponentRank,
       isHome: teamGame?.isHome,
       isFirstGame: teamGame?.isMatchdayFirstGame,
-      isStandalone: teamGame?.isStandaloneFixture
+      isStandalone: teamGame?.isStandaloneFixture,
+      isPostponed: teamGame?.wasPostponed
     };
   }
 }

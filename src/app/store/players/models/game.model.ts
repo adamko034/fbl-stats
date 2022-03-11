@@ -10,4 +10,5 @@ export interface Game {
   assists: number;
   isHome: boolean;
   result: number;
+  gameValid: boolean;
 }

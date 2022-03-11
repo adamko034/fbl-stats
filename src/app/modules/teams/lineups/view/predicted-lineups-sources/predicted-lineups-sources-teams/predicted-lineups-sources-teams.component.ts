@@ -33,6 +33,8 @@ export class PredictedLineupsSourcesTeamsComponent implements OnInit {
   public ngOnInit(): void {
     this.teamsSorted$ = this.propertiesStore.selectTeamsNavigation();
     this.onSortChange({ active: 'lastMd', direction: 'desc' });
+
+    console.log(this.teams);
   }
 
   public onSortChange(sort: Sort): void {
@@ -46,8 +48,14 @@ export class PredictedLineupsSourcesTeamsComponent implements OnInit {
     this.changeDetection.detectChanges();
   }
 
-  public getSourceAccuracy(sourceIndex: number, teamShort: string): number {
-    return this.getSourceTeam(sourceIndex, teamShort)[this.sourceValueType];
+  public getSourceAccuracy(sourceIndex: number, teamShort: string): string {
+    const value = this.getSourceTeam(sourceIndex, teamShort)[this.sourceValueType];
+
+    if (value == null) {
+      return 'x';
+    }
+
+    return `${value}%`;
   }
 
   public isBest(sourceIndex: number, teamShort: string): boolean {

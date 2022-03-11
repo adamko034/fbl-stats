@@ -18,9 +18,10 @@
         </td>
       </tr>
     </table>
-    <div class="legend">
-      <span [appSticky]="{ position: 'left' }">1 - matchday first game</span><br />
+    <div class="legend" fxLayout="row wrap" fxLayoutGap="5px">
+      <span [appSticky]="{ position: 'left' }">1 - matchday first game</span>
       <span [appSticky]="{ position: 'left' }">S - standalone game</span>
+      <span [appSticky]="{ position: 'left' }">P - postponed game</span>
     </div>
   </div>
 </app-title-underlined-grey>

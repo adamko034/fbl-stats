@@ -9,4 +9,5 @@ export interface TeamGameAgainstConfig {
   showFistGameOrStandaloneInSecondRow?: boolean;
   showStandalone?: boolean;
   boldTextIfHome?: boolean;
+  showPostponed: boolean;
 }

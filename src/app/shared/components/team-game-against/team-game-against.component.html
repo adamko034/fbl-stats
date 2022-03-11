@@ -20,7 +20,8 @@
   </div>
 
   <div *ngIf="showSecondRow" class="second-row" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
-    <span *ngIf="config.showResult">{{ team.result }} </span>
+    <span *ngIf="config.showResult && team.result">{{ team.result }} </span>
+    <app-postponed-game-icon *ngIf="config.showPostponed && team.isPostponed"></app-postponed-game-icon>
     <span *ngIf="config.showPoints && team.points != null" class="points">{{ team.points }}pts</span>
     <span *ngIf="config.showPoints && team.points === null" class="points">x</span>
     <span *ngIf="config.showFirstGame && team.isFirstGame">

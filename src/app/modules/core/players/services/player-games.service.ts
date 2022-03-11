@@ -16,57 +16,62 @@ export class PlayerGamesService {
     return new ArrayStream<Game>(games).filterQuick((g) => g.points >= minPoints).collect();
   }
 
-  public getHomePlayedGames(player: Player): Game[] {
-    return this.getPlayedGames(player).filter((g) => g.isHome);
+  public getHomePlayedGames(player: Player, onlyValid: boolean): Game[] {
+    return this.getPlayedGames(player, onlyValid).filter((g) => g.isHome);
   }
 
-  public getAwayPlayedGames(player: Player) {
-    return this.getPlayedGames(player).filter((g) => !g.isHome);
+  public getAwayPlayedGames(player: Player, onlyValid: boolean) {
+    return this.getPlayedGames(player, onlyValid).filter((g) => !g.isHome);
   }
 
-  public getVsBottomPlayedGames(player: Player, bottomN: number = 6): Game[] {
-    return this.getPlayedGames(player).filter((g) => g.opponentRank > 18 - bottomN);
+  public getVsBottomPlayedGames(player: Player, onlyValid: boolean, bottomN: number = 6): Game[] {
+    return this.getPlayedGames(player, onlyValid).filter((g) => g.opponentRank > 18 - bottomN);
   }
 
-  public getVsTopPlayedGames(player: Player, topN: number = 6): Game[] {
-    return this.getPlayedGames(player).filter((g) => g.opponentRank <= topN);
+  public getVsTopPlayedGames(player: Player, onlyValid: boolean, topN: number = 6): Game[] {
+    return this.getPlayedGames(player, onlyValid).filter((g) => g.opponentRank <= topN);
   }
 
-  public getPlayedGames(player: Player): Game[] {
-    return player.games.filter((g) => g.hasPlayed);
+  public getPlayedGames(player: Player, onlyValid: boolean): Game[] {
+    return this.validGames(player.games, onlyValid).filter((g) => g.hasPlayed);
   }
 
-  public getStartedGames(player: Player, venue: 'all' | 'h' | 'a'): Game[] {
+  public getStartedGames(player: Player, venue: 'all' | 'h' | 'a', onlyValid: boolean): Game[] {
     const gamesStarted = player.games.filter((g) => g.started);
-    return this.getGamesByVenue(gamesStarted, venue);
+    return this.getGamesByVenue(gamesStarted, venue, onlyValid);
   }
 
-  public get70PlusGames(player: Player, venue: 'all' | 'h' | 'a'): Game[] {
+  public get70PlusGames(player: Player, venue: 'all' | 'h' | 'a', onlyValid: boolean): Game[] {
     const games = player.games.filter((g) => g.hasPlayedMoreThan70Min);
-    return this.getGamesByVenue(games, venue);
+    return this.getGamesByVenue(games, venue, onlyValid);
   }
 
-  public getPlayedGamesByVenue(player: Player, venue: 'all' | 'h' | 'a'): Game[] {
-    return this.getGamesByVenue(this.getPlayedGames(player), venue);
+  public getPlayedGamesByVenue(player: Player, venue: 'all' | 'h' | 'a', onlyValid: boolean): Game[] {
+    return this.getGamesByVenue(this.getPlayedGames(player, onlyValid), venue, onlyValid);
   }
 
-  public getGamesByVenue(games: Game[], venue: 'all' | 'h' | 'a'): Game[] {
+  public getGamesByVenue(games: Game[], venue: 'all' | 'h' | 'a', onlyValid: boolean): Game[] {
+    const gamesValid = this.validGames(games, onlyValid);
     if (venue === 'all') {
-      return games;
+      return gamesValid;
     }
 
-    return games.filter((g) => (venue === 'h' ? g.isHome : !g.isHome));
+    return gamesValid.filter((g) => (venue === 'h' ? g.isHome : !g.isHome));
   }
 
-  public getGamesPlayedWonByVenue(player: Player, venue: 'all' | 'h' | 'a') {
-    return this.gamesWon(this.getPlayedGamesByVenue(player, venue));
+  public getGamesPlayedWonByVenue(player: Player, venue: 'all' | 'h' | 'a', onlyValid: boolean) {
+    return this.gamesWon(this.getPlayedGamesByVenue(player, venue, onlyValid));
   }
 
-  public getGamesWonByVenue(player: Player, venue: 'all' | 'h' | 'a') {
-    return this.gamesWon(this.getGamesByVenue(player.games, venue));
+  public getGamesWonByVenue(player: Player, venue: 'all' | 'h' | 'a', onlyValid: boolean) {
+    return this.gamesWon(this.getGamesByVenue(player.games, venue, onlyValid));
   }
 
   private gamesWon(games: Game[]): Game[] {
     return games.filter((g) => g.result > 0);
+  }
+
+  private validGames(games: Game[], onlyValid: boolean): Game[] {
+    return onlyValid ? games.filter((g) => g.gameValid) : games;
   }
 }

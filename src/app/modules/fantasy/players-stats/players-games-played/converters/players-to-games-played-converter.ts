@@ -15,6 +15,7 @@ export class PlayersToGamesPlayedConverter implements Convertable<Player, Player
     const gamesStarted = player.games.filter((g) => g.started).length;
     const playedMoreThan70Min = player.games.filter((g) => g.hasPlayedMoreThan70Min).length;
 
+    const allGamesCount = player.games.filter((g) => g.gameValid).length;
     return {
       id,
       name,
@@ -24,11 +25,11 @@ export class PlayersToGamesPlayedConverter implements Convertable<Player, Player
       popularity,
       position,
       teamShort,
-      allGamesCount: this.lastMatchday,
+      allGamesCount,
       gamesPlayed,
-      gamesPlayedPercentage: this.percentage(gamesPlayed, this.lastMatchday),
+      gamesPlayedPercentage: this.percentage(gamesPlayed, allGamesCount),
       gamesStarted,
-      gamesStartedPercentage: this.percentage(gamesStarted, this.lastMatchday),
+      gamesStartedPercentage: this.percentage(gamesStarted, allGamesCount),
       playedMoreThan70Min,
       //playedMoreThan70MinPercentageAll: this.percentage(playedMoreThan70Min, this.lastMatchday),
       playedMoreThan70MinPercentage: this.percentage(playedMoreThan70Min, gamesPlayed)

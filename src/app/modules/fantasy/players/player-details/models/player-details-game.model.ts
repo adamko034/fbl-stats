@@ -4,6 +4,7 @@ export interface PlayerDetailsGame extends Game {
   date?: number;
   wasPlayed: boolean;
   wasPostponed: boolean;
+  matchdayPlayed: boolean;
   opponent: string;
   opponentRank: number;
   isHome: boolean;

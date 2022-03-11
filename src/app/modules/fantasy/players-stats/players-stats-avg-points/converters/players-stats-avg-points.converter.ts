@@ -9,6 +9,8 @@ import { PlayerStatsAvgPoints } from '../models/player-stats-avg-points.model';
 
 @Injectable()
 export class PlayersStatsAvgPointsConverter {
+  private _onlyValidGames = true;
+
   constructor(private playersGamesService: PlayerGamesService) {}
 
   public fromPlayers(players: Player[], teams: Team[], lastNGames: number): PlayerStatsAvgPoints[] {
@@ -24,19 +26,19 @@ export class PlayersStatsAvgPointsConverter {
     gamesPlayed = this.filterGames(gamesPlayed, lastNGames);
     const totalGamesPoints = this.getSumPoints(gamesPlayed);
 
-    let homeGames = this.playersGamesService.getHomePlayedGames(player);
+    let homeGames = this.playersGamesService.getHomePlayedGames(player, this._onlyValidGames);
     homeGames = this.filterGames(homeGames, lastNGames);
     const homeGamesPoints = this.getSumPoints(homeGames);
 
-    let awayGames = this.playersGamesService.getAwayPlayedGames(player);
+    let awayGames = this.playersGamesService.getAwayPlayedGames(player, this._onlyValidGames);
     awayGames = this.filterGames(awayGames, lastNGames);
     const awayGamesPoints = this.getSumPoints(awayGames);
 
-    let vsBottomGames = this.playersGamesService.getVsBottomPlayedGames(player);
+    let vsBottomGames = this.playersGamesService.getVsBottomPlayedGames(player, this._onlyValidGames);
     vsBottomGames = this.filterGames(vsBottomGames, lastNGames);
     const vsBottomPoints = this.getSumPoints(vsBottomGames);
 
-    let vsTopGames = this.playersGamesService.getVsTopPlayedGames(player);
+    let vsTopGames = this.playersGamesService.getVsTopPlayedGames(player, this._onlyValidGames);
     vsTopGames = this.filterGames(vsTopGames, lastNGames);
     const vsTopPoints = this.getSumPoints(vsTopGames);
 

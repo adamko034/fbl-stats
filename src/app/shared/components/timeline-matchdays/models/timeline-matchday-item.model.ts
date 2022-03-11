@@ -4,6 +4,8 @@ export interface TimelineMatchdayItem {
   date: number;
   isHome: boolean;
   wasPlayed: boolean;
+  matchdayPlayed: boolean;
+  postponed: boolean;
   hasPlayed: boolean;
   hasStarted?: boolean;
   hasPlayed70min?: boolean;

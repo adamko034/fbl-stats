@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { TimelineMatchdayItem } from 'src/app/shared/components/timeline-matchdays/models/timeline-matchday-item.model';
 import { GameTimelineMatchdayConverter } from '../../../converters/game-timeline-matchday.converter';
@@ -16,14 +16,14 @@ export class PlayerDetailsMatchdaysComponent {
 
   public get playedGames(): TimelineMatchdayItem[] {
     return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => g.wasPlayed)
+      .filterQuick((g) => g.matchdayPlayed)
       .convert<TimelineMatchdayItem>(new GameTimelineMatchdayConverter())
       .collect();
   }
 
   public get futureGames(): TimelineMatchdayItem[] {
     return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => !g.wasPlayed)
+      .filterQuick((g) => !g.matchdayPlayed)
       .convert<TimelineMatchdayItem>(new GameTimelineMatchdayConverter())
       .collect();
   }

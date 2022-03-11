@@ -22,7 +22,7 @@
           <td>
             <app-team-logo height="21" [team]="team.teamShort"></app-team-logo>
           </td>
-          <td>{{ team.lastMd }}%</td>
+          <td>{{ team.lastMd | nullableText: 'x':'%' }}</td>
           <td>{{ team.last5 }}%</td>
           <td>{{ team.season }}%</td>
         </tr>
@@ -51,7 +51,7 @@
             [ngClass]="{ best: isBest(index, team.teamShort), worst: isWorst(index, team.teamShort) }"
             *ngFor="let index of [0, 1, 2]"
           >
-            {{ getSourceAccuracy(index, team.teamShort) }}%
+            {{ getSourceAccuracy(index, team.teamShort) }}
           </td>
         </tr>
       </table>

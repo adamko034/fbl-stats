@@ -26,11 +26,10 @@ export class PredictedLineupsSourcesTeamsResolver implements Resolve<Observable<
 
   private getTeamAccuracy(team: Team, sources: PredictedLineupsSource[]): PredictedLineupsTeamAccuracy {
     const sourcesTeam = this.getSourcesTeam(team, sources);
-    const sourcesCount = sources.length;
 
-    const lastMd = this.getAvg(sourcesTeam, (t) => t.lastMdAccuracy, sourcesCount);
-    const last5 = this.getAvg(sourcesTeam, (t) => t.last5Accuracy, sourcesCount);
-    const season = this.getAvg(sourcesTeam, (t) => t.avgSeasonAccuracy, sourcesCount);
+    const lastMd = this.getAvg(sourcesTeam, (t) => t.lastMdAccuracy);
+    const last5 = this.getAvg(sourcesTeam, (t) => t.last5Accuracy);
+    const season = this.getAvg(sourcesTeam, (t) => t.avgSeasonAccuracy);
 
     return {
       teamShort: team.shortName,
@@ -42,10 +41,16 @@ export class PredictedLineupsSourcesTeamsResolver implements Resolve<Observable<
 
   private getAvg(
     sourcesTeam: PredictedLineupsSourceTeamAccuracy[],
-    func: (t: PredictedLineupsSourceTeamAccuracy) => number,
-    count: number
+    func: (t: PredictedLineupsSourceTeamAccuracy) => number
   ) {
-    const sum = sourcesTeam.map(func).reduce((a, b) => a + b);
+    const sourcesTeamWithoutNullValues = sourcesTeam.map(func).filter((value) => value != null);
+    const count = sourcesTeamWithoutNullValues.length;
+
+    if (count === 0) {
+      return null;
+    }
+
+    const sum = sourcesTeamWithoutNullValues.reduce((a, b) => a + b);
     return Math.round((sum / count) * 100) / 100;
   }
 

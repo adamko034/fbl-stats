@@ -5,6 +5,7 @@ export interface TeamGameAgainst {
   isHome: boolean;
   isFirstGame?: boolean;
   isStandalone?: boolean;
+  isPostponed: boolean;
   result?: string;
   points?: number;
 }

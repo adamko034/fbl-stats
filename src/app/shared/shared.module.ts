@@ -106,6 +106,7 @@ import { DaysBetweenNowPipe } from './pipes/days-between-now.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
 import { LengthPipe } from './pipes/length.pipe';
+import { NullableTextPipe } from './pipes/nullable-text.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
 import { ReverseBooleanPipe } from './pipes/reverse-boolean.pipe';
 import { TakePipe } from './pipes/take.pipe';
@@ -198,7 +199,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     StandaloneGameIconComponent,
     IncludeFutureMatchdaysDropdownComponent,
     IncludePastMatchdaysDropdownComponent,
-    PostponedGameIconComponent
+    PostponedGameIconComponent,
+    NullableTextPipe
   ],
   imports: [
     CommonModule,
@@ -286,7 +288,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     StandaloneGameIconComponent,
     IncludeFutureMatchdaysDropdownComponent,
     IncludePastMatchdaysDropdownComponent,
-    PostponedGameIconComponent
+    PostponedGameIconComponent,
+    NullableTextPipe
   ]
 })
 export class SharedModule {

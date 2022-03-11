@@ -47,7 +47,7 @@ export class PlayerDetailsChartsComponent implements OnInit {
 
   private get pointsChanges() {
     return new ArrayStream(this.player.games)
-      .filterQuick((g) => g.wasPlayed && g.points !== undefined)
+      .filterQuick((g) => g.matchdayPlayed && g.points !== undefined)
       .convert(new GameToChartPointConverter());
   }
 
@@ -216,32 +216,33 @@ export class PlayerDetailsChartsComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
-    const allGamesCount = this.player.games.filter((g) => g.wasPlayed).length;
+    const allGamesCount = this.player.games.filter((g) => g.wasPlayed && g.gameValid).length;
+
     this._gamesPlayedChart = {
       totalValue: allGamesCount,
       name: 'Played',
-      value: this.player.games.filter((g) => g.hasPlayed).length,
+      value: this.player.games.filter((g) => g.hasPlayed && g.gameValid).length,
       label: 'Games played'
     };
 
     this._gamesStartedChart = {
       totalValue: allGamesCount,
       name: 'Started',
-      value: this.player.games.filter((g) => g.started).length,
+      value: this.player.games.filter((g) => g.started && g.gameValid).length,
       label: 'Games started'
     };
 
     this._games70MinChart = {
-      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed).length,
+      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid).length,
       name: '70min',
       value: this.player.games.filter((g) => g.hasPlayedMoreThan70Min).length,
       label: '70 min'
     };
 
     this._gamesWon = {
-      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed).length,
+      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid).length,
       name: 'Won',
-      value: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.result === 1).length,
+      value: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid && g.result === 1).length,
       label: 'Games won'
     };
   }

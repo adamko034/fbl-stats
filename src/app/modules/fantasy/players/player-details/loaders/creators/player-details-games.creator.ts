@@ -35,12 +35,14 @@ export class PlayerDetailsGamesCreator {
       started,
       goals,
       assists,
-      teamShort
+      teamShort,
+      gameValid
     } = game;
     const team = teams[game.teamShort];
     const teamFixture = team.games.find((g) => g.matchday === game.matchday);
 
-    const { date, opponent, wasPlayed, result, resultText, wasPostponed, isMatchdayFirstGame } = teamFixture;
+    const { date, opponent, wasPlayed, result, resultText, wasPostponed, isMatchdayFirstGame, matchdayPlayed } =
+      teamFixture;
 
     return {
       assists,
@@ -55,11 +57,13 @@ export class PlayerDetailsGamesCreator {
       date,
       opponent,
       wasPlayed,
+      matchdayPlayed,
       wasPostponed,
       result,
       resultText,
       teamShort,
-      isFirstGame: isMatchdayFirstGame
+      isFirstGame: isMatchdayFirstGame,
+      gameValid
     };
   }
 
@@ -74,6 +78,7 @@ export class PlayerDetailsGamesCreator {
       wasPostponed,
       isMatchdayFirstGame,
       isHome,
+      matchdayPlayed,
       opponentRank
     } = fixture;
 
@@ -88,12 +93,14 @@ export class PlayerDetailsGamesCreator {
       wasPostponed,
       resultText,
       result,
+      matchdayPlayed,
       hasPlayed: false,
       hasPlayedMoreThan70Min: false,
       isFirstGame: isMatchdayFirstGame,
       started: false,
       goals: 0,
-      assists: 0
+      assists: 0,
+      gameValid: true
     };
   }
 }

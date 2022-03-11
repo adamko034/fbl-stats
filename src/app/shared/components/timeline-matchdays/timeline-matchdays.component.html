@@ -19,16 +19,18 @@
         <span class="item-logo">
           <app-team-logo [height]="25" [team]="item.opponent"></app-team-logo>
         </span>
-        <div class="item-text" *ngIf="item.wasPlayed" fxLayoutGap="3px" fxLayoutAlign="center center">
-          <app-team-form *ngIf="item.result" size="supersmall" [form]="item.result"></app-team-form>
+        <div class="item-text" *ngIf="item.matchdayPlayed" fxLayoutGap="3px" fxLayoutAlign="center center">
+          <app-team-form *ngIf="item.wasPlayed" size="supersmall" [form]="item.result"></app-team-form>
           <span class="item-result">{{ item.resultText }}</span>
           <span>({{ item.isHome ? 'h' : 'a' }})</span>
         </div>
-        <div class="item-sub-text points bold" *ngIf="item.wasPlayed">
-          <span *ngIf="item.hasPlayed" [ngClass]="getPointsCssClass(item.points)">{{ item.points }} pts</span>
-          <span *ngIf="!item.hasPlayed" [ngClass]="getPointsCssClass(item.points)">x</span>
+        <div class="item-sub-text points bold" *ngIf="item.matchdayPlayed">
+          <span *ngIf="item.hasPlayed || item.postponed" [ngClass]="getPointsCssClass(item.points)"
+            >{{ item.points }} pts</span
+          >
+          <span *ngIf="!item.hasPlayed && !item.postponed" [ngClass]="getPointsCssClass(item.points)">x</span>
         </div>
-        <div class="item-sub-text bold" *ngIf="item.wasPlayed">
+        <div class="item-sub-text bold" *ngIf="item.matchdayPlayed">
           <app-has-started-icon *ngIf="item.hasStarted"></app-has-started-icon>
           <app-has-came-from-bench-icon *ngIf="item.hasPlayed && !item.hasStarted"></app-has-came-from-bench-icon>
           <app-has-played-seventy-minutes-icon *ngIf="item.hasPlayed70min"></app-has-played-seventy-minutes-icon>
@@ -37,21 +39,26 @@
             <app-goals-icons [count]="item.goalsScored"></app-goals-icons>
             <app-assists-icons [count]="item.assists"></app-assists-icons>
           </div>
+          <app-postponed-game-icon *ngIf="item.postponed"></app-postponed-game-icon>
         </div>
-        <div class="item-text" *ngIf="!item.wasPlayed" fxLayoutGap="3px">
+        <div class="item-text" *ngIf="!item.matchdayPlayed" fxLayoutGap="3px">
           <span>{{ item.opponentRank | numerals }}</span>
           <span>({{ item.isHome ? 'h' : 'a' }})</span>
         </div>
         <div
           class="item-sub-text"
-          *ngIf="!item.wasPlayed && !!item.date"
+          *ngIf="!item.matchdayPlayed && !!item.date"
+          fxLayout="column"
           fxLayoutAlign="start center"
           fxLayoutGap="4px"
         >
           <span>{{ item.date | epochDate | date: 'dd.MM' }}</span>
-          <app-matchday-first-game-indicator *ngIf="item.isFirstGame" size="small"></app-matchday-first-game-indicator>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+            <app-first-game-icon *ngIf="item.isFirstGame"></app-first-game-icon>
+            <app-postponed-game-icon *ngIf="item.postponed"></app-postponed-game-icon>
+          </div>
         </div>
-        <div class="item-sub-text" *ngIf="!item.wasPlayed && !item.date">TBD</div>
+        <div class="item-sub-text" *ngIf="!item.matchdayPlayed && !item.date">TBD</div>
       </div>
     </div>
 
