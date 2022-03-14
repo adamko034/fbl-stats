@@ -4,5 +4,6 @@ export interface SourcePredictedLineups {
   order: number;
   sourceName: string;
   sourceUrl: string;
+  lastUpdated: number;
   lineup: Lineup;
 }
