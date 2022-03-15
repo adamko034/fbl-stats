@@ -15,6 +15,8 @@ import { FixtureDifficultyColorsService } from './services/fixture-difficulty-co
 import { FixturesDifficultyByFormComponent } from './view/fixtures-difficulty-by-form/fixtures-difficulty-by-form.component';
 import { FixturesDifficultyByRankComponent } from './view/fixtures-difficulty-by-rank/fixtures-difficulty-by-rank.component';
 import { FixturesDifficultyContentComponent } from './view/fixtures-difficulty-content/fixtures-difficulty-content.component';
+import { FixturesDifficultyComponent } from './view/fixtures-difficulty.component';
+import { FixturesDifficultyFiltersComponent } from './view/fixtures-difficulty-filters/fixtures-difficulty-filters.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FixturesDifficultyContentComponent } from './view/fixtures-difficulty-c
     FixturesDifficultyVenueFilterComponent,
     FixturesDifficultySortComponent,
     FixturesDifficultyFixturesTableComponent,
-    FixturesDifficultyContentComponent
+    FixturesDifficultyContentComponent,
+    FixturesDifficultyComponent,
+    FixturesDifficultyFiltersComponent
   ],
   imports: [CommonModule, FixturesDifficultyRoutingModule, SharedModule, AngularMaterialModule],
   providers: [
