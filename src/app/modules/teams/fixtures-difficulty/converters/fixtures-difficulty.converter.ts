@@ -13,7 +13,6 @@ export class FixturesDifficultyConverter implements Convertable<FixtureDifficult
   public convert(items: FixtureDifficulty[]): FixtureDifficultyTableTeam[] {
     return items.map((scheduleTeam: FixtureDifficulty) => ({
       shortName: scheduleTeam.shortName,
-      longName: scheduleTeam.longName,
       value: this.scheduleTableTeamValueDeterminer.get(scheduleTeam),
       color: this.scheduleColorService.getColor(scheduleTeam.index)
     }));

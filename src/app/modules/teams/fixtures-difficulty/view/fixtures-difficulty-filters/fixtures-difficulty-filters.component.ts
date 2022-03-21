@@ -1,5 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { FixturesDifficultyCalculation } from '../../models/fixtures-difficulty-calculation.enum';
+import { FixturesDifficultyFilters } from '../../models/fixtures-difficulty-filters.model';
+import { FixturesDifficultyFiltersService } from '../../services/fixtures-difficulty-filters.service';
 
 @Component({
   selector: 'app-fixtures-difficulty-filters',
@@ -8,12 +12,38 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FixturesDifficultyFiltersComponent implements OnInit {
-  private _links: ViewTabNavigationLink[] = [
-    { label: 'Fixtures by ranking', labelMobile: 'Fixtures difficulty by ranking', routerLink: 'byRank', order: 1 },
-    { label: 'Fixtures by form', labelMobile: 'Fixtures difficulty by form', routerLink: 'byForm', order: 2 }
+  @Input() filters: FixturesDifficultyFilters;
+
+  private _calculations: SwitchItem[] = [
+    { value: FixturesDifficultyCalculation.BY_RANK, description: 'By rank' },
+    { value: FixturesDifficultyCalculation.BY_FORM, description: 'By form' }
   ];
 
-  constructor() {}
+  public get calculations(): SwitchItem[] {
+    return this._calculations;
+  }
+
+  public get byForm(): FixturesDifficultyCalculation {
+    return FixturesDifficultyCalculation.BY_FORM;
+  }
+
+  constructor(private filtersService: FixturesDifficultyFiltersService) {}
 
   ngOnInit(): void {}
+
+  public onIncludeVenuChange(change: MatCheckboxChange): void {
+    this.filtersService.changeIncludeVenue(change.checked);
+  }
+
+  public onCalculationChange(newValue: FixturesDifficultyCalculation): void {
+    this.filtersService.changeCalculation(newValue);
+  }
+
+  public onMatchdaysChange(newValue: number): void {
+    this.filtersService.changeMatchdays(newValue);
+  }
+
+  public onFormMatchdaysChange(newValue: number): void {
+    this.filtersService.changeFormMatchdays(newValue);
+  }
 }

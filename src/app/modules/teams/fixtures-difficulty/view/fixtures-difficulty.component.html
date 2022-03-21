@@ -1,1 +1,4 @@
-<app-view [links]="links"> </app-view>
+<app-view [links]="links">
+  <app-fixtures-difficulty-filters [filters]="state$ | async | field: 'filters'"></app-fixtures-difficulty-filters>
+  {{ state$ | async | json }}
+</app-view>

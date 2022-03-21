@@ -1,39 +1,39 @@
-.fixtures-container {
-  .grid {
-    width: 100%;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-  }
+// .fixtures-container {
+//   .grid {
+//     width: 100%;
+//     display: grid;
+//     grid-gap: 10px;
+//     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+//   }
 
-  .header {
-    padding-bottom: 3px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    text-transform: uppercase;
-  }
+//   .header {
+//     padding-bottom: 3px;
+//     text-align: center;
+//     font-size: 12px;
+//     font-weight: 500;
+//     text-transform: uppercase;
+//   }
 
-  .team-row {
-    border-top: 1px solid rgba($color: #000000, $alpha: 0.4);
-    padding-top: 5px;
-    padding-bottom: 5px;
+//   .team-row {
+//     border-top: 1px solid rgba($color: #000000, $alpha: 0.4);
+//     padding-top: 5px;
+//     padding-bottom: 5px;
 
-    .team-info {
-      margin-left: 5px;
-      width: 70px;
+//     .team-info {
+//       margin-left: 5px;
+//       width: 70px;
 
-      .rank {
-        font-size: 12px;
-        font-weight: 500;
-      }
-    }
+//       .rank {
+//         font-size: 12px;
+//         font-weight: 500;
+//       }
+//     }
 
-    .team-md {
-      height: 85px;
-      border-radius: 5px;
-      font-size: 11px;
-      font-weight: 500;
-    }
-  }
-}
+//     .team-md {
+//       height: 85px;
+//       border-radius: 5px;
+//       font-size: 11px;
+//       font-weight: 500;
+//     }
+//   }
+// }

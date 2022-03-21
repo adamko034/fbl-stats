@@ -2,7 +2,6 @@ import { FixtureDifficultyGame } from './fixture-difficulty-game.model';
 
 export interface FixtureDifficulty {
   shortName: string;
-  longName: string;
   rank: number;
   games: { [key: string]: FixtureDifficultyGame };
   next2GamesIndex: number;
