@@ -17,11 +17,13 @@ export class IncludeFutureMatchdaysDropdownComponent implements OnInit {
 
   public valueInternal$: Subject<number> = new Subject<number>();
   public mdsUntilNextUnlimitedTransfers$: Observable<number>;
+  public isNextUnlimitedTransfers$: Observable<boolean>;
   public possibleNextMatchdays$: Observable<number[]>;
 
   constructor(private unlimitedTranfsersService: UnlimitedTransfersService, private propertiesStore: PropertiesStore) {}
 
   public ngOnInit(): void {
+    this.isNextUnlimitedTransfers$ = this.unlimitedTranfsersService.isNext;
     this.mdsUntilNextUnlimitedTransfers$ = this.unlimitedTranfsersService.matchdaysUntilNext;
     this.setPossibleNextMatchdays();
   }

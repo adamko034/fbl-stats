@@ -7,6 +7,6 @@ export class DaysBetweenNowPipe implements PipeTransform {
     const now = moment();
     const date = moment(value);
 
-    return `${date.diff(now, 'days') + 1} days`;
+    return `${date.diff(now, 'days')} days`;
   }
 }

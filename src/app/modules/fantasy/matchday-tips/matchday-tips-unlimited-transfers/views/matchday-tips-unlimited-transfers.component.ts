@@ -17,6 +17,7 @@ export class MatchdayTipsUnlimitedTransfersComponent implements OnInit {
   public future$: Observable<MatchdayTipsUnlimitedTransfersDate[]>;
   public next$: Observable<MatchdayTipsUnlimitedTransfersDate>;
   public previous$: Observable<MatchdayTipsUnlimitedTransfersDate[]>;
+  public now$: Observable<MatchdayTipsUnlimitedTransfersDate>;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -41,8 +42,15 @@ export class MatchdayTipsUnlimitedTransfersComponent implements OnInit {
     this.next$ = this.state$.pipe(
       map((state) => {
         return new ArrayStream<MatchdayTipsUnlimitedTransfersDate>(state.unlimitedTransfers.dates)
-          .filterQuick((uT) => uT.matchday > state.lastMatchday)
+          .filterQuick((uT) => uT.matchday > state.lastMatchday + 1)
           .orderBy('matchday', 'asc')
+          .takeFirst();
+      })
+    );
+    this.now$ = this.state$.pipe(
+      map((state) => {
+        return new ArrayStream<MatchdayTipsUnlimitedTransfersDate>(state.unlimitedTransfers.dates)
+          .filterQuick((ut) => ut.matchday === state.lastMatchday + 1)
           .takeFirst();
       })
     );
