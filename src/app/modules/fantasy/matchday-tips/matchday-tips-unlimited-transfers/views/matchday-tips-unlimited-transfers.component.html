@@ -1,4 +1,15 @@
 <div class="container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <mat-card *ngIf="now$ | async">
+    <mat-card-title
+      >Unlimited transfers time is now!
+      <angular-emojis [name]="'grinning_face_with_star_eyes'" [size]="20"></angular-emojis>
+    </mat-card-title>
+    <mat-card-content>
+      <br />
+      You can make as many transfers as you want. Use it wisely!
+    </mat-card-content>
+  </mat-card>
+
   <mat-card *ngIf="next$ | async; else noUnlimitedTransfers">
     <mat-card-title>Next unlimited transfers</mat-card-title>
     <mat-card-content>
@@ -54,7 +65,7 @@
   <ng-template #noUnlimitedTransfers>
     <mat-card>
       <mat-card-content>
-        <h3>No more unlimited transfers planned</h3>
+        <h3>No more future unlimited transfers planned</h3>
         <div class="source" fxLayout="row" fxLayoutAlign="flex-end">
           <a
             [href]="state$ | async | field: 'unlimitedTransfers' | field: 'source'"

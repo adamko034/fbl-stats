@@ -45,7 +45,7 @@ export class UnlimitedTransfersService {
         }
 
         return new ArrayStream<UnlimitedTransfersDate>(unlimitedTransfers.dates)
-          .filterQuick((ut) => ut.matchday > lastMatchday)
+          .filterQuick((ut) => ut.matchday > lastMatchday + 1)
           .orderBy('matchday', 'asc')
           .collect();
       })
