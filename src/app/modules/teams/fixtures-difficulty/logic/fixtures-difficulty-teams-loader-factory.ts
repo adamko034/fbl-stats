@@ -11,7 +11,7 @@ export class FixturesDifficultyTeamsLoaderFactory {
 
   public create(calculationType: FixturesDifficultyCalculation): IFixturesDifficultyTeamsLoader {
     if (calculationType === FixturesDifficultyCalculation.BY_FORM) {
-      return new FixturesDifficultyTeamsLoaderByForm();
+      return new FixturesDifficultyTeamsLoaderByForm(this.fixturesDifficultyColorService);
     }
 
     return new FixturesDifficultyTeamsLoaderByRank(this.fixturesDifficultyColorService);

@@ -10,6 +10,7 @@ export interface Fixture {
   matchdayPlayed: boolean;
   isMatchdayFirstGame: boolean;
   isStandaloneFixture: boolean;
+  points?: number;
   result?: number;
   resultText?: string;
   goalsScored?: number;

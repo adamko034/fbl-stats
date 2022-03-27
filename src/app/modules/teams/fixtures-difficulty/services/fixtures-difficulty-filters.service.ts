@@ -15,13 +15,27 @@ export class FixturesDifficultyFiltersService {
   constructor(private router: Router) {}
 
   public resolveFromQueryParams(params: Params, matchdaysUntilUnlimitedTransfers?: number): FixturesDifficultyFilters {
-    const { calculation, includeVenue, matchdays, form } = params;
+    const { calculation, matchdays } = params;
+
+    const includeVenueString = params.includeVenue;
+    let includeVenue = this._defaults.includeVenue;
+
+    const formString = params.form;
+    let form = this._defaults.formMatchdays;
+
+    if (includeVenueString) {
+      includeVenue = JSON.parse(includeVenueString);
+    }
+
+    if (formString) {
+      form = +formString;
+    }
 
     return {
       calculation: calculation ?? this._defaults.calculation,
-      includeVenue: includeVenue ?? this._defaults.includeVenue,
+      includeVenue: includeVenue,
       matchdays: this.determineMatchdays(matchdays, matchdaysUntilUnlimitedTransfers),
-      formMatchdays: form ?? this._defaults.formMatchdays
+      formMatchdays: form
     };
   }
 

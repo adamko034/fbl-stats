@@ -55,13 +55,13 @@ export class PlayersCompareGamesNextComponent implements OnChanges {
     const opponentRank = teamGame.opponentRank;
 
     if (opponentRank <= 3) {
-      return 'game-red';
+      return 'game-dark-red';
     } else if (opponentRank <= 6) {
-      return 'game-orange';
+      return 'game-red';
     } else if (opponentRank <= 9) {
-      return 'game-yellow';
+      return 'game-orange';
     } else if (opponentRank <= 12) {
-      return '';
+      return 'game-yellow';
     } else if (opponentRank <= 15) {
       return 'game-green-light';
     } else {

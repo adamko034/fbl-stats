@@ -357,6 +357,37 @@ table.comparison-table {
       }
     }
 
+    td.game {
+      margin: auto;
+      padding: 7px 10px;
+      height: 50px;
+      min-width: 60px;
+    }
+
+    td.game-dark-red {
+      background-color: $gameDifficultDarkRed;
+    }
+
+    td.game-red {
+      background-color: $gameDifficultRed;
+    }
+
+    td.game-orange {
+      background-color: $gameDifficultOrange;
+    }
+
+    td.game-yellow {
+      background-color: $gameDifficultYellow;
+    }
+
+    td.game-green-light {
+      background-color: $gameDifficultLightGreen;
+    }
+
+    td.game-green {
+      background-color: $gameDifficultGreen;
+    }
+
     td.bolder {
       font-weight: 600;
     }

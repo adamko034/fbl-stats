@@ -1,26 +1,32 @@
 <app-white-block *ngIf="calculations">
-  <div>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
     <app-switch
       name="fixturesDifficultyCalculation"
       [items]="calculations"
       [value]="filters.calculation"
       (switchChange)="onCalculationChange($event)"
     ></app-switch>
-    <app-include-future-matchdays-dropdown
-      [value]="filters.matchdays"
-      (change)="onMatchdaysChange($event)"
-    ></app-include-future-matchdays-dropdown>
-    <app-include-past-matchdays-dropdown
-      *ngIf="filters.calculation === byForm"
-      [value]="filters.formMatchdays"
-      (change)="onFormMatchdaysChange($event)"
-    ></app-include-past-matchdays-dropdown>
-    <mat-checkbox
-      ngClass.lt-sm="bold"
-      labelPosition="before"
-      (change)="onIncludeVenuChange($event)"
-      [ngModel]="filters.includeVenue"
-      >Inlude game venue in calculation</mat-checkbox
-    >
+
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <app-include-future-matchdays-dropdown
+        [value]="filters.matchdays"
+        (change)="onMatchdaysChange($event)"
+      ></app-include-future-matchdays-dropdown>
+
+      <app-include-past-matchdays-dropdown
+        *ngIf="filters.calculation === byForm"
+        [value]="filters.formMatchdays"
+        [title]="'Form includes'"
+        (change)="onFormMatchdaysChange($event)"
+      ></app-include-past-matchdays-dropdown>
+
+      <mat-checkbox
+        ngClass.lt-sm="bold"
+        labelPosition="before"
+        (change)="onIncludeVenuChange($event)"
+        [ngModel]="filters.includeVenue"
+        >Inlude game venue in calculation</mat-checkbox
+      >
+    </div>
   </div>
 </app-white-block>

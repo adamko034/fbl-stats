@@ -5,4 +5,6 @@ export interface FixturesDifficultyTeam {
   index: number;
   rank: number;
   fixtures: FixturesDifficultyTeamGame[];
+  value: number;
+  color: string;
 }

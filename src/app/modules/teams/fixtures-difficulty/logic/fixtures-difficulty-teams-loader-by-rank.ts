@@ -16,14 +16,18 @@ export class FixturesDifficultyTeamsLoaderByRank implements IFixturesDifficultyT
     return new ArrayStream<Team>(teams)
       .convertQuick((team) => {
         const fixtures = this.getFixtures(team, filters, nextMatchday);
+        const index = new ArrayStream<FixturesDifficultyTeamGame>(fixtures).sumBy((f) => f.index);
 
         return {
           teamShort: team.shortName,
           rank: team.rank,
           fixtures,
-          index: this.calculateIndex(team.rank)
+          index,
+          value: team.rank,
+          color: this.fixturesDifficultyColorService.getColor(this.calculateIndex(team.rank))
         };
       })
+      .orderByThenBy({ field: 'index', order: 'dsc' }, { field: 'rank', order: 'asc' })
       .collect();
   }
 

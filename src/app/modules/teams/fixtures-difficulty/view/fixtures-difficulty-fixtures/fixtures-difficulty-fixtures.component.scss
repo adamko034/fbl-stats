@@ -1,0 +1,23 @@
+table {
+  tr {
+    td.game {
+      padding: 7px 10px 5px 10px;
+
+      .icons {
+        height: 15px;
+      }
+    }
+
+    td.title {
+      text-align: center;
+    }
+
+    td.value {
+      padding: 7px 13px;
+    }
+  }
+}
+
+.values {
+  margin-left: 20px;
+}

@@ -93,6 +93,7 @@ import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
 import { ValueDifferenceComponent } from './components/value-difference/value-difference.component';
 import { AuthenticatedDirective } from './directives/authenticated.directive';
+import { HorizontalTopScrollbarDirective } from './directives/horizontal-top-scrollbar.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { ScaleDirective } from './directives/scale.directive';
 import { SizeDirective } from './directives/size.directive';
@@ -200,7 +201,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     IncludeFutureMatchdaysDropdownComponent,
     IncludePastMatchdaysDropdownComponent,
     PostponedGameIconComponent,
-    NullableTextPipe
+    NullableTextPipe,
+    HorizontalTopScrollbarDirective
   ],
   imports: [
     CommonModule,
@@ -289,7 +291,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     IncludeFutureMatchdaysDropdownComponent,
     IncludePastMatchdaysDropdownComponent,
     PostponedGameIconComponent,
-    NullableTextPipe
+    NullableTextPipe,
+    HorizontalTopScrollbarDirective
   ]
 })
 export class SharedModule {
