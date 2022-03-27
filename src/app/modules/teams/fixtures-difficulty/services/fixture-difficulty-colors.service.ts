@@ -17,8 +17,4 @@ export class FixtureDifficultyColorsService {
       (key) => this.colors[key].min <= indexValue && this.colors[key].max >= indexValue
     );
   }
-
-  public getAllColorsSorted(): string[] {
-    return Object.keys(this.colors);
-  }
 }

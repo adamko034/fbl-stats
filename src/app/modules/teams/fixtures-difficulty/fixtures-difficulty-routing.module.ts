@@ -12,29 +12,6 @@ const routes: Routes = [
   }
 ];
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: FixturesDifficultyContentComponent,
-//     children: [
-//       { path: '', redirectTo: 'byRank', pathMatch: 'full' },
-//       {
-//         path: 'byRank',
-//         runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-//         component: FixturesDifficultyByRankComponent,
-//         resolve: { state: FixturesDifficultyByRankResolver }
-//       },
-//       {
-//         path: 'byForm',
-//         canActivate: [FixturesByFormMatchdaysGuard],
-//         runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-//         component: FixturesDifficultyByFormComponent,
-//         resolve: { state: FixturesDifficultyByFormResolver }
-//       }
-//     ]
-//   }
-// ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
