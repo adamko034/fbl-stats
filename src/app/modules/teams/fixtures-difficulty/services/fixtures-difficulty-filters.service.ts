@@ -8,7 +8,7 @@ export class FixturesDifficultyFiltersService {
   private _defaults: FixturesDifficultyFilters = {
     calculation: FixturesDifficultyCalculation.BY_RANK,
     includeVenue: false,
-    matchdays: 4,
+    matchdays: 3,
     formMatchdays: 4
   };
 

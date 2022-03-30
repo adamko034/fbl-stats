@@ -19,6 +19,7 @@ export class MyTeamKickOffTimesComponent implements OnChanges, OnInit {
 
   private _matchdaysFixtures: MatchdayFixtures[] = [];
   public get matchdaysFixtures(): MatchdayFixtures[] {
+    Logger.logDev(`my team kick off times component, got matchday fixtures ${this._matchdaysFixtures.length}`);
     return this._matchdaysFixtures;
   }
 
@@ -52,7 +53,9 @@ export class MyTeamKickOffTimesComponent implements OnChanges, OnInit {
   }
 
   private setIncludedMatchdaysFixtures() {
-    Logger.logDev('my team kick off times, filtering matchdays');
+    Logger.logDev(
+      `my team kick off times, filtering matchdays, got all:${this.nextMatchdaysFixtures.length}, last known matchday: ${this.lastKnownMatchday} `
+    );
     let stream = new ArrayStream<MatchdayFixtures>(this.nextMatchdaysFixtures)
       .filterQuick((f) => f.matchdayNumber <= this.lastKnownMatchday)
       .orderBy('matchdayNumber', 'asc');

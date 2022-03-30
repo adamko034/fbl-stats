@@ -28,7 +28,7 @@ export class MyTeamStore {
 
   public load(): void {
     if (!this.state.loaded) {
-      Logger.logDev('my team store, data not loaded, loading from local storage');
+      Logger.logDev('my team store, data not loaded yet, loading ...');
       combineLatest([
         this.playersStore.selectPlayers(),
         this.guiConfigStore.selectMyTeamPlayerIds(),
@@ -47,7 +47,9 @@ export class MyTeamStore {
             });
           }
 
-          Logger.logDev(`my team store, loaded, players count ${myTeamPlayers.length}`);
+          Logger.logDev(
+            `my team store, loaded, my team players count ${myTeamPlayers.length}, all players count ${allPlayers.length}`
+          );
           this.state = { loaded: true, allPlayers, myTeamPlayers, kickOffTimesMatchdays: kickOffTimesMatchdays ?? 3 };
           this.send();
         });
@@ -70,14 +72,16 @@ export class MyTeamStore {
 
   public add(playerId: string) {
     Logger.logDev(`my team store, adding player, player id: ${playerId}`);
-    const player = this.state.allPlayers.find((p) => p.id.toString() === playerId);
+    const player = this.state.allPlayers.find((p) => p.id.toString() == playerId);
 
-    if (player) {
-      Logger.logDev(`my team store, adding player, player name: ${player.name}`);
-      this.state.myTeamPlayers = [...this.state.myTeamPlayers, player];
-      this.store();
-      this.send();
+    if (!player) {
+      Logger.logDev(`my team store, player with id ${playerId} not found`);
+      return;
     }
+
+    this.state.myTeamPlayers = [...this.state.myTeamPlayers, player];
+    this.store();
+    this.send();
   }
 
   public remove(playerId: string) {
