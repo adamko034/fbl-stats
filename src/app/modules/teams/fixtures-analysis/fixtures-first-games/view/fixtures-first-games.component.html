@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutGap="20px" *ngIf="state$ | async">
+  <app-fixtures-first-games-filters [filters]="state$ | async | field: 'filters'"></app-fixtures-first-games-filters>
+  <app-white-block>
+    <div fxLayout="row" fxLayoutGap="30px">
+      <app-fixtures-first-games-teams></app-fixtures-first-games-teams>
+      <app-fixtures-first-games-matchdays></app-fixtures-first-games-matchdays>
+    </div>
+  </app-white-block>
+  <app-fixtures-first-games-fixtures></app-fixtures-first-games-fixtures>
+</div>

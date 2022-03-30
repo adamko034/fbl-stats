@@ -30,8 +30,7 @@ export class Navigation {
       children: [
         { order: 1, text: 'Predicted lineups', path: 'teams/lineups', icon: 'reduce_capacity' },
         { order: 2, path: 'teams/bundesliga', text: 'Bundesliga', icon: 'emoji_events' },
-        { order: 3, path: 'teams/firstgames', text: 'First games', icon: 'repeat_one' },
-        { order: 4, path: 'teams/fixturesdifficulty', text: 'Fixtures difficulty', icon: 'dynamic_form' }
+        { order: 4, path: 'teams/fixturesanalysis', text: 'Fixtures analysis', icon: 'dynamic_form' }
       ]
     },
     {

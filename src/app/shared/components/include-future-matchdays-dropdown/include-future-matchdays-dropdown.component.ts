@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { UnlimitedTransfersService } from 'src/app/modules/core/properties/unlimited-transfers/unlimited-transfers.service';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
@@ -11,11 +11,15 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IncludeFutureMatchdaysDropdownComponent implements OnInit {
-  @Input() value: number;
+  @Input() set value(val: number) {
+    this._valueInternal$.next(val);
+  }
   @Input() title = 'Include next matchdays';
   @Output() change = new EventEmitter<number>();
 
-  public valueInternal$: Subject<number> = new Subject<number>();
+  private _valueInternal$: ReplaySubject<number> = new ReplaySubject<number>(1);
+
+  public valueInternal$: Observable<number>;
   public mdsUntilNextUnlimitedTransfers$: Observable<number>;
   public isNextUnlimitedTransfers$: Observable<boolean>;
   public possibleNextMatchdays$: Observable<number[]>;
@@ -26,6 +30,13 @@ export class IncludeFutureMatchdaysDropdownComponent implements OnInit {
     this.isNextUnlimitedTransfers$ = this.unlimitedTranfsersService.isNext;
     this.mdsUntilNextUnlimitedTransfers$ = this.unlimitedTranfsersService.matchdaysUntilNext;
     this.setPossibleNextMatchdays();
+
+    this.valueInternal$ = this._valueInternal$.pipe(
+      withLatestFrom(this.unlimitedTranfsersService.matchdaysUntilNext),
+      map(([mdsUntilNextUnlimitedTransfers, valueInternal]) =>
+        valueInternal === 0 ? mdsUntilNextUnlimitedTransfers : valueInternal
+      )
+    );
   }
 
   public onMatchdaysCountChange(value: number): void {
