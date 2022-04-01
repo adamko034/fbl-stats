@@ -23,4 +23,5 @@ export interface MatchdayTipsOurPicksPlayer {
   matchdays: MatchdayTipsOurPicksPlayerMatchday[];
   prediction: PlayerAttendancePrediction;
   totalPoints: number;
+  isAvailable: boolean;
 }

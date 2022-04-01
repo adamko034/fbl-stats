@@ -56,6 +56,7 @@ export class MatchdayTipsOurPicksPlayerLoader {
       matchdays,
       prediction: this.predictionService.determine(player.nextGame),
       totalPoints: player.totalPoints,
+      isAvailable: player.attendance === 1,
       nextGame: this.getNextGame(ourPicksTeam.nextGames)
     };
   }

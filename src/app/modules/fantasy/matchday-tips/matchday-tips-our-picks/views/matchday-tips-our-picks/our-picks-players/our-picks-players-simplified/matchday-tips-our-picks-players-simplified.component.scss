@@ -1,3 +1,5 @@
+@import '/src/variables.scss';
+
 table {
   border-spacing: 0;
   border-radius: 15px;
@@ -38,6 +40,10 @@ table {
         font-size: 12px;
       }
     }
+  }
+
+  tr.unavailable {
+    background-color: rgba($color: $colorRed, $alpha: 0.2);
   }
 
   tr:not(:last-child) {

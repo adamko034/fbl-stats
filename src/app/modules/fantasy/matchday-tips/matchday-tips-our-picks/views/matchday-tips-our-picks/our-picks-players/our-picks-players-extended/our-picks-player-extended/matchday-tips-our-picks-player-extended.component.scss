@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+.unavailable {
+  background-color: rgba($color: $colorRed, $alpha: 0.2);
+}
+
 .player {
   font-size: $fontSizeSmall;
 

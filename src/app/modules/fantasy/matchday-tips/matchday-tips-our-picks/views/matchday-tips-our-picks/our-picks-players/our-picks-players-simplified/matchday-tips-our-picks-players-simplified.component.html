@@ -1,7 +1,7 @@
 <div *ngIf="playersFound" fxLayoutAlign="center">
   <table ngClass.lt-md="table-mobile">
     <tbody>
-      <tr *ngFor="let player of ourPicks.players">
+      <tr *ngFor="let player of ourPicks.players" [ngClass]="{ unavailable: !player.isAvailable }">
         <td class="order" *ngIf="!(isMobile$ | async)">
           <div *ngIf="player.order <= 3">
             <fa-icon [icon]="['fas', 'medal']" class="order-image" [appMedalColor]="player.order"></fa-icon>
@@ -11,9 +11,10 @@
         <td class="name">
           <div fxLayoutGap="5px" fxLayoutAlign="start center">
             <app-team-logo [team]="player.team.teamShort" [height]="25"></app-team-logo>
-            <span fxFlex class="bold"
-              ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
-            ></span>
+            <div fxLayoutAlign="start center" fxFlex class="bold">
+              <app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link>
+              <mat-icon *ngIf="!player.isAvailable" appScale="0.8" class="red">not_interested</mat-icon>
+            </div>
           </div>
         </td>
         <td>
