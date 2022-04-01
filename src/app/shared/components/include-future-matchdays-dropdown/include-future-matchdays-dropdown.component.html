@@ -1,6 +1,6 @@
-<mat-form-field *ngIf="valueInternal$ | async" class="select">
+<mat-form-field *ngIf="(valueInternal$ | async) && possibleNextMatchdays$ | async" class="select">
   <mat-label>{{ title }}</mat-label>
-  <mat-select [value]="valueInternal$ | async" (valueChange)="onMatchdaysCountChange($event)">
+  <mat-select [ngModel]="valueInternal$ | async" (valueChange)="onMatchdaysCountChange($event)">
     <mat-option *ngFor="let md of possibleNextMatchdays$ | async" [value]="md">
       <span *ngIf="md === (mdsUntilNextUnlimitedTransfers$ | async); else otherMd">
         <span *ngIf="isNextUnlimitedTransfers$ | async">Until Unlimited Transfers</span>

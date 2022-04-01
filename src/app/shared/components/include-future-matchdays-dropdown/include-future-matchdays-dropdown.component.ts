@@ -3,6 +3,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { UnlimitedTransfersService } from 'src/app/modules/core/properties/unlimited-transfers/unlimited-transfers.service';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
+import { Logger } from 'src/app/utils/logger';
 
 @Component({
   selector: 'app-include-future-matchdays-dropdown',
@@ -12,6 +13,7 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
 })
 export class IncludeFutureMatchdaysDropdownComponent implements OnInit {
   @Input() set value(val: number) {
+    Logger.logDev('include future matchdays dropdown, got new value: ' + val);
     this._valueInternal$.next(val);
   }
   @Input() title = 'Include next matchdays';
@@ -33,9 +35,9 @@ export class IncludeFutureMatchdaysDropdownComponent implements OnInit {
 
     this.valueInternal$ = this._valueInternal$.pipe(
       withLatestFrom(this.unlimitedTranfsersService.matchdaysUntilNext),
-      map(([mdsUntilNextUnlimitedTransfers, valueInternal]) =>
-        valueInternal === 0 ? mdsUntilNextUnlimitedTransfers : valueInternal
-      )
+      map(([valueInternal, mdsUntilNextUnlimitedTransfers]) => {
+        return valueInternal === 0 ? mdsUntilNextUnlimitedTransfers : valueInternal;
+      })
     );
   }
 

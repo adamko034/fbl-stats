@@ -1,10 +1,15 @@
 <div fxLayout="column" fxLayoutGap="20px" *ngIf="state$ | async">
   <app-fixtures-first-games-filters [filters]="state$ | async | field: 'filters'"></app-fixtures-first-games-filters>
-  <app-white-block>
-    <div fxLayout="row" fxLayoutGap="30px">
-      <app-fixtures-first-games-teams></app-fixtures-first-games-teams>
-      <app-fixtures-first-games-matchdays></app-fixtures-first-games-matchdays>
+  <app-white-block padding="10px 0 10px 0">
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+      <app-fixtures-first-games-teams
+        [teams]="state$ | async | field: 'teams'"
+        [filters]="state$ | async | field: 'filters'"
+        [nextMatchday]="state$ | async | field: 'nextMatchday'"
+      ></app-fixtures-first-games-teams>
+      <app-fixtures-first-games-matchdays
+        [matchdays]="state$ | async | field: 'matchdays'"
+      ></app-fixtures-first-games-matchdays>
     </div>
   </app-white-block>
-  <app-fixtures-first-games-fixtures></app-fixtures-first-games-fixtures>
 </div>

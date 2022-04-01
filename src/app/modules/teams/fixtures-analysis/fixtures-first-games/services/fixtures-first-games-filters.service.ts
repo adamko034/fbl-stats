@@ -11,10 +11,15 @@ export class FixturesFirstGamesFiltersService {
   constructor(private router: Router) {}
 
   public fromQueryParams(queryParams: Params): FixturesFirstGamesFilters {
-    const { matchdays } = queryParams;
+    let matchdays = this._defaults.matchdays;
+    const matchdaysString = queryParams.matchdays;
+
+    if (matchdaysString && !isNaN(+matchdaysString)) {
+      matchdays = +matchdaysString;
+    }
 
     return {
-      matchdays: matchdays ?? this._defaults.matchdays
+      matchdays
     };
   }
 

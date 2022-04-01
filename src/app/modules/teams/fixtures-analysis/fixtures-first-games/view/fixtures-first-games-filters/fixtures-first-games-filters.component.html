@@ -1,6 +1,8 @@
-fasdf
-
-<app-include-future-matchdays-dropdown
-  [value]="filters.matchdays"
-  (change)="onMatchdaysChanged($event)"
-></app-include-future-matchdays-dropdown>
+<app-white-block padding="10px 10px 0 10px">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <app-include-future-matchdays-dropdown
+      [value]="filters.matchdays"
+      (change)="onMatchdaysChanged($event)"
+    ></app-include-future-matchdays-dropdown>
+  </div>
+</app-white-block>

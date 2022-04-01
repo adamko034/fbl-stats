@@ -1,1 +1,32 @@
-<p>fixtures-first-games-matchdays works!</p>
+<div>
+  <app-title-underlined-grey>
+    <span title>Matchdays first games ({{ matchdaysRangeString }})</span>
+    <table content class="comparison-table">
+      <tr>
+        <td>Matchday</td>
+        <td>Games</td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let matchday of matchdays">
+        <td>
+          <span>{{ matchday.matchday }}</span>
+        </td>
+        <td>
+          <div fxLayout="column" fxLayoutGap="4px">
+            <div fxLayout="row" *ngFor="let game of matchday.games" fxLayoutGap="7px">
+              <app-team-logo [team]="game.teamHomeShort" [height]="22"></app-team-logo>
+              <span>-</span>
+              <app-team-logo [team]="game.teamAwayShort" [height]="22"></app-team-logo>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div fxLayout="row wrap" fxLayoutGap="3px">
+            <span>{{ matchday.date | epochDate | date: 'EEEE HH:mm' }}</span>
+            <span>{{ matchday.date | epochDate | date: 'dd.MM.yyyy' }}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </app-title-underlined-grey>
+</div>

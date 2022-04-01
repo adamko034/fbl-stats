@@ -1,1 +1,25 @@
-<p>fixtures-first-games-teams works!</p>
+<div *ngIf="teams && nextMatchday != 0 && filters">
+  <app-title-underlined-grey>
+    <span title>Teams first games ({{ mdsRangeString }})</span>
+    <table content class="comparison-table">
+      <tr>
+        <td>Team</td>
+        <td>Count</td>
+        <td></td>
+      </tr>
+      <tr *ngFor="let team of teams | orderBy: '-firstGamesCount'">
+        <td>
+          <app-team-logo [team]="team.teamShort" [height]="20"></app-team-logo>
+        </td>
+        <td>
+          <span>{{ team.firstGamesCount }}</span>
+        </td>
+        <td>
+          <div fxLayout="row" fxLayoutGap="7px">
+            <span class="md" *ngFor="let md of team.mds | orderBy">MD {{ md }}</span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </app-title-underlined-grey>
+</div>

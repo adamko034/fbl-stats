@@ -6,4 +6,5 @@ export interface FixturesFirstGamesState {
   teams: FixturesFirstGamesTeam[];
   matchdays: FixturesFirstGamesMatchday[];
   filters: FixturesFirstGamesFilters;
+  nextMatchday: number;
 }
