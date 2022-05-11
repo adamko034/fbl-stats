@@ -1,6 +1,6 @@
 <app-white-block *ngIf="mds" padding="0 10px 10px 10px">
   <div fxLayout="row wrap" fxLayoutAlign="center start">
-    <div appStickyWrapper appHorizontalTopScrollbar>
+    <div [appStickyWrapper]="{ hideY: true }" appHorizontalTopScrollbar class="container">
       <table class="comparison-table">
         <tr>
           <td [appSticky]="{ position: 'left' }"></td>

@@ -10,7 +10,8 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
 export class FixturesAnalysisComponent implements OnInit {
   private _links: ViewTabNavigationLink[] = [
     { order: 1, label: 'Difficulty', labelMobile: 'Difficulty', routerLink: 'difficulty' },
-    { order: 2, label: 'First games', labelMobile: 'First games', routerLink: 'firstgames' }
+    { order: 2, label: 'Kickoff times', labelMobile: 'Kickoff times', routerLink: 'kickofftimes' },
+    { order: 3, label: 'First games', labelMobile: 'First games', routerLink: 'firstgames' }
   ];
 
   public get links(): ViewTabNavigationLink[] {

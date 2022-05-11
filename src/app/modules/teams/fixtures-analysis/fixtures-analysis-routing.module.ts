@@ -21,6 +21,11 @@ const routes: Routes = [
         path: 'firstgames',
         loadChildren: () =>
           import('./fixtures-first-games/fixtures-first-games.module').then((m) => m.FixturesFirstGamesModule)
+      },
+      {
+        path: 'kickofftimes',
+        loadChildren: () =>
+          import('./fixtures-kickoff-times/fixtures-kickoff-times.module').then((m) => m.FixturesKickoffTimesModule)
       }
     ]
   }
