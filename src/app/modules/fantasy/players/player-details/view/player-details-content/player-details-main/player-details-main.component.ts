@@ -43,7 +43,7 @@ export class PlayerDetailsMainComponent {
           { order: 1, text: this.player?.fantasy.popularity.toString(), subtext: '%' },
           { order: 2, text: this.player?.fantasy.top100Popularity.toString(), subtext: 'top100 %' },
           { order: 2, text: this.player?.fantasy.top500Popularity.toString(), subtext: 'top500 %' },
-          { order: 3, text: this.player?.fantasy.lastMD.toString(), subtext: 'last MD' },
+          { order: 3, text: this.player?.fantasy.lastMD?.toString() || 'x', subtext: 'last MD' },
           { order: 2, text: this.player?.fantasy.pointsPer1M.toString(), subtext: 'pts/1M' }
         ]
       }
