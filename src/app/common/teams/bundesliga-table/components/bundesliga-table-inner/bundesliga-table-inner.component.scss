@@ -1,0 +1,47 @@
+@import '/src/variables.scss';
+
+.bundesliga-table-container {
+  overflow-x: auto;
+
+  table.table-max-width {
+    max-width: 770px;
+  }
+
+  table {
+    font-size: $fontSizeSmall;
+    min-width: 770px;
+
+    th.mat-table-sticky {
+      top: unset !important;
+    }
+
+    tr {
+      td {
+        font-size: $fontSizeSmall;
+      }
+
+      th:first-child,
+      td:first-child {
+        padding-left: 0;
+      }
+
+      th:last-child,
+      td:last-child {
+        width: 40px;
+        padding-right: 0;
+      }
+
+      td.rank {
+        text-align: center;
+
+        .rank-diff {
+          padding-top: 3px;
+        }
+
+        .rank-diff-no-change {
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+}

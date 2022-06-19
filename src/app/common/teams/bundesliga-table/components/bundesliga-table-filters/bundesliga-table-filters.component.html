@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
+  <app-venue-switch
+    *ngIf="config.showVenueFilter"
+    [value]="filters.venue"
+    (change)="onVenueChange($event)"
+  ></app-venue-switch>
+
+  <app-select-matchdays-panel
+    [lastMatchday]="lastMatchday"
+    [value]="filters.matchdays"
+    (change)="onMatchdaysChange($event)"
+  ></app-select-matchdays-panel>
+</div>

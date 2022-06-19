@@ -1,0 +1,38 @@
+@import '/src/variables.scss';
+
+.game-result {
+  padding: 2px 0;
+  color: $colorWhite;
+  font-weight: normal;
+
+  display: inline-flex;
+  justify-content: center;
+
+  &-dot {
+    border-radius: 50%;
+    width: 16px;
+    height: 14px;
+
+    &-small {
+      width: 13px;
+      height: 10px;
+    }
+
+    &-supersmall {
+      width: 10px;
+      height: 6px;
+    }
+  }
+
+  &-green {
+    background-color: $colorGreenDark;
+  }
+
+  &-red {
+    background-color: $colorRed;
+  }
+
+  &-orange {
+    background-color: $colorOrange;
+  }
+}

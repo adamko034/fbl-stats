@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map } from 'rxjs/operators';
@@ -37,7 +37,7 @@ export class HistorySummaryLineupComponent implements OnInit {
   public lineup: Lineup;
   public team: { [position: string]: HistoryPlayer[] };
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private _changeDetection: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.route.data
@@ -48,6 +48,7 @@ export class HistorySummaryLineupComponent implements OnInit {
       .subscribe((history: History) => {
         this.allPlayers = [...history.players];
         this.setLineup();
+        this._changeDetection.detectChanges();
       });
   }
 

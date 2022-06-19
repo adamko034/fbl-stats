@@ -1,0 +1,30 @@
+<div
+  class="dropdown"
+  fxLayout="row"
+  fxLayoutAlign="space-around center"
+  (click)="toggle()"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+>
+  <span class="dropdown-title">{{ title }}</span>
+  <mat-icon *ngIf="!opened" class="dropdown-icon">expand_more</mat-icon>
+  <mat-icon *ngIf="opened" class="dropdown-icon">expand_less</mat-icon>
+</div>
+<!-- <button (click)="isOpen = !isOpen" type="button" >
+  {{ isOpen ? 'Close' : 'Open' }}
+</button> -->
+
+<!-- This template displays the overlay content and is connected to the button -->
+<ng-template
+  cdkConnectedOverlay
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="opened"
+  (backdropClick)="close()"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  (detach)="close()"
+>
+  <div class="dropdown-content">
+    <ng-content></ng-content>
+  </div>
+</ng-template>

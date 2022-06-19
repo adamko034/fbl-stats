@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 
 @Component({
@@ -8,26 +7,14 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
   styleUrls: ['./history-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HistoryContentComponent implements OnInit {
+export class HistoryContentComponent {
   private _links: ViewTabNavigationLink[] = [
-    { label: 'Players', labelMobile: `${this.season} players`, order: 2, routerLink: 'players' },
-    { label: 'Bundesliga', labelMobile: `${this.season} Bundesliga`, order: 3, routerLink: 'bundesliga' },
-    { label: 'Summary', labelMobile: `${this.season} summary`, order: 1, routerLink: 'summary' }
+    { label: 'Players', labelMobile: 'Players', order: 2, routerLink: 'players' },
+    { label: 'Bundesliga', labelMobile: 'Bindesliga', order: 3, routerLink: 'bundesliga' },
+    { label: 'Summary', labelMobile: 'Summary', order: 1, routerLink: 'summary' }
   ];
 
   public get links(): ViewTabNavigationLink[] {
     return this._links;
   }
-
-  public get season(): string {
-    const seasonFromPath: string = this.route.snapshot.params.season;
-    return seasonFromPath
-      .split('-')
-      .map((short) => `20${short}`)
-      .join('-');
-  }
-
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {}
 }

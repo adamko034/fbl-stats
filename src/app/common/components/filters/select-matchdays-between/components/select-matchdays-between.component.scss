@@ -1,0 +1,12 @@
+@import '/src/variables.scss';
+
+.md-field {
+  width: 55px;
+}
+
+button {
+  font-size: $fontSizeSmall;
+  line-height: unset;
+  font-weight: normal;
+  padding: 2px 12px;
+}

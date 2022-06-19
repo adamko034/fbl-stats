@@ -186,6 +186,10 @@ export class ArrayStream<T> {
     return this.array.filter(predicate).length;
   }
 
+  public join(separator?: string): string {
+    return this.array.join(separator);
+  }
+
   public collect(): T[] {
     return this.array;
   }

@@ -1,0 +1,19 @@
+<div fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="7px">
+    <span>Between</span>
+    <mat-form-field class="md-field" appearance="standard">
+      <mat-label>From</mat-label>
+      <input matInput [(ngModel)]="from" type="number" min="1" [max]="to - 1" />
+      <span matSuffix>MD</span>
+    </mat-form-field>
+    <span> and </span>
+    <mat-form-field class="md-field" appearance="standard">
+      <mat-label>To</mat-label>
+      <input matInput [(ngModel)]="to" type="number" [min]="from + 1" [max]="lastMatchday" />
+      <span matSuffix>MD</span>
+    </mat-form-field>
+  </div>
+  <div fxFlexAlign="end">
+    <button mat-stroked-button (click)="apply()" [disabled]="!saveEnabled">Apply</button>
+  </div>
+</div>

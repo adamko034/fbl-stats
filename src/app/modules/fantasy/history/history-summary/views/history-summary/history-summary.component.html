@@ -1,6 +1,4 @@
 <div fxLayout="column" fxLayoutGap="20px">
-  <div fxLayout="column" fxFlexOffset="15px">
-    <h2>Team of the Season</h2>
-    <app-history-summary-lineup></app-history-summary-lineup>
-  </div>
+  <app-title [text]="title$ | async"></app-title>
+  <app-history-summary-lineup></app-history-summary-lineup>
 </div>

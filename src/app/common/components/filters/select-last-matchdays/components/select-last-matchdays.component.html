@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Include last matchdays</mat-label>
+  <mat-select [value]="value" (valueChange)="onMatchdaysChange($event)">
+    <mat-option [value]="lastMatchday">All matchdays</mat-option>
+    <mat-option *ngFor="let md of values" [value]="md">
+      <span>Last {{ md }}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

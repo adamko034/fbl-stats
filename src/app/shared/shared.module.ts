@@ -40,9 +40,6 @@ import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.c
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
 import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
-import { BundesligaTableFiltersComponent } from './components/bundesliga-table/bundesliga-table-filters/bundesliga-table-filters.component';
-import { BundesligaTableInnerComponent } from './components/bundesliga-table/bundesliga-table-inner/bundesliga-table-inner.component';
-import { BundesligaTableComponent } from './components/bundesliga-table/bundesliga-table.component';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
@@ -170,9 +167,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SliderMaxPopularityComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    BundesligaTableComponent,
-    BundesligaTableFiltersComponent,
-    BundesligaTableInnerComponent,
     PieChartComponent,
     TimeAgoComponent,
     PlayersTableGenericComponent,
@@ -268,7 +262,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SliderMaxPriceComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    BundesligaTableComponent,
     PieChartComponent,
     TimeAgoComponent,
     PlayersTableGenericComponent,

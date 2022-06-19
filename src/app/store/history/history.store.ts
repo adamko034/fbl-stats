@@ -3,8 +3,8 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { Logger } from 'src/app/utils/logger';
 import { FilesService } from '../files.service';
-import { HistoryBundesligaTeam } from './models/history-bundesliga-team.model';
 import { HistoryPlayer } from './models/history-player.model';
+import { HistoryTeam } from './models/history-team.model';
 import { History } from './models/history.model';
 
 @Injectable({ providedIn: 'root' })
@@ -30,16 +30,16 @@ export class HistoryStore {
     }
   }
 
-  public loadBundesligaTeams(season: string): void {
-    if (!this.state[season] || !this.state[season].bundesligaTeams) {
+  public loadTeams(season: string): void {
+    if (!this.state[season] || !this.state[season].teams) {
       Logger.logDev(`history state, loading season ${season} bundesliga from file`);
-      const filePath = `\\history\\${season}\\bundesliga`;
+      const filePath = `\\history\\${season}\\teams`;
 
       this.filesService
-        .getJson<HistoryBundesligaTeam>(filePath)
+        .getJson<HistoryTeam>(filePath)
         .pipe(first())
-        .subscribe((bundesligaTeams) => {
-          this.state[season] = { ...this.state[season], season, bundesligaTeams };
+        .subscribe((teams) => {
+          this.state[season] = { ...this.state[season], season, teams };
           this.send();
         });
     }
