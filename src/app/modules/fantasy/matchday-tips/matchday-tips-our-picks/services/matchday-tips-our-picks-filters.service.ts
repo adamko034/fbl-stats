@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { startWith } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { MatchdayTipsOurPicksFilters } from '../models/matchday-tips-our-picks-filters.model';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class MatchdayTipsOurPicksFiltersService {
     return this.filters$.pipe(startWith({}));
   }
 
-  public updatePosition(newPosition: PlayerPosition): void {
+  public updatePosition(newPosition: Position): void {
     this.filters.position = newPosition;
     this.send();
   }

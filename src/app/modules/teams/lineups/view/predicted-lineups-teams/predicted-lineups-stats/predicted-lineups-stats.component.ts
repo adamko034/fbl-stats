@@ -3,12 +3,12 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { PlayerSourceLineupPrediction } from 'src/app/common/players/models/player-source-lineup-prediction.enum';
+import { PlayersFilterPrediciton } from 'src/app/common/players/models/players-filter-prediction.enum';
 import { PlayersFilterAvailbility } from 'src/app/modules/core/players/filter/filters/players-filter-availability';
 import { PlayersFilterNextGameNotPostponed } from 'src/app/modules/core/players/filter/filters/players-filter-next-game-not-postopned';
 import { PlayersFilterPrediction } from 'src/app/modules/core/players/filter/filters/players-filter-prediction';
-import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
-import { PlayersPrediciton } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { Player } from 'src/app/store/players/models/player.model';
@@ -49,7 +49,7 @@ export class PredictedLineupsStatsComponent implements OnInit {
           started: this.filterPlayers(
             data.players,
             sort.started,
-            new PlayersFilterPrediction(PlayersPrediciton.WillPlay)
+            new PlayersFilterPrediction(PlayersFilterPrediciton.PLAY)
           ),
           unavailable: this.filterPlayers(
             data.players,
@@ -61,19 +61,23 @@ export class PredictedLineupsStatsComponent implements OnInit {
             data.players,
             sort.benched,
             new PlayersFilterAvailbility(true),
-            new PlayersFilterPrediction(PlayersPrediciton.Benched)
+            new PlayersFilterPrediction(PlayersFilterPrediciton.BENCHED)
           ),
-          varied: this.filterPlayers(data.players, sort.varied, new PlayersFilterPrediction(PlayersPrediciton.Varied))
+          varied: this.filterPlayers(
+            data.players,
+            sort.varied,
+            new PlayersFilterPrediction(PlayersFilterPrediciton.VARIED)
+          )
         };
       })
     );
   }
 
-  public getPrediction(player: Player, source: string): PlayerAttendancePrediction {
+  public getPrediction(player: Player, source: string): PlayerSourceLineupPrediction {
     var predictions = player.nextGame?.lineupPredictions?.filter((l) => l.source === source);
 
     if (!predictions || predictions.length === 0) {
-      return PlayerAttendancePrediction.UnknownYet;
+      return PlayerSourceLineupPrediction.UNKNOWN;
     }
 
     return predictions[0].attendance;

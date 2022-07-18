@@ -15,8 +15,16 @@ export class HistoryStore {
 
   constructor(private filesService: FilesService) {}
 
-  public loadPlayers(season: string): void {
-    if (!this.state[season] || !this.state[season].players) {
+  public loadSeason(season: string): void {
+    if (!this.state[season]) {
+      Logger.logDev(`history state, loading season ${season}...`);
+      this.loadPlayers(season);
+      this.loadTeams(season);
+    }
+  }
+
+  private loadPlayers(season: string): void {
+    if (!this.state[season]?.players) {
       Logger.logDev(`history state, loading season ${season} players from file`);
       const filePath = `\\history\\${season}\\players`;
 
@@ -30,8 +38,8 @@ export class HistoryStore {
     }
   }
 
-  public loadTeams(season: string): void {
-    if (!this.state[season] || !this.state[season].teams) {
+  private loadTeams(season: string): void {
+    if (!this.state[season]?.teams) {
       Logger.logDev(`history state, loading season ${season} bundesliga from file`);
       const filePath = `\\history\\${season}\\teams`;
 

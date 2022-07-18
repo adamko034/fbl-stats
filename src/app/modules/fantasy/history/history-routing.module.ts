@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HistoryContentComponent } from './views/history-content/history-content.component';
+import { HistorySeasonLoadedGuard } from './routing/history-season-loaded.guard';
+import { HistorySeasonResolver } from './routing/history-season.resolver';
+import { HistoryContentComponent } from './views/history-content.component';
 
 const routes: Routes = [
   {
     path: ':season',
     component: HistoryContentComponent,
+    canActivate: [HistorySeasonLoadedGuard],
+    resolve: { history: HistorySeasonResolver },
     children: [
       {
         path: '',

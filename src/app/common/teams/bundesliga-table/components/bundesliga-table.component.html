@@ -1,7 +1,7 @@
-<div fxLayout="column" fxLayoutGap="20px">
+<div fxLayout="column">
   <app-title *ngIf="state.config.showTitle" [text]="title"></app-title>
   <app-content-white-block>
-    <div fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout="column" fxLayoutGap="10px">
       <app-bundesliga-table-filters
         [config]="state.config"
         [filters]="filters | async"

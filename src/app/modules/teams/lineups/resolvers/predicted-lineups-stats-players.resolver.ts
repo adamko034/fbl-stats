@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
-import { PlayersPrediciton } from 'src/app/modules/fantasy/players/overall/models/players-filters';
+import { PlayersFilterPrediciton } from 'src/app/common/players/models/players-filter-prediction.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
@@ -61,13 +61,13 @@ export class PredictedLineupsStasPlayersResolver implements Resolve<PredictedLin
 
   private getBenchedPlayers(availablePlayers: Player[]): Player[] {
     return new ArrayStream<Player>(availablePlayers)
-      .filter(new PlayersFilterPrediction(PlayersPrediciton.Benched))
+      .filter(new PlayersFilterPrediction(PlayersFilterPrediciton.BENCHED))
       .collect();
   }
 
   private getDoubtsPlayers(availablePlayers: Player[]): Player[] {
     return new ArrayStream<Player>(availablePlayers)
-      .filter(new PlayersFilterPrediction(PlayersPrediciton.Varied))
+      .filter(new PlayersFilterPrediction(PlayersFilterPrediciton.VARIED))
       .collect();
   }
 

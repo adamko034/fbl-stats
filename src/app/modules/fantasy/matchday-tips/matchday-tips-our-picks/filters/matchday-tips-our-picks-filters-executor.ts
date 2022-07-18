@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
 import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { MatchdayTipsOurPicksFilters } from '../models/matchday-tips-our-picks-filters.model';
 import { MatchdayTipsOurPicksPositionFilter } from './matchday-tips-our-picks-position.filter';
 import { MatchdayTipsOurPicksTypesFilter } from './matchday-tips-our-picks-types.filters';
@@ -14,7 +14,7 @@ export class MatchdayTipsOurPicksFiltersExecutor {
   ): MatchdayTipsOurPicksPlayer[] {
     const filterables: Filterable<MatchdayTipsOurPicksPlayer>[] = [];
 
-    if (!!filters.position && filters.position != PlayerPosition.ALL) {
+    if (!!filters.position && filters.position != Position.ALL) {
       filterables.push(new MatchdayTipsOurPicksPositionFilter(filters.position));
     }
 

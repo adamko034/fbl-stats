@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PlayerAttendancePredictionService } from 'src/app/modules/core/players/services/player-attendance-prediction.service';
+import { PlayerPredictionCombinedDeterminer } from 'src/app/common/players/services/player-prediction-combined-determiner.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { PlayerDetailsNextGame } from '../../models/player-details-next-game.model';
@@ -9,7 +9,7 @@ import { PlayerDetailsTeamCreator } from './player-details-team.creator';
 export class PlayerDetailsNextGameCreator {
   constructor(
     private playerDetailsTeamCreator: PlayerDetailsTeamCreator,
-    private playerPredictionService: PlayerAttendancePredictionService
+    private predictionCombinedDeterminer: PlayerPredictionCombinedDeterminer
   ) {}
 
   public from(player: Player, opponent: Team): PlayerDetailsNextGame {
@@ -26,7 +26,7 @@ export class PlayerDetailsNextGameCreator {
       isSuspensionRisk: player.isSuspensionRisk,
       isUnavailable: player.attendance === 0,
       isPostponed: player.nextGame.isPostponed,
-      prediction: this.playerPredictionService.determine(player.nextGame),
+      prediction: this.predictionCombinedDeterminer.determine(player.nextGame),
       isFirstGame: opponent.games?.find((g) => g.matchday === player.nextGame.matchday)?.isMatchdayFirstGame || false
     };
   }

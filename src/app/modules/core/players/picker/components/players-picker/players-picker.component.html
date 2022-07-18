@@ -43,7 +43,7 @@
         <mat-autocomplete #ourPicksAuto="matAutocomplete" (optionSelected)="onPlayerSelected($event.option.value)">
           <mat-option *ngFor="let player of foundPlayers$ | async" [value]="player.id.toString() + ';' + player.name">
             <div fxLayoutGap="8px" fxLayoutAlign="start center">
-              <app-team-logo [height]="25" [team]="player.teamShort" fxHide.lt-sm></app-team-logo>
+              <app-team-logo [height]="20" [team]="player.teamShort" fxHide.lt-sm></app-team-logo>
               <span ngClass.lt-sm="option-text-mobile">{{ player.name }} ({{ player.position | uppercase }})</span>
             </div>
           </mat-option>

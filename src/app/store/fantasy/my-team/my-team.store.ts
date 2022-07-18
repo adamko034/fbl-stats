@@ -66,6 +66,10 @@ export class MyTeamStore {
     return this.state$.pipe(map((state) => state.myTeamPlayers));
   }
 
+  public selectPlayersIds(): Observable<string[]> {
+    return this.state$.pipe(map((state) => (state.myTeamPlayers ? state.myTeamPlayers.map((p) => p.id) : [])));
+  }
+
   public selectKickOffTimesMatchdays(): Observable<number> {
     return this.state$.pipe(map((state) => state.kickOffTimesMatchdays));
   }

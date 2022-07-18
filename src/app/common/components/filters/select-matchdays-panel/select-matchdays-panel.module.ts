@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
 import { DropdownModule } from '../../ui/dropdown/dropdown.module';
+import { FormFieldModule } from '../../ui/form-field/form-field.module';
 import { SelectLastMatchdaysModule } from '../select-last-matchdays/select-last-matchdays.module';
 import { SelectMatchdaysBetweenModule } from '../select-matchdays-between/select-matchdays-between.module';
 import { SelectMatchdaysPanelComponent } from './components/select-matchdays-panel.component';
@@ -22,7 +23,8 @@ import { SelectMatchdaysPanelComponent } from './components/select-matchdays-pan
     FormsModule,
     SelectLastMatchdaysModule,
     SelectMatchdaysBetweenModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormFieldModule
   ],
   exports: [SelectMatchdaysPanelComponent]
 })

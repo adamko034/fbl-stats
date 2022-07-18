@@ -1,11 +1,7 @@
 <div>
   <div class="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
     <div>
-      <app-players-position-switch
-        [showLabel]="false"
-        [selected]="state.position"
-        (positionChange)="onPositionChange($event)"
-      ></app-players-position-switch>
+      <app-position-switch [value]="state.position" (cahnge)="onPositionChange($event)"></app-position-switch>
     </div>
 
     <div>

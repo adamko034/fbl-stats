@@ -1,14 +1,14 @@
 <div
   class="dropdown"
   fxLayout="row"
-  fxLayoutAlign="space-around center"
+  fxLayoutAlign="space-between center"
   (click)="toggle()"
   cdkOverlayOrigin
   #trigger="cdkOverlayOrigin"
 >
   <span class="dropdown-title">{{ title }}</span>
-  <mat-icon *ngIf="!opened" class="dropdown-icon">expand_more</mat-icon>
-  <mat-icon *ngIf="opened" class="dropdown-icon">expand_less</mat-icon>
+  <mat-icon *ngIf="!opened" class="dropdown-icon">arrow_drop_down</mat-icon>
+  <mat-icon *ngIf="opened" class="dropdown-icon">arrow_drop_up</mat-icon>
 </div>
 <!-- <button (click)="isOpen = !isOpen" type="button" >
   {{ isOpen ? 'Close' : 'Open' }}

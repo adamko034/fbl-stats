@@ -19,6 +19,7 @@ import { DropdownConfig } from '../../../ui/dropdown/models/dropdown-config.mode
 export class SelectMatchdaysPanelComponent implements OnChanges {
   @Input() lastMatchday: number;
   @Input() value: FromTo;
+  @Input() label: string;
 
   @Output() change = new EventEmitter<FromTo>();
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
+import { PlayerPredictionCombined } from 'src/app/common/players/models/player-prediction-combined.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,11 +8,11 @@ import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/
   styleUrls: ['./prediction-indicator.component.scss']
 })
 export class PredictionIndicatorComponent {
-  @Input() value: PlayerAttendancePrediction;
+  @Input() value: PlayerPredictionCombined;
   @Input() showUnknownYet = true;
   @Input() scale: number;
 
-  public cases = PlayerAttendancePrediction;
+  public cases = PlayerPredictionCombined;
 
   constructor() {}
 }

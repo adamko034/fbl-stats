@@ -1,0 +1,39 @@
+@import '/src/variables.scss';
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  margin-top: -10px;
+
+  tr {
+    height: 35px;
+  }
+
+  th:last-of-type,
+  td:last-of-type {
+    padding-right: 0px;
+  }
+
+  .first-column {
+    padding-left: 15px;
+  }
+
+  tr:hover:not(.mat-header-row) {
+    background-color: #f0f0f0;
+  }
+
+  td.total-data {
+    background-color: rgba($color: #000000, $alpha: 0.03);
+  }
+
+  td.width-45,
+  th.width-45 {
+    width: 45px;
+  }
+
+  .my-team-buttons {
+    margin-left: -10px;
+  }
+}

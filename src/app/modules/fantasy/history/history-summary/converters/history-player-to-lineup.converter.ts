@@ -1,12 +1,12 @@
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
 import { LineupPlayer } from 'src/app/shared/components/team-lineup/models/lineup-player.model';
-import { HistoryPlayer } from 'src/app/store/history/models/history-player.model';
+import { HistorySummaryLineupPlayer } from '../views/history-summary-lineup/history-summary-lineup-player.model';
 
-export class HistoryPlayerToLineupConverter implements Convertable<HistoryPlayer, LineupPlayer> {
-  public convert(items: HistoryPlayer[]): LineupPlayer[] {
+export class HistoryPlayerToLineupConverter implements Convertable<HistorySummaryLineupPlayer, LineupPlayer> {
+  public convert(items: HistorySummaryLineupPlayer[]): LineupPlayer[] {
     return items.map((player) => ({
       name: player.name,
-      team: player.team,
+      team: player.teamShort,
       lastName: player.lastName,
       position: player.position,
       subPosition: player.subPosition

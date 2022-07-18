@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
+import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BoldableValuesService } from '../../core/boldable-values/boldable-values.service';
 import { FblCoreModule } from '../../core/fbl-core.module';
@@ -36,7 +38,15 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     PlayersCompareGamesNextComponent,
     PlayersCompareFiltersComponent
   ],
-  imports: [CommonModule, PlayersCompareRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
+  imports: [
+    CommonModule,
+    PlayersCompareRoutingModule,
+    SharedModule,
+    AngularMaterialModule,
+    FblCoreModule,
+    PositionSwitchModule,
+    PipesModule
+  ],
   providers: [
     PlayersCompareStateResolver,
     PlayersCompareFiltersService,

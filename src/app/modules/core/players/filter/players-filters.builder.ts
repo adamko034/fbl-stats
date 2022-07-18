@@ -1,4 +1,4 @@
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Filterable } from '../../shared/filterable/filterable';
 import { PlayersFilterExcludedIds } from './filters/players-filter-excluded-ids';
@@ -18,7 +18,7 @@ export class PlayersFiltersBuilder {
     return new PlayersFiltersBuilder();
   }
 
-  public withPosition(position: PlayerPosition): PlayersFiltersBuilder {
+  public withPosition(position: Position): PlayersFiltersBuilder {
     this.pushFilter(new PlayersFilterPosition(position));
     return this;
   }

@@ -1,0 +1,19 @@
+<div [ngSwitch]="prediction" fxLayoutAlign="start center">
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.START" class="green" matTooltip="Prediction: will play"
+    >check_circle</mat-icon
+  >
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.BENCH" matTooltip="Prediction: won't play" class="red"
+    >highlight_off</mat-icon
+  >
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.DOUBT" class="orange" matTooltip="Prediction: doubt"
+    >error_outline</mat-icon
+  >
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.GAME_POSTPONED" matTooltip="Game is postponed">event_busy</mat-icon>
+  <mat-icon
+    [appScale]="scale"
+    matTooltip="Not published yet"
+    class="material-icons-outlined"
+    *ngSwitchCase="cases.UNKNOWN"
+    >link_off</mat-icon
+  >
+</div>

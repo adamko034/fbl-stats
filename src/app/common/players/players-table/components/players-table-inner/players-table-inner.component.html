@@ -1,0 +1,203 @@
+<div class="table-container">
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 15, 25, 50]"></mat-paginator>
+  <table
+    mat-table
+    matSort
+    matSortStart="desc"
+    [matSortActive]="config.sortBy"
+    matSortDisableClear
+    [matSortDirection]="config.sortOrder"
+    [dataSource]="dataSource"
+    multiTemplateDataRows
+    class="table-responsive"
+  >
+    <ng-container matColumnDef="name" sticky>
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let player">
+        <div fxLayout fxLayoutAlign="start center" fxLayoutGap="5px">
+          <app-team-logo [team]="player.teamShort" [height]="18"></app-team-logo>
+          <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
+          <app-player-icon-unavailable
+            *ngIf="player.available != null && !player.available"
+          ></app-player-icon-unavailable>
+          <app-player-icon-suspension-risk *ngIf="player.suspensionRisk"></app-player-icon-suspension-risk>
+          <app-player-icon-returning *ngIf="player.returning"></app-player-icon-returning>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>Pos</th>
+      <td mat-cell *matCellDef="let player">
+        <span>{{ player.position | uppercase }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="no">
+      <th mat-header-cell *matHeaderCellDef class="first-column">No.</th>
+      <td mat-cell *matCellDef="let i = dataIndex" class="first-column">
+        <span>{{
+          dataSource.paginator?.pageIndex === 0
+            ? i + 1
+            : 1 + i + dataSource.paginator?.pageIndex * dataSource.paginator?.pageSize
+        }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>$</th>
+      <td class="total-data" mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'price' }">
+        <span>{{ player.price }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="popularity">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>%</th>
+      <td class="total-data" mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'popularity' }">
+        <span>{{ player.popularity }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="top100Popularity">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>L100%</th>
+      <td
+        class="total-data"
+        mat-cell
+        *matCellDef="let player"
+        [ngClass]="{ bold: config.sortBy === 'top100Popularity' }"
+      >
+        <span>{{ player.top100Popularity }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="top500Popularity">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>L500%</th>
+      <td
+        class="total-data"
+        mat-cell
+        *matCellDef="let player"
+        [ngClass]="{ bold: config.sortBy === 'top500Popularity' }"
+      >
+        <span>{{ player.top500Popularity }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalPoints">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>TP</th>
+      <td class="total-data" mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'totalPoints' }">
+        <span>{{ player.totalPoints }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAvgPoints">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>Avg</th>
+      <td class="total-data" mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'totalAvgPoints' }">
+        <span>{{ player.totalAvgPoints }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalGamesStarted">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>GS%</th>
+      <td
+        class="total-data"
+        mat-cell
+        *matCellDef="let player"
+        [ngClass]="{ bold: config.sortBy === 'totalGamesStarted' }"
+      >
+        <span>{{ player.totalGamesStarted }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalGames70Min">
+      <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>G70%</th>
+      <td
+        class="total-data"
+        mat-cell
+        *matCellDef="let player"
+        [ngClass]="{ bold: config.sortBy === 'totalGames70Min' }"
+      >
+        <span>{{ player.totalGames70Min }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="formPoints">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>FPts</th>
+      <td mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'formPoints' }">
+        <span>{{ player.formPoints }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="formAvgPoints">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>FAvg</th>
+      <td mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'formAvgPoints' }">
+        <span>{{ player.formAvgPoints }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="formGamesStarted">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>FGS%</th>
+      <td mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'formGamesStarted' }">
+        <span>{{ player.formGamesStarted }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="formGames70Min">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>FG70%</th>
+      <td mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'formGames70Min' }">
+        <span>{{ player.formGames70Min }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container *ngFor="let md of matchdays" [matColumnDef]="md">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>MD{{ md }}</th>
+      <td mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === md }">
+        <span *ngIf="player[md] != null" [appPlayerPointsColor]="player[md]">{{ player[md] }}</span>
+        <span *ngIf="player[md] == null">x</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="next">
+      <th mat-header-cell *matHeaderCellDef>Next</th>
+      <td mat-cell *matCellDef="let player">
+        <app-game-team-venue
+          [logoHeight]="18"
+          [teamShort]="player.nextGame.teamShort"
+          [isHome]="player.nextGame.isHome"
+        ></app-game-team-venue>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prediction">
+      <th mat-header-cell matTooltip="Predicted Lineups" *matHeaderCellDef>Pr</th>
+      <td mat-cell *matCellDef="let player">
+        <app-player-icon-prediction [prediction]="player.nextGame.prediction"></app-player-icon-prediction>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="myteam">
+      <th mat-header-cell *matHeaderCellDef class="width-45">MT</th>
+      <td mat-cell *matCellDef="let player" class="width-45">
+        <app-player-icon-my-team-buttons
+          class="my-team-buttons"
+          [showAdd]="config?.myTeamPlayersIds | arrayIncludes: player.id | reverseBoolean"
+          (add)="onAddToMyTeam(player.id)"
+          (remove)="onRemoveFromMyTeam(player.id)"
+        ></app-player-icon-my-team-buttons>
+      </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="OP">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let player">
+      <app-players-table-add-our-pick [playerId]="player.id" [name]="player.name"></app-players-table-add-our-pick>
+    </td>
+  </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="columns; sticky: true" class="header-row"></tr>
+    <tr mat-row *matRowDef="let player; columns: columns" class="player-details-row"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="100%">No data matching the criteria.</td>
+    </tr>
+  </table>
+</div>

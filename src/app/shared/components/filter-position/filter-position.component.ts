@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { SwitchItem } from '../switch/models/switch-item.model';
 
 @Component({
@@ -9,21 +9,21 @@ import { SwitchItem } from '../switch/models/switch-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterPositionComponent {
-  @Input() selected = PlayerPosition.ALL;
+  @Input() selected = Position.ALL;
 
-  @Output() positionChange = new EventEmitter<PlayerPosition>();
+  @Output() positionChange = new EventEmitter<Position>();
 
   public items: SwitchItem[] = [
-    { value: PlayerPosition.GK, description: 'GK' },
-    { value: PlayerPosition.DEF, description: 'DEF' },
-    { value: PlayerPosition.MID, description: 'MID' },
-    { value: PlayerPosition.FOR, description: 'FOR' },
-    { value: PlayerPosition.ALL, description: 'ALL' }
+    { value: Position.GK, description: 'GK' },
+    { value: Position.DEF, description: 'DEF' },
+    { value: Position.MID, description: 'MID' },
+    { value: Position.FOR, description: 'FOR' },
+    { value: Position.ALL, description: 'ALL' }
   ];
 
   constructor() {}
 
-  public onPositionChange(newPosition: PlayerPosition): void {
+  public onPositionChange(newPosition: Position): void {
     this.positionChange.emit(newPosition);
   }
 }

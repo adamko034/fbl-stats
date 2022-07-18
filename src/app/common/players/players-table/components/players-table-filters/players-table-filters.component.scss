@@ -1,0 +1,9 @@
+.players-table-filters-container {
+  display: grid;
+  gap: 10px 20px;
+  grid-template-columns: repeat(auto-fill, 270px);
+
+  .width-full {
+    width: 100%;
+  }
+}

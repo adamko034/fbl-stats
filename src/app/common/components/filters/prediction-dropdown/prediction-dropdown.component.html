@@ -1,0 +1,10 @@
+<app-form-field label="Lineup predictions">
+  <mat-form-field style="width: 100%" class="mat-form-field-no-padding">
+    <mat-select [value]="value" (valueChange)="onPredictionChange($event)">
+      <mat-option [value]="predictions.ALL">All predictions</mat-option>
+      <mat-option [value]="predictions.BENCHED">Benched by all sources</mat-option>
+      <mat-option [value]="predictions.VARIED_AND_PLAY">Start by at least one source</mat-option>
+      <mat-option [value]="predictions.PLAY">Start by all sources</mat-option>
+    </mat-select>
+  </mat-form-field>
+</app-form-field>

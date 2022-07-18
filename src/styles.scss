@@ -79,6 +79,10 @@ mat-button-toggle.position-active {
   height: 32px !important;
 }
 
+.mat-slider-horizontal .mat-slider-wrapper {
+  left: 0px !important;
+}
+
 .mat-expansion-panel-body {
   padding: 0 10px 16px !important;
 }
@@ -462,4 +466,13 @@ table.comparison-table {
   .mat-form-field-infix {
     border-top: 0;
   }
+}
+
+.mat-option-text,
+.mat-select-value {
+  font-size: $fontSizeSmall;
+}
+
+.width-full {
+  width: 100%;
 }

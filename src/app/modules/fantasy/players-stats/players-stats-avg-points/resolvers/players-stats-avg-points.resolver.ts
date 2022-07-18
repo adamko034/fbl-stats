@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersStatsAvgPointsConverter } from '../converters/players-stats-avg-points.converter';
 import { PlayerStatsAvgPoints } from '../models/player-stats-avg-points.model';
 import { PlayersStatsAvgPointsType } from '../models/players-stats-avg-points-type.enum';
@@ -59,8 +59,8 @@ export class PlayersStatsAvgPointsResolver implements Resolve<Observable<PlayerS
     }
   }
 
-  private filterByPosition(allPlayers: Player[], position: PlayerPosition): Player[] {
-    return position === PlayerPosition.ALL
+  private filterByPosition(allPlayers: Player[], position: Position): Player[] {
+    return position === Position.ALL
       ? allPlayers
       : allPlayers.filter((p) => p.position.toLowerCase() === position.toString());
   }

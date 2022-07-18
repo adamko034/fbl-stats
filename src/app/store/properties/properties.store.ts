@@ -55,7 +55,7 @@ export class PropertiesStore {
     return this.selectProperties().pipe(map((props) => props.unlimitedTransfers));
   }
 
-  private selectProperties(): Observable<Properties> {
+  public selectProperties(): Observable<Properties> {
     return this.properties$.asObservable();
   }
 

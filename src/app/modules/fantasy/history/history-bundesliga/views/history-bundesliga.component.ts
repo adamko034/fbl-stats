@@ -9,7 +9,6 @@ import { HistoryBundesligaTeamsConverter } from '../logic/history-bundesliga-tea
 @Component({
   selector: 'app-history-bundesliga',
   templateUrl: './history-bundesliga.component.html',
-  styleUrls: ['./history-bundesliga.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryBundesligaComponent implements OnInit {
@@ -24,12 +23,12 @@ export class HistoryBundesligaComponent implements OnInit {
 
   public ngOnInit(): void {
     this.bundesligaTableState$ = this.route.data.pipe(
-      map((data) => data.state),
-      map((state) => {
+      map((data) => data.history),
+      map((history) => {
         return {
           config: this._bundesligaTableConfig,
-          teams: this._converter.convertToBundesligaTeams(state.teams),
-          season: state.season,
+          teams: this._converter.convertToBundesligaTeams(history.teams),
+          season: history.season,
           lastMatchday: 34
         };
       })

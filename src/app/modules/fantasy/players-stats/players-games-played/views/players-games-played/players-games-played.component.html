@@ -2,12 +2,11 @@
   <div>
     <app-white-block padding="20px 10px 0 10px">
       <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
-        <app-players-position-switch
+        <app-position-switch
           class="filter"
-          [selected]="position"
-          [showLabel]="false"
-          (positionChange)="onPositionChange($event)"
-        ></app-players-position-switch>
+          [value]="position"
+          (change)="onPositionChange($event)"
+        ></app-position-switch>
 
         <app-switch
           class="filter"
