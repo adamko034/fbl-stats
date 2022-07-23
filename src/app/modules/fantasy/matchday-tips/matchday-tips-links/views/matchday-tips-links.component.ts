@@ -14,10 +14,12 @@ import { MatchdayTipsLink } from 'src/app/store/matchday-tips/links/models/match
 })
 export class MatchdayTipsLinksComponent implements OnInit {
   public links$: Observable<MatchdayTipsLink[]>;
+  public lastMatchday$: Observable<number>;
 
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
+    this.lastMatchday$ = this.route.data.pipe(map((data) => data.lastMatchday));
     this.links$ = this.route.data.pipe(map((data) => data.tips.links));
   }
 

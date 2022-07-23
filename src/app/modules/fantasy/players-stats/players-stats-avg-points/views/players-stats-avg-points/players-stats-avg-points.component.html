@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <app-players-stats-avg-points-filters></app-players-stats-avg-points-filters>
-  <app-white-block>
+  <app-white-block *ngIf="lastMatchday$ | async | isGreaterThan: 0">
     <div>
       <app-players-list-generic
         [data]="data$ | async"
@@ -12,4 +12,8 @@
       </div>
     </div>
   </app-white-block>
+
+  <div class="follow-us" *ngIf="lastMatchday$ | async | isEqualTo: 0">
+    <app-follow-us-to-stay-tuned text=" Players stats will be available after MD 1."></app-follow-us-to-stay-tuned>
+  </div>
 </div>

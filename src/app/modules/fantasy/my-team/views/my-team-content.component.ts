@@ -77,7 +77,8 @@ export class MyTeamContentComponent implements OnInit {
         showTeamsFilter: false,
         showNextGame: true,
         showPrediction: true,
-        showPredictionFilter: true
+        showPredictionFilter: true,
+        showLeadersPopularity: properties.lastMatchday > 0
       },
       lastMatchday: properties.lastMatchday,
       maxPrice: properties.playerMaxPrice,

@@ -45,8 +45,10 @@ export class PlayersTableInnerComponent implements OnInit, AfterViewInit, OnChan
 
   public get matchdays(): string[] {
     const mds = [];
-    for (let i = this.config.matchdays.to; i >= this.config.matchdays.from; i--) {
-      mds.push(i.toString());
+    if (this.config.matchdays.to > 0 && this.config.matchdays.from > 0) {
+      for (let i = this.config.matchdays.to; i >= this.config.matchdays.from; i--) {
+        mds.push(i.toString());
+      }
     }
 
     return mds;
@@ -110,8 +112,12 @@ export class PlayersTableInnerComponent implements OnInit, AfterViewInit, OnChan
     this.columns.push('position');
     this.columns.push('price');
     this.columns.push('popularity');
-    this.columns.push('top100Popularity');
-    this.columns.push('top500Popularity');
+
+    if (this.config.showLeadersPopularity) {
+      this.columns.push('top100Popularity');
+      this.columns.push('top500Popularity');
+    }
+
     this.columns.push('totalPoints');
     this.columns.push('totalAvgPoints');
     this.columns.push('totalGamesStarted');

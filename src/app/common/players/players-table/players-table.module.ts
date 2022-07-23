@@ -16,6 +16,7 @@ import { LegendModule } from '../../components/ui/legend/legend.module';
 import { SearchModule } from '../../components/ui/search/search.module';
 import { TitleModule } from '../../components/ui/title/title.module';
 import { PlayerPointsColorModule } from '../../directives/player-points-color/player-points-color.module';
+import { StickyModule } from '../../directives/sticky/sticky.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { GameTeamVenueModule } from '../../teams/components/game-team-venue/game-team-venue.module';
 import { TeamLogoModule } from '../../teams/team-logo/team-logo.module';
@@ -63,7 +64,8 @@ import { PlayersToPlayersTableConverter } from './services/players-to-player-tab
     GameTeamVenueModule,
     PlayerIconPredictionModule,
     PlayerIconMyTeamButtonsModule,
-    PipesModule
+    PipesModule,
+    StickyModule
   ],
   providers: [
     PlayersTableFiltersProvider,

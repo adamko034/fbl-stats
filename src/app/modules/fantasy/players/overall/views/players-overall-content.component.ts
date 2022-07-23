@@ -21,7 +21,8 @@ export class PlayersOverallContentComponent implements OnInit {
     showTeamsFilter: true,
     showNextGame: true,
     showPrediction: true,
-    showPredictionFilter: true
+    showPredictionFilter: true,
+    showLeadersPopularity: true
   };
 
   public state$: Observable<PlayersTableState>;
@@ -32,7 +33,7 @@ export class PlayersOverallContentComponent implements OnInit {
     this.state$ = this._route.data.pipe(
       map(({ players, teams, properties }) => {
         return {
-          config: this._playersTableConfig,
+          config: this.getPlayerTableConfig(properties.lastMatchday),
           players: this._playersConverter.toPlayersTable(players),
           teams: this._playersConverter.toPlayersTableTeam(teams),
           lastMatchday: properties.lastMatchday,
@@ -40,5 +41,13 @@ export class PlayersOverallContentComponent implements OnInit {
         };
       })
     );
+  }
+
+  private getPlayerTableConfig(lastMatchday: number): PlayersTableConfig {
+    return {
+      ...this._playersTableConfig,
+      sortBy: lastMatchday > 0 ? 'formPoints' : 'price',
+      showLeadersPopularity: lastMatchday > 0
+    };
   }
 }

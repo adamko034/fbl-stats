@@ -88,7 +88,10 @@ export class PlayersTableComponent implements OnInit, OnChanges {
   private setFilters(params: Params): void {
     const defaults: PlayersTableFilters = {
       hideUnavailable: false,
-      matchdays: { from: this.state.lastMatchday - 3, to: this.state.lastMatchday },
+      matchdays:
+        this.state.lastMatchday > 0
+          ? { from: this.state.lastMatchday - 3, to: this.state.lastMatchday }
+          : { from: 0, to: 0 },
       maxPopularity: 100,
       maxPrice: this.state.maxPrice,
       playerName: '',
@@ -109,7 +112,8 @@ export class PlayersTableComponent implements OnInit, OnChanges {
       showMyTeamButtons: this.state.config.showMyTeamButtons,
       myTeamPlayersIds: this.state.config.showMyTeamButtons ? myTeamPlayersIds : null,
       showNextGame: this.state.config.showNextGame,
-      showPrediction: this.state.config.showPrediction
+      showPrediction: this.state.config.showPrediction,
+      showLeadersPopularity: this.state.config.showLeadersPopularity
     };
   }
 

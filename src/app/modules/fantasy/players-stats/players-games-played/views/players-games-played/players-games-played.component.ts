@@ -48,10 +48,12 @@ export class PlayersGamesPlayedComponent implements OnInit {
 
   public listData$: Observable<PlayersListGenericData>;
   public listConfig$: Observable<PlayersListGenericConfig>;
+  public lastMatchday$: Observable<number>;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   public ngOnInit(): void {
+    this.lastMatchday$ = this.route.data.pipe(map((data) => data.lastMatchday));
     this.listData$ = combineLatest([this.route.data, this.route.queryParams]).pipe(
       tap(([_, params]) => (this._orderBy = params.orderBy || 'gamesStartedPercentage')),
       map(([data, _]) => data.players),

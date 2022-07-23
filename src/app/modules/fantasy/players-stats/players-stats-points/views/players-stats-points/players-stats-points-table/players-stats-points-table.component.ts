@@ -96,7 +96,10 @@ export class PlayersStatsPointsTableComponent implements AfterViewInit, OnChange
 
     if (sort.active === 'totalPoints') {
       this.dataSource.data = new ArrayStream(this.players)
-        .orderBy(sort.active, sort.direction === 'asc' ? 'asc' : 'dsc')
+        .orderByThenBy(
+          { field: sort.active, order: sort.direction === 'asc' ? 'asc' : 'dsc' },
+          { field: 'price', order: 'dsc' }
+        )
         .collect();
 
       return;
@@ -105,7 +108,10 @@ export class PlayersStatsPointsTableComponent implements AfterViewInit, OnChange
     if (sort.active === 'total') {
       this.dataSource.data = new ArrayStream(this.players)
         .convertQuick((player) => ({ player, total: this.getTotal(player) }))
-        .orderBy('total', sort.direction === 'asc' ? 'asc' : 'dsc')
+        .orderByThenBy(
+          { field: 'total', order: sort.direction === 'asc' ? 'asc' : 'dsc' },
+          { field: 'player.price', order: 'dsc' }
+        )
         .collect()
         .map((p) => p.player);
 
@@ -117,7 +123,8 @@ export class PlayersStatsPointsTableComponent implements AfterViewInit, OnChange
       const secondValue = second.stats?.filter((s) => s.header === sort.active)[0].value || 0;
 
       if (firstValue - secondValue === 0) {
-        return second.totalPoints - first.totalPoints;
+        const byPoints = second.totalPoints - first.totalPoints;
+        return byPoints === 0 ? second.price - first.price : byPoints;
       }
 
       return sort.direction === 'desc' ? secondValue - firstValue : firstValue - secondValue;

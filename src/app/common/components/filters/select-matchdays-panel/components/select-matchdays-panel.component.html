@@ -1,8 +1,10 @@
-<app-form-field *ngIf="label" [label]="label">
-  <ng-template [ngTemplateOutlet]="dropdown"></ng-template>
-</app-form-field>
+<div *ngIf="lastMatchday > 0">
+  <app-form-field *ngIf="label" [label]="label">
+    <ng-template [ngTemplateOutlet]="dropdown"></ng-template>
+  </app-form-field>
 
-<ng-template *ngIf="!label" [ngTemplateOutlet]="dropdown"></ng-template>
+  <ng-template *ngIf="!label" [ngTemplateOutlet]="dropdown"></ng-template>
+</div>
 
 <ng-template #dropdown>
   <app-dropdown [config]="dropdownConfig">

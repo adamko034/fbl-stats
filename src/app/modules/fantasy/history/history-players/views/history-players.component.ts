@@ -35,6 +35,7 @@ export class HistoryPlayersComponent implements OnInit {
     showNextGame: false,
     showPrediction: false,
     showPredictionFilter: false,
+    showLeadersPopularity: true,
     sortBy: 'totalPoints',
     sortOrder: 'desc'
   };

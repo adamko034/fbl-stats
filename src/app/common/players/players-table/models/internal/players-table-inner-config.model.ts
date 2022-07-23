@@ -7,5 +7,6 @@ export interface PlayersTableInnerConfig {
   showMyTeamButtons: boolean;
   showNextGame: boolean;
   showPrediction: boolean;
+  showLeadersPopularity: boolean;
   myTeamPlayersIds?: string[];
 }

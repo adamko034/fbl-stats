@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LastMatchdayResolver } from 'src/app/common/routing/resolvers/last-matchday/last-matchday.resolver';
 import { MatchdayTipsLinksLoadedGuard } from 'src/app/modules/core/matchday-tips/links/guards/matchday-tips-links-loaded.guard';
 import { MatchdayTipsLinksResolver } from 'src/app/modules/core/matchday-tips/links/resolvers/matchday-tips-links.resolver';
 import { MatchdayTipsLinksComponent } from './views/matchday-tips-links.component';
@@ -7,7 +8,7 @@ import { MatchdayTipsLinksComponent } from './views/matchday-tips-links.componen
 const routes: Routes = [
   {
     path: '',
-    resolve: { tips: MatchdayTipsLinksResolver },
+    resolve: { tips: MatchdayTipsLinksResolver, lastMatchday: LastMatchdayResolver },
     canActivate: [MatchdayTipsLinksLoadedGuard],
     component: MatchdayTipsLinksComponent
   }
