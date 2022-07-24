@@ -11,20 +11,6 @@ import { PlayersToPlayersTableConverter } from 'src/app/common/players/players-t
   templateUrl: './players-overall-content.component.html'
 })
 export class PlayersOverallContentComponent implements OnInit {
-  private _playersTableConfig: PlayersTableConfig = {
-    showSeasonTitle: false,
-    showMyTeamButtons: true,
-    showHideUnavailableFilter: true,
-    showMaxPopularityFilter: true,
-    showMaxPriceFilter: true,
-    showPlayerSearchFilter: true,
-    showTeamsFilter: true,
-    showNextGame: true,
-    showPrediction: true,
-    showPredictionFilter: true,
-    showLeadersPopularity: true
-  };
-
   public state$: Observable<PlayersTableState>;
 
   constructor(private _route: ActivatedRoute, private _playersConverter: PlayersToPlayersTableConverter) {}
@@ -45,9 +31,23 @@ export class PlayersOverallContentComponent implements OnInit {
 
   private getPlayerTableConfig(lastMatchday: number): PlayersTableConfig {
     return {
-      ...this._playersTableConfig,
-      sortBy: lastMatchday > 0 ? 'formPoints' : 'price',
-      showLeadersPopularity: lastMatchday > 0
+      showSeasonTitle: false,
+      showMyTeamButtons: true,
+      showHideUnavailableFilter: true,
+      showMaxPopularityFilter: true,
+      showMaxPriceFilter: true,
+      showPlayerSearchFilter: true,
+      showTeamsFilter: true,
+      showNextGame: true,
+      showPrediction: true,
+      showPredictionFilter: true,
+      showFormGames70Minutes: true,
+      showFormGamesStarted: true,
+      showGames70Minutes: true,
+      showGamesStarted: true,
+      showTop100Popularity: lastMatchday > 0,
+      showTop500Popularity: lastMatchday > 0,
+      sortBy: lastMatchday > 0 ? 'formPoints' : 'price'
     };
   }
 }

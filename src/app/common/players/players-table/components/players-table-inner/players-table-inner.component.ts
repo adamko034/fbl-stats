@@ -113,15 +113,24 @@ export class PlayersTableInnerComponent implements OnInit, AfterViewInit, OnChan
     this.columns.push('price');
     this.columns.push('popularity');
 
-    if (this.config.showLeadersPopularity) {
+    if (this.config.showTop100Popularity) {
       this.columns.push('top100Popularity');
+    }
+
+    if (this.config.showTop500Popularity) {
       this.columns.push('top500Popularity');
     }
 
     this.columns.push('totalPoints');
     this.columns.push('totalAvgPoints');
-    this.columns.push('totalGamesStarted');
-    this.columns.push('totalGames70Min');
+
+    if (this.config.showGamesStarted) {
+      this.columns.push('totalGamesStarted');
+    }
+
+    if (this.config.showGames70Minutes) {
+      this.columns.push('totalGames70Min');
+    }
 
     if (this.config.showNextGame) {
       this.columns.push('next');
@@ -133,8 +142,15 @@ export class PlayersTableInnerComponent implements OnInit, AfterViewInit, OnChan
 
     this.columns.push('formPoints');
     this.columns.push('formAvgPoints');
-    this.columns.push('formGamesStarted');
-    this.columns.push('formGames70Min');
+
+    if (this.config.showFormGamesStarted) {
+      this.columns.push('formGamesStarted');
+    }
+
+    if (this.config.showFormGames70Minutes) {
+      this.columns.push('formGames70Min');
+    }
+
     this.matchdays.forEach((md) => this.columns.push(md));
 
     if (this.config.myTeamPlayersIds) {

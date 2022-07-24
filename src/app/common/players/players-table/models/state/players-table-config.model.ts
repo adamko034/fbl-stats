@@ -9,7 +9,12 @@ export interface PlayersTableConfig {
   showPredictionFilter: boolean;
   showNextGame: boolean;
   showPrediction: boolean;
-  showLeadersPopularity: boolean;
+  showTop100Popularity: boolean;
+  showTop500Popularity: boolean;
+  showGamesStarted: boolean;
+  showFormGamesStarted: boolean;
+  showGames70Minutes: boolean;
+  showFormGames70Minutes: boolean;
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
 }

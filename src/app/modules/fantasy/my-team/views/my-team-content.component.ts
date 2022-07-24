@@ -78,7 +78,12 @@ export class MyTeamContentComponent implements OnInit {
         showNextGame: true,
         showPrediction: true,
         showPredictionFilter: true,
-        showLeadersPopularity: properties.lastMatchday > 0
+        showTop100Popularity: properties.lastMatchday > 0,
+        showTop500Popularity: properties.lastMatchday > 0,
+        showFormGames70Minutes: true,
+        showFormGamesStarted: true,
+        showGames70Minutes: true,
+        showGamesStarted: true
       },
       lastMatchday: properties.lastMatchday,
       maxPrice: properties.playerMaxPrice,

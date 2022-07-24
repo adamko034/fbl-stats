@@ -113,7 +113,12 @@ export class PlayersTableComponent implements OnInit, OnChanges {
       myTeamPlayersIds: this.state.config.showMyTeamButtons ? myTeamPlayersIds : null,
       showNextGame: this.state.config.showNextGame,
       showPrediction: this.state.config.showPrediction,
-      showLeadersPopularity: this.state.config.showLeadersPopularity
+      showFormGames70Minutes: this.state.config.showFormGames70Minutes,
+      showFormGamesStarted: this.state.config.showFormGamesStarted,
+      showGames70Minutes: this.state.config.showGames70Minutes,
+      showGamesStarted: this.state.config.showGamesStarted,
+      showTop100Popularity: this.state.config.showTop100Popularity,
+      showTop500Popularity: this.state.config.showTop500Popularity
     };
   }
 
