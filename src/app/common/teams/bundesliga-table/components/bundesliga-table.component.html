@@ -1,0 +1,29 @@
+<div fxLayout="column">
+  <app-title *ngIf="state.config.showTitle" [text]="title"></app-title>
+  <app-content-white-block>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <app-bundesliga-table-filters
+        [config]="state.config"
+        [filters]="filters | async"
+        [lastMatchday]="state.lastMatchday"
+        (venueChange)="onVenueChange($event)"
+        (matchdaysChange)="onMatchdaysChange($event)"
+      ></app-bundesliga-table-filters>
+      <app-bundesliga-table-inner [results]="results"></app-bundesliga-table-inner>
+    </div>
+    <app-legend>
+      <span>GP - games played</span>
+      <span>Pts - points</span>
+      <span>W - wins</span>
+      <span>D - draws</span>
+      <span>L - losses</span>
+      <span>GS - goals scored</span>
+      <span>GC - goals conceded</span>
+      <span>Diff - goals difference</span>
+      <span>GSpG - goals scored per game</span>
+      <span>GCpG - goals conceded per game</span>
+      <span>CS - clean sheets</span>
+      <span>FTS - failed to score</span>
+    </app-legend>
+  </app-content-white-block>
+</div>

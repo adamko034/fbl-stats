@@ -1,5 +1,8 @@
 <div fxLayout="column" fxLayoutGap="15px">
-  <app-fixtures-difficulty-filters [filters]="state$ | async | field: 'filters'"></app-fixtures-difficulty-filters>
+  <app-fixtures-difficulty-filters
+    [filters]="state$ | async | field: 'filters'"
+    [nextMatchday]="state$ | async | field: 'nextMatchday'"
+  ></app-fixtures-difficulty-filters>
   <app-fixtures-difficulty-fixtures
     [calculation]="state$ | async | field: 'filters' | field: 'calculation'"
     [teams]="state$ | async | field: 'fixturesDifficultyTeams'"

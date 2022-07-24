@@ -1,21 +1,19 @@
 <div [ngSwitch]="value" fxLayoutAlign="start center">
-  <mat-icon [appScale]="scale" *ngSwitchCase="cases.WillPlay" class="green" matTooltip="Prediction: will play"
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.START" class="green" matTooltip="Prediction: will play"
     >check_circle</mat-icon
   >
-  <mat-icon [appScale]="scale" *ngSwitchCase="cases.WillNotPlay" matTooltip="Prediction: won't play" class="red"
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.BENCH" matTooltip="Prediction: won't play" class="red"
     >highlight_off</mat-icon
   >
-  <mat-icon [appScale]="scale" *ngSwitchCase="cases.Doubt" class="orange" matTooltip="Prediction: doubt"
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.DOUBT" class="orange" matTooltip="Prediction: doubt"
     >error_outline</mat-icon
   >
-  <mat-icon [appScale]="scale" *ngSwitchCase="cases.UNAVAILABLE_POSTPONED" matTooltip="Game is postponed"
-    >event_busy</mat-icon
-  >
+  <mat-icon [appScale]="scale" *ngSwitchCase="cases.GAME_POSTPONED" matTooltip="Game is postponed">event_busy</mat-icon>
   <mat-icon
     [appScale]="scale"
     matTooltip="Not published yet"
     class="material-icons-outlined"
-    *ngIf="showUnknownYet && value === cases.UnknownYet"
+    *ngIf="showUnknownYet && value === cases.UNKNOWN"
     >link_off</mat-icon
   >
 </div>

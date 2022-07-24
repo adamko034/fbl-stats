@@ -1,0 +1,8 @@
+<app-form-field label="Position">
+  <app-switcher
+    [items]="items"
+    [value]="value"
+    name="position"
+    (switchChange)="onPositionChange($event)"
+  ></app-switcher>
+</app-form-field>

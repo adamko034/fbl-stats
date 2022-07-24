@@ -3,7 +3,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
+import { PlayerSourceLineupPrediction } from 'src/app/common/players/models/player-source-lineup-prediction.enum';
 import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { TeamNavigation } from 'src/app/store/properties/properties.model';
@@ -53,8 +53,8 @@ export class PredictedLineupsTeamComponent implements OnInit {
           players = players.filter(
             (p) =>
               !p.nextGame.lineupPredictions
-                .filter((l) => l.attendance !== PlayerAttendancePrediction.UnknownYet)
-                .every((l) => l.attendance === PlayerAttendancePrediction.WillNotPlay)
+                .filter((l) => l.attendance !== PlayerSourceLineupPrediction.UNKNOWN)
+                .every((l) => l.attendance === PlayerSourceLineupPrediction.BENCH)
           );
         }
 
@@ -63,11 +63,11 @@ export class PredictedLineupsTeamComponent implements OnInit {
     );
   }
 
-  public getPrediction(player: Player, source: string): PlayerAttendancePrediction {
+  public getPrediction(player: Player, source: string): PlayerSourceLineupPrediction {
     var predictions = player.nextGame.lineupPredictions.filter((l) => l.source === source);
 
     if (!predictions || predictions.length === 0) {
-      return PlayerAttendancePrediction.UnknownYet;
+      return PlayerSourceLineupPrediction.UNKNOWN;
     }
 
     return predictions[0].attendance;

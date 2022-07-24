@@ -1,8 +1,8 @@
 import { OrderByPipe } from 'ngx-pipes';
 import { Actionable } from 'src/app/modules/core/shared/arrays/actionable';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
-import { Filterable } from 'src/app/modules/core/shared/filterable/filterable';
 import { DateService } from 'src/app/services/date.service';
+import { IFilterable } from '../utils/filters/filterable.interface';
 
 export class ArrayStream<T> {
   private array: any[];
@@ -21,7 +21,7 @@ export class ArrayStream<T> {
     return this;
   }
 
-  public filter(filterable: Filterable<T>) {
+  public filter(filterable: IFilterable<T>) {
     this.array = filterable.filter(this.array);
     return this;
   }
@@ -184,6 +184,14 @@ export class ArrayStream<T> {
 
   public countBy<R>(predicate: (item: T) => R): number {
     return this.array.filter(predicate).length;
+  }
+
+  public join(separator?: string): string {
+    return this.array.join(separator);
+  }
+
+  public size(): number {
+    return this.array.length;
   }
 
   public collect(): T[] {

@@ -69,10 +69,8 @@
           fxLayoutAlign="space-evenly flex-end"
           fxLayoutGap="20px"
         >
-          <app-players-position-switch
-            [selected]="generateOptions.position"
-            (positionChange)="onPositionChange($event)"
-          ></app-players-position-switch>
+          <app-position-switch [value]="generateOptions.position" (change)="onPositionChange($event)">
+          </app-position-switch>
 
           <app-form-field label="Count">
             <mat-form-field class="input-number mat-form-field-no-padding">

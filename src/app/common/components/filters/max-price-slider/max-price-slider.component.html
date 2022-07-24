@@ -1,0 +1,8 @@
+<app-slider
+  label="Max price"
+  [max]="maxPrice"
+  [step]="0.1"
+  valueSuffix="M"
+  [value]="value"
+  (change)="onMaxPriceChange($event)"
+></app-slider>

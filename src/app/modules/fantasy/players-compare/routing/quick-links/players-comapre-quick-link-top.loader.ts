@@ -27,7 +27,7 @@ export class PlayersCompareQuickLinkTopLoader extends PlayersCompareQuickLinkLoa
         }
 
         return stream
-          .orderBy('totalPoints', 'dsc')
+          .orderByThenBy({ field: 'totalPoints', order: 'dsc' }, { field: 'price', order: 'dsc' })
           .take(filters.count)
           .collect()
           .map((p) => p.id);

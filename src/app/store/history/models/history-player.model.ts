@@ -1,22 +1,19 @@
-import { PlayerPosition } from '../../../modules/fantasy/players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
+import { HistoryPlayerGame } from './history-player-game.model';
 
 export interface HistoryPlayer {
   name: string;
   lastName: string;
-  team: string;
-  position: PlayerPosition;
+  position: Position;
   subPosition: number;
-  totalPoints: number;
+  teamShort: string;
   price: number;
   popularity: number;
-  leadersPopularity: number;
-  avg: number;
-  firstLegPoints: number;
-  secondLegPoints: number;
-  homeGamesPoints: number;
-  homeAvg: number;
-  awayGamesPoints: number;
-  awayAvg: number;
-  tenPointsEfficiency: number;
-  fifteenPointsEfficiency: number;
+  top100Popularity: number;
+  top500Popularity: number;
+  totalPoints: number;
+  avgPoints: number;
+  gamesStarted: number;
+  games70Min: number;
+  games: HistoryPlayerGame[];
 }

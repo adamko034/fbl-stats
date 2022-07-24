@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { PlayerPredictionCombinedDeterminer } from 'src/app/common/players/services/player-prediction-combined-determiner.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
-import { PlayerAttendancePredictionService } from '../../../players/services/player-attendance-prediction.service';
 import { MatchdayTipsOurPicksPlayerMatchday } from '../models/matchday-tips-our-picks-player-matchday.model';
 import { MatchdayTipsOurPicksPlayer } from '../models/matchday-tips-our-picks-player.model';
 import { MatchdayTipsOurPicksTeamGame } from '../models/matchday-tips-our-picks-team-game.model';
@@ -16,7 +16,7 @@ export class MatchdayTipsOurPicksPlayerLoader {
   constructor(
     private playersStore: PlayersStore,
     private teamsStore: TeamsStore,
-    private predictionService: PlayerAttendancePredictionService
+    private predictionCombindedDeterminer: PlayerPredictionCombinedDeterminer
   ) {}
 
   public load(
@@ -54,7 +54,7 @@ export class MatchdayTipsOurPicksPlayerLoader {
       popularity: player.popularity,
       formPts,
       matchdays,
-      prediction: this.predictionService.determine(player.nextGame),
+      prediction: this.predictionCombindedDeterminer.determine(player.nextGame),
       totalPoints: player.totalPoints,
       isAvailable: player.attendance === 1,
       nextGame: this.getNextGame(ourPicksTeam.nextGames)

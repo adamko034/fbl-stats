@@ -1,14 +1,14 @@
+import { PlayerPredictionCombined } from 'src/app/common/players/models/player-prediction-combined.enum';
+import { PlayersFilterPrediciton } from 'src/app/common/players/models/players-filter-prediction.enum';
+import { PlayerPredictionCombinedDeterminer } from 'src/app/common/players/services/player-prediction-combined-determiner.service';
 import { PlayersFilter } from 'src/app/modules/core/players/filter/filters/players-filter';
-import { PlayersPrediciton } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { Player } from 'src/app/store/players/models/player.model';
-import { PlayerAttendancePrediction } from '../../models/player-attendance-prediction.enum';
-import { PlayerAttendancePredictionService } from '../../services/player-attendance-prediction.service';
 
 export class PlayersFilterPrediction implements PlayersFilter {
-  private determiner: PlayerAttendancePredictionService;
+  private determiner: PlayerPredictionCombinedDeterminer;
 
-  constructor(private prediction?: PlayersPrediciton) {
-    this.determiner = new PlayerAttendancePredictionService();
+  constructor(private prediction?: PlayersFilterPrediciton) {
+    this.determiner = new PlayerPredictionCombinedDeterminer();
   }
 
   public filter(players: Player[]): Player[] {
@@ -16,23 +16,26 @@ export class PlayersFilterPrediction implements PlayersFilter {
       return players;
     }
 
-    let playerPredictions: PlayerAttendancePrediction[];
+    let playerPredictions: PlayerPredictionCombined[];
 
     switch (this.prediction) {
-      case PlayersPrediciton.Benched:
-        playerPredictions = [PlayerAttendancePrediction.WillNotPlay];
+      case PlayersFilterPrediciton.BENCHED:
+        playerPredictions = [PlayerPredictionCombined.BENCH];
         break;
-      case PlayersPrediciton.Varied:
-        playerPredictions = [PlayerAttendancePrediction.Doubt];
+      case PlayersFilterPrediciton.VARIED:
+        playerPredictions = [PlayerPredictionCombined.DOUBT];
         break;
-      case PlayersPrediciton.VariedAndPlay:
-        playerPredictions = [PlayerAttendancePrediction.Doubt, PlayerAttendancePrediction.WillPlay];
+      case PlayersFilterPrediciton.VARIED_AND_PLAY:
+        playerPredictions = [PlayerPredictionCombined.DOUBT, PlayerPredictionCombined.START];
         break;
       default:
-        playerPredictions = [PlayerAttendancePrediction.WillPlay];
+        playerPredictions = [PlayerPredictionCombined.START];
         break;
     }
 
-    return players.filter((p) => playerPredictions.includes(this.determiner.determine(p.nextGame)));
+    return players.filter((p) => {
+      const predictionCombined = this.determiner.determine(p.nextGame);
+      return playerPredictions.includes(predictionCombined);
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { PlayerAttendancePrediction } from '../../../players/models/player-attendance-prediction.enum';
+import { PlayerPredictionCombined } from 'src/app/common/players/models/player-prediction-combined.enum';
 import { MatchdayTipsOurPicksPlayerMatchday } from './matchday-tips-our-picks-player-matchday.model';
 import { MatchdayTipsOurPicksTeamGame } from './matchday-tips-our-picks-team-game.model';
 import { MatchdayTipsOurPicksTeam } from './matchday-tips-our-picks-team.model';
@@ -21,7 +21,7 @@ export interface MatchdayTipsOurPicksPlayer {
   nextGame: MatchdayTipsOurPicksTeamGame;
   team: MatchdayTipsOurPicksTeam;
   matchdays: MatchdayTipsOurPicksPlayerMatchday[];
-  prediction: PlayerAttendancePrediction;
+  prediction: PlayerPredictionCombined;
   totalPoints: number;
   isAvailable: boolean;
 }

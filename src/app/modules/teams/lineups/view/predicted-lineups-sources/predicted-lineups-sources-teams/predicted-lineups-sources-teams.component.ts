@@ -33,8 +33,6 @@ export class PredictedLineupsSourcesTeamsComponent implements OnInit {
   public ngOnInit(): void {
     this.teamsSorted$ = this.propertiesStore.selectTeamsNavigation();
     this.onSortChange({ active: 'lastMd', direction: 'desc' });
-
-    console.log(this.teams);
   }
 
   public onSortChange(sort: Sort): void {

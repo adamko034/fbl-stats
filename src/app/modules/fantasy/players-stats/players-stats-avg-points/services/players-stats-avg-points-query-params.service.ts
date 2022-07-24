@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayersStatsAvgPointsFilters } from '../models/players-stats-avg-points-filters.model';
 import { PlayersStatsAvgPointsType } from '../models/players-stats-avg-points-type.enum';
 
@@ -7,7 +7,7 @@ import { PlayersStatsAvgPointsType } from '../models/players-stats-avg-points-ty
 export class PlayersStatsAvgPointsQueryParamsService {
   private default: PlayersStatsAvgPointsFilters = {
     includeGames: 0,
-    position: PlayerPosition.ALL,
+    position: Position.ALL,
     type: PlayersStatsAvgPointsType.OVERALL
   };
 

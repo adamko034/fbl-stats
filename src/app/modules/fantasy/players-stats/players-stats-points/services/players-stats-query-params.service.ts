@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { CalculationsType } from 'src/app/shared/models/calculations-type.enum';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersStatsPointsFilters } from '../models/players-stats-points-filters.model';
 import { PlayersStatsPointsSubType } from '../models/players-stats-points-subtype.enum';
 import { PlayersStatsPointsType } from '../models/players-stats-points-type.enum';
@@ -11,7 +11,7 @@ export class PlayersStatsQueryParamsService {
     calculations: CalculationsType.OVERALL,
     type: PlayersStatsPointsType.BUNDESLIGA,
     subType: PlayersStatsPointsSubType.ATTACKING,
-    position: PlayerPosition.ALL
+    position: Position.ALL
   };
 
   public convertToFilters(params: any): PlayersStatsPointsFilters {

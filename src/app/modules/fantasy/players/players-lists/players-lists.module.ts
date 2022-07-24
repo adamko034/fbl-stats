@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersPointsEffciencyResolver } from '../../players-stats/players-points-efficiency/resolvers/players-points-efficiency.resolver';
@@ -21,7 +22,14 @@ import { PlayersListUnavailableComponent } from './views/players-list-unavailabl
     PlayersListReturningComponent,
     PlayersListUnavailableComponent
   ],
-  imports: [CommonModule, PlayersListsRoutingModule, SharedModule, AngularMaterialModule, FblCoreModule],
+  imports: [
+    CommonModule,
+    PlayersListsRoutingModule,
+    SharedModule,
+    AngularMaterialModule,
+    FblCoreModule,
+    PlayerIconSuspensionRiskModule
+  ],
   providers: [
     PlayersListsLoader,
     PlayersListReturningResolver,

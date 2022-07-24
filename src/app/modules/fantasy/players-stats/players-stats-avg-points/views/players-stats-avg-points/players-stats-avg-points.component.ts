@@ -29,6 +29,7 @@ export class PlayersStatsAvgPointsComponent implements OnInit {
 
   public listConfig$: Observable<PlayersListGenericConfig>;
   public data$: Observable<PlayersListGenericData>;
+  public lastMatchday$: Observable<number>;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class PlayersStatsAvgPointsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.data$ = this.route.data.pipe(map((data) => this.mapToListData(data.players)));
+    this.lastMatchday$ = this.route.data.pipe(map((data) => data.lastMatchday));
     this.listConfig$ = this.route.queryParams.pipe(
       map((params) => {
         const filters = this.queryParamsService.getFilters(params);

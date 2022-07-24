@@ -1,8 +1,8 @@
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayersStatsAvgPointsType } from './players-stats-avg-points-type.enum';
 
 export interface PlayersStatsAvgPointsFilters {
-  position: PlayerPosition;
+  position: Position;
   includeGames: number;
   type: PlayersStatsAvgPointsType;
 }

@@ -5,10 +5,15 @@
     [lastMatchday]="state$ | async | field: 'lastMatchday'"
   ></app-matchday-tips-top-team-filters>
 
-  <app-white-block padding="20px 20px 20px 20px">
+  <app-white-block padding="20px 20px 20px 20px" *ngIf="state$ | async | field: 'lastMatchday' | isGreaterThan: 0">
     <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
       <app-team-lineup class="lineup" [lineup]="lineup$ | async"></app-team-lineup>
       <app-team-players-table [config]="playersTableConfig" [players]="playersTable$ | async"></app-team-players-table>
     </div>
   </app-white-block>
+
+  <app-follow-us-to-stay-tuned
+    *ngIf="state$ | async | field: 'lastMatchday' | isEqualTo: 0"
+    text="Best team will be available after MD 1."
+  ></app-follow-us-to-stay-tuned>
 </div>

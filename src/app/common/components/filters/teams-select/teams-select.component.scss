@@ -1,0 +1,20 @@
+@import '/src/variables.scss';
+
+.teams-select-container {
+  span {
+    font-size: $fontSizeSmall;
+  }
+
+  .button-clear {
+    width: 20px;
+  }
+
+  .select-teams-button {
+    color: $colorBlue;
+    padding: 0 5px;
+
+    span {
+      margin-left: 3px;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
@@ -12,7 +13,6 @@ import { PlayersListGenericConfig } from 'src/app/shared/components/players-list
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersListGenericRowsConverter } from '../converters/players-list-generic-rows.converter';
 
 interface State {
@@ -20,7 +20,7 @@ interface State {
   type: 'overall' | 'last5';
   data: PlayersListGenericData;
   config: PlayersListGenericConfig;
-  position: PlayerPosition;
+  position: Position;
 }
 
 @UntilDestroy()
@@ -90,7 +90,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
           const listConfig = this.getListConfig(orderByParam);
 
           return {
-            position: position || PlayerPosition.ALL,
+            position: position || Position.ALL,
             type,
             orderBy: orderByParam,
             config: listConfig,
@@ -119,7 +119,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
     this.changeType(value);
   }
 
-  public onPositionChange(value: PlayerPosition): void {
+  public onPositionChange(value: Position): void {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { position: value },

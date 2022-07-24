@@ -1,29 +1,26 @@
 <div fxLayout="column" fxLayoutGap="10px">
-  <div>
-    <app-white-block padding="20px 10px 0 10px">
-      <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
-        <app-players-position-switch
-          class="filter"
-          [selected]="position"
-          [showLabel]="false"
-          (positionChange)="onPositionChange($event)"
-        ></app-players-position-switch>
+  <app-white-block padding="20px 10px 0 10px">
+    <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
+      <app-position-switch class="filter" [value]="position" (change)="onPositionChange($event)"></app-position-switch>
 
-        <app-switch
-          class="filter"
-          [items]="types"
-          [value]="orderBy"
-          (switchChange)="onSortChange({ active: $event, direction: 'desc' })"
-        ></app-switch>
-      </div>
-    </app-white-block>
-  </div>
+      <app-switch
+        class="filter"
+        [items]="types"
+        [value]="orderBy"
+        (switchChange)="onSortChange({ active: $event, direction: 'desc' })"
+      ></app-switch>
+    </div>
+  </app-white-block>
 
-  <div>
-    <app-players-list-generic
-      [data]="listData$ | async"
-      [config]="listConfig$ | async"
-      (sortChange)="onSortChange($event)"
-    ></app-players-list-generic>
-  </div>
+  <app-players-list-generic
+    *ngIf="lastMatchday$ | async | isGreaterThan: 0"
+    [data]="listData$ | async"
+    [config]="listConfig$ | async"
+    (sortChange)="onSortChange($event)"
+  ></app-players-list-generic>
+
+  <app-follow-us-to-stay-tuned
+    *ngIf="lastMatchday$ | async | isEqualTo: 0"
+    text=" Players stats will be available after MD 1."
+  ></app-follow-us-to-stay-tuned>
 </div>

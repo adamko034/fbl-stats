@@ -1,0 +1,22 @@
+@import '/src/variables.scss';
+
+.dropdown-section {
+  font-size: $fontSizeSmall;
+
+  span.link {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.dropdown-section-links {
+  padding-bottom: 10px;
+}
+
+.dropdown-section-lastMds {
+  padding-top: 15px;
+}
+
+.dropdown-section-mdsBetween {
+  padding-top: 10px;
+}

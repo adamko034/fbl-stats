@@ -1,5 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-around">
   <app-players-compare-games-previous
+    *ngIf="lastMatchday > 0"
     class="games-previous"
     appStickyWrapper
     [players]="players"

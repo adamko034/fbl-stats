@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { PlayerAttendancePrediction } from 'src/app/modules/core/players/models/player-attendance-prediction.enum';
+import { PlayerPredictionCombined } from 'src/app/common/players/models/player-prediction-combined.enum';
 import { PlayerDetailsTeam } from '../../../models/player-details-team.model';
 import { PlayerDetails } from '../../../models/player-details.model';
 
@@ -20,7 +20,7 @@ export class PlayerDetailsNextMatchdayComponent implements OnInit {
     return this.player.nextGame.isHome ? this.player.nextGame.opponent : this.player.team;
   }
 
-  public predictions = PlayerAttendancePrediction;
+  public predictions = PlayerPredictionCombined;
 
   constructor() {}
 

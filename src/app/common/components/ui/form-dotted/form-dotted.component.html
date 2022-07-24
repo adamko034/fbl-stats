@@ -1,0 +1,15 @@
+<div *ngIf="form">
+  <div fxLayoutGap="4px" fxLayoutAlign="center center">
+    <span
+      *ngFor="let result of form.split(separator)"
+      class="game-result game-result-dot"
+      [ngClass]="getGameResultClass(result)"
+    >
+      {{ '' }}
+    </span>
+  </div>
+</div>
+
+<div *ngIf="!form">
+  <span>---</span>
+</div>

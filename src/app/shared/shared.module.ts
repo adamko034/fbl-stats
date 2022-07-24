@@ -39,10 +39,8 @@ import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo
 import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
 import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { PipesModule } from '../common/pipes/pipes.module';
 import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
-import { BundesligaTableFiltersComponent } from './components/bundesliga-table/bundesliga-table-filters/bundesliga-table-filters.component';
-import { BundesligaTableInnerComponent } from './components/bundesliga-table/bundesliga-table-inner/bundesliga-table-inner.component';
-import { BundesligaTableComponent } from './components/bundesliga-table/bundesliga-table.component';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
@@ -69,7 +67,6 @@ import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.c
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
-import { PlayersPositionSwitchComponent } from './components/players-position-switch/players-position-switch.component';
 import { PlayersTableGenericComponent } from './components/players-table-generic/players-table-generic.component';
 import { PostponedGameIconComponent } from './components/postponed-game-icon/postponed-game-icon.component';
 import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
@@ -100,7 +97,6 @@ import { SizeDirective } from './directives/size.directive';
 import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
 import { StickyDirective } from './directives/sticky.directive';
 import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
-import { ArrayIncludesPipe } from './pipes/array-includes.pipe';
 import { ArrayNotEmptyPipe } from './pipes/array-not-empty.pipe';
 import { AveragePipe } from './pipes/average.pipe';
 import { DaysBetweenNowPipe } from './pipes/days-between-now.pipe';
@@ -109,7 +105,6 @@ import { FieldPipe } from './pipes/field.pipe';
 import { LengthPipe } from './pipes/length.pipe';
 import { NullableTextPipe } from './pipes/nullable-text.pipe';
 import { NumeralsPipe } from './pipes/numerals.pipe';
-import { ReverseBooleanPipe } from './pipes/reverse-boolean.pipe';
 import { TakePipe } from './pipes/take.pipe';
 import { WherePipe } from './pipes/where.pipe';
 import { YesNoPipe } from './pipes/yes-no.pipe';
@@ -154,7 +149,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TitleUnderlinedGreyComponent,
     AveragePipe,
     TakePipe,
-    PlayersPositionSwitchComponent,
     LengthPipe,
     ShowMoreLinkComponent,
     ChartDialogComponent,
@@ -170,9 +164,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SliderMaxPopularityComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    BundesligaTableComponent,
-    BundesligaTableFiltersComponent,
-    BundesligaTableInnerComponent,
     PieChartComponent,
     TimeAgoComponent,
     PlayersTableGenericComponent,
@@ -191,8 +182,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     StickyWrapperDirective,
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
-    ReverseBooleanPipe,
-    ArrayIncludesPipe,
     DaysBetweenNowPipe,
     FirstGameIconComponent,
     SizeDirective,
@@ -211,7 +200,8 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FontAwesomeModule,
     RouterModule,
     NgPipesModule,
-    NgxChartsModule
+    NgxChartsModule,
+    PipesModule
   ],
   exports: [
     TeamLogoComponent,
@@ -254,7 +244,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TitleUnderlinedGreyComponent,
     AveragePipe,
     TakePipe,
-    PlayersPositionSwitchComponent,
     LengthPipe,
     ShowMoreLinkComponent,
     ValueDifferenceComponent,
@@ -268,7 +257,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SliderMaxPriceComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    BundesligaTableComponent,
     PieChartComponent,
     TimeAgoComponent,
     PlayersTableGenericComponent,
@@ -281,8 +269,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     StickyWrapperDirective,
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
-    ReverseBooleanPipe,
-    ArrayIncludesPipe,
     DaysBetweenNowPipe,
     FirstGameIconComponent,
     SizeDirective,

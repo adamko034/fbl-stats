@@ -1,15 +1,5 @@
-<div *ngIf="!!form">
-  <div *ngIf="mode === 'rectangle'" fxLayoutGap="2px">
-    <span
-      *ngFor="let result of form.split('')"
-      class="game-result game-result-rectangle"
-      [ngClass]="getGameResultClass(result)"
-    >
-      {{ showLabels ? result : '' }}
-    </span>
-  </div>
-
-  <div *ngIf="mode === 'dot'" fxLayoutGap="4px" fxLayoutAlign="center center">
+<div *ngIf="form">
+  <div fxLayoutGap="4px" fxLayoutAlign="center center">
     <span
       *ngFor="let result of form.split('')"
       class="game-result game-result-dot"

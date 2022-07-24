@@ -1,0 +1,5 @@
+<a *ngIf="id" [routerLink]="['/fantasy/players/details/' + id]" target="_self">
+  {{ name }}
+</a>
+
+<span *ngIf="!id">{{ name }}</span>

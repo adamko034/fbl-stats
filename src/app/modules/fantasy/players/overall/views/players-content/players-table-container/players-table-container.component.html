@@ -1,7 +1,0 @@
-<div *ngIf="loading" fxLayoutAlign="center center">
-  <mat-progress-spinner [diameter]="50" [mode]="'indeterminate'"></mat-progress-spinner>
-</div>
-
-<div [fxHide]="loading">
-  <app-players-table [players]="playersToDisplay" [showAddToMyTeamButton]="true"></app-players-table>
-</div>

@@ -14,7 +14,7 @@ const routes: Routes = [
       },
       {
         path: 'table',
-        loadChildren: () => import('./table/bundesliga-table.module').then((m) => m.BundesligaTableModule)
+        loadChildren: () => import('./table/teams-bundesliga-table.module').then((m) => m.TeamsBundesligaTableModule)
       },
       {
         path: 'fixtures',

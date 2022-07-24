@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
 import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
-import { PlayerPosition } from '../../players/overall/models/players-filters';
 import { PlayerCompareCard } from '../models/player-compare-card.model';
 import { PlayersCompareFixturesFilters } from '../models/players-compare-fixtures-filters.model';
 import { PlayersCompareState } from '../models/players-compare-state.model';
@@ -13,7 +13,7 @@ import { PlayersCompareFiltersService } from '../services/players-compare-filter
 import { PlayersCompareNavigationService } from '../services/players-compare-navigation.service';
 
 interface GenereateOptions {
-  position?: PlayerPosition;
+  position?: Position;
   count?: number;
   maxPrice?: number;
 }
@@ -32,7 +32,7 @@ export class PlayersCompareComponent implements OnInit {
   public filters$: Observable<PlayersCompareFixturesFilters>;
 
   public generateOptions: GenereateOptions = {
-    position: PlayerPosition.ALL,
+    position: Position.ALL,
     count: 6
   };
   public maxPrice: number = 0;
@@ -78,7 +78,7 @@ export class PlayersCompareComponent implements OnInit {
     this.navigationService.addPlayer(id.toString());
   }
 
-  public onPositionChange(newPosition: PlayerPosition): void {
+  public onPositionChange(newPosition: Position): void {
     this.generateOptions.position = newPosition;
   }
 
@@ -94,7 +94,7 @@ export class PlayersCompareComponent implements OnInit {
     const { count, position, maxPrice } = this.generateOptions;
     const filters = {
       count: count === 6 ? null : count,
-      position: position === PlayerPosition.ALL ? null : position,
+      position: position === Position.ALL ? null : position,
       maxPrice: maxPrice === this.maxPrice ? null : maxPrice
     };
 

@@ -1,0 +1,26 @@
+@import '/src/variables.scss';
+.dropdown {
+  font-size: $fontSizeSmall;
+  background-color: #fff;
+  height: 28px;
+  border-bottom: solid 0.7px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+
+  &-title {
+    padding-right: 12px;
+  }
+
+  &-icon {
+    height: 24px;
+    width: 24px;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  &-content {
+    background-color: #fff;
+    border: solid 1px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    padding: 10px;
+  }
+}

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-tips-our-picks-filters.service';
 
 @Component({
@@ -12,20 +12,20 @@ import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-t
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchdayTipsOurPicksFiltersComponent implements OnInit {
-  public position$: Observable<PlayerPosition>;
+  public position$: Observable<Position>;
   public types$: Observable<MatchdayTipsOurPicksType[]>;
 
   constructor(private filtersService: MatchdayTipsOurPicksFiltersService) {}
 
   public ngOnInit(): void {
     this.position$ = this.filtersService.selectAll().pipe(
-      startWith({ position: PlayerPosition.ALL }),
-      map((f) => (!!f.position ? f.position : PlayerPosition.ALL))
+      startWith({ position: Position.ALL }),
+      map((f) => (!!f.position ? f.position : Position.ALL))
     );
     this.types$ = this.filtersService.selectAll().pipe(map((f) => f.types));
   }
 
-  public onPositionChange(position: PlayerPosition): void {
+  public onPositionChange(position: Position): void {
     this.filtersService.updatePosition(position);
   }
 

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
-import { PlayerPosition } from '../../../players/overall/models/players-filters';
 import { PlayersStatsPointsConverter } from '../converters/players-stats-points.converter';
 import { PlayersStatsPointsPlayer } from '../models/players-stats-points-player.model';
 import { PlayersStatsQueryParamsService } from '../services/players-stats-query-params.service';
@@ -25,7 +25,7 @@ export class PlayersStatsPointsResolver implements Resolve<Observable<PlayersSta
 
     return combineLatest([this.playersStore.selectPlayers(), this.teamsStore.selectAll()]).pipe(
       map(([players, teams]) => {
-        if (filters.position === PlayerPosition.ALL) {
+        if (filters.position === Position.ALL) {
           return { players, teams };
         }
 

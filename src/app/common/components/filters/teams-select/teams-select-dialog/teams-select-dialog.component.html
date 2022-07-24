@@ -1,0 +1,42 @@
+<div
+  class="container"
+  ngClass.gt-md="container-lg"
+  ngClass.gt-sm="container-md"
+  ngClass.gt-xs="container-sm"
+  ngClass.xs="container-xs"
+>
+  <h2 mat-dialog-title>Select Teams</h2>
+  <mat-form-field class="search">
+    <mat-label>Search by name</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput type="text" [(ngModel)]="searchTerm" (keyup)="onSearch()" />
+    <button mat-button *ngIf="searchTerm" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <div fxLayout="row wrap" fxLayoutGap="10px">
+    <div
+      ngClass.gt-md="team-checkbox"
+      fxFlex="30"
+      fxFlex.lt-md="45"
+      fxFlex.lt-sm="45"
+      *ngFor="let team of teams | orderBy: 'longName'; trackBy: trackTeamsBy"
+    >
+      <mat-checkbox [(ngModel)]="team.selected">
+        <div fxHide.lt-sm fxLayoutGap="3px" fxLayoutAlign="start center">
+          <app-team-logo [team]="team.shortName" [height]="20"></app-team-logo>
+          <span>{{ team.longName }}</span>
+        </div>
+        <div fxHide.gt-xs fxLayoutGap="3px" fxLayoutAlign="start center">
+          <app-team-logo [team]="team.shortName" [height]="20"></app-team-logo>
+          <span>{{ team.shortName | uppercase }}</span>
+        </div>
+      </mat-checkbox>
+    </div>
+  </div>
+  <mat-dialog-actions class="actions">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button fxHide.lt-sm mat-button [disabled]="!isTeamSelected" (click)="onUnselectAll()">Unselect all</button>
+    <button class="main-background" mat-button (click)="close()">Confirm</button>
+  </mat-dialog-actions>
+</div>

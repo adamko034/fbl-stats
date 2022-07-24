@@ -1,11 +1,7 @@
 <div fxLayout="column">
   <div>
     <div class="display" fxLayout="row wrap" fxLayoutAlign="space-between center">
-      <app-players-position-switch
-        [showLabel]="false"
-        [selected]="filters.position"
-        (positionChange)="onPositionChange($event)"
-      ></app-players-position-switch>
+      <app-position-switch [value]="filters.position" (change)="onPositionChange($event)"></app-position-switch>
       <app-select-dialog
         class="columns"
         *ngIf="shouldShowSelectColumnsDialog()"
@@ -20,7 +16,6 @@
         mat-table
         matSort
         matSortStart="desc"
-        [matSortActive]="defaultSort"
         matSortDisableClear
         matSortDirection="desc"
         (matSortChange)="onSortChange($event)"

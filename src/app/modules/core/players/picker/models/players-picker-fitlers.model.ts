@@ -1,6 +1,6 @@
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 
 export interface PlayersPickerFilters {
   excludedIds?: string[];
-  position?: PlayerPosition;
+  position?: Position;
 }

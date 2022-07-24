@@ -1,0 +1,22 @@
+<app-form-field label="Teams">
+  <div class="teams-select-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+    <span *ngIf="!isTeamSelected()">No teams selected.</span>
+    <span class="teams-selected-span" *ngIf="isTeamSelected()">{{ selectedTeamsCount }} teams selected</span>
+    <button
+      *ngIf="selectedTeamsCount > 0"
+      mat-icon-button
+      class="red button-clear"
+      [appScale]="0.7"
+      (click)="clearSelection()"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+    <button fxHide.lt-sm mat-stroked-button class="select-teams-button" (click)="openDialog()">
+      <mat-icon [appScale]="0.8">input</mat-icon>
+      <span>Select teams</span>
+    </button>
+    <button fxHide.gt-xs mat-icon-button class="main-background" [appScale]="0.8" (click)="openDialog()">
+      <mat-icon>input</mat-icon>
+    </button>
+  </div>
+</app-form-field>

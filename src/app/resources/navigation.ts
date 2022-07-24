@@ -35,11 +35,16 @@ export class Navigation {
     },
     {
       order: 3,
-      text: 'Other',
+      text: 'History',
       children: [
-        { order: 1, path: 'fantasy/history/20-21', text: 'Last season', icon: 'history' },
-        { order: 2, path: 'fantasy/usefullinks', text: 'Useful links', icon: 'link' }
+        { order: 1, path: 'fantasy/history/2021-2022', text: '2021-2022', icon: 'keyboard_arrow_left' },
+        { order: 1, path: 'fantasy/history/2020-2021', text: '2020-2021', icon: 'keyboard_double_arrow_left' }
       ]
+    },
+    {
+      order: 4,
+      text: 'Other',
+      children: [{ order: 2, path: 'fantasy/usefullinks', text: 'Useful links', icon: 'link' }]
     }
   ];
 }

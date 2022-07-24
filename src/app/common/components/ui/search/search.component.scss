@@ -1,0 +1,9 @@
+@import '/src/variables.scss';
+
+::ng-deep .mat-form-field-infix {
+  border-top: unset !important;
+}
+
+input {
+  font-size: $fontSizeSmall;
+}

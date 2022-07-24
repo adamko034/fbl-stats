@@ -3,7 +3,7 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
@@ -21,7 +21,7 @@ import { PlayerGamesPlayed } from '../../models/player-games-played.model';
 })
 export class PlayersGamesPlayedComponent implements OnInit {
   private _orderBy = 'gamesStartedPercentage';
-  private _position = PlayerPosition.ALL;
+  private _position = Position.ALL;
   private _types: SwitchItem[] = [
     { value: 'gamesPlayedPercentage', description: 'Played' },
     { value: 'gamesStartedPercentage', description: 'Started' },
@@ -30,7 +30,7 @@ export class PlayersGamesPlayedComponent implements OnInit {
   ];
   private _selectedType = 'gamesStarted';
 
-  public get position(): PlayerPosition {
+  public get position(): Position {
     return this._position;
   }
 
@@ -48,10 +48,12 @@ export class PlayersGamesPlayedComponent implements OnInit {
 
   public listData$: Observable<PlayersListGenericData>;
   public listConfig$: Observable<PlayersListGenericConfig>;
+  public lastMatchday$: Observable<number>;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   public ngOnInit(): void {
+    this.lastMatchday$ = this.route.data.pipe(map((data) => data.lastMatchday));
     this.listData$ = combineLatest([this.route.data, this.route.queryParams]).pipe(
       tap(([_, params]) => (this._orderBy = params.orderBy || 'gamesStartedPercentage')),
       map(([data, _]) => data.players),
@@ -63,7 +65,7 @@ export class PlayersGamesPlayedComponent implements OnInit {
     this.listConfig$ = this.route.queryParams.pipe(
       map((params) => {
         this._orderBy = params.orderBy || 'gamesStartedPercentage';
-        this._position = params.position || PlayerPosition.ALL;
+        this._position = params.position || Position.ALL;
         return {
           defaultSortDirection: 'desc',
           defaultSortFieldName: this._orderBy,
@@ -83,7 +85,7 @@ export class PlayersGamesPlayedComponent implements OnInit {
     });
   }
 
-  public onPositionChange(newPosition: PlayerPosition): void {
+  public onPositionChange(newPosition: Position): void {
     this._position = newPosition;
     this.router.navigate([], {
       queryParamsHandling: 'merge',

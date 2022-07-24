@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { PlayersStatsAvgPointsFilters } from '../../../models/players-stats-avg-points-filters.model';
 import { PlayersStatsAvgPointsType } from '../../../models/players-stats-avg-points-type.enum';
@@ -51,7 +51,7 @@ export class PlayersStatsAvgPointsFiltersComponent implements OnInit {
     this.filters$ = this.route.queryParams.pipe(map((params) => this.queryParamsService.getFilters(params)));
   }
 
-  public onPositionChange(newPosition: PlayerPosition): void {
+  public onPositionChange(newPosition: Position): void {
     this.router.navigate([], { queryParams: { pos: newPosition }, queryParamsHandling: 'merge' });
   }
 

@@ -1,0 +1,34 @@
+<div fxLayout="column">
+  <app-title *ngIf="state.config.showSeasonTitle" [text]="seasonTitleText"></app-title>
+  <app-content-white-block padding="0px">
+    <div fxLayout="column">
+      <app-players-table-filters
+        class="filters"
+        [filters]="filters"
+        [config]="filtersConfig"
+        [teams]="state.teams"
+      ></app-players-table-filters>
+
+      <app-players-table-inner [players]="players" [config]="tableInnerConfig"></app-players-table-inner>
+
+      <app-legend gridColumnWidth="300">
+        <span>Pos - position</span>
+        <span>$ - price</span>
+        <span>% - popularity</span>
+        <span>L100% - popularity in top 100</span>
+        <span>L500% - populairty in top 500</span>
+        <span>TP - total points</span>
+        <span>Avg - average points</span>
+        <span>GS% - % of games started</span>
+        <span>G70% - % of games played more than 70 minutes</span>
+        <span>Next - next game</span>
+        <span>FPts - points scored in selected matchdays</span>
+        <span>FAvg - avg points in selected matchdays</span>
+        <span>FGS% - % of games started in selected matchdays</span>
+        <span>FG70% - % of games played more than 70 minutes in selected matchdays</span>
+        <span>MDx - points scored in matchday x</span>
+        <span>MT - add/remove from my team</span>
+      </app-legend>
+    </div>
+  </app-content-white-block>
+</div>

@@ -13,12 +13,9 @@ import { FixturesDifficultyFiltersService } from '../../services/fixtures-diffic
 })
 export class FixturesDifficultyFiltersComponent implements OnInit {
   @Input() filters: FixturesDifficultyFilters;
+  @Input() nextMatchday: number;
 
-  private _calculations: SwitchItem[] = [
-    { value: FixturesDifficultyCalculation.BY_RANK, description: 'By rank' },
-    { value: FixturesDifficultyCalculation.BY_FORM, description: 'By form' }
-  ];
-
+  private _calculations: SwitchItem[];
   public get calculations(): SwitchItem[] {
     return this._calculations;
   }
@@ -29,7 +26,12 @@ export class FixturesDifficultyFiltersComponent implements OnInit {
 
   constructor(private filtersService: FixturesDifficultyFiltersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._calculations = [
+      { value: FixturesDifficultyCalculation.BY_RANK, description: 'By rank' },
+      { value: FixturesDifficultyCalculation.BY_FORM, description: 'By form', hidden: this.nextMatchday <= 1 }
+    ];
+  }
 
   public onIncludeVenuChange(change: MatCheckboxChange): void {
     this.filtersService.changeIncludeVenue(change.checked);

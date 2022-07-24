@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, tap } from 'rxjs/operators';
+import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
-import { PlayerPosition } from 'src/app/modules/fantasy/players/overall/models/players-filters';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { CompareBestGks } from 'src/app/store/compare/models/compare-best-gks.model';
 import { Player } from 'src/app/store/players/models/player.model';
@@ -32,7 +32,7 @@ export class AdminBestGksComponent implements OnInit {
     return this._edited;
   }
 
-  public GK = PlayerPosition.GK;
+  public GK = Position.GK;
 
   constructor(private route: ActivatedRoute, private facade: AdminBestGksFacade) {}
 

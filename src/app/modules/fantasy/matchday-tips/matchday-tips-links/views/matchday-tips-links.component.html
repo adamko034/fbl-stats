@@ -28,7 +28,12 @@
           <span>Best forwards</span>
         </a>
 
-        <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ maxPrice: 10, count: 10 }">
+        <a
+          *ngIf="lastMatchday$ | async | isGreaterThan: 0"
+          class="link"
+          [routerLink]="['/fantasy', 'compare', 'top']"
+          [queryParams]="{ maxPrice: 7, count: 10 }"
+        >
           <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
           <span>Top 10 budget picks</span>
         </a>

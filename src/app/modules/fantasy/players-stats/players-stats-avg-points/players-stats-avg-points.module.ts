@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersStatsAvgPointsConverter } from './converters/players-stats-avg-points.converter';
@@ -12,7 +13,14 @@ import { PlayersStatsAvgPointsComponent } from './views/players-stats-avg-points
 
 @NgModule({
   declarations: [PlayersStatsAvgPointsComponent, PlayersStatsAvgPointsFiltersComponent],
-  imports: [CommonModule, PlayersStatsAvgPointsRoutingModule, SharedModule, FblCoreModule, AngularMaterialModule],
+  imports: [
+    CommonModule,
+    PlayersStatsAvgPointsRoutingModule,
+    SharedModule,
+    FblCoreModule,
+    AngularMaterialModule,
+    LastMatchdayResolverModule
+  ],
   providers: [PlayersStatsAvgPointsQueryParamsService, PlayersStatsAvgPointsResolver, PlayersStatsAvgPointsConverter]
 })
 export class PlayersStatsAvgPointsModule {}

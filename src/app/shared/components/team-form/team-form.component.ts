@@ -9,7 +9,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 export class TeamFormComponent {
   @Input() form: string;
   @Input() showLabels = false;
-  @Input() mode: 'dot' | 'rectangle' = 'dot';
   @Input() size: 'supersmall' | 'small' | 'medium' = 'medium';
 
   constructor() {}

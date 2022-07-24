@@ -1,0 +1,47 @@
+<div class="players-table-filters-container">
+  <app-position-switch [value]="filters.position" (change)="onPositionChange($event)"></app-position-switch>
+  <app-teams-select
+    *ngIf="config.showTeamsFilter"
+    [state]="teamsSelectState"
+    (change)="onSelectedTeamsChange($event)"
+  ></app-teams-select>
+  <app-select-matchdays-panel
+    label="Form includes"
+    *ngIf="config.lastMatchday > 0"
+    [value]="filters.matchdays"
+    [lastMatchday]="config.lastMatchday"
+    (change)="onMatchdayChange($event)"
+  ></app-select-matchdays-panel>
+  <app-max-price-slider
+    *ngIf="config.showMaxPriceFilter"
+    class="width-full"
+    [value]="filters.maxPrice"
+    [maxPrice]="config.maxPrice"
+    (maxPriceChange)="onMaxPriceChange($event)"
+  ></app-max-price-slider>
+  <app-max-popularity-slider
+    *ngIf="config.showMaxPopularityFilter"
+    [value]="filters.maxPopularity"
+    (popularityChange)="onMaxPopularityChange($event)"
+    class="width-full"
+  ></app-max-popularity-slider>
+  <app-prediction-dropdown
+    *ngIf="config.showPredictionFilter"
+    class="width-full"
+    [value]="filters.prediction"
+    (change)="onPredicitonChange($event)"
+  ></app-prediction-dropdown>
+  <app-search
+    *ngIf="config.showPlayerSearchFilter"
+    label="Player search"
+    [value]="filters.playerName"
+    (termChange)="onPlayerSearch($event)"
+  ></app-search>
+  <app-checkbox
+    *ngIf="config.showHideUnavailableFilter"
+    label="Hide unavailable"
+    [value]="filters.hideUnavailable"
+    (checkboxChange)="onHideUnavailableChange($event)"
+  ></app-checkbox>
+  <!-- <app-button [disabled]="!clearEnabled" (buttonClick)="clearFilters()" text="Clear filters" icon="remove"></app-button> -->
+</div>
