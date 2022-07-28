@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { MatrixTableConfig } from 'src/app/common/components/ui/matrix-table/models/matrix-table-config.model';
 import { MatrixTableRow } from 'src/app/common/components/ui/matrix-table/models/matrix-table-row.model';
 import { Team } from 'src/app/store/teams/models/team.model';
@@ -35,6 +35,8 @@ export class TeamsKickoffTimesComponent implements OnInit {
     return this._rows$;
   }
 
+  public mds: string = '';
+
   constructor(
     private _route: ActivatedRoute,
     private _filtersService: TeamsKickoffTimesFiltersService,
@@ -42,7 +44,16 @@ export class TeamsKickoffTimesComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this._filters$ = this._route.queryParams.pipe(map((params) => this._filtersService.fromQueryParams(params)));
+    this._filters$ = this._route.queryParams.pipe(
+      map((params) => this._filtersService.fromQueryParams(params)),
+      tap(
+        (params) =>
+          (this.mds =
+            params.matchdays === 0
+              ? `${this.lastMatchday + 1} - ${this.lastKnownMatchday}`
+              : `${this.lastMatchday + 1} - ${this.lastMatchday + params.matchdays}`)
+      )
+    );
     this._rows$ = this._filters$.pipe(map((filters) => this.getRows(filters)));
     this._matrixTableConfig$ = this._filters$.pipe(
       map((filters) => ({ mode: 'teams', autoSetColor: true, max: this.getMax(filters), showReflection: true }))

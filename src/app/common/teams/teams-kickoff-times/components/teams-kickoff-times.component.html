@@ -7,11 +7,16 @@
       [teams]="teams"
     ></app-teams-kickoff-times-filters>
     <div fxLayout="row" fxLayoutAlign="center stretch">
-      <app-matrix-table
-        appStickyWrapper
-        [rows]="rows$ | async"
-        [config]="matrixTableConfig$ | async"
-      ></app-matrix-table>
+      <app-content-titled>
+        <span title>Different Kickoff Times for MD {{ mds }}</span>
+        <div content>
+          <app-matrix-table
+            appStickyWrapper
+            [rows]="rows$ | async"
+            [config]="matrixTableConfig$ | async"
+          ></app-matrix-table>
+        </div>
+      </app-content-titled>
     </div>
   </div>
 </app-content-white-block>
