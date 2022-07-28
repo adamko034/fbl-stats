@@ -1,0 +1,17 @@
+<app-content-white-block>
+  <div fxLayout="column" fxLayoutGap="15px">
+    <app-teams-kickoff-times-filters
+      [filters]="filters$ | async"
+      [lastMatchday]="lastMatchday"
+      [lastKnownMatchday]="lastKnownMatchday"
+      [teams]="teams"
+    ></app-teams-kickoff-times-filters>
+    <div fxLayout="row" fxLayoutAlign="center stretch">
+      <app-matrix-table
+        appStickyWrapper
+        [rows]="rows$ | async"
+        [config]="matrixTableConfig$ | async"
+      ></app-matrix-table>
+    </div>
+  </div>
+</app-content-white-block>

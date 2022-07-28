@@ -52,6 +52,11 @@
 
   .actions {
     margin-top: auto;
-    align-self: flex-end;
+    width: 100%;
+
+    .send-button:disabled {
+      background-color: unset;
+      color: rgba(0, 0, 0, 0.26);
+    }
   }
 }

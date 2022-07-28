@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges } from '@angular/core';
+import { MatrixTableColor } from 'src/app/common/components/ui/matrix-table/models/matrix-table-color.enum';
+import { MatrixTableColumn } from 'src/app/common/components/ui/matrix-table/models/matrix-table-column.model';
+import { MatrixTableConfig } from 'src/app/common/components/ui/matrix-table/models/matrix-table-config.model';
+import { MatrixTableRow } from 'src/app/common/components/ui/matrix-table/models/matrix-table-row.model';
+import { TeamsKickoffTimesService } from 'src/app/common/teams/teams-kickoff-times/services/teams-kickoff-times.service';
 import { TeamService } from 'src/app/modules/core/teams/services/team.service';
-import { TeamsKickOffTimesService } from 'src/app/modules/core/teams/services/teams-kickoff-times.service';
-import { MatrixTableColor } from 'src/app/shared/components/matrix-table/models/matrix-table-color.enum';
-import { MatrixTableColumn } from 'src/app/shared/components/matrix-table/models/matrix-table-column.model';
-import { MatrixTableRow } from 'src/app/shared/components/matrix-table/models/matrix-table-row.model';
 import { MathHelper } from 'src/app/shared/helpers/math.helper';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Team } from 'src/app/store/teams/models/team.model';
@@ -27,9 +28,10 @@ export class PlayersCompareKickoffTimesComponent implements OnChanges {
   }
 
   public matrix: MatrixTableRow[] = [];
+  public matrixConfig: MatrixTableConfig = { mode: 'players', autoSetColor: false, showReflection: true };
 
   constructor(
-    private teamsKickOffTimesService: TeamsKickOffTimesService,
+    private teamsKickOffTimesService: TeamsKickoffTimesService,
     private teamService: TeamService,
     private changeDetection: ChangeDetectorRef
   ) {}
@@ -59,7 +61,7 @@ export class PlayersCompareKickoffTimesComponent implements OnChanges {
       const otherPlayer = this.players[i];
 
       if (otherPlayer.id === player.id) {
-        cols.push({ id: otherPlayer.id, text: '--', color: MatrixTableColor.GREY });
+        cols.push({ id: otherPlayer.id, text: '--', color: MatrixTableColor.GREY, order });
         continue;
       }
 
@@ -72,7 +74,12 @@ export class PlayersCompareKickoffTimesComponent implements OnChanges {
         this.lastMatchday + 1,
         this.matchdaysCount === 0 ? 0 : this.lastMatchday + this.matchdaysCount
       );
-      cols.push({ id: otherPlayer.id, text: differentKickOffTimes.length.toString(), color: MatrixTableColor.GREY });
+      cols.push({
+        id: otherPlayer.id,
+        text: differentKickOffTimes.length.toString(),
+        color: MatrixTableColor.GREY,
+        order
+      });
     }
 
     return { id, text: lastName, columns: cols, order };

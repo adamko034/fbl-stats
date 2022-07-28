@@ -1,0 +1,10 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+  <app-select-future-matchdays
+    style="padding-top: 12px"
+    [value]="filters.matchdays"
+    [lastMatchday]="lastMatchday"
+    [lastKnownMatchday]="lastKnownMatchday"
+    (change)="onMatchdaysChange($event)"
+  ></app-select-future-matchdays>
+  <app-teams-select [state]="teamsSelectState" (change)="onTeamsChange($event)"></app-teams-select>
+</div>

@@ -1,9 +1,9 @@
 <app-form-field label="Teams">
   <div class="teams-select-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
-    <span *ngIf="!isTeamSelected()">No teams selected.</span>
-    <span class="teams-selected-span" *ngIf="isTeamSelected()">{{ selectedTeamsCount }} teams selected</span>
+    <span *ngIf="allTeamsSelected">All teams</span>
+    <span class="teams-selected-span" *ngIf="someTeamsSelected">{{ selectedTeamsCount }} teams selected</span>
     <button
-      *ngIf="selectedTeamsCount > 0"
+      *ngIf="someTeamsSelected"
       mat-icon-button
       class="red button-clear"
       [appScale]="0.7"

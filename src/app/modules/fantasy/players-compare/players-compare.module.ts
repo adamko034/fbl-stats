@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
+import { MatrixTableModule } from 'src/app/common/components/ui/matrix-table/matrix-table.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { TeamsKickoffTimesService } from 'src/app/common/teams/teams-kickoff-times/services/teams-kickoff-times.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BoldableValuesService } from '../../core/boldable-values/boldable-values.service';
 import { FblCoreModule } from '../../core/fbl-core.module';
@@ -45,7 +47,8 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     AngularMaterialModule,
     FblCoreModule,
     PositionSwitchModule,
-    PipesModule
+    PipesModule,
+    MatrixTableModule
   ],
   providers: [
     PlayersCompareStateResolver,
@@ -55,7 +58,8 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     PlayersCompareIdsCacheGuard,
     BoldableValuesService,
     PlayersCompareQuickLinkLoaderFactory,
-    PlayersCompareQuickLinkGuard
+    PlayersCompareQuickLinkGuard,
+    TeamsKickoffTimesService
   ]
 })
 export class PlayersCompareModule {}

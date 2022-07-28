@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';
-import { TeamService } from './team.service';
+import { TeamService } from '../../../../modules/core/teams/services/team.service';
 
-@Injectable({ providedIn: 'root' })
-export class TeamsKickOffTimesService {
+@Injectable()
+export class TeamsKickoffTimesService {
   constructor(private teamService: TeamService) {}
 
   public getDifferentKickoffTimes(

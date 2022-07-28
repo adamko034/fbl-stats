@@ -32,7 +32,7 @@ export class PlayersTableFiltersComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.filters) {
       Logger.logDev('players table filters component, ng on changes, get new filters');
-      this._teamsSelectState = { teams: this.convertTeams() };
+      this._teamsSelectState = { teams: this.convertTeams(), minSelected: 1 };
     }
   }
 

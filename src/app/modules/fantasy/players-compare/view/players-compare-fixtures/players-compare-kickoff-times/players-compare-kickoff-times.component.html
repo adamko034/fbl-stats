@@ -4,7 +4,7 @@
   </span>
   <div content>
     <div fxLayout="column">
-      <app-matrix-table class="kick-off-times" *ngIf="matrix" [rows]="matrix"></app-matrix-table>
+      <app-matrix-table *ngIf="matrix" [rows]="matrix" [config]="matrixConfig"></app-matrix-table>
       <div class="legend">
         <span [appSticky]="{ position: 'left' }"
           >*Number of different kick-off times in next {{ includeNextMatchdaysCount }} matchdays</span

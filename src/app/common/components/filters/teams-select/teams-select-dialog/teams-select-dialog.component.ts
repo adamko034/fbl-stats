@@ -20,9 +20,17 @@ export class TeamsSelectDialogComponent implements OnInit {
     return this._teams?.some((team) => team.selected);
   }
 
+  public get allSelected(): boolean {
+    return this._teams?.every((t) => t.selected);
+  }
+
+  public get canSend(): boolean {
+    return this._teams.filter((t) => t.selected).length >= this.data.minSelected;
+  }
+
   constructor(
     private dialogRef: MatDialogRef<TeamsSelectDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { teams: TeamsSelectTeam[] }
+    @Inject(MAT_DIALOG_DATA) public data: { teams: TeamsSelectTeam[]; minSelected: number }
   ) {}
 
   public ngOnInit(): void {
@@ -45,6 +53,10 @@ export class TeamsSelectDialogComponent implements OnInit {
 
   public onUnselectAll(): void {
     this.teams.forEach((team) => (team.selected = false));
+  }
+
+  public onSelectAll(): void {
+    this.teams.forEach((t) => (t.selected = true));
   }
 
   public clearSearch(): void {

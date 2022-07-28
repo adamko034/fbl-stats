@@ -61,7 +61,6 @@ import { ViewTitleComponent } from './components/layout/view-title/view-title.co
 import { ViewComponent } from './components/layout/view/view.component';
 import { WhiteBlockComponent } from './components/layout/white-block/white-block.component';
 import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
-import { MatrixTableComponent } from './components/matrix-table/matrix-table.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
 import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
@@ -177,7 +176,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     HasPlayedSeventyMinutesIconComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
-    MatrixTableComponent,
     StickyDirective,
     StickyWrapperDirective,
     ArrayEmptyPipe,
@@ -264,7 +262,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SelectDialogComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
-    MatrixTableComponent,
     StickyDirective,
     StickyWrapperDirective,
     ArrayEmptyPipe,

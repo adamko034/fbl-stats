@@ -34,9 +34,14 @@
       </mat-checkbox>
     </div>
   </div>
-  <mat-dialog-actions class="actions">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button fxHide.lt-sm mat-button [disabled]="!isTeamSelected" (click)="onUnselectAll()">Unselect all</button>
-    <button class="main-background" mat-button (click)="close()">Confirm</button>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between" class="actions">
+    <div>
+      <button fxHide.lt-sm mat-button [disabled]="!isTeamSelected" (click)="onUnselectAll()">Unselect all</button>
+      <button fxHide.lt-sm mat-button [disabled]="allSelected" (click)="onSelectAll()">Select all</button>
+    </div>
+    <div>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button class="send-button main-background" mat-button (click)="close()" [disabled]="!canSend">Confirm</button>
+    </div>
   </mat-dialog-actions>
 </div>

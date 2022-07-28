@@ -13,25 +13,37 @@ import { TeamsSelectDialogComponent } from './teams-select-dialog/teams-select-d
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamsSelectComponent implements OnInit {
-  @Input() state: TeamsSelectState;
+  @Input() set state(state: TeamsSelectState) {
+    this._allTeams = [...state.teams];
+    this.setSelectedTeams(state.teams);
+
+    this._minSelected = state.minSelected;
+  }
   @Output() change = new EventEmitter<string[]>();
 
+  private _allTeams: TeamsSelectTeam[];
+  private _minSelected: number = 1;
+
+  public get allTeamsSelected(): boolean {
+    return this._allTeams.every((t) => t.selected);
+  }
+
+  public get someTeamsSelected(): boolean {
+    return this._allTeams.filter((t) => t.selected).length != 18;
+  }
+
   public get selectedTeamsCount(): number {
-    return this.state.teams.filter((t) => t.selected).length;
+    return this._allTeams.filter((t) => t.selected).length;
   }
 
   constructor(private _matDialog: MatDialog) {}
 
   ngOnInit(): void {}
 
-  public isTeamSelected(): boolean {
-    return this.state.teams.some((t) => t.selected);
-  }
-
   public openDialog(): void {
     this._matDialog
       .open(TeamsSelectDialogComponent, {
-        data: { teams: [...this.state.teams] }
+        data: { teams: [...this._allTeams], minSelected: this._minSelected }
       })
       .afterClosed()
       .pipe(untilDestroyed(this))
@@ -44,14 +56,17 @@ export class TeamsSelectComponent implements OnInit {
     this.sendSelectedTeams([]);
   }
 
-  private sendSelectedTeams(selectedTeams: TeamsSelectTeam[]): void {
-    if (selectedTeams.length === 0) {
-      this.change.emit(null);
+  private setSelectedTeams(allTeams: TeamsSelectTeam[]): void {
+    const allSelected = allTeams.every((t) => !t.selected);
+    if (allSelected) {
+      this._allTeams.forEach((t) => (t.selected = true));
     }
+  }
 
-    const shortNames = [];
-    selectedTeams.forEach((t) => shortNames.push(t.shortName));
-
-    this.change.emit(shortNames);
+  private sendSelectedTeams(selectedTeams: TeamsSelectTeam[]): void {
+    if (selectedTeams) {
+      const toSend = selectedTeams.length === this._allTeams.length ? [] : selectedTeams.map((t) => t.shortName);
+      this.change.emit(toSend);
+    }
   }
 }
