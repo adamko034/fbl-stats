@@ -15,12 +15,14 @@
           player.nextGame.date | epochDate | date: 'EEEE, HH:mm, dd.MM.yyyy'
         }}</span>
       </div>
-      <div fxLayoutGap="20px">
+
+      <div fxLayoutGap="20px" fxLayoutAlign="center center">
         <app-team-logo [height]="40" [team]="homeTeam.shortName"></app-team-logo>
         <span>vs.</span>
         <app-team-logo [height]="40" [team]="awayTeam.shortName"></app-team-logo>
       </div>
-      <div fxLayout="column" fxLayoutGap="5px">
+
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
         <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
           <app-first-game-icon size="18"></app-first-game-icon>
           <span class="font-small">Matchday first game</span>
@@ -31,7 +33,7 @@
         </div>
       </div>
 
-      <div>
+      <div fxLayoutAlign="center center">
         <mat-chip-list class="mat-chip-list-stacked">
           <mat-chip class="chip chip-red" fxLayout="row" fxLayoutGap="4px" *ngIf="player.nextGame.isUnavailable"
             ><mat-icon [appScale]="0.8">not_interested</mat-icon><span>Unavailable !!</span></mat-chip
@@ -49,7 +51,7 @@
             class="chip chip-red"
             fxLayout="row"
             fxLayoutGap="4px"
-            *ngIf="player.nextGame.prediction === predictions.START"
+            *ngIf="player.nextGame.prediction === predictions.BENCH"
             ><mat-icon [appScale]="0.8">highlight_off</mat-icon><span>Not predicted to start</span></mat-chip
           >
           <mat-chip
@@ -57,7 +59,7 @@
             class="chip chip-green"
             fxLayout="row"
             fxLayoutGap="4px"
-            *ngIf="player.nextGame.prediction === predictions.BENCH"
+            *ngIf="player.nextGame.prediction === predictions.START"
             ><mat-icon [appScale]="0.8">check_circle</mat-icon><span>Predicted to start</span></mat-chip
           >
           <mat-chip
@@ -84,11 +86,9 @@
               <span>{{ prediction.source | ucfirst }} </span>
             </td>
             <td>
-              <app-prediction-indicator
-                [scale]="0.8"
-                [showUnknownYet]="true"
-                [value]="prediction.attendance"
-              ></app-prediction-indicator>
+              <app-player-icon-lineup-prediction
+                [prediction]="prediction.attendance"
+              ></app-player-icon-lineup-prediction>
             </td>
           </tr>
           <tr>

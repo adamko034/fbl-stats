@@ -14,11 +14,13 @@ import { PredictedLineupsSource } from '../../store/models/predicted-lineups-sou
 export class PredictedLineupsTeamsComponent {
   public teamsNavigation$: Observable<TeamNavigation[]>;
   public sources$: Observable<PredictedLineupsSource[]>;
+  public lastMatchday$: Observable<number>;
 
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
     this.teamsNavigation$ = this.route.data.pipe(map((data) => data.teamsNavigation));
     this.sources$ = this.route.data.pipe(map((data) => data.sources));
+    this.lastMatchday$ = this.route.data.pipe(map((data) => data.lastMatchday));
   }
 }

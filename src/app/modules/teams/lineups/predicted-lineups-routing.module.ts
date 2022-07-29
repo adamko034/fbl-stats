@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LastMatchdayResolver } from 'src/app/common/routing/resolvers/last-matchday/last-matchday.resolver';
 import { PlayersResolver } from '../../core/resolvers/players.resolver';
 import { TeamPlayersResolver } from '../../core/resolvers/team-players.resolver';
 import { TeamsNavigationResolver } from '../../core/resolvers/teams-navigation.resolver';
@@ -36,7 +37,8 @@ const routes: Routes = [
           sources: PredictedLineupsSourcesResolver,
           stats: PredictedLineupsStasPlayersResolver,
           players: PlayersResolver,
-          teamsNavigation: TeamsNavigationResolver
+          teamsNavigation: TeamsNavigationResolver,
+          lastMatchday: LastMatchdayResolver
         }
       },
       {

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
@@ -46,7 +47,8 @@ import { PlayerDetailsTitleComponent } from './view/player-details-content/playe
     AngularMaterialModule,
     FblCoreModule,
     PlayersServicesModule,
-    PlayerIconSuspensionRiskModule
+    PlayerIconSuspensionRiskModule,
+    PlayerIconLineupPredictionModule
   ],
   providers: [
     PlayerDetailsResolver,
