@@ -1,10 +1,10 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
-  <app-select-future-matchdays
-    style="padding-top: 12px"
-    [value]="filters.matchdays"
+  <app-select-future-matchdays-panel
     [lastMatchday]="lastMatchday"
     [lastKnownMatchday]="lastKnownMatchday"
-    (change)="onMatchdaysChange($event)"
-  ></app-select-future-matchdays>
+    [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday"
+    [value]="filters.matchdays"
+    (change)="onFutureMatchdayChange($event)"
+  ></app-select-future-matchdays-panel>
   <app-teams-select [state]="teamsSelectState" (change)="onTeamsChange($event)"></app-teams-select>
 </div>

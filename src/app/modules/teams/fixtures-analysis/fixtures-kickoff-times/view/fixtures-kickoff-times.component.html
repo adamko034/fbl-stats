@@ -1,13 +1,6 @@
-<!-- <div *ngIf="state$ | async" fxLayout="column" fxLayoutGap="20px">
-  <app-fixtures-kickoff-times-filters
-    [filters]="state$ | async | field: 'filters'"
-  ></app-fixtures-kickoff-times-filters>
-  <app-matrix-table [rows]="state$ | async | field: 'rows'" [config]="matrixConfig"></app-matrix-table>
-</div>
-
-{{ state$ | async | json }} -->
 <app-teams-kickoff-times
   [teams]="teams$ | async"
   [lastMatchday]="lastMatchday$ | async"
   [lastKnownMatchday]="lastKnownMatchday$ | async"
+  [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday$ | async"
 ></app-teams-kickoff-times>

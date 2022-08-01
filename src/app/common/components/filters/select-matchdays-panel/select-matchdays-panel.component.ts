@@ -8,18 +8,18 @@ import {
   Output
 } from '@angular/core';
 import { FromTo } from 'src/app/shared/models/from-to.model';
-import { DropdownConfig } from '../../../ui/dropdown/models/dropdown-config.model';
+import { DropdownConfig } from '../../ui/dropdown/models/dropdown-config.model';
 
 @Component({
   selector: 'app-select-matchdays-panel',
   templateUrl: './select-matchdays-panel.component.html',
-  styleUrls: ['./select-matchdays-panel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectMatchdaysPanelComponent implements OnChanges {
   @Input() lastMatchday: number;
   @Input() value: FromTo;
   @Input() label: string;
+  @Input() show: boolean;
 
   @Output() change = new EventEmitter<FromTo>();
 

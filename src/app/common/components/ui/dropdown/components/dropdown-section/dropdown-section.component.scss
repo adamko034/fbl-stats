@@ -1,0 +1,12 @@
+@import '/src/variables.scss';
+
+:host {
+  font-size: $fontSizeSmall;
+  display: flex;
+  flex-direction: column;
+
+  .divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

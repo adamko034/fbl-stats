@@ -141,6 +141,10 @@ export class ArrayStream<T> {
   }
 
   public takeFirst(): T {
+    if (this.array.length === 0) {
+      return null;
+    }
+
     return this.array[0];
   }
 

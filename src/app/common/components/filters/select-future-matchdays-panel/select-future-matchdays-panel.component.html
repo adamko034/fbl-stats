@@ -1,0 +1,42 @@
+<div *ngIf="lastMatchday < 34">
+  <app-form-field *ngIf="label" [label]="label">
+    <ng-template [ngTemplateOutlet]="dropdown"></ng-template>
+  </app-form-field>
+
+  <ng-template *ngIf="!label" [ngTemplateOutlet]="dropdown"></ng-template>
+
+  <ng-template #dropdown>
+    <app-dropdown [config]="dropdownConfig">
+      <app-dropdown-content>
+        <app-dropdown-section>
+          <span *ngIf="lastMatchday + 3 <= lastKnownMatchday" appSpanAsLink (click)="onNextTwoClick()">Next 2</span>
+          <span *ngIf="lastMatchday + 5 <= lastKnownMatchday" appSpanAsLink (click)="onNextFourClick()">Next 4</span>
+          <span *ngIf="lastMatchday + 7 <= lastKnownMatchday" appSpanAsLink (click)="onNextSixClick()">Next 6</span>
+          <span appSpanAsLink (click)="onOnlyWithEstablishedTimesClick()">All with extablished kickoff times</span>
+          <span
+            *ngIf="nextUnlimitedTransfersMatchday <= lastKnownMatchday"
+            appSpanAsLink
+            (click)="onUntilUnlimitedTransfersClick()"
+            >Until unlimited transfers</span
+          >
+        </app-dropdown-section>
+        <app-dropdown-section>
+          <app-select-future-matchdays
+            [value]="value.to - value.from + 1"
+            [maxMatchday]="lastKnownMatchday"
+            [lastMatchday]="lastMatchday"
+            (change)="onNextMatchdaysChange($event)"
+          ></app-select-future-matchdays>
+        </app-dropdown-section>
+        <app-dropdown-section [showDivider]="false">
+          <app-select-matchdays-between
+            style="margin-top: 5px"
+            [value]="value"
+            [lastMatchday]="lastMatchday"
+            (matchdaysBetweenChange)="onMatchdaysBetweenChange($event)"
+          ></app-select-matchdays-between>
+        </app-dropdown-section>
+      </app-dropdown-content>
+    </app-dropdown>
+  </ng-template>
+</div>

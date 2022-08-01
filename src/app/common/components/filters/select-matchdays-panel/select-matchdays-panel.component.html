@@ -1,0 +1,41 @@
+<div>
+  <app-form-field *ngIf="label" [label]="label">
+    <ng-template [ngTemplateOutlet]="dropdown"></ng-template>
+  </app-form-field>
+
+  <ng-template *ngIf="!label" [ngTemplateOutlet]="dropdown"></ng-template>
+</div>
+
+<ng-template #dropdown>
+  <app-dropdown [config]="dropdownConfig">
+    <app-dropdown-content>
+      <app-dropdown-section>
+        <span appSpanAsLink (click)="onLastMatchdaysChange(lastMatchday)">All matchdays</span>
+        <span appSpanAsLink *ngIf="lastMatchday > 2" (click)="onLastMatchdaysChange(2)">Last 2 matchdays</span>
+        <span appSpanAsLink *ngIf="lastMatchday > 4" (click)="onLastMatchdaysChange(4)">Last 4 matchdays</span>
+        <span appSpanAsLink *ngIf="lastMatchday > 6" (click)="onLastMatchdaysChange(6)">Last 6 matchdays</span>
+        <span appSpanAsLink (click)="onMatchdaysBetweenChange({ from: 1, to: 17 })">Hinrunde (1st leg)</span>
+        <span appSpanAsLink *ngIf="lastMatchday > 17" (click)="onMatchdaysBetweenChange({ from: 18, to: 34 })"
+          >Rückrunde (2nd leg)</span
+        >
+      </app-dropdown-section>
+      <app-dropdown-section>
+        <app-select-last-matchdays
+          style="margin-top: 10px"
+          [lastMatchday]="lastMatchday"
+          [value]="lastMdsValue"
+          (change)="onLastMatchdaysChange($event)"
+        ></app-select-last-matchdays>
+      </app-dropdown-section>
+      <app-dropdown-section [showDivider]="false">
+        <app-select-matchdays-between
+          style="margin-top: 5px"
+          [value]="value"
+          [lastMatchday]="lastMatchday"
+          (matchdaysBetweenChange)="onMatchdaysBetweenChange($event)"
+        >
+        </app-select-matchdays-between>
+      </app-dropdown-section>
+    </app-dropdown-content>
+  </app-dropdown>
+</ng-template>

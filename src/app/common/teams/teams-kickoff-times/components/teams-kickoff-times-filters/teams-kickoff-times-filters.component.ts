@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TeamsSelectState } from 'src/app/common/components/filters/teams-select/models/teams-select-state';
+import { FromTo } from 'src/app/shared/models/from-to.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsKickoffTimesFilters } from '../../models/teams-kickoff-times-filters.model';
 import { TeamsKickoffTimesFiltersService } from '../../services/teams-kickoff-times-filters.service';
@@ -14,6 +15,7 @@ export class TeamsKickoffTimesFiltersComponent implements OnChanges {
   @Input() teams: Team[];
   @Input() lastMatchday: number;
   @Input() lastKnownMatchday: number;
+  @Input() nextUnlimitedTransfersMatchday: number;
 
   private _teamsSelectState: TeamsSelectState;
   public get teamsSelectState(): TeamsSelectState {
@@ -32,7 +34,7 @@ export class TeamsKickoffTimesFiltersComponent implements OnChanges {
     }
   }
 
-  public onMatchdaysChange(matchdays: number): void {
+  public onFutureMatchdayChange(matchdays: FromTo): void {
     this.filtersService.changeMatchdays(matchdays);
   }
 

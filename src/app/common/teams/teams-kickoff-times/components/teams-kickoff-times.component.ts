@@ -19,6 +19,7 @@ export class TeamsKickoffTimesComponent implements OnInit {
   @Input() teams: Team[];
   @Input() lastMatchday: number;
   @Input() lastKnownMatchday: number;
+  @Input() nextUnlimitedTransfersMatchday: number;
 
   private _filters$: Observable<TeamsKickoffTimesFilters>;
   public get filters$(): Observable<TeamsKickoffTimesFilters> {
@@ -45,28 +46,32 @@ export class TeamsKickoffTimesComponent implements OnInit {
 
   public ngOnInit(): void {
     this._filters$ = this._route.queryParams.pipe(
-      map((params) => this._filtersService.fromQueryParams(params)),
-      tap(
-        (params) =>
-          (this.mds =
-            params.matchdays === 0
-              ? `${this.lastMatchday + 1} - ${this.lastKnownMatchday}`
-              : `${this.lastMatchday + 1} - ${this.lastMatchday + params.matchdays}`)
-      )
+      map((params) =>
+        this._filtersService.fromQueryParams(params, {
+          teams: [],
+          matchdays: { from: this.lastMatchday + 1, to: this.lastKnownMatchday }
+        })
+      ),
+      tap((params) => (this.mds = `${params.matchdays.from} - ${params.matchdays.to}`))
     );
     this._rows$ = this._filters$.pipe(map((filters) => this.getRows(filters)));
     this._matrixTableConfig$ = this._filters$.pipe(
-      map((filters) => ({ mode: 'teams', autoSetColor: true, max: this.getMax(filters), showReflection: true }))
+      map((filters) => ({
+        mode: 'teams',
+        autoSetColor: true,
+        max: filters.matchdays.to - filters.matchdays.from + 1,
+        showReflection: true
+      }))
     );
-  }
-
-  private getMax(filters: TeamsKickoffTimesFilters) {
-    return filters.matchdays > 0 ? filters.matchdays : this.lastKnownMatchday - this.lastMatchday;
   }
 
   private getRows(filters: TeamsKickoffTimesFilters): MatrixTableRow[] {
     const teamsToInclude =
       filters.teams.length == 0 ? [...this.teams] : this.teams.filter((t) => filters.teams.includes(t.shortName));
-    return this._matrixRowsFabric.from(teamsToInclude, this.lastMatchday + 1, filters.matchdays);
+    return this._matrixRowsFabric.from(
+      teamsToInclude,
+      this.lastMatchday + 1,
+      filters.matchdays.to - filters.matchdays.from + 1
+    );
   }
 }
