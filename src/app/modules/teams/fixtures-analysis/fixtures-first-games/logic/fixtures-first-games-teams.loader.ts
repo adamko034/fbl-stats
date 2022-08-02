@@ -35,9 +35,7 @@ export class FixturesFirstGamesTeamsLoader {
 
   private getFirstGames(team: Team): number[] {
     return new ArrayStream<Fixture>(team.games)
-      .filterQuick(
-        (game) => game.matchday >= this.nextMatchday && game.matchday < this.nextMatchday + this.filters.matchdays
-      )
+      .filterQuick((f) => this.filters.matchdays.from <= f.matchday && f.matchday <= this.filters.matchdays.to)
       .filterQuick((g) => g.isMatchdayFirstGame)
       .collect()
       .map((game) => game.matchday);

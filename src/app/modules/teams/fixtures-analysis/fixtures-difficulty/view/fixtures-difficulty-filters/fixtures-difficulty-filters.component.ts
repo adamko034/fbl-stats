@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { SelectFutureMatchdaysPanelConfig } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel-config.model';
 import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { FromTo } from 'src/app/shared/models/from-to.model';
 import { FixturesDifficultyCalculation } from '../../models/fixtures-difficulty-calculation.enum';
 import { FixturesDifficultyFilters } from '../../models/fixtures-difficulty-filters.model';
 import { FixturesDifficultyFiltersService } from '../../services/fixtures-difficulty-filters.service';
@@ -14,6 +16,8 @@ import { FixturesDifficultyFiltersService } from '../../services/fixtures-diffic
 export class FixturesDifficultyFiltersComponent implements OnInit {
   @Input() filters: FixturesDifficultyFilters;
   @Input() nextMatchday: number;
+  @Input() lastKnownMatchday: number;
+  @Input() nextUnlimitedTransfersMatchday: number;
 
   private _calculations: SwitchItem[];
   public get calculations(): SwitchItem[] {
@@ -24,6 +28,8 @@ export class FixturesDifficultyFiltersComponent implements OnInit {
     return FixturesDifficultyCalculation.BY_FORM;
   }
 
+  public futureMatchdaysPanelConfig: SelectFutureMatchdaysPanelConfig;
+
   constructor(private filtersService: FixturesDifficultyFiltersService) {}
 
   ngOnInit(): void {
@@ -31,6 +37,13 @@ export class FixturesDifficultyFiltersComponent implements OnInit {
       { value: FixturesDifficultyCalculation.BY_RANK, description: 'By rank' },
       { value: FixturesDifficultyCalculation.BY_FORM, description: 'By form', hidden: this.nextMatchday <= 1 }
     ];
+
+    this.futureMatchdaysPanelConfig = {
+      maxMatchday: 34,
+      minMatchday: this.nextMatchday,
+      showAllWithEstablishedKickoffTimesLink: false,
+      showUnlimitedTransfersLink: true
+    };
   }
 
   public onIncludeVenuChange(change: MatCheckboxChange): void {
@@ -41,7 +54,7 @@ export class FixturesDifficultyFiltersComponent implements OnInit {
     this.filtersService.changeCalculation(newValue);
   }
 
-  public onMatchdaysChange(newValue: number): void {
+  public onMatchdaysChange(newValue: FromTo): void {
     this.filtersService.changeMatchdays(newValue);
   }
 

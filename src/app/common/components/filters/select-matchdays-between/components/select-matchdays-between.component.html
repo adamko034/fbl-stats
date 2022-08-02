@@ -3,13 +3,13 @@
     <span>Between</span>
     <mat-form-field class="md-field" appearance="standard">
       <mat-label>From</mat-label>
-      <input matInput [(ngModel)]="from" type="number" min="1" [max]="to - 1" />
+      <input matInput [(ngModel)]="from" type="number" [min]="minMatchday" [max]="to - 1" />
       <span matSuffix>MD</span>
     </mat-form-field>
     <span> and </span>
     <mat-form-field class="md-field" appearance="standard">
       <mat-label>To</mat-label>
-      <input matInput [(ngModel)]="to" type="number" [min]="from + 1" [max]="lastMatchday" />
+      <input matInput [(ngModel)]="to" type="number" [min]="from + 1" [max]="maxMatchday" />
       <span matSuffix>MD</span>
     </mat-form-field>
   </div>

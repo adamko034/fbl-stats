@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { FromTo } from 'src/app/shared/models/from-to.model';
 import { DropdownConfig } from '../../ui/dropdown/models/dropdown-config.model';
+import { SelectFutureMatchdaysPanelConfig } from './select-future-matchdays-panel-config.model';
 
 @Component({
   selector: 'app-select-future-matchdays-panel',
@@ -21,6 +22,12 @@ export class SelectFutureMatchdaysPanelComponent implements OnChanges {
   @Input() lastMatchday: number;
   @Input() lastKnownMatchday: number;
   @Input() nextUnlimitedTransfersMatchday: number;
+  @Input() config: SelectFutureMatchdaysPanelConfig = {
+    maxMatchday: 34,
+    minMatchday: 1,
+    showAllWithEstablishedKickoffTimesLink: true,
+    showUnlimitedTransfersLink: true
+  };
 
   @Output() change = new EventEmitter<FromTo>();
 
@@ -72,11 +79,19 @@ export class SelectFutureMatchdaysPanelComponent implements OnChanges {
   }
 
   private getDropdownTitle() {
-    if (this.lastMatchday + 1 === this.value.from && this.value.to === this.lastKnownMatchday) {
+    if (
+      this.config.showAllWithEstablishedKickoffTimesLink &&
+      this.lastMatchday + 1 === this.value.from &&
+      this.value.to === this.lastKnownMatchday
+    ) {
       return 'All with established kickoff times';
     }
 
-    if (this.lastMatchday + 1 === this.value.from && this.value.to === this.nextUnlimitedTransfersMatchday) {
+    if (
+      this.config.showUnlimitedTransfersLink &&
+      this.lastMatchday + 1 === this.value.from &&
+      this.value.to === this.nextUnlimitedTransfersMatchday
+    ) {
       return 'Until unlimited transfers';
     }
 

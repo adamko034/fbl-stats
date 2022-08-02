@@ -1,8 +1,7 @@
 import { FixturesDifficultyFilters } from './fixtures-difficulty-filters.model';
 import { FixturesDifficultyTeam } from './fixtures-difficulty-team.model';
 
-export interface FixturesDifficultyStateNew {
+export interface FixturesDifficultyState {
   filters: FixturesDifficultyFilters;
-  nextMatchday: number;
   fixturesDifficultyTeams: FixturesDifficultyTeam[];
 }

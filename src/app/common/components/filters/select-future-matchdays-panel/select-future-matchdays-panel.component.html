@@ -9,21 +9,23 @@
     <app-dropdown [config]="dropdownConfig">
       <app-dropdown-content>
         <app-dropdown-section>
-          <span *ngIf="lastMatchday + 3 <= lastKnownMatchday" appSpanAsLink (click)="onNextTwoClick()">Next 2</span>
-          <span *ngIf="lastMatchday + 5 <= lastKnownMatchday" appSpanAsLink (click)="onNextFourClick()">Next 4</span>
-          <span *ngIf="lastMatchday + 7 <= lastKnownMatchday" appSpanAsLink (click)="onNextSixClick()">Next 6</span>
-          <span appSpanAsLink (click)="onOnlyWithEstablishedTimesClick()">All with extablished kickoff times</span>
+          <span *ngIf="lastMatchday + 3 <= config.maxMatchday" appSpanAsLink (click)="onNextTwoClick()">Next 2</span>
+          <span *ngIf="lastMatchday + 5 <= config.maxMatchday" appSpanAsLink (click)="onNextFourClick()">Next 4</span>
+          <span *ngIf="lastMatchday + 7 <= config.maxMatchday" appSpanAsLink (click)="onNextSixClick()">Next 6</span>
           <span
-            *ngIf="nextUnlimitedTransfersMatchday <= lastKnownMatchday"
             appSpanAsLink
-            (click)="onUntilUnlimitedTransfersClick()"
+            *ngIf="config.showAllWithEstablishedKickoffTimesLink"
+            (click)="onOnlyWithEstablishedTimesClick()"
+            >All with extablished kickoff times</span
+          >
+          <span *ngIf="config.showUnlimitedTransfersLink" appSpanAsLink (click)="onUntilUnlimitedTransfersClick()"
             >Until unlimited transfers</span
           >
         </app-dropdown-section>
         <app-dropdown-section>
           <app-select-future-matchdays
             [value]="value.to - value.from + 1"
-            [maxMatchday]="lastKnownMatchday"
+            [maxMatchday]="config.maxMatchday"
             [lastMatchday]="lastMatchday"
             (change)="onNextMatchdaysChange($event)"
           ></app-select-future-matchdays>
@@ -33,6 +35,7 @@
             style="margin-top: 5px"
             [value]="value"
             [lastMatchday]="lastMatchday"
+            [maxMatchday]="config.maxMatchday"
             (matchdaysBetweenChange)="onMatchdaysBetweenChange($event)"
           ></app-select-matchdays-between>
         </app-dropdown-section>

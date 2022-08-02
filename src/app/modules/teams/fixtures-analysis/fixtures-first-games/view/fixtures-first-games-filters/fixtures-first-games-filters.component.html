@@ -1,8 +1,13 @@
 <app-white-block padding="10px 10px 0 10px">
   <div fxLayout="row" fxLayoutAlign="center center">
-    <app-include-future-matchdays-dropdown
+    <app-select-future-matchdays-panel
       [value]="filters.matchdays"
-      (change)="onMatchdaysChanged($event)"
-    ></app-include-future-matchdays-dropdown>
+      [lastMatchday]="lastMatchday"
+      [lastKnownMatchday]="lastKnownMatchday"
+      [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday"
+      [config]="futureMatchdaysPanelConfig"
+      (change)="onFutureMatchdaysChange($event)"
+    >
+    </app-select-future-matchdays-panel>
   </div>
 </app-white-block>

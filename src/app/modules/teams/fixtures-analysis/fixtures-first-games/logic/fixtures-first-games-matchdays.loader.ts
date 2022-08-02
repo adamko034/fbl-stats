@@ -19,7 +19,7 @@ export class FixturesFirstGamesMatchdaysLoader {
 
     return new ArrayStream<MatchdayFixtures>(fixtures)
       .filterQuick(
-        (f) => f.matchdayNumber >= this.nextMatchday && f.matchdayNumber < this.nextMatchday + this.filters.matchdays
+        (f) => this.filters.matchdays.from <= f.matchdayNumber && f.matchdayNumber <= this.filters.matchdays.to
       )
       .convertQuick((f) => this.toFixturesFirstGamesMatchday(f))
       .collect();

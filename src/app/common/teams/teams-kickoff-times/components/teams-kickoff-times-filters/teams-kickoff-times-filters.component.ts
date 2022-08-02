@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { SelectFutureMatchdaysPanelConfig } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel-config.model';
 import { TeamsSelectState } from 'src/app/common/components/filters/teams-select/models/teams-select-state';
 import { FromTo } from 'src/app/shared/models/from-to.model';
 import { Team } from 'src/app/store/teams/models/team.model';
@@ -10,7 +11,7 @@ import { TeamsKickoffTimesFiltersService } from '../../services/teams-kickoff-ti
   templateUrl: './teams-kickoff-times-filters.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TeamsKickoffTimesFiltersComponent implements OnChanges {
+export class TeamsKickoffTimesFiltersComponent implements OnInit, OnChanges {
   @Input() filters: TeamsKickoffTimesFilters;
   @Input() teams: Team[];
   @Input() lastMatchday: number;
@@ -22,7 +23,21 @@ export class TeamsKickoffTimesFiltersComponent implements OnChanges {
     return this._teamsSelectState;
   }
 
+  private _futureMatchdaysPanelConfig: SelectFutureMatchdaysPanelConfig;
+  public get futureMatchdaysPanelConfig(): SelectFutureMatchdaysPanelConfig {
+    return this._futureMatchdaysPanelConfig;
+  }
+
   constructor(private filtersService: TeamsKickoffTimesFiltersService) {}
+
+  public ngOnInit(): void {
+    this._futureMatchdaysPanelConfig = {
+      maxMatchday: this.lastKnownMatchday,
+      minMatchday: this.lastMatchday + 1,
+      showAllWithEstablishedKickoffTimesLink: true,
+      showUnlimitedTransfersLink: this.nextUnlimitedTransfersMatchday < this.lastKnownMatchday
+    };
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.filters) {

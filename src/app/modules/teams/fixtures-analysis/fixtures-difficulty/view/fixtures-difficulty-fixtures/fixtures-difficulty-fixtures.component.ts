@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FromTo } from 'src/app/shared/models/from-to.model';
 import { FixturesDifficultyCalculation } from '../../models/fixtures-difficulty-calculation.enum';
 import { FixturesDifficultyTeam } from '../../models/fixtures-difficulty-team.model';
 
@@ -11,9 +12,16 @@ import { FixturesDifficultyTeam } from '../../models/fixtures-difficulty-team.mo
 export class FixturesDifficultyFixturesComponent implements OnInit {
   @Input() teams: FixturesDifficultyTeam[];
   @Input() calculation: FixturesDifficultyCalculation;
+  @Input() set matchdays(value: FromTo) {
+    this._mds = [];
+    for (let i = value.from; i <= value.to; i++) {
+      this._mds.push(i);
+    }
+  }
 
+  private _mds: number[] = [];
   public get mds(): number[] {
-    return this.teams[0]?.fixtures?.map((f) => f.matchday).sort();
+    return this._mds;
   }
 
   public get orderTable(): string {

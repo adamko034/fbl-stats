@@ -8,10 +8,20 @@
     ></app-switch>
 
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <app-include-future-matchdays-dropdown
+      <!-- <app-include-future-matchdays-dropdown
         [value]="filters.matchdays"
         (change)="onMatchdaysChange($event)"
-      ></app-include-future-matchdays-dropdown>
+      ></app-include-future-matchdays-dropdown> -->
+
+      <app-select-future-matchdays-panel
+        [value]="filters.matchdays"
+        [lastMatchday]="nextMatchday - 1"
+        [lastKnownMatchday]="lastKnownMatchday"
+        [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday"
+        [config]="futureMatchdaysPanelConfig"
+        (change)="onMatchdaysChange($event)"
+      >
+      </app-select-future-matchdays-panel>
 
       <app-include-past-matchdays-dropdown
         *ngIf="filters.calculation === byForm"

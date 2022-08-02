@@ -13,6 +13,8 @@ export class SelectMatchdaysBetweenComponent {
     this._internalValue = { ...val };
   }
   @Input() lastMatchday: number;
+  @Input() minMatchday: number = 1;
+  @Input() maxMatchday: number = 34;
 
   @Output() matchdaysBetweenChange = new EventEmitter<FromTo>();
 

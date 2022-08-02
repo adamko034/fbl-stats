@@ -15,7 +15,7 @@ export class FixturesDifficultyTeamsLoaderByRank implements IFixturesDifficultyT
   public load(teams: Team[], filters: FixturesDifficultyFilters, nextMatchday: number): FixturesDifficultyTeam[] {
     return new ArrayStream<Team>(teams)
       .convertQuick((team) => {
-        const fixtures = this.getFixtures(team, filters, nextMatchday);
+        const fixtures = this.getFixtures(team, filters);
         const index = new ArrayStream<FixturesDifficultyTeamGame>(fixtures).sumBy((f) => f.index);
 
         return {
@@ -31,15 +31,12 @@ export class FixturesDifficultyTeamsLoaderByRank implements IFixturesDifficultyT
       .collect();
   }
 
-  private getFixtures(
-    team: Team,
-    filters: FixturesDifficultyFilters,
-    nextMatchday: number
-  ): FixturesDifficultyTeamGame[] {
+  private getFixtures(team: Team, filters: FixturesDifficultyFilters): FixturesDifficultyTeamGame[] {
     return new ArrayStream<Fixture>(team.games)
-      .filterQuick((f) => f.matchday >= nextMatchday && f.matchday < nextMatchday + filters.matchdays)
+      .filterQuick((f) => filters.matchdays.from <= f.matchday && f.matchday <= filters.matchdays.to)
       .convertQuick((f) => this.toFixtureDifficulty(f))
       .forEachQuick((f) => this.includeVenuCalculation(f, filters.includeVenue))
+      .orderBy('matchday', 'asc')
       .collect();
   }
 

@@ -14,11 +14,11 @@ export class FixturesFirstGamesTeamsComponent implements OnInit {
   @Input() filters: FixturesFirstGamesFilters;
 
   public get mdsRangeString(): string {
-    if (this.nextMatchday === this.filters.matchdays + this.nextMatchday - 1) {
-      return `MD${this.nextMatchday}`;
+    if (this.filters.matchdays.from === this.filters.matchdays.to) {
+      return `MD${this.filters.matchdays.from}`;
     }
 
-    return `MD${this.nextMatchday} - MD${this.nextMatchday + this.filters.matchdays - 1}`;
+    return `MD${this.filters.matchdays.from} - MD${this.filters.matchdays.to}`;
   }
 
   constructor() {}

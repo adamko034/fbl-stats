@@ -1,59 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
+import { QueryParamsParser } from 'src/app/common/services/query-params-parser.service';
+import { FromTo } from 'src/app/shared/models/from-to.model';
 import { FixturesDifficultyCalculation } from '../models/fixtures-difficulty-calculation.enum';
 import { FixturesDifficultyFilters } from '../models/fixtures-difficulty-filters.model';
 
 @Injectable()
 export class FixturesDifficultyFiltersService {
-  private _defaults: FixturesDifficultyFilters = {
-    calculation: FixturesDifficultyCalculation.BY_RANK,
-    includeVenue: false,
-    matchdays: 3,
-    formMatchdays: 4
-  };
+  constructor(private router: Router, private queryParamsParser: QueryParamsParser) {}
 
-  constructor(private router: Router) {}
-
-  public resolveFromQueryParams(params: Params, matchdaysUntilUnlimitedTransfers?: number): FixturesDifficultyFilters {
-    const { calculation, matchdays } = params;
-
-    const includeVenueString = params.includeVenue;
-    let includeVenue = this._defaults.includeVenue;
-
-    const formString = params.form;
-    let form = this._defaults.formMatchdays;
-
-    if (includeVenueString) {
-      includeVenue = JSON.parse(includeVenueString);
-    }
-
-    if (formString) {
-      form = +formString;
-    }
+  public resolveFromQueryParams(params: Params, defaults: FixturesDifficultyFilters): FixturesDifficultyFilters {
+    const calculation = this.queryParamsParser.getEnumStringOrDefault<FixturesDifficultyCalculation>(
+      params.calculation,
+      defaults.calculation
+    );
+    const mdFrom = this.queryParamsParser.getNumberOrDefault(params.mdFrom, defaults.matchdays.from);
+    const mdTo = this.queryParamsParser.getNumberOrDefault(params.mdTo, defaults.matchdays.to);
+    const includeVenue = this.queryParamsParser.getBooleanOrDefault(params.includeVenue, defaults.includeVenue);
+    const form = this.queryParamsParser.getNumberOrDefault(params.form, defaults.formMatchdays);
 
     return {
-      calculation: calculation ?? this._defaults.calculation,
-      includeVenue: includeVenue,
-      matchdays: this.determineMatchdays(matchdays, matchdaysUntilUnlimitedTransfers),
+      calculation,
+      includeVenue,
+      matchdays: { from: mdFrom, to: mdTo },
       formMatchdays: form
     };
   }
 
-  public overrideMatchdaysIfUnlimitedTransfers(
-    filters: FixturesDifficultyFilters,
-    matchdaysUntilUnlimitedTransfers: number
-  ) {
-    if (matchdaysUntilUnlimitedTransfers < filters.matchdays) {
-      filters.matchdays = matchdaysUntilUnlimitedTransfers;
-    }
-  }
+  // public overrideMatchdaysIfUnlimitedTransfers(
+  //   filters: FixturesDifficultyFilters,
+  //   matchdaysUntilUnlimitedTransfers: number
+  // ) {
+  //   if (matchdaysUntilUnlimitedTransfers < filters.matchdays) {
+  //     filters.matchdays = matchdaysUntilUnlimitedTransfers;
+  //   }
+  // }
 
   public changeCalculation(calculation: FixturesDifficultyCalculation): void {
     this.router.navigate([], { queryParams: { calculation }, queryParamsHandling: 'merge' });
   }
 
-  public changeMatchdays(matchdays: number): void {
-    this.router.navigate([], { queryParams: { matchdays }, queryParamsHandling: 'merge' });
+  public changeMatchdays(matchdays: FromTo): void {
+    this.router.navigate([], {
+      queryParams: { mdFrom: matchdays.from, mdTo: matchdays.to },
+      queryParamsHandling: 'merge'
+    });
   }
 
   public changeIncludeVenue(includeVenue: boolean): void {
@@ -62,17 +53,5 @@ export class FixturesDifficultyFiltersService {
 
   public changeFormMatchdays(matchdays: number): void {
     this.router.navigate([], { queryParams: { form: matchdays }, queryParamsHandling: 'merge' });
-  }
-
-  private determineMatchdays(fromParams: number, untilUnlimitedTransfs: number): number {
-    if (fromParams != null) {
-      return +fromParams;
-    }
-
-    if (untilUnlimitedTransfs != null && untilUnlimitedTransfs < this._defaults.matchdays) {
-      return untilUnlimitedTransfs;
-    }
-
-    return this._defaults.matchdays;
   }
 }

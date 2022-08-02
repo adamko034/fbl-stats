@@ -1,29 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
+import { QueryParamsParser } from 'src/app/common/services/query-params-parser.service';
+import { FromTo } from 'src/app/shared/models/from-to.model';
 import { FixturesFirstGamesFilters } from '../models/fixtures-first-games-fitlers.model';
 
 @Injectable()
 export class FixturesFirstGamesFiltersService {
-  private _defaults: FixturesFirstGamesFilters = {
-    matchdays: 0
-  };
+  constructor(private router: Router, private queryParamsParser: QueryParamsParser) {}
 
-  constructor(private router: Router) {}
-
-  public fromQueryParams(queryParams: Params): FixturesFirstGamesFilters {
-    let matchdays = this._defaults.matchdays;
-    const matchdaysString = queryParams.matchdays;
-
-    if (matchdaysString && !isNaN(+matchdaysString)) {
-      matchdays = +matchdaysString;
-    }
+  public fromQueryParams(queryParams: Params, defaults: FixturesFirstGamesFilters): FixturesFirstGamesFilters {
+    const mdFrom = this.queryParamsParser.getNumberOrDefault(queryParams.mdFrom, defaults.matchdays.from);
+    const mdTo = this.queryParamsParser.getNumberOrDefault(queryParams.mdTo, defaults.matchdays.to);
 
     return {
-      matchdays
+      matchdays: { from: mdFrom, to: mdTo }
     };
   }
 
-  public changeMatchdays(matchdays: number): void {
-    this.router.navigate([], { queryParams: { matchdays }, queryParamsHandling: 'merge' });
+  public changeMatchdays(matchdays: FromTo): void {
+    this.router.navigate([], {
+      queryParams: { mdFrom: matchdays.from, mdTo: matchdays.to },
+      queryParamsHandling: 'merge'
+    });
   }
 }

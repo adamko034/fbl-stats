@@ -4,6 +4,7 @@
     [lastKnownMatchday]="lastKnownMatchday"
     [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday"
     [value]="filters.matchdays"
+    [config]="futureMatchdaysPanelConfig"
     (change)="onFutureMatchdayChange($event)"
   ></app-select-future-matchdays-panel>
   <app-teams-select [state]="teamsSelectState" (change)="onTeamsChange($event)"></app-teams-select>
