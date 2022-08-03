@@ -83,7 +83,8 @@ export class MyTeamContentComponent implements OnInit {
         showFormGames70Minutes: true,
         showFormGamesStarted: true,
         showGames70Minutes: true,
-        showGamesStarted: true
+        showGamesStarted: true,
+        showAddOurPicks: false
       },
       lastMatchday: properties.lastMatchday,
       maxPrice: properties.playerMaxPrice,

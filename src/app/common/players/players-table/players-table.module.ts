@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MaxPopularitySliderModule } from '../../components/filters/max-popularity-slider/max-popularity-slider.module';
@@ -27,6 +28,7 @@ import { PlayerIconSuspensionRiskModule } from '../components/player-icon-suspen
 import { PlayerIconUnavailableModule } from '../components/player-icon-unavailable/player-icon-unavailable.module';
 import { PlayerNameLinkModule } from '../components/player-name-link/player-name-link.module';
 import { PlayersServicesModule } from '../services/players-services.module';
+import { PlayersTableAddOurPickComponent } from './components/players-table-add-our-pick/players-table-add-our-pick.component';
 import { PlayersTableFiltersComponent } from './components/players-table-filters/players-table-filters.component';
 import { PlayersTableInnerComponent } from './components/players-table-inner/players-table-inner.component';
 import { PlayersTableComponent } from './components/players-table.component';
@@ -36,7 +38,12 @@ import { PlayersTablePlayersConverter } from './services/players-table-players.c
 import { PlayersToPlayersTableConverter } from './services/players-to-player-table-converter';
 
 @NgModule({
-  declarations: [PlayersTableComponent, PlayersTableFiltersComponent, PlayersTableInnerComponent],
+  declarations: [
+    PlayersTableComponent,
+    PlayersTableFiltersComponent,
+    PlayersTableInnerComponent,
+    PlayersTableAddOurPickComponent
+  ],
   imports: [
     CommonModule,
     TitleModule,
@@ -65,7 +72,8 @@ import { PlayersToPlayersTableConverter } from './services/players-to-player-tab
     PlayerIconPredictionModule,
     PlayerIconMyTeamButtonsModule,
     PipesModule,
-    StickyModule
+    StickyModule,
+    MatProgressBarModule
   ],
   providers: [
     PlayersTableFiltersProvider,

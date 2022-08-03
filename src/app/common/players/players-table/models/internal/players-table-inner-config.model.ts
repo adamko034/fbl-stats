@@ -14,4 +14,5 @@ export interface PlayersTableInnerConfig {
   showGames70Minutes: boolean;
   showFormGames70Minutes: boolean;
   myTeamPlayersIds?: string[];
+  showAddOurPicks: boolean;
 }

@@ -15,6 +15,7 @@ export interface PlayersTableConfig {
   showFormGamesStarted: boolean;
   showGames70Minutes: boolean;
   showFormGames70Minutes: boolean;
+  showAddOurPicks: boolean;
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
 }

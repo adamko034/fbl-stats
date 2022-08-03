@@ -29,6 +29,7 @@ import { PlayersTablePlayerInner } from '../../models/internal/players-table-pla
 export class PlayersTableInnerComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() players: PlayersTablePlayerInner[];
   @Input() config: PlayersTableInnerConfig;
+  @Input() lastMatchday: number;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -157,6 +158,8 @@ export class PlayersTableInnerComponent implements OnInit, AfterViewInit, OnChan
       this.columns.push('myteam');
     }
 
-    // this.columns.push('OP');
+    if (this.config.showAddOurPicks) {
+      this.columns.push('OP');
+    }
   }
 }

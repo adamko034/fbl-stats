@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlayersTableState } from 'src/app/common/players/players-table/models/players-table-state';
 import { PlayersTableConfig } from 'src/app/common/players/players-table/models/state/players-table-config.model';
 import { PlayersToPlayersTableConverter } from 'src/app/common/players/players-table/services/players-to-player-table-converter';
+import { AuthenticationService } from 'src/app/modules/core/services/authentication.service';
 
 @Component({
   selector: 'app-players-overall-content',
@@ -13,13 +14,18 @@ import { PlayersToPlayersTableConverter } from 'src/app/common/players/players-t
 export class PlayersOverallContentComponent implements OnInit {
   public state$: Observable<PlayersTableState>;
 
-  constructor(private _route: ActivatedRoute, private _playersConverter: PlayersToPlayersTableConverter) {}
+  constructor(
+    private _route: ActivatedRoute,
+    private _playersConverter: PlayersToPlayersTableConverter,
+    private _authenticationService: AuthenticationService
+  ) {}
 
   public ngOnInit(): void {
-    this.state$ = this._route.data.pipe(
-      map(({ players, teams, properties }) => {
+    this.state$ = combineLatest([this._route.data, this._authenticationService.isLogged()]).pipe(
+      map(([data, userAuth]) => {
+        const { properties, players, teams } = data;
         return {
-          config: this.getPlayerTableConfig(properties.lastMatchday),
+          config: this.getPlayerTableConfig(properties.lastMatchday, userAuth.isLogged),
           players: this._playersConverter.toPlayersTable(players),
           teams: this._playersConverter.toPlayersTableTeam(teams),
           lastMatchday: properties.lastMatchday,
@@ -29,7 +35,7 @@ export class PlayersOverallContentComponent implements OnInit {
     );
   }
 
-  private getPlayerTableConfig(lastMatchday: number): PlayersTableConfig {
+  private getPlayerTableConfig(lastMatchday: number, isLogged: boolean): PlayersTableConfig {
     return {
       showSeasonTitle: false,
       showMyTeamButtons: true,
@@ -47,7 +53,8 @@ export class PlayersOverallContentComponent implements OnInit {
       showGamesStarted: true,
       showTop100Popularity: lastMatchday > 0,
       showTop500Popularity: lastMatchday > 0,
-      sortBy: lastMatchday > 0 ? 'formPoints' : 'price'
+      sortBy: lastMatchday > 0 ? 'formPoints' : 'price',
+      showAddOurPicks: isLogged
     };
   }
 }

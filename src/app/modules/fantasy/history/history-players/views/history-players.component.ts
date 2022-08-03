@@ -62,7 +62,8 @@ export class HistoryPlayersComponent implements OnInit {
       showTop100Popularity: true,
       showTop500Popularity: !is2020Season,
       sortBy: 'totalPoints',
-      sortOrder: 'desc'
+      sortOrder: 'desc',
+      showAddOurPicks: false
     };
   }
 }

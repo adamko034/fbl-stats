@@ -1,1 +1,1 @@
-<app-players-table [state]="state$ | async"></app-players-table>
+<app-players-table *ngIf="state$ | async" [state]="state$ | async"></app-players-table>

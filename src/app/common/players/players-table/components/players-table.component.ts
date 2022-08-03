@@ -50,6 +50,14 @@ export class PlayersTableComponent implements OnInit, OnChanges {
     return this._tableInnerConfig;
   }
 
+  private _loading: boolean = true;
+  public get loading(): boolean {
+    return this._loading;
+  }
+
+  private _queryParams: Params;
+  private _myTeamPlayerIds: string[];
+
   constructor(
     private _route: ActivatedRoute,
     private _filtersProvider: PlayersTableFiltersProvider,
@@ -63,17 +71,27 @@ export class PlayersTableComponent implements OnInit, OnChanges {
       .pipe(distinctUntilChanged(), untilDestroyed(this))
       .subscribe(([params, myTeamPlayersIds]) => {
         Logger.logDev('players table component, ng on init, setting data');
-        this.setFilters(params);
-        this.setTableInnerConfig(myTeamPlayersIds);
-        this.setFiltersConfig();
-        this.setPlayers();
+        this._queryParams = params;
+        this._myTeamPlayerIds = myTeamPlayersIds;
+        this.setData();
       });
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (this.playersChanged(changes)) {
-      Logger.logDev('players table component, ng on changes, players changed, setting players');
+    if (this.playersChanged(changes) && this._queryParams && this._myTeamPlayerIds) {
+      Logger.logDev('players table component, ng on changes, players changed, setting data');
+      this.setData();
+    }
+  }
+
+  private setData() {
+    if (this.state) {
+      console.log('setting data');
+      this.setFilters();
+      this.setTableInnerConfig();
+      this.setFiltersConfig();
       this.setPlayers();
+      this._loading = false;
     }
   }
 
@@ -85,7 +103,7 @@ export class PlayersTableComponent implements OnInit, OnChanges {
     );
   }
 
-  private setFilters(params: Params): void {
+  private setFilters(): void {
     const defaults: PlayersTableFilters = {
       hideUnavailable: false,
       matchdays:
@@ -101,16 +119,16 @@ export class PlayersTableComponent implements OnInit, OnChanges {
       sortOrder: this.state.config.sortOrder ?? 'desc',
       teams: []
     };
-    this._filters = this._filtersProvider.fromQueryParams(params, defaults);
+    this._filters = this._filtersProvider.fromQueryParams(this._queryParams, defaults);
   }
 
-  private setTableInnerConfig(myTeamPlayersIds: string[]): void {
+  private setTableInnerConfig(): void {
     this._tableInnerConfig = {
       matchdays: this._filters.matchdays,
       sortBy: this._filters.sortBy,
       sortOrder: this._filters.sortOrder,
       showMyTeamButtons: this.state.config.showMyTeamButtons,
-      myTeamPlayersIds: this.state.config.showMyTeamButtons ? myTeamPlayersIds : null,
+      myTeamPlayersIds: this.state.config.showMyTeamButtons ? this._myTeamPlayerIds : null,
       showNextGame: this.state.config.showNextGame,
       showPrediction: this.state.config.showPrediction,
       showFormGames70Minutes: this.state.config.showFormGames70Minutes,
@@ -118,7 +136,8 @@ export class PlayersTableComponent implements OnInit, OnChanges {
       showGames70Minutes: this.state.config.showGames70Minutes,
       showGamesStarted: this.state.config.showGamesStarted,
       showTop100Popularity: this.state.config.showTop100Popularity,
-      showTop500Popularity: this.state.config.showTop500Popularity
+      showTop500Popularity: this.state.config.showTop500Popularity,
+      showAddOurPicks: this.state.config.showAddOurPicks
     };
   }
 

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { from, Observable } from 'rxjs';
 import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
+import { Logger } from 'src/app/utils/logger';
 import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -10,15 +11,16 @@ export class AdminMatchdayTipsOurPicksService {
   constructor(private firestore: AngularFirestore) {}
 
   public insert(playerId: number, matchday: number): Observable<void> {
+    Logger.logDev(`AdminMatchdayTipsOurPicksService: inserting player ${playerId} for matchday ${matchday}`);
     return from(
       this.firestore
         .collection('our-picks')
-        .doc(this.getDevProdMatchday(matchday).toString())
+        .doc(matchday.toString())
         .set(
           {
             players: firestore.FieldValue.arrayUnion({ order: 1, playerId }),
             published: false,
-            matchday: this.getDevProdMatchday(matchday)
+            matchday: matchday
           },
           { merge: true }
         )
@@ -26,12 +28,12 @@ export class AdminMatchdayTipsOurPicksService {
   }
 
   public save(ourPicks: MatchdayTipsOurPick): Observable<void> {
-    const matchday = this.getDevProdMatchday(ourPicks.matchday);
+    //const matchday = this.getDevProdMatchday(ourPicks.matchday);
     return from(
       this.firestore
         .collection('our-picks')
-        .doc(matchday.toString())
-        .set({ ...ourPicks, matchday })
+        .doc(ourPicks.matchday.toString())
+        .set({ ...ourPicks, matchday: ourPicks.matchday })
     );
   }
 
