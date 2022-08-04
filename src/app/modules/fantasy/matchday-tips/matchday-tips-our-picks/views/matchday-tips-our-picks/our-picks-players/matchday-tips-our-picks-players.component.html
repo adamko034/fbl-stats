@@ -1,5 +1,10 @@
 <div *ngIf="ourPicks$ | async">
-  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+  <div
+    *ngIf="ourPicks$ | async | field: 'players' | arrayNotEmpty"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="15px"
+  >
     <app-our-picks-players-table title="GOALKEEPERS" [players]="goalkeepers$ | async"></app-our-picks-players-table>
     <app-our-picks-players-table title="DEFENDERS" [players]="defenders$ | async"></app-our-picks-players-table>
     <app-our-picks-players-table title="MIDFIELDERS" [players]="mids$ | async"></app-our-picks-players-table>
