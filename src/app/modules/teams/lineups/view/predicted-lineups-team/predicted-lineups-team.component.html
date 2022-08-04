@@ -141,13 +141,19 @@
     <td fxHide.lt-md>{{ player.popularity }}</td>
     <td>{{ player.totalPoints }}</td>
     <td>
-      <app-prediction-indicator scale="0.7" [value]="getPrediction(player, 'kicker')"></app-prediction-indicator>
+      <app-player-icon-lineup-prediction
+        [prediction]="getPrediction(player, 'kicker')"
+      ></app-player-icon-lineup-prediction>
     </td>
     <td>
-      <app-prediction-indicator scale="0.7" [value]="getPrediction(player, 'bundesliga')"></app-prediction-indicator>
+      <app-player-icon-lineup-prediction
+        [prediction]="getPrediction(player, 'bundesliga')"
+      ></app-player-icon-lineup-prediction>
     </td>
     <td>
-      <app-prediction-indicator scale="0.7" [value]="getPrediction(player, 'ligainsider')"></app-prediction-indicator>
+      <app-player-icon-lineup-prediction
+        [prediction]="getPrediction(player, 'ligainsider')"
+      ></app-player-icon-lineup-prediction>
     </td>
   </tr>
 </ng-template>

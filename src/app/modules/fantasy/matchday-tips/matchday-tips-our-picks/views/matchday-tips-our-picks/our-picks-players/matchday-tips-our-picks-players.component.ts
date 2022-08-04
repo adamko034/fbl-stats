@@ -6,7 +6,6 @@ import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/o
 import { MatchdayTipsOurPicksPlayers } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-players.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MatchdayTipsOurPicksFiltersExecutor } from '../../../filters/matchday-tips-our-picks-filters-executor';
-import { MatchdayTipsOurPicksView } from '../../../models/matchday-tips-our-picks-view.enum';
 import { MatchdayTipsOurPicksDisplaySettingsService } from '../../../services/matchday-tips-our-picks-display-settings.service';
 import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-tips-our-picks-filters.service';
 
@@ -18,9 +17,11 @@ import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-t
 })
 export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
   public ourPicks$: Observable<MatchdayTipsOurPicksPlayers>;
-  public view$: Observable<MatchdayTipsOurPicksView>;
 
-  public Views = MatchdayTipsOurPicksView;
+  public defenders$: Observable<MatchdayTipsOurPicksPlayer[]>;
+  public goalkeepers$: Observable<MatchdayTipsOurPicksPlayer[]>;
+  public mids$: Observable<MatchdayTipsOurPicksPlayer[]>;
+  public forwards$: Observable<MatchdayTipsOurPicksPlayer[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +32,6 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.view$ = this.settingsService.selectAll().pipe(map((settings) => settings.view));
     this.ourPicks$ = combineLatest([
       this.route.data,
       this.filtersService.selectAll(),
@@ -44,11 +44,24 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
         }
 
         playersToDisplay = new ArrayStream<MatchdayTipsOurPicksPlayer>(playersToDisplay)
-          .orderBy(sortBy.sortByItem.value, sortBy.direction === 'asc' ? 'asc' : 'dsc')
+          .orderBy('order', 'asc')
           .collect();
 
         return { ...data.ourPicks, players: playersToDisplay };
       })
+    );
+
+    this.defenders$ = this.ourPicks$.pipe(
+      map((ourPicks) => ourPicks.players.filter((p) => p.position.toLowerCase() === 'def'))
+    );
+    this.mids$ = this.ourPicks$.pipe(
+      map((ourPicks) => ourPicks.players.filter((p) => p.position.toLowerCase() === 'mid'))
+    );
+    this.goalkeepers$ = this.ourPicks$.pipe(
+      map((ourPicks) => ourPicks.players.filter((p) => p.position.toLowerCase() === 'gk'))
+    );
+    this.forwards$ = this.ourPicks$.pipe(
+      map((ourPicks) => ourPicks.players.filter((p) => p.position.toLowerCase() === 'for'))
     );
   }
 }

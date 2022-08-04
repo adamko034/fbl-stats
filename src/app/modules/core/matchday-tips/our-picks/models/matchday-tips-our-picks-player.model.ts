@@ -15,6 +15,7 @@ export interface MatchdayTipsOurPicksPlayer {
   isPremium: boolean;
   isSurprising: boolean;
   top100Popularity: number;
+  top500Popularity: number;
   popularity: number;
   price: number;
   formPts: number;
@@ -24,4 +25,6 @@ export interface MatchdayTipsOurPicksPlayer {
   prediction: PlayerPredictionCombined;
   totalPoints: number;
   isAvailable: boolean;
+  isReturning: boolean;
+  isSuspensionRisk: boolean;
 }

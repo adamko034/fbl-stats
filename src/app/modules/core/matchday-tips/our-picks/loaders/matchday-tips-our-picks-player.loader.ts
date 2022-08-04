@@ -50,6 +50,7 @@ export class MatchdayTipsOurPicksPlayerLoader {
       isPremium: currentPicks?.premium?.includes(id) || false,
       isSurprising: currentPicks?.suprising?.includes(id) || false,
       top100Popularity: player.top100Popularity,
+      top500Popularity: player.top500Popularity,
       price: player.price,
       popularity: player.popularity,
       formPts,
@@ -57,7 +58,9 @@ export class MatchdayTipsOurPicksPlayerLoader {
       prediction: this.predictionCombindedDeterminer.determine(player.nextGame),
       totalPoints: player.totalPoints,
       isAvailable: player.attendance === 1,
-      nextGame: this.getNextGame(ourPicksTeam.nextGames)
+      nextGame: this.getNextGame(ourPicksTeam.nextGames),
+      isReturning: player.isReturning,
+      isSuspensionRisk: player.isSuspensionRisk
     };
   }
 

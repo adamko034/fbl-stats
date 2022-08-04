@@ -4,4 +4,8 @@
     <span *ngIf="isHome">(h)</span>
     <span *ngIf="!isHome">(a)</span>
   </div>
+  <span *ngIf="showRank">{{ rank | numerals }}</span>
+  <span *ngIf="showFirstGame">
+    <app-matchday-first-game-icon *ngIf="isFirstGame"></app-matchday-first-game-icon>
+  </span>
 </div>

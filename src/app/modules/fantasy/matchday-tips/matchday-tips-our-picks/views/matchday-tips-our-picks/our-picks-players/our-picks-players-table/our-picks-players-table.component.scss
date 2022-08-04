@@ -1,0 +1,13 @@
+tr {
+  td:not(:last-child) {
+    padding-right: 15px !important;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.hidden-mobile {
+  display: none;
+}

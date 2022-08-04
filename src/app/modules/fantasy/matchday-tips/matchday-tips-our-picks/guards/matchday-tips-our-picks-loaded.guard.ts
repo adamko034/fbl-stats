@@ -5,6 +5,7 @@ import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { MatchdayTipsOurPicksStore } from 'src/app/store/matchday-tips/our-picks/matchday-tips-our-picks.store';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Logger } from 'src/app/utils/logger';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class MatchdayTipsOurPicksLoadedGuard implements CanActivate {
@@ -16,7 +17,7 @@ export class MatchdayTipsOurPicksLoadedGuard implements CanActivate {
       map((lastMatchday) => lastMatchday + 1),
       tap((nextMatchday) => {
         Logger.logDev(`our picks loaded guard, loading for md ${nextMatchday}`);
-        this.ourPicksStore.load(nextMatchday, true);
+        this.ourPicksStore.load(nextMatchday, environment.production ? true : false);
       }),
       switchMap((nextMatchday) => {
         return this.ourPicksStore.loaded(nextMatchday).pipe(

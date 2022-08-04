@@ -1,15 +1,9 @@
 <div *ngIf="ourPicks$ | async">
-  <div *ngIf="ourPicks$ | async | field: 'published'" [ngSwitch]="view$ | async">
-    <div *ngSwitchCase="Views.EXTENDED">
-      <app-matchday-tips-our-picks-players-extended
-        [ourPicks]="ourPicks$ | async"
-      ></app-matchday-tips-our-picks-players-extended>
-    </div>
-    <div *ngSwitchCase="Views.SIMPLIFIED">
-      <app-matchday-tips-our-picks-players-simplified
-        [ourPicks]="ourPicks$ | async"
-      ></app-matchday-tips-our-picks-players-simplified>
-    </div>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+    <app-our-picks-players-table title="GOALKEEPERS" [players]="goalkeepers$ | async"></app-our-picks-players-table>
+    <app-our-picks-players-table title="DEFENDERS" [players]="defenders$ | async"></app-our-picks-players-table>
+    <app-our-picks-players-table title="MIDFIELDERS" [players]="mids$ | async"></app-our-picks-players-table>
+    <app-our-picks-players-table title="FORWARDS" [players]="forwards$ | async"></app-our-picks-players-table>
   </div>
 
   <div *ngIf="!(ourPicks$ | async | field: 'published')">

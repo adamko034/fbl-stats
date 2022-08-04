@@ -9,6 +9,10 @@ export class GameTeamVenueComponent {
   @Input() teamShort: string;
   @Input() logoHeight: number = 20;
   @Input() isHome: boolean;
+  @Input() showRank = false;
+  @Input() rank: number;
+  @Input() showFirstGame = false;
+  @Input() isFirstGame: boolean;
 
   constructor() {}
 }
