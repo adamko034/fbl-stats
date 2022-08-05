@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class PlayerNameLinkComponent {
   @Input() name: string;
+  @Input() lastName: string;
   @Input() id: string;
 
   constructor() {}

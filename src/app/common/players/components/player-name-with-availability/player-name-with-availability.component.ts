@@ -7,6 +7,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 })
 export class PlayerNameWithAvailabilityComponent implements OnInit {
   @Input() name: string;
+  @Input() lastName: string;
   @Input() id: string;
   @Input() available: boolean;
   @Input() suspensionRisk: boolean;

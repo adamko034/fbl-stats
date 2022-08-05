@@ -20,7 +20,11 @@
       <td mat-cell *matCellDef="let player">
         <div fxLayout fxLayoutAlign="start center" fxLayoutGap="5px">
           <app-team-logo [team]="player.teamShort" [height]="18"></app-team-logo>
-          <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
+          <app-player-name-link
+            [name]="player.name"
+            [lastName]="player.lastName"
+            [id]="player.id"
+          ></app-player-name-link>
           <app-player-icon-unavailable
             *ngIf="player.available != null && !player.available"
           ></app-player-icon-unavailable>

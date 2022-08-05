@@ -18,7 +18,6 @@ import { MatchdayTipsOurPicksDescriptionComponent } from './views/matchday-tips-
 import { MatchdayTipsOurPicksFilterTypesComponent } from './views/matchday-tips-our-picks/our-picks-filter-types/matchday-tips-our-picks-filter-types.component';
 import { MatchdayTipsOurPicksFiltersComponent } from './views/matchday-tips-our-picks/our-picks-filters/matchday-tips-our-picks-filters.component';
 import { MatchdayTipsOurPicksPlayersComponent } from './views/matchday-tips-our-picks/our-picks-players/matchday-tips-our-picks-players.component';
-import { OurPicksPlayersTableComponent } from './views/matchday-tips-our-picks/our-picks-players/our-picks-players-table/our-picks-players-table.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { OurPicksPlayersTableComponent } from './views/matchday-tips-our-picks/o
     MatchdayTipsOurPicksDescriptionComponent,
     MatchdayTipsOurPicksFiltersComponent,
     MatchdayTipsOurPicksFilterTypesComponent,
-    MatchdayTipsOurPicksComponent,
-    OurPicksPlayersTableComponent
+    MatchdayTipsOurPicksComponent
   ],
   imports: [
     CommonModule,

@@ -1,14 +1,59 @@
-<div *ngIf="ourPicks$ | async">
-  <div
-    *ngIf="ourPicks$ | async | field: 'players' | arrayNotEmpty"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxLayoutGap="15px"
-  >
-    <app-our-picks-players-table title="GOALKEEPERS" [players]="goalkeepers$ | async"></app-our-picks-players-table>
-    <app-our-picks-players-table title="DEFENDERS" [players]="defenders$ | async"></app-our-picks-players-table>
-    <app-our-picks-players-table title="MIDFIELDERS" [players]="mids$ | async"></app-our-picks-players-table>
-    <app-our-picks-players-table title="FORWARDS" [players]="forwards$ | async"></app-our-picks-players-table>
+<div *ngIf="ourPicks$ | async" fxLayout="row" fxLayoutAlign="center center">
+  <div appStickyWrapper *ngIf="ourPicks$ | async | field: 'players' | arrayNotEmpty">
+    <table class="comparison-table">
+      <tr>
+        <td [appSticky]="{ position: 'left', px: 0 }"></td>
+        <td>Team</td>
+        <td>Pick type</td>
+        <td>Pr</td>
+        <td>Next</td>
+        <td>$</td>
+        <td>%</td>
+        <td>L100</td>
+        <td>L500</td>
+        <td>TP</td>
+      </tr>
+
+      <ng-template
+        [ngTemplateOutlet]="divider"
+        [ngTemplateOutletContext]="{ text: 'GOALKEEPERS (' + (goalkeepers$ | async | length) + ')', noPadding: true }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="playersRows"
+        [ngTemplateOutletContext]="{ players: goalkeepers$ | async }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="divider"
+        [ngTemplateOutletContext]="{ text: 'DEFENDERS (' + (defenders$ | async | length) + ')' }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="playersRows"
+        [ngTemplateOutletContext]="{ players: defenders$ | async }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="divider"
+        [ngTemplateOutletContext]="{ text: 'MIDFIELDERS (' + (mids$ | async | length) + ')' }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="playersRows"
+        [ngTemplateOutletContext]="{ players: mids$ | async }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="divider"
+        [ngTemplateOutletContext]="{ text: 'FORWARDS (' + (forwards$ | async | length) + ')' }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="playersRows"
+        [ngTemplateOutletContext]="{ players: forwards$ | async }"
+      ></ng-template>
+    </table>
   </div>
 
   <div *ngIf="!(ourPicks$ | async | field: 'published')">
@@ -21,3 +66,71 @@
     </h2>
   </div>
 </div>
+
+<ng-template #divider let-text="text" let-noPadding="noPadding">
+  <tr appStickyWrapper>
+    <td
+      [appSticky]="{ position: 'left', px: 0 }"
+      class="divider"
+      [ngClass]="{ 'divider-no-padding': noPadding }"
+      ngClass.lt-md="divider-mobile"
+      colspan="10"
+    >
+      {{ text }}
+    </td>
+  </tr>
+</ng-template>
+
+<ng-template #playersRows let-players="players">
+  <tr *ngFor="let player of players">
+    <td [appSticky]="{ position: 'left', px: 0 }">
+      <app-player-name-with-availability
+        [name]="player.name"
+        [lastName]="player.lastName"
+        [id]="player.playerId"
+        [suspensionRisk]="player.isSuspensionRisk"
+        [available]="player.isAvailable"
+        [returning]="player.isReturning"
+      ></app-player-name-with-availability>
+    </td>
+    <td><app-team-logo [team]="player.team.teamShort" [height]="18"></app-team-logo></td>
+    <td>
+      <div class="icons" fxLayout="row" fxLayoutGap="3px" fxLayoutGap.lt-md="2px">
+        <app-our-pick-icon
+          [ngClass]="{ hidden: !player.isMustHave }"
+          [icon]="Types.MUST_HAVE"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          [ngClass]="{ hidden: !player.isBargain }"
+          [icon]="Types.BARGAIN"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+        <app-our-pick-icon
+          [ngClass]="{ hidden: !player.isDifferential }"
+          [icon]="Types.DIFFERENTIAL"
+          [showTooltip]="false"
+        ></app-our-pick-icon>
+      </div>
+    </td>
+    <td>
+      <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
+    </td>
+    <td>
+      <app-game-team-venue
+        [teamShort]="player.nextGame.opponentShort"
+        [logoHeight]="18"
+        [isHome]="player.nextGame.isHome"
+        [showFirstGame]="true"
+        [isFirstGame]="player.nextGame.isFirstGame"
+        [showRank]="true"
+        [rank]="player.nextGame.opponentRank"
+      ></app-game-team-venue>
+    </td>
+    <td>{{ player.price }}</td>
+    <td>{{ player.popularity }}</td>
+    <td>{{ player.top100Popularity }}</td>
+    <td>{{ player.top500Popularity }}</td>
+    <td>{{ player.totalPoints }}</td>
+  </tr>
+</ng-template>

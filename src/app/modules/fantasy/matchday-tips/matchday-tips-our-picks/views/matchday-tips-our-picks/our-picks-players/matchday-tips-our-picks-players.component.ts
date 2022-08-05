@@ -4,6 +4,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
 import { MatchdayTipsOurPicksPlayers } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-players.model';
+import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { MatchdayTipsOurPicksFiltersExecutor } from '../../../filters/matchday-tips-our-picks-filters-executor';
 import { MatchdayTipsOurPicksDisplaySettingsService } from '../../../services/matchday-tips-our-picks-display-settings.service';
@@ -18,6 +19,8 @@ import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-t
 export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
   public ourPicks$: Observable<MatchdayTipsOurPicksPlayers>;
 
+  public Types = MatchdayTipsOurPicksType;
+
   public defenders$: Observable<MatchdayTipsOurPicksPlayer[]>;
   public goalkeepers$: Observable<MatchdayTipsOurPicksPlayer[]>;
   public mids$: Observable<MatchdayTipsOurPicksPlayer[]>;
@@ -25,7 +28,6 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private settingsService: MatchdayTipsOurPicksDisplaySettingsService,
     private filtersService: MatchdayTipsOurPicksFiltersService,
     private filtersExecutor: MatchdayTipsOurPicksFiltersExecutor,
     private displaySettings: MatchdayTipsOurPicksDisplaySettingsService
@@ -37,7 +39,7 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
       this.filtersService.selectAll(),
       this.displaySettings.selectAll()
     ]).pipe(
-      map(([data, filters, { sortBy }]) => {
+      map(([data, filters]) => {
         let playersToDisplay = [...data.ourPicks?.players] || [];
         if (!!filters) {
           playersToDisplay = this.filtersExecutor.filter(playersToDisplay, filters);
