@@ -1,30 +1,7 @@
-.text-icon {
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
-}
-
 .icon {
-  border-radius: 50%;
-  padding: 1px;
-}
+  font-size: 16px;
 
-.border-blue {
-  border: 1px solid #0a00c8;
-}
-
-.border-green {
-  border: 1px solid green;
-}
-
-.border-orange {
-  border: 1px solid orange;
-}
-
-.border-pink {
-  border: 1px solid #ff748c;
-}
-
-.border-yellow {
-  border: 2px solid yellowgreen;
+  &-differential {
+    font-size: 14px;
+  }
 }

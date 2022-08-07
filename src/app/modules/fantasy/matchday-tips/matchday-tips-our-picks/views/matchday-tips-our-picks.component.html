@@ -1,4 +1,10 @@
 <app-content-white-block>
-  <app-matchday-tips-our-picks-description></app-matchday-tips-our-picks-description>
+  <app-title [text]="title$ | async"></app-title>
   <app-matchday-tips-our-picks-players></app-matchday-tips-our-picks-players>
+  <app-legend>
+    <span *ngFor="let item of iconsLegend" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+      <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
+      <span class="item-description">- {{ item.description }}</span>
+    </span>
+  </app-legend>
 </app-content-white-block>

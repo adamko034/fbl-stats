@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPiggyBank, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBinoculars, faPiggyBank, faStar } from '@fortawesome/free-solid-svg-icons';
 import { OurPickIconComponent } from './our-pick-icon.component';
 
 @NgModule({
@@ -12,6 +12,6 @@ import { OurPickIconComponent } from './our-pick-icon.component';
 })
 export class OurPickIconModule {
   constructor(private faLibrary: FaIconLibrary) {
-    this.faLibrary.addIcons(faPiggyBank, faStar);
+    this.faLibrary.addIcons(faPiggyBank, faStar, faBinoculars);
   }
 }

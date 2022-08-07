@@ -4,7 +4,7 @@
       <tr>
         <td [appSticky]="{ position: 'left', px: 0 }"></td>
         <td>Team</td>
-        <td>Pick type</td>
+        <td>Type</td>
         <td>Pr</td>
         <td>Next</td>
         <td>$</td>
@@ -91,7 +91,7 @@
     </td>
     <td><app-team-logo [team]="player.team.teamShort" [height]="18"></app-team-logo></td>
     <td>
-      <div class="icons" fxLayout="row" fxLayoutGap="3px" fxLayoutGap.lt-md="2px">
+      <div class="icons" fxLayout="row" fxLayoutGap="4px">
         <app-our-pick-icon
           [ngClass]="{ hidden: !player.isMustHave }"
           [icon]="Types.MUST_HAVE"

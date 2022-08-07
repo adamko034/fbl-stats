@@ -1,6 +1,6 @@
 <fa-icon
   *ngIf="icon === Icons.MUST_HAVE"
-  class="icon text-icon green border-green"
+  class="icon orange"
   fxLayoutAlign="center center"
   [matTooltip]="showTooltip ? 'must have' : null"
   [icon]="['fas', 'star']"
@@ -9,13 +9,14 @@
   *ngIf="icon === Icons.BARGAIN"
   [icon]="['fas', 'piggy-bank']"
   fxLayoutAlign="center center"
-  class="icon text-icon pink border-pink"
+  class="icon pink"
   [matTooltip]="showTooltip ? 'bargain pick' : null"
 ></fa-icon>
-<span
+<fa-icon
   *ngIf="icon === Icons.DIFFERENTIAL"
-  class="text-icon icon blue border-blue"
+  [icon]="['fas', 'binoculars']"
+  class="icon blue icon-differential"
   fxLayoutAlign="center center"
   [matTooltip]="showTooltip ? 'differential' : null"
   >%
-</span>
+</fa-icon>

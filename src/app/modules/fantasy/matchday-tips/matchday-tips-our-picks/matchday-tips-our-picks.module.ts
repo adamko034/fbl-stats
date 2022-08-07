@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-white-block/content-white-block.module';
 import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
+import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
+import { TitleModule } from 'src/app/common/components/ui/title/title.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { OurPickIconModule } from 'src/app/common/players/components/our-pick-icon/our-pick-icon.module';
 import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
 import { PlayerNameWithAvailabilityModule } from 'src/app/common/players/components/player-name-with-availability/player-name-with-availability.module';
+import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { GameTeamVenueModule } from 'src/app/common/teams/components/game-team-venue/game-team-venue.module';
 import { MatchdayFirstGameIconModule } from 'src/app/common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
@@ -36,7 +39,10 @@ import { MatchdayTipsOurPicksPlayersComponent } from './views/our-picks-players/
     TeamLogoModule,
     StickyModule,
     OurPickIconModule,
-    FollowUsModule
+    FollowUsModule,
+    LegendModule,
+    TitleModule,
+    LastMatchdayResolverModule
   ],
   providers: [MatchdayTipsOurPicksLoadedGuard]
 })

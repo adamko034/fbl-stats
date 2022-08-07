@@ -1,47 +1,57 @@
 <app-white-block *ngIf="mds" padding="0 10px 10px 10px">
-  <div fxLayout="row wrap" fxLayoutAlign="center start">
-    <div [appStickyWrapper]="{ hideY: true }" appHorizontalTopScrollbar class="container">
-      <table class="comparison-table">
-        <tr>
-          <td [appSticky]="{ position: 'left' }"></td>
-          <td *ngFor="let md of mds">MD{{ md }}</td>
-        </tr>
-        <tr *ngFor="let team of teams">
-          <td [appSticky]="{ position: 'left' }">
-            <div fxLayout="column" fxLayoutAlign="center center">
-              <app-team-logo [team]="team.teamShort" size="16"></app-team-logo>
-              <span>{{ team.rank | numerals }}</span>
-            </div>
-          </td>
-          <td *ngFor="let fixture of team.fixtures | orderBy: 'matchday'" class="game" [ngClass]="fixture.color">
-            <div fxLayout="column" fxLayoutAlign="start center">
-              <app-team-logo [team]="fixture.opponentShort" appSize="15"></app-team-logo>
-              <span>{{ fixture.displayedText }}</span>
-              <span>{{ fixture.isHome ? 'home' : 'away' }}</span>
-              <div class="icons" fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="center center">
-                <span>&nbsp;</span>
-                <app-first-game-icon *ngIf="fixture.isFirstGame"></app-first-game-icon>
-                <app-standalone-game-icon *ngIf="fixture.isStandalone"></app-standalone-game-icon>
-                <app-postponed-game-icon *ngIf="fixture.isPostponed"></app-postponed-game-icon>
+  <div>
+    <div fxLayout="row wrap" fxLayoutAlign="center start">
+      <div [appStickyWrapper]="{ hideY: true }" appHorizontalTopScrollbar class="container">
+        <table class="comparison-table">
+          <tr>
+            <td [appSticky]="{ position: 'left' }"></td>
+            <td *ngFor="let md of mds">MD{{ md }}</td>
+          </tr>
+          <tr *ngFor="let team of teams">
+            <td [appSticky]="{ position: 'left' }">
+              <div fxLayout="column" fxLayoutAlign="center center">
+                <app-team-logo [team]="team.teamShort" size="16"></app-team-logo>
+                <span>{{ team.rank | numerals }}</span>
               </div>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+            </td>
+            <td *ngFor="let fixture of team.fixtures | orderBy: 'matchday'" class="game" [ngClass]="fixture.color">
+              <div fxLayout="column" fxLayoutAlign="start center">
+                <app-team-logo [team]="fixture.opponentShort" appSize="15"></app-team-logo>
+                <span>{{ fixture.displayedText }}</span>
+                <span>{{ fixture.isHome ? 'home' : 'away' }}</span>
+                <div class="icons" fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="center center">
+                  <span>&nbsp;</span>
+                  <app-matchday-first-game-icon></app-matchday-first-game-icon>
+                  <app-matchday-standalone-game-icon *ngIf="fixture.isStandalone"></app-matchday-standalone-game-icon>
+                  <app-postponed-game-icon *ngIf="fixture.isPostponed"></app-postponed-game-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-    <div class="values" [appSticky]="{ position: 'top', px: 50 }">
-      <table class="comparison-table">
-        <tr>
-          <td class="title">{{ titleTable }}</td>
-        </tr>
-        <tr *ngFor="let team of teams | orderBy: orderTable">
-          <td class="value" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-between" [ngClass]="team.color">
-            <app-team-logo [team]="team.teamShort" [height]="18"></app-team-logo>
-            <span>{{ team.value }}</span>
-          </td>
-        </tr>
-      </table>
+      <div class="values" [appSticky]="{ position: 'top', px: 50 }">
+        <table class="comparison-table">
+          <tr>
+            <td class="title">{{ titleTable }}</td>
+          </tr>
+          <tr *ngFor="let team of teams | orderBy: orderTable">
+            <td class="value" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-between" [ngClass]="team.color">
+              <app-team-logo [team]="team.teamShort" [height]="18"></app-team-logo>
+              <span>{{ team.value }}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
+    <app-legend>
+      <span fxLayout="row" fxLayoutAlign="start center">
+        <app-matchday-first-game-icon></app-matchday-first-game-icon><span>- matchday first game</span>
+      </span>
+      <span fxLayout="row" fxLayoutAlign="start center">
+        <app-matchday-standalone-game-icon></app-matchday-standalone-game-icon><span>- standalone game</span>
+      </span>
+    </app-legend>
   </div>
 </app-white-block>
