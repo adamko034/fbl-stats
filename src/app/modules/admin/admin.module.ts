@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FblCoreModule } from '../core/fbl-core.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -28,7 +29,14 @@ import { AdminComponent } from './views/admin/admin.component';
     AdminMatchdayTipsLinksComponent,
     AdminMatchdayTipsNewLinkComponent
   ],
-  imports: [CommonModule, AdminRoutingModule, FblCoreModule, SharedModule, AngularMaterialModule],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    FblCoreModule,
+    SharedModule,
+    AngularMaterialModule,
+    PlayerIconPredictionModule
+  ],
   providers: [
     AdminLoggedGuard,
     AdminMatchdayTipsOurPicksLoadedGuard,

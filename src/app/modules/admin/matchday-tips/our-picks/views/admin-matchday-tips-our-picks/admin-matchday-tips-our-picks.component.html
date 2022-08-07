@@ -23,7 +23,7 @@
             ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
           ></span>
           <div fxFlex="5">
-            <app-prediction-indicator [value]="player.prediction"></app-prediction-indicator>
+            <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
           </div>
           <div fxFlex="15" fxLayoutGap="5px" fxLayoutAlign="start center">
             <app-team-logo [height]="25" [team]="player.nextGame.opponentShort"></app-team-logo>

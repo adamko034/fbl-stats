@@ -26,18 +26,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
-import { ExpansionPanelComponent } from 'src/app/shared/components/expansion-panel/expansion-panel.component';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
-import { InputNumberComponent } from 'src/app/shared/components/input-number/input-number.component';
-import { FiltersContentLayoutComponent } from 'src/app/shared/components/layout/filters-content-layout/filters-content-layout.component';
-import { PredictionIndicatorComponent } from 'src/app/shared/components/prediction-indicator/prediction-indicator.component';
 import { SwitchComponent } from 'src/app/shared/components/switch/switch.component';
 import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form.component';
 import { TeamLogoSourceDirective } from 'src/app/shared/components/team-logo/directives/team-logo-source.directive';
 import { TeamLogoStyleDirective } from 'src/app/shared/components/team-logo/directives/team-logo-style.directive';
 import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo.component';
-import { TimelineComponent } from 'src/app/shared/components/timeline/timeline.component';
-import { ToggleExpandComponent } from 'src/app/shared/components/toggle-expand/toggle-expand.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
 import { PipesModule } from '../common/pipes/pipes.module';
 import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
@@ -53,7 +47,6 @@ import { HasStartedIconComponent } from './components/has-started-icon/has-start
 import { IconWrapperComponent } from './components/icon-wrapper/icon-wrapper.component';
 import { IncludeFutureMatchdaysDropdownComponent } from './components/include-future-matchdays-dropdown/include-future-matchdays-dropdown.component';
 import { IncludePastMatchdaysDropdownComponent } from './components/include-past-matchdays-dropdown/include-past-matchdays-dropdown.component';
-import { FiltersLayoutComponent } from './components/layout/filters-layout/filters-layout.component';
 import { SubnavigationComponent } from './components/layout/subnavigation/subnavigation.component';
 import { ViewLayoutComponent } from './components/layout/view-layout/view-layout.component';
 import { ViewTabsNavigationComponent } from './components/layout/view-tabs-navigation/view-tabs-navigation.component';
@@ -66,17 +59,11 @@ import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.c
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
-import { PlayersTableGenericComponent } from './components/players-table-generic/players-table-generic.component';
 import { PostponedGameIconComponent } from './components/postponed-game-icon/postponed-game-icon.component';
 import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
 import { SelectDialogComponent } from './components/select-dialog/select-dialog.component';
-import { SelectTeamsModalComponent } from './components/select-teams/select-teams-modal/select-teams-modal.component';
-import { SelectTeamsComponent } from './components/select-teams/select-teams.component';
-import { SelectComponent } from './components/select/select.component';
-import { ShowMoreLinkComponent } from './components/show-more-link/show-more-link.component';
 import { SliderMaxPopularityComponent } from './components/slider-max-popularity/slider-max-popularity.component';
 import { SliderMaxPriceComponent } from './components/slider-max-price/slider-max-price.component';
-import { SortByComponent } from './components/sorty-by/sort-by.component';
 import { StandaloneGameIconComponent } from './components/standalone-game-icon/standalone-game-icon.component';
 import { TeamGameAgainstComponent } from './components/team-game-against/team-game-against.component';
 import { TeamLineupComponent } from './components/team-lineup/team-lineup.component';
@@ -115,21 +102,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamLogoStyleDirective,
     SumByPipe,
     FormFieldComponent,
-    PredictionIndicatorComponent,
-    ToggleExpandComponent,
-    TimelineComponent,
     TeamFormComponent,
     SwitchComponent,
-    InputNumberComponent,
     WherePipe,
     NumeralsPipe,
-    FiltersContentLayoutComponent,
-    FiltersLayoutComponent,
-    ExpansionPanelComponent,
     SubnavigationComponent,
     ViewLayoutComponent,
     ViewTitleComponent,
-    SortByComponent,
     TitleUnderlinedComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
@@ -149,7 +128,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     AveragePipe,
     TakePipe,
     LengthPipe,
-    ShowMoreLinkComponent,
     ChartDialogComponent,
     ValueDifferenceComponent,
     ViewComponent,
@@ -157,16 +135,12 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     WhiteBlockComponent,
     PlayersListGenericComponent,
     ScaleDirective,
-    SelectTeamsComponent,
-    SelectTeamsModalComponent,
     SliderMaxPriceComponent,
     SliderMaxPopularityComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
     PieChartComponent,
     TimeAgoComponent,
-    PlayersTableGenericComponent,
-    SelectComponent,
     SelectDialogComponent,
     SelectDialogDialogComponent,
     GoalsIconsComponent,
@@ -207,22 +181,14 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamLogoStyleDirective,
     SumByPipe,
     FormFieldComponent,
-    PredictionIndicatorComponent,
-    ToggleExpandComponent,
-    TimelineComponent,
     TeamFormComponent,
     SwitchComponent,
-    InputNumberComponent,
     WherePipe,
     NumeralsPipe,
     FontAwesomeModule,
-    FiltersContentLayoutComponent,
-    FiltersLayoutComponent,
-    ExpansionPanelComponent,
     SubnavigationComponent,
     ViewLayoutComponent,
     ViewTitleComponent,
-    SortByComponent,
     NgPipesModule,
     TitleUnderlinedComponent,
     MinMaxAvgComponent,
@@ -243,22 +209,18 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     AveragePipe,
     TakePipe,
     LengthPipe,
-    ShowMoreLinkComponent,
     ValueDifferenceComponent,
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
     ScaleDirective,
-    SelectTeamsComponent,
     SliderMaxPopularityComponent,
     SliderMaxPriceComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
     PieChartComponent,
     TimeAgoComponent,
-    PlayersTableGenericComponent,
-    SelectComponent,
     SelectDialogComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
