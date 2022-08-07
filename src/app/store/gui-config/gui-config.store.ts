@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { GuiConfig, GuiConfigComparePlayers, GuiConfigMyTeamDisplay, GuiConfigOurPicks } from './gui-config.model';
+import { GuiConfig, GuiConfigComparePlayers, GuiConfigMyTeamDisplay } from './gui-config.model';
 
 @Injectable({ providedIn: 'root' })
 export class GuiConfigStore {
@@ -36,18 +36,6 @@ export class GuiConfigStore {
 
   public changePlayersFiltersMatchdays(matchdays: number): void {
     this.config.players = { ...this.config.players, matchdays };
-    this.send();
-  }
-
-  public selectOurPicksDisplaySettings(): Observable<GuiConfigOurPicks> {
-    return this.config$.pipe(
-      map((x) => x.ourPicks),
-      distinctUntilChanged()
-    );
-  }
-
-  public changeOurPicksDisplaySettings(config: GuiConfigOurPicks): void {
-    this.config.ourPicks = config;
     this.send();
   }
 

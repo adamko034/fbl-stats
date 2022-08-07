@@ -56,15 +56,11 @@
     </table>
   </div>
 
-  <div *ngIf="!(ourPicks$ | async | field: 'published')">
-    <h2 fxLayoutAlign="start center" fxLayout="column">
-      Sorry, we haven't published our picks yet.
-      <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="15px"
-        ><span>Follow us to stay tuned</span>
-        <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
-      </a>
-    </h2>
-  </div>
+  <app-follow-us
+    *ngIf="ourPicks$ | async | field: 'published' | reverseBoolean"
+    text="Sorry, we haven't published our picks yet."
+  >
+  </app-follow-us>
 </div>
 
 <ng-template #divider let-text="text" let-noPadding="noPadding">

@@ -1,0 +1,21 @@
+<fa-icon
+  *ngIf="icon === Icons.MUST_HAVE"
+  class="icon text-icon green border-green"
+  fxLayoutAlign="center center"
+  [matTooltip]="showTooltip ? 'must have' : null"
+  [icon]="['fas', 'star']"
+></fa-icon>
+<fa-icon
+  *ngIf="icon === Icons.BARGAIN"
+  [icon]="['fas', 'piggy-bank']"
+  fxLayoutAlign="center center"
+  class="icon text-icon pink border-pink"
+  [matTooltip]="showTooltip ? 'bargain pick' : null"
+></fa-icon>
+<span
+  *ngIf="icon === Icons.DIFFERENTIAL"
+  class="text-icon icon blue border-blue"
+  fxLayoutAlign="center center"
+  [matTooltip]="showTooltip ? 'differential' : null"
+  >%
+</span>

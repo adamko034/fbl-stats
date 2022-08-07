@@ -1,14 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
 import { MatchdayTipsOurPicksPlayers } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-players.model';
 import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { MatchdayTipsOurPicksFiltersExecutor } from '../../../filters/matchday-tips-our-picks-filters-executor';
-import { MatchdayTipsOurPicksDisplaySettingsService } from '../../../services/matchday-tips-our-picks-display-settings.service';
-import { MatchdayTipsOurPicksFiltersService } from '../../../services/matchday-tips-our-picks-filters.service';
 
 @Component({
   selector: 'app-matchday-tips-our-picks-players',
@@ -26,24 +23,12 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
   public mids$: Observable<MatchdayTipsOurPicksPlayer[]>;
   public forwards$: Observable<MatchdayTipsOurPicksPlayer[]>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private filtersService: MatchdayTipsOurPicksFiltersService,
-    private filtersExecutor: MatchdayTipsOurPicksFiltersExecutor,
-    private displaySettings: MatchdayTipsOurPicksDisplaySettingsService
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.ourPicks$ = combineLatest([
-      this.route.data,
-      this.filtersService.selectAll(),
-      this.displaySettings.selectAll()
-    ]).pipe(
-      map(([data, filters]) => {
+    this.ourPicks$ = this.route.data.pipe(
+      map((data) => {
         let playersToDisplay = [...data.ourPicks?.players] || [];
-        if (!!filters) {
-          playersToDisplay = this.filtersExecutor.filter(playersToDisplay, filters);
-        }
 
         playersToDisplay = new ArrayStream<MatchdayTipsOurPicksPlayer>(playersToDisplay)
           .orderBy('order', 'asc')
