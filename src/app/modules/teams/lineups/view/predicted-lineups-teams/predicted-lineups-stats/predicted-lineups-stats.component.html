@@ -54,6 +54,7 @@
           <td fxHide.lt-md mat-sort-header="last5">Last 5</td>
           <td fxHide.gt-sm mat-sort-header="last5">L5</td>
           <td class="prediction">BL</td>
+          <td class="prediction">BL [EN]</td>
           <td class="prediction">KK</td>
           <td class="prediction">LI</td>
         </tr>
@@ -73,6 +74,11 @@
           <td>
             <app-player-icon-lineup-prediction
               [prediction]="getPrediction(player, 'bundesliga')"
+            ></app-player-icon-lineup-prediction>
+          </td>
+          <td>
+            <app-player-icon-lineup-prediction
+              [prediction]="getPrediction(player, 'bundesliga_en')"
             ></app-player-icon-lineup-prediction>
           </td>
           <td>

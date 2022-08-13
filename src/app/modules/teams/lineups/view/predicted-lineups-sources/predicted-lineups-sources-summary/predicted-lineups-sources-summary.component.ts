@@ -14,8 +14,8 @@ import { PredictedLineupsSource } from '../../../store/models/predicted-lineups-
 export class PredictedLineupsSourcesSummaryComponent implements OnInit {
   @Input() sources: PredictedLineupsSource[];
 
-  private _bestTeams: { [index: number]: { teamShort: string; acc: number }[] } = {};
-  private _worstTeams: { [index: number]: { teamShort: string; acc: number }[] } = {};
+  private _bestTeams: { [sourceName: string]: { teamShort: string; acc: number }[] } = {};
+  private _worstTeams: { [sourceName: string]: { teamShort: string; acc: number }[] } = {};
 
   public get bestTeams() {
     return this._bestTeams;
@@ -33,20 +33,17 @@ export class PredictedLineupsSourcesSummaryComponent implements OnInit {
   public ngOnInit(): void {
     this.screen$ = this.screenSizeService.onResize();
 
-    for (let i = 0; i <= 2; i++) {
-      this._bestTeams[i] = this.getBestWorstTeam('best', this.sources[i]);
-      this._worstTeams[i] = this.getBestWorstTeam('worst', this.sources[i]);
-    }
+    this.sources.forEach((source) => {
+      this._bestTeams[source.name] = this.getBestWorstTeam('best', source);
+      this._worstTeams[source.name] = this.getBestWorstTeam('worst', source);
+    });
   }
 
-  public isBest(fieldName: string, sourceIndex: number): boolean {
-    const otherIndexes: number[] = [0, 1, 2].filter((i) => i !== sourceIndex);
-    const value: number = this.sources[sourceIndex].accuracy[fieldName];
+  public isBest(fieldName: string, source: PredictedLineupsSource): boolean {
+    const otherSources = this.sources.filter((s) => s.name !== source.name);
+    const value: number = source.accuracy[fieldName];
 
-    const otherValue1: number = this.sources[otherIndexes[0]].accuracy[fieldName];
-    const otherValue2: number = this.sources[otherIndexes[1]].accuracy[fieldName];
-
-    return value > otherValue1 && value > otherValue2;
+    return otherSources.every((o) => value > o.accuracy[fieldName]);
   }
 
   private getBestWorstTeam(

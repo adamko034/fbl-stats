@@ -21,7 +21,7 @@
                 <span>{{ fixture.isHome ? 'home' : 'away' }}</span>
                 <div class="icons" fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="center center">
                   <span>&nbsp;</span>
-                  <app-matchday-first-game-icon></app-matchday-first-game-icon>
+                  <app-matchday-first-game-icon *ngIf="fixture.isFirstGame"></app-matchday-first-game-icon>
                   <app-matchday-standalone-game-icon *ngIf="fixture.isStandalone"></app-matchday-standalone-game-icon>
                   <app-postponed-game-icon *ngIf="fixture.isPostponed"></app-postponed-game-icon>
                 </div>

@@ -70,6 +70,6 @@ export class PlayersCompareGamesPreviousComponent implements OnChanges {
       return 'lost';
     }
 
-    return '';
+    return 'other';
   }
 }

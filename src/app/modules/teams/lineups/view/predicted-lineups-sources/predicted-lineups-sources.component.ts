@@ -47,6 +47,7 @@ export class PredictedLineupsSourcesComponent implements OnInit {
     let min = 100;
     const data: ChartData[] = sources.map((source) => {
       const points = new ArrayStream<MatchdayValue>(source.accuracy.matchdays)
+        .filterQuick((m) => m.value != null)
         .convert(new MatchdayValueToChartPointConverter('%'))
         .collect();
       const sourceMin = Math.min(...points.map((p) => p.value));
@@ -71,13 +72,13 @@ export class PredictedLineupsSourcesComponent implements OnInit {
       showLegend: true,
       legendPosition: 'below',
       animations: true,
-      colors: ['#c80a00', '#0A00C8', '#00C80A'],
+      colors: ['#c80a00', '#0A00C8', '#00C80A', '#FFA500'],
       showDialog: true,
       xAxisLabel: 'matchday',
       yAxisLabel: 'accuracy',
       dialogConfig: {
         data,
-        columns: ['MD', 'BL', 'KK', 'LI'],
+        columns: ['MD', 'BL', 'KK', 'LI', 'BL [EN]'],
         showDiff: false,
         showLegend: true
       }

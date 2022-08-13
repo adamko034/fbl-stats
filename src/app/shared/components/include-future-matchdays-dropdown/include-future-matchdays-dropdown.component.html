@@ -4,7 +4,7 @@
     <mat-option *ngFor="let md of possibleNextMatchdays$ | async" [value]="md">
       <span *ngIf="md === (mdsUntilNextUnlimitedTransfers$ | async); else otherMd">
         <span *ngIf="isNextUnlimitedTransfers$ | async">Until Unlimited Transfers</span>
-        <span *ngIf="isNextUnlimitedTransfers$ | async | reverseBoolean">All</span>
+        <span *ngIf="!(isNextUnlimitedTransfers$ | async)">All</span>
       </span>
       <ng-template #otherMd>Next {{ md }}</ng-template>
     </mat-option>

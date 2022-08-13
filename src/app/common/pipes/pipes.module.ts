@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ArrayEmptyPipe } from './array-empty.pipe';
 import { ArrayIncludesPipe } from './array-includes.pipe';
 import { ArrayNotEmptyPipe } from './array-not-empty.pipe';
+import { AveragePipe } from './average.pipe';
+import { DaysBetweenNowPipe } from './days-between-now.pipe';
 import { FieldPipe } from './field.pipe';
 import { LengthPipe } from './length.pipe';
 import { NumeralsPipe } from './numerals.pipe';
@@ -16,7 +18,9 @@ import { ReverseBooleanPipe } from './reverse-boolean.pipe';
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
     FieldPipe,
-    LengthPipe
+    LengthPipe,
+    AveragePipe,
+    DaysBetweenNowPipe
   ],
   imports: [CommonModule],
   exports: [
@@ -26,7 +30,9 @@ import { ReverseBooleanPipe } from './reverse-boolean.pipe';
     ArrayEmptyPipe,
     ArrayNotEmptyPipe,
     FieldPipe,
-    LengthPipe
+    LengthPipe,
+    AveragePipe,
+    DaysBetweenNowPipe
   ]
 })
 export class PipesModule {}

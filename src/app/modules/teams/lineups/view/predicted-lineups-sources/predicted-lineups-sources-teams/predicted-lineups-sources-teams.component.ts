@@ -46,8 +46,8 @@ export class PredictedLineupsSourcesTeamsComponent implements OnInit {
     this.changeDetection.detectChanges();
   }
 
-  public getSourceAccuracy(sourceIndex: number, teamShort: string): string {
-    const value = this.getSourceTeam(sourceIndex, teamShort)[this.sourceValueType];
+  public getSourceAccuracy(source: PredictedLineupsSource, teamShort: string): string {
+    const value = this.getSourceTeam(source, teamShort)[this.sourceValueType];
 
     if (value == null) {
       return 'x';
@@ -56,27 +56,27 @@ export class PredictedLineupsSourcesTeamsComponent implements OnInit {
     return `${value}%`;
   }
 
-  public isBest(sourceIndex: number, teamShort: string): boolean {
-    const otherIndexes: number[] = [0, 1, 2].filter((i) => i !== sourceIndex);
-    const value: number = this.getSourceTeam(sourceIndex, teamShort)[this.sourceValueType];
+  public isBest(source: PredictedLineupsSource, teamShort: string): boolean {
+    const otherSources = this.sources.filter((s) => s.name !== source.name);
+    const value: number = this.getSourceTeam(source, teamShort)[this.sourceValueType];
 
-    const otherValue1: number = this.getSourceTeam(otherIndexes[0], teamShort)[this.sourceValueType];
-    const otherValue2: number = this.getSourceTeam(otherIndexes[1], teamShort)[this.sourceValueType];
-
-    return value > otherValue1 && value > otherValue2;
+    return otherSources.every((o) => value > this.getSourceTeam(o, teamShort)[this.sourceValueType]);
   }
 
-  public isWorst(sourceIndex: number, teamShort: string): boolean {
-    const otherIndexes: number[] = [0, 1, 2].filter((i) => i !== sourceIndex);
-    const value: number = this.getSourceTeam(sourceIndex, teamShort)[this.sourceValueType];
+  public isWorst(source: PredictedLineupsSource, teamShort: string): boolean {
+    const sourceValue = this.getSourceTeam(source, teamShort)[this.sourceValueType];
+    if (sourceValue == null) {
+      return false;
+    }
 
-    const otherValue1: number = this.getSourceTeam(otherIndexes[0], teamShort)[this.sourceValueType];
-    const otherValue2: number = this.getSourceTeam(otherIndexes[1], teamShort)[this.sourceValueType];
+    const otherSources = this.sources.filter((s) => s.name !== source.name);
 
-    return value < otherValue1 && value < otherValue2;
+    return otherSources
+      .filter((o) => this.getSourceTeam(o, teamShort)[this.sourceValueType] != null)
+      .every((o) => sourceValue < this.getSourceTeam(o, teamShort)[this.sourceValueType]);
   }
 
-  private getSourceTeam(sourceIndex: number, teamShort: string): PredictedLineupsSourceTeamAccuracy {
-    return this.sources[sourceIndex].accuracy.teams.filter((t) => t.teamShort === teamShort)[0];
+  private getSourceTeam(source: PredictedLineupsSource, teamShort: string): PredictedLineupsSourceTeamAccuracy {
+    return source.accuracy.teams.filter((t) => t.teamShort === teamShort)[0];
   }
 }

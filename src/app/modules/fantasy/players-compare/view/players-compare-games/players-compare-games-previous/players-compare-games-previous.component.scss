@@ -15,6 +15,10 @@ table.comparison-table {
     td.win {
       background-color: $gameDifficultGreen;
     }
+
+    td.other {
+      background-color: rgba($color: #000000, $alpha: 0.1);
+    }
   }
 
   tr:first-child {

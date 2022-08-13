@@ -41,17 +41,17 @@
       <table content class="comparison-table sources">
         <tr>
           <td></td>
-          <td *ngFor="let index of [0, 1, 2]">{{ sources[index].displayName }}</td>
+          <td *ngFor="let source of sources | orderBy: 'order'">{{ source.displayName }}</td>
         </tr>
         <tr *ngFor="let team of teamsSorted$ | async | orderBy: 'order'">
           <td>
             <app-team-logo height="21" [team]="team.teamShort"></app-team-logo>
           </td>
           <td
-            [ngClass]="{ best: isBest(index, team.teamShort), worst: isWorst(index, team.teamShort) }"
-            *ngFor="let index of [0, 1, 2]"
+            [ngClass]="{ best: isBest(source, team.teamShort), worst: isWorst(source, team.teamShort) }"
+            *ngFor="let source of sources"
           >
-            {{ getSourceAccuracy(index, team.teamShort) }}
+            {{ getSourceAccuracy(source, team.teamShort) }}
           </td>
         </tr>
       </table>

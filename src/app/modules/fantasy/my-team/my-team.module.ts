@@ -5,6 +5,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { MyTeamGuardsModule } from 'src/app/common/my-team/routing/guards/my-team-guards.module';
 import { MyTeamResolversModule } from 'src/app/common/my-team/routing/resolvers/my-team-resolvers.module';
+import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayersTableModule } from 'src/app/common/players/players-table/players-table.module';
 import { PropertiesResolverModule } from 'src/app/common/routing/resolvers/properties-resolver/properties-resolver.module';
 import { TeamsResolverModule } from 'src/app/common/routing/resolvers/teams/teams-resolver.module';
@@ -42,7 +43,8 @@ import { MyTeamTotalsComponent } from './views/my-team-selection/my-team-totals/
     SharedModule,
     AngularMaterialModule,
     AngularEmojisModule,
-    FblCoreModule
+    FblCoreModule,
+    PipesModule
   ],
   providers: [MyTeamTilesDisplaySettingsService]
 })

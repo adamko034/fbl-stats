@@ -2,21 +2,17 @@
   <table class="comparison-table" [ngClass]="{ 'table-sm': (screen$ | async) <= screens.SM }">
     <tr>
       <td></td>
-      <td *ngFor="let index of [0, 1, 2] | orderBy">
-        {{ sources[index].displayName | uppercase }}
+      <td *ngFor="let source of sources | orderBy: 'order'">
+        {{ source.displayName | uppercase }}
       </td>
     </tr>
     <tr>
       <td class="title">Published</td>
-      <td *ngFor="let index of [0, 1, 2] | orderBy">
-        <mat-icon appScale="0.8" *ngIf="sources[index].published" matTooltip="Lineups available" class="green icon"
+      <td *ngFor="let source of sources | orderBy: 'order'">
+        <mat-icon appScale="0.8" *ngIf="source.published" matTooltip="Lineups available" class="green icon"
           >published_with_changes</mat-icon
         >
-        <mat-icon
-          appScale="0.8"
-          *ngIf="!sources[index].published"
-          matTooltip="Lineups not published yet"
-          class="red icon"
+        <mat-icon appScale="0.8" *ngIf="!source.published" matTooltip="Lineups not published yet" class="red icon"
           >unpublished</mat-icon
         >
       </td>
@@ -24,32 +20,32 @@
     <tr>
       <td *ngIf="(screen$ | async) >= screens.XS" class="title">Last checked</td>
       <td *ngIf="(screen$ | async) <= screens.XXS" class="title">Checked</td>
-      <td *ngFor="let index of [0, 1, 2] | orderBy">
-        <app-time-ago [isEpochDate]="true" [date]="sources[index].lastUpdated"></app-time-ago>
+      <td *ngFor="let source of sources | orderBy: 'order'">
+        <app-time-ago [isEpochDate]="true" [date]="source.lastUpdated"></app-time-ago>
       </td>
     </tr>
     <tr>
       <td class="title">Season</td>
-      <td [ngClass]="{ best: isBest('avgSeasonAccuracy', index) }" *ngFor="let index of [0, 1, 2] | orderBy">
-        {{ sources[index].accuracy.avgSeasonAccuracy }}%
+      <td [ngClass]="{ best: isBest('avgSeasonAccuracy', source) }" *ngFor="let source of sources | orderBy: 'order'">
+        {{ source.accuracy.avgSeasonAccuracy }}%
       </td>
     </tr>
     <tr>
       <td class="title">Last 5</td>
-      <td [ngClass]="{ best: isBest('last5Accuracy', index) }" *ngFor="let index of [0, 1, 2] | orderBy">
-        {{ sources[index].accuracy.last5Accuracy }}%
+      <td [ngClass]="{ best: isBest('last5Accuracy', source) }" *ngFor="let source of sources | orderBy: 'order'">
+        {{ source.accuracy.last5Accuracy }}%
       </td>
     </tr>
     <tr>
       <td class="title">Last MD</td>
-      <td [ngClass]="{ best: isBest('lastMdAccuracy', index) }" *ngFor="let index of [0, 1, 2] | orderBy">
-        {{ sources[index].accuracy.lastMdAccuracy }}%
+      <td [ngClass]="{ best: isBest('lastMdAccuracy', source) }" *ngFor="let source of sources | orderBy: 'order'">
+        {{ source.accuracy.lastMdAccuracy }}%
       </td>
     </tr>
     <tr>
       <td class="title title-teams">Best</td>
-      <td class="team" *ngFor="let index of [0, 1, 2] | orderBy">
-        <div fxLayout="column" fxLayoutAlign="start center" *ngFor="let team of bestTeams[index]">
+      <td class="team" *ngFor="let source of sources | orderBy: 'order'">
+        <div fxLayout="column" fxLayoutAlign="start center" *ngFor="let team of bestTeams[source.name]">
           <div fxLayout="row" fxLayoutGap="5px">
             <app-team-logo [height]="17" [team]="team.teamShort"></app-team-logo>
             <span *ngIf="(screen$ | async) >= screens.XS">{{ team.acc }}%</span>
@@ -59,8 +55,8 @@
     </tr>
     <tr>
       <td class="title title-teams">Worst</td>
-      <td class="team" *ngFor="let index of [0, 1, 2] | orderBy">
-        <div fxLayout="column" fxLayoutAlign="start center" *ngFor="let team of worstTeams[index]">
+      <td class="team" *ngFor="let source of sources | orderBy: 'order'">
+        <div fxLayout="column" fxLayoutAlign="start center" *ngFor="let team of worstTeams[source.name]">
           <div fxLayout="row" fxLayoutGap="5px">
             <app-team-logo [height]="17" [team]="team.teamShort"></app-team-logo>
             <span *ngIf="(screen$ | async) >= screens.XS">{{ team.acc }}%</span>

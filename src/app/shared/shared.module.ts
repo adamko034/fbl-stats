@@ -33,7 +33,6 @@ import { TeamLogoSourceDirective } from 'src/app/shared/components/team-logo/dir
 import { TeamLogoStyleDirective } from 'src/app/shared/components/team-logo/directives/team-logo-style.directive';
 import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo.component';
 import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
-import { PipesModule } from '../common/pipes/pipes.module';
 import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
@@ -82,10 +81,6 @@ import { ScaleDirective } from './directives/scale.directive';
 import { SizeDirective } from './directives/size.directive';
 import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
 import { StickyDirective } from './directives/sticky.directive';
-import { ArrayEmptyPipe } from './pipes/array-empty.pipe';
-import { ArrayNotEmptyPipe } from './pipes/array-not-empty.pipe';
-import { AveragePipe } from './pipes/average.pipe';
-import { DaysBetweenNowPipe } from './pipes/days-between-now.pipe';
 import { EpochDatePipe } from './pipes/epoch-date.pipe';
 import { FieldPipe } from './pipes/field.pipe';
 import { LengthPipe } from './pipes/length.pipe';
@@ -125,7 +120,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     MatchdayFirstGameIndicatorComponent,
     ChartComponent,
     TitleUnderlinedGreyComponent,
-    AveragePipe,
     TakePipe,
     LengthPipe,
     ChartDialogComponent,
@@ -152,9 +146,7 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamPlayersTableComponent,
     StickyDirective,
     StickyWrapperDirective,
-    ArrayEmptyPipe,
-    ArrayNotEmptyPipe,
-    DaysBetweenNowPipe,
+
     FirstGameIconComponent,
     SizeDirective,
     IconWrapperComponent,
@@ -172,8 +164,7 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FontAwesomeModule,
     RouterModule,
     NgPipesModule,
-    NgxChartsModule,
-    PipesModule
+    NgxChartsModule
   ],
   exports: [
     TeamLogoComponent,
@@ -206,7 +197,6 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     MatchdayFirstGameIndicatorComponent,
     ChartComponent,
     TitleUnderlinedGreyComponent,
-    AveragePipe,
     TakePipe,
     LengthPipe,
     ValueDifferenceComponent,
@@ -226,9 +216,7 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TeamPlayersTableComponent,
     StickyDirective,
     StickyWrapperDirective,
-    ArrayEmptyPipe,
-    ArrayNotEmptyPipe,
-    DaysBetweenNowPipe,
+
     FirstGameIconComponent,
     SizeDirective,
     IconWrapperComponent,
