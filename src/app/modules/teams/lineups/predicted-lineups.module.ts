@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -42,7 +43,8 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     AngularMaterialModule,
     FblCoreModule,
     LastMatchdayResolverModule,
-    PlayerIconLineupPredictionModule
+    PlayerIconLineupPredictionModule,
+    PipesModule
   ],
   providers: [
     PredictedLineupsStore,

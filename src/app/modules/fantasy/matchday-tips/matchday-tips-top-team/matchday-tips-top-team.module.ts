@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatchdayTipsTopTeamRoutingModule } from './matchday-tips-top-team-routing.module';
 import { MatchdayTipsTopTeamElector } from './routing/matchday-tips-top-team-elector.service';
@@ -12,7 +13,7 @@ import { MatchdayTipsTopTeamComponent } from './views/matchday-tips-top-team.com
 
 @NgModule({
   declarations: [MatchdayTipsTopTeamComponent, MatchdayTipsTopTeamFiltersComponent],
-  imports: [CommonModule, MatchdayTipsTopTeamRoutingModule, AngularMaterialModule, SharedModule],
+  imports: [CommonModule, MatchdayTipsTopTeamRoutingModule, AngularMaterialModule, SharedModule, PipesModule],
   providers: [
     MatchdayTipsTopTeamResolver,
     MatchdayTipsTopTeamSelector,

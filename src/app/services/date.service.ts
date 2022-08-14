@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { EpochDatePipe } from '../shared/pipes/epoch-date.pipe';
+import { EpochDatePipe } from '../common/pipes/epoch-date.pipe';
 
 @Injectable({ providedIn: 'root' })
 export class DateService {

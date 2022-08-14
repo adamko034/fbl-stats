@@ -32,7 +32,9 @@ import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form
 import { TeamLogoSourceDirective } from 'src/app/shared/components/team-logo/directives/team-logo-source.directive';
 import { TeamLogoStyleDirective } from 'src/app/shared/components/team-logo/directives/team-logo-style.directive';
 import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo.component';
-import { SumByPipe } from 'src/app/shared/pipes/sum-by.pipe';
+import { ScaleModule } from '../common/directives/scale/scale.module';
+import { StickyModule } from '../common/directives/sticky/sticky.module';
+import { PipesModule } from '../common/pipes/pipes.module';
 import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
@@ -74,61 +76,38 @@ import { TimelineMatchdaysComponent } from './components/timeline-matchdays/time
 import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey/title-underlined-grey.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
 import { ValueDifferenceComponent } from './components/value-difference/value-difference.component';
-import { AuthenticatedDirective } from './directives/authenticated.directive';
-import { HorizontalTopScrollbarDirective } from './directives/horizontal-top-scrollbar.directive';
 import { MedalColorDirective } from './directives/medal-color.directive';
-import { ScaleDirective } from './directives/scale.directive';
 import { SizeDirective } from './directives/size.directive';
-import { StickyWrapperDirective } from './directives/sticky-wrapper.directive';
-import { StickyDirective } from './directives/sticky.directive';
-import { EpochDatePipe } from './pipes/epoch-date.pipe';
-import { FieldPipe } from './pipes/field.pipe';
-import { LengthPipe } from './pipes/length.pipe';
-import { NullableTextPipe } from './pipes/nullable-text.pipe';
-import { NumeralsPipe } from './pipes/numerals.pipe';
-import { TakePipe } from './pipes/take.pipe';
-import { WherePipe } from './pipes/where.pipe';
-import { YesNoPipe } from './pipes/yes-no.pipe';
 
 @NgModule({
   declarations: [
     TeamLogoComponent,
     TeamLogoSourceDirective,
     TeamLogoStyleDirective,
-    SumByPipe,
     FormFieldComponent,
     TeamFormComponent,
     SwitchComponent,
-    WherePipe,
-    NumeralsPipe,
     SubnavigationComponent,
     ViewLayoutComponent,
     ViewTitleComponent,
     TitleUnderlinedComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
-    FieldPipe,
     FilterPositionComponent,
-    AuthenticatedDirective,
     OurPickIconComponent,
-    YesNoPipe,
     MedalColorDirective,
-    EpochDatePipe,
     TimelineMatchdaysComponent,
     PlayerNameLinkComponent,
     TextSubtextRowComponent,
     MatchdayFirstGameIndicatorComponent,
     ChartComponent,
     TitleUnderlinedGreyComponent,
-    TakePipe,
-    LengthPipe,
     ChartDialogComponent,
     ValueDifferenceComponent,
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
-    ScaleDirective,
     SliderMaxPriceComponent,
     SliderMaxPopularityComponent,
     TeamLineupComponent,
@@ -144,18 +123,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     HasPlayedSeventyMinutesIconComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
-    StickyDirective,
-    StickyWrapperDirective,
-
     FirstGameIconComponent,
     SizeDirective,
     IconWrapperComponent,
     StandaloneGameIconComponent,
     IncludeFutureMatchdaysDropdownComponent,
     IncludePastMatchdaysDropdownComponent,
-    PostponedGameIconComponent,
-    NullableTextPipe,
-    HorizontalTopScrollbarDirective
+    PostponedGameIconComponent
   ],
   imports: [
     CommonModule,
@@ -164,18 +138,18 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     FontAwesomeModule,
     RouterModule,
     NgPipesModule,
-    NgxChartsModule
+    NgxChartsModule,
+    PipesModule,
+    ScaleModule,
+    StickyModule
   ],
   exports: [
     TeamLogoComponent,
     TeamLogoSourceDirective,
     TeamLogoStyleDirective,
-    SumByPipe,
     FormFieldComponent,
     TeamFormComponent,
     SwitchComponent,
-    WherePipe,
-    NumeralsPipe,
     FontAwesomeModule,
     SubnavigationComponent,
     ViewLayoutComponent,
@@ -184,27 +158,20 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     TitleUnderlinedComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
-    FieldPipe,
     FilterPositionComponent,
-    AuthenticatedDirective,
     OurPickIconComponent,
-    YesNoPipe,
     MedalColorDirective,
-    EpochDatePipe,
     TimelineMatchdaysComponent,
     PlayerNameLinkComponent,
     TextSubtextRowComponent,
     MatchdayFirstGameIndicatorComponent,
     ChartComponent,
     TitleUnderlinedGreyComponent,
-    TakePipe,
-    LengthPipe,
     ValueDifferenceComponent,
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
-    ScaleDirective,
     SliderMaxPopularityComponent,
     SliderMaxPriceComponent,
     TeamLineupComponent,
@@ -214,18 +181,13 @@ import { YesNoPipe } from './pipes/yes-no.pipe';
     SelectDialogComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
-    StickyDirective,
-    StickyWrapperDirective,
-
     FirstGameIconComponent,
     SizeDirective,
     IconWrapperComponent,
     StandaloneGameIconComponent,
     IncludeFutureMatchdaysDropdownComponent,
     IncludePastMatchdaysDropdownComponent,
-    PostponedGameIconComponent,
-    NullableTextPipe,
-    HorizontalTopScrollbarDirective
+    PostponedGameIconComponent
   ]
 })
 export class SharedModule {

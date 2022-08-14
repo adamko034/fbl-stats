@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularEmojisModule } from 'angular-emojis';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { MyTeamGuardsModule } from 'src/app/common/my-team/routing/guards/my-team-guards.module';
 import { MyTeamResolversModule } from 'src/app/common/my-team/routing/resolvers/my-team-resolvers.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
@@ -44,7 +45,8 @@ import { MyTeamTotalsComponent } from './views/my-team-selection/my-team-totals/
     AngularMaterialModule,
     AngularEmojisModule,
     FblCoreModule,
-    PipesModule
+    PipesModule,
+    StickyModule
   ],
   providers: [MyTeamTilesDisplaySettingsService]
 })

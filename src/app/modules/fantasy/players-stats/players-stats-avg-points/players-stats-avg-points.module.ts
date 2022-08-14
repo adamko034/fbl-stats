@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -19,7 +20,8 @@ import { PlayersStatsAvgPointsComponent } from './views/players-stats-avg-points
     SharedModule,
     FblCoreModule,
     AngularMaterialModule,
-    LastMatchdayResolverModule
+    LastMatchdayResolverModule,
+    PipesModule
   ],
   providers: [PlayersStatsAvgPointsQueryParamsService, PlayersStatsAvgPointsResolver, PlayersStatsAvgPointsConverter]
 })

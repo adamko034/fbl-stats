@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-title-underlined-grey',
@@ -6,10 +6,6 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./title-underlined-grey.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TitleUnderlinedGreyComponent implements OnInit {
+export class TitleUnderlinedGreyComponent {
   @Input() layoutAlign: string = 'start stretch';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

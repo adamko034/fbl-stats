@@ -5,10 +5,16 @@ import { ArrayIncludesPipe } from './array-includes.pipe';
 import { ArrayNotEmptyPipe } from './array-not-empty.pipe';
 import { AveragePipe } from './average.pipe';
 import { DaysBetweenNowPipe } from './days-between-now.pipe';
+import { EpochDatePipe } from './epoch-date.pipe';
 import { FieldPipe } from './field.pipe';
 import { LengthPipe } from './length.pipe';
+import { NullableTextPipe } from './nullable-text.pipe';
 import { NumeralsPipe } from './numerals.pipe';
 import { ReverseBooleanPipe } from './reverse-boolean.pipe';
+import { SumByPipe } from './sum-by.pipe';
+import { TakePipe } from './take.pipe';
+import { WherePipe } from './where.pipe';
+import { YesNoPipe } from './yes-no.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,13 @@ import { ReverseBooleanPipe } from './reverse-boolean.pipe';
     FieldPipe,
     LengthPipe,
     AveragePipe,
-    DaysBetweenNowPipe
+    DaysBetweenNowPipe,
+    EpochDatePipe,
+    NullableTextPipe,
+    SumByPipe,
+    TakePipe,
+    WherePipe,
+    YesNoPipe
   ],
   imports: [CommonModule],
   exports: [
@@ -32,7 +44,13 @@ import { ReverseBooleanPipe } from './reverse-boolean.pipe';
     FieldPipe,
     LengthPipe,
     AveragePipe,
-    DaysBetweenNowPipe
+    DaysBetweenNowPipe,
+    EpochDatePipe,
+    NullableTextPipe,
+    SumByPipe,
+    TakePipe,
+    WherePipe,
+    YesNoPipe
   ]
 })
 export class PipesModule {}

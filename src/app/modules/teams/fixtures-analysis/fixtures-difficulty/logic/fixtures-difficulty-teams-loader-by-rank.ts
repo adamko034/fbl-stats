@@ -1,5 +1,5 @@
+import { NumeralsPipe } from 'src/app/common/pipes/numerals.pipe';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { NumeralsPipe } from 'src/app/shared/pipes/numerals.pipe';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { FixturesDifficultyFilters } from '../models/fixtures-difficulty-filters.model';

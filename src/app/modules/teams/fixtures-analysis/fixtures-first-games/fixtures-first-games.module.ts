@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
+import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { LastKnownMatchdayModule } from 'src/app/common/routing/resolvers/last-known-matchday/last-known-matchday.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { NextUnlimitedTransfersModule } from 'src/app/common/routing/resolvers/next-unlimited-transfers/next-unlimited-transfers.module';
@@ -31,7 +32,8 @@ import { FixturesFirstGamesComponent } from './view/fixtures-first-games.compone
     SelectFutureMatchdaysPanelModule,
     NextUnlimitedTransfersModule,
     LastKnownMatchdayModule,
-    LastMatchdayResolverModule
+    LastMatchdayResolverModule,
+    PipesModule
   ],
   providers: [
     FixturesFirstGamesResolver,

@@ -61,6 +61,10 @@ export class SelectMatchdaysPanelComponent implements OnChanges {
       title = `Matchdays between ${this.value.from} and ${this.value.to}`;
     }
 
+    if (this.value.from === 1 && this.value.to === 34) {
+      title = 'All matchdays';
+    }
+
     this._dropdownConfig = { title, opened: false };
   }
 }

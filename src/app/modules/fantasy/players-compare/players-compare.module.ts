@@ -4,6 +4,7 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
 import { MatrixTableModule } from 'src/app/common/components/ui/matrix-table/matrix-table.module';
+import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { TeamsKickoffTimesService } from 'src/app/common/teams/teams-kickoff-times/services/teams-kickoff-times.service';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -50,7 +51,8 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     PositionSwitchModule,
     PipesModule,
     MatrixTableModule,
-    SelectFutureMatchdaysPanelModule
+    SelectFutureMatchdaysPanelModule,
+    StickyModule
   ],
   providers: [
     PlayersCompareStateResolver,

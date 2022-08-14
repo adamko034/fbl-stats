@@ -99,6 +99,10 @@ export class SelectFutureMatchdaysPanelComponent implements OnChanges {
       return `Next ${this.value.to - this.value.from + 1} matchdays`;
     }
 
+    if (this.value.from === 1 && this.value.to === 34) {
+      return 'All matchdays';
+    }
+
     return `Matchdays between ${this.value.from} - ${this.value.to}`;
   }
 }
