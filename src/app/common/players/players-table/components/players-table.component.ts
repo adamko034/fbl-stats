@@ -86,7 +86,6 @@ export class PlayersTableComponent implements OnInit, OnChanges {
 
   private setData() {
     if (this.state) {
-      console.log('setting data');
       this.setFilters();
       this.setTableInnerConfig();
       this.setFiltersConfig();
@@ -104,12 +103,18 @@ export class PlayersTableComponent implements OnInit, OnChanges {
   }
 
   private setFilters(): void {
+    let matchdays = { from: 0, to: 0 };
+    if (this.state.lastMatchday > 3) {
+      matchdays = { from: this.state.lastMatchday - 3, to: this.state.lastMatchday };
+    }
+
+    if (this.state.lastMatchday > 0 && this.state.lastMatchday <= 3) {
+      matchdays = { from: 1, to: this.state.lastMatchday };
+    }
+
     const defaults: PlayersTableFilters = {
       hideUnavailable: false,
-      matchdays:
-        this.state.lastMatchday > 0
-          ? { from: this.state.lastMatchday - 3, to: this.state.lastMatchday }
-          : { from: 0, to: 0 },
+      matchdays,
       maxPopularity: 100,
       maxPrice: this.state.maxPrice,
       playerName: '',
