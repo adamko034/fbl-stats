@@ -13,6 +13,7 @@ export class GameTeamVenueComponent {
   @Input() rank: number;
   @Input() showFirstGame = false;
   @Input() isFirstGame: boolean;
+  @Input() showVenue = true;
 
   constructor() {}
 }

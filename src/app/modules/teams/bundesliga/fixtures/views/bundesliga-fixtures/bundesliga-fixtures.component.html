@@ -25,7 +25,7 @@
             <div class="game-home" fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="7px">
               <span fxHide.lt-sm> {{ game.homeTeamLong }}</span>
               <span fxHide.gt-xs>{{ game.homeTeamShort | uppercase }}</span>
-              <app-team-logo [scaleOnMobile]="false" [team]="game.homeTeamShort" [height]="30"></app-team-logo>
+              <app-team-logo [team]="game.homeTeamShort" [height]="30"></app-team-logo>
             </div>
 
             <div fxLayoutAlign="center center">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="game-away" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="7px">
-              <app-team-logo [team]="game.awayTeamShort" [scaleOnMobile]="false" [height]="30"></app-team-logo>
+              <app-team-logo [team]="game.awayTeamShort" [height]="30"></app-team-logo>
               <span fxHide.lt-sm>{{ game.awayTeamLong }}</span>
               <span fxHide.gt-xs>{{ game.awayTeamShort | uppercase }}</span>
             </div>

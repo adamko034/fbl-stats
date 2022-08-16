@@ -35,7 +35,7 @@
         <tr *ngFor="let row of data.rows | orderBy: 'order'" class="player" ngClass.lt-sm="player-mobile">
           <td class="player-name">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
-              <app-team-logo [team]="row.teamShort" appScale="0.8" [scaleOnMobile]="true"></app-team-logo>
+              <app-team-logo [team]="row.teamShort" appScale="0.8"></app-team-logo>
               <app-player-name-link fxHide.lt-lg [name]="row.playerName" [id]="row.playerId"></app-player-name-link>
               <app-player-name-link
                 fxHide.gt-md

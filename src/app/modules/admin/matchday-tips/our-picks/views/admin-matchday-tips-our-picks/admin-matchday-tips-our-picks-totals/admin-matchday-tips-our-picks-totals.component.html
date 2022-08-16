@@ -22,10 +22,6 @@
       ></ng-template>
       <ng-template
         [ngTemplateOutlet]="typeLength"
-        [ngTemplateOutletContext]="{ type: Types.PREMIUM, length: state.premium.length }"
-      ></ng-template>
-      <ng-template
-        [ngTemplateOutlet]="typeLength"
         [ngTemplateOutletContext]="{ type: Types.BARGAIN, length: state.bargains.length }"
       ></ng-template>
       <ng-template

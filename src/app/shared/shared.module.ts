@@ -29,12 +29,11 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
 import { SwitchComponent } from 'src/app/shared/components/switch/switch.component';
 import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form.component';
-import { TeamLogoSourceDirective } from 'src/app/shared/components/team-logo/directives/team-logo-source.directive';
-import { TeamLogoStyleDirective } from 'src/app/shared/components/team-logo/directives/team-logo-style.directive';
-import { TeamLogoComponent } from 'src/app/shared/components/team-logo/team-logo.component';
 import { ScaleModule } from '../common/directives/scale/scale.module';
 import { StickyModule } from '../common/directives/sticky/sticky.module';
 import { PipesModule } from '../common/pipes/pipes.module';
+import { PlayerNameLinkModule } from '../common/players/components/player-name-link/player-name-link.module';
+import { TeamLogoModule } from '../common/teams/team-logo/team-logo.module';
 import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChartComponent } from './components/chart/chart.component';
@@ -56,9 +55,7 @@ import { ViewComponent } from './components/layout/view/view.component';
 import { WhiteBlockComponent } from './components/layout/white-block/white-block.component';
 import { MatchdayFirstGameIndicatorComponent } from './components/matchday-first-game-indicator/matchday-first-game-indicator.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
-import { OurPickIconComponent } from './components/our-pick-icon/our-pick-icon.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
-import { PlayerNameLinkComponent } from './components/player-name-link/player-name-link.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PostponedGameIconComponent } from './components/postponed-game-icon/postponed-game-icon.component';
 import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
@@ -81,9 +78,6 @@ import { SizeDirective } from './directives/size.directive';
 
 @NgModule({
   declarations: [
-    TeamLogoComponent,
-    TeamLogoSourceDirective,
-    TeamLogoStyleDirective,
     FormFieldComponent,
     TeamFormComponent,
     SwitchComponent,
@@ -94,10 +88,8 @@ import { SizeDirective } from './directives/size.directive';
     MinMaxAvgComponent,
     TextValueCardComponent,
     FilterPositionComponent,
-    OurPickIconComponent,
     MedalColorDirective,
     TimelineMatchdaysComponent,
-    PlayerNameLinkComponent,
     TextSubtextRowComponent,
     MatchdayFirstGameIndicatorComponent,
     ChartComponent,
@@ -141,12 +133,11 @@ import { SizeDirective } from './directives/size.directive';
     NgxChartsModule,
     PipesModule,
     ScaleModule,
-    StickyModule
+    StickyModule,
+    PlayerNameLinkModule,
+    TeamLogoModule
   ],
   exports: [
-    TeamLogoComponent,
-    TeamLogoSourceDirective,
-    TeamLogoStyleDirective,
     FormFieldComponent,
     TeamFormComponent,
     SwitchComponent,
@@ -159,10 +150,8 @@ import { SizeDirective } from './directives/size.directive';
     MinMaxAvgComponent,
     TextValueCardComponent,
     FilterPositionComponent,
-    OurPickIconComponent,
     MedalColorDirective,
     TimelineMatchdaysComponent,
-    PlayerNameLinkComponent,
     TextSubtextRowComponent,
     MatchdayFirstGameIndicatorComponent,
     ChartComponent,

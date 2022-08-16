@@ -16,7 +16,10 @@ export class AdminMatchdayTipsOurPicksPlayerSearchComponent {
   @Output() playerSelected = new EventEmitter<MatchdayTipsOurPicksPlayer>();
 
   public get excluded(): number[] {
-    return this.selected?.map((p) => p.playerId);
+    if (!this.selected) {
+      return [];
+    }
+    return this.selected.map((p) => p.playerId);
   }
 
   constructor(private ourPicksPlayerLoader: MatchdayTipsOurPicksPlayerLoader) {}

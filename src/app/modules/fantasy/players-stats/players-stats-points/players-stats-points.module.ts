@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersStatsPointsConverter } from './converters/players-stats-points.converter';
@@ -22,7 +24,9 @@ import { PlayersStatsPointsComponent } from './views/players-stats-points/player
     FblCoreModule,
     AngularMaterialModule,
     PositionSwitchModule,
-    PipesModule
+    PipesModule,
+    PlayerNameLinkModule,
+    TeamLogoModule
   ],
   providers: [PlayersStatsQueryParamsService, PlayersStatsPointsResolver, PlayersStatsPointsConverter]
 })

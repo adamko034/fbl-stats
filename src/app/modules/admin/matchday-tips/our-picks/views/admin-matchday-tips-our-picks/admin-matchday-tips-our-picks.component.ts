@@ -54,18 +54,23 @@ export class AdminMatchdayTipsOurPicksComponent implements OnInit {
   }
 
   public onPlayerSelected(player: MatchdayTipsOurPicksPlayer): void {
-    this.state.ourPicks.players.push({ ...player, order: 1 });
+    this.state.ourPicks.players = [...this.state.ourPicks.players, { ...player, order: 1 }];
     this.toastrService.success(`Added ${player.name}`);
     this.isChange = true;
   }
 
-  public drop(event: CdkDragDrop<string[]>) {
-    this.arraymove(this.state.ourPicks.players, event.previousIndex, event.currentIndex);
-    this.reorderPlayers();
+  public drop(event: CdkDragDrop<string[]>, position: string) {
+    const playersByPosition = this.playersInPostion(position);
 
-    this.nextToMove = event.previousIndex + 2;
+    this.arraymove(playersByPosition, event.previousIndex, event.currentIndex);
+    this.reorderPlayers(playersByPosition);
 
+    //this.nextToMove = event.previousIndex + 2;
     this.isChange = true;
+    this.state.ourPicks.players = [
+      ...this.state.ourPicks.players.filter((p) => p.position !== position),
+      ...playersByPosition
+    ];
   }
 
   public save() {
@@ -105,30 +110,16 @@ export class AdminMatchdayTipsOurPicksComponent implements OnInit {
       });
   }
 
-  public remove(playerId: number): void {
+  public remove(player: MatchdayTipsOurPicksPlayer): void {
+    const { position, playerId } = player;
     this.state.ourPicks.players = this.state.ourPicks.players.filter((p) => p.playerId !== playerId);
     this.state.bargains = this.state.bargains.filter((id) => id !== playerId);
     this.state.differentials = this.state.differentials.filter((id) => id !== playerId);
     this.state.mustHave = this.state.mustHave.filter((id) => id !== playerId);
     this.state.premium = this.state.premium.filter((id) => id !== playerId);
 
-    this.reorderPlayers();
+    this.reorderPlayers(this.playersInPostion(position));
     this.isChange = true;
-  }
-
-  public getIconColor(type: MatchdayTipsOurPicksType, playerId: number): string {
-    switch (type) {
-      case MatchdayTipsOurPicksType.MUST_HAVE:
-        return this.state.mustHave.includes(playerId) ? null : 'grey';
-      case MatchdayTipsOurPicksType.BARGAIN:
-        return this.state.bargains.includes(playerId) ? null : 'grey';
-      case MatchdayTipsOurPicksType.DIFFERENTIAL:
-        return this.state.differentials.includes(playerId) ? null : 'grey';
-      case MatchdayTipsOurPicksType.PREMIUM:
-        return this.state.premium.includes(playerId) ? null : 'grey';
-      case MatchdayTipsOurPicksType.SURPRISING:
-        return this.state.surprising.includes(playerId) ? null : 'grey';
-    }
   }
 
   public togglePlayerType(type: MatchdayTipsOurPicksType, playerId: number): void {
@@ -142,25 +133,23 @@ export class AdminMatchdayTipsOurPicksComponent implements OnInit {
       case MatchdayTipsOurPicksType.DIFFERENTIAL:
         this.state.differentials = this.addOrRemove(this.state.differentials, playerId);
         break;
-      case MatchdayTipsOurPicksType.PREMIUM:
-        this.state.premium = this.addOrRemove(this.state.premium, playerId);
-        break;
-      case MatchdayTipsOurPicksType.SURPRISING:
-        this.state.surprising = this.addOrRemove(this.state.surprising, playerId);
-        break;
     }
 
     this.isChange = true;
   }
 
-  private reorderPlayers() {
-    for (let i = 0; i < this.state.ourPicks.players.length; i++) {
-      this.state.ourPicks.players[i].order = i + 1;
+  private playersInPostion(position: string): MatchdayTipsOurPicksPlayer[] {
+    return this.state.ourPicks.players.filter((p) => p.position === position);
+  }
+
+  private reorderPlayers(players: MatchdayTipsOurPicksPlayer[]) {
+    for (let i = 0; i < players.length; i++) {
+      players[i].order = i + 1;
     }
   }
 
   private addOrRemove(arr: number[], playerId: number): number[] {
-    arr.includes(playerId) ? (arr = arr.filter((id) => id !== playerId)) : arr.push(playerId);
+    arr = arr.includes(playerId) ? arr.filter((id) => id !== playerId) : [...arr, playerId];
     return arr;
   }
 

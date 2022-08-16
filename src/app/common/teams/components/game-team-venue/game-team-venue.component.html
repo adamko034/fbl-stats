@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutGap="3px" fxLayoutAlign="start center">
   <app-team-logo [height]="logoHeight" [team]="teamShort"></app-team-logo>
-  <div class="grey font-small">
+  <div *ngIf="showVenue" class="grey font-small">
     <span *ngIf="isHome">(h)</span>
     <span *ngIf="!isHome">(a)</span>
   </div>

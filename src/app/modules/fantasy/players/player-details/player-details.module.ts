@@ -6,6 +6,7 @@ import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PositionsStatsLoadedGuard } from './guards/positions-stats-loaded.guard';
@@ -52,7 +53,8 @@ import { PlayerDetailsTitleComponent } from './view/player-details-content/playe
     PlayerIconSuspensionRiskModule,
     PlayerIconLineupPredictionModule,
     PipesModule,
-    ScaleModule
+    ScaleModule,
+    TeamLogoModule
   ],
   providers: [
     PlayerDetailsResolver,

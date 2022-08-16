@@ -9,7 +9,7 @@
       </tr>
       <tr *ngFor="let team of teams | orderBy: '-firstGamesCount'">
         <td>
-          <app-team-logo [team]="team.teamShort" [height]="20"></app-team-logo>
+          <app-team-logo [team]="team.teamShort"></app-team-logo>
         </td>
         <td>
           <span>{{ team.firstGamesCount }}</span>

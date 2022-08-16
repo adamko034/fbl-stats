@@ -1,8 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { OurPickIconModule } from 'src/app/common/players/components/our-pick-icon/our-pick-icon.module';
 import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
+import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { GameTeamVenueModule } from 'src/app/common/teams/components/game-team-venue/game-team-venue.module';
+import { MatchdayFirstGameIconModule } from 'src/app/common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FblCoreModule } from '../core/fbl-core.module';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -34,10 +40,16 @@ import { AdminComponent } from './views/admin/admin.component';
     CommonModule,
     AdminRoutingModule,
     FblCoreModule,
+    PlayerIconPredictionModule,
+    PipesModule,
+    NgPipesModule,
+    PlayerNameLinkModule,
+    TeamLogoModule,
+    MatchdayFirstGameIconModule,
+    OurPickIconModule,
     SharedModule,
     AngularMaterialModule,
-    PlayerIconPredictionModule,
-    PipesModule
+    GameTeamVenueModule
   ],
   providers: [
     AdminLoggedGuard,

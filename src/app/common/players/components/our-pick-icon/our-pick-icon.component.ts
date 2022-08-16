@@ -10,6 +10,7 @@ import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our
 export class OurPickIconComponent {
   @Input() icon: MatchdayTipsOurPicksType;
   @Input() showTooltip = true;
+  @Input() isGrey = false;
 
   public Icons = MatchdayTipsOurPicksType;
 

@@ -6,6 +6,8 @@ import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filt
 import { MatrixTableModule } from 'src/app/common/components/ui/matrix-table/matrix-table.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { TeamsKickoffTimesService } from 'src/app/common/teams/teams-kickoff-times/services/teams-kickoff-times.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BoldableValuesService } from '../../core/boldable-values/boldable-values.service';
@@ -52,7 +54,9 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     PipesModule,
     MatrixTableModule,
     SelectFutureMatchdaysPanelModule,
-    StickyModule
+    StickyModule,
+    PlayerNameLinkModule,
+    TeamLogoModule
   ],
   providers: [
     PlayersCompareStateResolver,

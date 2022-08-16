@@ -8,7 +8,7 @@
 <div class="best-gks-container">
   <div fxLayout="column">
     <div class="goalkeeper" *ngFor="let gk of selectedGks">
-      <app-team-logo [height]="20" [team]="gk.teamShort"></app-team-logo>
+      <app-team-logo [team]="gk.teamShort"></app-team-logo>
       <app-player-name-link [id]="gk.id" [name]="gk.name"></app-player-name-link>
       <span>{{ gk.price }}M</span>
       <span>TP: {{ gk.totalPoints }}</span>

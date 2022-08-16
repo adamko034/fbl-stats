@@ -6,6 +6,7 @@ import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { LastKnownMatchdayModule } from 'src/app/common/routing/resolvers/last-known-matchday/last-known-matchday.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { NextUnlimitedTransfersModule } from 'src/app/common/routing/resolvers/next-unlimited-transfers/next-unlimited-transfers.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FixturesFirstGamesRoutingModule } from './fixtures-first-games-routing.module';
 import { FixturesFirstGamesMatchdaysLoader } from './logic/fixtures-first-games-matchdays.loader';
@@ -33,7 +34,8 @@ import { FixturesFirstGamesComponent } from './view/fixtures-first-games.compone
     NextUnlimitedTransfersModule,
     LastKnownMatchdayModule,
     LastMatchdayResolverModule,
-    PipesModule
+    PipesModule,
+    TeamLogoModule
   ],
   providers: [
     FixturesFirstGamesResolver,

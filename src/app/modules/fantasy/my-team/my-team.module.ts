@@ -7,9 +7,11 @@ import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { MyTeamGuardsModule } from 'src/app/common/my-team/routing/guards/my-team-guards.module';
 import { MyTeamResolversModule } from 'src/app/common/my-team/routing/resolvers/my-team-resolvers.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
 import { PlayersTableModule } from 'src/app/common/players/players-table/players-table.module';
 import { PropertiesResolverModule } from 'src/app/common/routing/resolvers/properties-resolver/properties-resolver.module';
 import { TeamsResolverModule } from 'src/app/common/routing/resolvers/teams/teams-resolver.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FblCoreModule } from '../../core/fbl-core.module';
 import { MyTeamRoutingModule } from './my-team-routing.module';
@@ -46,7 +48,9 @@ import { MyTeamTotalsComponent } from './views/my-team-selection/my-team-totals/
     AngularEmojisModule,
     FblCoreModule,
     PipesModule,
-    StickyModule
+    StickyModule,
+    PlayerNameLinkModule,
+    TeamLogoModule
   ],
   providers: [MyTeamTilesDisplaySettingsService]
 })

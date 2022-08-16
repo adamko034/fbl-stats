@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
+import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
+import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FblCoreModule } from '../../core/fbl-core.module';
 import { PredictedLineupsTeamNavigationComponent } from './components/predicted-lineups-team-navigation/predicted-lineups-team-navigation.component';
@@ -44,7 +46,9 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     FblCoreModule,
     LastMatchdayResolverModule,
     PlayerIconLineupPredictionModule,
-    PipesModule
+    PipesModule,
+    PlayerNameLinkModule,
+    TeamLogoModule
   ],
   providers: [
     PredictedLineupsStore,
