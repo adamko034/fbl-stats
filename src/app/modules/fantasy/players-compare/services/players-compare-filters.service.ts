@@ -6,7 +6,7 @@ import { PlayersCompareFixturesFilters } from '../models/players-compare-fixture
 
 @Injectable()
 export class PlayersCompareFiltersService {
-  private _fitlers: PlayersCompareFixturesFilters = { includeMatchdays: 0, includePastMatchdays: 1 };
+  private _fitlers: PlayersCompareFixturesFilters = { includeMatchdays: 0, includePastMatchdays: 2 };
 
   private filters$: ReplaySubject<PlayersCompareFixturesFilters>;
 

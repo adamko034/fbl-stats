@@ -12,9 +12,9 @@
         >({{ team.isHome ? 'h' : 'a' }})</span
       >
 
-      <app-first-game-icon
+      <app-matchday-first-game-icon
         *ngIf="!config.showFistGameOrStandaloneInSecondRow && config.showFirstGame && team.isFirstGame"
-      ></app-first-game-icon>
+      ></app-matchday-first-game-icon>
       <span *ngIf="!team.isFirstGame" class="placeholder">&nbsp;</span>
     </div>
   </div>
@@ -25,10 +25,10 @@
     <span *ngIf="config.showPoints && team.points != null" class="points">{{ team.points }}pts</span>
     <span *ngIf="config.showPoints && team.points === null" class="points">x</span>
     <span *ngIf="config.showFirstGame && team.isFirstGame">
-      <app-first-game-icon></app-first-game-icon>
+      <app-matchday-first-game-icon></app-matchday-first-game-icon>
     </span>
     <span *ngIf="config.showStandalone && team.isStandalone">
-      <app-standalone-game-icon></app-standalone-game-icon>
+      <app-matchday-standalone-game-icon></app-matchday-standalone-game-icon>
     </span>
   </div>
 </div>

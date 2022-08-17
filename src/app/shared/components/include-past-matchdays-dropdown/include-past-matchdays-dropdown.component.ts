@@ -11,7 +11,6 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
 })
 export class IncludePastMatchdaysDropdownComponent implements OnInit {
   @Input() value: number;
-  @Input() lastMatchday: number;
   @Input() title = 'Include past matchdays';
 
   @Output() change = new EventEmitter<number>();

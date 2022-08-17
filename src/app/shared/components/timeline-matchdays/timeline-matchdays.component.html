@@ -54,7 +54,7 @@
         >
           <span>{{ item.date | epochDate | date: 'dd.MM' }}</span>
           <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-            <app-first-game-icon *ngIf="item.isFirstGame"></app-first-game-icon>
+            <app-matchday-first-game-icon *ngIf="item.isFirstGame"></app-matchday-first-game-icon>
             <app-postponed-game-icon *ngIf="item.postponed"></app-postponed-game-icon>
           </div>
         </div>
