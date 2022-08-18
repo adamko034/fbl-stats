@@ -57,6 +57,7 @@
           <td class="prediction">BL [EN]</td>
           <td class="prediction">KK</td>
           <td class="prediction">LI</td>
+          <td class="prediction">Buli</td>
         </tr>
         <tr *ngFor="let player of players">
           <td>
@@ -89,6 +90,11 @@
           <td>
             <app-player-icon-lineup-prediction
               [prediction]="getPrediction(player, 'ligainsider')"
+            ></app-player-icon-lineup-prediction>
+          </td>
+          <td>
+            <app-player-icon-lineup-prediction
+              [prediction]="getPrediction(player, 'bulinews')"
             ></app-player-icon-lineup-prediction>
           </td>
         </tr>
