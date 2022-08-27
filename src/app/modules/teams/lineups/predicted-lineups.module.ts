@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
@@ -48,7 +49,8 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     PlayerIconLineupPredictionModule,
     PipesModule,
     PlayerNameLinkModule,
-    TeamLogoModule
+    TeamLogoModule,
+    ChartModule
   ],
   providers: [
     PredictedLineupsStore,

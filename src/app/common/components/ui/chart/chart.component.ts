@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ChartDialogComponent } from '../chart-dialog/chart-dialog.component';
+import { ChartDialogComponent } from './chart-dialog/chart-dialog.component';
 import { ChartConfig } from './models/chart-config.model';
 
 @Component({

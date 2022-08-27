@@ -22,23 +22,21 @@ import {
   faStar,
   faUserPlus
 } from '@fortawesome/free-solid-svg-icons';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
 import { SwitchComponent } from 'src/app/shared/components/switch/switch.component';
 import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form.component';
+import { ValueDifferenceModule } from '../common/components/ui/value-difference/value-difference.module';
 import { ScaleModule } from '../common/directives/scale/scale.module';
 import { StickyModule } from '../common/directives/sticky/sticky.module';
 import { PipesModule } from '../common/pipes/pipes.module';
+import { AssistsIconsModule } from '../common/players/components/assists-icons/assists-icons.module';
 import { PlayerNameLinkModule } from '../common/players/components/player-name-link/player-name-link.module';
 import { MatchdayFirstGameIconModule } from '../common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { MatchdayStandaloneGameIconModule } from '../common/teams/components/matchday-standalone-game-icon/matchday-standalone-game-icon.module';
 import { TeamLogoModule } from '../common/teams/team-logo/team-logo.module';
-import { AssistsIconsComponent } from './components/assists-icons/assists-icons.component';
-import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
-import { ChartComponent } from './components/chart/chart.component';
 import { FilterPositionComponent } from './components/filter-position/filter-position.component';
 import { FollowUsToStayTunedComponent } from './components/follow-us-to-stay-tuned/follow-us-to-stay-tuned.component';
 import { GoalsIconsComponent } from './components/goals-icons/goals-icons.component';
@@ -55,7 +53,6 @@ import { ViewTitleComponent } from './components/layout/view-title/view-title.co
 import { ViewComponent } from './components/layout/view/view.component';
 import { WhiteBlockComponent } from './components/layout/white-block/white-block.component';
 import { MinMaxAvgComponent } from './components/min-max-avg/min-max-avg.component';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { PlayersListGenericComponent } from './components/players-list-generic/players-list-generic.component';
 import { PostponedGameIconComponent } from './components/postponed-game-icon/postponed-game-icon.component';
 import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
@@ -71,7 +68,6 @@ import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey/title-underlined-grey.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
-import { ValueDifferenceComponent } from './components/value-difference/value-difference.component';
 import { MedalColorDirective } from './directives/medal-color.directive';
 import { SizeDirective } from './directives/size.directive';
 
@@ -90,10 +86,7 @@ import { SizeDirective } from './directives/size.directive';
     MedalColorDirective,
     TimelineMatchdaysComponent,
     TextSubtextRowComponent,
-    ChartComponent,
     TitleUnderlinedGreyComponent,
-    ChartDialogComponent,
-    ValueDifferenceComponent,
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
@@ -102,12 +95,10 @@ import { SizeDirective } from './directives/size.directive';
     SliderMaxPopularityComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    PieChartComponent,
     TimeAgoComponent,
     SelectDialogComponent,
     SelectDialogDialogComponent,
     GoalsIconsComponent,
-    AssistsIconsComponent,
     HasStartedIconComponent,
     HasCameFromBenchIconComponent,
     HasPlayedSeventyMinutesIconComponent,
@@ -120,20 +111,21 @@ import { SizeDirective } from './directives/size.directive';
     PostponedGameIconComponent
   ],
   imports: [
+    AssistsIconsModule,
     CommonModule,
     MomentModule,
     AngularMaterialModule,
     FontAwesomeModule,
     RouterModule,
     NgPipesModule,
-    NgxChartsModule,
     PipesModule,
     ScaleModule,
     StickyModule,
     PlayerNameLinkModule,
     TeamLogoModule,
     MatchdayFirstGameIconModule,
-    MatchdayStandaloneGameIconModule
+    MatchdayStandaloneGameIconModule,
+    ValueDifferenceModule
   ],
   exports: [
     FormFieldComponent,
@@ -151,9 +143,7 @@ import { SizeDirective } from './directives/size.directive';
     MedalColorDirective,
     TimelineMatchdaysComponent,
     TextSubtextRowComponent,
-    ChartComponent,
     TitleUnderlinedGreyComponent,
-    ValueDifferenceComponent,
     ViewComponent,
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
@@ -162,7 +152,6 @@ import { SizeDirective } from './directives/size.directive';
     SliderMaxPriceComponent,
     TeamLineupComponent,
     FollowUsToStayTunedComponent,
-    PieChartComponent,
     TimeAgoComponent,
     SelectDialogComponent,
     TeamGameAgainstComponent,

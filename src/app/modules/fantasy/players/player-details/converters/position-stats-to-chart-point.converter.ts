@@ -1,5 +1,5 @@
+import { ChartPoint } from 'src/app/common/components/ui/chart/models/chart-point.model';
 import { Convertable } from 'src/app/modules/core/shared/convertable/convertable';
-import { ChartPoint } from 'src/app/shared/components/chart/models/chart-point.model';
 import { PositionStatsMatchday } from 'src/app/store/positions/models/position-stats-matchday.model';
 
 export class PositionStatsToChartPointConverter implements Convertable<PositionStatsMatchday, ChartPoint> {

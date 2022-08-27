@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChartConfig } from 'src/app/common/components/ui/chart/models/chart-config.model';
+import { ChartPoint } from 'src/app/common/components/ui/chart/models/chart-point.model';
+import { PieChartConfig } from 'src/app/common/components/ui/pie-chart/pie-chart-config.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { ChartConfig } from 'src/app/shared/components/chart/models/chart-config.model';
-import { ChartPoint } from 'src/app/shared/components/chart/models/chart-point.model';
-import { PieChartConfig } from 'src/app/shared/components/pie-chart/models/pie-chart-config.model';
 import { MatchdayValueToChartPointConverter } from 'src/app/shared/converters/matchday-value-to-chart-point.converter';
 import { PositionStatsMatchday } from 'src/app/store/positions/models/position-stats-matchday.model';
 import { PositionsStats } from 'src/app/store/positions/models/positions-stats.model';

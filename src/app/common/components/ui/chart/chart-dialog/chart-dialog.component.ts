@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/cor
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
-import { ChartConfig } from '../chart/models/chart-config.model';
+import { ChartConfig } from '../models/chart-config.model';
 
 interface TableData {
   columns: TableColumn[];
