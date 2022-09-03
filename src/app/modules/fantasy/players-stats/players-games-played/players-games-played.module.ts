@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
+import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersGamesPlayedRoutingModule } from './players-games-played-routing.module';
@@ -16,7 +17,8 @@ import { PlayersGamesPlayedComponent } from './views/players-games-played/player
     SharedModule,
     FlexLayoutModule,
     PositionSwitchModule,
-    LastMatchdayResolverModule
+    LastMatchdayResolverModule,
+    FollowUsModule
   ],
   providers: [PlayersGamesPlayedResolver]
 })

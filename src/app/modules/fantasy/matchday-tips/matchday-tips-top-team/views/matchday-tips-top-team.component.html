@@ -12,8 +12,8 @@
     </div>
   </app-white-block>
 
-  <app-follow-us-to-stay-tuned
+  <app-follow-us
     *ngIf="state$ | async | field: 'lastMatchday' | isEqualTo: 0"
     text="Best team will be available after MD 1."
-  ></app-follow-us-to-stay-tuned>
+  ></app-follow-us>
 </div>

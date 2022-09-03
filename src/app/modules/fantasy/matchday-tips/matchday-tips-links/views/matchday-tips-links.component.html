@@ -41,7 +41,7 @@
     </div>
 
     <div *ngIf="links$ | async | arrayEmpty">
-      <app-follow-us-to-stay-tuned text="Sorry, there are no tips & hints links so far."></app-follow-us-to-stay-tuned>
+      <app-follow-us text="Sorry, there are no tips & hints links so far."></app-follow-us>
     </div>
 
     <div *ngIf="links$ | async | arrayNotEmpty" class="container" fxLayout="column" fxLayoutGap="20px">
@@ -74,51 +74,3 @@
     </div>
   </div>
 </app-white-block>
-
-<!-- <div fxLayout="column" fxLayoutGap="10px">
-  <app-white-block padding="5px 10px 5px">
-    <div fxLayout="column" fxLayoutAlign="center center">
-      <app-form-field *ngIf="tips.links.length > 0" label="Category"> cateogry </app-form-field>
-      <app-follow-us-to-stay-tuned
-        *ngIf="tips.links.length == 0"
-        text="Sorry, there are no tips & hints links so far."
-      ></app-follow-us-to-stay-tuned>
-    </div>
-  </app-white-block>
-
-  <app-white-block padding="15px 10px 15px 10px">
-    <div class="container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-      <a
-        [href]="link.url"
-        target="blank"
-        class="link-container"
-        ngClass.lt-sm="link-container-mobile"
-        fxLayout="row"
-        *ngFor="let link of filteredLinks"
-        width="120"
-      >
-        <div class="link-image" fxLayoutAlign="start center" [style]="'background-image: url(' + link.imageUrl + ')'">
-          <img [src]="link.imageUrl" />
-        </div>
-        <div class="link-content" fxLayout="column" fxLayoutAlign="space-between">
-          <div class="link-title">
-            <h4>{{ link.title }}</h4>
-          </div>
-
-          <div class="link-description">{{ link.description }}</div>
-
-          <div fxLayout="row" fxLayoutAlign="start flex-end" fxLayoutGap="15px">
-            <div class="link-categories" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="6px">
-              <span class="link-category" *ngFor="let category of link.categories">
-                {{ category }}
-              </span>
-            </div>
-
-            <span fxFlex class="link-host">{{ link.source }}</span>
-            <div fxHide.lt-sm class="new red" fxFlex="10"><span *ngIf="link.isNew">NEW!</span></div>
-          </div>
-        </div>
-      </a>
-    </div>
-  </app-white-block>
-</div> -->

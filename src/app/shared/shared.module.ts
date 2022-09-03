@@ -25,9 +25,9 @@ import {
 import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
-import { FormFieldComponent } from 'src/app/shared/components/form-field/form-field.component';
 import { SwitchComponent } from 'src/app/shared/components/switch/switch.component';
 import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form.component';
+import { FormFieldModule } from '../common/components/ui/form-field/form-field.module';
 import { ValueDifferenceModule } from '../common/components/ui/value-difference/value-difference.module';
 import { ScaleModule } from '../common/directives/scale/scale.module';
 import { StickyModule } from '../common/directives/sticky/sticky.module';
@@ -37,8 +37,6 @@ import { PlayerNameLinkModule } from '../common/players/components/player-name-l
 import { MatchdayFirstGameIconModule } from '../common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { MatchdayStandaloneGameIconModule } from '../common/teams/components/matchday-standalone-game-icon/matchday-standalone-game-icon.module';
 import { TeamLogoModule } from '../common/teams/team-logo/team-logo.module';
-import { FilterPositionComponent } from './components/filter-position/filter-position.component';
-import { FollowUsToStayTunedComponent } from './components/follow-us-to-stay-tuned/follow-us-to-stay-tuned.component';
 import { GoalsIconsComponent } from './components/goals-icons/goals-icons.component';
 import { HasCameFromBenchIconComponent } from './components/has-came-from-bench-icon/has-came-from-bench-icon.component';
 import { HasPlayedSeventyMinutesIconComponent } from './components/has-played-seventy-minutes-icon/has-played-seventy-minutes-icon.component';
@@ -73,7 +71,6 @@ import { SizeDirective } from './directives/size.directive';
 
 @NgModule({
   declarations: [
-    FormFieldComponent,
     TeamFormComponent,
     SwitchComponent,
     SubnavigationComponent,
@@ -82,7 +79,6 @@ import { SizeDirective } from './directives/size.directive';
     TitleUnderlinedComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
-    FilterPositionComponent,
     MedalColorDirective,
     TimelineMatchdaysComponent,
     TextSubtextRowComponent,
@@ -94,7 +90,6 @@ import { SizeDirective } from './directives/size.directive';
     SliderMaxPriceComponent,
     SliderMaxPopularityComponent,
     TeamLineupComponent,
-    FollowUsToStayTunedComponent,
     TimeAgoComponent,
     SelectDialogComponent,
     SelectDialogDialogComponent,
@@ -125,10 +120,10 @@ import { SizeDirective } from './directives/size.directive';
     TeamLogoModule,
     MatchdayFirstGameIconModule,
     MatchdayStandaloneGameIconModule,
-    ValueDifferenceModule
+    ValueDifferenceModule,
+    FormFieldModule
   ],
   exports: [
-    FormFieldComponent,
     TeamFormComponent,
     SwitchComponent,
     FontAwesomeModule,
@@ -139,7 +134,6 @@ import { SizeDirective } from './directives/size.directive';
     TitleUnderlinedComponent,
     MinMaxAvgComponent,
     TextValueCardComponent,
-    FilterPositionComponent,
     MedalColorDirective,
     TimelineMatchdaysComponent,
     TextSubtextRowComponent,
@@ -151,7 +145,6 @@ import { SizeDirective } from './directives/size.directive';
     SliderMaxPopularityComponent,
     SliderMaxPriceComponent,
     TeamLineupComponent,
-    FollowUsToStayTunedComponent,
     TimeAgoComponent,
     SelectDialogComponent,
     TeamGameAgainstComponent,

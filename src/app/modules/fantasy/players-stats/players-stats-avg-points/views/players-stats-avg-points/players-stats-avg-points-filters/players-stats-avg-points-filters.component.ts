@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { Position } from 'src/app/common/players/models/position.enum';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { PlayersStatsAvgPointsFilters } from '../../../models/players-stats-avg-points-filters.model';
 import { PlayersStatsAvgPointsType } from '../../../models/players-stats-avg-points-type.enum';
 import { PlayersStatsAvgPointsQueryParamsService } from '../../../services/players-stats-avg-points-query-params.service';
@@ -15,7 +15,7 @@ import { PlayersStatsAvgPointsQueryParamsService } from '../../../services/playe
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayersStatsAvgPointsFiltersComponent implements OnInit {
-  private _types: SwitchItem[] = [
+  private _types: SwitcherItem[] = [
     { description: 'Total', value: PlayersStatsAvgPointsType.OVERALL },
     { description: 'Home', value: PlayersStatsAvgPointsType.HOME },
     { description: 'Away', value: PlayersStatsAvgPointsType.AWAY },
@@ -23,7 +23,7 @@ export class PlayersStatsAvgPointsFiltersComponent implements OnInit {
     { description: 'vs Top 6', value: PlayersStatsAvgPointsType.VSTOP }
   ];
 
-  private _games: SwitchItem[] = [
+  private _games: SwitcherItem[] = [
     { description: 'All', value: 0 },
     { description: 'Last 2', value: 2 },
     { description: 'Last 3', value: 3 },
@@ -31,11 +31,11 @@ export class PlayersStatsAvgPointsFiltersComponent implements OnInit {
     { description: 'Last 5', value: 5 }
   ];
 
-  public get games(): SwitchItem[] {
+  public get games(): SwitcherItem[] {
     return this._games;
   }
 
-  public get types(): SwitchItem[] {
+  public get types(): SwitcherItem[] {
     return this._types;
   }
 

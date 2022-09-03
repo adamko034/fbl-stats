@@ -12,6 +12,7 @@
         [value]="maxPopularity"
         (popularityChange)="onPopularityChange($event)"
       ></app-slider-max-popularity>
+
       <app-form-field label="Calculations">
         <mat-form-field class="custom-select">
           <mat-select [ngModel]="lineupType" (selectionChange)="onLineupTypeChange($event.value)">

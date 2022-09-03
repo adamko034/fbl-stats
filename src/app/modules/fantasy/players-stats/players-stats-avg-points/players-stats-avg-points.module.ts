@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
+import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
+import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
+import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
-import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersStatsAvgPointsConverter } from './converters/players-stats-avg-points.converter';
 import { PlayersStatsAvgPointsRoutingModule } from './players-stats-avg-points-routing.module';
@@ -18,10 +21,13 @@ import { PlayersStatsAvgPointsComponent } from './views/players-stats-avg-points
     CommonModule,
     PlayersStatsAvgPointsRoutingModule,
     SharedModule,
-    FblCoreModule,
     AngularMaterialModule,
     LastMatchdayResolverModule,
-    PipesModule
+    PipesModule,
+    PositionSwitchModule,
+    SwitcherModule,
+    FormFieldModule,
+    FollowUsModule
   ],
   providers: [PlayersStatsAvgPointsQueryParamsService, PlayersStatsAvgPointsResolver, PlayersStatsAvgPointsConverter]
 })

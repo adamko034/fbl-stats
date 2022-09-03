@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { OurPickIconModule } from 'src/app/common/players/components/our-pick-icon/our-pick-icon.module';
 import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
@@ -49,7 +50,8 @@ import { AdminComponent } from './views/admin/admin.component';
     OurPickIconModule,
     SharedModule,
     AngularMaterialModule,
-    GameTeamVenueModule
+    GameTeamVenueModule,
+    FormFieldModule
   ],
   providers: [
     AdminLoggedGuard,

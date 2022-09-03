@@ -19,8 +19,8 @@
     (sortChange)="onSortChange($event)"
   ></app-players-list-generic>
 
-  <app-follow-us-to-stay-tuned
+  <app-follow-us
     *ngIf="lastMatchday$ | async | isEqualTo: 0"
     text=" Players stats will be available after MD 1."
-  ></app-follow-us-to-stay-tuned>
+  ></app-follow-us>
 </div>
