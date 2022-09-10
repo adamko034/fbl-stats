@@ -3,13 +3,13 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
 import { PlayersListGenericRow } from 'src/app/shared/components/players-list-generic/models/players-list-generic-row.model';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { PlayedGamesToListGenericConverter } from '../../converters/played-games-to-list-generic.converter';
 import { PlayerGamesPlayed } from '../../models/player-games-played.model';
 
@@ -22,7 +22,7 @@ import { PlayerGamesPlayed } from '../../models/player-games-played.model';
 export class PlayersGamesPlayedComponent implements OnInit {
   private _orderBy = 'gamesStartedPercentage';
   private _position = Position.ALL;
-  private _types: SwitchItem[] = [
+  private _types: SwitcherItem[] = [
     { value: 'gamesPlayedPercentage', description: 'Played' },
     { value: 'gamesStartedPercentage', description: 'Started' },
     // { value: 'playedMoreThan70MinPercentageAll', description: '>= 70min' },
@@ -34,7 +34,7 @@ export class PlayersGamesPlayedComponent implements OnInit {
     return this._position;
   }
 
-  public get types(): SwitchItem[] {
+  public get types(): SwitcherItem[] {
     return this._types;
   }
 

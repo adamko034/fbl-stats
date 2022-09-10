@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map } from 'rxjs/operators';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { LineupPlayer } from 'src/app/shared/components/team-lineup/models/lineup-player.model';
 import { Lineup } from 'src/app/shared/components/team-lineup/models/lineup.model';
 import { HistoryPlayer } from 'src/app/store/history/models/history-player.model';
@@ -27,7 +27,7 @@ export class HistorySummaryLineupComponent implements OnInit {
   public maxPopularity: number = 100;
   public lineupType: HistorySummaryLineupType = HistorySummaryLineupType.OVERALL;
 
-  public lineupTypes: SwitchItem[] = [
+  public lineupTypes: SwitcherItem[] = [
     { value: HistorySummaryLineupType.OVERALL, description: 'Overall' },
     { value: HistorySummaryLineupType.FIRST_LEG, description: '1st leg' },
     { value: HistorySummaryLineupType.SECOND_LEG, description: '2nd leg' },

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { MatchdayTipsTopTeamFilters } from '../../models/matchday-tips-top-team-filters.model';
 import { MatchdayTipsTopTeamType } from '../../models/matchday-tips-top-team-type.enum';
 
@@ -15,7 +15,7 @@ export class MatchdayTipsTopTeamFiltersComponent implements OnInit {
   @Input() maxPrice: number;
   @Input() lastMatchday: number;
 
-  public types: SwitchItem[];
+  public types: SwitcherItem[];
 
   constructor(private router: Router) {}
 

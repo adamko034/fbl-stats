@@ -1,30 +1,30 @@
 <app-white-block *ngIf="types">
   <div>
     <div class="calculations" fxLayoutAlign="center">
-      <app-switch
+      <app-switcher
         name="calculation_types"
-        showSelectOnMobile="1"
+        [showSelectOnMobile]="true"
         selectLabel="Calculation type"
         [items]="types"
         [value]="filters.calculation"
         (switchChange)="onTypeChange($event)"
-      ></app-switch>
+      ></app-switcher>
     </div>
     <div class="sliders">
-      <app-slider-max-popularity
+      <app-max-popularity-slider
         [value]="filters.popularity"
         (popularityChange)="onPopularityChange($event)"
-      ></app-slider-max-popularity>
-      <app-slider-max-popularity
+      ></app-max-popularity-slider>
+      <app-max-popularity-slider
         label="Max top500 popularity"
         [value]="filters.top500Popularity"
         (popularityChange)="onTop500PopularityChange($event)"
-      ></app-slider-max-popularity>
-      <app-slider-max-price
-        [max]="maxPrice"
+      ></app-max-popularity-slider>
+      <app-max-price-slider
+        [maxPrice="maxPrice"
         [value]="filters.price"
         (priceChange)="onPriceChange($event)"
-      ></app-slider-max-price>
+      ></app-max-price-slider>
     </div>
   </div>
 </app-white-block>

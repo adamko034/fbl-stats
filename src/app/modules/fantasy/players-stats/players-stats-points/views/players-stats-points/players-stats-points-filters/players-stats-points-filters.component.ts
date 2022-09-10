@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { CalculationsType } from 'src/app/shared/models/calculations-type.enum';
 import { PlayersStatsPointsFilters } from '../../../models/players-stats-points-filters.model';
 import { PlayersStatsPointsType } from '../../../models/players-stats-points-type.enum';
@@ -14,32 +14,32 @@ import { PlayersStatsPointsType } from '../../../models/players-stats-points-typ
 export class PlayersStatsPointsFiltersComponent implements OnInit {
   @Input() filters: PlayersStatsPointsFilters;
 
-  private _types: SwitchItem[] = [
+  private _types: SwitcherItem[] = [
     { value: 'bundesliga', description: 'Bundesliga' },
     { value: 'fantasy', description: 'Fantasy Bundesliga' }
   ];
 
-  private _fantasyTypes: SwitchItem[] = [
+  private _fantasyTypes: SwitcherItem[] = [
     { value: 'general', description: 'General' },
     { value: 'offensive', description: 'Offensive' },
     { value: 'defensive', description: 'Defensive' },
     { value: 'all', description: 'All' }
   ];
 
-  private _calcs: SwitchItem[] = [
+  private _calcs: SwitcherItem[] = [
     { value: CalculationsType.OVERALL, description: 'Overall' },
     { value: CalculationsType.LAST5, description: 'Last 5 games' }
   ];
 
-  public get types(): SwitchItem[] {
+  public get types(): SwitcherItem[] {
     return this._types;
   }
 
-  public get fantasyTypes(): SwitchItem[] {
+  public get fantasyTypes(): SwitcherItem[] {
     return this._fantasyTypes;
   }
 
-  public get calculations(): SwitchItem[] {
+  public get calculations(): SwitcherItem[] {
     return this._calcs;
   }
 

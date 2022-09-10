@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { SelectFutureMatchdaysPanelConfig } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel-config.model';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { FromTo } from 'src/app/shared/models/from-to.model';
 import { FixturesDifficultyCalculation } from '../../models/fixtures-difficulty-calculation.enum';
 import { FixturesDifficultyFilters } from '../../models/fixtures-difficulty-filters.model';
@@ -19,8 +19,8 @@ export class FixturesDifficultyFiltersComponent implements OnInit {
   @Input() lastKnownMatchday: number;
   @Input() nextUnlimitedTransfersMatchday: number;
 
-  private _calculations: SwitchItem[];
-  public get calculations(): SwitchItem[] {
+  private _calculations: SwitcherItem[];
+  public get calculations(): SwitcherItem[] {
     return this._calculations;
   }
 

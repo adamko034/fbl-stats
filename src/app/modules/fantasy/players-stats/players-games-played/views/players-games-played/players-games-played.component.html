@@ -3,12 +3,12 @@
     <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
       <app-position-switch class="filter" [value]="position" (change)="onPositionChange($event)"></app-position-switch>
 
-      <app-switch
+      <app-switcher
         class="filter"
         [items]="types"
         [value]="orderBy"
         (switchChange)="onSortChange({ active: $event, direction: 'desc' })"
-      ></app-switch>
+      ></app-switcher>
     </div>
   </app-white-block>
 

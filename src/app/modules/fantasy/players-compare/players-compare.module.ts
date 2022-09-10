@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { MaxPriceSliderModule } from 'src/app/common/components/filters/max-price-slider/max-price-slider.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
 import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
@@ -58,7 +59,8 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     StickyModule,
     PlayerNameLinkModule,
     TeamLogoModule,
-    FormFieldModule
+    FormFieldModule,
+    MaxPriceSliderModule
   ],
   providers: [
     PlayersCompareStateResolver,

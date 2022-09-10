@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
+import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { HorizontalTopScrollbarModule } from 'src/app/common/directives/horizontal-top-scrollbar/horizontal-top-scrollbar.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
@@ -39,7 +40,8 @@ import { FixturesDifficultyComponent } from './view/fixtures-difficulty.componen
     PipesModule,
     StickyModule,
     HorizontalTopScrollbarModule,
-    TeamLogoModule
+    TeamLogoModule,
+    SwitcherModule
   ],
   providers: [
     FixtureDifficultyColorsService,

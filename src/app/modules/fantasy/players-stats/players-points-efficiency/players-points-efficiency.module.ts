@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
 import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
+import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersPointsEfficiencyRoutingModule } from './players-points-efficiency-routing.module';
 import { PlayersPointsEfficiencyLoader } from './resolvers/players-points-efficiency.loader';
@@ -17,7 +18,8 @@ import { PlayersPointsEfficiencyComponent } from './views/players-points-efficie
     SharedModule,
     AngularMaterialModule,
     PositionSwitchModule,
-    FollowUsModule
+    FollowUsModule,
+    SwitcherModule
   ],
   providers: [PlayersPointsEffciencyResolver, PlayersPointsEfficiencyLoader]
 })

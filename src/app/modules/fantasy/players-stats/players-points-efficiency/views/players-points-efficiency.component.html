@@ -5,13 +5,13 @@
     </div>
 
     <div>
-      <app-switch
+      <app-switcher
         *ngIf="!(mobile$ | async)"
         [items]="typeFilterItems"
         name="types"
         [value]="state.type"
         (switchChange)="onTypeChange($event)"
-      ></app-switch>
+      ></app-switcher>
       <mat-form-field *ngIf="mobile$ | async">
         <mat-select [ngModel]="state.type" name="types" (selectionChange)="onTypeChangeDropdown($event)">
           <mat-option *ngFor="let type of typeFilterItems" [value]="type.value">{{ type.description }}</mat-option>
@@ -20,12 +20,12 @@
     </div>
 
     <div>
-      <app-switch
+      <app-switcher
         [items]="orderByFilterItems"
         name="orderBys"
         [value]="state.orderBy"
         (switchChange)="onOrderByChange($event)"
-      ></app-switch>
+      ></app-switcher>
     </div>
   </div>
 

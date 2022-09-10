@@ -1,11 +1,11 @@
 <app-white-block *ngIf="calculations" padding="10px 10px 0 10px">
   <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-    <app-switch
+    <app-switcher
       name="fixturesDifficultyCalculation"
       [items]="calculations"
       [value]="filters.calculation"
       (switchChange)="onCalculationChange($event)"
-    ></app-switch>
+    ></app-switcher>
 
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
       <!-- <app-include-future-matchdays-dropdown

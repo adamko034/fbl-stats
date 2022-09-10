@@ -1,17 +1,17 @@
 <app-white-block>
   <div class="column" class="summary-container">
     <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-evenly center" class="filters">
-      <app-slider-max-price
+      <app-max-price-slider
         class="filter slider"
-        max="26.5"
+        [maxPrice]="26.5"
         [value]="maxPrice"
         (priceChange)="onPriceChange($event)"
-      ></app-slider-max-price>
-      <app-slider-max-popularity
+      ></app-max-price-slider>
+      <app-max-popularity-slider
         class="filter slider"
         [value]="maxPopularity"
         (popularityChange)="onPopularityChange($event)"
-      ></app-slider-max-popularity>
+      ></app-max-popularity-slider>
 
       <app-form-field label="Calculations">
         <mat-form-field class="custom-select">

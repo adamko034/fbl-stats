@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-time-ago',
   templateUrl: './time-ago.component.html',
-  styleUrls: ['./time-ago.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TimeAgoComponent implements OnInit {
+export class TimeAgoComponent {
   @Input() date: Date | number;
   @Input() isEpochDate = false;
   @Input() style: string;
@@ -14,8 +13,4 @@ export class TimeAgoComponent implements OnInit {
   public get epochDate(): number {
     return this.date as number;
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

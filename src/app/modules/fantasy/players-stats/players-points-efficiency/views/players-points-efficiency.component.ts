@@ -5,13 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
-import { SwitchItem } from 'src/app/shared/components/switch/models/switch-item.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { PlayersListGenericRowsConverter } from '../converters/players-list-generic-rows.converter';
 
@@ -38,7 +38,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
 
   public state: State;
 
-  public typeFilterItems: SwitchItem[] = [
+  public typeFilterItems: SwitcherItem[] = [
     { value: 'overall', description: 'Overall' },
     { value: 'last5', description: 'Last 5' },
     { value: 'home', description: 'Home' },
@@ -47,7 +47,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
     { value: 'vsWorst6', description: 'vs worst 6' }
   ];
 
-  public orderByFilterItems: SwitchItem[] = [
+  public orderByFilterItems: SwitcherItem[] = [
     { value: '5', description: '>= 5pts', descriptionMobile: '>= 5pts' },
     { value: '10', description: '>= 10pts', descriptionMobile: '>= 10pts' },
     { value: '15', description: '>= 15pts', descriptionMobile: '>= 15pts' },

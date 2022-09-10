@@ -7,9 +7,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 })
 export class MaxPopularitySliderComponent {
   @Input() value: number;
+  @Input() label = 'Max popularity';
   @Output() popularityChange = new EventEmitter<number>();
-
-  constructor() {}
 
   public onPopularityChange(value: number): void {
     this.popularityChange.emit(value);

@@ -25,7 +25,6 @@ import {
 import { MomentModule } from 'ngx-moment';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
-import { SwitchComponent } from 'src/app/shared/components/switch/switch.component';
 import { TeamFormComponent } from 'src/app/shared/components/team-form/team-form.component';
 import { FormFieldModule } from '../common/components/ui/form-field/form-field.module';
 import { ValueDifferenceModule } from '../common/components/ui/value-difference/value-difference.module';
@@ -33,14 +32,14 @@ import { ScaleModule } from '../common/directives/scale/scale.module';
 import { StickyModule } from '../common/directives/sticky/sticky.module';
 import { PipesModule } from '../common/pipes/pipes.module';
 import { AssistsIconsModule } from '../common/players/components/assists-icons/assists-icons.module';
+import { GoalsIconsModule } from '../common/players/components/goals-icons/goals-icons.module';
+import { HasCameFromBenchIconModule } from '../common/players/components/has-came-from-bench-icon/has-came-from-bench-icon.module';
+import { HasPlayedSeventyMinutesIconModule } from '../common/players/components/has-played-seventy-minutes-icon/has-played-seventy-minutes-icon.module';
+import { HasStartedIconModule } from '../common/players/components/has-started-icon/has-started-icon.module';
 import { PlayerNameLinkModule } from '../common/players/components/player-name-link/player-name-link.module';
 import { MatchdayFirstGameIconModule } from '../common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { MatchdayStandaloneGameIconModule } from '../common/teams/components/matchday-standalone-game-icon/matchday-standalone-game-icon.module';
 import { TeamLogoModule } from '../common/teams/team-logo/team-logo.module';
-import { GoalsIconsComponent } from './components/goals-icons/goals-icons.component';
-import { HasCameFromBenchIconComponent } from './components/has-came-from-bench-icon/has-came-from-bench-icon.component';
-import { HasPlayedSeventyMinutesIconComponent } from './components/has-played-seventy-minutes-icon/has-played-seventy-minutes-icon.component';
-import { HasStartedIconComponent } from './components/has-started-icon/has-started-icon.component';
 import { IconWrapperComponent } from './components/icon-wrapper/icon-wrapper.component';
 import { IncludeFutureMatchdaysDropdownComponent } from './components/include-future-matchdays-dropdown/include-future-matchdays-dropdown.component';
 import { IncludePastMatchdaysDropdownComponent } from './components/include-past-matchdays-dropdown/include-past-matchdays-dropdown.component';
@@ -55,14 +54,11 @@ import { PlayersListGenericComponent } from './components/players-list-generic/p
 import { PostponedGameIconComponent } from './components/postponed-game-icon/postponed-game-icon.component';
 import { SelectDialogDialogComponent } from './components/select-dialog/select-dialog-dialog/select-dialog-dialog.component';
 import { SelectDialogComponent } from './components/select-dialog/select-dialog.component';
-import { SliderMaxPopularityComponent } from './components/slider-max-popularity/slider-max-popularity.component';
-import { SliderMaxPriceComponent } from './components/slider-max-price/slider-max-price.component';
 import { TeamGameAgainstComponent } from './components/team-game-against/team-game-against.component';
 import { TeamLineupComponent } from './components/team-lineup/team-lineup.component';
 import { TeamPlayersTableComponent } from './components/team-players-table/team-players-table.component';
 import { TextSubtextRowComponent } from './components/text-subtext-row/text-subtext-row.component';
 import { TextValueCardComponent } from './components/text-value-card/text-value-card.component';
-import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 import { TimelineMatchdaysComponent } from './components/timeline-matchdays/timeline-matchdays.component';
 import { TitleUnderlinedGreyComponent } from './components/title-underlined-grey/title-underlined-grey.component';
 import { TitleUnderlinedComponent } from './components/title-underlined/title-underlined.component';
@@ -72,7 +68,6 @@ import { SizeDirective } from './directives/size.directive';
 @NgModule({
   declarations: [
     TeamFormComponent,
-    SwitchComponent,
     SubnavigationComponent,
     ViewLayoutComponent,
     ViewTitleComponent,
@@ -87,16 +82,9 @@ import { SizeDirective } from './directives/size.directive';
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
-    SliderMaxPriceComponent,
-    SliderMaxPopularityComponent,
     TeamLineupComponent,
-    TimeAgoComponent,
     SelectDialogComponent,
     SelectDialogDialogComponent,
-    GoalsIconsComponent,
-    HasStartedIconComponent,
-    HasCameFromBenchIconComponent,
-    HasPlayedSeventyMinutesIconComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
     SizeDirective,
@@ -121,11 +109,14 @@ import { SizeDirective } from './directives/size.directive';
     MatchdayFirstGameIconModule,
     MatchdayStandaloneGameIconModule,
     ValueDifferenceModule,
-    FormFieldModule
+    FormFieldModule,
+    GoalsIconsModule,
+    HasCameFromBenchIconModule,
+    HasPlayedSeventyMinutesIconModule,
+    HasStartedIconModule
   ],
   exports: [
     TeamFormComponent,
-    SwitchComponent,
     FontAwesomeModule,
     SubnavigationComponent,
     ViewLayoutComponent,
@@ -142,10 +133,7 @@ import { SizeDirective } from './directives/size.directive';
     ViewTabsNavigationComponent,
     WhiteBlockComponent,
     PlayersListGenericComponent,
-    SliderMaxPopularityComponent,
-    SliderMaxPriceComponent,
     TeamLineupComponent,
-    TimeAgoComponent,
     SelectDialogComponent,
     TeamGameAgainstComponent,
     TeamPlayersTableComponent,
