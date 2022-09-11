@@ -5,13 +5,17 @@ import { CoreDataLoadedGuard } from 'src/app/modules/core/resolvers/core-data-lo
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'fantasy',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: '',
     canActivate: [CoreDataLoadedGuard],
     children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule)
+      },
       {
         path: 'fantasy',
         loadChildren: () => import('./modules/fantasy/fantasy.module').then((m) => m.FantasyModule)
