@@ -4,7 +4,8 @@
       <mat-button-toggle
         *ngFor="let item of allItems"
         [disableRipple]="1"
-        [ngClass]="value === item.value ? 'item-active' : 'item'"
+        class="item"
+        [ngClass]="{ 'item-active': value === item.value, 'item-narrow': narrow }"
         [value]="item.value"
         (change)="onChange(item.value)"
       >

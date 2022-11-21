@@ -1,0 +1,28 @@
+<div fxLayout="column">
+  <h6 class="h6-card-title">Bundesliga table</h6>
+  <table class="comparison-table">
+    <tr>
+      <td></td>
+      <td>Points</td>
+      <td>Goals</td>
+    </tr>
+    <tr *ngFor="let team of rankings">
+      <td>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+          <span class="rank">{{ team.rank }}</span>
+          <app-compare-arrow
+            *ngIf="team.previousRank != 0"
+            [height]="18"
+            [scale]="0.7"
+            [firstValue]="team.rank"
+            [secondValue]="team.previousRank"
+          ></app-compare-arrow>
+          <app-team-logo [team]="team.teamShort" [height]="18"></app-team-logo>
+        </div>
+      </td>
+      <td class="bold">{{ team.points }}</td>
+      <td>{{ team.goalsScored }} : {{ team.goalsConceded }}</td>
+    </tr>
+  </table>
+  <span fxFlexAlign="flex-end" class="show-more pt-5" (click)="onShowMoreClick()">Detailed table >></span>
+</div>

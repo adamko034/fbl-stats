@@ -1,0 +1,17 @@
+@import '/src/variables.scss';
+
+h6 {
+  text-align: center;
+}
+
+.fixtures {
+  margin: 5px;
+
+  .fixtures-date {
+    span {
+      font-size: $fontSizeSmaller;
+      font-weight: 500;
+      line-height: 12px;
+    }
+  }
+}

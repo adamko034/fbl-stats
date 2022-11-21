@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UnlimitedTransfersDate } from 'src/app/store/properties/properties.model';
 import { FixturesDifficultyState } from '../models/fixtures-difficulty-state.model';
 
 @Component({
@@ -15,7 +14,7 @@ export class FixturesDifficultyComponent implements OnInit {
   public state$: Observable<FixturesDifficultyState>;
   public nextMatchday$: Observable<number>;
   public lastKnownMatchday$: Observable<number>;
-  public nextUnlimitedTransfersMatchday$: Observable<UnlimitedTransfersDate>;
+  public nextUnlimitedTransfersMatchday$: Observable<number>;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -25,7 +24,7 @@ export class FixturesDifficultyComponent implements OnInit {
     this.nextMatchday$ = this.route.data.pipe(map((data) => data.lastMatchday + 1));
     this.nextUnlimitedTransfersMatchday$ = this.route.data.pipe(
       map((data) => {
-        return data.nextUnlimitedTransfers ? data.nextUnlimitedTransfers.matchday : 34;
+        return data.nextUnlimitedTransfers ? data.nextUnlimitedTransfers.matchday - 1 : 34;
       })
     );
   }

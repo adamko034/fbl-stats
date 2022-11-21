@@ -1,0 +1,72 @@
+<app-card>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center" fxLayoutGap="15px">
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center" fxLayoutGap="15px" fxFlex="100">
+      <div>
+        <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: playersShots, type: 'shots' }">
+          <h6 class="h6-card-title">Shots on goal</h6>
+        </ng-container>
+      </div>
+
+      <div>
+        <ng-container
+          [ngTemplateOutlet]="players"
+          [ngTemplateOutletContext]="{ players: playersPasses, type: 'passes' }"
+        >
+          <h6 class="h6-card-title">Passes to a shot</h6>
+        </ng-container>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-sm="center" fxLayoutGap="15px" fxFlex="100">
+      <div>
+        <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: playersDuels, type: 'duels' }">
+          <h6 class="h6-card-title">Won duels</h6>
+        </ng-container>
+      </div>
+
+      <div>
+        <ng-container
+          [ngTemplateOutlet]="players"
+          [ngTemplateOutletContext]="{ players: playersShotsSaved, type: 'shotsSaved' }"
+        >
+          <h6 class="h6-card-title">Shots saved</h6>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</app-card>
+
+<ng-template #players let-players="players" let-type="type">
+  <div fxLayout="column">
+    <ng-content></ng-content>
+    <table class="comparison-table comparison-table-narrow">
+      <tr>
+        <td></td>
+        <td>$</td>
+        <td>Pos</td>
+        <td>Points</td>
+      </tr>
+      <tr *ngFor="let player of players">
+        <td fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="4px">
+          <app-player-name-with-availability
+            [name]="player.name"
+            [lastName]="player.name"
+            [id]="player.id"
+            [suspensionRisk]="false"
+            [available]="!player.isUnavailable"
+            [team]="player.teamShort"
+            [returning]="false"
+          ></app-player-name-with-availability>
+          <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
+        </td>
+        <td>{{ player.price }}M</td>
+        <td>{{ player.position | uppercase }}</td>
+        <td *ngIf="type === 'shots'" class="bold">{{ player.shots }}</td>
+        <td *ngIf="type === 'duels'" class="bold">{{ player.duels }}</td>
+        <td *ngIf="type === 'passes'" class="bold">{{ player.passes }}</td>
+        <td *ngIf="type === 'shotsSaved'" class="bold">{{ player.shotsSaved }}</td>
+      </tr>
+    </table>
+    <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick(type)">Show all >></span>
+  </div>
+</ng-template>

@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
-import { FromTo } from 'src/app/shared/models/from-to.model';
 import { Venue } from 'src/app/shared/models/venue.enum';
 import { Logger } from 'src/app/utils/logger';
 import { BundesligaTableState } from '../models/bundesliga-table-state';
@@ -42,19 +41,16 @@ export class BundesligaTableComponent implements OnInit {
     Logger.logDev('bundesliga table component: on init');
     this._filters = this._route.queryParams.pipe(
       filter((params) => !!params && Object.keys(params).length > 0),
-      map(({ venue, mdFrom, mdTo }) => {
+      map(({ venue, matchdays }) => {
         return {
           venue: venue ?? Venue.ALL,
-          matchdays: {
-            from: isNaN(mdFrom) ? 1 : +mdFrom,
-            to: isNaN(mdTo) ? this.state.lastMatchday : +mdTo
-          }
+          matchdays: isNaN(matchdays) ? this.state.lastMatchday : +matchdays
         };
       }),
-      startWith({ venue: Venue.ALL, matchdays: { from: 1, to: 34 } }),
+      startWith({ venue: Venue.ALL, matchdays: this.state.lastMatchday }),
       tap((filters) => {
         Logger.logDev(`bundesliga table component: calculating data, filters: ${JSON.stringify(filters)}`);
-        this._results = this._resultsCalculator.calculate(this.state.teams, filters);
+        this._results = this._resultsCalculator.calculate(this.state.teams, filters, this.state.lastMatchday);
       })
     );
   }
@@ -63,9 +59,9 @@ export class BundesligaTableComponent implements OnInit {
     this._router.navigate([], { queryParams: { venue }, queryParamsHandling: 'merge' });
   }
 
-  public onMatchdaysChange(matchdays: FromTo): void {
+  public onMatchdaysChange(matchdays: number): void {
     this._router.navigate([], {
-      queryParams: { mdFrom: matchdays.from, mdTo: matchdays.to },
+      queryParams: { matchdays },
       queryParamsHandling: 'merge'
     });
   }

@@ -20,14 +20,18 @@ export class PlayersStatsQueryParamsService {
       subType: params.sub,
       calculations: params.calc,
       position: params.pos,
-      selectedColumns: params.cols
+      selectedColumns: params.cols,
+      sortBy: params.sortBy,
+      sortOrder: params.sortOrder
     };
     const filters = {
       type: filtersFromParam.type ?? this._default.type,
       calculations: filtersFromParam.calculations ?? this._default.calculations,
       subType: filtersFromParam.subType ?? this._default.subType,
       position: filtersFromParam.position ?? this._default.position,
-      selectedColumns: filtersFromParam.selectedColumns ?? null
+      selectedColumns: filtersFromParam.selectedColumns ?? null,
+      sortBy: filtersFromParam.sortBy ?? null,
+      sortOrder: filtersFromParam.sortOrder ?? null
     };
 
     return filters;

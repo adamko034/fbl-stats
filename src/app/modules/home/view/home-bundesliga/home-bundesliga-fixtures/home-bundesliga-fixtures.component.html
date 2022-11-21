@@ -1,0 +1,25 @@
+<div fxLayout="column">
+  <h6 class="h6-card-title">Matchday {{ nextMatchday }}</h6>
+  <div class="fixtures" fxLayout="column" fxLayoutGap="20px">
+    <div *ngFor="let date of nextFixtures.gamesPerDate | keyvalue">
+      <div fxLayout="column" fxLayoutGap="8px">
+        <div fxLayout="row" class="fixtures-date" fxLayoutGap="3px">
+          <span>{{ date.key | epochDate | date: 'EE, HH:mm' }}</span>
+          <span>{{ date.key | epochDate | date: 'dd.MM.yyy' }}</span>
+        </div>
+        <div
+          class="fixture-game"
+          *ngFor="let game of date.value"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="5px"
+        >
+          <app-team-logo [team]="game.homeTeamShort" [height]="21"></app-team-logo>
+          <span>-</span>
+          <app-team-logo [team]="game.awayTeamShort" [height]="21"></app-team-logo>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span fxFlexAlign="flex-end" class="show-more pt-5" (click)="onShowMoreClick()">All fixtures >></span>
+</div>

@@ -26,15 +26,14 @@ export class MatchdayTipsUnlimitedTransfersComponent implements OnInit {
     this.future$ = this.state$.pipe(
       map((state) => {
         return new ArrayStream<MatchdayTipsUnlimitedTransfersDate>(state.unlimitedTransfers.dates)
-          .filterQuick((uT) => uT.matchday > state.lastMatchday)
-          .dropOne(0)
+          .filterQuick((uT) => new Date(uT.start).getTime() > new Date().getTime())
           .collect();
       })
     );
     this.previous$ = this.state$.pipe(
       map((state) => {
         return new ArrayStream<MatchdayTipsUnlimitedTransfersDate>(state.unlimitedTransfers.dates)
-          .filterQuick((ut) => ut.matchday <= state.lastMatchday)
+          .filterQuick((ut) => new Date(ut.end).getTime() < new Date().getTime())
           .orderBy('matchday', 'dsc')
           .collect();
       })
@@ -42,7 +41,7 @@ export class MatchdayTipsUnlimitedTransfersComponent implements OnInit {
     this.next$ = this.state$.pipe(
       map((state) => {
         return new ArrayStream<MatchdayTipsUnlimitedTransfersDate>(state.unlimitedTransfers.dates)
-          .filterQuick((uT) => uT.matchday > state.lastMatchday + 1)
+          .filterQuick((uT) => new Date(uT.start).getTime() > new Date().getTime())
           .orderBy('matchday', 'asc')
           .takeFirst();
       })
@@ -50,7 +49,7 @@ export class MatchdayTipsUnlimitedTransfersComponent implements OnInit {
     this.now$ = this.state$.pipe(
       map((state) => {
         return new ArrayStream<MatchdayTipsUnlimitedTransfersDate>(state.unlimitedTransfers.dates)
-          .filterQuick((ut) => ut.matchday === state.lastMatchday + 1)
+          .filterQuick((ut) => new Date() >= new Date(ut.start) && new Date() <= new Date(ut.end))
           .takeFirst();
       })
     );

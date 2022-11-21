@@ -1,8 +1,18 @@
-<app-form-field label="Position">
+<app-form-field *ngIf="showLabel" label="Position">
   <app-switcher
+    [narrow]="narrow"
     [items]="items"
     [value]="value"
     name="position"
     (switchChange)="onPositionChange($event)"
   ></app-switcher>
 </app-form-field>
+
+<app-switcher
+  *ngIf="!showLabel"
+  [items]="items"
+  [narrow]="narrow"
+  [value]="value"
+  name="position"
+  (switchChange)="onPositionChange($event)"
+></app-switcher>

@@ -4,15 +4,6 @@
   background-color: #fff;
 
   .switch {
-    .item-active {
-      font-size: $fontSizeSmall;
-      background-color: $colorBlue;
-      transition-property: background-color, color;
-      transition-duration: 0.2s, 0.2s;
-      transition-timing-function: ease-in, ease-in;
-      color: #fff;
-    }
-
     .item {
       font-size: $fontSizeSmall;
       background-color: transparent;
@@ -23,6 +14,23 @@
 
       &:hover {
         font-weight: 500;
+      }
+    }
+
+    .item-active {
+      font-size: $fontSizeSmall;
+      background-color: $colorBlue;
+      transition-property: background-color, color;
+      transition-duration: 0.2s, 0.2s;
+      transition-timing-function: ease-in, ease-in;
+      color: #fff;
+    }
+
+    .item-narrow {
+      ::ng-deep {
+        .mat-button-toggle-label-content {
+          line-height: 20px !important;
+        }
       }
     }
   }

@@ -9,4 +9,6 @@ export interface PlayersStatsPointsFilters {
   calculations: CalculationsType;
   position: Position;
   selectedColumns?: string[];
+  sortBy?: string;
+  sortOrder?: string;
 }

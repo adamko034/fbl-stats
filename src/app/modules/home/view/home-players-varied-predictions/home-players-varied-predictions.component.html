@@ -1,0 +1,53 @@
+<app-card title="Varied Predictions">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div fxLayout="column">
+      <table class="comparison-table comparison-table-narrow">
+        <tr>
+          <td></td>
+          <td>Pos</td>
+          <td>Top 500 %</td>
+          <td>TP</td>
+          <td>Last 4</td>
+          <td>BL DE</td>
+          <td>BL EN</td>
+          <td>KK</td>
+          <td>BI</td>
+          <td>LI</td>
+        </tr>
+        <tr *ngFor="let player of topVariedPredictions">
+          <td>
+            <app-player-name-with-availability
+              [id]="player.id"
+              [available]="true"
+              [suspensionRisk]="player.isSuspensionRisk"
+              [returning]="false"
+              [name]="player.lastName"
+              [lastName]="player.lastName"
+              [team]="player.teamShort"
+            ></app-player-name-with-availability>
+          </td>
+          <td>{{ player.position | uppercase }}</td>
+          <td>{{ player.top500Popularity }}</td>
+          <td>{{ player.totalPoints }}</td>
+          <td>{{ player.last4 }}</td>
+          <td>
+            <app-player-icon-lineup-prediction [prediction]="player.blDe"></app-player-icon-lineup-prediction>
+          </td>
+          <td>
+            <app-player-icon-lineup-prediction [prediction]="player.blEn"></app-player-icon-lineup-prediction>
+          </td>
+          <td>
+            <app-player-icon-lineup-prediction [prediction]="player.kk"></app-player-icon-lineup-prediction>
+          </td>
+          <td>
+            <app-player-icon-lineup-prediction [prediction]="player.bi"></app-player-icon-lineup-prediction>
+          </td>
+          <td>
+            <app-player-icon-lineup-prediction [prediction]="player.li"></app-player-icon-lineup-prediction>
+          </td>
+        </tr>
+      </table>
+      <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick()">See more >></span>
+    </div>
+  </div>
+</app-card>

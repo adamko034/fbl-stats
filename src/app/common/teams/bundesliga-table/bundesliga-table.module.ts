@@ -4,8 +4,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { SelectLastMatchdaysModule } from '../../components/filters/select-last-matchdays/select-last-matchdays.module';
 import { SelectMatchdaysPanelModule } from '../../components/filters/select-matchdays-panel/select-matchdays-panel.module';
 import { VenueSwitchModule } from '../../components/filters/venue-switch/venue-switch.module';
+import { CompareArrowModule } from '../../components/ui/compare-arrow/compare-arrow.module';
 import { ContentTitledModule } from '../../components/ui/content-titled/content-titled.module';
 import { ContentWhiteBlockModule } from '../../components/ui/content-white-block/content-white-block.module';
 import { FormDottedModule } from '../../components/ui/form-dotted/form-dotted.module';
@@ -34,7 +36,9 @@ import { BundesligaTableResultsCalculator } from './services/bundsliga-table-res
     TeamLogoModule,
     LegendModule,
     FormDottedModule,
-    TitleModule
+    TitleModule,
+    CompareArrowModule,
+    SelectLastMatchdaysModule
   ],
   exports: [BundesligaTableComponent],
   providers: [BundesligaTableResultsCalculator]

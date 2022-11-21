@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BundesligaNextFixtureResolver } from 'src/app/common/routing/resolvers/bundesliga-next-fixture/bundesliga-next-fixture.resolver';
+import { PlayersResolver } from 'src/app/common/routing/resolvers/players-resolver/players.resolver';
+import { PropertiesResolver } from 'src/app/common/routing/resolvers/properties-resolver/properties.resolver';
+import { TeamsResolver } from 'src/app/common/routing/resolvers/teams/teams.resolver';
 import { HomeComponent } from './view/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    resolve: {
+      players: PlayersResolver,
+      properties: PropertiesResolver,
+      nextMatchdayFixtures: BundesligaNextFixtureResolver,
+      teams: TeamsResolver
+    }
   }
 ];
 

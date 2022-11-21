@@ -7,6 +7,7 @@ export interface Properties {
   lineupSources: { [sourceName: string]: LineupsSourceProperty };
   teamsNavigation: TeamNavigation[];
   unlimitedTransfers: UnlimitedTransfers;
+  transfersDeadline: Date;
 }
 
 export interface UnlimitedTransfers {

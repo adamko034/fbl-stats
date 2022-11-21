@@ -1,0 +1,49 @@
+<app-card>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-md="center" fxLayoutGap="15px">
+    <div>
+      <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: gamesStarted, type: 'gs' }">
+        <h6 class="h6-card-title">Games started</h6>
+      </ng-container>
+    </div>
+
+    <div>
+      <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: games70Minutes, type: 'gs70' }">
+        <h6 class="h6-card-title">Played >= 70 minutes</h6>
+      </ng-container>
+    </div>
+  </div>
+</app-card>
+
+<ng-template #players let-players="players" let-type="type">
+  <div fxLayout="column">
+    <ng-content></ng-content>
+    <table class="comparison-table comparison-table-narrow">
+      <tr>
+        <td></td>
+        <td>Pos</td>
+        <td>$</td>
+        <td *ngIf="type === 'gs'">GS</td>
+        <td *ngIf="type === 'gs70'">G70</td>
+      </tr>
+      <tr *ngFor="let player of players">
+        <td fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="4px">
+          <app-player-name-with-availability
+            [name]="player.name"
+            [lastName]="player.name"
+            [id]="player.id"
+            [suspensionRisk]="false"
+            [available]="!player.isUnavailable"
+            [team]="player.teamShort"
+            [returning]="false"
+          ></app-player-name-with-availability>
+          <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
+        </td>
+        <td>{{ player.position | uppercase }}</td>
+        <td>{{ player.price }}M</td>
+        <td class="bold" *ngIf="type === 'gs'">{{ player.gamesStartedPercentage }}%</td>
+        <td class="bold" *ngIf="type === 'gs70'">{{ player.games70MinutesPercentage }}%</td>
+      </tr>
+    </table>
+    <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick(type)">Show all >></span>
+  </div>
+</ng-template>

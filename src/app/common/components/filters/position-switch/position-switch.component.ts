@@ -9,6 +9,8 @@ import { SwitcherItem } from '../../ui/switcher/models/switcher-item.model';
 })
 export class PositionSwitchComponent {
   @Input() value: Position;
+  @Input() showLabel = true;
+  @Input() narrow = false;
   @Output() change = new EventEmitter<Position>();
 
   private _items: SwitcherItem[] = [

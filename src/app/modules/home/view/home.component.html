@@ -1,7 +1,81 @@
 <div fxLayout="column">
-  <div fxLayout="row wrap">
-    <div class="mt-3">
-      <mat-card></mat-card>
+  <app-home-title [properties]="properties$ | async"></app-home-title>
+  <div>
+    <div fxLayout="row wrap">
+      <app-home-bundesliga
+        fxFlex="100"
+        fxFlex.gt-sm="33%"
+        [lastMatchday]="properties$ | async | field: 'lastMatchday'"
+        [nextMatchdayFixtures]="nextMatchdayFixtures$ | async"
+        [teams]="teams$ | async"
+      ></app-home-bundesliga>
+
+      <div fxLayout="row wrap" fxFlex="100" fxFlex.gt-sm="67">
+        <app-home-top-players [players]="players$ | async" fxFlex="100%" fxFlex.gt-md="50%"></app-home-top-players>
+
+        <app-home-top-players-last4
+          [players]="players$ | async"
+          fxFlex="100%"
+          fxFlex.gt-md="50%"
+        ></app-home-top-players-last4>
+
+        <app-home-popular-players-top500
+          [players]="players$ | async"
+          fxFlex="100%"
+          fxFlex.gt-md="50%"
+        ></app-home-popular-players-top500>
+
+        <app-home-popular-players-top100
+          [players]="players$ | async"
+          fxFlex="100%"
+          fxFlex.gt-md="50%"
+        ></app-home-popular-players-top100>
+      </div>
+
+      <app-home-players-watchout fxFlex="100" [players]="players$ | async"></app-home-players-watchout>
+
+      <app-home-players-goals-assists
+        fxFlex="100"
+        fxFlex.gt-sm="33"
+        [players]="players$ | async"
+      ></app-home-players-goals-assists>
+
+      <app-home-players-passes-shots-duels
+        fxFlex="100"
+        fxFlex.gt-sm="67"
+        [players]="players$ | async"
+      ></app-home-players-passes-shots-duels>
+
+      <div fxLayout="row wrap" fxFlex="100" fxFlex.gt-sm="67">
+        <app-home-top-players-home
+          fxFlex="100"
+          fxFlex.gt-sm="50"
+          [players]="players$ | async"
+        ></app-home-top-players-home>
+        <app-home-top-players-away
+          fxFlex="100"
+          fxFlex.gt-sm="50"
+          [players]="players$ | async"
+        ></app-home-top-players-away>
+      </div>
+
+      <app-home-top-players-efficiency10
+        fxFlex="100"
+        fxFlex.gt-sm="33"
+        [players]="players$ | async"
+      ></app-home-top-players-efficiency10>
+
+      <app-home-players-games-started
+        fxFlex="100"
+        fxFlex.gt-sm="50"
+        [players]="players$ | async"
+      ></app-home-players-games-started>
+
+      <app-home-players-varied-predictions
+        fxFlex="100"
+        fxFlex.gt-sm="50"
+        [players]="players$ | async"
+      ></app-home-players-varied-predictions>
     </div>
   </div>
 </div>

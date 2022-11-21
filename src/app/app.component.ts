@@ -15,6 +15,7 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { ScreenSizeService } from './services/screen-size.service';
+import { FixturesStore } from './store/fixtures/fixtures.store';
 
 @UntilDestroy()
 @Component({
@@ -42,7 +43,8 @@ export class AppComponent implements OnInit {
     private sidenavService: SidenavService,
     private teamsStore: TeamsStore,
     private router: Router,
-    private screenSizeService: ScreenSizeService
+    private screenSizeService: ScreenSizeService,
+    private fixturesStore: FixturesStore
   ) {}
 
   public ngOnInit(): void {
@@ -51,6 +53,7 @@ export class AppComponent implements OnInit {
     this.propertiesService.loadProperties();
     this.playersStore.loadAll();
     this.teamsStore.load();
+    this.fixturesStore.load();
 
     //this.sidenavOpened$ = this.sidenavService.selectOpened();
     this.screenSizeService

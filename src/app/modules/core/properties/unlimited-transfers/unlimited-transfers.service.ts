@@ -34,6 +34,17 @@ export class UnlimitedTransfersService {
     );
   }
 
+  public todayIsWithingUnlimitedTransfers(unlimitedTransfers: UnlimitedTransfersDate[]) {
+    return unlimitedTransfers.some((ut) => new Date(ut.startDate) <= new Date() && new Date() <= new Date(ut.endDate));
+  }
+
+  public nextUnlimitedTransfers(dates: UnlimitedTransfersDate[]): UnlimitedTransfersDate {
+    return new ArrayStream<UnlimitedTransfersDate>(dates)
+      .filterQuick((ut) => new Date(ut.startDate) >= new Date())
+      .orderBy('matchday', 'asc')
+      .takeFirst();
+  }
+
   private getFuture(): Observable<UnlimitedTransfersDate[]> {
     return combineLatest([
       this.propertiesStore.selectLastMatchday(),

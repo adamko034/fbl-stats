@@ -1,0 +1,9 @@
+<app-card>
+  <div fxLayout="row wrap" fxLayoutGap="35px" fxLayoutAlign="space-evenly start">
+    <app-home-bundesliga-table [teams]="teams"></app-home-bundesliga-table>
+    <app-home-bundesliga-fixtures
+      [nextMatchday]="lastMatchday + 1"
+      [nextFixtures]="nextMatchdayFixtures"
+    ></app-home-bundesliga-fixtures>
+  </div>
+</app-card>

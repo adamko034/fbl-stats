@@ -88,46 +88,9 @@ export class PlayersStatsPointsTableComponent implements AfterViewInit, OnChange
   }
 
   public onSortChange(sort: Sort): void {
-    if (!sort) {
-      return;
-    }
-
-    this.paginator.firstPage();
-
-    if (sort.active === 'totalPoints') {
-      this.dataSource.data = new ArrayStream(this.players)
-        .orderByThenBy(
-          { field: sort.active, order: sort.direction === 'asc' ? 'asc' : 'dsc' },
-          { field: 'price', order: 'dsc' }
-        )
-        .collect();
-
-      return;
-    }
-
-    if (sort.active === 'total') {
-      this.dataSource.data = new ArrayStream(this.players)
-        .convertQuick((player) => ({ player, total: this.getTotal(player) }))
-        .orderByThenBy(
-          { field: 'total', order: sort.direction === 'asc' ? 'asc' : 'dsc' },
-          { field: 'player.price', order: 'dsc' }
-        )
-        .collect()
-        .map((p) => p.player);
-
-      return;
-    }
-
-    this.dataSource.data = [...this.players].sort((first, second) => {
-      const firstValue = first.stats?.filter((s) => s.header === sort.active)[0].value || 0;
-      const secondValue = second.stats?.filter((s) => s.header === sort.active)[0].value || 0;
-
-      if (firstValue - secondValue === 0) {
-        const byPoints = second.totalPoints - first.totalPoints;
-        return byPoints === 0 ? second.price - first.price : byPoints;
-      }
-
-      return sort.direction === 'desc' ? secondValue - firstValue : firstValue - secondValue;
+    this.router.navigate([], {
+      queryParams: { sortBy: sort.active, sortOrder: sort.direction },
+      queryParamsHandling: 'merge'
     });
   }
 
@@ -155,14 +118,47 @@ export class PlayersStatsPointsTableComponent implements AfterViewInit, OnChange
     this.setColumns();
     this.setSelectColumnsDialogConfig();
 
-    const sortActive = this.statsHeaders.some((s) => s.header === this.sort.active)
-      ? this.sort.active
-      : this.defaultSort;
+    const sortActive = this.filters.sortBy ? this.filters.sortBy : this.defaultSort;
+    const sortOrder = this.filters.sortOrder ? this.filters.sortOrder : 'desc';
     this.sort.active = sortActive;
-    this.onSortChange({ active: sortActive, direction: this.sort.direction });
+    this.sort.direction = sortOrder === 'asc' ? 'asc' : 'desc';
+    this.sortData({ active: sortActive, direction: sortOrder === 'asc' ? 'asc' : 'desc' });
 
     this.paginator.firstPage();
     this.changeDetection.detectChanges();
+  }
+
+  private sortData(sort: Sort) {
+    this.paginator.firstPage();
+    if (sort.active === 'totalPoints') {
+      this.dataSource.data = new ArrayStream(this.players)
+        .orderByThenBy(
+          { field: sort.active, order: sort.direction === 'asc' ? 'asc' : 'dsc' },
+          { field: 'price', order: 'dsc' }
+        )
+        .collect();
+      return;
+    }
+    if (sort.active === 'total') {
+      this.dataSource.data = new ArrayStream(this.players)
+        .convertQuick((player) => ({ player, total: this.getTotal(player) }))
+        .orderByThenBy(
+          { field: 'total', order: sort.direction === 'asc' ? 'asc' : 'dsc' },
+          { field: 'player.price', order: 'dsc' }
+        )
+        .collect()
+        .map((p) => p.player);
+      return;
+    }
+    this.dataSource.data = [...this.players].sort((first, second) => {
+      const firstValue = first.stats?.filter((s) => s.header === sort.active)[0].value || 0;
+      const secondValue = second.stats?.filter((s) => s.header === sort.active)[0].value || 0;
+      if (firstValue - secondValue === 0) {
+        const byPoints = second.totalPoints - first.totalPoints;
+        return byPoints === 0 ? second.price - first.price : byPoints;
+      }
+      return sort.direction === 'desc' ? secondValue - firstValue : firstValue - secondValue;
+    });
   }
 
   private setColumns() {

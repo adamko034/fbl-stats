@@ -1,0 +1,43 @@
+<app-card>
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+    <div class="tile" fxLayout="column" fxLayoutAlign="start center">
+      <mat-icon>sync</mat-icon>
+      <h4>{{ properties.lastUpdated | timeInOrAgo }}</h4>
+      <span class="sub">Last update</span>
+    </div>
+
+    <div class="tile" fxLayout="column" fxLayoutAlign="start center">
+      <mat-icon class="green">event_available</mat-icon>
+      <h4>{{ properties.lastMatchday }}</h4>
+      <span class="sub">Matchdays played</span>
+    </div>
+
+    <div class="tile" fxLayout="column" fxLayoutAlign="start center">
+      <mat-icon class="blue">calendar_month</mat-icon>
+      <h4>{{ 34 - properties.lastMatchday }}</h4>
+      <span class="sub">Matchdays to go</span>
+    </div>
+
+    <div *ngIf="properties.transfersDeadline" class="tile" fxLayout="column" fxLayoutAlign="start center">
+      <mat-icon class="red">event_busy</mat-icon>
+      <h4>{{ properties.transfersDeadline | timeInOrAgo }}</h4>
+      <span class="sub">Transfers deadline</span>
+    </div>
+
+    <div class="tile" fxLayout="column" fxLayoutAlign="start center">
+      <mat-icon>transfer_within_a_station</mat-icon>
+      <h4 class="green" *ngIf="nowIsUnlimitedTransfers">UNLIMITED!</h4>
+      <h4 *ngIf="!nowIsUnlimitedTransfers">5</h4>
+      <span class="sub">Allowed transfers</span>
+    </div>
+
+    <div class="tile" fxLayout="column" fxLayoutAlign="start center">
+      <mat-icon>all_inclusive</mat-icon>
+      <h4 *ngIf="nowIsUnlimitedTransfers" class="green">NOW!</h4>
+      <h4 *ngIf="!nowIsUnlimitedTransfers && nextUnlimitedTransfers">
+        In {{ nextUnlimitedTransfers.matchday - properties.lastMatchday - 1 }} MDs
+      </h4>
+      <span class="sub">Next unlimited transfers</span>
+    </div>
+  </div>
+</app-card>

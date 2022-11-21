@@ -12,6 +12,8 @@ export class PlayerNameWithAvailabilityComponent implements OnInit {
   @Input() available: boolean;
   @Input() suspensionRisk: boolean;
   @Input() returning: boolean;
+  @Input() team: string = '';
+
   constructor() {}
 
   ngOnInit(): void {}

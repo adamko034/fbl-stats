@@ -7,6 +7,12 @@ export class Navigation {
       text: 'Fantasy',
       children: [
         {
+          order: 0,
+          text: 'Home',
+          path: 'home',
+          icon: 'home'
+        },
+        {
           order: 1,
           text: 'Players',
           path: 'fantasy/players',

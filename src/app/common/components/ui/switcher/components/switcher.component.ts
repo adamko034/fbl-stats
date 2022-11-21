@@ -15,6 +15,7 @@ export class SwitcherComponent {
   @Input() value: string | number;
   @Input() items: SwitcherItem[];
   @Input() additionalItem?: SwitcherItem;
+  @Input() narrow = false;
   @Output() switchChange = new EventEmitter<string | number>();
 
   public get allItems(): SwitcherItem[] {

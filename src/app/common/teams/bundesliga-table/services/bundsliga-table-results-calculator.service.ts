@@ -9,10 +9,14 @@ import { BundesligaTableTeamGame } from '../models/state/bundesliga-table-team-g
 
 @Injectable()
 export class BundesligaTableResultsCalculator {
-  public calculate(teams: BundesligaTableTeam[], filters: BundesligaTableFilters): BundesligaTableTeamResult[] {
+  public calculate(
+    teams: BundesligaTableTeam[],
+    filters: BundesligaTableFilters,
+    lastMatchday: number
+  ): BundesligaTableTeamResult[] {
     const results: BundesligaTableTeamResult[] = [];
     teams.forEach((team) => {
-      const result = this.calculateSingle(team, filters);
+      const result = this.calculateSingle(team, filters, lastMatchday);
       results.push(result);
     });
 
@@ -21,8 +25,12 @@ export class BundesligaTableResultsCalculator {
       .collect();
   }
 
-  private calculateSingle(team: BundesligaTableTeam, filters: BundesligaTableFilters): BundesligaTableTeamResult {
-    const filteredGames: BundesligaTableTeamGame[] = this.filterGames(team.games, filters);
+  private calculateSingle(
+    team: BundesligaTableTeam,
+    filters: BundesligaTableFilters,
+    lastMatchday: number
+  ): BundesligaTableTeamResult {
+    const filteredGames: BundesligaTableTeamGame[] = this.filterGames(team.games, filters, lastMatchday);
 
     const gamesPlayed = filteredGames.length;
     const cleanSheets = filteredGames.filter((g) => g.goalsConceded === 0).length;
@@ -55,7 +63,11 @@ export class BundesligaTableResultsCalculator {
     };
   }
 
-  private filterGames(games: BundesligaTableTeamGame[], filters: BundesligaTableFilters): BundesligaTableTeamGame[] {
+  private filterGames(
+    games: BundesligaTableTeamGame[],
+    filters: BundesligaTableFilters,
+    lastMatchday: number
+  ): BundesligaTableTeamGame[] {
     let stream = new ArrayStream(games);
 
     if (filters.venue != Venue.ALL) {
@@ -63,9 +75,7 @@ export class BundesligaTableResultsCalculator {
         filters.venue === Venue.HOME ? stream.filterQuick((g) => g.isHome) : stream.filterQuick((g) => !g.isHome);
     }
 
-    return stream
-      .filterQuick((g) => g.matchday >= filters.matchdays.from && g.matchday <= filters.matchdays.to)
-      .collect();
+    return stream.orderByDate('matchday', 'desc').take(filters.matchdays).collect();
   }
 
   private extractForm(filteredGames: BundesligaTableTeamGame[]): string {

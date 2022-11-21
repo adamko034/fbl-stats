@@ -1,0 +1,64 @@
+<app-card>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-md="center" fxLayoutGap="15px">
+    <div>
+      <ng-container
+        [ngTemplateOutlet]="players"
+        [ngTemplateOutletContext]="{ players: unavailables, type: 'unavailable' }"
+      >
+        <h6 class="h6-card-title"><app-player-icon-unavailable></app-player-icon-unavailable>Unavailable</h6>
+      </ng-container>
+    </div>
+
+    <div>
+      <ng-container
+        [ngTemplateOutlet]="players"
+        [ngTemplateOutletContext]="{ players: suspensionRisk, type: 'suspensionrisk' }"
+      >
+        <h6 class="h6-card-title">
+          <app-player-icon-suspension-risk></app-player-icon-suspension-risk>Suspension risk
+        </h6>
+      </ng-container>
+    </div>
+
+    <div>
+      <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: returning, type: 'returning' }">
+        <h6 class="h6-card-title"><app-player-icon-returning></app-player-icon-returning>Returning</h6>
+      </ng-container>
+    </div>
+  </div>
+</app-card>
+
+<ng-template #players let-players="players" let-type="type">
+  <div fxLayout="column">
+    <ng-content></ng-content>
+    <table class="comparison-table comparison-table-narrow">
+      <tr>
+        <td></td>
+        <td>Pos</td>
+        <td>$</td>
+        <td>TP</td>
+        <td>Last 4</td>
+        <td>Top 500 %</td>
+      </tr>
+      <tr *ngFor="let player of players">
+        <td>
+          <app-player-name-with-availability
+            [name]="player.lastName"
+            [lastName]="player.lastName"
+            [id]="player.id"
+            [suspensionRisk]="false"
+            [available]="true"
+            [team]="player.team"
+            [returning]="false"
+          ></app-player-name-with-availability>
+        </td>
+        <td>{{ player.position | uppercase }}</td>
+        <td>{{ player.price }}M</td>
+        <td>{{ player.totalPoints }}</td>
+        <td>{{ player.last4 }}</td>
+        <td>{{ player.top500Popularity }}%</td>
+      </tr>
+    </table>
+    <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick(type)">Show all >></span>
+  </div>
+</ng-template>

@@ -13,6 +13,7 @@ import { NumeralsPipe } from './numerals.pipe';
 import { ReverseBooleanPipe } from './reverse-boolean.pipe';
 import { SumByPipe } from './sum-by.pipe';
 import { TakePipe } from './take.pipe';
+import { TimeInOrAgoPipe } from './time-in-or-ago.pipe';
 import { WherePipe } from './where.pipe';
 import { YesNoPipe } from './yes-no.pipe';
 
@@ -32,7 +33,8 @@ import { YesNoPipe } from './yes-no.pipe';
     SumByPipe,
     TakePipe,
     WherePipe,
-    YesNoPipe
+    YesNoPipe,
+    TimeInOrAgoPipe
   ],
   imports: [CommonModule],
   exports: [
@@ -50,7 +52,8 @@ import { YesNoPipe } from './yes-no.pipe';
     SumByPipe,
     TakePipe,
     WherePipe,
-    YesNoPipe
+    YesNoPipe,
+    TimeInOrAgoPipe
   ]
 })
 export class PipesModule {}

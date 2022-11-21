@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FromTo } from 'src/app/shared/models/from-to.model';
 import { Venue } from 'src/app/shared/models/venue.enum';
 import { BundesligaTableFilters } from '../../models/internal/bundesliga-table-filters';
 import { BundesligaTableConfig } from '../../models/state/bundesliga-table-config';
@@ -15,7 +14,7 @@ export class BundesligaTableFiltersComponent implements OnInit {
   @Input() lastMatchday: number;
 
   @Output() venueChange = new EventEmitter<Venue>();
-  @Output() matchdaysChange = new EventEmitter<FromTo>();
+  @Output() matchdaysChange = new EventEmitter<number>();
 
   constructor() {}
 
@@ -25,7 +24,7 @@ export class BundesligaTableFiltersComponent implements OnInit {
     this.venueChange.emit(value);
   }
 
-  public onMatchdaysChange(matchdays: FromTo): void {
+  public onMatchdaysChange(matchdays: number): void {
     this.matchdaysChange.emit(matchdays);
   }
 }

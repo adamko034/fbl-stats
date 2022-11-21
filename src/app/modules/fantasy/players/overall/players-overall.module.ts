@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MyTeamGuardsModule } from 'src/app/common/my-team/routing/guards/my-team-guards.module';
 import { PlayersTableModule } from 'src/app/common/players/players-table/players-table.module';
-import { PlayersGuardsModule } from 'src/app/common/players/routing/guards/players-guards.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
 import { PlayersResolverModule } from 'src/app/common/routing/resolvers/players-resolver/players-resolver.module';
 import { PropertiesResolverModule } from 'src/app/common/routing/resolvers/properties-resolver/properties-resolver.module';
@@ -21,7 +20,6 @@ import { PlayersOverallContentComponent } from './views/players-overall-content.
     TeamsResolverModule,
     PropertiesResolverModule,
     PlayersServicesModule,
-    PlayersGuardsModule,
     MyTeamGuardsModule
   ],
   providers: [PlayersDataService]

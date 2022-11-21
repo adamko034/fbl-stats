@@ -7,12 +7,7 @@
       (switchChange)="onCalculationChange($event)"
     ></app-switcher>
 
-    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <!-- <app-include-future-matchdays-dropdown
-        [value]="filters.matchdays"
-        (change)="onMatchdaysChange($event)"
-      ></app-include-future-matchdays-dropdown> -->
-
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px" class="pb-8">
       <app-select-future-matchdays-panel
         [value]="filters.matchdays"
         [lastMatchday]="nextMatchday - 1"

@@ -21,7 +21,7 @@
         (popularityChange)="onTop500PopularityChange($event)"
       ></app-max-popularity-slider>
       <app-max-price-slider
-        [maxPrice="maxPrice"
+        [maxPrice]="maxPrice"
         [value]="filters.price"
         (priceChange)="onPriceChange($event)"
       ></app-max-price-slider>

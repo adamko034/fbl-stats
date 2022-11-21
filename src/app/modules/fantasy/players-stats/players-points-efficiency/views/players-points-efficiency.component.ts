@@ -120,8 +120,8 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
   }
 
   public onPositionChange(value: Position): void {
+    alert('hojo)');
     this.router.navigate([], {
-      relativeTo: this.route,
       queryParams: { position: value },
       queryParamsHandling: 'merge'
     });

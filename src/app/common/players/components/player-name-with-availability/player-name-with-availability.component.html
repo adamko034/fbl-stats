@@ -3,4 +3,5 @@
   <app-player-icon-unavailable *ngIf="!available"></app-player-icon-unavailable>
   <app-player-icon-returning *ngIf="returning"></app-player-icon-returning>
   <app-player-icon-suspension-risk *ngIf="suspensionRisk"></app-player-icon-suspension-risk>
+  <app-team-logo *ngIf="team" [team]="team" [height]="15"></app-team-logo>
 </div>

@@ -36,13 +36,7 @@
           </div>
 
           <span *ngIf="team.previousRank != 0">
-            <mat-icon appScale="0.8" class="rank-diff green" *ngIf="team.rank < team.previousRank"
-              >keyboard_arrow_up</mat-icon
-            >
-            <mat-icon appScale="0.8" class="rank-diff red" *ngIf="team.rank > team.previousRank"
-              >keyboard_arrow_down</mat-icon
-            >
-            <span class="rank-diff-no-change" *ngIf="team.rank == team.previousRank">--</span>
+            <app-compare-arrow [firstValue]="team.rank" [secondValue]="team.previousRank"></app-compare-arrow>
           </span>
         </div>
       </td>

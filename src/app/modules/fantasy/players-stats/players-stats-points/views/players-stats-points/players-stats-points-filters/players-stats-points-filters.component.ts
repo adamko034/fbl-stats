@@ -48,16 +48,17 @@ export class PlayersStatsPointsFiltersComponent implements OnInit {
   public ngOnInit(): void {}
 
   public onTypeChange(newType: string): void {
+    const sortBy = newType === 'bundesliga' ? 'G' : 'total';
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { type: newType, calc: this.filters.calculations }
+      queryParams: { type: newType, calc: this.filters.calculations, sortBy, sortOrder: 'desc' }
     });
   }
 
   public onSubTypeChange(newType: string): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { sub: newType, cols: null },
+      queryParams: { sub: newType, cols: null, sortBy: 'total', sortOrder: 'desc' },
       queryParamsHandling: 'merge'
     });
   }

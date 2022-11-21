@@ -1,0 +1,6 @@
+<app-players-table-card
+  [config]="cardConfig"
+  [players]="playersTableCardPlayers$ | async"
+  (positionChange)="onPositionChange($event)"
+  (showMoreClick)="onShowMoreClick()"
+></app-players-table-card>

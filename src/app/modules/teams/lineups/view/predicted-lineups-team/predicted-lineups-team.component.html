@@ -89,7 +89,9 @@
               <td>TP</td>
               <td>KK</td>
               <td>BL</td>
+              <td>BL[EN]</td>
               <td>LI</td>
+              <td>BI</td>
             </tr>
             <ng-template
               [ngTemplateOutlet]="predictions"
@@ -128,6 +130,8 @@
         <span>KK - kicker.de</span>
         <span>BL - bundesliga.de</span>
         <span>LI - ligainsider.de</span>
+        <span>BL[EN] - bundesliga.com</span>
+        <span>BI - bulinews.com</span>
       </div>
     </div>
   </app-white-block>
@@ -152,7 +156,17 @@
     </td>
     <td>
       <app-player-icon-lineup-prediction
+        [prediction]="getPrediction(player, 'bundesliga_en')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+    <td>
+      <app-player-icon-lineup-prediction
         [prediction]="getPrediction(player, 'ligainsider')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+    <td>
+      <app-player-icon-lineup-prediction
+        [prediction]="getPrediction(player, 'bulinews')"
       ></app-player-icon-lineup-prediction>
     </td>
   </tr>
