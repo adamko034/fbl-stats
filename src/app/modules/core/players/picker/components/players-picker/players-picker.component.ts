@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -24,7 +24,7 @@ export class PlayersPickerComponent implements OnInit {
   @Output() playerSelected = new EventEmitter<PlayerPicker>();
 
   public foundPlayers$: Observable<PlayerPicker[]>;
-  public playerSearch = new FormControl();
+  public playerSearch = new UntypedFormControl();
   public opened = false;
 
   @ViewChild(MatInput) searchInput;

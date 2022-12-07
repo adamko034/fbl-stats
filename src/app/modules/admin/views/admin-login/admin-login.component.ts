@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable } from 'rxjs';
@@ -14,9 +14,9 @@ import { AuthenticationService } from 'src/app/modules/core/services/authenticat
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminLoginComponent {
-  public formGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required])
+  public formGroup = new UntypedFormGroup({
+    email: new UntypedFormControl(null, [Validators.required, Validators.email]),
+    password: new UntypedFormControl(null, [Validators.required])
   });
 
   public loginFailed$: Observable<boolean>;

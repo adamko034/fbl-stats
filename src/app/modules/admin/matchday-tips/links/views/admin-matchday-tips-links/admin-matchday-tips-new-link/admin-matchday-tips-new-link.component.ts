@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { LinkPreviewService } from 'src/app/modules/admin/services/link-preview.service';
@@ -14,10 +14,10 @@ import { MatchdayTipsLink } from 'src/app/store/matchday-tips/links/models/match
 })
 export class AdminMatchdayTipsNewLinkComponent implements OnInit {
   public linkLoading = false;
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private dialogRef: MatDialogRef<AdminMatchdayTipsNewLinkComponent>,
     private linkPreviewService: LinkPreviewService,
     private changeDetection: ChangeDetectorRef

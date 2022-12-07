@@ -118,7 +118,6 @@
       }
     }
   },
-  "defaultProject": "fbl",
   "schematics": {
     "@schematics/angular": {
       "component": {
