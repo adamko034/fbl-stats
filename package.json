@@ -39,6 +39,7 @@
     "firebase": "^7.13.1",
     "hover.css": "^2.3.2",
     "moment": "^2.29.1",
+    "ng2-adsense": "9.1.0",
     "ngx-device-detector": "^2.0.0",
     "ngx-moment": "^5.0.0",
     "ngx-pipes": "^2.7.5",

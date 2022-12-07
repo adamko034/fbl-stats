@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
-import { SidenavService } from 'src/app/services/sidenav.service';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { ViewTabNavigationLink } from '../view-tabs-navigation/model/view-tab-navigation-link.model';
 
@@ -21,7 +20,6 @@ export class ViewComponent implements OnInit {
 
   constructor(
     private screenSizeService: ScreenSizeService,
-    private sidenavService: SidenavService,
     private activeRoute: Router,
     private propertiesStore: PropertiesStore
   ) {}
@@ -29,10 +27,6 @@ export class ViewComponent implements OnInit {
   public ngOnInit(): void {
     this.isMobile$ = this.screenSizeService.isMobile$();
     this.lastUpdated$ = this.propertiesStore.selectLastUpdated();
-  }
-
-  public toggleSidenav(): void {
-    this.sidenavService.toggleOnMobile();
   }
 
   public activePageLabel(): string {

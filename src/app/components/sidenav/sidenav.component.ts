@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Navigation } from 'src/app/resources/navigation';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Navigation2 } from 'src/app/resources/navigation2';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
-import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,24 +9,27 @@ import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
   styleUrls: ['./sidenav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidenavComponent implements OnInit {
-  public expanded$: Observable<boolean>;
+export class SidenavComponent {
+  public openedNavs$ = new BehaviorSubject<string[]>([]);
 
   public get links(): NavigationLink[] {
-    return Navigation.Links;
+    return Navigation2.Links;
   }
 
   public get height() {
     return `${window.innerHeight}px`;
   }
 
-  constructor(private guiConfigStore: GuiConfigStore) {}
+  public toggleNav(navKey: string) {
+    const current = this.openedNavs$.getValue();
+    const index = current.indexOf(navKey);
 
-  public ngOnInit(): void {
-    this.expanded$ = this.guiConfigStore.selectSideNavExpanded();
-  }
+    if (index > -1) {
+      current.splice(index, 1);
+    } else {
+      current.push(navKey);
+    }
 
-  public toggleExpand(): void {
-    this.guiConfigStore.toggleSideNavExpanded();
+    this.openedNavs$.next([...current]);
   }
 }

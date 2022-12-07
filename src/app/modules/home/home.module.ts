@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgPipesModule } from 'ngx-pipes';
 import { CardModule } from 'src/app/common/components/ui/card/card.module';
 import { CompareArrowModule } from 'src/app/common/components/ui/compare-arrow/compare-arrow.module';
+import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-white-block/content-white-block.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { ScaleModule } from 'src/app/common/directives/scale/scale.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
@@ -83,7 +84,8 @@ import { HomeComponent } from './view/home.component';
     TeamLogoModule,
     ScaleModule,
     PlayerIconPredictionModule,
-    PlayerIconLineupPredictionModule
+    PlayerIconLineupPredictionModule,
+    ContentWhiteBlockModule
   ]
 })
 export class HomeModule {}

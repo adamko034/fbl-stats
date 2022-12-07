@@ -1,0 +1,13 @@
+@import '/src/variables.scss';
+
+.header {
+  min-height: 54px;
+  max-height: 54px;
+  background-color: #fff;
+  //box-shadow: 0 10px 30px #2f3c4a14;
+  padding: 0 12px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}

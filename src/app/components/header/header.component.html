@@ -1,0 +1,13 @@
+<div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-icon-button aria-label="Toggle menu" (click)="onToggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div>
+    <app-players-picker
+      type="custom"
+      [customType]="{ icon: 'search', text: 'Search' }"
+      [closeAfterSelect]="true"
+      (playerSelected)="onPlayerSearched($event)"
+    ></app-players-picker>
+  </div>
+</div>

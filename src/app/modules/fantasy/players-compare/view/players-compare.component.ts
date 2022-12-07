@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
-import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 import { PlayerCompareCard } from '../models/player-compare-card.model';
 import { PlayersCompareFixturesFilters } from '../models/players-compare-fixtures-filters.model';
 import { PlayersCompareState } from '../models/players-compare-state.model';
@@ -36,10 +35,6 @@ export class PlayersCompareComponent implements OnInit {
     count: 6
   };
   public maxPrice: number = 0;
-
-  public links: ViewTabNavigationLink[] = [
-    { label: 'Compare players', labelMobile: 'Compare players', order: 1, routerLink: '' }
-  ];
   public bestGksLink: string;
 
   constructor(

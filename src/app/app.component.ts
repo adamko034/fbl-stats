@@ -9,13 +9,14 @@ import {
   RouterEvent
 } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { SidenavConfig, SidenavService } from 'src/app/services/sidenav.service';
+import { Observable } from 'rxjs';
 import { PlayersStore } from 'src/app/store/players/players.store';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { ScreenSizeService } from './services/screen-size.service';
 import { FixturesStore } from './store/fixtures/fixtures.store';
+import { GuiConfigStore } from './store/gui-config/gui-config.store';
 
 @UntilDestroy()
 @Component({
@@ -30,21 +31,22 @@ import { FixturesStore } from './store/fixtures/fixtures.store';
 })
 export class AppComponent implements OnInit {
   private isMobile: boolean;
-  private sidenavConfig: SidenavConfig;
   public loading = true;
 
   public get sideNavMode(): string {
     return this.isMobile ? 'over' : 'side';
   }
 
+  public sidenavOpened$: Observable<boolean>;
+
   constructor(
     private propertiesService: PropertiesStore,
     private playersStore: PlayersStore,
-    private sidenavService: SidenavService,
     private teamsStore: TeamsStore,
     private router: Router,
     private screenSizeService: ScreenSizeService,
-    private fixturesStore: FixturesStore
+    private fixturesStore: FixturesStore,
+    private guiConfigStore: GuiConfigStore
   ) {}
 
   public ngOnInit(): void {
@@ -55,16 +57,12 @@ export class AppComponent implements OnInit {
     this.teamsStore.load();
     this.fixturesStore.load();
 
-    //this.sidenavOpened$ = this.sidenavService.selectOpened();
+    this.sidenavOpened$ = this.guiConfigStore.selectSidenavOpened();
+
     this.screenSizeService
       .isMobile$()
       .pipe(untilDestroyed(this))
       .subscribe((isMobile) => (this.isMobile = isMobile));
-
-    this.sidenavService
-      .selectSidenavConfig()
-      .pipe(untilDestroyed(this))
-      .subscribe((config) => (this.sidenavConfig = config));
 
     this.router.events.pipe(untilDestroyed(this)).subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
@@ -73,19 +71,11 @@ export class AppComponent implements OnInit {
 
       if (event instanceof NavigationEnd || event instanceof NavigationError || event instanceof NavigationCancel) {
         this.loading = false;
-
-        if (this.sidenavConfig?.openedOnMobile) {
-          this.sidenavService.toggleOnMobile();
-        }
       }
     });
   }
 
-  public isSideNavOpened(): boolean {
-    return !this.isMobile || (this.isMobile && this.sidenavConfig?.openedOnMobile);
-  }
-
   public toggleSideNav(): void {
-    this.sidenavService.toggleOnMobile();
+    this.guiConfigStore.toggleSideNav();
   }
 }

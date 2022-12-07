@@ -5,7 +5,6 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { PlayersTableState } from 'src/app/common/players/players-table/models/players-table-state';
 import { PlayersToPlayersTableConverter } from 'src/app/common/players/players-table/services/players-to-player-table-converter';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { FixturesStore } from 'src/app/store/fixtures/fixtures.store';
 import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
@@ -20,11 +19,6 @@ import { MyTeamTilesDisplaySettingsService } from '../services/my-team-tiles-dis
   templateUrl: './my-team-content.component.html'
 })
 export class MyTeamContentComponent implements OnInit {
-  private _links: ViewTabNavigationLink[] = [{ labelMobile: 'My team', label: 'My team', order: 1, routerLink: '' }];
-  public get links(): ViewTabNavigationLink[] {
-    return this._links;
-  }
-
   public state$: Observable<MyTeamState>;
 
   constructor(

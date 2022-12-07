@@ -23,6 +23,20 @@
     <mat-icon>add</mat-icon>Add
   </button>
   <button
+    mat-button
+    *ngIf="type === 'custom'"
+    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+    (menuClosed)="opened = trigger.menuOpen"
+    [matMenuTriggerFor]="searchMenuOurPick"
+    #trigger="matMenuTrigger"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="3px"
+  >
+    <mat-icon>{{ customType.icon }}</mat-icon>
+    <span>{{ customType.text }}</span>
+  </button>
+  <button
     *ngIf="type === 'icon'"
     class="main-background"
     matTooltip="Add player"

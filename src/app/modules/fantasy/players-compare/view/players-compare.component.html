@@ -1,93 +1,91 @@
-<app-view [links]="links">
-  <div fxLayout="column" *ngIf="showPlayers$ | async">
-    <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
+<div fxLayout="column" *ngIf="showPlayers$ | async">
+  <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
 
-    <div fxLayout="column" fxLayoutGap="15px">
-      <app-white-block padding="10px 10px 0 10px">
-        <div fxLayout="column" fxLayoutGap="10px">
-          <app-players-compare-filters></app-players-compare-filters>
+  <div fxLayout="column" fxLayoutGap="15px">
+    <app-white-block padding="10px 10px 0 10px">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <app-players-compare-filters></app-players-compare-filters>
 
-          <div fxLayout="column" fxLayoutGap="20px">
-            <app-players-compare-fixtures
-              [players]="state$ | async | field: 'players'"
-              [teams]="state$ | async | field: 'teams'"
-              [lastMatchday]="state$ | async | field: 'lastMatchday'"
-              [includeMatchdays]="filters$ | async | field: 'includeMatchdays'"
-            ></app-players-compare-fixtures>
-
-            <app-players-compare-games
-              [players]="state$ | async | field: 'players'"
-              [teams]="state$ | async | field: 'teams'"
-              [lastMatchday]="state$ | async | field: 'lastMatchday'"
-              [filters]="filters$ | async"
-            >
-            </app-players-compare-games>
-          </div>
-        </div>
-      </app-white-block>
-
-      <app-white-block>
-        <div>
-          <app-players-compare-comparison-general
+        <div fxLayout="column" fxLayoutGap="20px">
+          <app-players-compare-fixtures
             [players]="state$ | async | field: 'players'"
             [teams]="state$ | async | field: 'teams'"
             [lastMatchday]="state$ | async | field: 'lastMatchday'"
-          ></app-players-compare-comparison-general>
+            [includeMatchdays]="filters$ | async | field: 'includeMatchdays'"
+          ></app-players-compare-fixtures>
+
+          <app-players-compare-games
+            [players]="state$ | async | field: 'players'"
+            [teams]="state$ | async | field: 'teams'"
+            [lastMatchday]="state$ | async | field: 'lastMatchday'"
+            [filters]="filters$ | async"
+          >
+          </app-players-compare-games>
         </div>
-      </app-white-block>
+      </div>
+    </app-white-block>
+
+    <app-white-block>
+      <div>
+        <app-players-compare-comparison-general
+          [players]="state$ | async | field: 'players'"
+          [teams]="state$ | async | field: 'teams'"
+          [lastMatchday]="state$ | async | field: 'lastMatchday'"
+        ></app-players-compare-comparison-general>
+      </div>
+    </app-white-block>
+  </div>
+</div>
+
+<div class="no-players-selected" fxLayout="column" fxLayoutGap="30px" *ngIf="showPlayers$ | async | reverseBoolean">
+  <app-white-block>
+    <div fxLayoutAlign="center center">
+      <span class="text-span">Add players to compare</span>
+      <app-players-picker
+        [type]="'button'"
+        [filters]="{ excludedIds: state$ | async | field: 'players' | pluck: 'id' }"
+        [closeAfterSelect]="true"
+        (playerSelected)="onPlayerSelected($event)"
+      ></app-players-picker>
     </div>
-  </div>
+  </app-white-block>
 
-  <div class="no-players-selected" fxLayout="column" fxLayoutGap="30px" *ngIf="showPlayers$ | async | reverseBoolean">
-    <app-white-block>
+  <app-white-block>
+    <div fxLayoutAlign="center center">
+      <span class="text-span">Check the comparison for popular Goalkeepers:</span>
+      <a [routerLink]="['bestgks']">here</a>
+    </div>
+  </app-white-block>
+
+  <app-white-block>
+    <div fxLayout="column" fxLayoutGap="10px">
       <div fxLayoutAlign="center center">
-        <span class="text-span">Add players to compare</span>
-        <app-players-picker
-          [type]="'button'"
-          [filters]="{ excludedIds: state$ | async | field: 'players' | pluck: 'id' }"
-          [closeAfterSelect]="true"
-          (playerSelected)="onPlayerSelected($event)"
-        ></app-players-picker>
+        <span class="text-span">Or generate comparison of top players</span>
       </div>
-    </app-white-block>
+      <div
+        class="generate-filters-container"
+        fxLayout="row wrap"
+        fxLayoutAlign="space-evenly flex-end"
+        fxLayoutGap="20px"
+      >
+        <app-position-switch [value]="generateOptions.position" (change)="onPositionChange($event)">
+        </app-position-switch>
 
-    <app-white-block>
-      <div fxLayoutAlign="center center">
-        <span class="text-span">Check the comparison for popular Goalkeepers:</span>
-        <a [routerLink]="['bestgks']">here</a>
+        <app-form-field label="Count">
+          <mat-form-field class="input-number mat-form-field-no-padding">
+            <input matInput type="number" min="1" [(ngModel)]="generateOptions.count" />
+          </mat-form-field>
+        </app-form-field>
+
+        <app-max-price-slider
+          class="slider-price"
+          [maxPrice]="maxPrice"
+          [value]="generateOptions.maxPrice"
+          (priceChange)="onMaxPriceChange($event)"
+        ></app-max-price-slider>
+
+        <button class="main-background" mat-button (click)="generateComparison()">Generate</button>
       </div>
-    </app-white-block>
-
-    <app-white-block>
-      <div fxLayout="column" fxLayoutGap="10px">
-        <div fxLayoutAlign="center center">
-          <span class="text-span">Or generate comparison of top players</span>
-        </div>
-        <div
-          class="generate-filters-container"
-          fxLayout="row wrap"
-          fxLayoutAlign="space-evenly flex-end"
-          fxLayoutGap="20px"
-        >
-          <app-position-switch [value]="generateOptions.position" (change)="onPositionChange($event)">
-          </app-position-switch>
-
-          <app-form-field label="Count">
-            <mat-form-field class="input-number mat-form-field-no-padding">
-              <input matInput type="number" min="1" [(ngModel)]="generateOptions.count" />
-            </mat-form-field>
-          </app-form-field>
-
-          <app-max-price-slider
-            class="slider-price"
-            [maxPrice]="maxPrice"
-            [value]="generateOptions.maxPrice"
-            (priceChange)="onMaxPriceChange($event)"
-          ></app-max-price-slider>
-
-          <button class="main-background" mat-button (click)="generateComparison()">Generate</button>
-        </div>
-      </div>
-    </app-white-block>
-  </div>
-</app-view>
+    </div>
+  </app-white-block>
+</div>

@@ -6,6 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { PlayerPicker } from '../../models/player-picker.model';
+import { PlayersPickerCustomType } from '../../models/players-picker-custom-type.model';
 import { PlayersPickerFilters } from '../../models/players-picker-fitlers.model';
 import { PlayerPickerService } from '../../services/player-picker.service';
 
@@ -18,7 +19,8 @@ import { PlayerPickerService } from '../../services/player-picker.service';
 export class PlayersPickerComponent implements OnInit {
   @Input() filters: PlayersPickerFilters;
   @Input() closeAfterSelect: boolean = false;
-  @Input() type: 'button' | 'icon' | 'normal' = 'button';
+  @Input() customType?: PlayersPickerCustomType;
+  @Input() type: 'button' | 'icon' | 'normal' | 'custom' = 'button';
   @Output() playerSelected = new EventEmitter<PlayerPicker>();
 
   public foundPlayers$: Observable<PlayerPicker[]>;

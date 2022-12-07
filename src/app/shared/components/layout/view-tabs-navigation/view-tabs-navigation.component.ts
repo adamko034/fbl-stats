@@ -20,7 +20,7 @@ export class ViewTabsNavigationComponent implements AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.guiStore
-      .selectSideNavExpanded()
+      .selectSidenavOpened()
       .pipe(untilDestroyed(this))
       .subscribe((_) => {
         setTimeout(() => {

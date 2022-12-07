@@ -13,11 +13,11 @@ export class PlayerPickerService {
 
   public search(pickerFilters: PlayersPickerFilters, term: string): Observable<PlayerPicker[]> {
     let filtersBuilder = PlayersFiltersBuilder.instance();
-    if (pickerFilters.position) {
+    if (pickerFilters && pickerFilters.position) {
       filtersBuilder.withPosition(pickerFilters.position);
     }
 
-    if (pickerFilters.excludedIds) {
+    if (pickerFilters && pickerFilters.excludedIds) {
       filtersBuilder.withExcludedIds(pickerFilters.excludedIds);
     }
 

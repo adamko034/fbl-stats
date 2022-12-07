@@ -15,15 +15,15 @@ export class GuiConfigStore {
     this.send();
   }
 
-  public selectSideNavExpanded(): Observable<boolean> {
+  public selectSidenavOpened(): Observable<boolean> {
     return this.config$.pipe(
-      map((x) => x.sidenavExpanded),
+      map((x) => x.sidenavShow),
       distinctUntilChanged()
     );
   }
 
-  public toggleSideNavExpanded(): void {
-    this.config.sidenavExpanded = !this.config.sidenavExpanded;
+  public toggleSideNav(): void {
+    this.config.sidenavShow = !this.config.sidenavShow;
     this.send();
   }
 
@@ -98,6 +98,6 @@ export class GuiConfigStore {
   }
 
   private defaultConfig(): GuiConfig {
-    return { sidenavExpanded: true };
+    return { sidenavShow: true };
   }
 }

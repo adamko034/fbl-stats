@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tabs-navigation/model/view-tab-navigation-link.model';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-useful-links',
@@ -7,16 +6,4 @@ import { ViewTabNavigationLink } from 'src/app/shared/components/layout/view-tab
   styleUrls: ['./useful-links.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsefulLinksComponent implements OnInit {
-  private _links: ViewTabNavigationLink[] = [
-    { order: 1, label: 'Useful links', labelMobile: 'Useful links', routerLink: '' }
-  ];
-
-  public get links(): ViewTabNavigationLink[] {
-    return this._links;
-  }
-
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class UsefulLinksComponent {}

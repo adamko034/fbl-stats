@@ -2,19 +2,18 @@
 <div class="app-content">
   <mat-sidenav-container
     class="side-nav-container animate__animated animate__fadeIn"
-    [ngStyle.lt-sm]="{ position: isSideNavOpened() ? 'fixed' : 'relative' }"
+    [ngStyle.lt-sm]="{ position: (sidenavOpened$ | async) ? 'fixed' : 'relative' }"
     autosize
     (backdropClick)="toggleSideNav()"
   >
-    <mat-sidenav class="sidenav" [mode]="sideNavMode" [opened]="isSideNavOpened()">
+    <mat-sidenav class="sidenav" [mode]="sideNavMode" [opened]="sidenavOpened$ | async">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
-      <div class="content">
-        <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
-        <div *ngIf="!loading">
-          <router-outlet></router-outlet>
-        </div>
+      <app-header></app-header>
+      <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
+      <div *ngIf="!loading" class="content">
+        <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
