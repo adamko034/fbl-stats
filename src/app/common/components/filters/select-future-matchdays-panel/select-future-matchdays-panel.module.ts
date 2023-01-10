@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { SpanAsLinkModule } from 'src/app/common/directives/span-as-link/span-as-link.module';
 import { DropdownModule } from '../../ui/dropdown/dropdown.module';
 import { FormFieldModule } from '../../ui/form-field/form-field.module';
@@ -12,7 +11,6 @@ import { SelectFutureMatchdaysPanelComponent } from './select-future-matchdays-p
   declarations: [SelectFutureMatchdaysPanelComponent],
   imports: [
     CommonModule,
-    FlexLayoutModule,
     FormFieldModule,
     DropdownModule,
     SpanAsLinkModule,

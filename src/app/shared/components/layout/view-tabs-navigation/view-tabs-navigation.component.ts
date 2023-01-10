@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { MatTabNav } from '@angular/material/tabs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 import { ViewTabNavigationLink } from './model/view-tab-navigation-link.model';
 
@@ -19,13 +19,13 @@ export class ViewTabsNavigationComponent implements AfterViewInit {
   constructor(private guiStore: GuiConfigStore) {}
 
   public ngAfterViewInit(): void {
-    this.guiStore
-      .selectSidenavOpened()
-      .pipe(untilDestroyed(this))
-      .subscribe((_) => {
-        setTimeout(() => {
-          this.tabs._alignInkBarToSelectedTab();
-        }, 500);
-      });
+    // this.guiStore
+    //   .selectSidenavOpened()
+    //   .pipe(untilDestroyed(this))
+    //   .subscribe((_) => {
+    //     setTimeout(() => {
+    //       this.tabs._alignInkBarToSelectedTab();
+    //     }, 500);
+    //   });
   }
 }

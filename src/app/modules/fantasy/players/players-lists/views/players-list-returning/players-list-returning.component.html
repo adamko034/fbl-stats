@@ -1,11 +1,13 @@
-<div fxLayout="column" fxLayoutGap="15px">
+<div class="flex flex-col gap-y-3">
   <app-view-title>
-    <div subtitle fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
-      <mat-icon class="green">published_with_changes</mat-icon>
-      <span
-        >Players who were unavailable in previous matchday (MD {{ lastMatchday$ | async }}) and can play in the
-        following game.
-      </span>
+    <div subtitle>
+      <div class="flex-row-center-center gap-x-1">
+        <mat-icon class="green">published_with_changes</mat-icon>
+        <span
+          >Players who were unavailable in previous matchday (MD {{ lastMatchday$ | async }}) and can play in the
+          following game.
+        </span>
+      </div>
     </div>
   </app-view-title>
 

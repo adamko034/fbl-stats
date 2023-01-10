@@ -1,40 +1,42 @@
 <app-white-block>
-  <div class="links-grid" fxLayout="row wrap" fxLayout.lt-lg="column" fxLayoutAlign.lt-lg="center center">
-    <div class="links-comparison" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="15px">
+  <div
+    class="links-grid flex flex-col justify-center items-center lg:flex-row lg:justify-start lg:items-start lg:gap-x-4"
+  >
+    <div class="links-comparison flex-col-start-center gap-y-3.5">
       <h4>Players comparison</h4>
-      <div fxLayout="column" fxLayoutGap="10px">
+      <div class="flex flex-col gap-y-2.5">
         <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ count: 10 }">
-          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <mat-icon class="orange rotate-90">pan_tool_alt</mat-icon>
           <span>Top 10 players overall</span>
         </a>
 
         <a class="link" [routerLink]="['/fantasy', 'compare', 'bestgks']">
-          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <mat-icon class="orange rotate-90">pan_tool_alt</mat-icon>
           <span>Popular goalkeepers</span>
         </a>
 
         <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ position: 'def', count: 10 }">
-          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <mat-icon class="orange rotate-90">pan_tool_alt</mat-icon>
           <span>Best defenders</span>
         </a>
 
         <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ position: 'mid', count: 10 }">
-          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <mat-icon class="orange rotate-90">pan_tool_alt</mat-icon>
           <span>Best midfielders</span>
         </a>
 
         <a class="link" [routerLink]="['/fantasy', 'compare', 'top']" [queryParams]="{ position: 'for', count: 10 }">
-          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <mat-icon class="orange rotate-90">pan_tool_alt</mat-icon>
           <span>Best forwards</span>
         </a>
 
         <a
-          *ngIf="lastMatchday$ | async | isGreaterThan: 0"
+          *ngIf="lastMatchday$ | async | isGreaterThan : 0"
           class="link"
           [routerLink]="['/fantasy', 'compare', 'top']"
           [queryParams]="{ maxPrice: 7, count: 10 }"
         >
-          <angular-emojis [name]="'point_right'" [size]="20"></angular-emojis>
+          <mat-icon class="orange rotate-90">pan_tool_alt</mat-icon>
           <span>Top 10 budget picks</span>
         </a>
       </div>
@@ -44,20 +46,21 @@
       <app-follow-us text="Sorry, there are no tips & hints links so far."></app-follow-us>
     </div>
 
-    <div *ngIf="links$ | async | arrayNotEmpty" class="container" fxLayout="column" fxLayoutGap="20px">
+    <div *ngIf="links$ | async | arrayNotEmpty" class="container flex flex-col gap-y-5">
       <a
         [href]="link.url"
         target="blank"
-        class="link-container"
-        ngClass.lt-sm="link-container-mobile"
-        fxLayout="row"
+        class="link-container w-full min-w-full sm:w-auto sm:min-w-auto flex flex-row"
         *ngFor="let link of links$ | async"
         width="120"
       >
-        <div class="link-image" fxLayoutAlign="start center" [style]="'background-image: url(' + link.imageUrl + ')'">
+        <div
+          class="hidden sm:flex link-image flex-row-start-center"
+          [style]="'background-image: url(' + link.imageUrl + ')'"
+        >
           <img [src]="link.imageUrl" />
         </div>
-        <div class="link-content" fxLayout="column" fxLayoutAlign="space-between">
+        <div class="link-content flex flex-col justify-between">
           <div class="link-title">
             <h4>{{ link.title }}</h4>
           </div>
@@ -67,7 +70,6 @@
           <div class="link-bottom-info">
             <span>&nbsp;</span>
             <span class="link-host">{{ link.source }}</span>
-            <div fxHide.lt-sm class="new red"><span *ngIf="link.isNew">NEW!</span></div>
           </div>
         </div>
       </a>

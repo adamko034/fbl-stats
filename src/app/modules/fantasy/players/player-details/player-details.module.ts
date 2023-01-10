@@ -4,6 +4,7 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
 import { PieChartModule } from 'src/app/common/components/ui/pie-chart/pie-chart.module';
 import { ScaleModule } from 'src/app/common/directives/scale/scale.module';
+import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
@@ -57,6 +58,7 @@ import { PlayerDetailsTitleComponent } from './view/player-details-content/playe
     PlayerIconLineupPredictionModule,
     PipesModule,
     ScaleModule,
+    StickyModule,
     TeamLogoModule,
     MatchdayFirstGameIconModule,
     ChartModule,

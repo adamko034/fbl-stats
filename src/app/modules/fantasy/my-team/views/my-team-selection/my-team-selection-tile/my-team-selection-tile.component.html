@@ -1,4 +1,4 @@
-<app-title-underlined-grey class="tile-container">
+<app-title-underlined-grey>
   <span title>{{ title }}</span>
   <table class="comparison-table" content>
     <tbody>
@@ -9,30 +9,30 @@
       <tr *ngIf="!players || players.length == 0">
         <td class="noplayers" colspan="4">No players added</td>
       </tr>
-      <tr *ngFor="let player of players | orderBy: displaySettings.tileOrder">
+      <tr *ngFor="let player of players | orderBy : displaySettings.tileOrder">
         <td>
-          <div fxLayoutGap="5px" fxLayoutAlign="start center">
-            <app-team-logo [team]="player.teamShort" [height]="20"></app-team-logo>
+          <div class="flex-row-start-center gap-x-1">
+            <app-team-logo [team]="player.teamShort" [height]="16"></app-team-logo>
             <span>{{ player.name }}</span>
           </div>
         </td>
         <td class="price">{{ player.price }}M</td>
         <td class="button">
-          <button mat-icon-button class="red" (click)="onPlayerRemove(player.id)" appScale="0.7">
-            <mat-icon>delete</mat-icon>
+          <button mat-icon-button class="red small-icon-button" (click)="onPlayerRemove(player.id)">
+            <mat-icon>close</mat-icon>
           </button>
         </td>
       </tr>
       <tr>
         <td class="summary" colspan="4">
-          <div fxLayoutAlign="start center" fxLayoutGap="10px">
-            <div fxLayoutGap="5px" fxLayoutAlign="start center">
+          <div class="flex-row-start-center gap-x-2.5">
+            <div class="flex-row-start-center gap-x-1">
               <mat-icon appScale="0.8">people</mat-icon>
               <span>{{ !!players ? players.length : 0 }}</span>
             </div>
-            <div fxLayoutGap="2px" fxLayoutAlign="start center">
+            <div class="flex-row-start-center gap-x-[2px]">
               <mat-icon appScale="0.7">attach_money</mat-icon>
-              <span>{{ players | sumBy: 'price' }}M</span>
+              <span>{{ players | sumBy : 'price' }}M</span>
             </div>
           </div>
         </td>

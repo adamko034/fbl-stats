@@ -13,6 +13,9 @@
 
     .link {
       text-decoration: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
 
       span {
         text-decoration: underline;
@@ -94,10 +97,5 @@
   .link-container-mobile {
     width: 100%;
     min-width: 100%;
-
-    .link-image {
-      width: 80px;
-      min-width: 80px;
-    }
   }
 }

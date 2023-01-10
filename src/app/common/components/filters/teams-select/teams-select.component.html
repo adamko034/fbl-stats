@@ -1,5 +1,5 @@
 <app-form-field label="Teams">
-  <div class="teams-select-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+  <div class="teams-select-container flex-row-start-center gap-x-1">
     <span *ngIf="allTeamsSelected">All teams</span>
     <span class="teams-selected-span" *ngIf="someTeamsSelected">{{ selectedTeamsCount }} teams selected</span>
     <button
@@ -11,12 +11,17 @@
     >
       <mat-icon>clear</mat-icon>
     </button>
-    <button fxHide.lt-sm mat-stroked-button class="select-teams-button" (click)="openDialog()">
-      <mat-icon [appScale]="0.8">input</mat-icon>
-      <span>Select teams</span>
-    </button>
-    <button fxHide.gt-xs mat-icon-button class="main-background" [appScale]="0.8" (click)="openDialog()">
-      <mat-icon>input</mat-icon>
-    </button>
+    <div class="hidden sm:block">
+      <button mat-stroked-button class="select-teams-button" (click)="openDialog()">
+        <mat-icon>input</mat-icon>
+        <span>Select</span>
+      </button>
+    </div>
+
+    <div class="block sm:hidden">
+      <button mat-icon-button class="main-background scale-[0.6]" (click)="openDialog()">
+        <mat-icon>input</mat-icon>
+      </button>
+    </div>
   </div>
 </app-form-field>

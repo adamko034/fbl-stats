@@ -15,7 +15,7 @@ export class Navigation2 {
       children: [
         { order: 1, path: 'fantasy/players', text: 'All players' },
         { order: 2, path: 'fantasy/players/lists/unavailable', text: 'Unavailable' },
-        { order: 3, path: 'fantasy/players/lists/suspensiontis', text: 'Suspension risk' },
+        { order: 3, path: 'fantasy/players/lists/suspensionrisk', text: 'Suspension risk' },
         { order: 4, path: 'fantasy/players/lists/returning', text: 'Returning' },
         { order: 5, path: 'fantasy/compare', text: 'Compare' }
       ]
@@ -62,7 +62,7 @@ export class Navigation2 {
       children: [
         { order: 1, path: 'fantasy/tips/ourpicks', text: 'Our picks' },
         { order: 2, path: 'fantasy/tips/bestteam', text: 'Best team' },
-        { order: 3, path: 'fantasy/tips/link', text: 'Useful links' },
+        { order: 3, path: 'fantasy/tips/links', text: 'Useful links' },
         { order: 4, path: 'fantasy/tips/unlimitedtransfers', text: 'Unlimited transfers' }
       ]
     },
@@ -90,8 +90,9 @@ export class Navigation2 {
       text: 'History',
       icon: 'history',
       children: [
-        { order: 1, path: 'fantasy/history/2021-2022', text: 'Season 2021-2022' },
-        { order: 2, path: 'fantasy/history/2020-2021', text: 'Season 2020-2021' }
+        { order: 1, path: 'fantasy/history/2021-2022', text: 'Team of the season' },
+        { order: 2, path: 'fantasy/history/2021-2022/players', text: 'Players results' },
+        { order: 3, path: 'fantasy/history/2021-2022/bundesliga', text: 'Bundesliga table' }
       ]
     }
     // {

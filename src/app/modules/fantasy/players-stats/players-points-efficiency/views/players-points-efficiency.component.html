@@ -1,32 +1,31 @@
 <div>
-  <div class="filters" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
-    <div>
-      <app-position-switch [value]="state.position" (cahnge)="onPositionChange($event)"></app-position-switch>
-    </div>
+  <div class="filters flex-row-wrap justify-evenly gap-x-5 gap-y-2.5 pb-2.5">
+    <app-position-switch [value]="state.position" (change)="onPositionChange($event)"></app-position-switch>
 
-    <div>
+    <app-form-field *ngIf="!(mobile$ | async)" label="Games">
       <app-switcher
-        *ngIf="!(mobile$ | async)"
         [items]="typeFilterItems"
         name="types"
         [value]="state.type"
         (switchChange)="onTypeChange($event)"
       ></app-switcher>
-      <mat-form-field *ngIf="mobile$ | async">
-        <mat-select [ngModel]="state.type" name="types" (selectionChange)="onTypeChangeDropdown($event)">
-          <mat-option *ngFor="let type of typeFilterItems" [value]="type.value">{{ type.description }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    </app-form-field>
 
-    <div>
+    <mat-form-field *ngIf="mobile$ | async" class="material-original">
+      <mat-label>Games</mat-label>
+      <mat-select [ngModel]="state.type" name="types" (selectionChange)="onTypeChangeDropdown($event)">
+        <mat-option *ngFor="let type of typeFilterItems" [value]="type.value">{{ type.description }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <app-form-field label="Order by">
       <app-switcher
         [items]="orderByFilterItems"
         name="orderBys"
         [value]="state.orderBy"
         (switchChange)="onOrderByChange($event)"
       ></app-switcher>
-    </div>
+    </app-form-field>
   </div>
 
   <div class="content" *ngIf="state.data && lastMatchday > 0">

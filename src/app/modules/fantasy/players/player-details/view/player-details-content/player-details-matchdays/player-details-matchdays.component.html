@@ -1,12 +1,8 @@
 <app-white-block>
   <div
-    fxLayout="row wrap"
-    fxLayoutGap="15px"
-    fxLayoutAlign="space-evenly"
-    fxLayout.lt-sm="column"
-    fxLayoutAlign.lt-sm="center center"
+    class="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:justify-evenly"
   >
-    <div *ngIf="playedGames.length > 0" class="card-games" fxLayoutAlign="center">
+    <div *ngIf="playedGames.length > 0" class="card-games items-center justify-center">
       <app-title-underlined-grey>
         <span title>Previous games</span>
         <div content class="card-games-content">
@@ -15,7 +11,7 @@
       </app-title-underlined-grey>
     </div>
 
-    <div *ngIf="futureGames.length > 0" class="card-games" fxLayoutAlign="center">
+    <div *ngIf="futureGames.length > 0" class="card-games items-center justify-center">
       <app-title-underlined-grey>
         <span title>Next games</span>
         <div content class="card-games-content">

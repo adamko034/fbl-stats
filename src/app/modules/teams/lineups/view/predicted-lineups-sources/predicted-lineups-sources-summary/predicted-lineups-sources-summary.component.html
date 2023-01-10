@@ -1,65 +1,68 @@
-<div fxLayoutAlign="center">
+<div class="flex-row-center">
   <table class="comparison-table" [ngClass]="{ 'table-sm': (screen$ | async) <= screens.SM }">
     <tr>
       <td></td>
-      <td *ngFor="let source of sources | orderBy: 'order'">
+      <td *ngFor="let source of sources | orderBy : 'order'" class="hidden md:table-cell">
         {{ source.displayName | uppercase }}
+      </td>
+      <td *ngFor="let source of sources | orderBy : 'order'" class="table-cell md:hidden">
+        {{ source.shortName | uppercase }}
       </td>
     </tr>
     <tr>
       <td class="title">Published</td>
-      <td *ngFor="let source of sources | orderBy: 'order'">
-        <mat-icon appScale="0.8" *ngIf="source.published" matTooltip="Lineups available" class="green icon"
-          >published_with_changes</mat-icon
+      <td *ngFor="let source of sources | orderBy : 'order'">
+        <mat-icon appScale="0.6" *ngIf="source.published" matTooltip="Lineups available" class="green icon"
+          >done</mat-icon
         >
-        <mat-icon appScale="0.8" *ngIf="!source.published" matTooltip="Lineups not published yet" class="red icon"
+        <mat-icon appScale="0.6" *ngIf="!source.published" matTooltip="Lineups not published yet" class="red icon"
           >unpublished</mat-icon
         >
       </td>
     </tr>
     <tr>
-      <td *ngIf="(screen$ | async) >= screens.XS" class="title">Last checked</td>
-      <td *ngIf="(screen$ | async) <= screens.XXS" class="title">Checked</td>
-      <td *ngFor="let source of sources | orderBy: 'order'">
+      <td class="title hidden md:table-cell">Last checked</td>
+      <td class="title table-cell md:hidden">Checked</td>
+      <td *ngFor="let source of sources | orderBy : 'order'">
         <app-time-ago [isEpochDate]="true" [date]="source.lastUpdated"></app-time-ago>
       </td>
     </tr>
     <tr>
       <td class="title">Season</td>
-      <td [ngClass]="{ best: isBest('avgSeasonAccuracy', source) }" *ngFor="let source of sources | orderBy: 'order'">
+      <td [ngClass]="{ best: isBest('avgSeasonAccuracy', source) }" *ngFor="let source of sources | orderBy : 'order'">
         {{ source.accuracy.avgSeasonAccuracy }}%
       </td>
     </tr>
     <tr>
       <td class="title">Last 5</td>
-      <td [ngClass]="{ best: isBest('last5Accuracy', source) }" *ngFor="let source of sources | orderBy: 'order'">
+      <td [ngClass]="{ best: isBest('last5Accuracy', source) }" *ngFor="let source of sources | orderBy : 'order'">
         {{ source.accuracy.last5Accuracy }}%
       </td>
     </tr>
     <tr>
       <td class="title">Last MD</td>
-      <td [ngClass]="{ best: isBest('lastMdAccuracy', source) }" *ngFor="let source of sources | orderBy: 'order'">
+      <td [ngClass]="{ best: isBest('lastMdAccuracy', source) }" *ngFor="let source of sources | orderBy : 'order'">
         {{ source.accuracy.lastMdAccuracy }}%
       </td>
     </tr>
     <tr>
       <td class="title title-teams">Best</td>
-      <td class="team" *ngFor="let source of sources | orderBy: 'order'">
-        <div fxLayout="column" fxLayoutAlign="start center" *ngFor="let team of bestTeams[source.name]">
-          <div fxLayout="row" fxLayoutGap="5px">
-            <app-team-logo [height]="17" [team]="team.teamShort"></app-team-logo>
-            <span *ngIf="(screen$ | async) >= screens.XS">{{ team.acc }}%</span>
+      <td class="team" *ngFor="let source of sources | orderBy : 'order'">
+        <div class="flex-col-start-center pb-1" *ngFor="let team of bestTeams[source.name]">
+          <div class="flex flex-row gap-x-1">
+            <app-team-logo [height]="16" [team]="team.teamShort"></app-team-logo>
+            <span class="hidden md:block">{{ team.acc }}%</span>
           </div>
         </div>
       </td>
     </tr>
     <tr>
       <td class="title title-teams">Worst</td>
-      <td class="team" *ngFor="let source of sources | orderBy: 'order'">
-        <div fxLayout="column" fxLayoutAlign="start center" *ngFor="let team of worstTeams[source.name]">
-          <div fxLayout="row" fxLayoutGap="5px">
-            <app-team-logo [height]="17" [team]="team.teamShort"></app-team-logo>
-            <span *ngIf="(screen$ | async) >= screens.XS">{{ team.acc }}%</span>
+      <td class="team" *ngFor="let source of sources | orderBy : 'order'">
+        <div class="flex-col-start-center pb-1" *ngFor="let team of worstTeams[source.name]">
+          <div class="flex flex-row gap-x-1">
+            <app-team-logo [height]="16" [team]="team.teamShort"></app-team-logo>
+            <span class="hidden md:block">{{ team.acc }}%</span>
           </div>
         </div>
       </td>

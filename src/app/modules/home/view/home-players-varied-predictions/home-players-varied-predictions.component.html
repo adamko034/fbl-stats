@@ -1,9 +1,10 @@
-<app-card title="Varied Predictions">
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <div fxLayout="column">
+<app-card *ngIf="topVariedPredictions | arrayNotEmpty" title="Varied Predictions">
+  <span title>Varied predictions</span>
+  <div content>
+    <div class="flex flex-col">
       <table class="comparison-table comparison-table-narrow">
         <tr>
-          <td></td>
+          <td [appSticky]="{ position: 'left' }"></td>
           <td>Pos</td>
           <td>Top 500 %</td>
           <td>TP</td>
@@ -15,7 +16,7 @@
           <td>LI</td>
         </tr>
         <tr *ngFor="let player of topVariedPredictions">
-          <td>
+          <td [appSticky]="{ position: 'left' }">
             <app-player-name-with-availability
               [id]="player.id"
               [available]="true"
@@ -47,7 +48,8 @@
           </td>
         </tr>
       </table>
-      <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick()">See more >></span>
+
+      <span class="show-more self-end" (click)="onShowMoreClick()">See more >></span>
     </div>
   </div>
 </app-card>

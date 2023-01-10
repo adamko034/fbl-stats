@@ -1,53 +1,17 @@
+@import '/src/variables.scss';
+
 .players-list-base-container {
   .table {
+    font-size: $fontSizeSmall;
+
     td,
     th {
       padding: 3px 10px;
-    }
-
-    th {
-      font-weight: 500;
     }
 
     td:first-of-type,
     th:first-of-type {
       padding: 3px 7px;
-    }
-  }
-
-  .table-sm {
-    td,
-    th {
-      padding: 3px 10px;
-    }
-  }
-
-  .table-xs {
-    td,
-    th {
-      padding: 3px 10px;
-      font-size: 13px;
-    }
-  }
-
-  .player {
-    &-price {
-      min-width: 70px;
-    }
-
-    &-info {
-      font-size: 13px;
-      &-title {
-        font-weight: 500;
-        color: rgba($color: #000000, $alpha: 0.7);
-      }
-    }
-  }
-
-  .player-mobile {
-    .player-name,
-    .player-position {
-      font-size: 13px;
     }
   }
 }

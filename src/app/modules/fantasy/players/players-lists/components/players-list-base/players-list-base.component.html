@@ -1,8 +1,6 @@
-<div class="players-list-base-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+<div class="players-list-base-container flex-col-center-center gap-y-2.5">
   <table
     class="table"
-    ngClass.lt-md="table-sm"
-    ngClass.lt-sm="table-xs"
     matSort
     matSortStart="desc"
     [matSortActive]="lastMatchday > 0 ? 'totalPoints' : 'price'"
@@ -11,39 +9,37 @@
     (matSortChange)="onSortChange($event)"
   >
     <tr>
-      <th mat-sort-header="team">team</th>
-      <th mat-sort-header="name">name</th>
-      <th mat-sort-header="position">position</th>
-      <th fxHide.lt-sm mat-sort-header="price">price</th>
-      <th fxHide.lt-md mat-sort-header="popularity">popularity</th>
-      <th fxHide.lt-sm mat-sort-header="totalPoints">total points</th>
+      <th mat-sort-header="name">player</th>
+      <th mat-sort-header="position">pos</th>
+      <th mat-sort-header="price" class="md:w-[70px]">$</th>
+      <th mat-sort-header="popularity" class="md:w-[70px]">%</th>
+      <th mat-sort-header="totalPoints">TP</th>
     </tr>
     <tbody>
-      <tr *ngFor="let player of sorted" class="player" ngClass.lt-sm="player-mobile">
+      <tr *ngFor="let player of sorted">
         <td>
-          <app-team-logo [team]="player.teamShort" [height]="25"></app-team-logo>
+          <div class="flex flex-row gap-x-1 md:gap-x-2">
+            <app-team-logo [team]="player.teamShort" [height]="18"></app-team-logo>
+            <app-player-name-link class="hidden md:block" [name]="player.name" [id]="player.id"></app-player-name-link>
+            <app-player-name-link
+              class="block md:hidden"
+              [name]="player.lastName"
+              [id]="player.id"
+            ></app-player-name-link>
+          </div>
         </td>
-        <td class="player-name">
-          <app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link>
-        </td>
-        <td class="player-position">
+        <td>
           {{ player.position | uppercase }}
         </td>
-        <td fxHide.lt-sm class="player-price">{{ player.price }}M</td>
-        <td fxHide.lt-sm>{{ player.popularity }}%</td>
+        <td>{{ player.price }}M</td>
+        <td>{{ player.popularity }}%</td>
 
-        <td fxHide.lt-sm>
+        <td>
           {{ player.totalPoints }}
         </td>
       </tr>
     </tbody>
   </table>
+
   <span *ngIf="!sorted || sorted.length === 0">No players</span>
 </div>
-
-<ng-template #playerInfo let-title="title" let-value="value">
-  <div fxLayout="column" class="player-info" fxLayoutAlign="center center">
-    <span class="player-info-title">{{ title }}</span>
-    <span>{{ value }}</span>
-  </div>
-</ng-template>

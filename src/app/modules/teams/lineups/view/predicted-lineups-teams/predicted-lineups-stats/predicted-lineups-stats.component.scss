@@ -1,15 +1,12 @@
-.stats {
-  min-width: 570px;
+// .stats {
+//   min-width: 570px;
 
-  &-lt-md {
-    min-width: 90%;
-  }
-}
+//   &-lt-md {
+//     min-width: 90%;
+//   }
+// }
 
 table {
-  margin-bottom: 30px;
-  width: 100%;
-
   tr {
     td {
       font-size: 11px;
@@ -34,18 +31,18 @@ table {
   }
 }
 
-table.table-lt-md {
-  tr {
-    td:not(:last-child) {
-      padding-right: 10px;
-    }
-  }
-}
+// table.table-lt-md {
+//   tr {
+//     td:not(:last-child) {
+//       padding-right: 10px;
+//     }
+//   }
+// }
 
-table.table-lt-sm {
-  tr {
-    td:not(:last-child) {
-      padding-right: 5px;
-    }
-  }
-}
+// table.table-lt-sm {
+//   tr {
+//     td:not(:last-child) {
+//       padding-right: 5px;
+//     }
+//   }
+//}

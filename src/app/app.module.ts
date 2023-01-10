@@ -1,14 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/analytics';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { CoreModule } from '@angular/flex-layout';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/compat/analytics';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularEmojisModule } from 'angular-emojis';
-import { AdsenseModule } from 'ng2-adsense';
+import { MomentModule } from 'ngx-moment';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
@@ -42,14 +40,13 @@ import { AboutUsComponent } from './modules/about-us/views/about-us/about-us.com
     AngularFireAuthModule,
     HttpClientModule,
     SharedModule,
-    CoreModule,
     FblCoreModule,
     AngularMaterialModule,
-    AngularEmojisModule,
-    AdsenseModule.forRoot({
-      adClient: 'ca-pub-2064593657160416',
-      adSlot: 7293848343
-    }),
+    // AdsenseModule.forRoot({
+    //   adClient: 'ca-pub-2064593657160416',
+    //   adSlot: 7293848343
+    // }),
+    MomentModule,
     PipesModule
   ],
   providers: [ScreenTrackingService],

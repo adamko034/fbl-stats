@@ -12,9 +12,10 @@
     [lastMatchday]="config.lastMatchday"
     (change)="onMatchdayChange($event)"
   ></app-select-matchdays-panel>
+
   <app-max-price-slider
     *ngIf="config.showMaxPriceFilter"
-    class="width-full"
+    class="w-full"
     [value]="filters.maxPrice"
     [maxPrice]="config.maxPrice"
     (maxPriceChange)="onMaxPriceChange($event)"
@@ -23,11 +24,11 @@
     *ngIf="config.showMaxPopularityFilter"
     [value]="filters.maxPopularity"
     (popularityChange)="onMaxPopularityChange($event)"
-    class="width-full"
+    class="w-full"
   ></app-max-popularity-slider>
   <app-prediction-dropdown
     *ngIf="config.showPredictionFilter"
-    class="width-full"
+    class="w-full"
     [value]="filters.prediction"
     (change)="onPredicitonChange($event)"
   ></app-prediction-dropdown>
@@ -43,5 +44,4 @@
     [value]="filters.hideUnavailable"
     (checkboxChange)="onHideUnavailableChange($event)"
   ></app-checkbox>
-  <!-- <app-button [disabled]="!clearEnabled" (buttonClick)="clearFilters()" text="Clear filters" icon="remove"></app-button> -->
 </div>

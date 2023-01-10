@@ -1,61 +1,68 @@
-<div class="container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <mat-card *ngIf="now$ | async">
-    <mat-card-title
-      >Unlimited transfers time is now!
-      <angular-emojis [name]="'grinning_face_with_star_eyes'" [size]="20"></angular-emojis>
-    </mat-card-title>
+<div class="container flex-col-start-center gap-y-5">
+  <mat-card *ngIf="now$ | async" class="w-[320px] md:w-[450px]">
+    <mat-card-header>
+      <mat-card-title>
+        <div class="flex flex-row items-center gap-x-1">
+          <span> Unlimited transfers is now!</span>
+          <mat-icon>sentiment_very_satisfied</mat-icon>
+        </div>
+      </mat-card-title>
+    </mat-card-header>
+
     <mat-card-content>
       <br />
       You can make as many transfers as you want. Use it wisely!
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="next$ | async; else noUnlimitedTransfers">
-    <mat-card-title>Next unlimited transfers</mat-card-title>
+  <mat-card *ngIf="next$ | async; else noUnlimitedTransfers" class="w-[320px] md:w-[450px]">
+    <mat-card-header>
+      <mat-card-title>Next unlimited transfers</mat-card-title>
+    </mat-card-header>
+
     <mat-card-content>
-      <div fxLayout="column">
-        <div class="unlimited-transfers" fxLayout="row" fxLayoutAlign="center center">
+      <div class="flex flex-col">
+        <div class="unlimited-transfers flex-row-center-center">
           <table>
             <tr>
               <td>
                 <span>When:</span>
               </td>
               <td>
-                <span>in {{ next$ | async | field: 'start' | daysBetweenNow }}</span>
+                <span>in {{ next$ | async | field : 'start' | daysBetweenNow }}</span>
               </td>
             </tr>
             <tr>
               <td><span>Matchday:</span></td>
               <td>
-                <span>{{ next$ | async | field: 'matchday' }}</span>
+                <span>{{ next$ | async | field : 'matchday' }}</span>
               </td>
             </tr>
             <tr>
               <td><span>Matchdays until:</span></td>
               <td>
-                <span>{{ (next$ | async | field: 'matchday') - 1 - (state$ | async | field: 'lastMatchday') }}</span>
+                <span>{{ (next$ | async | field : 'matchday') - 1 - (state$ | async | field : 'lastMatchday') }}</span>
               </td>
             </tr>
             <tr>
               <td><span>Dates:</span></td>
               <td>
                 <span
-                  >{{ next$ | async | field: 'start' | date: 'dd.MM.yyyy' }} -
-                  {{ next$ | async | field: 'end' | date: 'dd.MM.yyyy' }}</span
+                  >{{ next$ | async | field : 'start' | date : 'dd.MM.yyyy' }} -
+                  {{ next$ | async | field : 'end' | date : 'dd.MM.yyyy' }}</span
                 >
               </td>
             </tr>
           </table>
         </div>
-        <div class="source" fxLayout="row" fxLayoutAlign="flex-end">
+        <div class="source flex flex-row justify-end">
           <a
-            [href]="state$ | async | field: 'unlimitedTransfers' | field: 'source'"
+            [href]="state$ | async | field : 'unlimitedTransfers' | field : 'source'"
             target="_blank"
-            fxLayout="row"
-            fxLayoutAlign="start center"
+            class="flex-row-start-center"
           >
             <span>Source</span>
-            <mat-icon appScale="0.6">open_in_new</mat-icon>
+            <mat-icon class="scale-[0.7]">open_in_new</mat-icon>
           </a>
         </div>
       </div>
@@ -63,26 +70,28 @@
   </mat-card>
 
   <ng-template #noUnlimitedTransfers>
-    <mat-card>
+    <mat-card class="w-[320px] md:w-[450px]">
       <mat-card-content>
         <h3>No more future unlimited transfers planned</h3>
-        <div class="source" fxLayout="row" fxLayoutAlign="flex-end">
+        <div class="source flex flex-row justify-end">
           <a
-            [href]="state$ | async | field: 'unlimitedTransfers' | field: 'source'"
+            [href]="state$ | async | field : 'unlimitedTransfers' | field : 'source'"
             target="_blank"
-            fxLayout="row"
-            fxLayoutAlign="start center"
+            class="flex-row-start-center"
           >
             <span>Source</span>
-            <mat-icon appScale="0.6">open_in_new</mat-icon>
+            <mat-icon class="scale-[0.7]">open_in_new</mat-icon>
           </a>
         </div>
       </mat-card-content>
     </mat-card>
   </ng-template>
 
-  <mat-card *ngIf="future$ | async | arrayNotEmpty">
-    <mat-card-title>Future</mat-card-title>
+  <mat-card *ngIf="future$ | async | arrayNotEmpty" class="w-[320px] md:w-[450px]">
+    <mat-card-header>
+      <mat-card-title>Future</mat-card-title>
+    </mat-card-header>
+
     <mat-card-content>
       <ng-template
         [ngTemplateOutlet]="unlimitedTransfersList"
@@ -91,8 +100,11 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card *ngIf="previous$ | async | arrayNotEmpty">
-    <mat-card-title>Previous</mat-card-title>
+  <mat-card *ngIf="previous$ | async | arrayNotEmpty" class="w-[320px] md:w-[450px]">
+    <mat-card-header>
+      <mat-card-title>Previous</mat-card-title>
+    </mat-card-header>
+
     <mat-card-content>
       <ng-template
         [ngTemplateOutlet]="unlimitedTransfersList"
@@ -103,16 +115,16 @@
 </div>
 
 <ng-template #unlimitedTransfersList let-data="data">
-  <div fxLayout="column" fxLayoutAlign="center center" class="unlimited-transfers-list">
-    <div *ngFor="let ut of data" class="unlimited-transfers">
-      <table>
+  <div class="unlimited-transfers-list">
+    <div *ngFor="let ut of data" class="unlimited-transfers md:mx-5">
+      <table class="md:ml-[50px]">
         <tr>
           <td>Matchday:</td>
           <td>{{ ut.matchday }}</td>
         </tr>
         <tr>
           <td>Dates:</td>
-          <td>{{ ut.start | date: 'dd.MM.yyyy' }} - {{ ut.end | date: 'dd.MM.yyyy' }}</td>
+          <td>{{ ut.start | date : 'dd.MM.yyyy' }} - {{ ut.end | date : 'dd.MM.yyyy' }}</td>
         </tr>
       </table>
     </div>

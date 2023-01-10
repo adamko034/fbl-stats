@@ -1,11 +1,11 @@
-<div fxLayout="column" fxLayoutGap="15px">
+<div class="flex flex-col gap-y-3">
   <app-view-title>
-    <div subtitle fxLayout="column" fxLayoutGap="10px">
-      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <div subtitle class="flex flex-col gap-y-1.5">
+      <div class="flex-row-center-center gap-x-1">
         <mat-icon class="red">not_interested</mat-icon>
-        <span>Players who are now injured or suspended for the next MD. </span>
+        <span>Injured or suspended players</span>
       </div>
-      <div class="small-mobile" fxLayout="row" fxLayoutAlign="flex-end" fxLayoutGap="3px">
+      <div class="small-mobile flex flex-row justify-end gap-x-1">
         <span>Source:</span><a class="blue" [href]="source" target="blank">LigaInsider.de</a>
       </div>
     </div>

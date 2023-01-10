@@ -28,7 +28,7 @@ export class HomePopularPlayersTop500Component implements OnInit {
     title: 'Most Popular Players in Top 500',
     showTop100Popularity: false,
     showTop500Popularity: false,
-    showPopularity: true,
+    showPopularity: false,
     showPrice: true,
     showAvgPoints: true,
     showTotalPoints: true,

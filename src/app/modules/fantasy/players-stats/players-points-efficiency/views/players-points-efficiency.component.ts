@@ -120,7 +120,6 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
   }
 
   public onPositionChange(value: Position): void {
-    alert('hojo)');
     this.router.navigate([], {
       queryParams: { position: value },
       queryParamsHandling: 'merge'
@@ -170,7 +169,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
       defaultSortFieldName: `moreThan${orderBy}PtsPercentage`,
       sortByTeamEnabled: false,
       sortByPlayerEnabled: false,
-      hideNotActiveBreakPoint: 'md'
+      hideNotActiveBreakPoint: 'lg'
     };
   }
 

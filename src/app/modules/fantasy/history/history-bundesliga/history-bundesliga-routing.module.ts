@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: HistoryBundesligaComponent,
-    resolve: { history: HistorySeasonChildResolver }
+    resolve: { history: HistorySeasonChildResolver },
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   }
 ];
 

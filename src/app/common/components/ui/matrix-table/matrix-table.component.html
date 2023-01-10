@@ -1,17 +1,17 @@
 <table class="matrix comparison-table">
   <tr>
     <td [appSticky]="{ px: 0, position: 'left' }"></td>
-    <td *ngFor="let row of rows | orderBy: 'order'">
+    <td *ngFor="let row of rows | orderBy : 'order'">
       <app-player-name-link *ngIf="config.mode === 'players'" [name]="row.text"></app-player-name-link>
       <app-team-logo *ngIf="config.mode === 'teams'" [height]="18" [team]="row.text"></app-team-logo>
     </td>
   </tr>
-  <tr *ngFor="let row of rows | orderBy: 'order'">
+  <tr *ngFor="let row of rows | orderBy : 'order'">
     <td [appSticky]="{ px: 0, position: 'left' }">
       <app-player-name-link *ngIf="config.mode === 'players'" [name]="row.text"></app-player-name-link>
       <app-team-logo *ngIf="config.mode === 'teams'" [height]="19" [team]="row.text"></app-team-logo>
     </td>
-    <td [ngClass]="internal[row.id + col.id].cssClass" *ngFor="let col of row.columns | orderBy: 'order'">
+    <td [ngClass]="internal[row.id + col.id].cssClass" *ngFor="let col of row.columns | orderBy : 'order'">
       {{ internal[row.id + col.id].value }}
     </td>
   </tr>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
@@ -21,7 +21,6 @@ import { StickyModule } from '../../directives/sticky/sticky.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { GameTeamVenueModule } from '../../teams/components/game-team-venue/game-team-venue.module';
 import { TeamLogoModule } from '../../teams/team-logo/team-logo.module';
-import { PlayerIconMyTeamButtonsModule } from '../components/player-icon-my-team-buttons/player-icon-my-team-buttons.module';
 import { PlayerIconPredictionModule } from '../components/player-icon-prediction/player-icon-prediction.module';
 import { PlayerIconReturningModule } from '../components/player-icon-returning/player-icon-returning.module';
 import { PlayerIconSuspensionRiskModule } from '../components/player-icon-suspension-risk/player-icon-suspension-risk.module';
@@ -47,7 +46,6 @@ import { PlayersToPlayersTableConverter } from './services/players-to-player-tab
   imports: [
     CommonModule,
     TitleModule,
-    FlexLayoutModule,
     ContentWhiteBlockModule,
     LegendModule,
     MaxPriceSliderModule,
@@ -70,10 +68,10 @@ import { PlayersToPlayersTableConverter } from './services/players-to-player-tab
     PlayerPointsColorModule,
     GameTeamVenueModule,
     PlayerIconPredictionModule,
-    PlayerIconMyTeamButtonsModule,
     PipesModule,
     StickyModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule
   ],
   providers: [
     PlayersTableFiltersProvider,

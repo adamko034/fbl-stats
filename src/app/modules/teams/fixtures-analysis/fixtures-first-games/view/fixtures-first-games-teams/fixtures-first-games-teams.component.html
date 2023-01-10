@@ -7,7 +7,7 @@
         <td>Count</td>
         <td></td>
       </tr>
-      <tr *ngFor="let team of teams | orderBy: '-firstGamesCount'">
+      <tr *ngFor="let team of teams | orderBy : '-firstGamesCount'">
         <td>
           <app-team-logo [team]="team.teamShort"></app-team-logo>
         </td>
@@ -15,7 +15,7 @@
           <span>{{ team.firstGamesCount }}</span>
         </td>
         <td>
-          <div fxLayout="row" fxLayoutGap="7px">
+          <div class="flex flex-row gap-x-2">
             <span class="md" *ngFor="let md of team.mds | orderBy">MD {{ md }}</span>
           </div>
         </td>

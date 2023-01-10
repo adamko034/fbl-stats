@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NavigationMenuLink } from 'src/app/common/components/ui/navigation-menu/navigation-menu-link.model';
 import { PlayersTableState } from 'src/app/common/players/players-table/models/players-table-state';
 import { PlayersTableConfig } from 'src/app/common/players/players-table/models/state/players-table-config.model';
 import { ArrayStream } from 'src/app/services/array-stream.service';
@@ -14,6 +15,21 @@ import { HistoryConverter } from '../services/history-converter.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryPlayersComponent implements OnInit {
+  public links: NavigationMenuLink[] = [
+    {
+      order: 1,
+      label: 'Season 2021-2022',
+      labelMobile: 'Season 2021-2022',
+      routerLink: '/fantasy/history/2021-2022/players'
+    },
+    {
+      order: 2,
+      label: 'Season 2020-2021',
+      labelMobile: 'Season 2020-2021',
+      routerLink: '/fantasy/history/2020-2021/players'
+    }
+  ];
+
   private _title$: Observable<string>;
   public get title$(): Observable<string> {
     return this._title$;

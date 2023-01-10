@@ -1,6 +1,5 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -44,7 +43,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCheckboxModule,
     MatExpansionModule,
     MatIconModule,
-    FlexLayoutModule,
     FormsModule,
     MatPaginatorModule,
     MatDialogModule,
@@ -74,7 +72,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatCheckboxModule,
     MatExpansionModule,
     MatIconModule,
-    FlexLayoutModule,
     FormsModule,
     MatDialogModule,
     MatChipsModule,

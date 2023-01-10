@@ -1,21 +1,21 @@
-<div fxLayout="column" fxLayoutGap="20px" *ngIf="state$ | async">
+<div class="flex flex-col gap-y-5" *ngIf="state$ | async">
   <app-fixtures-first-games-filters
-    [filters]="state$ | async | field: 'filters'"
+    [filters]="state$ | async | field : 'filters'"
     [lastKnownMatchday]="lastKnownMatchday$ | async"
     [lastMatchday]="lastMatchday$ | async"
-    [nextUnlimitedTransfersMatchday]="nextUnlimitedTranfers$ | async | field: 'matchday'"
+    [nextUnlimitedTransfersMatchday]="nextUnlimitedTranfers$ | async | field : 'matchday'"
   ></app-fixtures-first-games-filters>
 
   <app-white-block padding="10px 0 10px 0">
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+    <div class="flex-row-wrap justify-evenly gap-2">
       <app-fixtures-first-games-teams
-        [teams]="state$ | async | field: 'teams'"
-        [filters]="state$ | async | field: 'filters'"
+        [teams]="state$ | async | field : 'teams'"
+        [filters]="state$ | async | field : 'filters'"
         [nextMatchday]="nextMatchday$ | async"
       ></app-fixtures-first-games-teams>
 
       <app-fixtures-first-games-matchdays
-        [matchdays]="state$ | async | field: 'matchdays'"
+        [matchdays]="state$ | async | field : 'matchdays'"
       ></app-fixtures-first-games-matchdays>
     </div>
   </app-white-block>

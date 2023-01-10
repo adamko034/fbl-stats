@@ -1,16 +1,15 @@
 <app-form-field [label]="label">
-  <div fxLayout="row" fxLayoutGap="10px">
-    <mat-slider
-      [max]="max"
-      [min]="min"
-      [step]="step"
-      fxFlex="80"
-      [ngModel]="valueInternal"
-      [thumbLabel]="false"
-      (input)="onThumbMove($event)"
-      (change)="onChange($event)"
-    ></mat-slider>
-    <span fxFlex="15" fxFlexAlign="end" class="bolder">
+  <div class="flex flex-row gap-x-4 items-center">
+    <mat-slider [max]="max" [min]="min" [step]="step" class="w-9/12">
+      <input
+        matSliderThumb
+        [value]="valueInternal"
+        (input)="onChange($event.target.value)"
+        (dragStart)="onDragStart()"
+        (dragEnd)="onDragEnd($event.value)"
+      />
+    </mat-slider>
+    <span class="bolder">
       <span>{{ valueInternal?.toString() + valueSuffix }}</span>
     </span>
   </div>

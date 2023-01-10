@@ -1,35 +1,40 @@
 <app-card>
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-md="center" fxLayoutGap="15px">
-    <div>
-      <ng-container
-        [ngTemplateOutlet]="players"
-        [ngTemplateOutletContext]="{ players: unavailables, type: 'unavailable' }"
-      >
-        <h6 class="h6-card-title"><app-player-icon-unavailable></app-player-icon-unavailable>Unavailable</h6>
-      </ng-container>
-    </div>
+  <div content>
+    <div class="flex-row-wrap justify-center lg:justify-evenly gap-5">
+      <div>
+        <ng-container
+          [ngTemplateOutlet]="players"
+          [ngTemplateOutletContext]="{ players: unavailables, type: 'unavailable' }"
+        >
+          <h6 class="h6-card-title"><app-player-icon-unavailable></app-player-icon-unavailable>Unavailable</h6>
+        </ng-container>
+      </div>
 
-    <div>
-      <ng-container
-        [ngTemplateOutlet]="players"
-        [ngTemplateOutletContext]="{ players: suspensionRisk, type: 'suspensionrisk' }"
-      >
-        <h6 class="h6-card-title">
-          <app-player-icon-suspension-risk></app-player-icon-suspension-risk>Suspension risk
-        </h6>
-      </ng-container>
-    </div>
+      <div>
+        <ng-container
+          [ngTemplateOutlet]="players"
+          [ngTemplateOutletContext]="{ players: suspensionRisk, type: 'suspensionrisk' }"
+        >
+          <h6 class="h6-card-title">
+            <app-player-icon-suspension-risk></app-player-icon-suspension-risk>Suspension risk
+          </h6>
+        </ng-container>
+      </div>
 
-    <div>
-      <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: returning, type: 'returning' }">
-        <h6 class="h6-card-title"><app-player-icon-returning></app-player-icon-returning>Returning</h6>
-      </ng-container>
+      <div>
+        <ng-container
+          [ngTemplateOutlet]="players"
+          [ngTemplateOutletContext]="{ players: returning, type: 'returning' }"
+        >
+          <h6 class="h6-card-title"><app-player-icon-returning></app-player-icon-returning>Returning</h6>
+        </ng-container>
+      </div>
     </div>
   </div>
 </app-card>
 
 <ng-template #players let-players="players" let-type="type">
-  <div fxLayout="column">
+  <div class="flex flex-col">
     <ng-content></ng-content>
     <table class="comparison-table comparison-table-narrow">
       <tr>
@@ -59,6 +64,6 @@
         <td>{{ player.top500Popularity }}%</td>
       </tr>
     </table>
-    <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick(type)">Show all >></span>
+    <span class="show-more self-end" (click)="onShowMoreClick(type)">Show all >></span>
   </div>
 </ng-template>

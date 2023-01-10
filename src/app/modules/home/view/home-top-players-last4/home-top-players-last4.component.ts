@@ -26,7 +26,7 @@ export class HomeTopPlayersLast4Component implements OnInit {
     title: 'Top Players in Last 4',
     showPositionSwitch: true,
     showTotalPoints: false,
-    showPopularity: true,
+    showPopularity: false,
     showPrice: true,
     showTop100Popularity: false,
     showAvgPoints: false,

@@ -10,20 +10,8 @@ export class GuiConfigStore {
   private config: GuiConfig;
   private config$: ReplaySubject<GuiConfig> = new ReplaySubject(1);
 
-  public constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService) {
     this.config = this.getGuiConfig();
-    this.send();
-  }
-
-  public selectSidenavOpened(): Observable<boolean> {
-    return this.config$.pipe(
-      map((x) => x.sidenavShow),
-      distinctUntilChanged()
-    );
-  }
-
-  public toggleSideNav(): void {
-    this.config.sidenavShow = !this.config.sidenavShow;
     this.send();
   }
 
@@ -89,15 +77,11 @@ export class GuiConfigStore {
   }
 
   private getGuiConfig(): GuiConfig {
-    return this.localStorageService.get<GuiConfig>(this.key) || this.defaultConfig();
+    return this.localStorageService.get<GuiConfig>(this.key) || {};
   }
 
   private send(): void {
     this.rememberGuiConfig();
     this.config$.next({ ...this.config });
-  }
-
-  private defaultConfig(): GuiConfig {
-    return { sidenavShow: true };
   }
 }

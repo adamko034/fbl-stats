@@ -1,5 +1,5 @@
-<div *ngIf="ourPicks$ | async" fxLayout="row" fxLayoutAlign="center center">
-  <div appStickyWrapper *ngIf="ourPicks$ | async | field: 'players' | arrayNotEmpty">
+<div *ngIf="ourPicks$ | async" class="flex-row-center-center">
+  <div appStickyWrapper *ngIf="ourPicks$ | async | field : 'published'">
     <table class="comparison-table">
       <tr>
         <td [appSticky]="{ position: 'left', px: 0 }"></td>
@@ -57,7 +57,7 @@
   </div>
 
   <app-follow-us
-    *ngIf="ourPicks$ | async | field: 'published' | reverseBoolean"
+    *ngIf="ourPicks$ | async | field : 'published' | reverseBoolean"
     text="Sorry, we haven't published our picks yet."
   >
   </app-follow-us>
@@ -65,14 +65,8 @@
 
 <ng-template #divider let-text="text" let-noPadding="noPadding">
   <tr appStickyWrapper>
-    <td
-      [appSticky]="{ position: 'left', px: 0 }"
-      class="divider"
-      [ngClass]="{ 'divider-no-padding': noPadding }"
-      ngClass.lt-md="divider-mobile"
-      colspan="10"
-    >
-      {{ text }}
+    <td class="divider" [ngClass]="{ 'divider-no-padding': noPadding }" colspan="10">
+      <span [appSticky]="{ position: 'left', px: 0 }">{{ text }}</span>
     </td>
   </tr>
 </ng-template>
@@ -91,7 +85,7 @@
     </td>
     <td><app-team-logo [team]="player.team.teamShort" [height]="18"></app-team-logo></td>
     <td>
-      <div class="icons" fxLayout="row" fxLayoutGap="4px">
+      <div class="icons flex flex-row gap-x-1">
         <app-our-pick-icon
           [ngClass]="{ hidden: !player.isMustHave }"
           [icon]="Types.MUST_HAVE"

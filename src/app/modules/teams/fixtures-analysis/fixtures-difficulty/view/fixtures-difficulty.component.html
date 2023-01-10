@@ -1,14 +1,14 @@
-<div fxLayout="column" fxLayoutGap="15px">
+<div class="flex flex-col gap-y-4">
   <app-fixtures-difficulty-filters
-    [filters]="state$ | async | field: 'filters'"
+    [filters]="state$ | async | field : 'filters'"
     [nextMatchday]="nextMatchday$ | async"
     [lastKnownMatchday]="lastKnownMatchday$ | async"
     [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday$ | async"
   ></app-fixtures-difficulty-filters>
 
   <app-fixtures-difficulty-fixtures
-    [calculation]="state$ | async | field: 'filters' | field: 'calculation'"
-    [teams]="state$ | async | field: 'fixturesDifficultyTeams'"
-    [matchdays]="state$ | async | field: 'filters' | field: 'matchdays'"
+    [calculation]="state$ | async | field : 'filters' | field : 'calculation'"
+    [teams]="state$ | async | field : 'fixturesDifficultyTeams'"
+    [matchdays]="state$ | async | field : 'filters' | field : 'matchdays'"
   ></app-fixtures-difficulty-fixtures>
 </div>

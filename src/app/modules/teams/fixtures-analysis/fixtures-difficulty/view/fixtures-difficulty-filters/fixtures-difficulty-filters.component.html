@@ -1,5 +1,5 @@
 <app-white-block *ngIf="calculations" padding="10px 10px 0 10px">
-  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+  <div class="flex-col-center-center gap-y-4">
     <app-switcher
       name="fixturesDifficultyCalculation"
       [items]="calculations"
@@ -7,7 +7,7 @@
       (switchChange)="onCalculationChange($event)"
     ></app-switcher>
 
-    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px" class="pb-8">
+    <div class="flex-row-wrap justify-center items-center gap-x-4">
       <app-select-future-matchdays-panel
         [value]="filters.matchdays"
         [lastMatchday]="nextMatchday - 1"
@@ -19,6 +19,7 @@
       </app-select-future-matchdays-panel>
 
       <app-include-past-matchdays-dropdown
+        class="mt-4"
         *ngIf="filters.calculation === byForm"
         [value]="filters.formMatchdays"
         [title]="'Form includes'"
@@ -26,7 +27,7 @@
       ></app-include-past-matchdays-dropdown>
 
       <mat-checkbox
-        ngClass.lt-sm="bold"
+        class="font-bold sm:font-normal"
         labelPosition="before"
         (change)="onIncludeVenuChange($event)"
         [ngModel]="filters.includeVenue"

@@ -1,68 +1,70 @@
-<div>
-  <button
-    *ngIf="type === 'button'"
-    mat-button
-    class="main-background"
-    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
-    (menuClosed)="opened = trigger.menuOpen"
-    [matMenuTriggerFor]="searchMenuOurPick"
-    #trigger="matMenuTrigger"
-  >
-    Add player
+<button
+  *ngIf="type === 'button'"
+  mat-button
+  class="main-background"
+  (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+  (menuClosed)="opened = trigger.menuOpen"
+  [matMenuTriggerFor]="searchMenuOurPick"
+  #trigger="matMenuTrigger"
+>
+  <div class="flex flex-row items-center">
+    <span>Add player</span>
     <mat-icon *ngIf="opened">arrow_drop_up</mat-icon>
     <mat-icon *ngIf="!opened">arrow_drop_down</mat-icon>
-  </button>
-  <button
-    mat-button
-    *ngIf="type === 'normal'"
-    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
-    (menuClosed)="opened = trigger.menuOpen"
-    [matMenuTriggerFor]="searchMenuOurPick"
-    #trigger="matMenuTrigger"
-  >
-    <mat-icon>add</mat-icon>Add
-  </button>
-  <button
-    mat-button
-    *ngIf="type === 'custom'"
-    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
-    (menuClosed)="opened = trigger.menuOpen"
-    [matMenuTriggerFor]="searchMenuOurPick"
-    #trigger="matMenuTrigger"
-    fxLayout="row"
-    fxLayoutAlign="start center"
-    fxLayoutGap="3px"
-  >
-    <mat-icon>{{ customType.icon }}</mat-icon>
-    <span>{{ customType.text }}</span>
-  </button>
-  <button
-    *ngIf="type === 'icon'"
-    class="main-background"
-    matTooltip="Add player"
-    (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
-    (menuClosed)="opened = trigger.menuOpen"
-    mat-icon-button
-    [matMenuTriggerFor]="searchMenuOurPick"
-    #trigger="matMenuTrigger"
-  >
-    <mat-icon>add</mat-icon>
-  </button>
-  <mat-menu #searchMenuOurPick="matMenu">
-    <form class="menu-form" (click)="opened = true; $event.stopPropagation()">
-      <mat-form-field>
-        <input type="text" matInput [formControl]="playerSearch" [matAutocomplete]="ourPicksAuto" />
-        <mat-hint>Min 2 characters ({{ playerSearch.value?.length || 0 }}/2)</mat-hint>
+  </div>
+</button>
 
-        <mat-autocomplete #ourPicksAuto="matAutocomplete" (optionSelected)="onPlayerSelected($event.option.value)">
-          <mat-option *ngFor="let player of foundPlayers$ | async" [value]="player.id.toString() + ';' + player.name">
-            <div fxLayoutGap="8px" fxLayoutAlign="start center">
-              <app-team-logo [height]="20" [team]="player.teamShort" fxHide.lt-sm></app-team-logo>
-              <span ngClass.lt-sm="option-text-mobile">{{ player.name }} ({{ player.position | uppercase }})</span>
-            </div>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-  </mat-menu>
-</div>
+<button
+  mat-button
+  *ngIf="type === 'normal'"
+  (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+  (menuClosed)="opened = trigger.menuOpen"
+  [matMenuTriggerFor]="searchMenuOurPick"
+  #trigger="matMenuTrigger"
+>
+  <mat-icon>add</mat-icon>Add
+</button>
+
+<button
+  mat-button
+  *ngIf="type === 'custom'"
+  (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+  (menuClosed)="opened = trigger.menuOpen"
+  [matMenuTriggerFor]="searchMenuOurPick"
+  #trigger="matMenuTrigger"
+  class="flex-row-star-center gap-x-1"
+>
+  <mat-icon>{{ customType.icon }}</mat-icon>
+  <span>{{ customType.text }}</span>
+</button>
+
+<button
+  *ngIf="type === 'icon'"
+  class="main-background w-[36px] h-[36px] p-[6px]"
+  matTooltip="Add player"
+  (menuOpened)="playerSearch.setValue(''); searchInput.focus(); opened = trigger.menuOpen"
+  (menuClosed)="opened = trigger.menuOpen"
+  mat-icon-button
+  [matMenuTriggerFor]="searchMenuOurPick"
+  #trigger="matMenuTrigger"
+>
+  <mat-icon>add</mat-icon>
+</button>
+
+<mat-menu #searchMenuOurPick="matMenu">
+  <form class="py-0 px-2.5 min-w-[280px]" (click)="opened = true; $event.stopPropagation()">
+    <mat-form-field class="w-full">
+      <input type="text" matInput [formControl]="playerSearch" [matAutocomplete]="ourPicksAuto" />
+      <mat-hint>Min 2 characters ({{ playerSearch.value?.length || 0 }}/2)</mat-hint>
+
+      <mat-autocomplete #ourPicksAuto="matAutocomplete" (optionSelected)="onPlayerSelected($event.option.value)">
+        <mat-option *ngFor="let player of foundPlayers$ | async" [value]="player.id.toString() + ';' + player.name">
+          <div class="flex-row-start-center gap-x-2">
+            <app-team-logo [height]="18" [team]="player.teamShort"></app-team-logo>
+            <span>{{ player.name }} ({{ player.position | uppercase }})</span>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</mat-menu>

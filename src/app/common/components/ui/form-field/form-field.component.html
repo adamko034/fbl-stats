@@ -1,6 +1,6 @@
-<div fxLayout="column" fxLayoutGap="3px">
-  <span *ngIf="label" [fxHide.gt-xs]="labelOnlyOnMobile" class="label">{{ label }}</span>
-  <div fxFlex>
+<div class="flex flex-col gap-y-1">
+  <span *ngIf="label" class="label" [ngClass]="{ 'md:hidden': labelOnlyOnMobile }">{{ label }}</span>
+  <div class="flex-1">
     <ng-content></ng-content>
   </div>
 </div>

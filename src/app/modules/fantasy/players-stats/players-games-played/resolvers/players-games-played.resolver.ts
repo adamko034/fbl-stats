@@ -37,7 +37,7 @@ export class PlayersGamesPlayedResolver implements Resolve<Observable<PlayerGame
         { field: orderBy.replace('Percentage', ''), order: 'dsc' },
         { field: 'totalPoints', order: 'dsc' }
       )
-      .take(30)
+      .take(100)
       .collect();
   }
 }

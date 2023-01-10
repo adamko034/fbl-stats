@@ -1,5 +1,5 @@
 <app-content-white-block>
-  <div fxLayout="column" fxLayoutGap="15px">
+  <div class="flex flex-col gap-y-4">
     <app-teams-kickoff-times-filters
       [filters]="filters$ | async"
       [lastMatchday]="lastMatchday"
@@ -7,11 +7,14 @@
       [nextUnlimitedTransfersMatchday]="nextUnlimitedTransfersMatchday"
       [teams]="teams"
     ></app-teams-kickoff-times-filters>
-    <div fxLayout="row" fxLayoutAlign="center stretch">
+
+    <div class="flex-row-center">
       <app-content-titled appStickyWrapper>
         <span title [appSticky]="{ position: 'left', px: 0 }">Different Kickoff Times for MD {{ mds }}</span>
         <div content>
-          <app-matrix-table [rows]="rows$ | async" [config]="matrixTableConfig$ | async"></app-matrix-table>
+          <div class="pt-4">
+            <app-matrix-table [rows]="rows$ | async" [config]="matrixTableConfig$ | async"></app-matrix-table>
+          </div>
         </div>
       </app-content-titled>
     </div>

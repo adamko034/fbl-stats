@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-content-titled',
@@ -7,8 +7,6 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentTitledComponent implements OnInit {
-  @Input() layoutAlign: string = 'start stretch';
-
   constructor() {}
 
   ngOnInit(): void {}

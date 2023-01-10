@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
+import { NavigationMenuModule } from 'src/app/common/components/ui/navigation-menu/navigation-menu.module';
 import { TitleModule } from 'src/app/common/components/ui/title/title.module';
 import { PlayersTableModule } from 'src/app/common/players/players-table/players-table.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -19,7 +20,8 @@ import { HistoryPlayersComponent } from './views/history-players.component';
     TitleModule,
     SharedModule,
     AngularMaterialModule,
-    PlayersTableModule
+    PlayersTableModule,
+    NavigationMenuModule
     //PositionSwitchModule
   ],
   providers: [HistoryConverter]

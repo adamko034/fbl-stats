@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="4px">
+<div class="flex flex-row justify-end items-center gap-x-1">
   <app-player-name-link [lastName]="lastName" [name]="name" [id]="id"></app-player-name-link>
   <app-player-icon-unavailable *ngIf="!available"></app-player-icon-unavailable>
   <app-player-icon-returning *ngIf="returning"></app-player-icon-returning>

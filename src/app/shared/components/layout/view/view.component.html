@@ -1,15 +1,15 @@
-<div class="view-container animate__animated animate__fadeIn" fxLayout="column">
+<div class="view-container flex flex-col">
   <div class="view-tabs" *ngIf="!(isMobile$ | async) && links">
     <app-view-tabs-navigation [links]="links" [disablePagination]="disablePagination"></app-view-tabs-navigation>
   </div>
 
   <div class="view-menu" *ngIf="isMobile$ | async">
-    <div fxLayoutAlign="start center" class="view-menu-header">
+    <div class="view-menu-header flex-row-start-center">
       <button mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
-      <button *ngIf="!!links && links.length > 1" fxFlexAlign="center" mat-button [matMenuTriggerFor]="menu">
-        <div fxLayoutAlign="start center" fxLayoutGap="3px">
+      <button *ngIf="!!links && links.length > 1" class="justify-self-center" mat-button [matMenuTriggerFor]="menu">
+        <div class="flex-row-start-center gap-x-1">
           <span>{{ activePageLabel() }}</span>
           <mat-icon>expand_more</mat-icon>
         </div>
@@ -17,7 +17,7 @@
       <mat-menu #menu="matMenu">
         <a
           mat-menu-item
-          *ngFor="let link of links | orderBy: 'order'"
+          *ngFor="let link of links | orderBy : 'order'"
           [routerLink]="link.routerLink"
           routerLinkActive
           #rla="routerLinkActive"

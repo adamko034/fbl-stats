@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { PlayerIconReturningModule } from '../player-icon-returning/player-icon-returning.module';
 import { PlayerIconSuspensionRiskModule } from '../player-icon-suspension-risk/player-icon-suspension-risk.module';
@@ -16,7 +15,6 @@ import { PlayerNameWithAvailabilityComponent } from './player-name-with-availabi
     PlayerIconReturningModule,
     PlayerIconSuspensionRiskModule,
     PlayerIconUnavailableModule,
-    FlexLayoutModule,
     TeamLogoModule
   ],
   exports: [PlayerNameWithAvailabilityComponent]

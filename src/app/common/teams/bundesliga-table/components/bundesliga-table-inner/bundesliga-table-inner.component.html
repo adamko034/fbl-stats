@@ -1,9 +1,4 @@
-<div
-  class="bundesliga-table-container"
-  fxLayout="column"
-  fxLayoutAlign.lt-lg="center stretch"
-  fxLayoutAlign="center center"
->
+<div class="bundesliga-table-container flex flex-col justify-center items-stretch lg:items-center">
   <table
     mat-table
     matSort
@@ -11,17 +6,16 @@
     matSortStart="desc"
     matSortDirection="desc"
     matSortDisableClear
-    class="table-responsive"
-    ngClass.gt-md="table-max-width"
+    class="table-responsive lg:max-w-[770px]"
     (matSortChange)="onSortChange($event)"
     [dataSource]="dataSource"
   >
     <ng-container matColumnDef="team" sticky>
       <th class="col-team" mat-header-cell *matHeaderCellDef sticky class="team">Team</th>
       <td class="col-team" mat-cell *matCellDef="let team">
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+        <div class="flex-row-start-center gap-x-2">
           <app-team-logo [team]="team.shortName"></app-team-logo>
-          <span fxHide.lt-md>{{ team.name }}</span>
+          <span class="hidden lg:block">{{ team.name }}</span>
         </div>
       </td>
     </ng-container>
@@ -29,7 +23,7 @@
     <ng-container matColumnDef="rank">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="rank">Rank</th>
       <td class="rank" mat-cell *matCellDef="let team">
-        <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="flex-row-center-center">
           <div>
             <span style="visibility: hidden" *ngIf="team.rank < 10">0</span>
             <span>{{ team.rank }}</span>

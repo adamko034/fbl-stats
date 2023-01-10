@@ -93,12 +93,6 @@ export class AdminMatchdayTipsLinksComponent implements OnInit {
     });
   }
 
-  public markAsNew(tip: MatchdayTipsLink): void {
-    tip.isNew = !tip.isNew;
-    this.isChange = true;
-    this.changeDetector.detectChanges();
-  }
-
   private mapFantasyLinksToAdmin() {
     if (!this.tips?.links) {
       this.displayedLinks = [];

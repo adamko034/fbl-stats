@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AngularEmojisModule } from 'angular-emojis';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
@@ -45,7 +44,6 @@ import { MyTeamTotalsComponent } from './views/my-team-selection/my-team-totals/
     NgPipesModule,
     SharedModule,
     AngularMaterialModule,
-    AngularEmojisModule,
     FblCoreModule,
     PipesModule,
     StickyModule,

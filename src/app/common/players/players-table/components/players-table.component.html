@@ -1,9 +1,9 @@
 <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
 
-<div fxLayout="column" *ngIf="!loading && state && state.config && filters">
+<div class="flex flex-col" *ngIf="!loading && state && state.config && filters">
   <app-title *ngIf="state.config.showSeasonTitle" [text]="seasonTitleText"></app-title>
   <app-content-white-block padding="0px">
-    <div fxLayout="column">
+    <div class="flex flex-col">
       <app-players-table-filters
         class="filters"
         [filters]="filters"

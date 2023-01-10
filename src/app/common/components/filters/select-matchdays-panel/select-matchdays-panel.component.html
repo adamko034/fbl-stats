@@ -21,7 +21,6 @@
       </app-dropdown-section>
       <app-dropdown-section>
         <app-select-last-matchdays
-          style="margin-top: 10px"
           [lastMatchday]="lastMatchday"
           [value]="lastMdsValue"
           (change)="onLastMatchdaysChange($event)"
@@ -29,7 +28,7 @@
       </app-dropdown-section>
       <app-dropdown-section [showDivider]="false">
         <app-select-matchdays-between
-          style="margin-top: 5px"
+          class="mt-1"
           [value]="value"
           [lastMatchday]="lastMatchday"
           (matchdaysBetweenChange)="onMatchdaysBetweenChange($event)"

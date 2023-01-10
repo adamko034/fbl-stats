@@ -1,13 +1,13 @@
 <div>
   <h2 mat-dialog-title>{{ data.title }}</h2>
   <div class="content">
-    <div class="option" *ngFor="let option of options | orderBy: 'order'">
+    <div class="option" *ngFor="let option of options | orderBy : 'order'">
       <mat-checkbox [checked]="option.selected" (change)="onOptionChange(option)">
         <span>{{ option.label }}</span>
       </mat-checkbox>
     </div>
   </div>
-  <mat-dialog-actions fxLayoutAlign="space-between" class="actions">
+  <mat-dialog-actions class="actions flex flex-row justify-between">
     <div>
       <button mat-button [disabled]="allSelected" (click)="selectAll()">Select all</button>
       <button mat-button [disabled]="selectedCount < 1" (click)="clear()">Unselect all</button>

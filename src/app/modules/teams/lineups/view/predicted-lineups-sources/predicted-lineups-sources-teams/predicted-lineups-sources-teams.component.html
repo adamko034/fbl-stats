@@ -1,5 +1,5 @@
 <app-white-block padding="10px 20px 10px 20px">
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="30px">
+  <div class="flex-row-wrap justify-evenly items-center gap-x-7">
     <app-title-underlined-grey>
       <span title>Teams accuracy</span>
       <table
@@ -22,17 +22,21 @@
           <td>
             <app-team-logo height="21" [team]="team.teamShort"></app-team-logo>
           </td>
-          <td>{{ team.lastMd | nullableText: 'x':'%' }}</td>
+          <td>{{ team.lastMd | nullableText : 'x' : '%' }}</td>
           <td>{{ team.last5 }}%</td>
           <td>{{ team.season }}%</td>
         </tr>
       </table>
     </app-title-underlined-grey>
 
-    <app-title-underlined-grey>
-      <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-        <span>Sources accuracy</span>
-        <div fxLayoutAlign="start center" class="source-accuracy-change" [matMenuTriggerFor]="menuSourceValueType">
+    <app-title-underlined-grey appStickyWrapper>
+      <div title class="flex flex-row justify-start items-center md:justify-between gap-x-2">
+        <span [appSticky]="{ position: 'left' }">Sources accuracy</span>
+        <div
+          [appSticky]="{ position: 'left', px: 120 }"
+          class="source-accuracy-change flex-row-start-center"
+          [matMenuTriggerFor]="menuSourceValueType"
+        >
           <span>{{ sourceValueTypeDisplay[sourceValueType] }}</span>
           <mat-icon appScale="0.9">arrow_right</mat-icon>
         </div>
@@ -40,12 +44,17 @@
 
       <table content class="comparison-table sources">
         <tr>
-          <td></td>
-          <td *ngFor="let source of sources | orderBy: 'order'">{{ source.displayName }}</td>
+          <td [appSticky]="{ position: 'left' }"></td>
+          <td class="hidden md:table-cell" *ngFor="let source of sources | orderBy : 'order'">
+            {{ source.displayName }}
+          </td>
+          <td class="table-cell md:hidden" *ngFor="let source of sources | orderBy : 'order'">
+            {{ source.shortName }}
+          </td>
         </tr>
-        <tr *ngFor="let team of teamsSorted$ | async | orderBy: 'order'">
-          <td>
-            <app-team-logo height="21" [team]="team.teamShort"></app-team-logo>
+        <tr *ngFor="let team of teamsSorted$ | async | orderBy : 'order'">
+          <td [appSticky]="{ position: 'left' }">
+            <app-team-logo height="20" [team]="team.teamShort"></app-team-logo>
           </td>
           <td
             [ngClass]="{ best: isBest(source, team.teamShort), worst: isWorst(source, team.teamShort) }"

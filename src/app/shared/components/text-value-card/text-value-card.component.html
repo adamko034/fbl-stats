@@ -7,7 +7,7 @@
 </div>
 
 <ng-template #contentWithTitle>
-  <div fxLayout="column" *ngIf="titleUnderlined === 'red'">
+  <div class="flex flex-col" *ngIf="titleUnderlined === 'red'">
     <app-title-underlined padding="0 10px" *ngIf="!!title">
       <h3>{{ title }}</h3>
     </app-title-underlined>
@@ -23,24 +23,23 @@
 </ng-template>
 
 <ng-template #content>
-  <div class="text-value-card-content" fxLayoutGap="5px">
-    <div fxLayoutAlign="start">
+  <div class="text-value-card-content gap-x-1">
+    <div class="flex flex-row justify-start">
       <table class="text-value-table" *ngIf="!!items && items.length > 0">
         <tr
           *ngFor="let item of items"
-          fxLayout="row"
-          fxLayoutAlign="space-between center"
+          class="flex flex-row justify-between items-center"
           [ngClass]="{ bold: item.bold, 'bottom-border': showBottomBorder }"
         >
           <td>
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-              <app-team-logo *ngIf="!!item.teamShort" [height]="20" [team]="item.teamShort"></app-team-logo>
+            <div class="flex-row-start-center gap-x-2.5">
+              <app-team-logo *ngIf="!!item.teamShort" [height]="16" [team]="item.teamShort"></app-team-logo>
               <app-player-name-link *ngIf="item.linkId" [name]="item.text" [id]="item.linkId"></app-player-name-link>
               <span *ngIf="!item.linkId" [ngStyle]="item.textStyle">{{ item.text }}</span>
             </div>
           </td>
           <td>
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+            <div class="flex-row-start-center gap-x-4">
               <span [ngStyle]="item.valueStyle">{{ item.value }}</span>
               <app-value-difference
                 class="item-diff"
@@ -59,8 +58,7 @@
     </div>
     <span
       *ngIf="showMoreButton && items.length > 0"
-      fxLayoutAlign="flex-end center"
-      class="more-button hvr-icon-forward red bold pointer"
+      class="more-button hvr-icon-forward red bold pointer flex flex-row justify-end items-center"
       (click)="onShowMoreClick()"
     >
       Show all

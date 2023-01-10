@@ -1,56 +1,24 @@
 @import '/src/variables.scss';
 
-.admin-tips-container {
-  margin-top: 20px;
-  .add-new-button {
-    position: absolute;
-    z-index: 2;
-    top: 56px;
-    left: 8px;
+.tips-links-container {
+  border-top: 1px solid rgba($color: #000000, $alpha: 0.7);
+
+  .tips-link {
+    display: grid;
+    grid-template-columns: 40px minmax(50px, 1fr) 60px;
+    grid-gap: 20px;
+    border-bottom: 1px solid black;
+    background: #fff;
+
+    a {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
 
-  .action-buttons {
-    position: absolute;
-    z-index: 2;
-    top: 56px;
-    left: 46%;
-  }
-
-  .tips-links-container {
-    width: 100%;
-    border-top: 1px solid rgba($color: #000000, $alpha: 0.7);
-
-    .tips-link {
-      padding: 16px;
-      display: grid;
-      grid-template-columns: 40px minmax(50px, 1fr) 60px;
-      grid-gap: 20px;
-      border-bottom: 1px solid black;
-      cursor: pointer;
-      background: #fff;
-
-      .new {
-        font-weight: 500;
-      }
-
-      a {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-
-      .link-image {
-        width: 100px;
-      }
-
-      .delete-button {
-        align-self: center;
-      }
-    }
-
-    .tips-link-new {
-      background-color: rgba($color: $colorBlue, $alpha: 0.25);
-    }
+  .tips-link-new {
+    background-color: rgba($color: $colorBlue, $alpha: 0.25);
   }
 }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import * as firebase from 'firebase/compat/app';
 import { from, Observable } from 'rxjs';
 import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { Logger } from 'src/app/utils/logger';
@@ -18,7 +18,7 @@ export class AdminMatchdayTipsOurPicksService {
         .doc(matchday.toString())
         .set(
           {
-            players: firestore.FieldValue.arrayUnion({ order: 1, playerId }),
+            players: firebase.default.firestore.FieldValue.arrayUnion({ order: 1, playerId }),
             published: false,
             matchday: matchday
           },

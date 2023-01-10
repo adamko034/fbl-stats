@@ -1,9 +1,7 @@
 <app-white-block padding="10px 10px">
-  <div class="players-list-generic-container" fxLayoutAlign="center center">
+  <div class="players-list-generic-container flex-row-center-center">
     <table
       class="table"
-      ngClass.lt-md="table-sm"
-      ngClass.lt-sm="table-xs"
       matSort
       [matSortStart]="config.defaultSortDirection"
       [matSortActive]="config.defaultSortFieldName"
@@ -15,46 +13,56 @@
         <tr>
           <th mat-sort-header="playerName" [disabled]="!config.sortByPlayerEnabled">Player</th>
           <th>Pos</th>
-          <th fxHide.xs>$</th>
-          <th fxHide.md fxHide.xs>%</th>
+          <th class="hidden sm:table-cell">$</th>
+          <th class="hidden sm:table-cell">%</th>
           <th>TP</th>
           <th
-            *ngFor="let column of data.columns | orderBy: 'order'"
-            [fxHide.lt-md]="
-              ['lg', 'md'].includes(config.hideNotActiveBreakPoint) && column.fieldName !== config.defaultSortFieldName
-            "
-            [fxHide.lt-lg]="config.hideNotActiveBreakPoint === 'lg' && column.fieldName !== config.defaultSortFieldName"
+            *ngFor="let column of data.columns | orderBy : 'order'"
             [mat-sort-header]="column.fieldName"
-            [ngClass]="{ active: column.fieldName === config.defaultSortFieldName }"
+            [ngClass]="{
+              active: column.fieldName === config.defaultSortFieldName,
+              'tale-cell': column.fieldName === config.defaultSortFieldName,
+              'md:table-cell':
+                column.fieldName !== config.defaultSortFieldName && config.hideNotActiveBreakPoint === 'md',
+              'lg:table-cell':
+                column.fieldName !== config.defaultSortFieldName && config.hideNotActiveBreakPoint === 'lg',
+              hidden: column.fieldName !== config.defaultSortFieldName
+            }"
           >
             {{ column.displayName }}
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of data.rows | orderBy: 'order'" class="player" ngClass.lt-sm="player-mobile">
+        <tr *ngFor="let row of data.rows | orderBy : 'order'" class="player-mobile sm:player">
           <td class="player-name">
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
-              <app-team-logo [team]="row.teamShort" appScale="0.8"></app-team-logo>
-              <app-player-name-link fxHide.lt-lg [name]="row.playerName" [id]="row.playerId"></app-player-name-link>
+            <div class="flex-row-start-center gap-x-1">
+              <app-team-logo [team]="row.teamShort" [height]="16"></app-team-logo>
               <app-player-name-link
-                fxHide.gt-md
+                class="hidden lg:block"
+                [name]="row.playerName"
+                [id]="row.playerId"
+              ></app-player-name-link>
+              <app-player-name-link
+                class="block lg:hidden"
                 [name]="row.playerNameShort"
                 [id]="row.playerId"
               ></app-player-name-link>
             </div>
           </td>
           <td>{{ row.position | uppercase }}</td>
-          <td fxHide.xs>{{ row.price }}M</td>
-          <td fxHide.md fxHide.xs>{{ row.popularity }}</td>
+          <td class="hidden sm:table-cell">{{ row.price }}M</td>
+          <td class="hidden sm:table-cell">{{ row.popularity }}</td>
           <td>{{ row.totalPoints }}</td>
           <td
-            [fxHide.lt-md]="
-              ['md', 'lg'].includes(config.hideNotActiveBreakPoint) && other.key !== config.defaultSortFieldName
-            "
-            [fxHide.lt-lg]="config.hideNotActiveBreakPoint === 'lg' && other.key !== config.defaultSortFieldName"
-            [ngClass]="{ active: other.key === config.defaultSortFieldName }"
-            *ngFor="let other of row.otherValues | orderBy: 'order'"
+            [ngClass]="{
+              active: other.key === config.defaultSortFieldName,
+              'table-cell': other.key === config.defaultSortFieldName,
+              'md:table-cell': other.key !== config.defaultSortFieldName && config.hideNotActiveBreakPoint === 'md',
+              'lg:table-cell': other.key !== config.defaultSortFieldName && config.hideNotActiveBreakPoint === 'lg',
+              hidden: other.key !== config.defaultSortFieldName
+            }"
+            *ngFor="let other of row.otherValues | orderBy : 'order'"
           >
             {{ other.value }}
           </td>

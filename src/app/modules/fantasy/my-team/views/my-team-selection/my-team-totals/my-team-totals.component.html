@@ -1,18 +1,11 @@
-<div
-  class="totals"
-  ngClass.lt-sm="totals-mobile"
-  fxLayout="row"
-  fxLayoutAlign="start center"
-  fxLayoutGap.gt-xs="30px"
-  fxLayoutGap.lt-sm="20px"
->
+<div class="totals flex-row-start-center gap-x-5 sm:gap-x-6.5 py-2.5 px-5 sm:px-6.5">
   <span class="label bold">My Team:</span>
-  <div fxLayoutAlign="start center" fxLayoutGap="4px">
+  <div class="flex-row-start-center gap-x-1">
     <mat-icon>people</mat-icon>
     <span class="label">{{ players.length }}</span>
   </div>
-  <div fxLayoutAlign="start center" fxLayoutGap="4px">
+  <div class="flex-row-start-center gap-x-1">
     <mat-icon>attach_money</mat-icon>
-    <span class="label">{{ players | sumBy: 'price' }}M</span>
+    <span class="label">{{ players | sumBy : 'price' }}M</span>
   </div>
 </div>

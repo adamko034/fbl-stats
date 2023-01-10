@@ -1,25 +1,19 @@
 <div class="sticky side-nav-container side-nav-expanded" [style.height]="height">
-  <nav class="content" [style.height]="height" fxLayout="column">
-    <div class="header" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-      <div class="logo" fxLayout="row" fxLayoutAlign="center center">
+  <nav class="content flex flex-col" [style.height]="height">
+    <div class="header flex-row-center-center gap-x-2.5">
+      <div class="logo flex-row-center-center">
         <img src="favicon.ico" />
       </div>
     </div>
 
     <div class="side-nav-section">
-      <nav fxLayout="column" fxLayoutGap="10px">
+      <nav class="flex flex-col gap-x-2.5">
         <div
           *ngFor="let link of links"
           class="links-section"
-          [ngClass]="{ 'links-section-active': openedNavs$ | async | arrayIncludes: link.icon }"
+          [ngClass]="{ 'links-section-active': openedNavs$ | async | arrayIncludes : link.icon }"
         >
-          <div
-            *ngIf="link.children"
-            class="link-main"
-            fxLayout="row"
-            fxLayoutAlign="space-between center"
-            (click)="toggleNav(link.icon)"
-          >
+          <div *ngIf="link.children" class="link-main flex-row-space-between-center" (click)="toggleNav(link.icon)">
             <ng-template [ngTemplateOutlet]="linkTemplate" [ngTemplateOutletContext]="{ link: link }"></ng-template>
           </div>
 
@@ -28,7 +22,7 @@
             [ngTemplateOutletContext]="{ link: link, isSublink: false }"
           ></ng-template>
 
-          <div *ngIf="openedNavs$ | async | arrayIncludes: link.icon" class="link-sublink">
+          <div *ngIf="openedNavs$ | async | arrayIncludes : link.icon" class="link-sublink">
             <div *ngFor="let subLink of link.children">
               <ng-template
                 [ngTemplateOutlet]="aLinkTemplate"
@@ -40,25 +34,8 @@
       </nav>
     </div>
 
-    <div class="footer" fxLayout="column" fxLayoutGap="10px">
-      <div class="bmb-container" fxLayout="row" fxLayoutAlign="center center">
-        <a
-          href="https://www.buymeacoffee.com/fantasyblstats"
-          target="_blank"
-          class="bmb"
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          fxLayoutGap="10px"
-        >
-          <angular-emojis [name]="'beer'" [size]="25"></angular-emojis>
-          <div fxLayout="column">
-            <span>Like it?</span>
-            <span>Buy me a beer</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="socials" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div class="footer flex flex-col gap-y-2.5">
+      <div class="socials flex-row-center-center gap-x-5">
         <a class="social-media" href="https://www.facebook.com/Fantasybl-stats-108481224674753" target="blank">
           <fa-icon class="social-media-icon" [icon]="['fab', 'facebook-f']"></fa-icon>
         </a>
@@ -66,16 +43,30 @@
           <fa-icon class="social-media-icon" [icon]="['fab', 'twitter']"></fa-icon>
         </a>
       </div>
+
+      <div class="bmb-container flex-row-center-center">
+        <a
+          href="https://www.buymeacoffee.com/fantasyblstats"
+          target="_blank"
+          class="bmb flex-row-center-center gap-x-2.5"
+        >
+          <mat-icon style="color: #f28e1c">sports_bar</mat-icon>
+          <div class="flex flex-col">
+            <span>Like it?</span>
+            <span>Buy me a beer</span>
+          </div>
+        </a>
+      </div>
     </div>
   </nav>
 </div>
 
 <ng-template #linkTemplate let-link="link">
-  <div fxLayoutAlign="center center">
-    <span class="link-line" [ngClass]="{ 'link-line-active': openedNavs$ | async | arrayIncludes: link.icon }"
+  <div class="flex flex-row justify-center items-center">
+    <span class="link-line" [ngClass]="{ 'link-line-active': openedNavs$ | async | arrayIncludes : link.icon }"
       >&nbsp;</span
     >
-    <mat-icon class="link-icon" [ngClass]="{ 'link-icon-active': openedNavs$ | async | arrayIncludes: link.icon }">{{
+    <mat-icon class="link-icon" [ngClass]="{ 'link-icon-active': openedNavs$ | async | arrayIncludes : link.icon }">{{
       link.icon
     }}</mat-icon>
     <span class="link-text">{{ link.text }}</span>
@@ -83,7 +74,7 @@
   <mat-icon
     *ngIf="link.children"
     class="link-expand"
-    [ngClass]="{ 'link-expand-active': openedNavs$ | async | arrayIncludes: link.icon }"
+    [ngClass]="{ 'link-expand-active': openedNavs$ | async | arrayIncludes : link.icon }"
     >chevron_right</mat-icon
   >
 </ng-template>
@@ -91,10 +82,8 @@
 <ng-template #aLinkTemplate let-link="link" let-isSublink="isSublink">
   <a
     *ngIf="!link.children"
-    class="link-main"
+    class="link-main flex-row-space-between-center"
     [ngClass]="{ 'link-main-sublink': isSublink }"
-    fxLayout="row"
-    fxLayoutAlign="space-between center"
     [href]="link.path"
   >
     <ng-template [ngTemplateOutlet]="linkTemplate" [ngTemplateOutletContext]="{ link: link }"></ng-template>

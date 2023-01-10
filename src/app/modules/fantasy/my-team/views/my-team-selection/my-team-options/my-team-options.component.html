@@ -1,4 +1,4 @@
-<div ngClass.lt-sm="my-team-tile-order-mobile">
+<div>
   <button mat-button [matMenuTriggerFor]="options"><mat-icon>more_vert</mat-icon>Options</button>
 
   <mat-menu #options="matMenu">
@@ -9,8 +9,7 @@
       <button
         [ngClass]="{ active: settings.tileOrder === 'teamShort' }"
         mat-menu-item
-        fxLayoutGap="8px"
-        fxLayoutAlign="start center"
+        class="flex-row-start-center gap-x-2"
         (click)="onOrderChanged('teamShort')"
       >
         <mat-icon>groups</mat-icon>
@@ -19,8 +18,7 @@
       <button
         [ngClass]="{ active: settings.tileOrder === 'price' }"
         mat-menu-item
-        fxLayoutGap="8px"
-        fxLayoutAlign="start center"
+        class="flex-row-start-center gap-x-2"
         (click)="onOrderChanged('price')"
       >
         <mat-icon>north</mat-icon>
@@ -29,8 +27,7 @@
       <button
         [ngClass]="{ active: settings.tileOrder === '-price' }"
         mat-menu-item
-        fxLayoutGap="8px"
-        fxLayoutAlign="start center"
+        class="flex-row-start-center gap-x-2"
         (click)="onOrderChanged('-price')"
       >
         <mat-icon>south</mat-icon>
@@ -39,7 +36,7 @@
     </mat-menu>
 
     <mat-menu #players="matMenu">
-      <button mat-menu-item fxLayoutGap="8px" fxLayoutAlign="start center" (click)="onClearMyTeam()">
+      <button mat-menu-item class="flex-row-start-center gap-x-2" (click)="onClearMyTeam()">
         <mat-icon>clear</mat-icon>
         <span>Clear my team</span>
       </button>

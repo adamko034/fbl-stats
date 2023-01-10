@@ -1,6 +1,6 @@
-<div fxLayout="column">
+<div class="flex flex-col">
   <div>
-    <div class="display" fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <div class="display flex-row-wrap justify-between items-center">
       <app-position-switch [value]="filters.position" (change)="onPositionChange($event)"></app-position-switch>
       <app-select-dialog
         class="columns"
@@ -8,10 +8,10 @@
         [config]="selectColumnsDialogConfig"
         (change)="onSelectedColumnsChange($event)"
       ></app-select-dialog>
-      <mat-paginator fxFlexAlign="flex-end" showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
+      <mat-paginator class="justify-self-end" showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
     </div>
 
-    <div class="table-container">
+    <div class="table-container px-2.5">
       <table
         mat-table
         matSort
@@ -25,7 +25,7 @@
         <ng-container matColumnDef="name" sticky>
           <th mat-header-cell *matHeaderCellDef>Name</th>
           <td mat-cell *matCellDef="let player">
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <div class="flex-row-start-center gap-x-1">
               <app-team-logo [height]="20" [team]="player.teamShort"></app-team-logo>
               <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
             </div>
@@ -79,7 +79,7 @@
     </div>
   </div>
 
-  <div class="legend" fxLayout="column" fxLayoutGap="10px">
+  <div class="legend flex flex-col gap-y-2.5">
     <span *ngIf="filters.type === 'bundesliga'">
       Bundesliga stats are calculated using fantasy points and based on their scoring rules.
     </span>

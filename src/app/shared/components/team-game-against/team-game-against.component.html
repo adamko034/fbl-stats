@@ -1,7 +1,7 @@
-<div *ngIf="config" fxLayout="column">
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+<div *ngIf="config" class="flex flex-col">
+  <div class="flex-row-start-center gap-x-1">
     <span *ngIf="config.showMdLabel" class="grey">MD {{ team.md }}:</span>
-    <div fxLayoutAlign="start center" fxLayoutGap="2px">
+    <div class="flex-row-start-center gap-x-0.5">
       <app-team-logo [team]="team.shortName" [height]="config.teamLogoHeight"></app-team-logo>
       <span
         [ngClass]="{ 'smaller-font': config.smallerFont, bold: config.boldTextIfHome && team.isHome }"
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div *ngIf="showSecondRow" class="second-row" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+  <div *ngIf="showSecondRow" class="second-row flex-row-center-center gap-x-1">
     <span *ngIf="config.showResult && team.result">{{ team.result }} </span>
     <app-postponed-game-icon *ngIf="config.showPostponed && team.isPostponed"></app-postponed-game-icon>
     <span *ngIf="config.showPoints && team.points != null" class="points">{{ team.points }}pts</span>

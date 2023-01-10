@@ -1,6 +1,6 @@
-<div class="chart-container" fxLayout="column" fxLayoutAlign="center center">
-  <div fxLayoutGap="5px" class="chart-link" (click)="onShowMoreClick()">
-    <span fxFlexAlign="center" *ngIf="config.title" class="chart-title">{{ config.title }}</span>
+<div class="chart-container flex-col-center-center">
+  <div class="chart-link flex flex-row gap-x-1" (click)="onShowMoreClick()">
+    <span *ngIf="config.title" class="chart-title justify-self-center">{{ config.title }}</span>
     <fa-icon class="pointer" *ngIf="showDialog" [icon]="['fas', 'external-link-alt']"></fa-icon>
   </div>
   <ng-template [ngTemplateOutlet]="chart"></ng-template>

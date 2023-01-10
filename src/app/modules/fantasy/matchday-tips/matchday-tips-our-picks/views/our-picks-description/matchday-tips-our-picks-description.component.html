@@ -1,6 +1,6 @@
 <app-content-white-block>
-  <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px">
-    <div class="item" *ngFor="let item of iconsLegend" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+  <div class="flex-row-wrap justify-center items-center gap-x-6.5">
+    <div class="item flex-row-start-center gap-x-1" *ngFor="let item of iconsLegend">
       <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
       <span class="item-description">{{ item.description }}</span>
     </div>

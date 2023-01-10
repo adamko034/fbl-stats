@@ -1,10 +1,10 @@
-<div fxLayout="column">
+<div class="flex flex-col">
   <app-title *ngIf="state.config.showTitle" [text]="title"></app-title>
   <app-content-white-block>
-    <div fxLayout="column" fxLayoutGap="10px">
+    <div class="flex flex-col gap-x-2.5">
       <app-bundesliga-table-filters
         [config]="state.config"
-        [filters]="filters | async"
+        [filters]="filters$ | async"
         [lastMatchday]="state.lastMatchday"
         (venueChange)="onVenueChange($event)"
         (matchdaysChange)="onMatchdaysChange($event)"

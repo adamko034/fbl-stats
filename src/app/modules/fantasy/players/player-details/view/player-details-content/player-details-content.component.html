@@ -1,19 +1,20 @@
-<div *ngIf="state$ | async" fxLayout="column">
-  <div class="sticky">
-    <app-player-details-title [player]="state$ | async | field: 'player'"></app-player-details-title>
+<div *ngIf="state$ | async" class="flex flex-col">
+  <div [appSticky]="{ position: 'top', px: 54, z: 1000 }">
+    <app-player-details-title [player]="state$ | async | field : 'player'"></app-player-details-title>
   </div>
-  <app-player-details-main [player]="state$ | async | field: 'player'"></app-player-details-main>
 
-  <div fxLayoutGap="20px" fxLayout="column">
+  <app-player-details-main [player]="state$ | async | field : 'player'"></app-player-details-main>
+
+  <div class="flex flex-col gap-y-5">
     <app-player-details-next-matchday
-      fxFlexOffset="15px"
-      [player]="state$ | async | field: 'player'"
+      class="mt-3.5"
+      [player]="state$ | async | field : 'player'"
     ></app-player-details-next-matchday>
     <app-player-details-charts
-      [player]="state$ | async | field: 'player'"
-      [positionsStats]="state$ | async | field: 'positionsStats'"
+      [player]="state$ | async | field : 'player'"
+      [positionsStats]="state$ | async | field : 'positionsStats'"
     ></app-player-details-charts>
-    <app-player-details-points [player]="state$ | async | field: 'player'"></app-player-details-points>
-    <app-player-details-matchdays [player]="state$ | async | field: 'player'"></app-player-details-matchdays>
+    <app-player-details-points [player]="state$ | async | field : 'player'"></app-player-details-points>
+    <app-player-details-matchdays [player]="state$ | async | field : 'player'"></app-player-details-matchdays>
   </div>
 </div>

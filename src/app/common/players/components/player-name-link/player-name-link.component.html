@@ -1,6 +1,6 @@
 <a *ngIf="id && lastName" [routerLink]="['/fantasy/players/details/' + id]" target="_self">
-  <span fxHide.lt-md>{{ name }}</span>
-  <span fxHide.gt-sm>{{ lastName }}</span>
+  <span class="hidden md:block">{{ name }}</span>
+  <span class="block md:hidden">{{ lastName }}</span>
 </a>
 
 <a *ngIf="id && !lastName" [routerLink]="['/fantasy/players/details/' + id]" target="_self">
@@ -8,8 +8,8 @@
 </a>
 
 <span *ngIf="!id && lastName">
-  <span fxHide.lt-md>{{ name }}</span>
-  <span fxHide.gt-sm>{{ lastName }}</span>
+  <span class="hidden md:block">{{ name }}</span>
+  <span class="block md:hidden">{{ lastName }}</span>
 </span>
 
 <span *ngIf="!id && !lastName">

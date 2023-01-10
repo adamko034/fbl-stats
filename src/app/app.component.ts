@@ -15,8 +15,8 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { Logger } from 'src/app/utils/logger';
 import { ScreenSizeService } from './services/screen-size.service';
+import { SidenavService } from './services/sidenav.service';
 import { FixturesStore } from './store/fixtures/fixtures.store';
-import { GuiConfigStore } from './store/gui-config/gui-config.store';
 
 @UntilDestroy()
 @Component({
@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   public sidenavOpened$: Observable<boolean>;
+  public lastUpdated$: Observable<Date>;
 
   constructor(
     private propertiesService: PropertiesStore,
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private screenSizeService: ScreenSizeService,
     private fixturesStore: FixturesStore,
-    private guiConfigStore: GuiConfigStore
+    private sidenavService: SidenavService
   ) {}
 
   public ngOnInit(): void {
@@ -57,7 +58,8 @@ export class AppComponent implements OnInit {
     this.teamsStore.load();
     this.fixturesStore.load();
 
-    this.sidenavOpened$ = this.guiConfigStore.selectSidenavOpened();
+    this.sidenavOpened$ = this.sidenavService.opened$;
+    this.lastUpdated$ = this.propertiesService.selectLastUpdated();
 
     this.screenSizeService
       .isMobile$()
@@ -76,6 +78,6 @@ export class AppComponent implements OnInit {
   }
 
   public toggleSideNav(): void {
-    this.guiConfigStore.toggleSideNav();
+    this.sidenavService.toggle();
   }
 }

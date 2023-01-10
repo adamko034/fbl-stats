@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PlayerGamesService } from 'src/app/modules/core/players/services/player-games.service';
 import { PlayerDetailsGamesFilters } from '../../../../filters/player-details-games.filters';
 import { PlayerDetailsGameFilter } from '../../../../models/enums/player-details-game-filter.enum';
@@ -27,18 +26,18 @@ interface State {
   styleUrls: ['./player-details-points-efficiency.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayerDetailsPointsEfficiencyComponent implements OnInit {
-  @Input() player: PlayerDetails;
-
-  private filters = PlayerDetailsGameFilter;
+export class PlayerDetailsPointsEfficiencyComponent {
+  private _player: PlayerDetails;
+  @Input() set player(value: PlayerDetails) {
+    if (value) {
+      this._player = value;
+      this.createState();
+    }
+  }
 
   public state: State;
 
-  constructor(private playerGamesService: PlayerGamesService, private router: Router) {}
-
-  public ngOnInit(): void {
-    this.createState();
-  }
+  constructor(private playerGamesService: PlayerGamesService) {}
 
   private createState(): void {
     this.state = {
@@ -51,17 +50,17 @@ export class PlayerDetailsPointsEfficiencyComponent implements OnInit {
 
   private createStateRow(minPoints: number): StateRow {
     return {
-      away: this.createStateRowValue(minPoints, this.filters.AWAY),
-      home: this.createStateRowValue(minPoints, this.filters.HOME),
-      overall: this.createStateRowValue(minPoints, this.filters.OVERALL),
-      last5: this.createStateRowValue(minPoints, this.filters.LAST5),
-      vsTop6: this.createStateRowValue(minPoints, this.filters.VsTOP6),
-      vsWorst6: this.createStateRowValue(minPoints, this.filters.VsWORST6)
+      away: this.createStateRowValue(minPoints, PlayerDetailsGameFilter.AWAY),
+      home: this.createStateRowValue(minPoints, PlayerDetailsGameFilter.HOME),
+      overall: this.createStateRowValue(minPoints, PlayerDetailsGameFilter.OVERALL),
+      last5: this.createStateRowValue(minPoints, PlayerDetailsGameFilter.LAST5),
+      vsTop6: this.createStateRowValue(minPoints, PlayerDetailsGameFilter.VsTOP6),
+      vsWorst6: this.createStateRowValue(minPoints, PlayerDetailsGameFilter.VsWORST6)
     };
   }
 
   private createStateRowValue(minPoints: number, filter: PlayerDetailsGameFilter): string {
-    const games = new PlayerDetailsGamesFilters(filter, this.playerGamesService).filter(this.player.games);
+    const games = new PlayerDetailsGamesFilters(filter, this.playerGamesService).filter(this._player.games);
     const gamesCount = this.playerGamesService.getGamesCountWithPointsGreaterThan(games, minPoints);
     const percentage = gamesCount.length === 0 ? 0 : Math.round((gamesCount.length / games.length) * 1000) / 10;
 

@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="(valueInternal$ | async) && possibleNextMatchdays$ | async" class="select">
+<mat-form-field class="material-original" *ngIf="(valueInternal$ | async) && possibleNextMatchdays$ | async">
   <mat-label>{{ title }}</mat-label>
   <mat-select [ngModel]="valueInternal$ | async" (valueChange)="onMatchdaysCountChange($event)">
     <mat-option *ngFor="let md of possibleNextMatchdays$ | async" [value]="md">

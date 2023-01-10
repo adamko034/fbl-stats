@@ -1,5 +1,5 @@
 <div class="timeline-matchdays-container">
-  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+  <div class="flex flex-row justify-start items-start gap-x-2.5">
     <button class="navigation" *ngIf="order === 'dsc'" mat-icon-button [disabled]="isMax" (click)="nextMatchdays()">
       <mat-icon>navigate_before</mat-icon>
     </button>
@@ -8,18 +8,16 @@
       <mat-icon>navigate_before</mat-icon>
     </button>
 
-    <div fxLayout="row" fxLayoutGap="15px">
+    <div class="flex flex-row gap-x-4">
       <div
-        class="item"
-        *ngFor="let item of displayedItems | orderBy: orderBy"
-        fxLayout="column"
-        fxLayoutAlign="start center"
+        class="item flex flex-col justify-start items-center"
+        *ngFor="let item of displayedItems | orderBy : orderBy"
       >
         <span class="item-title bold">{{ item.matchday }}</span>
         <span class="item-logo">
           <app-team-logo [height]="25" [team]="item.opponent"></app-team-logo>
         </span>
-        <div class="item-text" *ngIf="item.matchdayPlayed" fxLayoutGap="3px" fxLayoutAlign="center center">
+        <div class="item-text flex-row-center-center gap-x-1" *ngIf="item.matchdayPlayed">
           <app-team-form *ngIf="item.wasPlayed" size="supersmall" [form]="item.result"></app-team-form>
           <span class="item-result">{{ item.resultText }}</span>
           <span>({{ item.isHome ? 'h' : 'a' }})</span>
@@ -30,30 +28,32 @@
           >
           <span *ngIf="!item.hasPlayed && !item.postponed" [ngClass]="getPointsCssClass(item.points)">x</span>
         </div>
-        <div class="item-sub-text bold" *ngIf="item.matchdayPlayed">
-          <app-has-started-icon *ngIf="item.hasStarted"></app-has-started-icon>
-          <app-has-came-from-bench-icon *ngIf="item.hasPlayed && !item.hasStarted"></app-has-came-from-bench-icon>
-          <app-has-played-seventy-minutes-icon *ngIf="item.hasPlayed70min"></app-has-played-seventy-minutes-icon>
-
-          <div fxLayout="row wrap">
+        <div class="flex flex-col justify-center">
+          <div
+            class="item-sub-text bold flex justify-center items-center flex-row flex-wrap"
+            *ngIf="item.matchdayPlayed"
+          >
+            <app-has-started-icon *ngIf="item.hasStarted"></app-has-started-icon>
+            <app-has-came-from-bench-icon *ngIf="item.hasPlayed && !item.hasStarted"></app-has-came-from-bench-icon>
+            <app-has-played-seventy-minutes-icon *ngIf="item.hasPlayed70min"></app-has-played-seventy-minutes-icon>
+          </div>
+          <div class="flex-row-wrap justify-center items-center">
             <app-goals-icons [count]="item.goalsScored"></app-goals-icons>
             <app-assists-icons [count]="item.assists"></app-assists-icons>
           </div>
           <app-postponed-game-icon *ngIf="item.postponed"></app-postponed-game-icon>
         </div>
-        <div class="item-text" *ngIf="!item.matchdayPlayed" fxLayoutGap="3px">
+
+        <div class="item-text gap-x-1" *ngIf="!item.matchdayPlayed">
           <span>{{ item.opponentRank | numerals }}</span>
           <span>({{ item.isHome ? 'h' : 'a' }})</span>
         </div>
         <div
-          class="item-sub-text"
+          class="item-sub-text flex flex-col items-start justify-center gap-y-1"
           *ngIf="!item.matchdayPlayed && !!item.date"
-          fxLayout="column"
-          fxLayoutAlign="start center"
-          fxLayoutGap="4px"
         >
-          <span>{{ item.date | epochDate | date: 'dd.MM' }}</span>
-          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+          <span>{{ item.date | epochDate | date : 'dd.MM' }}</span>
+          <div class="flex-row-start-center gap-x-1">
             <app-matchday-first-game-icon *ngIf="item.isFirstGame"></app-matchday-first-game-icon>
             <app-postponed-game-icon *ngIf="item.postponed"></app-postponed-game-icon>
           </div>

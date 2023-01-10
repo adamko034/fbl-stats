@@ -1,5 +1,4 @@
 export interface GuiConfig {
-  sidenavShow: boolean;
   players?: GuiConfigPlayers;
   myTeam?: GuiConfigMyTeam;
   comparePlayers?: GuiConfigComparePlayers;

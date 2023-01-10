@@ -1,44 +1,31 @@
-<div class="container">
-  <div class="title-container">
-    <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="5px">
-      <app-players-picker
-        class="picker"
-        [type]="'icon'"
-        [filters]="{ excludedIds: players | pluck: 'id' }"
-        [closeAfterSelect]="true"
-        (playerSelected)="onPlayerSelected($event)"
-      ></app-players-picker>
+<div class="p-2 grid grid-cols-[70px_auto]">
+  <div class="flex flex-col items-center gap-y-2">
+    <app-players-picker
+      [type]="'icon'"
+      [filters]="{ excludedIds: players | pluck : 'id' }"
+      [closeAfterSelect]="true"
+      (playerSelected)="onPlayerSelected($event)"
+    ></app-players-picker>
+    <button class="clear-button" mat-button (click)="onClearSelection()">Clear all</button>
+  </div>
 
-      <button
-        mat-icon-button
-        class="red-background clear-selection-button"
-        matTooltip="Clear selection"
-        (click)="onClearSelection()"
-      >
-        <mat-icon>clear</mat-icon>
-      </button>
-    </div>
-
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
-      <div class="player-card" *ngFor="let player of players">
-        <mat-card>
-          <mat-card-content fxLayoutAlign="center">
-            <div fxLayout="column">
-              <span class="player-card-name"
-                ><app-player-name-link [name]="player.name" [id]="player.id"></app-player-name-link
-              ></span>
-              <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                <app-team-logo [team]="player.teamShort" [height]="20"></app-team-logo>
-                <span class="player-card-position">{{ player.position | uppercase }}</span>
-                <span class="player-card-position">{{ player.price }}M</span>
-              </div>
+  <div class="flex-row-wrap justify-evenly gap-3">
+    <div class="w-[220px] min-w-[220px] max-w-[220px]" *ngFor="let player of players">
+      <mat-card>
+        <mat-card-content>
+          <div class="flex flex-col gap-y-1 items-center">
+            <app-player-name-link class="font-medium" [name]="player.name" [id]="player.id"></app-player-name-link>
+            <div class="flex-row-center-center gap-x-2.5">
+              <app-team-logo [team]="player.teamShort" [height]="20"></app-team-logo>
+              <span class="color-grey font-small">{{ player.position | uppercase }}</span>
+              <span class="color-grey font-small">{{ player.price }}M</span>
             </div>
-            <button class="remove-button" mat-mini-fab (click)="onPlayerRemove(player)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </div>
+          </div>
+          <button class="remove-button" mat-mini-fab (click)="onPlayerRemove(player)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { NgPipesModule } from 'ngx-pipes';
 import { CardModule } from 'src/app/common/components/ui/card/card.module';
@@ -8,6 +7,7 @@ import { CompareArrowModule } from 'src/app/common/components/ui/compare-arrow/c
 import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-white-block/content-white-block.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { ScaleModule } from 'src/app/common/directives/scale/scale.module';
+import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
@@ -68,9 +68,9 @@ import { HomeComponent } from './view/home.component';
     PlayersTableCardModule,
     PlayersResolverModule,
     PropertiesResolverModule,
-    FlexLayoutModule,
     PlayersServicesModule,
     SwitcherModule,
+    StickyModule,
     CardModule,
     PipesModule,
     MatIconModule,

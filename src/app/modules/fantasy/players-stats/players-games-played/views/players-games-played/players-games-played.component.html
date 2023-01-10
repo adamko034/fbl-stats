@@ -1,26 +1,28 @@
-<div fxLayout="column" fxLayoutGap="10px">
+<div class="flex flex-col gap-x-2.5">
   <app-white-block padding="20px 10px 0 10px">
-    <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-evenly center">
+    <div class="flex-row-wrap gap-x-5 justify-evenly">
       <app-position-switch class="filter" [value]="position" (change)="onPositionChange($event)"></app-position-switch>
 
-      <app-switcher
-        class="filter"
-        [items]="types"
-        [value]="orderBy"
-        (switchChange)="onSortChange({ active: $event, direction: 'desc' })"
-      ></app-switcher>
+      <app-form-field label="Order by">
+        <app-switcher
+          class="filter"
+          [items]="types"
+          [value]="orderBy"
+          (switchChange)="onSortChange({ active: $event, direction: 'desc' })"
+        ></app-switcher>
+      </app-form-field>
     </div>
   </app-white-block>
 
   <app-players-list-generic
-    *ngIf="lastMatchday$ | async | isGreaterThan: 0"
+    *ngIf="lastMatchday$ | async | isGreaterThan : 0"
     [data]="listData$ | async"
     [config]="listConfig$ | async"
     (sortChange)="onSortChange($event)"
   ></app-players-list-generic>
 
   <app-follow-us
-    *ngIf="lastMatchday$ | async | isEqualTo: 0"
+    *ngIf="lastMatchday$ | async | isEqualTo : 0"
     text=" Players stats will be available after MD 1."
   ></app-follow-us>
 </div>

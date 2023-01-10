@@ -3,7 +3,7 @@
     >Different kick-off times (MD{{ lastMatchday + 1 }} - MD{{ lastMatchday + includeNextMatchdaysCount }})
   </span>
   <div content>
-    <div fxLayout="column">
+    <div class="flex flex-col">
       <app-matrix-table *ngIf="matrix" [rows]="matrix" [config]="matrixConfig"></app-matrix-table>
       <div class="legend">
         <span [appSticky]="{ position: 'left' }"

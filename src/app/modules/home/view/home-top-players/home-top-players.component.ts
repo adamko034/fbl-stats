@@ -26,7 +26,7 @@ export class HomeTopPlayersComponent implements OnInit {
     showMoreText: 'All top players >>',
     showPositionSwitch: true,
     showTotalPoints: false,
-    showPopularity: true,
+    showPopularity: false,
     showPrice: true,
     showAvgPoints: true,
     showTop100Popularity: false,

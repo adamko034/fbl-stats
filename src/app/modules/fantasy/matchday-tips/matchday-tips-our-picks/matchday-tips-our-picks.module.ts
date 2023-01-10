@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-white-block/content-white-block.module';
 import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
@@ -29,7 +28,6 @@ import { MatchdayTipsOurPicksPlayersComponent } from './views/our-picks-players/
   imports: [
     CommonModule,
     MatchdayTipsOurPicksRoutingModule,
-    FlexLayoutModule,
     ContentWhiteBlockModule,
     GameTeamVenueModule,
     PlayerIconPredictionModule,

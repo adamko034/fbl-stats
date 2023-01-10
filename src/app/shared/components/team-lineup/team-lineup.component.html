@@ -1,4 +1,4 @@
-<div class="field" fxLayout="column" fxLayoutAlign="start center">
+<div class="field flex-col-start-center">
   <ng-template
     [ngTemplateOutlet]="row"
     [ngTemplateOutletContext]="{ players: forwards, marginTop: '35' }"
@@ -6,7 +6,7 @@
   <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: midfielders }"></ng-template>
   <ng-template [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{ players: defenders }"></ng-template>
 
-  <div *ngIf="goalkeeper" fxFlex class="position goalkeeper" fxLayoutAlign="center end">
+  <div *ngIf="goalkeeper" class="position goalkeeper flex flex-1 flex-row justify-center items-end max-h-[10%]">
     <div class="player">
       <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: goalkeeper }"></ng-template>
     </div>
@@ -14,42 +14,30 @@
 </div>
 
 <ng-template #row let-players="players" let-marginTop="marginTop">
-  <div
-    *ngIf="players.length < 5"
-    class="position"
-    fxFlex="30"
-    fxLayout="row wrap"
-    fxLayoutGap="5px"
-    fxLayoutAlign="space-evenly center"
-  >
-    <div class="player" fxLayout="center center" *ngFor="let player of players | orderBy: ['subPosition', 'lastName']">
+  <div *ngIf="players.length < 5" class="position flex-row-wrap gap-x-1 flex-1 justify-evenly items-center max-h-[30%]">
+    <div class="player flex-row-center-center" *ngFor="let player of players | orderBy : ['subPosition', 'lastName']">
       <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
     </div>
   </div>
 
   <div
     *ngIf="players.length > 4"
-    class="position"
-    fxFlex="30"
-    fxLayout="column"
-    fxLayoutGap="10px"
+    class="position flex flex-col gap-y-2.5 flex-1 max-h-[30%]"
     [ngStyle]="{ 'margin-top': !marginTop ? 'unset' : marginTop + 'px' }"
   >
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="flex flex-row justify-between items-center">
       <div
-        class="player"
-        fxLayout="center center"
-        *ngFor="let player of getWingers(players) | orderBy: ['subPosition', 'lastName']"
+        class="player flex-row-center-center"
+        *ngFor="let player of getWingers(players) | orderBy : ['subPosition', 'lastName']"
       >
         <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
       </div>
     </div>
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+    <div class="flex-row-wrap justify-evenly items-center gap-x-1">
       <div
-        class="player"
+        class="player flex-row-center-center"
         [ngClass]="{ 'player-2-lines': isMoreThanFourCentrals(players) }"
-        fxLayout="center center"
-        *ngFor="let player of players | filterBy: ['subPosition']:'2' | orderBy: ['subPosition', 'lastName']"
+        *ngFor="let player of players | filterBy : ['subPosition'] : '2' | orderBy : ['subPosition', 'lastName']"
       >
         <ng-template [ngTemplateOutlet]="playerLink" [ngTemplateOutletContext]="{ player: player }"></ng-template>
       </div>
@@ -58,7 +46,7 @@
 </ng-template>
 
 <ng-template #playerLink let-player="player">
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+  <div class="flex-row-start-center gap-x-1">
     <app-team-logo *ngIf="player.team" [height]="14" [team]="player.team"></app-team-logo>
     <app-player-name-link
       *ngIf="!!player.id"

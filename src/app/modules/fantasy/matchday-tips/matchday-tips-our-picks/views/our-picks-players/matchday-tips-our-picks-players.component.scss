@@ -10,15 +10,7 @@ tr {
     border-bottom: 1px solid rgba($color: #000000, $alpha: 0.5);
   }
 
-  td.divider-mobile {
-    text-align: center !important;
-  }
-
   td.divider-no-padding {
     padding-top: 0px !important;
   }
-}
-
-.hidden {
-  visibility: hidden;
 }

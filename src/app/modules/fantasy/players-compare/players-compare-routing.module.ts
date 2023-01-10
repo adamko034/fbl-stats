@@ -7,16 +7,17 @@ import { PlayersCompareComponent } from './view/players-compare.component';
 
 const routes: Routes = [
   {
-    path: ':type',
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-    canActivate: [PlayersCompareQuickLinkGuard]
-  },
-  {
     path: '',
     component: PlayersCompareComponent,
     resolve: { state: PlayersCompareStateResolver },
     canActivate: [PlayersCompareIdsCacheGuard],
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+  },
+  {
+    path: ':type',
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    canActivate: [PlayersCompareQuickLinkGuard],
+    children: []
   }
 ];
 

@@ -1,10 +1,10 @@
-<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
+<div class="flex-row-start-center gap-x-1">
   <span class="selected-span" *ngIf="selectedCount() === 0">{{ noItemsSelectedLabel }}</span>
   <span class="selected-span" *ngIf="selectedCount() > 0">{{ selectedItemsLabel }}</span>
   <button
-    [fxHide.lt-sm]="changeToIconOnMobile"
     mat-stroked-button
-    class="open-dialog-button"
+    class="open-dialog-button hidden"
+    [ngClass]="{ 'hidden sm:block': changeToIconOnMobile }"
     [appScale]="0.9"
     (click)="openDialog()"
   >
@@ -12,10 +12,9 @@
     <span>{{ openDialogLabel }}</span>
   </button>
   <button
-    fxHide.gt-xs
-    [fxShow.lt-sm]="changeToIconOnMobile"
     mat-icon-button
-    class="main-background"
+    class="main-background sm:hidden"
+    [ngClass]="{ block: changeToIconOnMobile }"
     [appScale]="0.8"
     (click)="openDialog()"
   >

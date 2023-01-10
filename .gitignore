@@ -49,3 +49,9 @@ Thumbs.db
 
 /src/assets/db
 /.vscode
+.angular
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

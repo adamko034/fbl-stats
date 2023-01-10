@@ -1,13 +1,13 @@
 <app-white-block padding="10px 0 10px 0">
   <div appStickyWrapper>
     <h2 class="matchday-info" [appSticky]="{ position: 'left' }">Matchday {{ nextMatchdayFixtures.matchdayNumber }}</h2>
-    <div class="container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign.lt-sm="center center">
-      <div class="section" *ngFor="let kickOffTimes of data | orderBy: 'date'">
-        <div fxLayout="column" fxLayoutGap="20px">
-          <div fxLayout="column">
-            <span class="section-title">{{ kickOffTimes.date | epochDate | date: 'EEEE, HH:mm' }}</span>
-            <span class="section-subtitle">{{ kickOffTimes.date | epochDate | date: 'dd.MM.yyyy' }}</span>
-            <div class="timeline" [appSticky]="{ position: 'left' }" fxLayout="row" fxLayoutAlign="center center">
+    <div class="container flex flex-col sm:flex-row justify-center items-center sm:justify-start sm:items-start">
+      <div class="section" *ngFor="let kickOffTimes of data | orderBy : 'date'">
+        <div class="flex flex-col gap-x-5">
+          <div class="flex flex-col">
+            <span class="section-title">{{ kickOffTimes.date | epochDate | date : 'EEEE, HH:mm' }}</span>
+            <span class="section-subtitle">{{ kickOffTimes.date | epochDate | date : 'dd.MM.yyyy' }}</span>
+            <div class="timeline flex-row-center-center" [appSticky]="{ position: 'left' }">
               <svg class="timeline-line" height="5">
                 <line x1="0" y1="0" x2="100%" y2="0"></line>
               </svg>
@@ -17,7 +17,7 @@
             </div>
           </div>
 
-          <div fxLayout="column" fxLayoutGap="15px">
+          <div class="flex flex-col gap-x-3.5">
             <div *ngFor="let position of ['gk', 'def', 'mid', 'for']">
               <ng-template
                 [ngTemplateOutlet]="players"
@@ -32,10 +32,10 @@
 </app-white-block>
 
 <ng-template #players let-position="position" let-players="players">
-  <div fxLayout="column" class="position" [ngClass]="getSectionPositionColorClass(position, players.length)">
+  <div class="position flex flex-col" [ngClass]="getSectionPositionColorClass(position, players.length)">
     <span>{{ position | uppercase }}</span>
-    <div fxLayout="column" fxLayoutGap="3px" [ngStyle.gt-xs]="{ height: getSectionPositionHeight(position) }">
-      <div class="player" *ngFor="let player of players" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="7px">
+    <div class="flex flex-col gap-x-1" [ngStyle]="{ height: getSectionPositionHeight(position) }">
+      <div class="player flex-row-center-center gap-x-2" *ngFor="let player of players">
         <app-team-logo [height]="15" [team]="player.teamShort"></app-team-logo>
         <app-player-name-link [id]="player.id" [name]="player.name"></app-player-name-link>
       </div>

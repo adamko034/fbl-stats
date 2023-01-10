@@ -1,44 +1,42 @@
-<div class="matchdays-container" fxLayout="column">
+<div class="matchdays-container flex flex-col">
   <section class="matchday" *ngFor="let matchday of displayedMatchdays">
-    <div class="matchday-number" ngClass.lt-md="matchday-number-lt-md">
+    <div class="matchday-number text-[7vw] h-[calc(7vw_+_10px)] lg:text-[48px] lg:h-[58px]">
       {{ matchday.matchdayNumber }}
     </div>
-    <div class="matchday-content" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+
+    <div class="matchday-content flex-col-center-center gap-y-5">
       <div
         *ngFor="let matchdayGames of matchday.gamesPerDate | keyvalue"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        fxLayoutGap="3px"
-        class="matchday-games"
+        class="matchday-games flex-col-center-center gap-y-1"
       >
-        <div class="date-container" fxLayout="row wrap" fxLayoutGap="3px">
+        <div class="date-container flex-row-wrap gap-x-1">
           <span *ngIf="isDate(matchdayGames.key); else toBeDecided" class="date">{{
-            matchdayGames.key | epochDate | date: 'EEEE, dd.MM.yyyy HH:mm'
+            matchdayGames.key | epochDate | date : 'EEEE, dd.MM.yyyy HH:mm'
           }}</span>
           <ng-template #toBeDecided>
             <span class="date">Date to be decided</span>
           </ng-template>
         </div>
 
-        <div class="games-container" fxLayout="column" fxLayoutGap="10px" fxFlexAlign="stretch">
+        <div class="games-container flex flex-col self-stretch gap-y-2.5">
           <div *ngFor="let game of matchdayGames.value" class="game" [ngClass]="{ 'game-postponed': game.isPostponed }">
-            <div class="game-home" fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="7px">
-              <span fxHide.lt-sm> {{ game.homeTeamLong }}</span>
-              <span fxHide.gt-xs>{{ game.homeTeamShort | uppercase }}</span>
-              <app-team-logo [team]="game.homeTeamShort" [height]="30"></app-team-logo>
+            <div class="game-home flex flex-row justify-end items-center gap-x-2">
+              <span class="hidden sm:block"> {{ game.homeTeamLong }}</span>
+              <span class="block sm:hidden">{{ game.homeTeamShort | uppercase }}</span>
+              <app-team-logo [team]="game.homeTeamShort" [height]="22"></app-team-logo>
             </div>
 
-            <div fxLayoutAlign="center center">
+            <div class="flex-row-center-center">
               <b>:</b>
             </div>
 
-            <div class="game-away" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="7px">
-              <app-team-logo [team]="game.awayTeamShort" [height]="30"></app-team-logo>
-              <span fxHide.lt-sm>{{ game.awayTeamLong }}</span>
-              <span fxHide.gt-xs>{{ game.awayTeamShort | uppercase }}</span>
+            <div class="game-away flex-row-start-center gap-x-2">
+              <app-team-logo [team]="game.awayTeamShort" [height]="22"></app-team-logo>
+              <span class="hidden sm:block">{{ game.awayTeamLong }}</span>
+              <span class="block sm:hidden">{{ game.awayTeamShort | uppercase }}</span>
             </div>
 
-            <div class="game-indicators" fxLayout="row" fxLayoutAlign="start center">
+            <div class="game-indicators flex-row-start-center">
               <app-postponed-game-icon *ngIf="game.isPostponed" size="17"></app-postponed-game-icon>
             </div>
           </div>

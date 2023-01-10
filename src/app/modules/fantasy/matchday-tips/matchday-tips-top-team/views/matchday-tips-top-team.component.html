@@ -1,19 +1,23 @@
-<div fxLayout="column" fxLayoutGap="20px">
+<div class="flex flex-col gap-y-5">
   <app-matchday-tips-top-team-filters
-    [filters]="state$ | async | field: 'filters'"
-    [maxPrice]="state$ | async | field: 'maxPrice'"
-    [lastMatchday]="state$ | async | field: 'lastMatchday'"
+    [filters]="state$ | async | field : 'filters'"
+    [maxPrice]="state$ | async | field : 'maxPrice'"
+    [lastMatchday]="state$ | async | field : 'lastMatchday'"
   ></app-matchday-tips-top-team-filters>
 
-  <app-white-block padding="20px 20px 20px 20px" *ngIf="state$ | async | field: 'lastMatchday' | isGreaterThan: 0">
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+  <app-white-block padding="20px 20px 20px 20px" *ngIf="state$ | async | field : 'lastMatchday' | isGreaterThan : 0">
+    <div class="flex-row-wrap justify-evenly">
       <app-team-lineup class="lineup" [lineup]="lineup$ | async"></app-team-lineup>
-      <app-team-players-table [config]="playersTableConfig" [players]="playersTable$ | async"></app-team-players-table>
+      <app-team-players-table
+        appStickyWrapper
+        [config]="playersTableConfig"
+        [players]="playersTable$ | async"
+      ></app-team-players-table>
     </div>
   </app-white-block>
 
   <app-follow-us
-    *ngIf="state$ | async | field: 'lastMatchday' | isEqualTo: 0"
+    *ngIf="state$ | async | field : 'lastMatchday' | isEqualTo : 0"
     text="Best team will be available after MD 1."
   ></app-follow-us>
 </div>

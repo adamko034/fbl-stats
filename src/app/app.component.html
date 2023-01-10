@@ -1,19 +1,33 @@
-<h1 fxHide>Fantasy Bundesliga Stats | Tips | Predicted Lineups</h1>
+<h1 class="hidden">Fantasy Bundesliga Stats | Tips | Predicted Lineups</h1>
 <div class="app-content">
-  <mat-sidenav-container
-    class="side-nav-container animate__animated animate__fadeIn"
-    [ngStyle.lt-sm]="{ position: (sidenavOpened$ | async) ? 'fixed' : 'relative' }"
-    autosize
-    (backdropClick)="toggleSideNav()"
-  >
+  <mat-sidenav-container class="side-nav-container" autosize (backdropClick)="toggleSideNav()">
     <mat-sidenav class="sidenav" [mode]="sideNavMode" [opened]="sidenavOpened$ | async">
       <app-sidenav></app-sidenav>
     </mat-sidenav>
     <mat-sidenav-content>
       <app-header></app-header>
       <mat-progress-bar *ngIf="loading" class="loading" mode="query"></mat-progress-bar>
-      <div *ngIf="!loading" class="content">
+      <div class="content min-h-[82vh]">
         <router-outlet></router-outlet>
+      </div>
+      <div class="footer flex flex-wrap flex-row items-center">
+        <div class="last-udpated flex flex-row justify-start items-center gap-x-1">
+          <div class="flex flex-row items-center">
+            <mat-icon class="scale-[0.8]">sync</mat-icon>
+            <span class="footer-section">Last updated:</span>
+          </div>
+
+          <span>{{ lastUpdated$ | async | amTimeAgo }}</span>
+        </div>
+
+        <div class="m-auto">
+          <a
+            class="footer-section join-our-league"
+            href="https://fantasy.bundesliga.com/invitations/league_invite/4d66db0394a6c34445c6e239269066f3"
+          >
+            Join our #BLFantasy league!</a
+          >
+        </div>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

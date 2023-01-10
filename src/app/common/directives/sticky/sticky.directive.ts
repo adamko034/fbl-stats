@@ -2,7 +2,7 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({ selector: '[appSticky]' })
 export class StickyDirective implements OnInit {
-  @Input('appSticky') sticky: { position: 'top' | 'left'; px?: number; backgroundColor?: string };
+  @Input('appSticky') sticky: { position: 'top' | 'left'; px?: number; backgroundColor?: string; z?: number };
 
   constructor(private element: ElementRef) {}
 
@@ -10,7 +10,7 @@ export class StickyDirective implements OnInit {
     const pixels = this.sticky.px ?? 0;
     this.element.nativeElement.style[this.sticky.position] = `${pixels}px`;
     this.element.nativeElement.style.position = 'sticky';
-    this.element.nativeElement.style['z-index'] = 100;
+    this.element.nativeElement.style['z-index'] = this.sticky.z ?? 100;
 
     const background = this.sticky.backgroundColor ?? '#fff';
     this.element.nativeElement.style['background-color'] = background;

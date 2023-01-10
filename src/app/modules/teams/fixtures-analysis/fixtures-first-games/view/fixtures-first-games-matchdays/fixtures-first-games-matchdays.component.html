@@ -12,8 +12,8 @@
           <span>{{ matchday.matchday }}</span>
         </td>
         <td>
-          <div fxLayout="column" fxLayoutGap="4px">
-            <div fxLayout="row" *ngFor="let game of matchday.games" fxLayoutGap="7px">
+          <div class="flex flex-col gap-y-1">
+            <div class="flex flex-row gap-x-2" *ngFor="let game of matchday.games">
               <app-team-logo [team]="game.teamHomeShort" [height]="22"></app-team-logo>
               <span>-</span>
               <app-team-logo [team]="game.teamAwayShort" [height]="22"></app-team-logo>
@@ -21,9 +21,9 @@
           </div>
         </td>
         <td>
-          <div fxLayout="row wrap" fxLayoutGap="3px">
-            <span>{{ matchday.date | epochDate | date: 'EEEE HH:mm' }}</span>
-            <span>{{ matchday.date | epochDate | date: 'dd.MM.yyyy' }}</span>
+          <div class="flex-row-wrap gap-x-1">
+            <span>{{ matchday.date | epochDate | date : 'EEEE HH:mm' }}</span>
+            <span>{{ matchday.date | epochDate | date : 'dd.MM.yyyy' }}</span>
           </div>
         </td>
       </tr>

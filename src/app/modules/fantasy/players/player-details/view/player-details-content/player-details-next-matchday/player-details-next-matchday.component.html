@@ -1,199 +1,198 @@
 <app-white-block *ngIf="player.nextGame" padding="10px 10px 0px 10px">
-  <div
-    content
-    class="player-details-next-matchday-container"
-    fxLayout="row wrap"
-    fxLayoutGap="10px"
-    fxLayoutAlign="space-evenly start"
-    fxLayout.lt-sm="column"
-    fxLayoutAlign.lt-sm="center center"
-  >
-    <div fxLayout="column" class="next-game-info" fxLayoutGap="10px">
-      <div>
-        <h4>MATCHDAY {{ player.nextGame.matchday }}</h4>
-        <span class="next-game-info-date grey">{{
-          player.nextGame.date | epochDate | date: 'EEEE, HH:mm, dd.MM.yyyy'
-        }}</span>
-      </div>
-
-      <div fxLayoutGap="20px" fxLayoutAlign="center center">
-        <app-team-logo [height]="40" [team]="homeTeam.shortName"></app-team-logo>
-        <span>vs.</span>
-        <app-team-logo [height]="40" [team]="awayTeam.shortName"></app-team-logo>
-      </div>
-
-      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
-        <div *ngIf="player.nextGame.isFirstGame" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-          <app-matchday-first-game-icon></app-matchday-first-game-icon>
-          <span class="font-small">Matchday first game</span>
+  <div content>
+    <div class="flex-col-center-center sm:flex-row sm:flex-wrap sm:justify-evenly sm:items-start gap-x-2 gap-y-2">
+      <div class="mb-5 flex flex-col justify-center gap-y-2.5">
+        <div>
+          <h4 class="m-0">MATCHDAY {{ player.nextGame.matchday }}</h4>
+          <span class="text-[12px] font-semibold grey">{{
+            player.nextGame.date | epochDate | date : 'EEEE, HH:mm, dd.MM.yyyy'
+          }}</span>
         </div>
-        <div *ngIf="player.nextGame.isPostponed" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-          <app-postponed-game-icon size="18"></app-postponed-game-icon>
-          <span class="font-small">Game is postponed!</span>
+
+        <div class="gap-x-5 flex flex-row justify-center items-center">
+          <app-team-logo [height]="35" [team]="homeTeam.shortName"></app-team-logo>
+          <span>vs.</span>
+          <app-team-logo [height]="35" [team]="awayTeam.shortName"></app-team-logo>
+        </div>
+
+        <div class="flex-col-center-center gap-x-1">
+          <div *ngIf="player.nextGame.isFirstGame" class="flex-row-start-center gap-x-1">
+            <app-matchday-first-game-icon></app-matchday-first-game-icon>
+            <span class="font-small">Matchday first game</span>
+          </div>
+
+          <div *ngIf="player.nextGame.isPostponed" class="flex-row-start-center gap-x-1">
+            <app-postponed-game-icon size="18"></app-postponed-game-icon>
+            <span class="font-small">Game is postponed!</span>
+          </div>
+        </div>
+
+        <div class="flex-row-center-center w-min">
+          <mat-chip-set class="mat-mdc-chip-set-stacked">
+            <mat-chip [disableRipple]="true" class="chip chip-red" *ngIf="player.nextGame.isUnavailable">
+              <div class="flex items-center flex-row gap-x-1">
+                <mat-icon [appScale]="0.8">not_interested</mat-icon>
+                <span>Unavailable !!</span>
+              </div>
+            </mat-chip>
+            <mat-chip
+              [disableRipple]="true"
+              class="chip chip-orange"
+              *ngIf="player.nextGame.prediction === predictions.DOUBT"
+            >
+              <div class="flex items-center flex-row gap-x-1">
+                <mat-icon [appScale]="0.8">error_outline</mat-icon>
+                <span>Varied predictions</span>
+              </div>
+            </mat-chip>
+            <mat-chip
+              [disableRipple]="true"
+              class="chip chip-red"
+              *ngIf="player.nextGame.prediction === predictions.BENCH"
+            >
+              <div class="flex items-center flex-row gap-x-1">
+                <mat-icon [appScale]="0.8">highlight_off</mat-icon><span>Not predicted to start</span>
+              </div></mat-chip
+            >
+            <mat-chip
+              [disableRipple]="true"
+              class="chip chip-green"
+              *ngIf="player.nextGame.prediction === predictions.START"
+              ><div class="items-center flex flex-row gap-x-1">
+                <mat-icon [appScale]="0.8">check_circle</mat-icon><span>Predicted to start</span>
+              </div></mat-chip
+            >
+            <mat-chip [disableRipple]="true" class="chip chip-yellow" *ngIf="player.nextGame.isSuspensionRisk">
+              <div class="items-center flex flex-row gap-x-1">
+                <app-player-icon-suspension-risk></app-player-icon-suspension-risk>
+                <span>Suspension risk</span>
+              </div>
+            </mat-chip>
+          </mat-chip-set>
         </div>
       </div>
 
-      <div fxLayoutAlign="center center">
-        <mat-chip-list class="mat-chip-list-stacked">
-          <mat-chip class="chip chip-red" fxLayout="row" fxLayoutGap="4px" *ngIf="player.nextGame.isUnavailable"
-            ><mat-icon [appScale]="0.8">not_interested</mat-icon><span>Unavailable !!</span></mat-chip
-          >
-          <mat-chip
-            [disableRipple]="true"
-            class="chip chip-orange"
-            fxLayout="row"
-            fxLayoutGap="4px"
-            *ngIf="player.nextGame.prediction === predictions.DOUBT"
-            ><mat-icon [appScale]="0.8">error_outline</mat-icon><span>Varied predictions</span></mat-chip
-          >
-          <mat-chip
-            [disableRipple]="true"
-            class="chip chip-red"
-            fxLayout="row"
-            fxLayoutGap="4px"
-            *ngIf="player.nextGame.prediction === predictions.BENCH"
-            ><mat-icon [appScale]="0.8">highlight_off</mat-icon><span>Not predicted to start</span></mat-chip
-          >
-          <mat-chip
-            [disableRipple]="true"
-            class="chip chip-green"
-            fxLayout="row"
-            fxLayoutGap="4px"
-            *ngIf="player.nextGame.prediction === predictions.START"
-            ><mat-icon [appScale]="0.8">check_circle</mat-icon><span>Predicted to start</span></mat-chip
-          >
-          <mat-chip
-            [disableRipple]="true"
-            class="chip chip-yellow"
-            fxLayout="row"
-            fxLayoutGap="4px"
-            *ngIf="player.nextGame.isSuspensionRisk"
-          >
-            <app-player-icon-suspension-risk></app-player-icon-suspension-risk>
-            <span>Suspension risk</span>
-          </mat-chip>
-        </mat-chip-list>
-      </div>
+      <app-title-underlined-grey *ngIf="player.nextGame.lineupPredictions">
+        <span title>Lineup predictions</span>
+        <table content class="comparison-table">
+          <tbody>
+            <tr></tr>
+            <tr *ngFor="let prediction of player.nextGame.lineupPredictions">
+              <td>
+                <span>{{ prediction.source | ucfirst }} </span>
+              </td>
+              <td>
+                <app-player-icon-lineup-prediction
+                  [prediction]="prediction.attendance"
+                ></app-player-icon-lineup-prediction>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <a class="justify-end self-end underline" [routerLink]="'/teams/lineups/next/' + player.team.shortName"
+                  >Show more</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </app-title-underlined-grey>
+
+      <app-title-underlined-grey>
+        <span title>Teams</span>
+        <table content class="comparison-table">
+          <tbody>
+            <tr>
+              <td></td>
+              <td>{{ homeTeam.shortName | uppercase }}</td>
+              <td>{{ awayTeam.shortName | uppercase }}</td>
+            </tr>
+            <tr>
+              <td>Games</td>
+              <td>{{ homeTeam.table.games }}</td>
+              <td>{{ awayTeam.table.games }}</td>
+            </tr>
+            <tr>
+              <td>Rank</td>
+              <td [ngClass]="{ bolder: homeTeam.table.rank < awayTeam.table.rank }">
+                {{ homeTeam.table.rank | numerals }}
+              </td>
+              <td [ngClass]="{ bolder: homeTeam.table.rank > awayTeam.table.rank }">
+                {{ awayTeam.table.rank | numerals }}
+              </td>
+            </tr>
+            <tr>
+              <td>Points</td>
+              <td [ngClass]="{ bolder: homeTeam.table.points > awayTeam.table.points }">{{ homeTeam.table.points }}</td>
+              <td [ngClass]="{ bolder: homeTeam.table.points < awayTeam.table.points }">{{ awayTeam.table.points }}</td>
+            </tr>
+            <tr>
+              <td>W / D / L</td>
+              <td>{{ homeTeam.table.wins }} / {{ homeTeam.table.draws }} / {{ homeTeam.table.losses }}</td>
+              <td>{{ awayTeam.table.wins }} / {{ awayTeam.table.draws }} / {{ awayTeam.table.losses }}</td>
+            </tr>
+            <tr>
+              <td>Goals</td>
+              <td>{{ homeTeam.table.goalsScored }}:{{ homeTeam.table.goalsConceded }}</td>
+              <td>{{ awayTeam.table.goalsScored }}:{{ awayTeam.table.goalsConceded }}</td>
+            </tr>
+            <tr>
+              <td>GSPG</td>
+              <td [ngClass]="{ bolder: homeTeam.table.gspg > awayTeam.table.gspg }">{{ homeTeam.table.gspg }}</td>
+              <td [ngClass]="{ bolder: homeTeam.table.gspg < awayTeam.table.gspg }">{{ awayTeam.table.gspg }}</td>
+            </tr>
+            <tr>
+              <td>GCPG</td>
+              <td [ngClass]="{ bolder: homeTeam.table.gcpg < awayTeam.table.gcpg }">{{ homeTeam.table.gcpg }}</td>
+              <td [ngClass]="{ bolder: homeTeam.table.gcpg > awayTeam.table.gcpg }">{{ awayTeam.table.gcpg }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </app-title-underlined-grey>
+
+      <app-title-underlined-grey>
+        <span title>Teams last 5 games</span>
+        <table content class="comparison-table">
+          <tbody>
+            <tr>
+              <td></td>
+              <td>{{ homeTeam.shortName | uppercase }}</td>
+              <td>{{ awayTeam.shortName | uppercase }}</td>
+            </tr>
+            <tr>
+              <td>Points</td>
+              <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
+              <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>
+            </tr>
+            <tr>
+              <td>Form</td>
+              <td><app-team-form [form]="homeTeam.last5Form" [size]="'small'"></app-team-form></td>
+              <td><app-team-form [form]="awayTeam.last5Form" [size]="'small'"></app-team-form></td>
+            </tr>
+            <tr>
+              <td>W / D / L</td>
+              <td>{{ homeTeam.last5.wins }} / {{ homeTeam.last5.draws }} / {{ homeTeam.last5.losses }}</td>
+              <td>{{ awayTeam.last5.wins }} / {{ awayTeam.last5.draws }} / {{ awayTeam.last5.losses }}</td>
+            </tr>
+            <tr>
+              <td>Goals</td>
+              <td>{{ homeTeam.last5.goalsScored }}:{{ homeTeam.last5.goalsConceded }}</td>
+              <td>{{ awayTeam.last5.goalsScored }}:{{ awayTeam.last5.goalsConceded }}</td>
+            </tr>
+
+            <tr>
+              <td>GSPG</td>
+              <td [ngClass]="{ bolder: homeTeam.last5.gspg > awayTeam.last5.gspg }">{{ homeTeam.last5.gspg }}</td>
+              <td [ngClass]="{ bolder: homeTeam.last5.gspg < awayTeam.last5.gspg }">{{ awayTeam.last5.gspg }}</td>
+            </tr>
+            <tr>
+              <td>GCPG</td>
+              <td [ngClass]="{ bolder: homeTeam.last5.gcpg < awayTeam.last5.gcpg }">{{ homeTeam.last5.gcpg }}</td>
+              <td [ngClass]="{ bolder: homeTeam.last5.gcpg > awayTeam.last5.gcpg }">{{ awayTeam.last5.gcpg }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </app-title-underlined-grey>
     </div>
-
-    <app-title-underlined-grey *ngIf="player.nextGame.lineupPredictions">
-      <span title>Lineup predictions</span>
-      <table content class="comparison-table">
-        <tbody>
-          <tr></tr>
-          <tr *ngFor="let prediction of player.nextGame.lineupPredictions">
-            <td>
-              <span>{{ prediction.source | ucfirst }} </span>
-            </td>
-            <td>
-              <app-player-icon-lineup-prediction
-                [prediction]="prediction.attendance"
-              ></app-player-icon-lineup-prediction>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <a fxFlexAlign="flex-end" [routerLink]="'/teams/lineups/next/' + player.team.shortName">Show more</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </app-title-underlined-grey>
-
-    <app-title-underlined-grey>
-      <span title>Teams</span>
-      <table content class="comparison-table">
-        <tbody>
-          <tr>
-            <td></td>
-            <td>{{ homeTeam.shortName | uppercase }}</td>
-            <td>{{ awayTeam.shortName | uppercase }}</td>
-          </tr>
-          <tr>
-            <td>Games</td>
-            <td>{{ homeTeam.table.games }}</td>
-            <td>{{ awayTeam.table.games }}</td>
-          </tr>
-          <tr>
-            <td>Rank</td>
-            <td [ngClass]="{ bolder: homeTeam.table.rank < awayTeam.table.rank }">
-              {{ homeTeam.table.rank | numerals }}
-            </td>
-            <td [ngClass]="{ bolder: homeTeam.table.rank > awayTeam.table.rank }">
-              {{ awayTeam.table.rank | numerals }}
-            </td>
-          </tr>
-          <tr>
-            <td>Points</td>
-            <td [ngClass]="{ bolder: homeTeam.table.points > awayTeam.table.points }">{{ homeTeam.table.points }}</td>
-            <td [ngClass]="{ bolder: homeTeam.table.points < awayTeam.table.points }">{{ awayTeam.table.points }}</td>
-          </tr>
-          <tr>
-            <td>W / D / L</td>
-            <td>{{ homeTeam.table.wins }} / {{ homeTeam.table.draws }} / {{ homeTeam.table.losses }}</td>
-            <td>{{ awayTeam.table.wins }} / {{ awayTeam.table.draws }} / {{ awayTeam.table.losses }}</td>
-          </tr>
-          <tr>
-            <td>Goals</td>
-            <td>{{ homeTeam.table.goalsScored }}:{{ homeTeam.table.goalsConceded }}</td>
-            <td>{{ awayTeam.table.goalsScored }}:{{ awayTeam.table.goalsConceded }}</td>
-          </tr>
-          <tr>
-            <td>GSPG</td>
-            <td [ngClass]="{ bolder: homeTeam.table.gspg > awayTeam.table.gspg }">{{ homeTeam.table.gspg }}</td>
-            <td [ngClass]="{ bolder: homeTeam.table.gspg < awayTeam.table.gspg }">{{ awayTeam.table.gspg }}</td>
-          </tr>
-          <tr>
-            <td>GCPG</td>
-            <td [ngClass]="{ bolder: homeTeam.table.gcpg < awayTeam.table.gcpg }">{{ homeTeam.table.gcpg }}</td>
-            <td [ngClass]="{ bolder: homeTeam.table.gcpg > awayTeam.table.gcpg }">{{ awayTeam.table.gcpg }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </app-title-underlined-grey>
-
-    <app-title-underlined-grey>
-      <span title>Teams last 5 games</span>
-      <table content class="comparison-table">
-        <tbody>
-          <tr>
-            <td></td>
-            <td>{{ homeTeam.shortName | uppercase }}</td>
-            <td>{{ awayTeam.shortName | uppercase }}</td>
-          </tr>
-          <tr>
-            <td>Points</td>
-            <td [ngClass]="{ bolder: homeTeam.last5.points > awayTeam.last5.points }">{{ homeTeam.last5.points }}</td>
-            <td [ngClass]="{ bolder: homeTeam.last5.points < awayTeam.last5.points }">{{ awayTeam.last5.points }}</td>
-          </tr>
-          <tr>
-            <td>Form</td>
-            <td><app-team-form [form]="homeTeam.last5Form" [size]="'small'"></app-team-form></td>
-            <td><app-team-form [form]="awayTeam.last5Form" [size]="'small'"></app-team-form></td>
-          </tr>
-          <tr>
-            <td>W / D / L</td>
-            <td>{{ homeTeam.last5.wins }} / {{ homeTeam.last5.draws }} / {{ homeTeam.last5.losses }}</td>
-            <td>{{ awayTeam.last5.wins }} / {{ awayTeam.last5.draws }} / {{ awayTeam.last5.losses }}</td>
-          </tr>
-          <tr>
-            <td>Goals</td>
-            <td>{{ homeTeam.last5.goalsScored }}:{{ homeTeam.last5.goalsConceded }}</td>
-            <td>{{ awayTeam.last5.goalsScored }}:{{ awayTeam.last5.goalsConceded }}</td>
-          </tr>
-
-          <tr>
-            <td>GSPG</td>
-            <td [ngClass]="{ bolder: homeTeam.last5.gspg > awayTeam.last5.gspg }">{{ homeTeam.last5.gspg }}</td>
-            <td [ngClass]="{ bolder: homeTeam.last5.gspg < awayTeam.last5.gspg }">{{ awayTeam.last5.gspg }}</td>
-          </tr>
-          <tr>
-            <td>GCPG</td>
-            <td [ngClass]="{ bolder: homeTeam.last5.gcpg < awayTeam.last5.gcpg }">{{ homeTeam.last5.gcpg }}</td>
-            <td [ngClass]="{ bolder: homeTeam.last5.gcpg > awayTeam.last5.gcpg }">{{ awayTeam.last5.gcpg }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </app-title-underlined-grey>
   </div>
 </app-white-block>

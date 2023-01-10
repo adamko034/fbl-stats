@@ -1,68 +1,66 @@
-<app-card [title]="config.title">
-  <div class="pb-8" fxLayout="column" appStickyWrapper>
-    <div
-      fxLayout="row wrap"
-      fxLayoutAlign="space-around center"
-      fxLayoutGap="15px"
-      [appSticky]="{ px: 0, position: 'left' }"
-    >
-      <app-position-switch
-        *ngIf="config.showPositionSwitch"
-        [showLabel]="false"
-        [value]="position"
-        [narrow]="true"
-        (change)="onPositionChange($event)"
-        class="mb-10"
-      ></app-position-switch>
-      <ng-container
-        class="m-10"
-        *ngIf="otherFiltersTemplateRef"
-        [ngTemplateOutlet]="otherFiltersTemplateRef"
-      ></ng-container>
+<app-card>
+  <span title>{{ config.title }}</span>
+  <div content>
+    <div class="flex flex-col pb-3" appStickyWrapper>
+      <div class="flex-row-wrap justify-around items-center gap-x-3" [appSticky]="{ px: 0, position: 'left' }">
+        <app-position-switch
+          *ngIf="config.showPositionSwitch"
+          [showLabel]="false"
+          [value]="position"
+          [narrow]="true"
+          (change)="onPositionChange($event)"
+          class="mb-4"
+        ></app-position-switch>
+        <ng-container
+          class="m-4"
+          *ngIf="otherFiltersTemplateRef"
+          [ngTemplateOutlet]="otherFiltersTemplateRef"
+        ></ng-container>
+      </div>
+
+      <table class="comparison-table comparison-table-narrow">
+        <tr>
+          <td [appSticky]="{ px: 0, position: 'left' }"></td>
+          <td>Pos</td>
+          <td *ngIf="config.showPrice">$</td>
+          <td *ngIf="config.showPopularity">%</td>
+          <td *ngIf="config.showTop100Popularity">Top 100 %</td>
+          <td *ngIf="config.showTop500Popularity">Top 500 %</td>
+          <td *ngIf="config.showTotalPoints">TP</td>
+          <td *ngIf="config.showAvgPoints">Avg</td>
+          <td *ngFor="let customCol of config.customColumns | orderBy : 'order'">{{ customCol.header }}</td>
+        </tr>
+        <tr *ngFor="let player of players">
+          <td class="flex-row-end-center gap-x-1" [appSticky]="{ px: 0, position: 'left' }">
+            <app-player-name-with-availability
+              [id]="player.id"
+              [name]="player.name"
+              [lastName]="player.name"
+              [available]="player.isAvailable"
+              [suspensionRisk]="player.isSuspensionRisk"
+              [returning]="false"
+              [team]="player.teamShort"
+            >
+            </app-player-name-with-availability>
+            <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
+          </td>
+          <td>{{ player.position | uppercase }}</td>
+
+          <td *ngIf="config.showPrice">{{ player.price }}M</td>
+          <td *ngIf="config.showPopularity">{{ player.popularity }}%</td>
+          <td *ngIf="config.showTop100Popularity">{{ player.top100Popularity }}%</td>
+          <td *ngIf="config.showTop500Popularity">{{ player.top500Popularity }}%</td>
+          <td *ngIf="config.showTotalPoints">{{ player.totalPoints }}</td>
+          <td *ngIf="config.showAvgPoints">{{ player.avgPoints }}</td>
+          <td *ngFor="let customCol of config.customColumns | orderBy : 'order'" [ngClass]="{ bold: customCol.bold }">
+            {{ player[customCol.fieldName] }}
+          </td>
+        </tr>
+      </table>
+
+      <span *ngIf="config.showMoreText" class="show-more self-end" (click)="onShowMoreClick()">
+        {{ config.showMoreText }}
+      </span>
     </div>
-
-    <table class="comparison-table comparison-table-narrow">
-      <tr>
-        <td [appSticky]="{ px: 0, position: 'left' }"></td>
-        <td>Pos</td>
-        <td *ngIf="config.showPrice">$</td>
-        <td *ngIf="config.showPopularity">%</td>
-        <td *ngIf="config.showTop100Popularity">Top 100 %</td>
-        <td *ngIf="config.showTop500Popularity">Top 500 %</td>
-        <td *ngIf="config.showTotalPoints">TP</td>
-        <td *ngIf="config.showAvgPoints">Avg</td>
-        <td *ngFor="let customCol of config.customColumns | orderBy: 'order'">{{ customCol.header }}</td>
-      </tr>
-      <tr *ngFor="let player of players">
-        <td fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="4px" [appSticky]="{ px: 0, position: 'left' }">
-          <app-player-name-with-availability
-            [id]="player.id"
-            [name]="player.name"
-            [lastName]="player.name"
-            [available]="player.isAvailable"
-            [suspensionRisk]="player.isSuspensionRisk"
-            [returning]="false"
-            [team]="player.teamShort"
-          >
-          </app-player-name-with-availability>
-          <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
-        </td>
-        <td>{{ player.position | uppercase }}</td>
-
-        <td *ngIf="config.showPrice">{{ player.price }}M</td>
-        <td *ngIf="config.showPopularity">{{ player.popularity }}%</td>
-        <td *ngIf="config.showTop100Popularity">{{ player.top100Popularity }}%</td>
-        <td *ngIf="config.showTop500Popularity">{{ player.top500Popularity }}%</td>
-        <td *ngIf="config.showTotalPoints">{{ player.totalPoints }}</td>
-        <td *ngIf="config.showAvgPoints">{{ player.avgPoints }}</td>
-        <td *ngFor="let customCol of config.customColumns | orderBy: 'order'" [ngClass]="{ bold: customCol.bold }">
-          {{ player[customCol.fieldName] }}
-        </td>
-      </tr>
-    </table>
-
-    <span *ngIf="config.showMoreText" fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick()">
-      {{ config.showMoreText }}
-    </span>
   </div>
 </app-card>

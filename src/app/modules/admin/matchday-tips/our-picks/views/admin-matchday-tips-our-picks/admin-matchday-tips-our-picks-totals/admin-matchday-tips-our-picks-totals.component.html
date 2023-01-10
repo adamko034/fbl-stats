@@ -1,39 +1,43 @@
 <mat-card>
-  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <div fxLayoutAlign="start center" fxLayoutGap="7px">
-        <span class="text-big">Published</span>
-        <mat-icon [ngClass]="{ green: state.ourPicks.published, red: !state.ourPicks.published }">{{
-          state.ourPicks.published ? 'check_circle' : 'unpublished'
-        }}</mat-icon>
+  <mat-card-content>
+    <div class="flex-col-center-center gap-y-5">
+      <div class="flex-row-center-center gap-x-7">
+        <div class="flex-row-start-center gap-x-2">
+          <span class="text-big">Published</span>
+          <mat-icon [ngClass]="{ green: state.ourPicks.published, red: !state.ourPicks.published }">{{
+            state.ourPicks.published ? 'check_circle' : 'unpublished'
+          }}</mat-icon>
+        </div>
+        <span class="text-big">Players: {{ state.ourPicks.players?.length }}</span>
       </div>
-      <span class="text-big">Players: {{ state.ourPicks.players?.length }}</span>
+
+      <div class="flex-row-center-center gap-x-7">
+        <span class="text-big">GK: {{ state.ourPicks.players | filterBy : ['position'] : 'gk' | length }}</span>
+        <span class="text-big">DEF: {{ state.ourPicks.players | filterBy : ['position'] : 'def' | length }}</span>
+        <span class="text-big">MID: {{ state.ourPicks.players | filterBy : ['position'] : 'mid' | length }}</span>
+        <span class="text-big">FOR: {{ state.ourPicks.players | filterBy : ['position'] : 'for' | length }}</span>
+      </div>
+
+      <div class="flex-row-center-center gap-x-7">
+        <ng-template
+          [ngTemplateOutlet]="typeLength"
+          [ngTemplateOutletContext]="{ type: Types.MUST_HAVE, length: state.mustHave.length }"
+        ></ng-template>
+        <ng-template
+          [ngTemplateOutlet]="typeLength"
+          [ngTemplateOutletContext]="{ type: Types.BARGAIN, length: state.bargains.length }"
+        ></ng-template>
+        <ng-template
+          [ngTemplateOutlet]="typeLength"
+          [ngTemplateOutletContext]="{ type: Types.DIFFERENTIAL, length: state.differentials.length }"
+        ></ng-template>
+      </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <span class="text-big">GK: {{ state.ourPicks.players | filterBy: ['position']:'gk' | length }}</span>
-      <span class="text-big">DEF: {{ state.ourPicks.players | filterBy: ['position']:'def' | length }}</span>
-      <span class="text-big">MID: {{ state.ourPicks.players | filterBy: ['position']:'mid' | length }}</span>
-      <span class="text-big">FOR: {{ state.ourPicks.players | filterBy: ['position']:'for' | length }}</span>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <ng-template
-        [ngTemplateOutlet]="typeLength"
-        [ngTemplateOutletContext]="{ type: Types.MUST_HAVE, length: state.mustHave.length }"
-      ></ng-template>
-      <ng-template
-        [ngTemplateOutlet]="typeLength"
-        [ngTemplateOutletContext]="{ type: Types.BARGAIN, length: state.bargains.length }"
-      ></ng-template>
-      <ng-template
-        [ngTemplateOutlet]="typeLength"
-        [ngTemplateOutletContext]="{ type: Types.DIFFERENTIAL, length: state.differentials.length }"
-      ></ng-template>
-    </div>
-  </div>
+  </mat-card-content>
 </mat-card>
 
 <ng-template #typeLength let-type="type" let-length="length">
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="7px">
+  <div class="flex-row-start-center gap-x-2">
     <app-our-pick-icon [icon]="type"></app-our-pick-icon>
     <span class="text-big">{{ length }}</span>
   </div>

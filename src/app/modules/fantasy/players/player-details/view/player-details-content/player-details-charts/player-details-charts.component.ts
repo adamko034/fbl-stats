@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ChartConfig } from 'src/app/common/components/ui/chart/models/chart-config.model';
 import { ChartPoint } from 'src/app/common/components/ui/chart/models/chart-point.model';
 import { PieChartConfig } from 'src/app/common/components/ui/pie-chart/pie-chart-config.model';
@@ -16,14 +16,9 @@ import { PlayerDetails } from '../../../models/player-details.model';
   styleUrls: ['./player-details-charts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlayerDetailsChartsComponent implements OnInit {
+export class PlayerDetailsChartsComponent {
   @Input() player: PlayerDetails;
   @Input() positionsStats: PositionsStats;
-
-  private _gamesPlayedChart: PieChartConfig;
-  private _gamesStartedChart: PieChartConfig;
-  private _games70MinChart: PieChartConfig;
-  private _gamesWon: PieChartConfig;
 
   private get pricesChanges() {
     return new ArrayStream(this.player.fantasy.history.prices).convert(new MatchdayValueToChartPointConverter('M'));
@@ -194,57 +189,47 @@ export class PlayerDetailsChartsComponent implements OnInit {
   }
 
   public get gamesPlayedChart(): PieChartConfig {
-    return this._gamesPlayedChart;
+    return {
+      totalValue: this.allGamesCount(),
+      name: 'Played',
+      value: this.player.games.filter((g) => g.hasPlayed && g.gameValid).length,
+      label: 'Games played'
+    };
   }
 
   public get gamesStartedChart(): PieChartConfig {
-    return this._gamesStartedChart;
+    return {
+      totalValue: this.allGamesCount(),
+      name: 'Started',
+      value: this.player.games.filter((g) => g.started && g.gameValid).length,
+      label: 'Games started'
+    };
   }
 
   public get games70MinChart(): PieChartConfig {
-    return this._games70MinChart;
+    return {
+      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid).length,
+      name: '70min',
+      value: this.player.games.filter((g) => g.hasPlayedMoreThan70Min).length,
+      label: '70 min'
+    };
   }
 
   public get gamesWonChart(): PieChartConfig {
-    return this._gamesWon;
+    return {
+      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid).length,
+      name: 'Won',
+      value: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid && g.result === 1).length,
+      label: 'Games won'
+    };
   }
 
   private get minMatchday() {
     return Math.min(...this.player.games.filter((g) => g.wasPlayed && g.points !== undefined).map((g) => g.matchday));
   }
 
-  constructor() {}
-
-  public ngOnInit(): void {
-    const allGamesCount = this.player.games.filter((g) => g.wasPlayed && g.gameValid).length;
-
-    this._gamesPlayedChart = {
-      totalValue: allGamesCount,
-      name: 'Played',
-      value: this.player.games.filter((g) => g.hasPlayed && g.gameValid).length,
-      label: 'Games played'
-    };
-
-    this._gamesStartedChart = {
-      totalValue: allGamesCount,
-      name: 'Started',
-      value: this.player.games.filter((g) => g.started && g.gameValid).length,
-      label: 'Games started'
-    };
-
-    this._games70MinChart = {
-      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid).length,
-      name: '70min',
-      value: this.player.games.filter((g) => g.hasPlayedMoreThan70Min).length,
-      label: '70 min'
-    };
-
-    this._gamesWon = {
-      totalValue: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid).length,
-      name: 'Won',
-      value: this.player.games.filter((g) => g.wasPlayed && g.hasPlayed && g.gameValid && g.result === 1).length,
-      label: 'Games won'
-    };
+  private allGamesCount(): number {
+    return this.player.games.filter((g) => g.wasPlayed && g.gameValid).length;
   }
 
   private orderByAndGetLast(

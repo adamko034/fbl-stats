@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
@@ -14,12 +14,13 @@ import { BundesligaTableResultsCalculator } from '../services/bundsliga-table-re
   templateUrl: './bundesliga-table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BundesligaTableComponent implements OnInit {
+export class BundesligaTableComponent implements OnInit, OnChanges {
   @Input() state: BundesligaTableState;
 
-  private _filters: Observable<BundesligaTableFilters>;
-  public get filters(): Observable<BundesligaTableFilters> {
-    return this._filters;
+  private _filters: BundesligaTableFilters;
+  private _filters$: Observable<BundesligaTableFilters>;
+  public get filters$(): Observable<BundesligaTableFilters> {
+    return this._filters$;
   }
 
   private _results: BundesligaTableTeamResult[];
@@ -37,9 +38,16 @@ export class BundesligaTableComponent implements OnInit {
     private _resultsCalculator: BundesligaTableResultsCalculator
   ) {}
 
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (!!changes.state && !changes.state.isFirstChange() && !!this._filters) {
+      Logger.logDev(`bundesliga table component: on changes, recalculating data`);
+      this._results = this._resultsCalculator.calculate(this.state.teams, this._filters, this.state.lastMatchday);
+    }
+  }
+
   public ngOnInit(): void {
     Logger.logDev('bundesliga table component: on init');
-    this._filters = this._route.queryParams.pipe(
+    this._filters$ = this._route.queryParams.pipe(
       filter((params) => !!params && Object.keys(params).length > 0),
       map(({ venue, matchdays }) => {
         return {
@@ -49,6 +57,7 @@ export class BundesligaTableComponent implements OnInit {
       }),
       startWith({ venue: Venue.ALL, matchdays: this.state.lastMatchday }),
       tap((filters) => {
+        this._filters = filters;
         Logger.logDev(`bundesliga table component: calculating data, filters: ${JSON.stringify(filters)}`);
         this._results = this._resultsCalculator.calculate(this.state.teams, filters, this.state.lastMatchday);
       })

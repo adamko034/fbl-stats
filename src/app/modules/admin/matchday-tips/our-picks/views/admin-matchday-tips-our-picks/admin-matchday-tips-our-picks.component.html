@@ -1,79 +1,70 @@
-<div class="admin-our-picks-container">
-  <div class="admin-our-picks-search">
-    <app-admin-our-picks-player-search
-      [selected]="players"
-      [lastMatchday]="lastMatchday$ | async"
-      (playerSelected)="onPlayerSelected($event)"
-    ></app-admin-our-picks-player-search>
+<div class="px-2.5 flex flex-col gap-y-4">
+  <app-admin-our-picks-player-search
+    [selected]="players"
+    [lastMatchday]="lastMatchday$ | async"
+    (playerSelected)="onPlayerSelected($event)"
+  ></app-admin-our-picks-player-search>
+
+  <app-admin-matchday-tips-our-picks-totals [state]="state"></app-admin-matchday-tips-our-picks-totals>
+
+  <div class="flex-row-wrap justify-center items-start">
+    <ng-template
+      [ngTemplateOutlet]="ourPicks"
+      [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy : ['position'] : 'gk', position: 'gk' }"
+    ></ng-template>
+
+    <ng-template
+      [ngTemplateOutlet]="ourPicks"
+      [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy : ['position'] : 'def', position: 'def' }"
+    ></ng-template>
+
+    <ng-template
+      [ngTemplateOutlet]="ourPicks"
+      [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy : ['position'] : 'mid', position: 'mid' }"
+    ></ng-template>
+
+    <ng-template
+      [ngTemplateOutlet]="ourPicks"
+      [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy : ['position'] : 'for', position: 'for' }"
+    ></ng-template>
   </div>
-  <div fxLayout="column" fxLayoutGap="30px">
-    <app-admin-matchday-tips-our-picks-totals [state]="state"></app-admin-matchday-tips-our-picks-totals>
-    <div fxLayout="row wrap" fxLayoutAlign="center start">
-      <ng-template
-        [ngTemplateOutlet]="ourPicks"
-        [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy: ['position']:'gk', position: 'gk' }"
-      ></ng-template>
 
-      <ng-template
-        [ngTemplateOutlet]="ourPicks"
-        [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy: ['position']:'def', position: 'def' }"
-      ></ng-template>
-
-      <ng-template
-        [ngTemplateOutlet]="ourPicks"
-        [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy: ['position']:'mid', position: 'mid' }"
-      ></ng-template>
-
-      <ng-template
-        [ngTemplateOutlet]="ourPicks"
-        [ngTemplateOutletContext]="{ ourPicksPlayers: players | filterBy: ['position']:'for', position: 'for' }"
-      ></ng-template>
-    </div>
-    <div fxLayout="column" fxLayoutGap="10px">
-      <div fxLayoutGap="7px" fxFlexAlign="end">
-        <button [disabled]="!isChange" mat-raised-button class="green-background" (click)="save()">Save</button>
-        <button [disabled]="isChange" mat-raised-button class="main-background" (click)="publish()">
-          {{ state.ourPicks.published ? 'Unpublish' : 'Publish' }}
-        </button>
-      </div>
+  <div class="flex flex-col gap-y-2.5">
+    <div class="self-end flex flex-row gap-x-2">
+      <button [disabled]="!isChange" mat-raised-button class="green-background" (click)="save()">Save</button>
+      <button [disabled]="isChange" mat-raised-button class="main-background" (click)="publish()">
+        {{ state.ourPicks.published ? 'Unpublish' : 'Publish' }}
+      </button>
     </div>
   </div>
 </div>
 
 <ng-template #ourPicks let-ourPicksPlayers="ourPicksPlayers" let-position="position">
-  <div fxLayout="column">
+  <div class="flex flex-col">
     <h2>{{ position | uppercase }}</h2>
     <div cdkDropList class="admin-our-picks-list" (cdkDropListDropped)="drop($event, position)">
-      <div
-        class="admin-our-pick"
-        fxLayout="column"
-        fxLayoutAlign="start"
-        fxLayoutGap="10px"
-        *ngFor="let player of ourPicksPlayers"
-        cdkDrag
-      >
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-          <div fxFlex fxLayout="row" fxLayoutGap="5px">
+      <div class="admin-our-pick flex flex-col gap-y-2.5" *ngFor="let player of ourPicksPlayers" cdkDrag>
+        <div class="flex flex-row justify-between items-center gap-x-2.5">
+          <div class="flex flex-row gap-x-1">
             <span>{{ player.order }}</span>
             <span class="bold"
               ><app-player-name-link [name]="player.name" [id]="player.playerId"></app-player-name-link
             ></span>
           </div>
 
-          <div fxLayout="row" fxLayoutGap="5px" style="font-size: 12px; font-weight: 500; color: grey">
+          <div class="flex flex-row gap-x-1" style="font-size: 12px; font-weight: 500; color: grey">
             <span>{{ player.price }}M</span>
             <span>{{ player.popularity }}%</span>
             <span>{{ player.top100Popularity }}%</span>
             <span>{{ player.top500Popularity }}%</span>
-          </div>
-
-          <div fxFlex="7">
-            <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
+            <div class="max-h-[7%]">
+              <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
+            </div>
           </div>
         </div>
 
-        <div fxLayout="row" fxLayoutAlign="space-between">
-          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+        <div class="flex flex-row justify-between">
+          <div class="flex-row-start-center gap-x-1">
             <app-game-team-venue
               [teamShort]="player.team.teamShort"
               [showFirstGame]="false"
@@ -93,18 +84,18 @@
             </app-game-team-venue>
           </div>
 
-          <div fxLayout="row" fxLayoutAlign="start center">
-            <div class="icons" fxLayout="row" fxLayoutGap="10px">
+          <div class="flex-row-start-center">
+            <div class="icons flex flex-row gap-x-2.5">
               <app-our-pick-icon
                 class="icon"
                 [icon]="Icons.MUST_HAVE"
                 [showTooltip]="false"
-                [isGrey]="state.mustHave | arrayIncludes: player.playerId | reverseBoolean"
+                [isGrey]="state.mustHave | arrayIncludes : player.playerId | reverseBoolean"
                 (click)="togglePlayerType(Icons.MUST_HAVE, player.playerId)"
               ></app-our-pick-icon>
               <app-our-pick-icon
                 class="icon"
-                [isGrey]="state.bargains | arrayIncludes: player.playerId | reverseBoolean"
+                [isGrey]="state.bargains | arrayIncludes : player.playerId | reverseBoolean"
                 [icon]="Icons.BARGAIN"
                 [showTooltip]="false"
                 (click)="togglePlayerType(Icons.BARGAIN, player.playerId)"
@@ -112,19 +103,19 @@
               <app-our-pick-icon
                 class="icon"
                 [icon]="Icons.DIFFERENTIAL"
-                [isGrey]="state.differentials | arrayIncludes: player.playerId | reverseBoolean"
+                [isGrey]="state.differentials | arrayIncludes : player.playerId | reverseBoolean"
                 [showTooltip]="false"
                 (click)="togglePlayerType(Icons.DIFFERENTIAL, player.playerId)"
               ></app-our-pick-icon>
             </div>
 
-            <div fxLayoutAlign="center center">
+            <div class="flex-row-center-center">
               <span class="drag-handle" cdkDragHandle>
                 <mat-icon>drag_handle</mat-icon>
               </span>
             </div>
 
-            <div fxLayoutAlign="center center">
+            <div class="flex-row-center-center">
               <mat-icon class="red remove-button" (click)="remove(player)">delete</mat-icon>
             </div>
           </div>

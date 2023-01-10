@@ -6,7 +6,6 @@ import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-
 @Component({
   selector: 'app-admin-our-picks-player-search',
   templateUrl: './admin-matchday-tips-our-picks-player-search.component.html',
-  styleUrls: ['./admin-matchday-tips-our-picks-player-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminMatchdayTipsOurPicksPlayerSearchComponent {

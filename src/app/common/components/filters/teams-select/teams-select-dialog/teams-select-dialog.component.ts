@@ -9,8 +9,6 @@ import { TeamsSelectTeam } from '../models/teams-select-team.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamsSelectDialogComponent implements OnInit {
-  public searchTerm: string;
-
   private _teams: TeamsSelectTeam[];
   public get teams(): TeamsSelectTeam[] {
     return this._teams;
@@ -18,10 +16,6 @@ export class TeamsSelectDialogComponent implements OnInit {
 
   public get isTeamSelected(): boolean {
     return this._teams?.some((team) => team.selected);
-  }
-
-  public get allSelected(): boolean {
-    return this._teams?.every((t) => t.selected);
   }
 
   public get canSend(): boolean {
@@ -41,27 +35,9 @@ export class TeamsSelectDialogComponent implements OnInit {
     this.dialogRef.close(this._teams.filter((t) => t.selected));
   }
 
-  public onSearch(): void {
-    if (!!this.searchTerm || this.searchTerm === '') {
-      this._teams = this.data.teams.filter(
-        (t) =>
-          t.longName.toLocaleLowerCase().includes(this.searchTerm) ||
-          t.shortName.toLocaleLowerCase().includes(this.searchTerm)
-      );
-    }
-  }
-
-  public onUnselectAll(): void {
-    this.teams.forEach((team) => (team.selected = false));
-  }
-
-  public onSelectAll(): void {
-    this.teams.forEach((t) => (t.selected = true));
-  }
-
-  public clearSearch(): void {
-    this.searchTerm = '';
-    this._teams = [...this.data.teams];
+  public toggleSelectAll(): void {
+    const allUnselected = this.teams.every((team) => !team.selected);
+    this.teams.forEach((team) => (team.selected = allUnselected ? true : false));
   }
 
   public trackTeamsBy(index, item: TeamsSelectTeam): string {

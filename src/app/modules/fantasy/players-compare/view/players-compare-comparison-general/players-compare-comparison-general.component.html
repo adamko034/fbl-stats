@@ -1,7 +1,7 @@
-<div fxLayout="column">
-  <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="space-around">
+<div class="flex flex-col">
+  <div class="flex-row-wrap justify-around gpa-x-4">
     <div class="wrapper" appStickyWrapper>
-      <app-title-underlined-grey layoutAlign="start start">
+      <app-title-underlined-grey>
         <span title [appSticky]="{ position: 'left' }">Fantasy Bundesliga</span>
         <div content>
           <div class="players-compare-wrapper">
@@ -10,12 +10,6 @@
                 <td [appSticky]="{ position: 'left' }"></td>
                 <td *ngFor="let player of players">
                   <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
-                </td>
-              </tr>
-              <tr>
-                <td [appSticky]="{ position: 'left' }">Team</td>
-                <td *ngFor="let player of players">
-                  <app-team-logo [team]="player.teamShort" [height]="16"></app-team-logo>
                 </td>
               </tr>
               <tr>
@@ -45,11 +39,7 @@
               <tr>
                 <td [appSticky]="{ position: 'left' }">Next 4</td>
                 <td *ngFor="let player of players">
-                  <div
-                    *ngFor="let matchday of nextFourMatchdays | orderBy"
-                    fxLayout="column"
-                    fxLayoutAlign="start center"
-                  >
+                  <div *ngFor="let matchday of nextFourMatchdays | orderBy" class="flex-col-start-center">
                     <app-team-game-against
                       [team]="createGameAgainst(player.teamShort, matchday)"
                       [config]="{ teamLogoHeight: 15, showFirstGame: false, smallerFont: true }"
@@ -64,7 +54,7 @@
     </div>
 
     <div class="wrapper" appStickyWrapper>
-      <app-title-underlined-grey layoutAlign="start start">
+      <app-title-underlined-grey>
         <span title [appSticky]="{ position: 'left' }">Games</span>
         <div content>
           <div class="players-compare-wrapper">
@@ -172,7 +162,7 @@
     </div>
 
     <div class="wrapper" appStickyWrapper>
-      <app-title-underlined-grey layoutAlign="start start">
+      <app-title-underlined-grey>
         <span title [appSticky]="{ position: 'left' }">Points: all games</span>
         <div content>
           <div class="players-compare-wrapper">
@@ -246,7 +236,7 @@
 
 <ng-template #tablePoints let-venue="venue" let-title="title">
   <div class="wrapper" appStickyWrapper>
-    <app-title-underlined-grey layoutAlign="start start">
+    <app-title-underlined-grey>
       <span title [appSticky]="{ position: 'left' }">{{ title }}</span>
       <div content>
         <div class="players-compare-wrapper">

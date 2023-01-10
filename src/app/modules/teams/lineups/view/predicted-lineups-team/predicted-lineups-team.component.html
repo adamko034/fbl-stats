@@ -1,54 +1,48 @@
-<div fxLayout="column" fxLayoutGap="20px">
+<div class="flex flex-col gap-y-5">
   <app-predicted-lineups-team-navigation [teams]="teamsNavigation$ | async"></app-predicted-lineups-team-navigation>
 
   <app-white-block>
-    <div *ngIf="predictionsAvailable$ | async" fxLayout="column" fxLayoutGap="15px">
+    <div *ngIf="predictionsAvailable$ | async" class="flex flex-col gap-y-3.5">
       <app-view-title>
-        <span title>{{ teamPredictions$ | async | field: 'longName' | uppercase }}</span>
+        <span title>{{ teamPredictions$ | async | field : 'longName' | uppercase }}</span>
       </app-view-title>
       <span class="info"
         >*Players position are in accordance with Fantasy Bundesliga. Therfore the lineups may sometimes look unexpected
         (etc. only one winger or no forwards)</span
       >
       <div
-        class="lineups-container"
-        fxLayout="row wrap"
-        fxLayoutGap="15px"
-        fxLayoutAlign="space-evenly center"
-        fxLayout.lt-sm="column"
-        fxLayoutAlign.lt-sm="center center"
-        fxLayoutGap.lt-sm="15px"
+        class="lineups-container flex flex-col justify-center items-center gap-3.5 sm:flex-row sm:flex-wrap sm:justify-evenly"
       >
         <div
           class="lineup"
-          *ngFor="let sourceLineup of teamPredictions$ | async | field: 'predictions' | orderBy: 'order'"
+          *ngFor="let sourceLineup of teamPredictions$ | async | field : 'predictions' | orderBy : 'order'"
         >
           <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
           <div class="legend">
-            <span>Last checked: {{ sourceLineup.lastUpdated | epochDate | date: 'dd.MM.yyyy HH:mm' }}</span>
+            <span>Last checked: {{ sourceLineup.lastUpdated | epochDate | date : 'dd.MM.yyyy HH:mm' }}</span>
           </div>
         </div>
       </div>
     </div>
 
-    <h2 *ngIf="predictionsNotPublished$ | async" fxLayout="column" fxLayoutAlign="center center">
+    <h2 *ngIf="predictionsNotPublished$ | async" class="flex-col-center-center">
       Predicted lineups have not been published yet.
-      <a href="https://twitter.com/FantasyblS" target="blank" fxLayoutAlign="center center" fxLayoutGap="5px"
+      <a href="https://twitter.com/FantasyblS" target="blank" class="flex-row-center-center gap-x-1"
         ><span>Stay tuned!</span>
         <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
       </a>
     </h2>
 
-    <h2 fxLayoutAlign="center center" *ngIf="gameIsPostponed$ | async">
+    <h2 class="flex-row-center-center" *ngIf="gameIsPostponed$ | async">
       Next game is postponed - predictions are irrevelant.
     </h2>
   </app-white-block>
 
   <app-white-block>
-    <div fxlayout="column" fxLayoutGap="20px">
-      <div class="predictions-list" fxLayout="row wrap" fxLayoutGap="25px" fxLayoutAlign="space-evenly">
+    <div class="flex flex-col gap-x-5">
+      <div class="predictions-list flex-row-wrap justify-evenly gap-x-5">
         <app-title-underlined-grey>
-          <div title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+          <div title class="flex-row-start-center gap-x-1">
             <span>Confirmed absences</span>
             <mat-icon class="red" appScale="0.8">not_interested</mat-icon>
           </div>
@@ -61,7 +55,7 @@
               <td>%</td>
               <td>TP</td>
             </tr>
-            <tr *ngFor="let player of absences$ | async | orderBy: ['-totalPoints', '-price']">
+            <tr *ngFor="let player of absences$ | async | orderBy : ['-totalPoints', '-price']">
               <td><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></td>
               <td>{{ player.position | uppercase }}</td>
               <td>{{ player.price }}M</td>
@@ -71,21 +65,23 @@
           </table>
         </app-title-underlined-grey>
 
-        <app-title-underlined-grey *ngIf="predictionsAvailable$ | async">
-          <div title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="4px">
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
-              <span>Predicions list</span>
-              <mat-icon appScale="0.8">checklist_rtl</mat-icon>
+        <app-title-underlined-grey *ngIf="predictionsAvailable$ | async" appStickyWrapper>
+          <div title>
+            <div class="flex flex-row sm:justify-between gap-x-2" [appSticky]="{ position: 'left' }">
+              <div class="flex-row-start-center gap-x-1">
+                <span>Predicions list</span>
+                <mat-icon appScale="0.8">checklist_rtl</mat-icon>
+              </div>
+              <mat-checkbox (change)="onShowAllPlayersChange($event)">Show all players</mat-checkbox>
             </div>
-            <mat-checkbox (change)="onShowAllPlayersChange($event)">Show all players</mat-checkbox>
           </div>
 
           <table content class="comparison-table">
             <tr>
-              <td>Player</td>
-              <td fxHide.sm>Pos</td>
+              <td [appSticky]="{ position: 'left' }">Player</td>
+              <td>Pos</td>
               <td>$</td>
-              <td fxHide.lt-md>%</td>
+              <td>%</td>
               <td>TP</td>
               <td>KK</td>
               <td>BL</td>
@@ -126,7 +122,7 @@
         <span>Pos - position</span>
         <span>$ - price</span>
         <span>TP - total points</span>
-        <span fxHide.lt-md>% - popularity</span>
+        <span>% - popularity</span>
         <span>KK - kicker.de</span>
         <span>BL - bundesliga.de</span>
         <span>LI - ligainsider.de</span>
@@ -138,11 +134,13 @@
 </div>
 
 <ng-template #predictions let-players="players" let-position="position">
-  <tr *ngFor="let player of players | filterBy: ['position']:position | orderBy: ['-totalPrice', '-price']">
-    <td><app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link></td>
-    <td fxHide.sm>{{ player.position | uppercase }}</td>
+  <tr *ngFor="let player of players | filterBy : ['position'] : position | orderBy : ['-totalPrice', '-price']">
+    <td [appSticky]="{ position: 'left' }">
+      <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+    </td>
+    <td>{{ player.position | uppercase }}</td>
     <td>{{ player.price }}M</td>
-    <td fxHide.lt-md>{{ player.popularity }}</td>
+    <td>{{ player.popularity }}</td>
     <td>{{ player.totalPoints }}</td>
     <td>
       <app-player-icon-lineup-prediction

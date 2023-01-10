@@ -1,6 +1,18 @@
-<app-view [links]="links">
-  <div class="admin-container">
+<div class="flex flex-col">
+  <div class="flex flex-row justify-between items-center p-3">
+    <ul class="flex flex-row gap-x-2">
+      <li><a class="underline" routerLink="tips/links">Links</a></li>
+      <li><a class="underline" routerLink="tips/our-picks">Our Picks</a></li>
+      <li><a class="underline" routerLink="bestgks">Best GKs</a></li>
+    </ul>
     <button mat-raised-button class="logout main-background" (click)="logout()">Logout</button>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <app-view [links]="links">
+  <div class="admin-container">
+
     <router-outlet></router-outlet>
   </div>
-</app-view>
+</app-view> -->

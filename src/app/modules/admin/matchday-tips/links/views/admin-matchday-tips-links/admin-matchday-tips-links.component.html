@@ -1,7 +1,49 @@
-<app-white-block>
-  <div class="admin-tips-container" fxLayoutAlign="center center">
+<app-white-block class="mt-5">
+  <div class="flex flex-col gap-y-4">
+    <div class="flex flex-row items-center">
+      <button mat-raised-button class="main-background" (click)="openNewLinkDialog()">Add new link</button>
+      <div class="m-auto flex flex-row gap-x-1">
+        <button mat-raised-button [ngClass]="{ 'main-backgroud': isChange }" [disabled]="!isChange" (click)="save()">
+          Save
+        </button>
+        <button
+          mat-raised-button
+          [ngClass]="{ 'main-background': isChange }"
+          [disabled]="!isChange"
+          (click)="cancelChanges()"
+        >
+          Cancel Changes
+        </button>
+      </div>
+    </div>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="displayedLinks"
+      class="tips-links-container w-full"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="tips-link p-4 pointer" *ngFor="let link of displayedLinks | orderBy : 'order'" cdkDrag>
+        <span class="self-center">{{ link.order }}</span>
+
+        <div class="flex flex-col">
+          <span>{{ link.title }}</span>
+          <a [href]="link.url">{{ link.url }}</a>
+          <span>{{ link.description }}</span>
+          <img class="w-[100px]" *ngIf="link.imageUrl" [src]="link.imageUrl" />
+        </div>
+        <button mat-icon-button class="red self-center" (click)="onDelete(link.order)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</app-white-block>
+
+<!-- <app-white-block>
+  <div class="admin-tips-container flex-row-center-center">
     <button mat-raised-button class="add-new-button main-background" (click)="openNewLinkDialog()">Add new link</button>
-    <div class="action-buttons" fxLayout="row" fxLayoutGap="5px">
+    <div class="action-buttons flex flex-row gap-x-1">
       <button mat-raised-button class="main-background" [disabled]="!isChange" (click)="save()">Save</button>
       <button mat-raised-button class="main-background" [disabled]="!isChange" (click)="cancelChanges()">
         Cancel changes
@@ -17,21 +59,21 @@
       <div
         class="tips-link"
         [ngClass]="{ 'tips-link-new': link.isAdminNew }"
-        *ngFor="let link of displayedLinks | orderBy: 'order'"
+        *ngFor="let link of displayedLinks | orderBy : 'order'"
         cdkDrag
       >
-        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+        <div class="flex-col-center-center gap-x-2.5">
           <span>{{ link.order }}</span>
           <span *ngIf="link.isNew" class="new red">NEW!</span>
         </div>
 
-        <div fxLayout="column">
+        <div class="flex flex-col">
           <span>{{ link.title }}</span>
           <a [href]="link.url">{{ link.url }}</a>
           <span>{{ link.description }}</span>
           <img class="link-image" *ngIf="link.imageUrl" [src]="link.imageUrl" />
         </div>
-        <div class="tips-link-actions" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+        <div class="tips-link-actions flex-row-start-center gap-x-1">
           <button mat-icon-button class="blue mark-as-new-button" (click)="markAsNew(link)">
             <mat-icon>new_releases</mat-icon>
           </button>
@@ -42,4 +84,4 @@
       </div>
     </div>
   </div>
-</app-white-block>
+</app-white-block> -->

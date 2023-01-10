@@ -1,9 +1,8 @@
-<div class="view-layout-container" ngClass.lt-sm="view-layout-container-mobile" fxLayout="column">
+<div class="view-layout-container-mobile sm:view-layout-container flex flex-col">
   <ng-content select="[navigation]"></ng-content>
 
   <div
-    class="view-layout-content"
-    ngClass.lt-sm="view-layout-content-mobile"
+    class="view-layout-content-mobile sm:view-layout-content"
     [ngClass]="{ 'view-layout-content-no-padding': contentNoPadding }"
   >
     <ng-content select="[content]"></ng-content>

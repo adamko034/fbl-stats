@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { AngularEmojisModule } from 'angular-emojis';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
@@ -16,7 +15,6 @@ import { MatchdayTipsLinksComponent } from './views/matchday-tips-links.componen
     MatchdayTipsLinksRoutingModule,
     SharedModule,
     AngularMaterialModule,
-    AngularEmojisModule,
     LastMatchdayResolverModule,
     PipesModule,
     FollowUsModule

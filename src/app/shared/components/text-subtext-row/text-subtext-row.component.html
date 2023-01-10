@@ -1,7 +1,7 @@
-<div class="text-subtext-container" fxLayout="column" fxLayoutGap="3px">
-  <div class="text-subtext-row" *ngFor="let row of rows | orderBy: 'order'">
-    <ul fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="5px">
-      <li ngClass.xs="li-mobile" *ngFor="let item of row.items | orderBy: 'order'">
+<div class="text-subtext-container flex flex-col gap-y-1">
+  <div class="text-subtext-row" *ngFor="let row of rows | orderBy : 'order'">
+    <ul class="flex-row-wrap justify-evenly gap-x-1">
+      <li *ngFor="let item of row.items | orderBy : 'order'">
         <h3>{{ item.text }}</h3>
         <span class="sub">{{ item.subtext }}</span>
       </li>

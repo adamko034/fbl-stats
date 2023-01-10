@@ -1,25 +1,25 @@
 <app-white-block padding="15px 10px 0px 10px">
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly start" fxLayoutGap="20px">
+  <div class="flex-row-wrap justify-evenly items-start gap-x-5 gap-y-3">
     <ng-template
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{
-        players: state$ | async | field: 'unavailable',
+        players: state$ | async | field : 'unavailable',
         title: 'Top unavailable',
         key: 'unavailable'
       }"
     ></ng-template>
     <ng-template
       [ngTemplateOutlet]="playersTable"
-      [ngTemplateOutletContext]="{ players: state$ | async | field: 'benched', title: 'Top benched', key: 'benched' }"
+      [ngTemplateOutletContext]="{ players: state$ | async | field : 'benched', title: 'Top benched', key: 'benched' }"
     ></ng-template>
     <ng-template
       [ngTemplateOutlet]="playersTable"
-      [ngTemplateOutletContext]="{ players: state$ | async | field: 'varied', title: 'Top varied', key: 'varied' }"
+      [ngTemplateOutletContext]="{ players: state$ | async | field : 'varied', title: 'Top varied', key: 'varied' }"
     ></ng-template>
     <ng-template
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{
-        players: state$ | async | field: 'started',
+        players: state$ | async | field : 'started',
         title: 'Top starts',
         key: 'started'
       }"
@@ -28,77 +28,76 @@
 </app-white-block>
 
 <ng-template #playersTable let-players="players" let-key="key" let-title="title">
-  <app-title-underlined-grey *ngIf="!!players && players.length > 0" class="stats" ngClass.lt-md="stats-lt-md">
-    <div title>
-      <span>{{ title }} (by {{ sortDisplay[key] }})</span>
-    </div>
-    <div content>
-      <table
-        matSort
-        matSortActive="last5"
-        matSortDirection="desc"
-        [matSortDisableClear]="true"
-        matSortStart="desc"
-        (matSortChange)="onSortChange($event, key)"
-        class="comparison-table"
-        ngClass.lt-md="table-lt-md"
-        ngClass.lt-sm="table-lt-sm"
-      >
-        <tr class="header">
-          <td></td>
-          <td fxHide.lt-md>Pos</td>
-          <td [fxHide]="(screen$ | async) <= screens.XXS" mat-sort-header="price">$</td>
-          <td mat-sort-header="totalPoints">TP</td>
-          <td [fxHide]="(screen$ | async) <= screens.XXS" mat-sort-header="popularity">%</td>
-          <td mat-sort-header="top100Popularity">L%</td>
-          <td fxHide.lt-md mat-sort-header="last5">Last 5</td>
-          <td fxHide.gt-sm mat-sort-header="last5">L5</td>
-          <td class="prediction">BL</td>
-          <td class="prediction">BL [EN]</td>
-          <td class="prediction">KK</td>
-          <td class="prediction">LI</td>
-          <td class="prediction">Buli</td>
-        </tr>
-        <tr *ngFor="let player of players">
-          <td>
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px">
-              <app-team-logo [height]="15" [team]="player.teamShort"></app-team-logo>
-              <app-player-name-link [id]="player.id" [name]="player.lastName"></app-player-name-link>
-            </div>
-          </td>
-          <td fxHide.lt-md>{{ player.position | uppercase }}</td>
-          <td [fxHide]="(screen$ | async) <= screens.XXS">{{ player.price }}</td>
-          <td>{{ player.totalPoints }}</td>
-          <td [fxHide]="(screen$ | async) <= screens.XXS">{{ player.popularity }}</td>
-          <td>{{ player.top100Popularity }}</td>
-          <td>{{ player.last5 }}</td>
-          <td>
-            <app-player-icon-lineup-prediction
-              [prediction]="getPrediction(player, 'bundesliga')"
-            ></app-player-icon-lineup-prediction>
-          </td>
-          <td>
-            <app-player-icon-lineup-prediction
-              [prediction]="getPrediction(player, 'bundesliga_en')"
-            ></app-player-icon-lineup-prediction>
-          </td>
-          <td>
-            <app-player-icon-lineup-prediction
-              [prediction]="getPrediction(player, 'kicker')"
-            ></app-player-icon-lineup-prediction>
-          </td>
-          <td>
-            <app-player-icon-lineup-prediction
-              [prediction]="getPrediction(player, 'ligainsider')"
-            ></app-player-icon-lineup-prediction>
-          </td>
-          <td>
-            <app-player-icon-lineup-prediction
-              [prediction]="getPrediction(player, 'bulinews')"
-            ></app-player-icon-lineup-prediction>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </app-title-underlined-grey>
+  <div appStickyWrapper>
+    <app-title-underlined-grey *ngIf="!!players && players.length > 0">
+      <div title>
+        <span [appSticky]="{ position: 'left' }">{{ title }} (by {{ sortDisplay[key] }})</span>
+      </div>
+      <div content>
+        <table
+          matSort
+          matSortActive="last5"
+          matSortDirection="desc"
+          [matSortDisableClear]="true"
+          matSortStart="desc"
+          (matSortChange)="onSortChange($event, key)"
+          class="comparison-table mb-2"
+        >
+          <tr class="header">
+            <td [appSticky]="{ position: 'left' }"></td>
+            <td>Pos</td>
+            <td mat-sort-header="price">$</td>
+            <td mat-sort-header="totalPoints">TP</td>
+            <td mat-sort-header="popularity">%</td>
+            <td mat-sort-header="top100Popularity">L%</td>
+            <td mat-sort-header="last5">Last 5</td>
+            <td class="prediction">BL</td>
+            <td class="prediction">BL [EN]</td>
+            <td class="prediction">KK</td>
+            <td class="prediction">LI</td>
+            <td class="prediction">Buli</td>
+          </tr>
+          <tr *ngFor="let player of players">
+            <td [appSticky]="{ position: 'left' }">
+              <div class="flex-row-start-center gap-x-1">
+                <app-team-logo [height]="15" [team]="player.teamShort"></app-team-logo>
+                <app-player-name-link [id]="player.id" [name]="player.lastName"></app-player-name-link>
+              </div>
+            </td>
+            <td>{{ player.position | uppercase }}</td>
+            <td>{{ player.price }}</td>
+            <td>{{ player.totalPoints }}</td>
+            <td>{{ player.popularity }}</td>
+            <td>{{ player.top100Popularity }}</td>
+            <td>{{ player.last5 }}</td>
+            <td>
+              <app-player-icon-lineup-prediction
+                [prediction]="getPrediction(player, 'bundesliga')"
+              ></app-player-icon-lineup-prediction>
+            </td>
+            <td>
+              <app-player-icon-lineup-prediction
+                [prediction]="getPrediction(player, 'bundesliga_en')"
+              ></app-player-icon-lineup-prediction>
+            </td>
+            <td>
+              <app-player-icon-lineup-prediction
+                [prediction]="getPrediction(player, 'kicker')"
+              ></app-player-icon-lineup-prediction>
+            </td>
+            <td>
+              <app-player-icon-lineup-prediction
+                [prediction]="getPrediction(player, 'ligainsider')"
+              ></app-player-icon-lineup-prediction>
+            </td>
+            <td>
+              <app-player-icon-lineup-prediction
+                [prediction]="getPrediction(player, 'bulinews')"
+              ></app-player-icon-lineup-prediction>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </app-title-underlined-grey>
+  </div>
 </ng-template>

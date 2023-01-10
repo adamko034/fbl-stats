@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -13,6 +12,7 @@ import { ContentWhiteBlockModule } from '../../components/ui/content-white-block
 import { FormDottedModule } from '../../components/ui/form-dotted/form-dotted.module';
 import { LegendModule } from '../../components/ui/legend/legend.module';
 import { TitleModule } from '../../components/ui/title/title.module';
+import { HorizontalTopScrollbarModule } from '../../directives/horizontal-top-scrollbar/horizontal-top-scrollbar.module';
 import { ScaleModule } from '../../directives/scale/scale.module';
 import { TeamLogoModule } from '../team-logo/team-logo.module';
 import { BundesligaTableFiltersComponent } from './components/bundesliga-table-filters/bundesliga-table-filters.component';
@@ -26,7 +26,6 @@ import { BundesligaTableResultsCalculator } from './services/bundsliga-table-res
     CommonModule,
     VenueSwitchModule,
     SelectMatchdaysPanelModule,
-    FlexLayoutModule,
     ContentTitledModule,
     MatSortModule,
     MatTableModule,
@@ -38,7 +37,8 @@ import { BundesligaTableResultsCalculator } from './services/bundsliga-table-res
     FormDottedModule,
     TitleModule,
     CompareArrowModule,
-    SelectLastMatchdaysModule
+    SelectLastMatchdaysModule,
+    HorizontalTopScrollbarModule
   ],
   exports: [BundesligaTableComponent],
   providers: [BundesligaTableResultsCalculator]

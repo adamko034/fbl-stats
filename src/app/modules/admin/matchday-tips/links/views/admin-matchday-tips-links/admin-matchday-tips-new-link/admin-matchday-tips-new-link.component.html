@@ -1,9 +1,9 @@
 <h2 matDialogTitle>New Tip Link</h2>
 <mat-dialog-content class="mat-typography dialog-content">
   <form [formGroup]="form">
-    <div fxLayout="column" fxLayoutGap="10px">
+    <div class="flex flex-col gap-x-2.5">
       <app-form-field>
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+        <div class="flex-row-start-center gap-x-3.5">
           <mat-form-field>
             <input matInput formControlName="url" placeholder="Url" required (blur)="getLinkPreview()" />
           </mat-form-field>

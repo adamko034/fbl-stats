@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
 import { TimeAgoModule } from 'src/app/common/components/ui/time-ago/time-ago.module';
+import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
@@ -52,7 +53,8 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     PlayerNameLinkModule,
     TeamLogoModule,
     ChartModule,
-    TimeAgoModule
+    TimeAgoModule,
+    StickyModule
   ],
   providers: [
     PredictedLineupsStore,

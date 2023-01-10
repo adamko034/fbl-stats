@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +8,7 @@ import { SelectMatchdaysBetweenComponent } from './components/select-matchdays-b
 
 @NgModule({
   declarations: [SelectMatchdaysBetweenComponent],
-  imports: [CommonModule, FlexLayoutModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
   exports: [SelectMatchdaysBetweenComponent]
 })
 export class SelectMatchdaysBetweenModule {}

@@ -1,9 +1,4 @@
-<div
-  fxLayout="row"
-  [appScale]="scale"
-  fxLayoutAlign="center center"
-  [ngStyle]="{ 'height.px': height, 'width.px': height }"
->
+<div class="flex-row-center-center" [appScale]="scale" [ngStyle]="{ 'height.px': height, 'width.px': height }">
   <mat-icon class="rank-diff green" *ngIf="firstValue < secondValue">keyboard_arrow_up</mat-icon>
   <mat-icon class="rank-diff red" *ngIf="firstValue > secondValue">keyboard_arrow_down</mat-icon>
   <span class="rank-diff-no-change" *ngIf="firstValue == secondValue">--</span>

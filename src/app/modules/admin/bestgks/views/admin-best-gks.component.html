@@ -1,25 +1,25 @@
 <app-players-picker
-  class="picker"
+  class="picker px-4"
   [closeAfterSelect]="true"
-  [filters]="{ position: GK, excludedIds: selectedGks | pluck: 'id' }"
+  [filters]="{ position: GK, excludedIds: selectedGks | pluck : 'id' }"
   (playerSelected)="addGk($event)"
 ></app-players-picker>
 
 <div class="best-gks-container">
-  <div fxLayout="column">
+  <div class="flex flex-col">
     <div class="goalkeeper" *ngFor="let gk of selectedGks">
       <app-team-logo [team]="gk.teamShort"></app-team-logo>
       <app-player-name-link [id]="gk.id" [name]="gk.name"></app-player-name-link>
       <span>{{ gk.price }}M</span>
       <span>TP: {{ gk.totalPoints }}</span>
-      <div fxLayoutAlign="flex-end">
+      <div class="justify-self-end">
         <button class="red" mat-icon-button (click)="removeGk(gk.id)">
           <mat-icon>delete_forever</mat-icon>
         </button>
       </div>
     </div>
 
-    <div class="actions" fxLayout="row" fxLayoutGap="7px" fxLayoutAlign="flex-end">
+    <div class="actions flex flex-row justify-end gap-x-2">
       <button
         [disabled]="!edited"
         [ngClass]="{ 'main-background': edited, disabled: !edited }"

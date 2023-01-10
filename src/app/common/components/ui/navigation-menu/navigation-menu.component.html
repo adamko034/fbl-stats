@@ -1,0 +1,23 @@
+<div class="flex flex-row items-center w-full p-1" [appSticky]="{ position: 'top', px: 50 }">
+  <button *ngIf="!!links && links.length > 1" class="justify-self-center" mat-button [matMenuTriggerFor]="menu">
+    <div class="flex-row-start-center gap-x-1">
+      <span>{{ activePageLabel() }}</span>
+      <mat-icon>expand_more</mat-icon>
+    </div>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <a
+      mat-menu-item
+      *ngFor="let link of links | orderBy : 'order'"
+      [routerLink]="link.routerLink"
+      routerLinkActive
+      #rla="routerLinkActive"
+    >
+      {{ link.labelMobile }}
+    </a>
+  </mat-menu>
+  <span class="pt-[1px] pl-4 text-[14px] font-medium" *ngIf="!!links && links.length == 1">{{
+    links[0].labelMobile
+  }}</span>
+</div>

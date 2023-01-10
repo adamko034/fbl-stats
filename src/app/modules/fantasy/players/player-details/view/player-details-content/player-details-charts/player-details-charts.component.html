@@ -1,13 +1,13 @@
 <app-white-block padding="10px 10px 0 10px">
-  <div fxlayout="column">
-    <div class="pie-charts" fxLayoutAlign="space-evenly center" fxLayoutAlign.lt-md="center center" fxLayout="row wrap">
+  <div class="flex flex-col">
+    <div class="pie-charts flex-row-wrap justify-center items-center lg:justify-evenly">
       <app-pie-chart class="chart-pie" [config]="gamesPlayedChart"></app-pie-chart>
       <app-pie-chart class="chart-pie" [config]="gamesStartedChart"></app-pie-chart>
       <app-pie-chart class="chart-pie" [config]="games70MinChart"></app-pie-chart>
       <app-pie-chart class="chart-pie" [config]="gamesWonChart"></app-pie-chart>
     </div>
 
-    <div fxLayoutAlign="space-evenly center" fxLayoutAlign.lt-md="center center" fxLayout="row wrap">
+    <div class="flex-row-wrap justify-center items-center lg:justify-evenly">
       <app-chart class="chart" [config]="pricesChart"></app-chart>
       <app-chart class="chart" [config]="popularityChart"></app-chart>
       <app-chart class="chart" [config]="top100PopularityChart"></app-chart>

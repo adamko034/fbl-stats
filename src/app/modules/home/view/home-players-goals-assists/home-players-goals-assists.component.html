@@ -1,24 +1,26 @@
 <app-card>
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutAlign.lt-md="center" fxLayoutGap="15px">
-    <div>
-      <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: playersGoals, type: 'goals' }">
-        <h6 class="h6-card-title">Top scorers</h6>
-      </ng-container>
-    </div>
+  <div content>
+    <div class="flex-row-wrap justify-center lg:justify-evenly gap-5">
+      <div>
+        <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: playersGoals, type: 'goals' }">
+          <h6 class="h6-card-title">Top scorers</h6>
+        </ng-container>
+      </div>
 
-    <div>
-      <ng-container
-        [ngTemplateOutlet]="players"
-        [ngTemplateOutletContext]="{ players: playersAssists, type: 'assists' }"
-      >
-        <h6 class="h6-card-title">Top assists</h6>
-      </ng-container>
+      <div>
+        <ng-container
+          [ngTemplateOutlet]="players"
+          [ngTemplateOutletContext]="{ players: playersAssists, type: 'assists' }"
+        >
+          <h6 class="h6-card-title">Top assists</h6>
+        </ng-container>
+      </div>
     </div>
   </div>
 </app-card>
 
 <ng-template #players let-players="players" let-type="type">
-  <div fxLayout="column">
+  <div class="flex flex-col">
     <ng-content></ng-content>
     <table class="comparison-table comparison-table-narrow">
       <tr>
@@ -29,7 +31,7 @@
         <td *ngIf="type === 'assists'">Assists</td>
       </tr>
       <tr *ngFor="let player of players">
-        <td fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="4px">
+        <td class="flex flex-row justify-end items-center gap-x-1">
           <app-player-name-with-availability
             [name]="player.name"
             [lastName]="player.name"
@@ -47,6 +49,6 @@
         <td class="bold" *ngIf="type === 'assists'">{{ player.assists }}</td>
       </tr>
     </table>
-    <span fxFlexAlign="flex-end" class="show-more" (click)="onShowMoreClick(type)">Show all >></span>
+    <span class="show-more self-end" (click)="onShowMoreClick(type)">Show all >></span>
   </div>
 </ng-template>

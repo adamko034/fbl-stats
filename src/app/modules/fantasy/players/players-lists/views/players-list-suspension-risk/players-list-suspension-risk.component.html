@@ -1,12 +1,12 @@
-<div fxLayout="column" fxLayoutGap="15px">
+<div class="flex flex-col gap-y-3">
   <app-view-title>
-    <div subtitle fxLayout="column" fxLayoutGap="10px">
-      <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <div subtitle class="flex flex-col gap-y-1.5">
+      <div class="flex-row-center-center gap-x-1">
         <app-player-icon-suspension-risk></app-player-icon-suspension-risk>
-        <span>Players who have collected 4 yellow cards and so are one yellow card away for being suspended. </span>
+        <span>Players in suspension risk</span>
       </div>
       <div>
-        <div class="small-mobile" fxLayout="row" fxLayoutAlign="flex-end" fxLayoutGap="3px">
+        <div class="small-mobile flex flex-row justify-end gap-x-1">
           <span>Source:</span><a class="blue" [href]="source" target="blank">Transfermarkt.de</a>
         </div>
       </div>

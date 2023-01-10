@@ -1,16 +1,16 @@
 <app-white-block padding="10px 10px 0 10px">
-  <div fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="space-evenly center">
+  <div class="flex-row-wrap justify-evenly items-center gap-x-4 gap-y-2.5">
     <app-position-switch
       class="filters"
       (change)="onPositionChange($event)"
-      [value]="filters$ | async | field: 'position'"
+      [value]="filters$ | async | field : 'position'"
     >
     </app-position-switch>
 
     <app-form-field label="Options" class="filters">
       <app-switcher
         name="types"
-        [value]="filters$ | async | field: 'type'"
+        [value]="filters$ | async | field : 'type'"
         [items]="types"
         (switchChange)="onTypeChange($event)"
       ></app-switcher>
@@ -19,7 +19,7 @@
     <app-form-field label="Matchdays" class="filters">
       <app-switcher
         name="games"
-        [value]="filters$ | async | field: 'includeGames'"
+        [value]="filters$ | async | field : 'includeGames'"
         [items]="games"
         (switchChange)="onGamesChange($event)"
       >
