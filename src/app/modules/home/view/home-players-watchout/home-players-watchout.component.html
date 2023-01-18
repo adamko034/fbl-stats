@@ -1,6 +1,14 @@
 <app-card>
   <div content>
-    <div class="flex-row-wrap justify-center lg:justify-evenly gap-5">
+    <div class="flex-row-wrap justify-center lg:justify-evenly gap-4">
+      <div>
+        <ng-container [ngTemplateOutlet]="players" [ngTemplateOutletContext]="{ players: sales, type: 'onsale' }">
+          <h6 class="h6-card-title">
+            <app-player-icon-price-change [price]="0.1" [priceOriginal]="0.2"></app-player-icon-price-change> On sale
+          </h6>
+        </ng-container>
+      </div>
+
       <div>
         <ng-container
           [ngTemplateOutlet]="players"

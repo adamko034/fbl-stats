@@ -48,6 +48,7 @@ export class HistoryConverter {
         popularity,
         position,
         price,
+        priceOriginal: 0,
         teamShort,
         top100Popularity,
         top500Popularity,

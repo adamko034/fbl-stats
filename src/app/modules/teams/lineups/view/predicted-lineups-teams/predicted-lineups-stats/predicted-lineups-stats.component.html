@@ -12,6 +12,10 @@
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{ players: state$ | async | field : 'benched', title: 'Top benched', key: 'benched' }"
     ></ng-template>
+    <div class="w-[200px] text-center">
+      <app-ad-banner slot="square"></app-ad-banner>
+    </div>
+
     <ng-template
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{ players: state$ | async | field : 'varied', title: 'Top varied', key: 'varied' }"

@@ -1,10 +1,7 @@
 <app-content-white-block>
   <app-title [text]="title$ | async"></app-title>
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
   <app-matchday-tips-our-picks-players></app-matchday-tips-our-picks-players>
-  <app-legend>
-    <span *ngFor="let item of iconsLegend" class="flex-row-start-center gap-x-1">
-      <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
-      <span class="item-description"> {{ item.description }}</span>
-    </span>
-  </app-legend>
 </app-content-white-block>

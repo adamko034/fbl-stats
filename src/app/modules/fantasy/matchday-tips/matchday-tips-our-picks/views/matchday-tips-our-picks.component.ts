@@ -9,12 +9,6 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MatchdayTipsOurPicksComponent implements OnInit {
-  public iconsLegend: { icon: string; description: string }[] = [
-    { icon: 'mustHave', description: 'Must have' },
-    { icon: 'bargain', description: 'Budget pick' },
-    { icon: 'differential', description: 'Differential' }
-  ];
-
   public title$: Observable<string>;
 
   constructor(private route: ActivatedRoute) {}

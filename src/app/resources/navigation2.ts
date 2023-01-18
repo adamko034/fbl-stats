@@ -14,10 +14,11 @@ export class Navigation2 {
       icon: 'person_search',
       children: [
         { order: 1, path: 'fantasy/players', text: 'All players' },
-        { order: 2, path: 'fantasy/players/lists/unavailable', text: 'Unavailable' },
-        { order: 3, path: 'fantasy/players/lists/suspensionrisk', text: 'Suspension risk' },
-        { order: 4, path: 'fantasy/players/lists/returning', text: 'Returning' },
-        { order: 5, path: 'fantasy/compare', text: 'Compare' }
+        { order: 2, path: 'fantasy/players/lists/onsale', text: 'On sale' },
+        { order: 3, path: 'fantasy/players/lists/unavailable', text: 'Unavailable' },
+        { order: 4, path: 'fantasy/players/lists/suspensionrisk', text: 'Suspension risk' },
+        { order: 5, path: 'fantasy/players/lists/returning', text: 'Returning' },
+        { order: 6, path: 'fantasy/compare', text: 'Compare' }
       ]
     },
     {

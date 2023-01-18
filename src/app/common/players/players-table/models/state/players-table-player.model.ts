@@ -9,6 +9,7 @@ export interface PlayersTablePlayer {
   position: Position;
   available?: boolean;
   price: number;
+  priceOriginal: number;
   popularity: number;
   teamShort: string;
   top100Popularity: number;

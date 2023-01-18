@@ -1,5 +1,8 @@
 <app-content-white-block>
   <div class="flex flex-col gap-y-4">
+    <div class="w-full text-center">
+      <app-ad-banner slot="horizontal"></app-ad-banner>
+    </div>
     <app-teams-kickoff-times-filters
       [filters]="filters$ | async"
       [lastMatchday]="lastMatchday"

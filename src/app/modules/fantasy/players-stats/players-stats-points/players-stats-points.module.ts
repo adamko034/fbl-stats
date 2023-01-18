@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
+import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
@@ -28,7 +30,9 @@ import { PlayersStatsPointsComponent } from './views/players-stats-points/player
     PipesModule,
     PlayerNameLinkModule,
     TeamLogoModule,
-    SwitcherModule
+    SwitcherModule,
+    AdBannerModule,
+    LegendModule
   ],
   providers: [PlayersStatsQueryParamsService, PlayersStatsPointsResolver, PlayersStatsPointsConverter]
 })

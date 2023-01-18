@@ -1,3 +1,12 @@
-<div class="legend legend-grid" [style.gridTemplateColumns]="gridTemplateColumns">
-  <ng-content></ng-content>
+<div class="flex flex-col mb-3">
+  <div class="flex flex-row items-center px-3 pt-3" (click)="toggleExpand()">
+    <span class="font-semibold grey font-small" *ngIf="!isOpened">Show legend</span>
+    <mat-icon *ngIf="!isOpened">expand_more</mat-icon>
+    <span class="font-semibold grey font-small" *ngIf="isOpened">Hide legend</span>
+    <mat-icon *ngIf="isOpened">expand_less</mat-icon>
+  </div>
+
+  <div *ngIf="isOpened" class="legend legend-grid" [style.gridTemplateColumns]="gridTemplateColumns">
+    <ng-content></ng-content>
+  </div>
 </div>

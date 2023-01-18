@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { FromTo } from 'src/app/shared/models/from-to.model';
 import { FixturesDifficultyCalculation } from '../../models/fixtures-difficulty-calculation.enum';
 import { FixturesDifficultyTeam } from '../../models/fixtures-difficulty-team.model';
@@ -18,6 +19,8 @@ export class FixturesDifficultyFixturesComponent implements OnInit {
       this._mds.push(i);
     }
   }
+
+  public screens = ScreenSize;
 
   private _mds: number[] = [];
   public get mds(): number[] {

@@ -28,15 +28,26 @@
     </app-form-field>
   </div>
 
-  <div class="content" *ngIf="state.data && lastMatchday > 0">
-    <app-players-list-generic
-      [config]="state.config"
-      [data]="state.data"
-      (sortChange)="onSortChange($event)"
-    ></app-players-list-generic>
-  </div>
+  <app-white-block>
+    <div class="flex flex-col 2xl:flex-row-reverse gap-y-2.5 gap-x-5 justify-center">
+      <div class="w-full xl:w-1/4 text-center">
+        <app-ad-banner *appIfScreen="{ size: screens.XXL, type: 'lt' }" slot="horizontal"></app-ad-banner>
+        <app-ad-banner *appIfScreen="{ size: screens.XXL, type: 'ge' }" slot="multiplexVertical1"></app-ad-banner>
+      </div>
 
-  <div class="follow-us" *ngIf="lastMatchday == 0">
-    <app-follow-us text=" Players stats will be available after MD 1."></app-follow-us>
-  </div>
+      <div>
+        <div class="content" *ngIf="state.data && lastMatchday > 0">
+          <app-players-list-generic
+            [config]="state.config"
+            [data]="state.data"
+            (sortChange)="onSortChange($event)"
+          ></app-players-list-generic>
+        </div>
+
+        <div class="follow-us" *ngIf="lastMatchday == 0">
+          <app-follow-us text=" Players stats will be available after MD 1."></app-follow-us>
+        </div>
+      </div>
+    </div>
+  </app-white-block>
 </div>

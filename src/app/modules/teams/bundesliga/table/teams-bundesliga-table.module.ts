@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { TeamsResolverModule } from 'src/app/common/routing/resolvers/teams/teams-resolver.module';
 import { BundesligaTableModule } from 'src/app/common/teams/bundesliga-table/bundesliga-table.module';
@@ -14,7 +15,8 @@ import { TeamsBundesligaTableComponent } from './view/teams-bundesliga-table.com
     TeamsBundesligaTableRoutingModule,
     BundesligaTableModule,
     LastMatchdayResolverModule,
-    TeamsResolverModule
+    TeamsResolverModule,
+    AdBannerModule
   ],
   providers: [TeamsBundesligaTableTeamsConverter]
 })

@@ -42,8 +42,11 @@
       </div>
     </div>
 
-    <div *ngIf="links$ | async | arrayEmpty">
+    <div class="flex flex-col gap-3" *ngIf="links$ | async | arrayEmpty">
       <app-follow-us text="Sorry, there are no tips & hints links so far."></app-follow-us>
+      <div class="w-full text-center">
+        <app-ad-banner slot="horizontal"></app-ad-banner>
+      </div>
     </div>
 
     <div *ngIf="links$ | async | arrayNotEmpty" class="container flex flex-col gap-y-5">
@@ -73,6 +76,9 @@
           </div>
         </div>
       </a>
+      <div class="w-full text-center">
+        <app-ad-banner slot="horizontal"></app-ad-banner>
+      </div>
     </div>
   </div>
 </app-white-block>

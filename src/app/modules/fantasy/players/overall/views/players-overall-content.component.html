@@ -1,1 +1,6 @@
-<app-players-table *ngIf="state$ | async" [state]="state$ | async"></app-players-table>
+<div class="flex flex-col gap-y-3">
+  <app-players-table *ngIf="state$ | async" [state]="state$ | async"></app-players-table>
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+import { AdBannerBuilder } from 'src/app/common/components/ui/ad-banner/ad-bunner.builder';
 import { PlayersTableState } from 'src/app/common/players/players-table/models/players-table-state';
 import { PlayersToPlayersTableConverter } from 'src/app/common/players/players-table/services/players-to-player-table-converter';
 import { ArrayStream } from 'src/app/services/array-stream.service';
@@ -20,6 +21,8 @@ import { MyTeamTilesDisplaySettingsService } from '../services/my-team-tiles-dis
 })
 export class MyTeamContentComponent implements OnInit {
   public state$: Observable<MyTeamState>;
+
+  public horizontal = AdBannerBuilder.horizontal().build();
 
   constructor(
     private _route: ActivatedRoute,

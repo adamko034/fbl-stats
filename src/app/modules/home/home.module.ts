@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NgPipesModule } from 'ngx-pipes';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { CardModule } from 'src/app/common/components/ui/card/card.module';
 import { CompareArrowModule } from 'src/app/common/components/ui/compare-arrow/compare-arrow.module';
 import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-white-block/content-white-block.module';
@@ -11,6 +12,7 @@ import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
+import { PlayerIconPriceChangeModule } from 'src/app/common/players/components/player-icon-price-change/player-icon-price-change.module';
 import { PlayerIconReturningModule } from 'src/app/common/players/components/player-icon-returning/player-icon-returning.module';
 import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { PlayerIconUnavailableModule } from 'src/app/common/players/components/player-icon-unavailable/player-icon-unavailable.module';
@@ -85,7 +87,9 @@ import { HomeComponent } from './view/home.component';
     ScaleModule,
     PlayerIconPredictionModule,
     PlayerIconLineupPredictionModule,
-    ContentWhiteBlockModule
+    ContentWhiteBlockModule,
+    AdBannerModule,
+    PlayerIconPriceChangeModule
   ]
 })
 export class HomeModule {}

@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { AdBannerBuilder } from 'src/app/common/components/ui/ad-banner/ad-bunner.builder';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { Logger } from 'src/app/utils/logger';
 import { PlayersFilterPrediciton } from '../../models/players-filter-prediction.enum';
@@ -57,6 +58,9 @@ export class PlayersTableComponent implements OnInit, OnChanges {
 
   private _queryParams: Params;
   private _myTeamPlayerIds: string[];
+
+  public adHorizontal = AdBannerBuilder.horizontal().build();
+  public adHorizontal2 = AdBannerBuilder.horizontal2().build();
 
   constructor(
     private _route: ActivatedRoute,

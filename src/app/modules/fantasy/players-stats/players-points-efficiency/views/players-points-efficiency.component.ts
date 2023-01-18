@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
-import { ScreenSizeService } from 'src/app/services/screen-size.service';
+import { ScreenSize, ScreenSizeService } from 'src/app/services/screen-size.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
@@ -37,6 +37,7 @@ export class PlayersPointsEfficiencyComponent implements OnInit {
   }
 
   public state: State;
+  public screens = ScreenSize;
 
   public typeFilterItems: SwitcherItem[] = [
     { value: 'overall', description: 'Overall' },

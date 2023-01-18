@@ -1,16 +1,25 @@
 <div class="leaders-container flex flex-col">
-  <div *ngIf="matchday$ | async" class="flex flex-col gap-x-4">
+  <div *ngIf="matchday$ | async" class="flex flex-col gap-y-4">
     <app-leaders-general-stats [matchday]="matchday$ | async"></app-leaders-general-stats>
+    <div class="w-full text-center">
+      <app-ad-banner slot="horizontal"></app-ad-banner>
+    </div>
+
     <app-leaders-players-positions [players]="(matchday$ | async).players"></app-leaders-players-positions>
   </div>
 
   <app-white-block padding="20px" class="no-data" *ngIf="!(matchday$ | async)">
-    <h2 class="flex-col-start-center">
-      Leaders stats will be available after MD 1.
-      <a href="https://twitter.com/FantasyblS" target="blank" class="flex-row-center-center gap-x-4">
-        <span>Follow us to stay tuned</span>
-        <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
-      </a>
-    </h2>
+    <div>
+      <div class="w-full text-center">
+        <app-ad-banner slot="horizontal"></app-ad-banner>
+      </div>
+      <h2 class="flex-col-start-center">
+        Leaders stats will be available after MD 1.
+        <a href="https://twitter.com/FantasyblS" target="blank" class="flex-row-center-center gap-x-4">
+          <span>Follow us to stay tuned</span>
+          <fa-icon class="twitter blue" [icon]="['fab', 'twitter']"></fa-icon>
+        </a>
+      </h2>
+    </div>
   </app-white-block>
 </div>

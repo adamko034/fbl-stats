@@ -1,58 +1,64 @@
 <app-white-block *ngIf="mds" padding="0 10px 10px 10px">
-  <div>
-    <div class="flex-row-wrap justify-center items-start">
-      <div [appStickyWrapper]="{ hideY: true }" appHorizontalTopScrollbar>
-        <table class="comparison-table border-separate pb-4">
-          <tr>
-            <td [appSticky]="{ position: 'left' }"></td>
-            <td *ngFor="let md of mds">MD{{ md }}</td>
-          </tr>
-          <tr *ngFor="let team of teams">
-            <td [appSticky]="{ position: 'left' }">
-              <div class="flex-col-center-center">
-                <app-team-logo [team]="team.teamShort" size="16"></app-team-logo>
-                <span>{{ team.rank | numerals }}</span>
-              </div>
-            </td>
-            <td *ngFor="let fixture of team.fixtures | orderBy : 'matchday'" class="game" [ngClass]="fixture.color">
-              <div class="min-w-[60px] flex-col-start-center">
-                <app-team-logo [team]="fixture.opponentShort" appSize="15"></app-team-logo>
-                <span>{{ fixture.displayedText }}</span>
-                <span>{{ fixture.isHome ? 'home' : 'away' }}</span>
-                <div class="icons flex-row-center-center gap-x-1">
-                  <span>&nbsp;</span>
-                  <app-matchday-first-game-icon *ngIf="fixture.isFirstGame"></app-matchday-first-game-icon>
-                  <app-matchday-standalone-game-icon *ngIf="fixture.isStandalone"></app-matchday-standalone-game-icon>
-                  <app-postponed-game-icon *ngIf="fixture.isPostponed"></app-postponed-game-icon>
+  <div class="flex flex-row gap-x-4">
+    <div>
+      <div class="flex-row-wrap justify-center items-start">
+        <div [appStickyWrapper]="{ hideY: true }" appHorizontalTopScrollbar>
+          <table class="comparison-table border-separate pb-4">
+            <tr>
+              <td [appSticky]="{ position: 'left' }"></td>
+              <td *ngFor="let md of mds">MD{{ md }}</td>
+            </tr>
+            <tr *ngFor="let team of teams">
+              <td [appSticky]="{ position: 'left' }">
+                <div class="flex-col-center-center">
+                  <app-team-logo [team]="team.teamShort" size="16"></app-team-logo>
+                  <span>{{ team.rank | numerals }}</span>
                 </div>
-              </div>
-            </td>
-          </tr>
-        </table>
+              </td>
+              <td *ngFor="let fixture of team.fixtures | orderBy : 'matchday'" class="game" [ngClass]="fixture.color">
+                <div class="min-w-[60px] flex-col-start-center">
+                  <app-team-logo [team]="fixture.opponentShort" appSize="15"></app-team-logo>
+                  <span>{{ fixture.displayedText }}</span>
+                  <span>{{ fixture.isHome ? 'home' : 'away' }}</span>
+                  <div class="icons flex-row-center-center gap-x-1">
+                    <span>&nbsp;</span>
+                    <app-matchday-first-game-icon *ngIf="fixture.isFirstGame"></app-matchday-first-game-icon>
+                    <app-matchday-standalone-game-icon *ngIf="fixture.isStandalone"></app-matchday-standalone-game-icon>
+                    <app-postponed-game-icon *ngIf="fixture.isPostponed"></app-postponed-game-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="values" [appSticky]="{ position: 'top', px: 50 }">
+          <table class="comparison-table">
+            <tr>
+              <td class="title">{{ titleTable }}</td>
+            </tr>
+            <tr *ngFor="let team of teams | orderBy : orderTable">
+              <td class="value flex flex-row justify-between gap-x-4" [ngClass]="team.color">
+                <app-team-logo [team]="team.teamShort" [height]="18"></app-team-logo>
+                <span>{{ team.value }}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
 
-      <div class="values" [appSticky]="{ position: 'top', px: 50 }">
-        <table class="comparison-table">
-          <tr>
-            <td class="title">{{ titleTable }}</td>
-          </tr>
-          <tr *ngFor="let team of teams | orderBy : orderTable">
-            <td class="value flex flex-row justify-between gap-x-4" [ngClass]="team.color">
-              <app-team-logo [team]="team.teamShort" [height]="18"></app-team-logo>
-              <span>{{ team.value }}</span>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <app-legend>
+        <span class="flex-row-start-center">
+          <app-matchday-first-game-icon></app-matchday-first-game-icon><span> matchday first game</span>
+        </span>
+        <span class="flex-row-start-center">
+          <app-matchday-standalone-game-icon></app-matchday-standalone-game-icon><span> standalone game</span>
+        </span>
+      </app-legend>
     </div>
 
-    <app-legend>
-      <span class="flex-row-start-center">
-        <app-matchday-first-game-icon></app-matchday-first-game-icon><span> matchday first game</span>
-      </span>
-      <span class="flex-row-start-center">
-        <app-matchday-standalone-game-icon></app-matchday-standalone-game-icon><span> standalone game</span>
-      </span>
-    </app-legend>
+    <div *appIfScreen="{ type: 'ge', size: screens.XXL }" class="w-[300px] text-center">
+      <app-ad-banner slot="multiplexVertical1"></app-ad-banner>
+    </div>
   </div>
 </app-white-block>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { MatchdayTipsUnlimitedTransfersDate } from '../models/matchday-tips-unlimited-transfers-date.model';
 import { MatchdayTipsUnlimitedTransfersState } from '../models/matchday-tips-unlimited-transfers-state.model';
 
@@ -18,6 +19,8 @@ export class MatchdayTipsUnlimitedTransfersComponent implements OnInit {
   public next$: Observable<MatchdayTipsUnlimitedTransfersDate>;
   public previous$: Observable<MatchdayTipsUnlimitedTransfersDate[]>;
   public now$: Observable<MatchdayTipsUnlimitedTransfersDate>;
+
+  public screens = ScreenSize;
 
   constructor(private route: ActivatedRoute) {}
 

@@ -1,10 +1,14 @@
-<div class="flex flex-col gap-x-5">
+<div class="flex flex-col gap-y-5">
   <app-my-team-selection
     [players]="state$ | async | field : 'players'"
     [settings]="state$ | async | field : 'displaySettings'"
   ></app-my-team-selection>
 
   <app-players-table [state]="state$ | async | field : 'playersTableState'"></app-players-table>
+
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
 
   <app-my-team-kick-off-times
     *ngIf="state$ | async | field : 'players' | arrayNotEmpty"

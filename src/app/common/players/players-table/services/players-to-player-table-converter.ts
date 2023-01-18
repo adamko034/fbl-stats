@@ -37,6 +37,7 @@ export class PlayersToPlayersTableConverter {
       popularity: player.popularity,
       position: player.position as any,
       price: player.price,
+      priceOriginal: player.priceOriginal,
       teamShort: player.teamShort,
       nextGame,
       games: this.playerConvertGames(player.games),

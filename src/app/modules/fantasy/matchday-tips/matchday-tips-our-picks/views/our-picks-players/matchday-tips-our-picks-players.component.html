@@ -1,5 +1,5 @@
-<div *ngIf="ourPicks$ | async" class="flex-row-center-center">
-  <div appStickyWrapper *ngIf="ourPicks$ | async | field : 'published'">
+<div *ngIf="ourPicks$ | async" class="flex-row-center-center mt-4">
+  <div appStickyWrapper *ngIf="ourPicks$ | async | field : 'published' | orDevEnv">
     <table class="comparison-table">
       <tr>
         <td [appSticky]="{ position: 'left', px: 0 }"></td>
@@ -54,10 +54,17 @@
         [ngTemplateOutletContext]="{ players: forwards$ | async }"
       ></ng-template>
     </table>
+
+    <app-legend>
+      <span *ngFor="let item of iconsLegend" class="flex-row-start-center gap-x-1">
+        <app-our-pick-icon [icon]="item.icon"></app-our-pick-icon>
+        <span class="item-description"> {{ item.description }}</span>
+      </span>
+    </app-legend>
   </div>
 
   <app-follow-us
-    *ngIf="ourPicks$ | async | field : 'published' | reverseBoolean"
+    *ngIf="ourPicks$ | async | field : 'published' | orDevEnv | reverseBoolean"
     text="Sorry, we haven't published our picks yet."
   >
   </app-follow-us>

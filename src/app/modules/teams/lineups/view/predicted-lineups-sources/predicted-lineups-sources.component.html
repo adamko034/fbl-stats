@@ -1,4 +1,4 @@
-<div class="container flex flex-col gap-x-5">
+<div class="container flex flex-col gap-y-5">
   <app-white-block padding="10px 10px 20px 10px">
     <div class="summary-xs sm:summary-md lg:summary">
       <app-predicted-lineups-sources-summary [sources]="sources"></app-predicted-lineups-sources-summary>
@@ -7,6 +7,9 @@
       </div>
     </div>
   </app-white-block>
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
   <app-predicted-lineups-sources-teams
     [teams]="teams$ | async"
     [sources]="sources"

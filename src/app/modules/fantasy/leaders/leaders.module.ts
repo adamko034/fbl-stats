@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LeadersTextValueDialgComponent } from './components/leaders-text-value-dialg/leaders-text-value-dialg.component';
 import { LeadersLoadedGuard } from './guards/leaders-loaded.guard';
@@ -24,7 +25,7 @@ import { LeadersPlayersPositionsComponent } from './views/leaders-matchday/leade
     LeadersPlayersPositionComponent,
     LeadersGeneralStatsComponent
   ],
-  imports: [CommonModule, LeadersRoutingModule, SharedModule, AngularMaterialModule],
+  imports: [CommonModule, LeadersRoutingModule, SharedModule, AngularMaterialModule, AdBannerModule],
   providers: [LeadersLoadedGuard, LeadersTop100Resolver, LeadersTop500Resolver]
 })
 export class LeadersModule {}

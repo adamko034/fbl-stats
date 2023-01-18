@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgPipesModule } from 'ngx-pipes';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { MyTeamGuardsModule } from 'src/app/common/my-team/routing/guards/my-team-guards.module';
 import { MyTeamResolversModule } from 'src/app/common/my-team/routing/resolvers/my-team-resolvers.module';
@@ -48,7 +49,8 @@ import { MyTeamTotalsComponent } from './views/my-team-selection/my-team-totals/
     PipesModule,
     StickyModule,
     PlayerNameLinkModule,
-    TeamLogoModule
+    TeamLogoModule,
+    AdBannerModule
   ],
   providers: [MyTeamTilesDisplaySettingsService]
 })

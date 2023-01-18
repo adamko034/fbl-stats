@@ -17,6 +17,11 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
   public ourPicks$: Observable<MatchdayTipsOurPicksPlayers>;
 
   public Types = MatchdayTipsOurPicksType;
+  public iconsLegend: { icon: string; description: string }[] = [
+    { icon: 'mustHave', description: 'Must have' },
+    { icon: 'bargain', description: 'Budget pick' },
+    { icon: 'differential', description: 'Differential' }
+  ];
 
   public defenders$: Observable<MatchdayTipsOurPicksPlayer[]>;
   public goalkeepers$: Observable<MatchdayTipsOurPicksPlayer[]>;

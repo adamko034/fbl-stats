@@ -1,0 +1,11 @@
+<ng-container *ngIf="showAd && adBanner">
+  <ins
+    class="adsbygoogle block"
+    [ngClass]="{ test: isTest }"
+    [attr.data-ad-client]="clientId"
+    [attr.data-ad-slot]="adBanner.slot"
+    [attr.data-ad-format]="adBanner.format"
+    [attr.data-full-width-responsive]="adBanner.fullWidthResponsive"
+  >
+  </ins>
+</ng-container>

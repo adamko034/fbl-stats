@@ -1,19 +1,29 @@
 <div class="flex flex-col gap-x-5">
   <app-players-stats-avg-points-filters></app-players-stats-avg-points-filters>
-  <app-white-block *ngIf="lastMatchday$ | async | isGreaterThan : 0">
-    <div>
-      <app-players-list-generic
-        [data]="data$ | async"
-        [config]="listConfig$ | async"
-        (sortChange)="onSortChange($event)"
-      ></app-players-list-generic>
-      <div class="legend">
-        <span>*(points / games played)</span>
+
+  <app-white-block>
+    <div class="flex flex-col xl:flex-row-reverse gap-y-2.5 gap-x-5 justify-center">
+      <div class="w-full xl:w-1/4 text-center">
+        <app-ad-banner *appIfScreen="{ size: screens.XL, type: 'lt' }" slot="horizontal"></app-ad-banner>
+        <app-ad-banner *appIfScreen="{ size: screens.XL, type: 'ge' }" slot="multiplexVertical1"></app-ad-banner>
+      </div>
+
+      <div class="min-w-fit">
+        <div>
+          <app-players-list-generic
+            *ngIf="lastMatchday$ | async | isGreaterThan : 0"
+            [data]="data$ | async"
+            [config]="listConfig$ | async"
+            (sortChange)="onSortChange($event)"
+          ></app-players-list-generic>
+          <div class="legend">
+            <span>*(points / games played)</span>
+          </div>
+        </div>
+        <div class="follow-us" *ngIf="lastMatchday$ | async | isEqualTo : 0">
+          <app-follow-us text=" Players stats will be available after MD 1."></app-follow-us>
+        </div>
       </div>
     </div>
   </app-white-block>
-
-  <div class="follow-us" *ngIf="lastMatchday$ | async | isEqualTo : 0">
-    <app-follow-us text=" Players stats will be available after MD 1."></app-follow-us>
-  </div>
 </div>

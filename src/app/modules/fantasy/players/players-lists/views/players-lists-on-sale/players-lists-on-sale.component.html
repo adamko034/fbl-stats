@@ -1,0 +1,26 @@
+<div class="flex flex-col gap-y-3">
+  <app-view-title>
+    <div subtitle>
+      <div class="flex-row-center-center gap-x-1">
+        <mat-icon class="orange">sale</mat-icon>
+        <span>Players on sale</span>
+      </div>
+    </div>
+  </app-view-title>
+  <app-white-block *ngIf="players$ | async" padding="10px 10px">
+    <div class="flex flex-col lg:flex-row lg:justify-between gap-5">
+      <div *appIfScreen="{ type: 'lt', size: screens.LG }" class="w-full text-center">
+        <app-ad-banner slot="horizontal"></app-ad-banner>
+      </div>
+      <div *appIfScreen="{ type: 'ge', size: screens.LG }" class="text-center w-[350px]">
+        <app-ad-banner slot="multiplexVertical1"></app-ad-banner>
+      </div>
+      <div class="w-full" *ngIf="players$ | async">
+        <app-players-list-base [players]="players$ | async"></app-players-list-base>
+      </div>
+      <div *appIfScreen="{ type: 'ge', size: screens.LG }" class="text-center w-[300px]">
+        <app-ad-banner slot="square"></app-ad-banner>
+      </div>
+    </div>
+  </app-white-block>
+</div>

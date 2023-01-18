@@ -10,6 +10,7 @@ export interface PlayersTablePlayerInner {
   returning?: boolean;
   suspensionRisk?: boolean;
   price: number;
+  priceOriginal: number;
   popularity: number;
   teamShort: string;
   totalPoints: number;

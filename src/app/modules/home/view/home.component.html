@@ -1,5 +1,8 @@
 <div class="flex flex-col">
   <app-home-title [properties]="properties$ | async"></app-home-title>
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
   <div class="flex-row-wrap">
     <app-home-bundesliga
       class="flex-1 xl:flex-[1_1_33%] xl:max-w-[33%]"
@@ -32,6 +35,10 @@
 
     <app-home-players-watchout class="flex-1 min-w-full" [players]="players$ | async"></app-home-players-watchout>
 
+    <div class="w-full text-center">
+      <app-ad-banner slot="horizontal2"></app-ad-banner>
+    </div>
+
     <app-home-players-goals-assists
       class="flex-1 xl:flex-[1_1_33%] xl:max-w-[33%]"
       [players]="players$ | async"
@@ -41,6 +48,10 @@
       class="flex-1 xl:flex-[1_1_67%] xl:max-w-[67%]"
       [players]="players$ | async"
     ></app-home-players-passes-shots-duels>
+
+    <div class="w-full text-center">
+      <app-ad-banner slot="horizontal2"></app-ad-banner>
+    </div>
 
     <div class="flex-row-wrap flex-1 xl:flex-[1_1_67%] xl:max-w-[67%]">
       <app-home-top-players-home
@@ -63,6 +74,10 @@
       class="flex-1 xl:flex-[1_1_50%] xl:max-w-[50%]"
       [players]="players$ | async"
     ></app-home-players-games-started>
+
+    <div class="w-full text-center">
+      <app-ad-banner slot="horizontal"></app-ad-banner>
+    </div>
 
     <app-home-players-varied-predictions
       class="flex-[1_1_100%] xl:flex-[1_1_50%] xl:max-w-[50%]"

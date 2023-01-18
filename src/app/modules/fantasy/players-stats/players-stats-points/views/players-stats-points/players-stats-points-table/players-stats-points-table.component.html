@@ -79,16 +79,16 @@
     </div>
   </div>
 
-  <div class="legend flex flex-col gap-y-2.5">
+  <div class="legend flex flex-col gap-y-2">
     <span *ngIf="filters.type === 'bundesliga'">
       Bundesliga stats are calculated using fantasy points and based on their scoring rules.
     </span>
     <span *ngIf="filters.type === 'fantasy'"> Fantasy bundesliga stats are taken directly from the official app. </span>
-    <span>*Total - sum of values from grey columns</span>
   </div>
 
-  <div class="legend legend-points">
+  <app-legend>
+    <span>Total - sum of values from grey columns</span>
     <span>TP - Total points</span>
     <span *ngFor="let statHeader of statsHeaders"> {{ statHeader.header }} - {{ statHeader.tooltip }} </span>
-  </div>
+  </app-legend>
 </div>

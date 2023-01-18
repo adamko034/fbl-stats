@@ -1,12 +1,15 @@
-<div class="flex flex-col gap-y-5" *ngIf="state$ | async">
-  <app-fixtures-first-games-filters
-    [filters]="state$ | async | field : 'filters'"
-    [lastKnownMatchday]="lastKnownMatchday$ | async"
-    [lastMatchday]="lastMatchday$ | async"
-    [nextUnlimitedTransfersMatchday]="nextUnlimitedTranfers$ | async | field : 'matchday'"
-  ></app-fixtures-first-games-filters>
+<app-white-block padding="10px 0 10px 0">
+  <div class="flex flex-col gap-y-5" *ngIf="state$ | async">
+    <div class="w-full text-center">
+      <app-ad-banner slot="horizontal"></app-ad-banner>
+    </div>
+    <app-fixtures-first-games-filters
+      [filters]="state$ | async | field : 'filters'"
+      [lastKnownMatchday]="lastKnownMatchday$ | async"
+      [lastMatchday]="lastMatchday$ | async"
+      [nextUnlimitedTransfersMatchday]="nextUnlimitedTranfers$ | async | field : 'matchday'"
+    ></app-fixtures-first-games-filters>
 
-  <app-white-block padding="10px 0 10px 0">
     <div class="flex-row-wrap justify-evenly gap-2">
       <app-fixtures-first-games-teams
         [teams]="state$ | async | field : 'teams'"
@@ -18,5 +21,5 @@
         [matchdays]="state$ | async | field : 'matchdays'"
       ></app-fixtures-first-games-matchdays>
     </div>
-  </app-white-block>
-</div>
+  </div>
+</app-white-block>

@@ -1,117 +1,135 @@
-<div class="container flex-col-start-center gap-y-5">
-  <mat-card *ngIf="now$ | async" class="w-[320px] md:w-[450px]">
-    <mat-card-header>
-      <mat-card-title>
-        <div class="flex flex-row items-center gap-x-1">
-          <span> Unlimited transfers is now!</span>
-          <mat-icon>sentiment_very_satisfied</mat-icon>
-        </div>
-      </mat-card-title>
-    </mat-card-header>
+<div class="flex flex-col gap-3 lg:flex-row">
+  <div class="w-[350px]" *appIfScreen="{ size: screens.LG, type: 'ge' }">
+    <app-ad-banner slot="vertical"></app-ad-banner>
+  </div>
 
-    <mat-card-content>
-      <br />
-      You can make as many transfers as you want. Use it wisely!
-    </mat-card-content>
-  </mat-card>
+  <div class="w-full text-center" *appIfScreen="{ size: screens.LG, type: 'lt' }">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
 
-  <mat-card *ngIf="next$ | async; else noUnlimitedTransfers" class="w-[320px] md:w-[450px]">
-    <mat-card-header>
-      <mat-card-title>Next unlimited transfers</mat-card-title>
-    </mat-card-header>
+  <div class="container flex-col-start-center gap-y-5">
+    <mat-card *ngIf="now$ | async" class="w-[320px] md:w-[450px]">
+      <mat-card-header>
+        <mat-card-title>
+          <div class="flex flex-row items-center gap-x-1">
+            <span> Unlimited transfers is now!</span>
+            <mat-icon>sentiment_very_satisfied</mat-icon>
+          </div>
+        </mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content>
-      <div class="flex flex-col">
-        <div class="unlimited-transfers flex-row-center-center">
-          <table>
-            <tr>
-              <td>
-                <span>When:</span>
-              </td>
-              <td>
-                <span>in {{ next$ | async | field : 'start' | daysBetweenNow }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td><span>Matchday:</span></td>
-              <td>
-                <span>{{ next$ | async | field : 'matchday' }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td><span>Matchdays until:</span></td>
-              <td>
-                <span>{{ (next$ | async | field : 'matchday') - 1 - (state$ | async | field : 'lastMatchday') }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td><span>Dates:</span></td>
-              <td>
-                <span
-                  >{{ next$ | async | field : 'start' | date : 'dd.MM.yyyy' }} -
-                  {{ next$ | async | field : 'end' | date : 'dd.MM.yyyy' }}</span
-                >
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="source flex flex-row justify-end">
-          <a
-            [href]="state$ | async | field : 'unlimitedTransfers' | field : 'source'"
-            target="_blank"
-            class="flex-row-start-center"
-          >
-            <span>Source</span>
-            <mat-icon class="scale-[0.7]">open_in_new</mat-icon>
-          </a>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-
-  <ng-template #noUnlimitedTransfers>
-    <mat-card class="w-[320px] md:w-[450px]">
       <mat-card-content>
-        <h3>No more future unlimited transfers planned</h3>
-        <div class="source flex flex-row justify-end">
-          <a
-            [href]="state$ | async | field : 'unlimitedTransfers' | field : 'source'"
-            target="_blank"
-            class="flex-row-start-center"
-          >
-            <span>Source</span>
-            <mat-icon class="scale-[0.7]">open_in_new</mat-icon>
-          </a>
+        <br />
+        You can make as many transfers as you want. Use it wisely!
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="next$ | async; else noUnlimitedTransfers" class="w-[320px] md:w-[450px]">
+      <mat-card-header>
+        <mat-card-title>Next unlimited transfers</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="flex flex-col">
+          <div class="unlimited-transfers flex-row-center-center">
+            <table>
+              <tr>
+                <td>
+                  <span>When:</span>
+                </td>
+                <td>
+                  <span>in {{ next$ | async | field : 'start' | daysBetweenNow }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Matchday:</span></td>
+                <td>
+                  <span>{{ next$ | async | field : 'matchday' }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Matchdays until:</span></td>
+                <td>
+                  <span>{{
+                    (next$ | async | field : 'matchday') - 1 - (state$ | async | field : 'lastMatchday')
+                  }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td><span>Dates:</span></td>
+                <td>
+                  <span
+                    >{{ next$ | async | field : 'start' | date : 'dd.MM.yyyy' }} -
+                    {{ next$ | async | field : 'end' | date : 'dd.MM.yyyy' }}</span
+                  >
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="source flex flex-row justify-end">
+            <a
+              [href]="state$ | async | field : 'unlimitedTransfers' | field : 'source'"
+              target="_blank"
+              class="flex-row-start-center"
+            >
+              <span>Source</span>
+              <mat-icon class="scale-[0.7]">open_in_new</mat-icon>
+            </a>
+          </div>
         </div>
       </mat-card-content>
     </mat-card>
-  </ng-template>
 
-  <mat-card *ngIf="future$ | async | arrayNotEmpty" class="w-[320px] md:w-[450px]">
-    <mat-card-header>
-      <mat-card-title>Future</mat-card-title>
-    </mat-card-header>
+    <ng-template #noUnlimitedTransfers>
+      <mat-card class="w-[320px] md:w-[450px]">
+        <mat-card-content>
+          <h3>No more future unlimited transfers planned</h3>
+          <div class="source flex flex-row justify-end">
+            <a
+              [href]="state$ | async | field : 'unlimitedTransfers' | field : 'source'"
+              target="_blank"
+              class="flex-row-start-center"
+            >
+              <span>Source</span>
+              <mat-icon class="scale-[0.7]">open_in_new</mat-icon>
+            </a>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
 
-    <mat-card-content>
-      <ng-template
-        [ngTemplateOutlet]="unlimitedTransfersList"
-        [ngTemplateOutletContext]="{ data: future$ | async }"
-      ></ng-template>
-    </mat-card-content>
-  </mat-card>
+    <mat-card class="w-[320px] md:w-[450px]">
+      <mat-card-content>
+        <app-ad-banner slot="square"></app-ad-banner>
+      </mat-card-content>
+    </mat-card>
 
-  <mat-card *ngIf="previous$ | async | arrayNotEmpty" class="w-[320px] md:w-[450px]">
-    <mat-card-header>
-      <mat-card-title>Previous</mat-card-title>
-    </mat-card-header>
+    <mat-card *ngIf="future$ | async | arrayNotEmpty" class="w-[320px] md:w-[450px]">
+      <mat-card-header>
+        <mat-card-title>Future</mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content>
-      <ng-template
-        [ngTemplateOutlet]="unlimitedTransfersList"
-        [ngTemplateOutletContext]="{ data: previous$ | async }"
-      ></ng-template>
-    </mat-card-content>
-  </mat-card>
+      <mat-card-content>
+        <ng-template
+          [ngTemplateOutlet]="unlimitedTransfersList"
+          [ngTemplateOutletContext]="{ data: future$ | async }"
+        ></ng-template>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="previous$ | async | arrayNotEmpty" class="w-[320px] md:w-[450px]">
+      <mat-card-header>
+        <mat-card-title>Previous</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <ng-template
+          [ngTemplateOutlet]="unlimitedTransfersList"
+          [ngTemplateOutletContext]="{ data: previous$ | async }"
+        ></ng-template>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 
 <ng-template #unlimitedTransfersList let-data="data">

@@ -1,4 +1,7 @@
 <div class="flex flex-col gap-x-5">
   <app-predicted-lineups-team-navigation [teams]="teamsNavigation$ | async"></app-predicted-lineups-team-navigation>
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
   <app-predicted-lineups-stats></app-predicted-lineups-stats>
 </div>

@@ -11,6 +11,7 @@ import { PositionSwitchModule } from '../../components/filters/position-switch/p
 import { PredictionDropdownModule } from '../../components/filters/prediction-dropdown/prediction-dropdown.module';
 import { SelectMatchdaysPanelModule } from '../../components/filters/select-matchdays-panel/select-matchdays-panel.module';
 import { TeamsSelectModule } from '../../components/filters/teams-select/teams-select.module';
+import { AdBannerModule } from '../../components/ui/ad-banner/ad-banner.module';
 import { CheckboxModule } from '../../components/ui/checkbox/checkbox.module';
 import { ContentWhiteBlockModule } from '../../components/ui/content-white-block/content-white-block.module';
 import { LegendModule } from '../../components/ui/legend/legend.module';
@@ -22,6 +23,7 @@ import { PipesModule } from '../../pipes/pipes.module';
 import { GameTeamVenueModule } from '../../teams/components/game-team-venue/game-team-venue.module';
 import { TeamLogoModule } from '../../teams/team-logo/team-logo.module';
 import { PlayerIconPredictionModule } from '../components/player-icon-prediction/player-icon-prediction.module';
+import { PlayerIconPriceChangeModule } from '../components/player-icon-price-change/player-icon-price-change.module';
 import { PlayerIconReturningModule } from '../components/player-icon-returning/player-icon-returning.module';
 import { PlayerIconSuspensionRiskModule } from '../components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { PlayerIconUnavailableModule } from '../components/player-icon-unavailable/player-icon-unavailable.module';
@@ -71,7 +73,9 @@ import { PlayersToPlayersTableConverter } from './services/players-to-player-tab
     PipesModule,
     StickyModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    AdBannerModule,
+    PlayerIconPriceChangeModule
   ],
   providers: [
     PlayersTableFiltersProvider,

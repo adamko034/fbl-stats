@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { HorizontalTopScrollbarModule } from 'src/app/common/directives/horizontal-top-scrollbar/horizontal-top-scrollbar.module';
+import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { LastKnownMatchdayModule } from 'src/app/common/routing/resolvers/last-known-matchday/last-known-matchday.module';
@@ -41,7 +43,9 @@ import { FixturesDifficultyComponent } from './view/fixtures-difficulty.componen
     StickyModule,
     HorizontalTopScrollbarModule,
     TeamLogoModule,
-    SwitcherModule
+    SwitcherModule,
+    IfScreenModule,
+    AdBannerModule
   ],
   providers: [
     FixtureDifficultyColorsService,

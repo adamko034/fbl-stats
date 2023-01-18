@@ -13,5 +13,14 @@ export class LegendComponent {
     return `repeat(auto-fill, ${this.gridColumnWidth}px)`;
   }
 
+  private _isOpened = false;
+  public get isOpened() {
+    return this._isOpened;
+  }
+
   constructor() {}
+
+  public toggleExpand() {
+    this._isOpened = !this._isOpened;
+  }
 }

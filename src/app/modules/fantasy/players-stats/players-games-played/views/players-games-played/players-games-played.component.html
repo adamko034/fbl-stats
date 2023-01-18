@@ -14,15 +14,26 @@
     </div>
   </app-white-block>
 
-  <app-players-list-generic
-    *ngIf="lastMatchday$ | async | isGreaterThan : 0"
-    [data]="listData$ | async"
-    [config]="listConfig$ | async"
-    (sortChange)="onSortChange($event)"
-  ></app-players-list-generic>
+  <app-white-block>
+    <div class="flex flex-col xl:flex-row-reverse gap-y-2.5 gap-x-5 justify-center">
+      <div class="w-full xl:w-1/4 text-center">
+        <app-ad-banner *appIfScreen="{ size: screens.XXL, type: 'lt' }" slot="horizontal"></app-ad-banner>
+        <app-ad-banner *appIfScreen="{ size: screens.XXL, type: 'ge' }" slot="multiplexVertical1"></app-ad-banner>
+      </div>
 
-  <app-follow-us
-    *ngIf="lastMatchday$ | async | isEqualTo : 0"
-    text=" Players stats will be available after MD 1."
-  ></app-follow-us>
+      <div>
+        <app-players-list-generic
+          *ngIf="lastMatchday$ | async | isGreaterThan : 0"
+          [data]="listData$ | async"
+          [config]="listConfig$ | async"
+          (sortChange)="onSortChange($event)"
+        ></app-players-list-generic>
+
+        <app-follow-us
+          *ngIf="lastMatchday$ | async | isEqualTo : 0"
+          text=" Players stats will be available after MD 1."
+        ></app-follow-us>
+      </div>
+    </div>
+  </app-white-block>
 </div>

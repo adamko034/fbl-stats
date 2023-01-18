@@ -1,4 +1,8 @@
-<div>
+<div class="flex flex-col">
+  <div class="w-full text-center mt-2.5">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
+
   <app-navigation-menu [links]="links"></app-navigation-menu>
   <app-bundesliga-table [state]="bundesligaTableState$ | async"></app-bundesliga-table>
 </div>

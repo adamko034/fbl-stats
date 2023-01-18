@@ -17,6 +17,7 @@ export class HomePlayersWatchoutComponent implements OnInit {
   public unavailables: HomePlayersWatchoutPlayer[];
   public returning: HomePlayersWatchoutPlayer[];
   public suspensionRisk: HomePlayersWatchoutPlayer[];
+  public sales: HomePlayersWatchoutPlayer[];
 
   constructor(private router: Router) {}
 
@@ -24,6 +25,7 @@ export class HomePlayersWatchoutComponent implements OnInit {
     this.unavailables = this.createHomePlayers((p) => p.attendance === 0);
     this.returning = this.createHomePlayers((p) => p.isReturning);
     this.suspensionRisk = this.createHomePlayers((p) => p.isSuspensionRisk);
+    this.sales = this.createHomePlayers((p) => p.priceOriginal != 0 && p.price != p.priceOriginal);
   }
 
   public onShowMoreClick(type: string): void {

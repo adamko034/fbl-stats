@@ -1,6 +1,10 @@
 <div class="flex flex-col gap-y-5">
   <app-predicted-lineups-team-navigation [teams]="teamsNavigation$ | async"></app-predicted-lineups-team-navigation>
 
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
+
   <app-white-block>
     <div *ngIf="predictionsAvailable$ | async" class="flex flex-col gap-y-3.5">
       <app-view-title>
@@ -118,7 +122,7 @@
         </app-title-underlined-grey>
       </div>
 
-      <div class="legend legend-grid">
+      <app-legend>
         <span>Pos - position</span>
         <span>$ - price</span>
         <span>TP - total points</span>
@@ -128,9 +132,13 @@
         <span>LI - ligainsider.de</span>
         <span>BL[EN] - bundesliga.com</span>
         <span>BI - bulinews.com</span>
-      </div>
+      </app-legend>
     </div>
   </app-white-block>
+
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
 </div>
 
 <ng-template #predictions let-players="players" let-position="position">

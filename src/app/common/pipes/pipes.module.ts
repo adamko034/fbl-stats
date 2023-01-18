@@ -10,6 +10,7 @@ import { FieldPipe } from './field.pipe';
 import { LengthPipe } from './length.pipe';
 import { NullableTextPipe } from './nullable-text.pipe';
 import { NumeralsPipe } from './numerals.pipe';
+import { OrDevEnvironmentPipe } from './or-dev-env.pipe';
 import { ReverseBooleanPipe } from './reverse-boolean.pipe';
 import { SumByPipe } from './sum-by.pipe';
 import { TakePipe } from './take.pipe';
@@ -34,7 +35,8 @@ import { YesNoPipe } from './yes-no.pipe';
     TakePipe,
     WherePipe,
     YesNoPipe,
-    TimeInOrAgoPipe
+    TimeInOrAgoPipe,
+    OrDevEnvironmentPipe
   ],
   imports: [CommonModule],
   exports: [
@@ -53,7 +55,8 @@ import { YesNoPipe } from './yes-no.pipe';
     TakePipe,
     WherePipe,
     YesNoPipe,
-    TimeInOrAgoPipe
+    TimeInOrAgoPipe,
+    OrDevEnvironmentPipe
   ]
 })
 export class PipesModule {}

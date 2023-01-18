@@ -1,4 +1,8 @@
 export const environment = {
+  adsense: {
+    adClient: 'ca-pub-2064593657160416',
+    show: true
+  },
   firebase: {
     projectId: 'fantasybl-stats',
     appId: '1:158019324122:web:d98497c332adeb3f44fde3',
@@ -8,7 +12,7 @@ export const environment = {
     apiKey: 'AIzaSyD8SNLjMn7YsTbc7i8UfXdcYBpsROXRR4Q',
     authDomain: 'fantasybl-stats.firebaseapp.com',
     messagingSenderId: '158019324122',
-    measurementId: 'G-FXCC144YHB',
+    measurementId: 'G-FXCC144YHB'
   },
   production: true,
   firebaseConfig: {

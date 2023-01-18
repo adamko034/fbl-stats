@@ -8,7 +8,8 @@ export enum ScreenSize {
   SM = 2,
   MD = 3,
   LG = 4,
-  XL = 5
+  XL = 5,
+  XXL = 6
 }
 
 @Injectable({ providedIn: 'root' })
@@ -50,16 +51,18 @@ export class ScreenSizeService {
     const width = window.screen.width;
     if (width < 400) {
       return ScreenSize.XXS;
-    } else if (width < 600) {
+    } else if (width < 640) {
       return ScreenSize.XS;
-    } else if (width < 960) {
+    } else if (width < 768) {
       return ScreenSize.SM;
-    } else if (width < 1280) {
+    } else if (width < 1024) {
       return ScreenSize.MD;
-    } else if (width < 1920) {
+    } else if (width < 1280) {
       return ScreenSize.LG;
-    } else {
+    } else if (width < 1536) {
       return ScreenSize.XL;
+    } else {
+      return ScreenSize.XXL;
     }
   }
 }

@@ -1,1 +1,10 @@
-<app-bundesliga-table [state]="state$ | async"></app-bundesliga-table>
+<div class="flex flex-col gap-y-5">
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
+
+  <app-bundesliga-table [state]="state$ | async"></app-bundesliga-table>
+  <div class="w-full text-center">
+    <app-ad-banner slot="horizontal"></app-ad-banner>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { MaxPopularitySliderModule } from 'src/app/common/components/filters/max-popularity-slider/max-popularity-slider.module';
 import { MaxPriceSliderModule } from 'src/app/common/components/filters/max-price-slider/max-price-slider.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
 import { NavigationMenuModule } from 'src/app/common/components/ui/navigation-menu/navigation-menu.module';
 import { TitleModule } from 'src/app/common/components/ui/title/title.module';
@@ -24,7 +25,8 @@ import { HistorySummaryComponent } from './views/history-summary.component';
     FormFieldModule,
     MaxPriceSliderModule,
     NavigationMenuModule,
-    MaxPopularitySliderModule
+    MaxPopularitySliderModule,
+    AdBannerModule
   ]
 })
 export class HistorySummaryModule {}

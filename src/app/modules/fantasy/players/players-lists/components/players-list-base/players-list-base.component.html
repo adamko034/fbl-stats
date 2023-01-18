@@ -11,8 +11,8 @@
     <tr>
       <th mat-sort-header="name">player</th>
       <th mat-sort-header="position">pos</th>
-      <th mat-sort-header="price" class="md:w-[70px]">$</th>
-      <th mat-sort-header="popularity" class="md:w-[70px]">%</th>
+      <th mat-sort-header="price">$</th>
+      <th mat-sort-header="popularity" class="hidden sm:table-cell">%</th>
       <th mat-sort-header="totalPoints">TP</th>
     </tr>
     <tbody>
@@ -31,8 +31,13 @@
         <td>
           {{ player.position | uppercase }}
         </td>
-        <td>{{ player.price }}M</td>
-        <td>{{ player.popularity }}%</td>
+        <td>
+          <span> {{ player.price }}M</span>
+          <span *ngIf="player.priceOriginal !== 0 && player.price !== player.priceOriginal" class="ml-1 line-through"
+            >{{ player.priceOriginal }}M</span
+          >
+        </td>
+        <td class="hidden sm:table-cell">{{ player.popularity }}%</td>
 
         <td>
           {{ player.totalPoints }}

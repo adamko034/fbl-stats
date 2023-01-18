@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
+import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { TimeAgoModule } from 'src/app/common/components/ui/time-ago/time-ago.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
@@ -54,7 +56,9 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     TeamLogoModule,
     ChartModule,
     TimeAgoModule,
-    StickyModule
+    StickyModule,
+    AdBannerModule,
+    LegendModule
   ],
   providers: [
     PredictedLineupsStore,

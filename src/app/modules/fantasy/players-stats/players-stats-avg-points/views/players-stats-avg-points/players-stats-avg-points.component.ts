@@ -3,6 +3,7 @@ import { Sort } from '@angular/material/sort';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
@@ -30,6 +31,7 @@ export class PlayersStatsAvgPointsComponent implements OnInit {
   public listConfig$: Observable<PlayersListGenericConfig>;
   public data$: Observable<PlayersListGenericData>;
   public lastMatchday$: Observable<number>;
+  public screens = ScreenSize;
 
   constructor(
     private route: ActivatedRoute,

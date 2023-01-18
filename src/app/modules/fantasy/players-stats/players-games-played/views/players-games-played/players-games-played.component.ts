@@ -6,6 +6,7 @@ import { map, tap } from 'rxjs/operators';
 import { SwitcherItem } from 'src/app/common/components/ui/switcher/models/switcher-item.model';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { PlayersListGenericColumn } from 'src/app/shared/components/players-list-generic/models/players-list-generic-column.model';
 import { PlayersListGenericConfig } from 'src/app/shared/components/players-list-generic/models/players-list-generic-config.model';
 import { PlayersListGenericData } from 'src/app/shared/components/players-list-generic/models/players-list-generic-data.model';
@@ -29,6 +30,8 @@ export class PlayersGamesPlayedComponent implements OnInit {
     { value: 'playedMoreThan70MinPercentage', description: '70min' }
   ];
   private _selectedType = 'gamesStarted';
+
+  public screens = ScreenSize;
 
   public get position(): Position {
     return this._position;

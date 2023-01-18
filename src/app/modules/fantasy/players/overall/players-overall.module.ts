@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { MyTeamGuardsModule } from 'src/app/common/my-team/routing/guards/my-team-guards.module';
 import { PlayersTableModule } from 'src/app/common/players/players-table/players-table.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
@@ -20,7 +21,8 @@ import { PlayersOverallContentComponent } from './views/players-overall-content.
     TeamsResolverModule,
     PropertiesResolverModule,
     PlayersServicesModule,
-    MyTeamGuardsModule
+    MyTeamGuardsModule,
+    AdBannerModule
   ],
   providers: [PlayersDataService]
 })

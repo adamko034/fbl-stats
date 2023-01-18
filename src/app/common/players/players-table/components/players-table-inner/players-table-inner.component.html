@@ -30,6 +30,10 @@
           ></app-player-icon-unavailable>
           <app-player-icon-suspension-risk *ngIf="player.suspensionRisk"></app-player-icon-suspension-risk>
           <app-player-icon-returning *ngIf="player.returning"></app-player-icon-returning>
+          <app-player-icon-price-change
+            [price]="player.price"
+            [priceOriginal]="player.priceOriginal"
+          ></app-player-icon-price-change>
         </div>
       </td>
     </ng-container>
@@ -56,6 +60,9 @@
       <th class="total-data" mat-header-cell mat-sort-header *matHeaderCellDef>$</th>
       <td class="total-data" mat-cell *matCellDef="let player" [ngClass]="{ bold: config.sortBy === 'price' }">
         <span>{{ player.price }}</span>
+        <span *ngIf="player.priceOriginal != 0" class="ml-[2px] line-through font-smaller grey">{{
+          player.priceOriginal
+        }}</span>
       </td>
     </ng-container>
 

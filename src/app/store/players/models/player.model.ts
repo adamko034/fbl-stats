@@ -17,6 +17,7 @@ export interface Player {
   subPosition: PlayerSubPosition;
   popularity: number;
   price: number;
+  priceOriginal: number;
   last5: number;
   games: Game[];
   attendance: number;

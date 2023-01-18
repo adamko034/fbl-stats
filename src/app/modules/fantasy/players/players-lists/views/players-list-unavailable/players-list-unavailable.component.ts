@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { constants } from 'src/app/resources/resources';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 
@@ -15,6 +16,8 @@ import { PropertiesStore } from 'src/app/store/properties/properties.store';
 export class PlayersListUnavailableComponent implements OnInit {
   public players$: Observable<Player[]>;
   public lastMatchday$: Observable<number>;
+
+  public screens = ScreenSize;
 
   public get source(): string {
     return constants.links.ligainsider.unavailables;
