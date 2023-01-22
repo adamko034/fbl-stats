@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: FixturesKickoffTimesComponent,
+    title: 'FBL Fixtures Kickoff Times',
     resolve: {
       teams: TeamsResolver,
       properties: PropertiesResolver,

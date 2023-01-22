@@ -7,6 +7,7 @@ import { PlayersGamesPlayedComponent } from './views/players-games-played/player
 const routes: Routes = [
   {
     path: '',
+    title: 'FBL Players Stats Games Played',
     resolve: { players: PlayersGamesPlayedResolver, lastMatchday: LastMatchdayResolver },
     component: PlayersGamesPlayedComponent,
     runGuardsAndResolvers: 'always'

@@ -12,21 +12,25 @@ import { PlayersListsOnSaleComponent } from './views/players-lists-on-sale/playe
 const routes: Routes = [
   {
     path: 'suspensionrisk',
+    title: 'FBL Suspension Risk Players',
     resolve: { players: PlayersListSuspensionRiskResolver },
     component: PlayersListSuspensionRiskComponent
   },
   {
     path: 'returning',
+    title: 'FBL Returning Players',
     component: PlayersListReturningComponent,
     resolve: { players: PlayersListReturningResolver }
   },
   {
     path: 'unavailable',
+    title: 'FBL Unavailable Players',
     resolve: { players: PlayersListUnavailableResolver },
     component: PlayersListUnavailableComponent
   },
   {
     path: 'onsale',
+    title: 'FBL On Sale Players',
     resolve: { players: PlayersListOnSaleResolver },
     component: PlayersListsOnSaleComponent
   }

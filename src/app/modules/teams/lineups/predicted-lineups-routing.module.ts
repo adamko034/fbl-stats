@@ -32,6 +32,7 @@ const routes: Routes = [
     children: [
       {
         path: 'next/summary',
+        title: 'FBL Predicted Lineups Summary',
         component: PredictedLineupsTeamsComponent,
         resolve: {
           sources: PredictedLineupsSourcesResolver,
@@ -43,6 +44,7 @@ const routes: Routes = [
       },
       {
         path: 'next/:team',
+        title: 'FBL Predicted Lineups Team',
         component: PredictedLineupsTeamComponent,
         resolve: {
           teamsNavigation: TeamsNavigationResolver,
@@ -52,6 +54,7 @@ const routes: Routes = [
       },
       {
         path: 'sources',
+        title: 'FBL Predicted Lineups Sources',
         component: PredictedLineupsSourcesComponent,
         resolve: {
           sources: PredictedLineupsSourcesResolver,

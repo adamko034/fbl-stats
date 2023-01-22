@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: HistorySummaryComponent,
+    title: 'FBL History Summary',
     resolve: { history: HistorySeasonChildResolver }
   }
 ];

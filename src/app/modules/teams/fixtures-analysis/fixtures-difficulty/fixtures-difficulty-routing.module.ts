@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: FixturesDifficultyComponent,
+    title: 'FBL Fixtures Difficulty',
     resolve: {
       state: FixturesDifficultyResolver,
       lastMatchday: LastMatchdayResolver,

@@ -6,6 +6,7 @@ import { MatchdayTipsTopTeamComponent } from './views/matchday-tips-top-team.com
 const routes: Routes = [
   {
     path: '',
+    title: 'FBL Matchday Tips Best Team',
     resolve: { state: MatchdayTipsTopTeamResolver },
     component: MatchdayTipsTopTeamComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'

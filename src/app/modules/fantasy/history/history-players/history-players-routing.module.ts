@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: HistoryPlayersComponent,
+    title: 'FBL History Players',
     resolve: { history: HistorySeasonChildResolver }
   }
 ];

@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: MatchdayTipsUnlimitedTransfersComponent,
+    title: 'FBL Matchday Tips Unlimited Transfers',
     resolve: { state: MatchdayTipsUnlimitedTransfersResolver }
   }
 ];

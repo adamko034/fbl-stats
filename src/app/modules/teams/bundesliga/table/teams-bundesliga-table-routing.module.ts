@@ -11,6 +11,7 @@ const routes: Routes = [
       teams: TeamsResolver,
       lastMatchday: LastMatchdayResolver
     },
+    title: 'FBL Bundesliga Table',
     component: TeamsBundesligaTableComponent
   }
 ];

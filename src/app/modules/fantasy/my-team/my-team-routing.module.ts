@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: MyTeamContentComponent,
+    title: 'FBL My Team',
     resolve: { properties: PropertiesResolver },
     canActivate: [FixturesLoadedGuard, MyTeamLoadedGuard]
   }

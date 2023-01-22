@@ -8,6 +8,7 @@ import { PlayerDetailsContentComponent } from './view/player-details-content/pla
 const routes: Routes = [
   {
     path: ':id',
+    title: 'FBL Player Details',
     canActivate: [PositionsStatsLoadedGuard],
     component: PlayerDetailsContentComponent,
     resolve: { player: PlayerDetailsResolver, positionsStats: PositionsStatsResolver }

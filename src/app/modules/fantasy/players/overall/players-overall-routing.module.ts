@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: PlayersOverallContentComponent,
+    title: 'FBL Players Overall',
     canActivate: [MyTeamLoadedGuard],
     resolve: { players: PlayersResolver, teams: TeamsResolver, properties: PropertiesResolver }
   }

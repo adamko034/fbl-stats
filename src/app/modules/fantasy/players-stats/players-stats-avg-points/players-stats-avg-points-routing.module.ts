@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     resolve: { players: PlayersStatsAvgPointsResolver, lastMatchday: LastMatchdayResolver },
+    title: 'FBL Players Stats Avg Points',
     component: PlayersStatsAvgPointsComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   }

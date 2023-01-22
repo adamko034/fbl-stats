@@ -19,11 +19,13 @@ const routes: Routes = [
     children: [
       {
         path: 'top100',
+        title: 'FBL Leaders Top 100',
         resolve: { matchday: LeadersTop100Resolver },
         component: LeadersMatchdayComponent
       },
       {
         path: 'top500',
+        title: 'FBL Leaders Top 500',
         resolve: { matchday: LeadersTop500Resolver },
         component: LeadersMatchdayComponent
       }

@@ -6,6 +6,7 @@ import { PlayersStatsPointsComponent } from './views/players-stats-points/player
 const routes: Routes = [
   {
     path: '',
+    title: 'FBL Players Stats Fantasy Points',
     resolve: { players: PlayersStatsPointsResolver },
     component: PlayersStatsPointsComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'

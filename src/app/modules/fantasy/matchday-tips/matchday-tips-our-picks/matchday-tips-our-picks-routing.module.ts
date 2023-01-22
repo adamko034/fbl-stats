@@ -8,6 +8,7 @@ import { MatchdayTipsOurPicksComponent } from './views/matchday-tips-our-picks.c
 const routes: Routes = [
   {
     path: '',
+    title: 'FBL Matchday Tips Our Picks',
     canActivate: [MatchdayTipsOurPicksLoadedGuard],
     component: MatchdayTipsOurPicksComponent,
     resolve: { ourPicks: MatchdayTipsOurPicksResolver, lastMatchday: LastMatchdayResolver }

@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     resolve: { tips: MatchdayTipsLinksResolver, lastMatchday: LastMatchdayResolver },
+    title: 'FBL Matchday Tips Links',
     canActivate: [MatchdayTipsLinksLoadedGuard],
     component: MatchdayTipsLinksComponent
   }

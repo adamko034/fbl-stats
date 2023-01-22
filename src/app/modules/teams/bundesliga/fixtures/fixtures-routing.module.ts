@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [FixturesLoadedGuard],
+    title: 'FBL Bundesliga Fixtures',
     resolve: { matchdays: BundesligaFixturesResolver },
     component: BundesligaFixturesComponent
   }

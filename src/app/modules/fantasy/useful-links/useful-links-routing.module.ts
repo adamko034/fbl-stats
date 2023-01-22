@@ -5,6 +5,7 @@ import { UsefulLinksComponent } from './views/useful-links/useful-links.componen
 const routes: Routes = [
   {
     path: '',
+    title: 'FBL Useful Links',
     component: UsefulLinksComponent
   }
 ];

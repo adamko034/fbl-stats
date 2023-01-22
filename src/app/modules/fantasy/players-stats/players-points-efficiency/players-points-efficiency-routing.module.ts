@@ -15,6 +15,7 @@ const routes: Routes = [
       {
         path: ':type',
         resolve: { pointsEfficiency: PlayersPointsEffciencyResolver },
+        title: 'FBL Players Stats Points Efficiency',
         component: PlayersPointsEfficiencyComponent,
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
       }

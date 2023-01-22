@@ -12,6 +12,7 @@ const routes: Routes = [
     path: '',
     canActivate: [FixturesLoadedGuard],
     component: FixturesFirstGamesComponent,
+    title: 'FBL Fixtures First Games',
     resolve: {
       state: FixturesFirstGamesResolver,
       lastMatchday: LastMatchdayResolver,

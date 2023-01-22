@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '',
     component: PlayersCompareComponent,
+    title: 'FBL Players Compare',
     resolve: { state: PlayersCompareStateResolver },
     canActivate: [PlayersCompareIdsCacheGuard],
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
