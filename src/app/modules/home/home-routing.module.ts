@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'FantasyBL-stats Home',
+    title: 'FBL Home',
     resolve: {
       players: PlayersResolver,
       properties: PropertiesResolver,
