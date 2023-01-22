@@ -3,7 +3,15 @@
     <mat-label *ngIf="placeholder">{{ placeholder }}</mat-label>
     <mat-icon matPrefix>search</mat-icon>
     <input matInput type="text" [formControl]="search" />
-    <button *ngIf="!!search.value" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+    <button
+      class="w-[20px] h-[20px] p-0"
+      *ngIf="!!search.value"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="clear()"
+      disableRipple
+    >
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>

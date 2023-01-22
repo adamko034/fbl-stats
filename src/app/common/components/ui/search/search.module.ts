@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconScaleModule } from 'src/app/common/directives/mat-icon-scale/mat-icon-scale.module';
 import { FormFieldModule } from '../form-field/form-field.module';
 import { SearchComponent } from './search.component';
 
@@ -17,7 +18,8 @@ import { SearchComponent } from './search.component';
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconScaleModule
   ],
   exports: [SearchComponent]
 })

@@ -1,5 +1,5 @@
 <div *ngIf="ourPicks$ | async" class="flex-row-center-center mt-4">
-  <div appStickyWrapper *ngIf="ourPicks$ | async | field : 'published' | orDevEnv">
+  <div appStickyWrapper *ngIf="ourPicks$ | async | field : 'published'">
     <table class="comparison-table">
       <tr>
         <td [appSticky]="{ position: 'left', px: 0 }"></td>
@@ -64,7 +64,7 @@
   </div>
 
   <app-follow-us
-    *ngIf="ourPicks$ | async | field : 'published' | orDevEnv | reverseBoolean"
+    *ngIf="ourPicks$ | async | field : 'published' | reverseBoolean"
     text="Sorry, we haven't published our picks yet."
   >
   </app-follow-us>

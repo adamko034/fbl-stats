@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   @Input() label: string;
   @Output() termChange = new EventEmitter<string>();
 
-  public search = new UntypedFormControl();
+  public search = new FormControl();
 
   constructor() {}
 

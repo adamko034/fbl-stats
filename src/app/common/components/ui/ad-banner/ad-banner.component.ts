@@ -39,6 +39,8 @@ export class AdBannerComponent implements AfterViewInit {
     console.error(value + ' is not know as ad banner type');
   }
 
+  @Input() timeout = 0;
+
   public adBanner: AdBanner;
   public showAd = environment.adsense.show;
   public clientId = environment.adsense.adClient;
@@ -54,6 +56,6 @@ export class AdBannerComponent implements AfterViewInit {
       } catch (e) {
         console.error(e);
       }
-    }, 0);
+    }, this.timeout);
   }
 }
