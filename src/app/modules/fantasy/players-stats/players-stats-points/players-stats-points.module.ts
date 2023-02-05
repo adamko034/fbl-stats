@@ -5,6 +5,7 @@ import { PositionSwitchModule } from 'src/app/common/components/filters/position
 import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
+import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
@@ -32,7 +33,8 @@ import { PlayersStatsPointsComponent } from './views/players-stats-points/player
     TeamLogoModule,
     SwitcherModule,
     AdBannerModule,
-    LegendModule
+    LegendModule,
+    IfScreenModule
   ],
   providers: [PlayersStatsQueryParamsService, PlayersStatsPointsResolver, PlayersStatsPointsConverter]
 })

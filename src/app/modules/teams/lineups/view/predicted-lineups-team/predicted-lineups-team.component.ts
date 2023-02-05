@@ -5,6 +5,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlayerSourceLineupPrediction } from 'src/app/common/players/models/player-source-lineup-prediction.enum';
 import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { TeamNavigation } from 'src/app/store/properties/properties.model';
 
@@ -22,6 +23,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
   public teamPredictions$: Observable<TeamPredictedLineups>;
   public absences$: Observable<Player[]>;
   public players$: Observable<Player[]>;
+  public screens = ScreenSize;
 
   private showAllPlayersChange$ = new BehaviorSubject<boolean>(false);
 

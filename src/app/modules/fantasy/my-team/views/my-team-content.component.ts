@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { AdBannerBuilder } from 'src/app/common/components/ui/ad-banner/ad-bunner.builder';
 import { PlayersTableState } from 'src/app/common/players/players-table/models/players-table-state';
 import { PlayersToPlayersTableConverter } from 'src/app/common/players/players-table/services/players-to-player-table-converter';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { FixturesStore } from 'src/app/store/fixtures/fixtures.store';
 import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
@@ -22,7 +22,7 @@ import { MyTeamTilesDisplaySettingsService } from '../services/my-team-tiles-dis
 export class MyTeamContentComponent implements OnInit {
   public state$: Observable<MyTeamState>;
 
-  public horizontal = AdBannerBuilder.horizontal().build();
+  public screens = ScreenSize;
 
   constructor(
     private _route: ActivatedRoute,

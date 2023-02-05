@@ -5,6 +5,7 @@ import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner
 import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { TimeAgoModule } from 'src/app/common/components/ui/time-ago/time-ago.module';
+import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
@@ -57,8 +58,9 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     ChartModule,
     TimeAgoModule,
     StickyModule,
+    LegendModule,
     AdBannerModule,
-    LegendModule
+    IfScreenModule
   ],
   providers: [
     PredictedLineupsStore,

@@ -17,6 +17,7 @@ import { ContentWhiteBlockModule } from '../../components/ui/content-white-block
 import { LegendModule } from '../../components/ui/legend/legend.module';
 import { SearchModule } from '../../components/ui/search/search.module';
 import { TitleModule } from '../../components/ui/title/title.module';
+import { IfScreenModule } from '../../directives/if-screen/if-screen.module';
 import { PlayerPointsColorModule } from '../../directives/player-points-color/player-points-color.module';
 import { StickyModule } from '../../directives/sticky/sticky.module';
 import { PipesModule } from '../../pipes/pipes.module';
@@ -75,7 +76,8 @@ import { PlayersToPlayersTableConverter } from './services/players-to-player-tab
     MatProgressBarModule,
     MatIconModule,
     AdBannerModule,
-    PlayerIconPriceChangeModule
+    PlayerIconPriceChangeModule,
+    IfScreenModule
   ],
   providers: [
     PlayersTableFiltersProvider,

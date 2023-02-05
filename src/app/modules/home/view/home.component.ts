@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Properties } from 'src/app/store/properties/properties.model';
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit {
   public properties$: Observable<Properties>;
   public nextMatchdayFixtures$: Observable<MatchdayFixtures>;
   public teams$: Observable<Team[]>;
+
+  public screens = ScreenSize;
 
   constructor(private route: ActivatedRoute) {}
 

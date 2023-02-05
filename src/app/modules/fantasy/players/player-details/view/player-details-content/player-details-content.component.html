@@ -10,11 +10,21 @@
       class="mt-3.5"
       [player]="state$ | async | field : 'player'"
     ></app-player-details-next-matchday>
+
+    <div class="text-center w-full">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
+
     <app-player-details-charts
       [player]="state$ | async | field : 'player'"
       [positionsStats]="state$ | async | field : 'positionsStats'"
     ></app-player-details-charts>
     <app-player-details-points [player]="state$ | async | field : 'player'"></app-player-details-points>
+
+    <div class="text-center w-full">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
+
     <app-player-details-matchdays [player]="state$ | async | field : 'player'"></app-player-details-matchdays>
   </div>
 </div>

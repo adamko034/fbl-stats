@@ -56,7 +56,7 @@ export class PlayersToPlayersTableConverter {
     return games.map((g) => {
       return {
         matchday: g.matchday,
-        points: g.points ?? 0,
+        points: g.points,
         started: g.hasPlayed,
         playedMoreThan70Min: g.hasPlayedMoreThan70Min
       };

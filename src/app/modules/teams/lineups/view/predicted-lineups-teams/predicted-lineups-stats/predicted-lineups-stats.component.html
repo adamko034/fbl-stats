@@ -8,18 +8,21 @@
         key: 'unavailable'
       }"
     ></ng-template>
+
+    <div class="text-center">
+      <app-ad-banner type="square" [autoFormat]="false" [width]="280" [height]="280"></app-ad-banner>
+    </div>
+
     <ng-template
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{ players: state$ | async | field : 'benched', title: 'Top benched', key: 'benched' }"
     ></ng-template>
-    <div class="w-[200px] text-center">
-      <app-ad-banner slot="square"></app-ad-banner>
-    </div>
 
     <ng-template
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{ players: state$ | async | field : 'varied', title: 'Top varied', key: 'varied' }"
     ></ng-template>
+
     <ng-template
       [ngTemplateOutlet]="playersTable"
       [ngTemplateOutletContext]="{
@@ -28,6 +31,10 @@
         key: 'started'
       }"
     ></ng-template>
+
+    <div class="text-center">
+      <app-ad-banner type="square" [autoFormat]="false" [width]="280" [height]="280"></app-ad-banner>
+    </div>
   </div>
 </app-white-block>
 

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Position } from 'src/app/common/players/models/position.enum';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { PlayerCompareCard } from '../models/player-compare-card.model';
 import { PlayersCompareFixturesFilters } from '../models/players-compare-fixtures-filters.model';
 import { PlayersCompareState } from '../models/players-compare-state.model';
@@ -36,6 +37,7 @@ export class PlayersCompareComponent implements OnInit {
   };
   public maxPrice: number = 0;
   public bestGksLink: string;
+  public screens = ScreenSize;
 
   constructor(
     private route: ActivatedRoute,

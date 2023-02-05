@@ -5,6 +5,7 @@ import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-wh
 import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us.module';
 import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { TitleModule } from 'src/app/common/components/ui/title/title.module';
+import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { OurPickIconModule } from 'src/app/common/players/components/our-pick-icon/our-pick-icon.module';
@@ -37,7 +38,8 @@ import { MatchdayTipsOurPicksPlayersComponent } from './views/our-picks-players/
     LegendModule,
     TitleModule,
     LastMatchdayResolverModule,
-    AdBannerModule
+    AdBannerModule,
+    IfScreenModule
   ],
   providers: [MatchdayTipsOurPicksLoadedGuard]
 })

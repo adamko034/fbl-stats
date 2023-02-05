@@ -11,7 +11,7 @@
       <mat-paginator class="justify-self-end" showFirstLastButton [pageSizeOptions]="[10, 15, 20, 50]"></mat-paginator>
     </div>
 
-    <div class="table-container px-2.5">
+    <div class="table-container">
       <table
         mat-table
         matSort
@@ -24,7 +24,7 @@
       >
         <ng-container matColumnDef="name" sticky>
           <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let player">
+          <td mat-cell *matCellDef="let player" class="bg-white">
             <div class="flex-row-start-center gap-x-1">
               <app-team-logo [height]="20" [team]="player.teamShort"></app-team-logo>
               <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>

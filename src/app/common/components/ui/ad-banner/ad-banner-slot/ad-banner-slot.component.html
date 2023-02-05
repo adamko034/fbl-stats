@@ -1,0 +1,31 @@
+<ng-container *ngIf="slot">
+  <ins
+    class="adsbygoogle"
+    [ngStyle]="style"
+    [ngClass]="{ test: isTest }"
+    [attr.data-ad-client]="clientId"
+    [attr.data-ad-slot]="slot"
+    [attr.data-ad-format]="adBanner.format"
+    [attr.data-full-width-responsive]="adBanner.fullWidthResponsive"
+  ></ins>
+</ng-container>
+
+<!-- <ng-container *ngIf="slot" [ngSwitch]="adBanner.type">
+  <ins
+    *ngSwitchCase="'square_250w_200h'"
+    class="adsbygoogle"
+    [ngClass]="{ test: isTest }"
+    [attr.data-ad-client]="clientId"
+    [attr.data-ad-slot]="slot"
+    style="display: inline-block; width: 250px; height: 200px"
+  ></ins>
+  <ins
+    *ngSwitchDefault
+    class="adsbygoogle"
+    [ngClass]="{ test: isTest }"
+    [attr.data-ad-client]="clientId"
+    [attr.data-ad-slot]="slot"
+    [attr.data-ad-format]="adBanner.format"
+    [attr.data-full-width-responsive]="adBanner.fullWidthResponsive"
+  ></ins>
+</ng-container> -->

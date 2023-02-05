@@ -1,8 +1,8 @@
 <div>
-  <div class="mb-2.5 text-center w-full">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
-  </div>
-
   <app-navigation-menu [links]="links"></app-navigation-menu>
   <app-players-table [state]="playersTableState$ | async"></app-players-table>
+
+  <div class="mt-2.5 text-center w-full">
+    <app-ad-banner type="horizontal"></app-ad-banner>
+  </div>
 </div>

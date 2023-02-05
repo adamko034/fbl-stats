@@ -1,8 +1,5 @@
 <app-white-block padding="10px 0 10px 0">
   <div class="flex flex-col gap-y-5" *ngIf="state$ | async">
-    <div class="w-full text-center">
-      <app-ad-banner slot="horizontal"></app-ad-banner>
-    </div>
     <app-fixtures-first-games-filters
       [filters]="state$ | async | field : 'filters'"
       [lastKnownMatchday]="lastKnownMatchday$ | async"
@@ -20,6 +17,10 @@
       <app-fixtures-first-games-matchdays
         [matchdays]="state$ | async | field : 'matchdays'"
       ></app-fixtures-first-games-matchdays>
+    </div>
+
+    <div class="w-full text-center">
+      <app-ad-banner type="horizontal"></app-ad-banner>
     </div>
   </div>
 </app-white-block>

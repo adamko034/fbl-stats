@@ -1,7 +1,22 @@
 <div *ngIf="matchdaysFixtures | arrayNotEmpty">
-  <app-my-team-kick-off-times-matchday
-    *ngFor="let nextMatchdayFixtures of matchdaysFixtures"
-    [players]="players"
-    [nextMatchdayFixtures]="nextMatchdayFixtures"
-  ></app-my-team-kick-off-times-matchday>
+  <ng-container *ngFor="let nextMatchdayFixtures of matchdaysFixtures; let i = index">
+    <div *ngIf="i === 2" class="w-full [y-2">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
+
+    <div *ngIf="i === 4" class="flex flex-row w-full justify-evenly gap-x-3 py-2">
+      <div class="w-full lg:w-[40%]">
+        <app-ad-banner type="horizontal"></app-ad-banner>
+      </div>
+
+      <div class="w-[40%]" *appIfScreen="{ type: 'ge', size: screens.LG }">
+        <app-ad-banner type="horizontal"></app-ad-banner>
+      </div>
+    </div>
+
+    <app-my-team-kick-off-times-matchday
+      [players]="players"
+      [nextMatchdayFixtures]="nextMatchdayFixtures"
+    ></app-my-team-kick-off-times-matchday>
+  </ng-container>
 </div>

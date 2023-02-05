@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
 import { PieChartModule } from 'src/app/common/components/ui/pie-chart/pie-chart.module';
 import { ScaleModule } from 'src/app/common/directives/scale/scale.module';
@@ -62,7 +63,8 @@ import { PlayerDetailsTitleComponent } from './view/player-details-content/playe
     TeamLogoModule,
     MatchdayFirstGameIconModule,
     ChartModule,
-    PieChartModule
+    PieChartModule,
+    AdBannerModule
   ],
   providers: [
     PlayerDetailsResolver,

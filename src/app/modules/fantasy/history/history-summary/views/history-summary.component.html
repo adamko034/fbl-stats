@@ -1,9 +1,9 @@
 <div class="flex flex-col">
-  <div class="w-full text-center mb-2.5">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
-  </div>
-
   <app-navigation-menu [links]="links"></app-navigation-menu>
   <app-title [text]="title$ | async"></app-title>
   <app-history-summary-lineup></app-history-summary-lineup>
+
+  <div class="w-full text-center mt-2.5">
+    <app-ad-banner type="horizontal"></app-ad-banner>
+  </div>
 </div>

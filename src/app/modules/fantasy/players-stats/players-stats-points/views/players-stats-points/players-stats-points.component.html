@@ -1,21 +1,18 @@
-<div class="flex flex-col gap-y-2.5">
-  <div class="w-full text-center">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
-  </div>
+<app-white-block padding="20px 10px 0px 10px">
+  <div>
+    <app-players-stats-points-filters [filters]="state$ | async | field : 'filters'"></app-players-stats-points-filters>
 
-  <app-white-block padding="20px 10px 0px 10px">
-    <div>
-      <app-players-stats-points-filters
-        [filters]="state$ | async | field : 'filters'"
-      ></app-players-stats-points-filters>
+    <div *appIfScreen="{ type: 'le', size: screens.XS }" class="w-full text-center">
+      <app-ad-banner type="square" [autoFormat]="false" [height]="120" [width]="270"></app-ad-banner>
     </div>
-  </app-white-block>
-  <app-white-block padding="0px 0px 10px 0px">
-    <div>
-      <app-players-stats-points-table
-        [players]="state$ | async | field : 'players'"
-        [filters]="state$ | async | field : 'filters'"
-      ></app-players-stats-points-table>
+
+    <app-players-stats-points-table
+      [players]="state$ | async | field : 'players'"
+      [filters]="state$ | async | field : 'filters'"
+    ></app-players-stats-points-table>
+
+    <div class="w-full">
+      <app-ad-banner type="horizontal"></app-ad-banner>
     </div>
-  </app-white-block>
-</div>
+  </div>
+</app-white-block>

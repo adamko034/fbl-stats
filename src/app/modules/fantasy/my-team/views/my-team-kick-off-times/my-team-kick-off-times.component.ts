@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { MatchdayFixtures } from 'src/app/store/fixtures/models/matchday-fixtures.model';
 import { Player } from 'src/app/store/players/models/player.model';
@@ -27,6 +28,8 @@ export class MyTeamKickOffTimesComponent implements OnChanges, OnInit {
   public get nextMatchdays(): number[] {
     return this._nextMatchdays;
   }
+
+  public screens = ScreenSize;
 
   constructor(private myTeamStore: MyTeamStore) {}
 

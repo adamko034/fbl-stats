@@ -10,8 +10,14 @@
     <div class="flex-row-wrap justify-center items-center lg:justify-evenly">
       <app-chart class="chart" [config]="pricesChart"></app-chart>
       <app-chart class="chart" [config]="popularityChart"></app-chart>
+
+      <div class="text-center p-5">
+        <app-ad-banner type="square" [autoFormat]="false" [height]="100" [width]="270"></app-ad-banner>
+      </div>
+
       <app-chart class="chart" [config]="top100PopularityChart"></app-chart>
       <app-chart class="chart" [config]="top500PopularityChart"></app-chart>
+
       <app-chart class="chart" [config]="pointsChart"></app-chart>
     </div>
   </div>

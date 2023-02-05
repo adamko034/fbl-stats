@@ -1,4 +1,8 @@
 <div class="matchdays-container flex flex-col">
+  <div class="w-full text-center py-4">
+    <app-ad-banner type="horizontal"></app-ad-banner>
+  </div>
+
   <section class="matchday" *ngFor="let matchday of displayedMatchdays">
     <div class="matchday-number text-[7vw] h-[calc(7vw_+_10px)] lg:text-[48px] lg:h-[58px]">
       {{ matchday.matchdayNumber }}

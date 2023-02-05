@@ -13,6 +13,16 @@
     (change)="onMatchdayChange($event)"
   ></app-select-matchdays-panel>
 
+  <div *ngIf="config.showHideUnavailableFilter">
+    <app-ad-banner
+      *appIfScreen="{ type: 'gt', size: screens.MD }"
+      type="square"
+      [width]="280"
+      [height]="100"
+      [autoFormat]="false"
+    ></app-ad-banner>
+  </div>
+
   <app-max-price-slider
     *ngIf="config.showMaxPriceFilter"
     class="w-full"

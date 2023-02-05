@@ -11,6 +11,10 @@
         [teams]="state.teams"
       ></app-players-table-filters>
 
+      <div *appIfScreen="{ type: 'le', size: screens.XS }" class="w-full">
+        <app-ad-banner type="square" [autoFormat]="false" [width]="250" [height]="150"></app-ad-banner>
+      </div>
+
       <app-players-table-inner
         [players]="players"
         [config]="tableInnerConfig"

@@ -1,6 +1,18 @@
 <div class="flex flex-col" *ngIf="showPlayers$ | async">
   <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
 
+  <app-white-block class="mb-3">
+    <div class="flex flex-row w-full justify-evenly gap-x-3">
+      <div class="w-full lg:w-[40%]">
+        <app-ad-banner type="horizontal"></app-ad-banner>
+      </div>
+
+      <div class="w-[40%]" *appIfScreen="{ type: 'ge', size: screens.LG }">
+        <app-ad-banner type="horizontal"></app-ad-banner>
+      </div>
+    </div>
+  </app-white-block>
+
   <div class="flex flex-col gap-y-4">
     <app-white-block padding="10px 10px 0 10px">
       <div class="flex flex-col gap-y-2.5">
@@ -14,6 +26,10 @@
             [includeMatchdays]="filters$ | async | field : 'includeMatchdays'"
           ></app-players-compare-fixtures>
 
+          <div class="w-full">
+            <app-ad-banner type="horizontal"></app-ad-banner>
+          </div>
+
           <app-players-compare-games
             [players]="state$ | async | field : 'players'"
             [teams]="state$ | async | field : 'teams'"
@@ -24,6 +40,10 @@
         </div>
       </div>
     </app-white-block>
+
+    <div class="w-full">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
 
     <app-white-block>
       <div>
@@ -38,6 +58,10 @@
 </div>
 
 <div class="flex flex-col gap-y-5" *ngIf="showPlayers$ | async | reverseBoolean">
+  <div class="w-full">
+    <app-ad-banner type="horizontal"></app-ad-banner>
+  </div>
+
   <app-white-block>
     <div class="flex-row-center-center">
       <span class="text-span">Add players to compare</span>

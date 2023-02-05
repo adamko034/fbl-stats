@@ -1,12 +1,4 @@
 <div class="flex flex-col gap-3 lg:flex-row">
-  <div class="w-[350px]" *appIfScreen="{ size: screens.LG, type: 'ge' }">
-    <app-ad-banner slot="vertical"></app-ad-banner>
-  </div>
-
-  <div class="w-full text-center" *appIfScreen="{ size: screens.LG, type: 'lt' }">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
-  </div>
-
   <div class="container flex-col-start-center gap-y-5">
     <mat-card *ngIf="now$ | async" class="w-[320px] md:w-[450px]">
       <mat-card-header>
@@ -100,7 +92,7 @@
 
     <mat-card class="w-[320px] md:w-[450px]">
       <mat-card-content>
-        <app-ad-banner slot="square"></app-ad-banner>
+        <app-ad-banner type="square"></app-ad-banner>
       </mat-card-content>
     </mat-card>
 

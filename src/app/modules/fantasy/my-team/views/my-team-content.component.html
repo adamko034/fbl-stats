@@ -1,13 +1,23 @@
-<div class="flex flex-col gap-y-5">
+<div class="flex flex-col gap-y-2">
   <app-my-team-selection
     [players]="state$ | async | field : 'players'"
     [settings]="state$ | async | field : 'displaySettings'"
   ></app-my-team-selection>
 
+  <div class="flex flex-row w-full justify-evenly gap-x-3 pt-2">
+    <div class="w-full lg:w-[40%]">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
+
+    <div class="w-[40%]" *appIfScreen="{ type: 'ge', size: screens.LG }">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
+  </div>
+
   <app-players-table [state]="state$ | async | field : 'playersTableState'"></app-players-table>
 
   <div class="w-full text-center">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
+    <app-ad-banner type="horizontal"></app-ad-banner>
   </div>
 
   <app-my-team-kick-off-times
@@ -17,4 +27,8 @@
     [kickOffTimesMatchdays]="state$ | async | field : 'kickOffTimesMatchdays'"
     [lastKnownMatchday]="state$ | async | field : 'lastKnownMatchday'"
   ></app-my-team-kick-off-times>
+
+  <div class="w-full">
+    <app-ad-banner type="horizontal"></app-ad-banner>
+  </div>
 </div>

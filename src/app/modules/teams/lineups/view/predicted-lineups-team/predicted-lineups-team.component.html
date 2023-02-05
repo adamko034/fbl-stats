@@ -2,7 +2,7 @@
   <app-predicted-lineups-team-navigation [teams]="teamsNavigation$ | async"></app-predicted-lineups-team-navigation>
 
   <div class="w-full text-center">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
+    <app-ad-banner type="horizontal"></app-ad-banner>
   </div>
 
   <app-white-block>
@@ -14,17 +14,32 @@
         >*Players position are in accordance with Fantasy Bundesliga. Therfore the lineups may sometimes look unexpected
         (etc. only one winger or no forwards)</span
       >
-      <div
-        class="lineups-container flex flex-col justify-center items-center gap-3.5 sm:flex-row sm:flex-wrap sm:justify-evenly"
-      >
+
+      <div class="flex flex-row justify-center sm:space-evenly gap-2">
         <div
-          class="lineup"
-          *ngFor="let sourceLineup of teamPredictions$ | async | field : 'predictions' | orderBy : 'order'"
+          class="lineups-container flex flex-col justify-center items-center gap-3.5 sm:flex-row sm:flex-wrap sm:justify-evenly"
         >
-          <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
-          <div class="legend">
-            <span>Last checked: {{ sourceLineup.lastUpdated | epochDate | date : 'dd.MM.yyyy HH:mm' }}</span>
+          <div
+            class="lineup"
+            *ngFor="
+              let sourceLineup of teamPredictions$ | async | field : 'predictions' | orderBy : 'order';
+              let i = index
+            "
+          >
+            <div *ngIf="i === 2">
+              <div *appIfScreen="{ type: 'le', size: screens.XS }" class="w-full text-center">
+                <app-ad-banner type="square"></app-ad-banner>
+              </div>
+            </div>
+            <app-predicted-team-lineup [sourceLineup]="sourceLineup"></app-predicted-team-lineup>
+            <div class="legend">
+              <span>Last checked: {{ sourceLineup.lastUpdated | epochDate | date : 'dd.MM.yyyy HH:mm' }}</span>
+            </div>
           </div>
+        </div>
+
+        <div *appIfScreen="{ type: 'gt', size: screens.SM }" class="w-[80%] h-full mr-4 text-center">
+          <app-ad-banner type="multiplexVertical"></app-ad-banner>
         </div>
       </div>
     </div>
@@ -137,7 +152,7 @@
   </app-white-block>
 
   <div class="w-full text-center">
-    <app-ad-banner slot="horizontal"></app-ad-banner>
+    <app-ad-banner type="horizontal"></app-ad-banner>
   </div>
 </div>
 

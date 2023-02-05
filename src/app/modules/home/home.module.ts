@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { NgPipesModule } from 'ngx-pipes';
 import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
@@ -7,6 +8,7 @@ import { CardModule } from 'src/app/common/components/ui/card/card.module';
 import { CompareArrowModule } from 'src/app/common/components/ui/compare-arrow/compare-arrow.module';
 import { ContentWhiteBlockModule } from 'src/app/common/components/ui/content-white-block/content-white-block.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
+import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { ScaleModule } from 'src/app/common/directives/scale/scale.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
@@ -89,7 +91,9 @@ import { HomeComponent } from './view/home.component';
     PlayerIconLineupPredictionModule,
     ContentWhiteBlockModule,
     AdBannerModule,
-    PlayerIconPriceChangeModule
+    PlayerIconPriceChangeModule,
+    IfScreenModule,
+    MatCardModule
   ]
 })
 export class HomeModule {}

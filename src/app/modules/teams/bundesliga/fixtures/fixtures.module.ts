@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -10,7 +11,15 @@ import { BundesligaFixturesComponent } from './views/bundesliga-fixtures/bundesl
 
 @NgModule({
   declarations: [BundesligaFixturesComponent],
-  imports: [CommonModule, FixturesRoutingModule, AngularMaterialModule, SharedModule, PipesModule, TeamLogoModule],
+  imports: [
+    CommonModule,
+    FixturesRoutingModule,
+    AngularMaterialModule,
+    SharedModule,
+    PipesModule,
+    TeamLogoModule,
+    AdBannerModule
+  ],
   providers: [BundesligaFixturesResolver]
 })
 export class FixturesModule {}

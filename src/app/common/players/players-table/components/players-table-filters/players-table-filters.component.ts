@@ -3,6 +3,7 @@ import { TeamsSelectState } from 'src/app/common/components/filters/teams-select
 import { TeamsSelectTeam } from 'src/app/common/components/filters/teams-select/models/teams-select-team.model';
 import { RouterNavigationService } from 'src/app/common/services/router-navigation.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { FromTo } from 'src/app/shared/models/from-to.model';
 import { Logger } from 'src/app/utils/logger';
 import { PlayersFilterPrediciton } from '../../../models/players-filter-prediction.enum';
@@ -21,6 +22,8 @@ export class PlayersTableFiltersComponent implements OnChanges {
   @Input() filters: PlayersTableFilters;
   @Input() config: PlayersTableFiltersConfig;
   @Input() teams: PlayersTableTeam[];
+
+  public screens = ScreenSize;
 
   private _teamsSelectState: TeamsSelectState;
   public get teamsSelectState(): TeamsSelectState {

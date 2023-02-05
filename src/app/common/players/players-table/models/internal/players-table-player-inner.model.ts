@@ -24,5 +24,5 @@ export interface PlayersTablePlayerInner {
   formAvgPoints: number;
   formGamesStarted: number;
   formGames70Min: number;
-  [matchday: number]: number;
+  [matchday: number]: number | null;
 }

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { PlayersStatsPointsFilters } from '../../models/players-stats-points-filters.model';
 import { PlayersStatsPointsPlayer } from '../../models/players-stats-points-player.model';
 import { PlayersStatsQueryParamsService } from '../../services/players-stats-query-params.service';
@@ -19,6 +20,8 @@ interface State {
 })
 export class PlayersStatsPointsComponent implements OnInit {
   public state$: Observable<State>;
+
+  public screens = ScreenSize;
 
   constructor(private route: ActivatedRoute, private queryParamsService: PlayersStatsQueryParamsService) {}
 

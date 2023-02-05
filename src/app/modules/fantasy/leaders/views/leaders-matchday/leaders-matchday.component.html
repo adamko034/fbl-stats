@@ -2,7 +2,7 @@
   <div *ngIf="matchday$ | async" class="flex flex-col gap-y-4">
     <app-leaders-general-stats [matchday]="matchday$ | async"></app-leaders-general-stats>
     <div class="w-full text-center">
-      <app-ad-banner slot="horizontal"></app-ad-banner>
+      <app-ad-banner type="horizontal"></app-ad-banner>
     </div>
 
     <app-leaders-players-positions [players]="(matchday$ | async).players"></app-leaders-players-positions>
@@ -11,7 +11,7 @@
   <app-white-block padding="20px" class="no-data" *ngIf="!(matchday$ | async)">
     <div>
       <div class="w-full text-center">
-        <app-ad-banner slot="horizontal"></app-ad-banner>
+        <app-ad-banner type="horizontal"></app-ad-banner>
       </div>
       <h2 class="flex-col-start-center">
         Leaders stats will be available after MD 1.

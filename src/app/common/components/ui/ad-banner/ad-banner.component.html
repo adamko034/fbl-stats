@@ -1,11 +1,5 @@
-<ng-container *ngIf="showAd && adBanner">
-  <ins
-    class="adsbygoogle block"
-    [ngClass]="{ test: isTest }"
-    [attr.data-ad-client]="clientId"
-    [attr.data-ad-slot]="adBanner.slot"
-    [attr.data-ad-format]="adBanner.format"
-    [attr.data-full-width-responsive]="adBanner.fullWidthResponsive"
-  >
-  </ins>
-</ng-container>
+<div *ngIf="showAd && adBanner" class="text-center">
+  <ng-container *ngFor="let slot of adBanner.slots; let i = index">
+    <app-ad-banner-slot *ngIf="i === slotIndex" [adBanner]="adBanner" [slot]="slot"></app-ad-banner-slot>
+  </ng-container>
+</div>

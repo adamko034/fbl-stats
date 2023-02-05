@@ -161,6 +161,10 @@
       </app-title-underlined-grey>
     </div>
 
+    <div class="w-full py-2">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
+
     <div class="wrapper" appStickyWrapper>
       <app-title-underlined-grey>
         <span title [appSticky]="{ position: 'left' }">Points: all games</span>
@@ -211,6 +215,10 @@
       [ngTemplateOutlet]="tablePoints"
       [ngTemplateOutletContext]="{ title: 'Points: all games (only played)', venue: 'all' }"
     ></ng-template>
+
+    <div class="w-full py-2">
+      <app-ad-banner type="horizontal"></app-ad-banner>
+    </div>
 
     <ng-template
       [ngTemplateOutlet]="tablePoints"

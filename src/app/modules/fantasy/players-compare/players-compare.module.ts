@@ -4,8 +4,10 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { MaxPriceSliderModule } from 'src/app/common/components/filters/max-price-slider/max-price-slider.module';
 import { PositionSwitchModule } from 'src/app/common/components/filters/position-switch/position-switch.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
+import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
 import { MatrixTableModule } from 'src/app/common/components/ui/matrix-table/matrix-table.module';
+import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
@@ -60,7 +62,9 @@ import { PlayersCompareComponent } from './view/players-compare.component';
     PlayerNameLinkModule,
     TeamLogoModule,
     FormFieldModule,
-    MaxPriceSliderModule
+    MaxPriceSliderModule,
+    AdBannerModule,
+    IfScreenModule
   ],
   providers: [
     PlayersCompareStateResolver,
