@@ -13,7 +13,15 @@ import { TimelineMatchdayItem } from './models/timeline-matchday-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TimelineMatchdaysComponent implements OnInit {
-  @Input() items: TimelineMatchdayItem[];
+  private _allItems: TimelineMatchdayItem[];
+
+  @Input() set items(values: TimelineMatchdayItem[]) {
+    this._allItems = values;
+    this.min = new ArrayStream<TimelineMatchdayItem>(this._allItems, false).minBy((item) => item.matchday);
+    this.max = new ArrayStream<TimelineMatchdayItem>(this._allItems, false).maxBy((item) => item.matchday);
+
+    this.setDisplayedItems(this.screenSizeService.currentSize());
+  }
   @Input() order: 'asc' | 'dsc' = 'dsc';
 
   private min: number;
@@ -40,11 +48,6 @@ export class TimelineMatchdaysComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.min = new ArrayStream<TimelineMatchdayItem>(this.items, false).minBy((item) => item.matchday);
-    this.max = new ArrayStream<TimelineMatchdayItem>(this.items, false).maxBy((item) => item.matchday);
-
-    this.setDisplayedItems(this.screenSizeService.currentSize());
-
     this.screenSizeService
       .onResize()
       .pipe(untilDestroyed(this))
@@ -54,13 +57,13 @@ export class TimelineMatchdaysComponent implements OnInit {
   }
 
   public previousMatchdays(): void {
-    this.displayedItems = this.items.filter(
+    this.displayedItems = this._allItems.filter(
       (x) => x.matchday >= this.getDisplayedMin() - 1 && x.matchday <= this.getDisplayedMax() - 1
     );
   }
 
   public nextMatchdays(): void {
-    this.displayedItems = this.items.filter(
+    this.displayedItems = this._allItems.filter(
       (x) => x.matchday <= this.getDisplayedMax() + 1 && x.matchday >= this.getDisplayedMin() + 1
     );
   }
@@ -89,7 +92,7 @@ export class TimelineMatchdaysComponent implements OnInit {
   }
 
   private filterItems(count: number): void {
-    this.displayedItems = new ArrayStream<TimelineMatchdayItem>(this.items)
+    this.displayedItems = new ArrayStream<TimelineMatchdayItem>(this._allItems)
       .orderBy('matchday', this.order)
       .take(count)
       .collect();

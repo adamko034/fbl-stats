@@ -1,10 +1,6 @@
 <app-white-block *ngIf="player.nextGame" padding="10px 10px 0px 10px">
   <div content>
     <div class="flex-col-center-center sm:flex-row sm:flex-wrap sm:justify-evenly sm:items-start gap-x-2 gap-y-2">
-      <div class="text-center">
-        <app-ad-banner type="square"></app-ad-banner>
-      </div>
-
       <div class="mb-5 flex flex-col justify-center gap-y-2.5">
         <div>
           <h4 class="m-0">MATCHDAY {{ player.nextGame.matchday }}</h4>
@@ -197,6 +193,10 @@
           </tbody>
         </table>
       </app-title-underlined-grey>
+
+      <div class="text-center">
+        <app-ad-banner type="square" [autoFormat]="false" [height]="150" [width]="200"></app-ad-banner>
+      </div>
     </div>
   </div>
 </app-white-block>

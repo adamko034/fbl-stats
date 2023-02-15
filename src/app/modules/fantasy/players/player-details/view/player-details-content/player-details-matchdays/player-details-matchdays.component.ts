@@ -12,20 +12,27 @@ import { PlayerDetails } from '../../../models/player-details.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayerDetailsMatchdaysComponent {
-  @Input() player: PlayerDetails;
+  @Input() set player(value: PlayerDetails) {
+    this._futureGames = new ArrayStream<PlayerDetailsGame>(value.games)
+      .filterQuick((g) => !g.matchdayPlayed)
+      .convert<TimelineMatchdayItem>(new GameTimelineMatchdayConverter())
+      .collect();
 
-  public get playedGames(): TimelineMatchdayItem[] {
-    return new ArrayStream<PlayerDetailsGame>(this.player.games)
+    this._playedGames = new ArrayStream<PlayerDetailsGame>(value.games)
       .filterQuick((g) => g.matchdayPlayed)
       .convert<TimelineMatchdayItem>(new GameTimelineMatchdayConverter())
       .collect();
   }
 
+  private _playedGames: TimelineMatchdayItem[] = [];
+  private _futureGames: TimelineMatchdayItem[] = [];
+
+  public get playedGames(): TimelineMatchdayItem[] {
+    return this._playedGames;
+  }
+
   public get futureGames(): TimelineMatchdayItem[] {
-    return new ArrayStream<PlayerDetailsGame>(this.player.games)
-      .filterQuick((g) => !g.matchdayPlayed)
-      .convert<TimelineMatchdayItem>(new GameTimelineMatchdayConverter())
-      .collect();
+    return this._futureGames;
   }
 
   constructor() {}

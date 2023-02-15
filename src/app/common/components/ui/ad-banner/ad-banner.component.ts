@@ -24,9 +24,12 @@ export class AdBannerComponent implements OnInit {
   public ngOnInit(): void {
     this.adBanner = this.adBannerCreator.create(this.type, this.autoFormat, this.height, this.width);
 
-    setInterval(() => {
-      this.slotIndex = Math.floor(Math.random() * this.adBanner.slots.length);
-      this.changeDetection.detectChanges();
-    }, 12000);
+    setInterval(
+      () => {
+        this.slotIndex = Math.floor(Math.random() * this.adBanner.slots.length);
+        this.changeDetection.detectChanges();
+      },
+      environment.production ? 12000 : 200000000000000
+    );
   }
 }
