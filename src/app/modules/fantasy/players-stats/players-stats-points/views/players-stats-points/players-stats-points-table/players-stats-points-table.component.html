@@ -63,7 +63,11 @@
           >
             {{ statHeader.header }}
           </th>
-          <td mat-cell *matCellDef="let player" [ngClass]="{ 'column-active': statHeader.isActive }">
+          <td
+            mat-cell
+            *matCellDef="let player"
+            [ngClass]="{ 'column-active': statHeader.isActive, bold: sort.active === statHeader.header }"
+          >
             {{ getCellValue(player, statHeader.header) }}
           </td>
         </ng-container>
