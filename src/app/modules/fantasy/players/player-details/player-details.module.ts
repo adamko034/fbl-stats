@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { ChartModule } from 'src/app/common/components/ui/chart/chart.module';
+import { LegendModule } from 'src/app/common/components/ui/legend/legend.module';
 import { PieChartModule } from 'src/app/common/components/ui/pie-chart/pie-chart.module';
 import { ScaleModule } from 'src/app/common/directives/scale/scale.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
@@ -34,6 +35,7 @@ import { PlayerDetailsPointsEfficiencyComponent } from './view/player-details-co
 import { PlayerDetailsPointsComponent } from './view/player-details-content/player-details-points/player-details-points.component';
 import { PlayerDetailsTopGamesComponent } from './view/player-details-content/player-details-points/player-details-top-games/player-details-top-games.component';
 import { PlayerDetailsTitleComponent } from './view/player-details-content/player-details-title/player-details-title.component';
+import { PlayersDetailsFantasyStatsComponent } from './view/player-details-content/players-details-fantasy-stats/players-details-fantasy-stats.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { PlayerDetailsTitleComponent } from './view/player-details-content/playe
     PlayerDetailsPointsComponent,
     PlayerDetailsPointsByVenueComponent,
     PlayerDetailsPointsEfficiencyComponent,
-    PlayerDetailsTitleComponent
+    PlayerDetailsTitleComponent,
+    PlayersDetailsFantasyStatsComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +67,9 @@ import { PlayerDetailsTitleComponent } from './view/player-details-content/playe
     MatchdayFirstGameIconModule,
     ChartModule,
     PieChartModule,
-    AdBannerModule
+    AdBannerModule,
+    LegendModule,
+    PipesModule
   ],
   providers: [
     PlayerDetailsResolver,

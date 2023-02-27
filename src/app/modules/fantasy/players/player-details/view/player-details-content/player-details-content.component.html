@@ -19,7 +19,23 @@
       [player]="state$ | async | field : 'player'"
       [positionsStats]="state$ | async | field : 'positionsStats'"
     ></app-player-details-charts>
-    <app-player-details-points [player]="state$ | async | field : 'player'"></app-player-details-points>
+
+    <div class="flex flex-row m-auto gap-x-4 w-[90%]">
+      <div class="w-1/2">
+        <app-ad-banner type="square"></app-ad-banner>
+      </div>
+      <div class="w-1/2">
+        <app-ad-banner type="square"></app-ad-banner>
+      </div>
+    </div>
+
+    <div>
+      <app-players-details-fantasy-stats
+        [player]="state$ | async | field : 'player'"
+      ></app-players-details-fantasy-stats>
+
+      <app-player-details-points [player]="state$ | async | field : 'player'"></app-player-details-points>
+    </div>
 
     <div class="text-center w-full">
       <app-ad-banner type="horizontal"></app-ad-banner>

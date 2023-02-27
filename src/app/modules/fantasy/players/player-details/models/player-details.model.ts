@@ -1,3 +1,4 @@
+import { PlayerPointsStats } from 'src/app/store/players/models/player-points-stats.model';
 import { PlayerDetailsFantasy } from './player-details-fantasy.model';
 import { PlayerDetailsGame } from './player-details-game.model';
 import { PlayerDetailsNextGame } from './player-details-next-game.model';
@@ -11,4 +12,5 @@ export interface PlayerDetails {
   fantasy: PlayerDetailsFantasy;
   games: PlayerDetailsGame[];
   nextGame: PlayerDetailsNextGame;
+  fantasyPoints: PlayerPointsStats;
 }

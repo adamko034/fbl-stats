@@ -1,0 +1,143 @@
+<app-white-block>
+  <div class="flex flex-row justify-center">
+    <app-title-underlined-grey appStickyWrapper>
+      <span title [appSticky]="{ position: 'left' }">Fantasy Points</span>
+      <div content>
+        <div class="flex flex-col gap-y-1">
+          <table class="comparison-table cursor-default">
+            <tr>
+              <td [appSticky]="{ position: 'left' }"></td>
+              <td *ngIf="overall.playedMinutes !== 0" matTooltip="Played minutes">PM</td>
+              <td *ngIf="overall.goals !== 0" matTooltip="Goals">G</td>
+              <td *ngIf="overall.winningGoal !== 0" matTooltip="Winning goal">WG</td>
+              <td *ngIf="overall.twoGoals !== 0" matTooltip="Two goals">2G</td>
+              <td *ngIf="overall.threeGoals !== 0" matTooltip="Three goals">3G</td>
+              <td *ngIf="overall.assists !== 0" matTooltip="Assists">A</td>
+              <td *ngIf="overall.shotsOnGoal !== 0" matTooltip="Shots on goal">Sh</td>
+              <td *ngIf="overall.scoredPenalties !== 0" matTooltip="Scored penalities">Pen</td>
+              <td *ngIf="overall.missedPenalties !== 0" matTooltip="Missed penalities">MPen</td>
+              <td *ngIf="overall.passesToShot !== 0" matTooltip="Passes to shot">PtSh</td>
+              <td *ngIf="overall.wonDuels !== 0" matTooltip="Won duels">WD</td>
+              <td *ngIf="overall.cleanSheet !== 0" matTooltip="Clean sheet">CS</td>
+
+              <td *ngIf="overall.penaltySaved !== 0" matTooltip="Penalities saved">PenS</td>
+              <td *ngIf="overall.shotsSaved !== 0" matTooltip="Shots stopped">ShS</td>
+              <td *ngIf="overall.goalsConceeded !== 0" matTooltip="Goals conceded">GC</td>
+
+              <td *ngIf="overall.yellowCard !== 0" matTooltip="Yellow card">Y</td>
+              <td *ngIf="overall.secondYellowCard !== 0" matTooltip="Second yellow card">Y2</td>
+              <td *ngIf="overall.redCard !== 0" matTooltip="Red card">R</td>
+              <td *ngIf="overall.ownGoals !== 0" matTooltip="Own goal">OG</td>
+              <td *ngIf="overall.causedPenalities !== 0" matTooltip="Caused Penalities">CPen</td>
+              <td *ngIf="overall.winningTeam !== 0" matTooltip="Winning team">WT</td>
+              <td *ngIf="overall.loosingTeam !== 0" matTooltip="Loosing team">LT</td>
+            </tr>
+            <ng-template
+              [ngTemplateOutlet]="row"
+              [ngTemplateOutletContext]="{ stats: overall, title: 'Overall' }"
+            ></ng-template>
+            <ng-template
+              [ngTemplateOutlet]="rowAvg"
+              [ngTemplateOutletContext]="{ stats: overall, title: 'Overall / game', games: gamesPlayed }"
+            ></ng-template>
+            <tr class="h-[10px]">
+              <td colspan="20"></td>
+            </tr>
+            <ng-template
+              [ngTemplateOutlet]="row"
+              [ngTemplateOutletContext]="{ stats: last5, title: 'Last 5' }"
+            ></ng-template>
+            <ng-template
+              [ngTemplateOutlet]="rowAvg"
+              [ngTemplateOutletContext]="{
+                stats: last5,
+                title: 'Last 5 / game',
+                games: gamesPlayed >= 5 ? 5 : gamesPlayed
+              }"
+            ></ng-template>
+          </table>
+          <app-legend>
+            <span>PM - played minutes</span>
+            <span>G - goals</span>
+            <span>WG - winning goal</span>
+            <span>2G - two goals</span>
+            <span>3G - three goals</span>
+            <span>A - assists</span>
+            <span>Sh - shots on goal</span>
+            <span>Pen - penalities scored</span>
+            <span>MPen - missed penalities</span>
+            <span>PtSh - passes to shot</span>
+            <span>WD - won duels</span>
+            <span>CS - clean sheet</span>
+            <span>PenS - penalities saved</span>
+            <span>ShS - shots saved</span>
+            <span>GC - goals conceded</span>
+            <span>Y - yellow card</span>
+            <span>2Y - second yellow card</span>
+            <span>R - red card</span>
+            <span>OG - own goal</span>
+            <span>CPen - caused penalities</span>
+            <span>WT - winning team</span>
+            <span>LT - loosing team</span>
+          </app-legend>
+        </div>
+      </div>
+    </app-title-underlined-grey>
+  </div>
+</app-white-block>
+
+<ng-template #row let-title="title" let-stats="stats">
+  <tr>
+    <td [appSticky]="{ position: 'left' }">{{ title }}</td>
+    <td *ngIf="overall.playedMinutes !== 0">{{ stats.playedMinutes }}</td>
+    <td *ngIf="overall.goals !== 0">{{ stats.goals }}</td>
+    <td *ngIf="overall.winningGoal !== 0">{{ stats.winningGoal }}</td>
+    <td *ngIf="overall.twoGoals !== 0">{{ stats.twoGoals }}</td>
+    <td *ngIf="overall.threeGoals !== 0">{{ stats.threeGoals }}</td>
+    <td *ngIf="overall.assists !== 0">{{ stats.assists }}</td>
+    <td *ngIf="overall.shotsOnGoal !== 0">{{ stats.shotsOnGoal }}</td>
+    <td *ngIf="overall.scoredPenalties !== 0">{{ stats.scoredPenalties }}</td>
+    <td *ngIf="overall.missedPenalties !== 0">{{ stats.missedPenalties }}</td>
+    <td *ngIf="overall.passesToShot !== 0">{{ stats.passesToShot }}</td>
+    <td *ngIf="overall.wonDuels !== 0">{{ stats.wonDuels }}</td>
+    <td *ngIf="overall.cleanSheet !== 0">{{ stats.cleanSheet }}</td>
+    <td *ngIf="overall.penaltySaved !== 0">{{ stats.penaltySaved }}</td>
+    <td *ngIf="overall.shotsSaved !== 0">{{ stats.shotsSaved }}</td>
+    <td *ngIf="overall.goalsConceeded !== 0">{{ stats.goalsConceeded }}</td>
+    <td *ngIf="overall.yellowCard !== 0">{{ stats.yellowCard }}</td>
+    <td *ngIf="overall.secondYellowCard !== 0">{{ stats.secondYellowCard }}</td>
+    <td *ngIf="overall.redCard !== 0">{{ stats.redCard }}</td>
+    <td *ngIf="overall.ownGoals !== 0">{{ stats.ownGoals }}</td>
+    <td *ngIf="overall.causedPenalities !== 0">{{ stats.causedPenalities }}</td>
+    <td *ngIf="overall.winningTeam !== 0">{{ stats.winningTeam }}</td>
+    <td *ngIf="overall.loosingTeam !== 0">{{ stats.loosingTeam }}</td>
+  </tr>
+</ng-template>
+
+<ng-template #rowAvg let-title="title" let-stats="stats" let-games="games">
+  <tr>
+    <td [appSticky]="{ position: 'left' }">{{ title }}</td>
+    <td *ngIf="overall.playedMinutes !== 0">{{ stats.playedMinutes | divideAndRound : games }}</td>
+    <td *ngIf="overall.goals !== 0">{{ stats.goals | divideAndRound : games }}</td>
+    <td *ngIf="overall.winningGoal !== 0">{{ stats.winningGoal | divideAndRound : games }}</td>
+    <td *ngIf="overall.twoGoals !== 0">{{ stats.twoGoals | divideAndRound : games }}</td>
+    <td *ngIf="overall.threeGoals !== 0">{{ stats.threeGoals | divideAndRound : games }}</td>
+    <td *ngIf="overall.assists !== 0">{{ stats.assists | divideAndRound : games }}</td>
+    <td *ngIf="overall.shotsOnGoal !== 0">{{ stats.shotsOnGoal | divideAndRound : games }}</td>
+    <td *ngIf="overall.scoredPenalties !== 0">{{ stats.scoredPenalties | divideAndRound : games }}</td>
+    <td *ngIf="overall.missedPenalties !== 0">{{ stats.missedPenalties | divideAndRound : games }}</td>
+    <td *ngIf="overall.passesToShot !== 0">{{ stats.passesToShot | divideAndRound : games }}</td>
+    <td *ngIf="overall.wonDuels !== 0">{{ stats.wonDuels | divideAndRound : games }}</td>
+    <td *ngIf="overall.cleanSheet !== 0">{{ stats.cleanSheet | divideAndRound : games }}</td>
+    <td *ngIf="overall.penaltySaved !== 0">{{ stats.penaltySaved | divideAndRound : games }}</td>
+    <td *ngIf="overall.shotsSaved !== 0">{{ stats.shotsSaved | divideAndRound : games }}</td>
+    <td *ngIf="overall.goalsConceeded !== 0">{{ stats.goalsConceeded | divideAndRound : games }}</td>
+    <td *ngIf="overall.yellowCard !== 0">{{ stats.yellowCard | divideAndRound : games }}</td>
+    <td *ngIf="overall.secondYellowCard !== 0">{{ stats.secondYellowCard | divideAndRound : games }}</td>
+    <td *ngIf="overall.redCard !== 0">{{ stats.redCard | divideAndRound : games }}</td>
+    <td *ngIf="overall.ownGoals !== 0">{{ stats.ownGoals | divideAndRound : games }}</td>
+    <td *ngIf="overall.causedPenalities !== 0">{{ stats.causedPenalities | divideAndRound : games }}</td>
+    <td *ngIf="overall.winningTeam !== 0">{{ stats.winningTeam | divideAndRound : games }}</td>
+    <td *ngIf="overall.loosingTeam !== 0">{{ stats.loosingTeam | divideAndRound : games }}</td>
+  </tr>
+</ng-template>

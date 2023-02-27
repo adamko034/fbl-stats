@@ -90,7 +90,7 @@
     <span *ngIf="filters.type === 'fantasy'"> Fantasy bundesliga stats are taken directly from the official app. </span>
   </div>
 
-  <app-legend>
+  <app-legend class="mb-2">
     <span>Total - sum of values from grey columns</span>
     <span>TP - Total points</span>
     <span *ngFor="let statHeader of statsHeaders"> {{ statHeader.header }} - {{ statHeader.tooltip }} </span>

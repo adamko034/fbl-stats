@@ -5,8 +5,11 @@
   </div>
   <div class="lg:flex lg:flex-row lg:gap-x-4 lg:justify-evenly">
     <app-matchday-tips-our-picks-players></app-matchday-tips-our-picks-players>
-    <div *appIfScreen="{ type: 'ge', size: screens.LG }" class="w-[20%] mr-4 h-full text-center">
-      <app-ad-banner type="multiplexVertical"></app-ad-banner>
+    <div *appIfScreen="{ type: 'ge', size: screens.LG }" class="w-[20%] mr-4 h-full text-center flex flex-col gap-y-2">
+      <app-ad-banner type="square"></app-ad-banner>
+      <app-ad-banner type="square"></app-ad-banner>
+      <app-ad-banner type="square"></app-ad-banner>
+      <app-ad-banner type="square"></app-ad-banner>
     </div>
   </div>
   <div class="w-full text-center mt-4">

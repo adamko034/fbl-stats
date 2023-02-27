@@ -26,7 +26,8 @@ export class PlayerDetailsFabric {
       team: this.teamCreator.from(teams[player.teamShort]),
       fantasy: this.fantasyCreator.from(player),
       games: this.gamesCreator.from(player, teams, lastMatchday),
-      nextGame: this.nextOpponentCreator.from(player, nextOpponent)
+      nextGame: this.nextOpponentCreator.from(player, nextOpponent),
+      fantasyPoints: player.pointsStats
     };
   }
 }

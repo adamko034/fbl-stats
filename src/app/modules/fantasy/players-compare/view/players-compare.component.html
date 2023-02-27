@@ -1,17 +1,14 @@
 <div class="flex flex-col" *ngIf="showPlayers$ | async">
   <app-players-compare-title [players]="playersCards$ | async"></app-players-compare-title>
 
-  <app-white-block class="mb-3">
-    <div class="flex flex-row w-full justify-evenly gap-x-3">
-      <div class="w-full lg:w-[40%]">
-        <app-ad-banner type="horizontal"></app-ad-banner>
-      </div>
-
-      <div class="w-[40%]" *appIfScreen="{ type: 'ge', size: screens.LG }">
-        <app-ad-banner type="horizontal"></app-ad-banner>
-      </div>
+  <div class="mb-3 w-full flex flex-row items-center justify-center gap-x-2">
+    <div class="w-1/2">
+      <app-ad-banner type="square"></app-ad-banner>
     </div>
-  </app-white-block>
+    <div class="w-1/2">
+      <app-ad-banner type="square"></app-ad-banner>
+    </div>
+  </div>
 
   <div class="flex flex-col gap-y-4">
     <app-white-block padding="10px 10px 0 10px">

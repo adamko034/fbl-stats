@@ -1,8 +1,8 @@
-<div class="flex flex-col mb-3">
-  <div class="flex flex-row items-center px-3 pt-3" (click)="toggleExpand()">
-    <span class="font-semibold grey font-small" *ngIf="!isOpened">Show legend</span>
+<div class="flex flex-col">
+  <div class="flex flex-row items-center cursor-pointer grey" (click)="toggleExpand()">
+    <span class="font-small" *ngIf="!isOpened">Show legend</span>
     <mat-icon *ngIf="!isOpened">expand_more</mat-icon>
-    <span class="font-semibold grey font-small" *ngIf="isOpened">Hide legend</span>
+    <span class="font-small" *ngIf="isOpened">Hide legend</span>
     <mat-icon *ngIf="isOpened">expand_less</mat-icon>
   </div>
 

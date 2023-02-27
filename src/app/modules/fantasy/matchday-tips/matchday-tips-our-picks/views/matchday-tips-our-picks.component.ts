@@ -17,6 +17,6 @@ export class MatchdayTipsOurPicksComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   public ngOnInit(): void {
-    this.title$ = this.route.data.pipe(map((data) => `Our proposed picks for MD${data.lastMatchday + 1}`));
+    this.title$ = this.route.data.pipe(map((data) => `Proposed picks for MD${data.lastMatchday + 1}`));
   }
 }

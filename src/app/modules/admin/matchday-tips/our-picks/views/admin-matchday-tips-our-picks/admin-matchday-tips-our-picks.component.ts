@@ -8,6 +8,7 @@ import { catchError, map } from 'rxjs/operators';
 import { MatchdayTipsOurPicksPlayer } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-player.model';
 import { MatchdayTipsOurPicksType } from 'src/app/modules/core/matchday-tips/our-picks/models/matchday-tips-our-picks-type.enum';
 import { AdminMatchdayTipsOurPicksService } from 'src/app/modules/core/matchday-tips/our-picks/services/admin-matchay-tips-our-picks.service';
+import { MyTeamStore } from 'src/app/store/fantasy/my-team/my-team.store';
 import { MatchdayTipsOurPick } from 'src/app/store/matchday-tips/our-picks/models/matchday-tips-our-picks.model';
 import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { AdminMatchdayTipsOurPicksMatchday } from '../../models/admin-matchday-tips-our-picks.model';
@@ -36,7 +37,8 @@ export class AdminMatchdayTipsOurPicksComponent implements OnInit {
     private ourPicksAdminService: AdminMatchdayTipsOurPicksService,
     private toastrService: ToastrService,
     private propertiesService: PropertiesStore,
-    private changeDetection: ChangeDetectorRef
+    private changeDetection: ChangeDetectorRef,
+    private myTeamStore: MyTeamStore
   ) {}
 
   public ngOnInit(): void {
@@ -136,6 +138,10 @@ export class AdminMatchdayTipsOurPicksComponent implements OnInit {
     }
 
     this.isChange = true;
+  }
+
+  public toMyTeam(): void {
+    this.myTeamStore.swap(this.state.ourPicks.players.map((p) => p.playerId.toString()));
   }
 
   private playersInPostion(position: string): MatchdayTipsOurPicksPlayer[] {

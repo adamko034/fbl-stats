@@ -5,6 +5,7 @@ import { ArrayIncludesPipe } from './array-includes.pipe';
 import { ArrayNotEmptyPipe } from './array-not-empty.pipe';
 import { AveragePipe } from './average.pipe';
 import { DaysBetweenNowPipe } from './days-between-now.pipe';
+import { DivideAndRoundPipe } from './divide-and-round.pipe';
 import { EpochDatePipe } from './epoch-date.pipe';
 import { FieldPipe } from './field.pipe';
 import { LengthPipe } from './length.pipe';
@@ -36,7 +37,8 @@ import { YesNoPipe } from './yes-no.pipe';
     WherePipe,
     YesNoPipe,
     TimeInOrAgoPipe,
-    OrDevEnvironmentPipe
+    OrDevEnvironmentPipe,
+    DivideAndRoundPipe
   ],
   imports: [CommonModule],
   exports: [
@@ -56,7 +58,8 @@ import { YesNoPipe } from './yes-no.pipe';
     WherePipe,
     YesNoPipe,
     TimeInOrAgoPipe,
-    OrDevEnvironmentPipe
+    OrDevEnvironmentPipe,
+    DivideAndRoundPipe
   ]
 })
 export class PipesModule {}

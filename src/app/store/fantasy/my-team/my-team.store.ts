@@ -40,7 +40,7 @@ export class MyTeamStore {
 
           if (!!myTeamPlayersIds) {
             myTeamPlayersIds.forEach((id) => {
-              const player = allPlayers.find((p) => p.id === id);
+              const player = allPlayers.find((p) => p.id == id);
               if (player) {
                 myTeamPlayers.push(player);
               }
@@ -98,6 +98,10 @@ export class MyTeamStore {
     this.state.myTeamPlayers = [];
     this.store();
     this.send();
+  }
+
+  public swap(newIds: string[]) {
+    this.guiConfigStore.changeMyTeamPlayerIds(newIds);
   }
 
   public changeKickOffTimesMatchdays(matchdaysCount: number): void {

@@ -31,6 +31,7 @@
 
   <div class="flex flex-col gap-y-2.5">
     <div class="self-end flex flex-row gap-x-2">
+      <button mat-raised-button class="main-backgroud" (click)="toMyTeam()">To My Team</button>
       <button [disabled]="!isChange" mat-raised-button class="green-background" (click)="save()">Save</button>
       <button [disabled]="isChange" mat-raised-button class="main-background" (click)="publish()">
         {{ state.ourPicks.published ? 'Unpublish' : 'Publish' }}
