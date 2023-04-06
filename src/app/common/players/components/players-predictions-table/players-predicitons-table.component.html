@@ -1,0 +1,66 @@
+<table class="comparison-table comparison-table-narrow">
+  <tr>
+    <td [appSticky]="{ position: 'left' }">Player</td>
+    <td>Pos</td>
+    <td>$</td>
+    <td>%</td>
+    <td>TP</td>
+    <td>KK</td>
+    <td>BL</td>
+    <td>BL[EN]</td>
+    <td>LI</td>
+    <td>BI</td>
+  </tr>
+  <ng-template [ngTemplateOutlet]="predictions" [ngTemplateOutletContext]="{ position: 'gk' }"></ng-template>
+  <ng-template [ngTemplateOutlet]="predictions" [ngTemplateOutletContext]="{ position: 'def' }"></ng-template>
+  <ng-template [ngTemplateOutlet]="predictions" [ngTemplateOutletContext]="{ position: 'mid' }"></ng-template>
+  <ng-template [ngTemplateOutlet]="predictions" [ngTemplateOutletContext]="{ position: 'for' }"></ng-template>
+</table>
+
+<ng-template #predictions let-position="position">
+  <tr
+    *ngFor="
+      let player of players | filterBy : ['position'] : position | orderBy : ['-totalPrice', '-price'];
+      let last = last
+    "
+    [ngClass]="{ last: last && position !== 'for' }"
+  >
+    <td [appSticky]="{ position: 'left' }">
+      <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
+    </td>
+    <td>{{ player.position | uppercase }}</td>
+    <td>{{ player.price }}M</td>
+    <td>{{ player.popularity }}</td>
+    <td>{{ player.totalPoints }}</td>
+    <td>
+      <app-player-icon-lineup-prediction
+        [size]="'small'"
+        [prediction]="getPrediction(player, 'kicker')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+    <td>
+      <app-player-icon-lineup-prediction
+        [size]="'small'"
+        [prediction]="getPrediction(player, 'bundesliga')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+    <td>
+      <app-player-icon-lineup-prediction
+        [size]="'small'"
+        [prediction]="getPrediction(player, 'bundesliga_en')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+    <td>
+      <app-player-icon-lineup-prediction
+        [size]="'small'"
+        [prediction]="getPrediction(player, 'ligainsider')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+    <td>
+      <app-player-icon-lineup-prediction
+        [size]="'small'"
+        [prediction]="getPrediction(player, 'bulinews')"
+      ></app-player-icon-lineup-prediction>
+    </td>
+  </tr>
+</ng-template>

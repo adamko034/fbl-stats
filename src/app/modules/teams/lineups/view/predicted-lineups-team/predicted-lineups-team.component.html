@@ -95,45 +95,9 @@
             </div>
           </div>
 
-          <table content class="comparison-table">
-            <tr>
-              <td [appSticky]="{ position: 'left' }">Player</td>
-              <td>Pos</td>
-              <td>$</td>
-              <td>%</td>
-              <td>TP</td>
-              <td>KK</td>
-              <td>BL</td>
-              <td>BL[EN]</td>
-              <td>LI</td>
-              <td>BI</td>
-            </tr>
-            <ng-template
-              [ngTemplateOutlet]="predictions"
-              [ngTemplateOutletContext]="{ players: players$ | async, position: 'gk' }"
-            ></ng-template>
-            <tr>
-              <td colspan="100%">&nbsp;</td>
-            </tr>
-            <ng-template
-              [ngTemplateOutlet]="predictions"
-              [ngTemplateOutletContext]="{ players: players$ | async, position: 'def' }"
-            ></ng-template>
-            <tr>
-              <td colspan="100%">&nbsp;</td>
-            </tr>
-            <ng-template
-              [ngTemplateOutlet]="predictions"
-              [ngTemplateOutletContext]="{ players: players$ | async, position: 'mid' }"
-            ></ng-template>
-            <tr>
-              <td colspan="100%">&nbsp;</td>
-            </tr>
-            <ng-template
-              [ngTemplateOutlet]="predictions"
-              [ngTemplateOutletContext]="{ players: players$ | async, position: 'for' }"
-            ></ng-template>
-          </table>
+          <div content>
+            <app-players-predicitons-table [players]="players$ | async"></app-players-predicitons-table>
+          </div>
         </app-title-underlined-grey>
       </div>
 
@@ -155,40 +119,3 @@
     <app-ad-banner type="horizontal"></app-ad-banner>
   </div>
 </div>
-
-<ng-template #predictions let-players="players" let-position="position">
-  <tr *ngFor="let player of players | filterBy : ['position'] : position | orderBy : ['-totalPrice', '-price']">
-    <td [appSticky]="{ position: 'left' }">
-      <app-player-name-link [name]="player.lastName" [id]="player.id"></app-player-name-link>
-    </td>
-    <td>{{ player.position | uppercase }}</td>
-    <td>{{ player.price }}M</td>
-    <td>{{ player.popularity }}</td>
-    <td>{{ player.totalPoints }}</td>
-    <td>
-      <app-player-icon-lineup-prediction
-        [prediction]="getPrediction(player, 'kicker')"
-      ></app-player-icon-lineup-prediction>
-    </td>
-    <td>
-      <app-player-icon-lineup-prediction
-        [prediction]="getPrediction(player, 'bundesliga')"
-      ></app-player-icon-lineup-prediction>
-    </td>
-    <td>
-      <app-player-icon-lineup-prediction
-        [prediction]="getPrediction(player, 'bundesliga_en')"
-      ></app-player-icon-lineup-prediction>
-    </td>
-    <td>
-      <app-player-icon-lineup-prediction
-        [prediction]="getPrediction(player, 'ligainsider')"
-      ></app-player-icon-lineup-prediction>
-    </td>
-    <td>
-      <app-player-icon-lineup-prediction
-        [prediction]="getPrediction(player, 'bulinews')"
-      ></app-player-icon-lineup-prediction>
-    </td>
-  </tr>
-</ng-template>

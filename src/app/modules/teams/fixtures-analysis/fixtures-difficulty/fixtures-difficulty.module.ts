@@ -14,12 +14,13 @@ import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/las
 import { NextUnlimitedTransfersModule } from 'src/app/common/routing/resolvers/next-unlimited-transfers/next-unlimited-transfers.module';
 import { MatchdayFirstGameIconModule } from 'src/app/common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { MatchdayStandaloneGameIconModule } from 'src/app/common/teams/components/matchday-standalone-game-icon/matchday-standalone-game-icon.module';
+import { TeamServicesModule } from 'src/app/common/teams/services/team-services.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FixturesDifficultyRoutingModule } from './fixtures-difficulty-routing.module';
 import { FixturesDifficultyTeamsLoaderFactory } from './logic/fixtures-difficulty-teams-loader-factory';
 import { FixturesDifficultyResolver } from './resolvers/fixtures-difficulty.resolver';
-import { FixtureDifficultyColorsService } from './services/fixture-difficulty-colors.service';
+
 import { FixturesDifficultyFiltersService } from './services/fixtures-difficulty-filters.service';
 import { FixturesDifficultyFiltersComponent } from './view/fixtures-difficulty-filters/fixtures-difficulty-filters.component';
 import { FixturesDifficultyFixturesComponent } from './view/fixtures-difficulty-fixtures/fixtures-difficulty-fixtures.component';
@@ -45,13 +46,9 @@ import { FixturesDifficultyComponent } from './view/fixtures-difficulty.componen
     TeamLogoModule,
     SwitcherModule,
     IfScreenModule,
-    AdBannerModule
+    AdBannerModule,
+    TeamServicesModule
   ],
-  providers: [
-    FixtureDifficultyColorsService,
-    FixturesDifficultyResolver,
-    FixturesDifficultyFiltersService,
-    FixturesDifficultyTeamsLoaderFactory
-  ]
+  providers: [FixturesDifficultyResolver, FixturesDifficultyFiltersService, FixturesDifficultyTeamsLoaderFactory]
 })
 export class FixturesDifficultyModule {}

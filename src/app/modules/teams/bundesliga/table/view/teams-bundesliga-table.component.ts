@@ -20,11 +20,12 @@ export class TeamsBundesligaTableComponent implements OnInit {
 
   public ngOnInit(): void {
     this.state$ = this._route.data.pipe(
-      map(({ teams, lastMatchday }) => {
+      map(({ teams, lastMatchday, selectedTeams }) => {
         return {
           teams: this._converter.convert(teams),
           lastMatchday,
-          config: this._bundesligaTableConfig
+          config: this._bundesligaTableConfig,
+          selectedTeams
         };
       })
     );

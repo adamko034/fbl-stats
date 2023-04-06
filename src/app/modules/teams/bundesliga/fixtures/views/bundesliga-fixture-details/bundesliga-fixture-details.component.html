@@ -1,0 +1,41 @@
+<div *ngIf="state$ | async" class="flex flex-col gap-y-2">
+  <app-bundesliga-fixture-details-title
+    [homeTeam]="homeTeam$ | async"
+    [awayTeam]="awayTeam$ | async"
+    [matchday]="matchday$ | async"
+    [fixture]="fixture$ | async"
+  ></app-bundesliga-fixture-details-title>
+
+  <app-bundesliga-fixture-details-players
+    [homeTeam]="homeTeam$ | async"
+    [awayTeam]="awayTeam$ | async"
+    [homeTeamPlayers]="homeTeamPlayers$ | async"
+    [awayTeamPlayers]="awayTeamPlayers$ | async"
+  >
+  </app-bundesliga-fixture-details-players>
+
+  <app-bundesliga-fixture-details-lineups
+    [homeTeamPlayers]="homeTeamPlayers$ | async"
+    [awayTeamPlayers]="awayTeamPlayers$ | async"
+  ></app-bundesliga-fixture-details-lineups>
+
+  <app-bundesliga-fixture-details-standings
+    [homeTeam]="homeTeam$ | async"
+    [awayTeam]="awayTeam$ | async"
+    [matchday]="matchday$ | async"
+  ></app-bundesliga-fixture-details-standings>
+
+  <app-bundesliga-fixture-details-last6-games
+    [homeTeam]="homeTeam$ | async"
+    [awayTeam]="awayTeam$ | async"
+    [matchday]="matchday$ | async"
+  ></app-bundesliga-fixture-details-last6-games>
+
+  <app-bundesliga-fixture-details-next-games
+    [homeTeam]="homeTeam$ | async"
+    [awayTeam]="awayTeam$ | async"
+    [matchday]="matchday$ | async"
+  ></app-bundesliga-fixture-details-next-games>
+</div>
+
+{{ state$ | async | json }}

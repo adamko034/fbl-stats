@@ -1,0 +1,88 @@
+<app-white-block>
+  <div class="flex flex-row justify-evenly gap-x-4">
+    <ng-container [ngTemplateOutlet]="stats"></ng-container>
+    <ng-container [ngTemplateOutlet]="unavailablePlayers"></ng-container>
+  </div>
+</app-white-block>
+
+<ng-template #unavailablePlayers>
+  <app-title-underlined-grey>
+    <span title>
+      <div class="flex flex-row gap-x-1 items-center">
+        <app-player-icon-unavailable></app-player-icon-unavailable>
+        <span>Unavailable players</span>
+      </div>
+    </span>
+    <table content class="comparison-table font-small">
+      <tr>
+        <td></td>
+        <td>{{ homeTeam.name }}</td>
+        <td>{{ awayTeam.name }}</td>
+      </tr>
+      <tr *ngFor="let i of [].constructor(unavailableMax); let index = index">
+        <td></td>
+        <td>
+          <app-player-name-link
+            [id]="homeUnavailable[index] | field : 'id'"
+            [name]="homeUnavailable[index] | field : 'name'"
+          ></app-player-name-link>
+        </td>
+        <td>
+          <app-player-name-link
+            [id]="awayUnavailable[index] | field : 'id'"
+            [name]="awayUnavailable[index] | field : 'name'"
+          ></app-player-name-link>
+        </td>
+      </tr>
+    </table>
+  </app-title-underlined-grey>
+</ng-template>
+
+<ng-template #stats>
+  <app-title-underlined-grey>
+    <span title>
+      <div class="flex flex-row gap-x-1 items-center">
+        <app-goals-icons [count]="1"></app-goals-icons>
+        <span>Top stats</span>
+      </div>
+    </span>
+    <table content class="comparison-table font-small">
+      <tr>
+        <td></td>
+        <td>{{ homeTeam.name }}</td>
+        <td>G</td>
+        <td class="pr-10">A</td>
+        <td>{{ awayTeam.name }}</td>
+        <td>G</td>
+        <td>A</td>
+      </tr>
+      <tr *ngFor="let i of [].constructor(statsMax); let index = index">
+        <td></td>
+        <td>
+          <app-player-name-link
+            [id]="homeStats[index] | field : 'id'"
+            [name]="homeStats[index] | field : 'name'"
+          ></app-player-name-link>
+        </td>
+        <td>
+          {{ homeStats[index]?.pointsStats.overall.bundesligaGoals || 0 }}
+        </td>
+        <td class="pr-10">
+          {{ homeStats[index]?.pointsStats.overall.bundesligaAssits || 0 }}
+        </td>
+        <td>
+          <app-player-name-link
+            [id]="awayStats[index] | field : 'id'"
+            [name]="awayStats[index] | field : 'name'"
+          ></app-player-name-link>
+        </td>
+        <td>
+          {{ awayStats[index]?.pointsStats.overall.bundesligaGoals || 0 }}
+        </td>
+        <td>
+          {{ awayStats[index]?.pointsStats.overall.bundesligaAssits || 0 }}
+        </td>
+      </tr>
+    </table>
+  </app-title-underlined-grey>
+</ng-template>

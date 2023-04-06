@@ -1,3 +1,4 @@
+import { FixtureDifficultyService } from 'src/app/common/teams/services/fixture-difficulty.service';
 import { ArrayStream } from 'src/app/services/array-stream.service';
 import { Range } from 'src/app/shared/models/range.model';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
@@ -5,7 +6,6 @@ import { Team } from 'src/app/store/teams/models/team.model';
 import { FixturesDifficultyFilters } from '../models/fixtures-difficulty-filters.model';
 import { FixturesDifficultyTeamGame } from '../models/fixtures-difficulty-team-game.model';
 import { FixturesDifficultyTeam } from '../models/fixtures-difficulty-team.model';
-import { FixtureDifficultyColorsService } from '../services/fixture-difficulty-colors.service';
 import { IFixturesDifficultyTeamsLoader } from './fixtures-difficulty-teams-loader';
 
 export class FixturesDifficultyTeamsLoaderByForm implements IFixturesDifficultyTeamsLoader {
@@ -19,7 +19,7 @@ export class FixturesDifficultyTeamsLoaderByForm implements IFixturesDifficultyT
   };
   private teamPoints: { [teamShort: string]: number }[] = [];
 
-  constructor(private fixturesDifficultyColorService: FixtureDifficultyColorsService) {}
+  constructor(private fixtureDifficultyService: FixtureDifficultyService) {}
 
   public load(teams: Team[], filters: FixturesDifficultyFilters, nextMatchday: number): FixturesDifficultyTeam[] {
     return new ArrayStream<Team>(teams)
@@ -35,7 +35,7 @@ export class FixturesDifficultyTeamsLoaderByForm implements IFixturesDifficultyT
           fixtures,
           index: totalIndex,
           value: this.getTeamPoints(team.shortName),
-          color: this.fixturesDifficultyColorService.getColor(index)
+          color: this.fixtureDifficultyService.cssClassByIndex(index)
         };
       })
       .orderByThenBy({ field: 'index', order: 'dsc' }, { field: 'rank', order: 'asc' })
@@ -66,7 +66,7 @@ export class FixturesDifficultyTeamsLoaderByForm implements IFixturesDifficultyT
       opponentRank,
       opponentShort: opponent,
       displayedText: `${opponentPoints}pts`,
-      color: this.fixturesDifficultyColorService.getColor(index),
+      color: this.fixtureDifficultyService.cssClassByIndex(index),
       index
     };
   }

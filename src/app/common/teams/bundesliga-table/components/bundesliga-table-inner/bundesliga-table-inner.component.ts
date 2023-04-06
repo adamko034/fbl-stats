@@ -13,6 +13,8 @@ import { BundesligaTableTeamResult } from '../../models/internal/bundesliga-tabl
 })
 export class BundesligaTableInnerComponent implements OnInit {
   @Input() results: BundesligaTableTeamResult[];
+  @Input() selectedTeams: string[] = [];
+
   @ViewChild(MatSort) public sort: MatSort;
 
   public dataSource: MatTableDataSource<BundesligaTableTeamResult> = new MatTableDataSource();
@@ -74,5 +76,9 @@ export class BundesligaTableInnerComponent implements OnInit {
     this.dataSource.data = new ArrayStream<BundesligaTableTeamResult>(this.results)
       .orderByThenBy(orderBy, thenBy)
       .collect();
+  }
+
+  public isSelected(shortName: string): boolean {
+    return this.selectedTeams.includes(shortName);
   }
 }

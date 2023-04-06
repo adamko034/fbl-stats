@@ -10,6 +10,8 @@ import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { PlayersPredictionsTableModule } from 'src/app/common/players/components/players-predictions-table/players-predictions-table.module';
+import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -60,7 +62,9 @@ import { PredictedLineupsComponent } from './view/predicted-lineups.component';
     StickyModule,
     LegendModule,
     AdBannerModule,
-    IfScreenModule
+    IfScreenModule,
+    PlayersPredictionsTableModule,
+    PlayersServicesModule
   ],
   providers: [
     PredictedLineupsStore,

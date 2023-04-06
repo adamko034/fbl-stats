@@ -1,0 +1,95 @@
+<app-white-block>
+  <div class="flex flex-row gap-x-5 items-center justify-evenly">
+    <app-title-underlined-grey>
+      <span title>Standings</span>
+      <div content class="flex flex-col">
+        <table class="comparison-table">
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Pts</td>
+            <td>GP</td>
+            <td>W</td>
+            <td>D</td>
+            <td>L</td>
+            <td>GS</td>
+            <td>GC</td>
+            <td>GDiff</td>
+          </tr>
+
+          <ng-template
+            [ngTemplateOutlet]="row"
+            [ngTemplateOutletContext]="{ team: betterTeam, isBetter: true, isOverall: true }"
+          ></ng-template>
+          <ng-template
+            [ngTemplateOutlet]="row"
+            [ngTemplateOutletContext]="{ team: worseTeam, isBetter: false, isOverall: true }"
+          ></ng-template>
+        </table>
+        <a
+          [routerLink]="['/teams/bundesliga/table']"
+          [queryParams]="{ teams: [betterTeam.shortName, worseTeam.shortName] }"
+          class="self-end show-more"
+          >View all >></a
+        >
+      </div>
+    </app-title-underlined-grey>
+
+    <app-title-underlined-grey>
+      <span title>Last 6</span>
+      <div content class="flex flex-col">
+        <table class="comparison-table">
+          <tr>
+            <td></td>
+            <td>Pts</td>
+            <td>W</td>
+            <td>D</td>
+            <td>L</td>
+            <td>GS</td>
+            <td>GC</td>
+            <td>GDiff</td>
+          </tr>
+
+          <ng-template
+            [ngTemplateOutlet]="row"
+            [ngTemplateOutletContext]="{
+              team: last6BetterTeam,
+              isBetter: last6BetterTeam.points > last6WorseTeam.points,
+              isOverall: false
+            }"
+          ></ng-template>
+          <ng-template
+            [ngTemplateOutlet]="row"
+            [ngTemplateOutletContext]="{ team: last6WorseTeam, isBetter: false, isOverall: false }"
+          ></ng-template>
+        </table>
+        <a
+          [routerLink]="['/teams/bundesliga/table']"
+          [queryParams]="{ teams: [betterTeam.shortName, worseTeam.shortName], matchdays: 6 }"
+          class="self-end show-more"
+          >View all >></a
+        >
+      </div>
+    </app-title-underlined-grey>
+  </div>
+</app-white-block>
+
+<ng-template #row let-team="team" let-isBetter="isBetter" let-isOverall="isOverall">
+  <tr [ngClass]="{ better: isBetter }">
+    <td *ngIf="isOverall" class="font-medium pl-4">{{ team.rank }}</td>
+    <td>
+      <span class="flex flex-row gap-x-1 items-center">
+        <app-team-logo [team]="team.shortName" [height]="16"></app-team-logo>
+        <span>{{ team.name }}</span>
+      </span>
+    </td>
+    <td class="font-medium">{{ team.points }}</td>
+    <td *ngIf="isOverall">{{ team.gamesPlayed }}</td>
+    <td>{{ team.wins }}</td>
+    <td>{{ team.draws }}</td>
+    <td>{{ team.losses }}</td>
+    <td>{{ team.goalsScored }}</td>
+    <td>{{ team.goalsConceded }}</td>
+    <td>{{ team.goalsScored - team.goalsConceded }}</td>
+  </tr>
+</ng-template>

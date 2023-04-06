@@ -9,7 +9,10 @@
         (venueChange)="onVenueChange($event)"
         (matchdaysChange)="onMatchdaysChange($event)"
       ></app-bundesliga-table-filters>
-      <app-bundesliga-table-inner [results]="results"></app-bundesliga-table-inner>
+      <app-bundesliga-table-inner
+        [results]="results"
+        [selectedTeams]="state.selectedTeams"
+      ></app-bundesliga-table-inner>
     </div>
     <app-legend class="m-3">
       <span>GP - games played</span>

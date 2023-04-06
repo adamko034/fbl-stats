@@ -1,0 +1,17 @@
+@import '/src/variables.scss';
+
+.result-win {
+  background-color: $gameDifficultGreen;
+}
+
+.result-lost {
+  background-color: $gameDifficultRed;
+}
+
+.result-draw {
+  background-color: $gameDifficultOrange;
+}
+
+.item {
+  flex: 1 1 0;
+}

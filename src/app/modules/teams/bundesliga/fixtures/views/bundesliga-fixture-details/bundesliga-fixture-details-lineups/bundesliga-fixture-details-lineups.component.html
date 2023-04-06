@@ -1,0 +1,33 @@
+<app-white-block>
+  <div class="flex flex-row justify-evenly gap-x-5">
+    <ng-container
+      [ngTemplateOutlet]="predictions"
+      [ngTemplateOutletContext]="{
+        players: homePlayers,
+        team: homePlayers[0].team,
+        teamShort: homePlayers[0].teamShort
+      }"
+    ></ng-container>
+
+    <ng-container
+      [ngTemplateOutlet]="predictions"
+      [ngTemplateOutletContext]="{
+        players: awayPlayers,
+        team: awayPlayers[0].team,
+        teamShort: awayPlayers[0].teamShort
+      }"
+    ></ng-container>
+  </div>
+</app-white-block>
+
+<ng-template #predictions let-team="team" let-teamShort="teamShort" let-players="players">
+  <app-title-underlined-grey>
+    <span title>{{ team }} predicted lineups</span>
+    <div content>
+      <div class="flex flex-col gap-y-1">
+        <app-players-predicitons-table [players]="players"></app-players-predicitons-table>
+        <a [routerLink]="['/teams/lineups/next/' + teamShort]" class="self-end show-more">Show more >></a>
+      </div>
+    </div>
+  </app-title-underlined-grey>
+</ng-template>

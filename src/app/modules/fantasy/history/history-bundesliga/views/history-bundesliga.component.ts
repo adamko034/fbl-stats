@@ -44,7 +44,8 @@ export class HistoryBundesligaComponent implements OnInit {
           config: this._bundesligaTableConfig,
           teams: this._converter.convertToBundesligaTeams(history.teams),
           season: history.season,
-          lastMatchday: 34
+          lastMatchday: 34,
+          selectedTeams: []
         };
       })
     );

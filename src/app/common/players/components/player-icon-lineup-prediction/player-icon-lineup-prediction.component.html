@@ -1,23 +1,20 @@
 <div [ngSwitch]="prediction" class="flex-row-start-center">
   <mat-icon
-    [appScale]="scale"
-    style="font-size: 19px"
+    [ngClass]="{ 'prediction-small': size === 'small', 'prediction-normal': size === 'normal' }"
     *ngSwitchCase="cases.START"
     class="green"
     matTooltip="Prediction: will play"
     >check_circle</mat-icon
   >
   <mat-icon
-    [appScale]="scale"
-    style="font-size: 19px"
+    [ngClass]="{ 'prediction-small': size === 'small', 'prediction-normal': size === 'normal' }"
     *ngSwitchCase="cases.BENCH"
     matTooltip="Prediction: won't play"
     class="red"
     >highlight_off</mat-icon
   >
   <mat-icon
-    style="font-size: 19px"
-    [appScale]="scale"
+    [ngClass]="{ 'prediction-small': size === 'small', 'prediction-normal': size === 'normal' }"
     matTooltip="Not published yet"
     class="material-icons-outlined"
     *ngSwitchCase="cases.UNKNOWN"

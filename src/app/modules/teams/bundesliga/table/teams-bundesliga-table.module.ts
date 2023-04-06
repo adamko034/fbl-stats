@@ -5,6 +5,7 @@ import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/las
 import { TeamsResolverModule } from 'src/app/common/routing/resolvers/teams/teams-resolver.module';
 import { BundesligaTableModule } from 'src/app/common/teams/bundesliga-table/bundesliga-table.module';
 import { TeamsBundesligaTableTeamsConverter } from './converters/teams-bundesliga-table-teams.converter';
+import { SelectedTeamsResolver } from './resolvers/selected-teams.resolver';
 import { TeamsBundesligaTableRoutingModule } from './teams-bundesliga-table-routing.module';
 import { TeamsBundesligaTableComponent } from './view/teams-bundesliga-table.component';
 
@@ -18,6 +19,6 @@ import { TeamsBundesligaTableComponent } from './view/teams-bundesliga-table.com
     TeamsResolverModule,
     AdBannerModule
   ],
-  providers: [TeamsBundesligaTableTeamsConverter]
+  providers: [TeamsBundesligaTableTeamsConverter, SelectedTeamsResolver]
 })
 export class TeamsBundesligaTableModule {}

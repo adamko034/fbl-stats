@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PlayerSourceLineupPrediction } from 'src/app/common/players/models/player-source-lineup-prediction.enum';
+import { PlayerPredictionsService } from 'src/app/common/players/services/player-predictions.service';
 import { TeamPredictedLineups } from 'src/app/modules/teams/lineups/store/models/team-predicted-lineups.model';
 import { ScreenSize } from 'src/app/services/screen-size.service';
 import { Player } from 'src/app/store/players/models/player.model';
@@ -27,7 +28,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
 
   private showAllPlayersChange$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private predictionsService: PlayerPredictionsService) {}
 
   public ngOnInit(): void {
     this.predictionsNotPublished$ = this.route.data.pipe(map((data) => !data.teamPredictions));
@@ -52,12 +53,7 @@ export class PredictedLineupsTeamComponent implements OnInit {
         var players: Player[] = data.players;
 
         if (!showAll) {
-          players = players.filter(
-            (p) =>
-              !p.nextGame.lineupPredictions
-                .filter((l) => l.attendance !== PlayerSourceLineupPrediction.UNKNOWN)
-                .every((l) => l.attendance === PlayerSourceLineupPrediction.BENCH)
-          );
+          players = this.predictionsService.onlyWithAtLeastOneStart(players);
         }
 
         return players;

@@ -250,30 +250,6 @@ table.comparison-table {
       min-width: 60px;
     }
 
-    td.game-dark-red {
-      background-color: $gameDifficultDarkRed;
-    }
-
-    td.game-red {
-      background-color: $gameDifficultRed;
-    }
-
-    td.game-orange {
-      background-color: $gameDifficultOrange;
-    }
-
-    td.game-yellow {
-      background-color: $gameDifficultYellow;
-    }
-
-    td.game-green-light {
-      background-color: $gameDifficultLightGreen;
-    }
-
-    td.game-green {
-      background-color: $gameDifficultGreen;
-    }
-
     td.bolder {
       font-weight: 600;
     }
@@ -356,4 +332,28 @@ table.comparison-table {
 
 .color-grey {
   color: $colorGrey;
+}
+
+.game-dark-red {
+  background-color: $gameDifficultDarkRed;
+}
+
+.game-red {
+  background-color: $gameDifficultRed;
+}
+
+.game-orange {
+  background-color: $gameDifficultOrange;
+}
+
+.game-yellow {
+  background-color: $gameDifficultYellow;
+}
+
+.game-green-light {
+  background-color: $gameDifficultLightGreen;
+}
+
+.game-green {
+  background-color: $gameDifficultGreen;
 }

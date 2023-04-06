@@ -11,6 +11,10 @@
       top: unset !important;
     }
 
+    tr.selected {
+      background-color: rgba($colorOrange, 0.2);
+    }
+
     tr {
       td {
         font-size: $fontSizeSmall;

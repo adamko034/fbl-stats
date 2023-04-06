@@ -1,0 +1,11 @@
+@import '/src/variables.scss';
+
+tr {
+  td {
+    padding: 4px;
+  }
+}
+
+.better {
+  background-color: $gameDifficultGreen;
+}

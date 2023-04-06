@@ -1,0 +1,99 @@
+<app-white-block>
+  <div class="flex flex-col gap-y-5">
+    <div class="flex flex-row justify-evenly gap-x-4">
+      <ng-tempate
+        [ngTemplateOutlet]="games"
+        [ngTemplateOutletContext]="{ teamName: homeTeam.name, teamShort: homeTeam.shortName, games: homeLast6 }"
+      ></ng-tempate>
+
+      <ng-tempate
+        [ngTemplateOutlet]="games"
+        [ngTemplateOutletContext]="{ teamName: awayTeam.name, teamShort: awayTeam.shortName, games: awayLast6 }"
+      ></ng-tempate>
+    </div>
+
+    <div class="flex flex-row justify-evenly gap-x-4">
+      <ng-tempate
+        [ngTemplateOutlet]="games"
+        [ngTemplateOutletContext]="{
+          teamName: homeTeam.name,
+          teamShort: homeTeam.shortName,
+          games: homeHomeLast6,
+          titleSuffix: 'at home'
+        }"
+      ></ng-tempate>
+
+      <ng-tempate
+        [ngTemplateOutlet]="games"
+        [ngTemplateOutletContext]="{
+          teamName: awayTeam.name,
+          teamShort: awayTeam.shortName,
+          games: awayAwayLast6,
+          titleSuffix: 'away'
+        }"
+      ></ng-tempate>
+    </div>
+  </div>
+</app-white-block>
+
+<ng-template #games let-teamName="teamName" let-teamShort="teamShort" let-games="games" let-titleSuffix="titleSuffix">
+  <app-title-underlined-grey>
+    <span *ngIf="titleSuffix" title>{{ teamName }} last {{ lastXMatchdays }} games {{ titleSuffix }}</span>
+    <span title *ngIf="!titleSuffix">{{ teamName }} last {{ lastXMatchdays }} games</span>
+    <div content>
+      <table class="mt-2 border-spacing-y-1 border-separate">
+        <tr *ngFor="let game of games" class="font-small mt-2">
+          <td>
+            <span class="font-smaller grey font-medium mr-2">{{
+              game.date | epochDate | date : 'dd.MM.yyyy HH:mm'
+            }}</span>
+          </td>
+          <td>
+            <span class="flex flex-row gap-x-1 items-center justify-end" [ngClass]="{ 'font-medium': game.isHome }">
+              <span>{{ game.isHome ? teamName : game.opponentLong }}</span>
+              <app-team-logo [team]="game.isHome ? teamShort : game.opponent" [height]="15"></app-team-logo>
+            </span>
+          </td>
+          <td>
+            <span
+              *ngIf="game.isHome"
+              class="rounded-lg font-smaller font-medium mx-3 px-2 py-1"
+              [ngClass]="getGameResultClass(game)"
+            >
+              {{ game.goalsScored }} - {{ game.goalsConceded }}
+            </span>
+            <span
+              *ngIf="!game.isHome"
+              class="rounded-lg font-smaller font-medium mx-3 px-2 py-1"
+              [ngClass]="getGameResultClass(game)"
+            >
+              {{ game.goalsConceded }} - {{ game.goalsScored }}
+            </span>
+          </td>
+          <td>
+            <span class="flex flex-row gap-x-1 items-center" [ngClass]="{ 'font-medium': !game.isHome }">
+              <app-team-logo [team]="game.isHome ? game.opponent : teamShort" [height]="15"></app-team-logo>
+              <span>{{ game.isHome ? game.opponentLong : teamName }}</span>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="3">
+            <div class="flex flex-row justify-center font-small font-medium gap-x-1 mt-3">
+              <span class="rounded-lg mx-3 px-3 py-1 result-win"
+                >Win {{ games | arrayFilterBy : filterByWins | length | percentageOf : lastXMatchdays }}</span
+              >
+              <span class="rounded-lg mx-3 px-3 py-1 result-draw"
+                >Draw {{ games | arrayFilterBy : filterByDraws | length | percentageOf : lastXMatchdays }}</span
+              >
+              <span class="rounded-lg mx-3 px-3 py-1 result-lost"
+                >Lost {{ games | arrayFilterBy : filterByLosses | length | percentageOf : lastXMatchdays }}</span
+              >
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </app-title-underlined-grey>
+</ng-template>

@@ -1,0 +1,26 @@
+<app-white-block>
+  <div class="flex flex-col justify-center items-center gap-y-2">
+    <div class="flex flex-row items-center gap-x-3">
+      <ng-template [ngTemplateOutlet]="templateTeam" [ngTemplateOutletContext]="{ team: homeTeam }"></ng-template>
+      <span class="font-smaller font-semibold grey">vs.</span>
+      <ng-template [ngTemplateOutlet]="templateTeam" [ngTemplateOutletContext]="{ team: awayTeam }"></ng-template>
+    </div>
+    <div class="flex flex-col gap-y-1 items-center justify-center">
+      <span>Matchday {{ matchday }}</span>
+      <span>{{ fixture | field : 'date' | epochDate | date : 'EEEE, dd.MM.yyy HH:mm' }}</span>
+      <div class="flex flex-row justify-center items-center mt-[-2px]">
+        <app-matchday-first-game-icon *ngIf="fixture | field : 'isMatchdayFirstGame'"></app-matchday-first-game-icon>
+        <app-matchday-standalone-game-icon
+          *ngIf="fixture | field : 'isStandaloneFixture'"
+        ></app-matchday-standalone-game-icon>
+      </div>
+    </div>
+  </div>
+</app-white-block>
+
+<ng-template #templateTeam let-team="team">
+  <div class="flex flex-row gap-x-1 items-center">
+    <app-team-logo [team]="team | field : 'shortName'" [height]="30"></app-team-logo>
+    <span class="font-medium">{{ team | field : 'name' }}</span>
+  </div>
+</ng-template>

@@ -1,0 +1,57 @@
+<app-white-block>
+  <div class="flex flex-row justify-evenly gap-x-5">
+    <ng-container
+      [ngTemplateOutlet]="nextGames"
+      [ngTemplateOutletContext]="{ teamLong: homeTeam.name, teamShort: homeTeam.shortName, games: homeGames }"
+    ></ng-container>
+    <ng-container
+      [ngTemplateOutlet]="nextGames"
+      [ngTemplateOutletContext]="{ teamLong: awayTeam.name, teamShort: awayTeam.shortName, games: awayGames }"
+    ></ng-container>
+  </div>
+</app-white-block>
+
+<ng-template #nextGames let-teamLong="teamLong" let-teamShort="teamShort" let-games="games">
+  <app-title-underlined-grey>
+    <span title>{{ teamLong }} next games</span>
+    <div content>
+      <table class="mt-2 border-spacing-y-1 border-separate">
+        <tr *ngFor="let game of games" class="font-small mt-2">
+          <td class="flex flex-row items-center">
+            <span class="font-smaller grey font-medium">{{ game.date | epochDate | date : 'dd.MM.yyyy HH:mm' }}</span>
+            <app-matchday-standalone-game-icon *ngIf="game.isStandaloneFixture"></app-matchday-standalone-game-icon>
+            <app-matchday-first-game-icon *ngIf="game.isMatchdayFirstGame"></app-matchday-first-game-icon>
+          </td>
+          <td>
+            <div class="flex flex-row gap-x-1 items-center justify-end">
+              <div *ngIf="!game.isHome" class="flex flex-row gap-x-1 items-center">
+                <span class="font-smaller">({{ game.opponentRank | numerals }})</span>
+              </div>
+
+              <span class="flex flex-row gap-x-1 items-center" [ngClass]="{ 'font-medium': game.isHome }">
+                <span>{{ game.isHome ? teamLong : game.opponentLong }}</span>
+                <app-team-logo [team]="game.isHome ? teamShort : game.opponent" [height]="15"></app-team-logo>
+              </span>
+            </div>
+          </td>
+          <td class="px-2">-</td>
+          <td>
+            <div class="flex flex-row gap-x-1 items-center mr-2">
+              <span class="flex flex-row gap-x-1 items-center" [ngClass]="{ 'font-medium': !game.isHome }">
+                <app-team-logo [team]="game.isHome ? game.opponent : teamShort" [height]="15"></app-team-logo>
+                <span>{{ game.isHome ? game.opponentLong : teamLong }}</span>
+              </span>
+
+              <div *ngIf="game.isHome" class="flex flex-row gap-x-1 items-center">
+                <span class="font-smaller">({{ game.opponentRank | numerals }})</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="block rounded min-w-[15px]" [appFixtureDifficultyColorByRank]="game.opponentRank">&nbsp;</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </app-title-underlined-grey>
+</ng-template>
