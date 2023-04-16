@@ -1,5 +1,6 @@
 <div *ngIf="showAd && adBanner" class="text-center">
-  <ng-container *ngFor="let slot of adBanner.slots; let i = index">
+  <app-ad-banner-slot [adBanner]="adBanner" [slot]="adBanner.slots[slotIndex]"></app-ad-banner-slot>
+  <!-- <ng-container *ngFor="let slot of adBanner.slots; let i = index">
     <app-ad-banner-slot *ngIf="i === slotIndex" [adBanner]="adBanner" [slot]="slot"></app-ad-banner-slot>
-  </ng-container>
+  </ng-container> -->
 </div>
