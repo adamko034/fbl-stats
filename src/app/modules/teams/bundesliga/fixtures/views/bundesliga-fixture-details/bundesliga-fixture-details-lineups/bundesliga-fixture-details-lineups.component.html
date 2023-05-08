@@ -1,11 +1,10 @@
 <app-white-block>
-  <div class="flex flex-row justify-evenly gap-x-5">
+  <div class="flex flex-row flex-wrap justify-evenly gap-x-5 gap-y-3">
     <ng-container
       [ngTemplateOutlet]="predictions"
       [ngTemplateOutletContext]="{
         players: homePlayers,
-        team: homePlayers[0].team,
-        teamShort: homePlayers[0].teamShort
+        team: homeTeam
       }"
     ></ng-container>
 
@@ -13,20 +12,20 @@
       [ngTemplateOutlet]="predictions"
       [ngTemplateOutletContext]="{
         players: awayPlayers,
-        team: awayPlayers[0].team,
-        teamShort: awayPlayers[0].teamShort
+        team: awayTeam
       }"
     ></ng-container>
   </div>
 </app-white-block>
 
-<ng-template #predictions let-team="team" let-teamShort="teamShort" let-players="players">
+<ng-template #predictions let-team="team" let-players="players">
   <app-title-underlined-grey>
-    <span title>{{ team }} predicted lineups</span>
+    <span title>{{ team.name }} predicted lineups</span>
     <div content>
-      <div class="flex flex-col gap-y-1">
+      <span class="flex flex-row justify-center pt-2" *ngIf="players.length === 0">No predictions yet</span>
+      <div class="flex flex-col gap-y-1" *ngIf="players.length > 0">
         <app-players-predicitons-table [players]="players"></app-players-predicitons-table>
-        <a [routerLink]="['/teams/lineups/next/' + teamShort]" class="self-end show-more">Show more >></a>
+        <a [routerLink]="['/teams/lineups/next/' + team.shortName]" class="self-end show-more">Show more >></a>
       </div>
     </div>
   </app-title-underlined-grey>

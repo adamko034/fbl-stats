@@ -1,5 +1,5 @@
 <app-white-block>
-  <div class="flex flex-row gap-x-5 items-center justify-evenly">
+  <div class="flex flex-row flex-wrap gap-y-3 gap-x-5 items-center justify-evenly">
     <app-title-underlined-grey>
       <span title>Standings</span>
       <div content class="flex flex-col">
@@ -80,7 +80,7 @@
     <td>
       <span class="flex flex-row gap-x-1 items-center">
         <app-team-logo [team]="team.shortName" [height]="16"></app-team-logo>
-        <span>{{ team.name }}</span>
+        <span class="hidden sm:block">{{ team.name }}</span>
       </span>
     </td>
     <td class="font-medium">{{ team.points }}</td>

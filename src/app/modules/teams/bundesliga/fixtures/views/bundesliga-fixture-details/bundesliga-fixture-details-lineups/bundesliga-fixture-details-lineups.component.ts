@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { PlayerPredictionsService } from 'src/app/common/players/services/player-predictions.service';
 import { Player } from 'src/app/store/players/models/player.model';
+import { Team } from 'src/app/store/teams/models/team.model';
 
 @Component({
   selector: 'app-bundesliga-fixture-details-lineups',
@@ -9,6 +10,8 @@ import { Player } from 'src/app/store/players/models/player.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BundesligaFixtureDetailsLineupsComponent {
+  @Input() homeTeam: Team;
+  @Input() awayTeam: Team;
   @Input() set homeTeamPlayers(value: Player[]) {
     this._homePlayers = this.playerPredictionsService.onlyWithAtLeastOneStart(value);
   }

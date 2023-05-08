@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { ArrayStream } from 'src/app/services/array-stream.service';
+import { ScreenSize } from 'src/app/services/screen-size.service';
 import { Player } from 'src/app/store/players/models/player.model';
 import { Fixture } from 'src/app/store/teams/models/fixture.model';
 import { Team } from 'src/app/store/teams/models/team.model';
@@ -15,6 +17,7 @@ import { BundesligaFixtureDetailsState } from '../../../models/bundesliga-fixtur
 })
 export class BundesligaFixtureDetailsComponent {
   public state$: Observable<BundesligaFixtureDetailsState | undefined>;
+  public screens = ScreenSize;
 
   public get homeTeam$(): Observable<Team> {
     return this.state$.pipe(map((state) => state?.homeTeam));
@@ -32,6 +35,10 @@ export class BundesligaFixtureDetailsComponent {
     return this.state$.pipe(map((state) => state.awayTeamPlayers));
   }
 
+  public get isNextMatchday$(): Observable<boolean> {
+    return this.state$.pipe(map((state) => state.isNextMatchday));
+  }
+
   public get matchday$(): Observable<number> {
     return this.state$.pipe(map((state) => state.matchday));
   }
@@ -45,6 +52,22 @@ export class BundesligaFixtureDetailsComponent {
 
         return state.homeTeam.games.find((f) => f.matchday === state.matchday);
       })
+    );
+  }
+
+  public get previousRound$(): Observable<BundesligaFixtureDetailsState> {
+    return this.state$.pipe(
+      filter((state) => !!state),
+      map((state) => ({
+        homeTeam: state.awayTeam,
+        awayTeam: state.homeTeam,
+        homeTeamPlayers: state.awayTeamPlayers,
+        awayTeamPlayers: state.homeTeamPlayers,
+        isNextMatchday: state.isNextMatchday,
+        matchday:
+          new ArrayStream(state.homeTeam.games).filterQuick((g) => g.opponent === state.awayTeam.shortName).takeFirst()
+            ?.matchday ?? 0
+      }))
     );
   }
 

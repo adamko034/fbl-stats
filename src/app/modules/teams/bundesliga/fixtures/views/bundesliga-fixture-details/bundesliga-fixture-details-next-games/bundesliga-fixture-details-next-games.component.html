@@ -1,5 +1,5 @@
 <app-white-block>
-  <div class="flex flex-row justify-evenly gap-x-5">
+  <div class="flex flex-row flex-wrap justify-evenly gap-x-5 gap-y-3">
     <ng-container
       [ngTemplateOutlet]="nextGames"
       [ngTemplateOutletContext]="{ teamLong: homeTeam.name, teamShort: homeTeam.shortName, games: homeGames }"
@@ -17,7 +17,7 @@
     <div content>
       <table class="mt-2 border-spacing-y-1 border-separate">
         <tr *ngFor="let game of games" class="font-small mt-2">
-          <td class="flex flex-row items-center">
+          <td class="flex flex-row items-center pr-2">
             <span class="font-smaller grey font-medium">{{ game.date | epochDate | date : 'dd.MM.yyyy HH:mm' }}</span>
             <app-matchday-standalone-game-icon *ngIf="game.isStandaloneFixture"></app-matchday-standalone-game-icon>
             <app-matchday-first-game-icon *ngIf="game.isMatchdayFirstGame"></app-matchday-first-game-icon>
@@ -29,7 +29,7 @@
               </div>
 
               <span class="flex flex-row gap-x-1 items-center" [ngClass]="{ 'font-medium': game.isHome }">
-                <span>{{ game.isHome ? teamLong : game.opponentLong }}</span>
+                <span class="hidden sm:block">{{ game.isHome ? teamLong : game.opponentLong }}</span>
                 <app-team-logo [team]="game.isHome ? teamShort : game.opponent" [height]="15"></app-team-logo>
               </span>
             </div>
@@ -39,7 +39,7 @@
             <div class="flex flex-row gap-x-1 items-center mr-2">
               <span class="flex flex-row gap-x-1 items-center" [ngClass]="{ 'font-medium': !game.isHome }">
                 <app-team-logo [team]="game.isHome ? game.opponent : teamShort" [height]="15"></app-team-logo>
-                <span>{{ game.isHome ? game.opponentLong : teamLong }}</span>
+                <span class="hidden sm:block">{{ game.isHome ? game.opponentLong : teamLong }}</span>
               </span>
 
               <div *ngIf="game.isHome" class="flex flex-row gap-x-1 items-center">

@@ -2,15 +2,23 @@
   <h6 class="h6-card-title">Matchday {{ nextMatchday }}</h6>
   <div class="fixtures flex flex-col gap-y-5">
     <div *ngFor="let date of nextFixtures.gamesPerDate | keyvalue">
-      <div class="flex flex-col gap-y-2">
+      <div class="flex flex-col">
         <div class="fixtures-date flex flex-row gap-x-1">
           <span>{{ date.key | epochDate | date : 'EE, HH:mm' }}</span>
           <span>{{ date.key | epochDate | date : 'dd.MM.yyy' }}</span>
         </div>
-        <div class="fixture-game flex-row-center-center gap-x-1.5" *ngFor="let game of date.value">
-          <app-team-logo [team]="game.homeTeamShort" [height]="18"></app-team-logo>
-          <span>-</span>
-          <app-team-logo [team]="game.awayTeamShort" [height]="18"></app-team-logo>
+        <div *ngFor="let game of date.value" class="p-1 hover:bg-slate-300 rounded flex justify-center">
+          <a
+            class="flex flex-row items-center justify-center gap-x-1.5 cursor-pointer"
+            [routerLink]="[
+              '/teams/bundesliga/fixtures/' + nextMatchday + '/' + game.homeTeamShort + '/' + game.awayTeamShort
+            ]"
+          >
+            <app-team-logo [team]="game.homeTeamShort" [height]="18"></app-team-logo>
+            <span>-</span>
+            <app-team-logo [team]="game.awayTeamShort" [height]="18"></app-team-logo>
+            <mat-icon class="w-[12px] h-[12px] text-[12px]">open_in_new</mat-icon>
+          </a>
         </div>
       </div>
     </div>

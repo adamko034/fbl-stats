@@ -1,5 +1,5 @@
 <app-white-block>
-  <div class="flex flex-row justify-evenly gap-x-4">
+  <div class="flex flex-row flex-wrap justify-evenly gap-x-4 gap-y-3">
     <ng-container [ngTemplateOutlet]="stats"></ng-container>
     <ng-container [ngTemplateOutlet]="unavailablePlayers"></ng-container>
   </div>
@@ -43,6 +43,7 @@
     <span title>
       <div class="flex flex-row gap-x-1 items-center">
         <app-goals-icons [count]="1"></app-goals-icons>
+        <app-assists-icons [count]="1"></app-assists-icons>
         <span>Top stats</span>
       </div>
     </span>

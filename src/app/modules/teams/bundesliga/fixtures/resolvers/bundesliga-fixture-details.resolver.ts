@@ -3,13 +3,18 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { combineLatest, Observable, of } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { PlayersStore } from 'src/app/store/players/players.store';
+import { PropertiesStore } from 'src/app/store/properties/properties.store';
 import { Team } from 'src/app/store/teams/models/team.model';
 import { TeamsStore } from 'src/app/store/teams/teams.store';
 import { BundesligaFixtureDetailsState } from '../../models/bundesliga-fixture-details.state';
 
 @Injectable()
 export class BundesligaFixtureDetailsResolver implements Resolve<BundesligaFixtureDetailsState> {
-  constructor(private teamsStore: TeamsStore, private playersStore: PlayersStore) {}
+  constructor(
+    private teamsStore: TeamsStore,
+    private playersStore: PlayersStore,
+    private propertiesStore: PropertiesStore
+  ) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<BundesligaFixtureDetailsState | undefined> {
     const { matchday, home, away } = route.params;
@@ -22,16 +27,18 @@ export class BundesligaFixtureDetailsResolver implements Resolve<BundesligaFixtu
       this.teamsStore.select(home),
       this.playersStore.selectAllByTeam(home),
       this.teamsStore.select(away),
-      this.playersStore.selectAllByTeam(away)
+      this.playersStore.selectAllByTeam(away),
+      this.propertiesStore.selectLastMatchday()
     ]).pipe(
-      map(([homeTeamData, homeTeamPlayers, awayTeamData, awayTeamPlayers]) => {
+      map(([homeTeamData, homeTeamPlayers, awayTeamData, awayTeamPlayers, lastMatchday]) => {
         if (this.dataValid(+matchday, homeTeamData, awayTeamData)) {
           return {
             homeTeam: homeTeamData,
             awayTeam: awayTeamData,
             matchday: +matchday,
             homeTeamPlayers,
-            awayTeamPlayers
+            awayTeamPlayers,
+            isNextMatchday: +matchday === lastMatchday + 1
           };
         }
 

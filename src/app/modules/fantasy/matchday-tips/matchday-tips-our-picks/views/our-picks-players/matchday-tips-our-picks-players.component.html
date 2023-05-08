@@ -113,9 +113,11 @@
     <td>
       <app-player-icon-prediction [prediction]="player.prediction"></app-player-icon-prediction>
     </td>
-    <td>
+    <td class="flex flex-row justify-start pl-3">
       <app-game-team-venue
-        [teamShort]="player.nextGame.opponentShort"
+        [homeTeamShort]="player.nextGame.isHome ? player.team.teamShort : player.nextGame.opponentShort"
+        [awayTeamShort]="player.nextGame.isHome ? player.nextGame.opponentShort : player.team.teamShort"
+        [matchday]="matchday$ | async"
         [logoHeight]="18"
         [isHome]="player.nextGame.isHome"
         [showFirstGame]="true"

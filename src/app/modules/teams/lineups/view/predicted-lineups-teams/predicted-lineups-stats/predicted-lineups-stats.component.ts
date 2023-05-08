@@ -66,6 +66,7 @@ export class PredictedLineupsStatsComponent implements OnInit {
           varied: this.filterPlayers(
             data.players,
             sort.varied,
+            new PlayersFilterAvailbility(true),
             new PlayersFilterPrediction(PlayersFilterPrediciton.VARIED)
           )
         };

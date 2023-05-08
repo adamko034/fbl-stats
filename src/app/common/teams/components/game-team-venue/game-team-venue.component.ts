@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameTeamVenueComponent {
-  @Input() teamShort: string;
+  @Input() homeTeamShort: string;
   @Input() logoHeight: number = 20;
   @Input() isHome: boolean;
   @Input() showRank = false;
@@ -14,6 +14,8 @@ export class GameTeamVenueComponent {
   @Input() showFirstGame = false;
   @Input() isFirstGame: boolean;
   @Input() showVenue = true;
+  @Input() matchday: number;
+  @Input() awayTeamShort: string;
 
   constructor() {}
 }

@@ -3,8 +3,8 @@
     <td [appSticky]="{ position: 'left' }">Player</td>
     <td>Pos</td>
     <td>$</td>
-    <td>%</td>
-    <td>TP</td>
+    <td class="hidden sm:table-cell">%</td>
+    <td class="hidden sm:table-cell">TP</td>
     <td>KK</td>
     <td>BL</td>
     <td>BL[EN]</td>
@@ -30,8 +30,8 @@
     </td>
     <td>{{ player.position | uppercase }}</td>
     <td>{{ player.price }}M</td>
-    <td>{{ player.popularity }}</td>
-    <td>{{ player.totalPoints }}</td>
+    <td class="hidden sm:table-cell">{{ player.popularity }}</td>
+    <td class="hidden sm:table-cell">{{ player.totalPoints }}</td>
     <td>
       <app-player-icon-lineup-prediction
         [size]="'small'"

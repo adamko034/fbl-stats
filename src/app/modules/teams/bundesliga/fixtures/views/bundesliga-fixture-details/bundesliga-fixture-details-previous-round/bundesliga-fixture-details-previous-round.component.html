@@ -1,0 +1,94 @@
+<app-white-block>
+  <div class="flex flex-row flex-wrap gap-x-5 gap-y-3 justify-evenly">
+    <app-title-underlined-grey>
+      <span title>Previous game</span>
+      <div content>
+        <div class="pt-2 flex flex-col gap-y-2 justify-center" *ngIf="homeFixture">
+          <div class="flex flex-row gap-x-6 justify-center">
+            <app-team-logo [team]="state.homeTeam.shortName" [height]="30"></app-team-logo>
+            <span class="text-xl">{{ homeFixture.goalsScored }} : {{ homeFixture.goalsConceded }}</span>
+            <app-team-logo [team]="state.awayTeam.shortName" [height]="30"></app-team-logo>
+          </div>
+
+          <div class="flex flex-col text-center text-xs font-medium">
+            <span>Matchday {{ homeFixture.matchday }}</span>
+            <span>{{ homeFixture.date | epochDate | date : 'EEEE, dd.MM.yyy HH:mm' }}</span>
+          </div>
+
+          <div class="flex flex-row justify-between gap-x-5">
+            <ng-template
+              [ngTemplateOutlet]="playersStats"
+              [ngTemplateOutletContext]="{ players: homePlayersStats, venue: 'h' }"
+            ></ng-template>
+            <ng-template
+              [ngTemplateOutlet]="playersStats"
+              [ngTemplateOutletContext]="{ players: awayPlayersStats, venue: 'a' }"
+            ></ng-template>
+          </div>
+        </div>
+      </div>
+    </app-title-underlined-grey>
+
+    <app-title-underlined-grey>
+      <span title>Previous game best players</span>
+      <div content>
+        <table class="comparison-table">
+          <tr>
+            <td class="pt-2">
+              <app-team-logo
+                class="flex flex-row justify-center"
+                [height]="22"
+                [team]="state.homeTeam.shortName"
+              ></app-team-logo>
+            </td>
+            <td>Pts</td>
+            <td class="pt-2">
+              <app-team-logo
+                class="flex flex-row justify-center"
+                [height]="22"
+                [team]="state.awayTeam.shortName"
+              ></app-team-logo>
+            </td>
+            <td>Pts</td>
+          </tr>
+          <tr *ngFor="let homePlayer of homeTeamTopPlayers; let i = index">
+            <td>
+              <app-player-name-link
+                [name]="homePlayer.name"
+                [lastName]="homePlayer.name"
+                [id]="homePlayer.id"
+              ></app-player-name-link>
+            </td>
+            <td>{{ homePlayer.points }}</td>
+            <td class="float-right">
+              <app-player-name-link
+                [name]="awayTeamTopPlayers[i].name"
+                [lastName]="awayTeamTopPlayers[i].name"
+                [id]="awayTeamTopPlayers[i].id"
+              ></app-player-name-link>
+            </td>
+            <td>{{ awayTeamTopPlayers[i].points }}</td>
+          </tr>
+        </table>
+      </div>
+    </app-title-underlined-grey>
+  </div>
+</app-white-block>
+
+<ng-template #playersStats let-players="players" let-venue="venue">
+  <div class="flex flex-col text-xs">
+    <div
+      class="flex items-center justify-end"
+      [ngClass]="{ 'flex-row': venue === 'a', 'flex-row-reverse': venue === 'h' }"
+      *ngFor="let playerStats of players"
+    >
+      <app-player-name-link
+        [id]="playerStats.id"
+        [name]="playerStats.name"
+        [lastName]="playerStats.name"
+      ></app-player-name-link>
+      <app-goals-icons [count]="playerStats.goals"></app-goals-icons>
+      <app-assists-icons [count]="playerStats.assists"></app-assists-icons>
+    </div>
+  </div>
+</ng-template>

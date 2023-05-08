@@ -66,17 +66,16 @@
 
         <div class="flex flex-row justify-between">
           <div class="flex-row-start-center gap-x-1">
-            <app-game-team-venue
-              [teamShort]="player.team.teamShort"
-              [showFirstGame]="false"
-              [showVenue]="false"
-              [showRank]="true"
-              [rank]="player.team.rank"
-            ></app-game-team-venue>
+            <div class="flex flex-row items-center gap-x-1">
+              <app-team-logo [team]="player.team.teamShort"></app-team-logo>
+              <span class="text-xs">{{ player.team.rank | numerals }}</span>
+            </div>
             <span style="font-size: 10px; font-weight: bold">vs</span>
             <app-game-team-venue
-              [teamShort]="player.nextGame.opponentShort"
+              [homeTeamShort]="player.nextGame.isHome ? player.team.teamShort : player.nextGame.opponentShort"
+              [awayTeamShort]="player.nextGame.isHome ? player.nextGame.opponentShort : player.team.teamShort"
               [isHome]="player.nextGame.isHome"
+              [matchday]="(lastMatchday$ | async) + 1"
               [showFirstGame]="true"
               [showRank]="true"
               [rank]="player.nextGame.opponentRank"

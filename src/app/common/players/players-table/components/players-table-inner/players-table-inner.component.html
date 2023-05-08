@@ -176,7 +176,9 @@
       <td mat-cell *matCellDef="let player">
         <app-game-team-venue
           [logoHeight]="18"
-          [teamShort]="player.nextGame.teamShort"
+          [matchday]="lastMatchday + 1"
+          [homeTeamShort]="player.nextGame.isHome ? player.teamShort : player.nextGame.teamShort"
+          [awayTeamShort]="player.nextGame.isHome ? player.nextGame.teamShort : player.teamShort"
           [isHome]="player.nextGame.isHome"
         ></app-game-team-venue>
       </td>

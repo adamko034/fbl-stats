@@ -1,0 +1,121 @@
+<app-white-block>
+  <div class="flex flex-col justify-center gap-y-5 px-2">
+    <div class="flex flex-row flex-wrap justify-evenly gap-x-5 gap-y-4">
+      <ng-template
+        [ngTemplateOutlet]="stats"
+        [ngTemplateOutletContext]="{
+          homeStats: homeTopOverall,
+          awayStats: awayTopOverall,
+          title: 'Total points',
+          columnText: 'TP',
+          extended: true
+        }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="stats"
+        [ngTemplateOutletContext]="{
+          homeStats: homeTopLast4,
+          awayStats: awayTopLast4,
+          title: 'Last 4 games',
+          columnText: 'Pts',
+          extended: true
+        }"
+      ></ng-template>
+    </div>
+
+    <div class="flex flex-row flex-wrap justify-evenly gap-x-5 gap-y-4">
+      <ng-template
+        [ngTemplateOutlet]="stats"
+        [ngTemplateOutletContext]="{
+          homeStats: homePopularityAll,
+          awayStats: awayPopularityAll,
+          title: 'Popularity',
+          columnText: '%',
+          extended: false
+        }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="stats"
+        [ngTemplateOutletContext]="{
+          homeStats: homePopularityTop500,
+          awayStats: awayPopularityTop500,
+          title: 'Popularity top 500',
+          columnText: '%',
+          extended: false
+        }"
+      ></ng-template>
+
+      <ng-template
+        [ngTemplateOutlet]="stats"
+        [ngTemplateOutletContext]="{
+          homeStats: homePopularityTop100,
+          awayStats: awayPopularityTop100,
+          title: 'Popularity top 100',
+          columnText: '%',
+          extended: false
+        }"
+      ></ng-template>
+    </div>
+  </div>
+</app-white-block>
+
+<ng-template
+  #stats
+  let-homeStats="homeStats"
+  let-awayStats="awayStats"
+  let-title="title"
+  let-columnText="columnText"
+  let-extended="extended"
+>
+  <app-title-underlined-grey>
+    <span title>{{ title }}</span>
+    <div content>
+      <table class="comparison-table">
+        <tr>
+          <td class="pt-2 pb-1">
+            <app-team-logo
+              class="flex flex-row justify-center"
+              [height]="20"
+              [team]="homeTeam.shortName"
+            ></app-team-logo>
+          </td>
+          <td class="hidden sm:table-cell" *ngIf="extended" colspan="2"></td>
+          <td class="pr-8">{{ columnText }}</td>
+          <td class="pt-2">
+            <app-team-logo
+              class="flex flex-row justify-center"
+              [height]="20"
+              [team]="awayTeam.shortName"
+            ></app-team-logo>
+          </td>
+          <td class="hidden sm:table-cell" *ngIf="extended" colspan="2"></td>
+          <td>{{ columnText }}</td>
+        </tr>
+        <tr *ngFor="let homePlayer of homeStats; let i = index">
+          <td>
+            <app-player-name-link
+              [name]="homePlayer.name"
+              [lastName]="homePlayer.name"
+              [id]="homePlayer.id"
+            ></app-player-name-link>
+          </td>
+          <td class="hidden sm:table-cell" *ngIf="extended">{{ homePlayer.position | uppercase }}</td>
+          <td class="hidden sm:table-cell" *ngIf="extended">{{ homePlayer.price }}M</td>
+          <td class="font-medium pr-8">{{ homePlayer.score }}</td>
+          <td class="float-right">
+            <app-player-name-link
+              [name]="awayStats[i].name"
+              [lastName]="awayStats[i].name"
+              [id]="awayStats[i].id"
+            ></app-player-name-link>
+          </td>
+          <td class="hidden sm:table-cell" *ngIf="extended">{{ awayStats[i].position | uppercase }}</td>
+          <td class="hidden sm:table-cell" *ngIf="extended">{{ awayStats[i].price }}M</td>
+          <td class="font-medium">{{ awayStats[i].score }}</td>
+        </tr>
+      </table>
+    </div>
+  </app-title-underlined-grey>
+</ng-template>

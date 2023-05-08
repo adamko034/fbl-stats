@@ -1,5 +1,8 @@
-<div class="flex-row-start-center gap-x-1">
-  <app-team-logo [height]="logoHeight" [team]="teamShort"></app-team-logo>
+<a
+  class="flex-row-start-center gap-x-1 border-solid border-b border-slate-500"
+  [routerLink]="['/teams', 'bundesliga', 'fixtures', matchday, homeTeamShort, awayTeamShort]"
+>
+  <app-team-logo [height]="logoHeight" [team]="isHome ? awayTeamShort : homeTeamShort"></app-team-logo>
   <div *ngIf="showVenue" class="grey font-small">
     <span *ngIf="isHome">(h)</span>
     <span *ngIf="!isHome">(a)</span>
@@ -8,4 +11,4 @@
   <span *ngIf="showFirstGame">
     <app-matchday-first-game-icon *ngIf="isFirstGame"></app-matchday-first-game-icon>
   </span>
-</div>
+</a>

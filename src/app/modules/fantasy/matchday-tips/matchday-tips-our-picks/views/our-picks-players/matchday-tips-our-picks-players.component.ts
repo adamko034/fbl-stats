@@ -28,9 +28,12 @@ export class MatchdayTipsOurPicksPlayersComponent implements OnInit {
   public mids$: Observable<MatchdayTipsOurPicksPlayer[]>;
   public forwards$: Observable<MatchdayTipsOurPicksPlayer[]>;
 
+  public matchday$: Observable<number>;
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.matchday$ = this.route.data.pipe(map((state) => state.lastMatchday + 1));
     this.ourPicks$ = this.route.data.pipe(
       map((data) => {
         let playersToDisplay = [...data.ourPicks?.players] || [];

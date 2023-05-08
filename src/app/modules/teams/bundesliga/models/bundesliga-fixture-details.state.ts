@@ -7,4 +7,5 @@ export interface BundesligaFixtureDetailsState {
   awayTeam: Team;
   awayTeamPlayers: Player[];
   matchday: number;
+  isNextMatchday: boolean;
 }
