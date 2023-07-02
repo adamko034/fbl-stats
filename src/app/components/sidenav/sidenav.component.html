@@ -84,7 +84,7 @@
     *ngIf="!link.children"
     class="link-main flex-row-space-between-center"
     [ngClass]="{ 'link-main-sublink': isSublink }"
-    [href]="link.path"
+    [routerLink]="link.path"
   >
     <ng-template [ngTemplateOutlet]="linkTemplate" [ngTemplateOutletContext]="{ link: link }"></ng-template>
   </a>

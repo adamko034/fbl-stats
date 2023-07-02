@@ -42,6 +42,18 @@
 
             <div class="game-indicators flex-row-start-center">
               <app-postponed-game-icon *ngIf="game.isPostponed" size="17"></app-postponed-game-icon>
+              <a
+                [routerLink]="[
+                  '/teams/bundesliga/fixtures/' +
+                    matchday.matchdayNumber +
+                    '/' +
+                    game.homeTeamShort +
+                    '/' +
+                    game.awayTeamShort
+                ]"
+              >
+                <mat-icon class="w-[15px] h-[15px] text-[15px]">open_in_new</mat-icon>
+              </a>
             </div>
           </div>
         </div>

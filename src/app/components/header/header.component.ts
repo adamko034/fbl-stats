@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterNavigationService } from 'src/app/common/services/router-navigation.service';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
@@ -9,10 +10,14 @@ import { SidenavService } from 'src/app/services/sidenav.service';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
-  constructor(private sidenavService: SidenavService, private router: Router) {}
+export class HeaderComponent {
+  showBackButton$ = this.navigationService.hasBackUrl();
 
-  ngOnInit(): void {}
+  constructor(
+    private sidenavService: SidenavService,
+    private router: Router,
+    private navigationService: RouterNavigationService
+  ) {}
 
   public onToggleMenu(): void {
     this.sidenavService.toggle();
@@ -20,5 +25,9 @@ export class HeaderComponent implements OnInit {
 
   public onPlayerSearched(player: PlayerPicker): void {
     this.router.navigate(['fantasy', 'players', 'details', player.id]);
+  }
+
+  public goBack(): void {
+    this.navigationService.goBack();
   }
 }

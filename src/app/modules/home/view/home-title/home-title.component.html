@@ -31,7 +31,7 @@
       <span class="sub">Allowed transfers</span>
     </div>
 
-    <div class="tile flex-col-start-center">
+    <div class="tile flex-col-start-center" *ngIf="nowIsUnlimitedTransfers || nextUnlimitedTransfers">
       <mat-icon>all_inclusive</mat-icon>
       <h4 *ngIf="nowIsUnlimitedTransfers" class="green">NOW!</h4>
       <h4 *ngIf="!nowIsUnlimitedTransfers && nextUnlimitedTransfers">

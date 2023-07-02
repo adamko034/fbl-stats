@@ -16,8 +16,12 @@
     <table content class="comparison-table font-small">
       <tr>
         <td></td>
-        <td>{{ homeTeam.name }}</td>
-        <td>{{ awayTeam.name }}</td>
+        <td class="pt-2 pb-1">
+          <app-team-logo class="flex flex-row justify-center" [height]="20" [team]="homeTeam.shortName"></app-team-logo>
+        </td>
+        <td class="pt-2 pb-1">
+          <app-team-logo class="flex flex-row justify-center" [height]="20" [team]="awayTeam.shortName"></app-team-logo>
+        </td>
       </tr>
       <tr *ngFor="let i of [].constructor(unavailableMax); let index = index">
         <td></td>
@@ -50,10 +54,14 @@
     <table content class="comparison-table font-small">
       <tr>
         <td></td>
-        <td>{{ homeTeam.name }}</td>
+        <td class="pt-2 pb-1">
+          <app-team-logo class="flex flex-row justify-center" [height]="20" [team]="homeTeam.shortName"></app-team-logo>
+        </td>
         <td>G</td>
         <td class="pr-10">A</td>
-        <td>{{ awayTeam.name }}</td>
+        <td class="pt-2 pb-1">
+          <app-team-logo class="flex flex-row justify-center" [height]="20" [team]="awayTeam.shortName"></app-team-logo>
+        </td>
         <td>G</td>
         <td>A</td>
       </tr>

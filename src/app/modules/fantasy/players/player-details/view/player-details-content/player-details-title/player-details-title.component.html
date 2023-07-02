@@ -1,9 +1,5 @@
 <app-white-block [noPadding]="true">
   <div class="title flex-row-space-between" [ngClass]="{ scroll: !showSubrow }">
-    <button mat-icon-button class="back-button" (click)="onGoBackClick()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-
     <div class="flex-1 flex-row-center-center gap-x-6">
       <div class="flex-row-start-center gap-x-2.5">
         <app-team-logo class="hidden sm:block" [height]="30" [team]="player.team.shortName"></app-team-logo>

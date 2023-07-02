@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import {
   NavigationCancel,
@@ -22,12 +21,7 @@ import { FixturesStore } from './store/fixtures/fixtures.store';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  animations: [
-    trigger('inOutAnimation', [
-      transition(':leave', [style({ opacity: 1 }), animate('1s ease-out', style({ opacity: 0 }))])
-    ])
-  ]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   private isMobile: boolean;
@@ -48,13 +42,16 @@ export class AppComponent implements OnInit {
     private screenSizeService: ScreenSizeService,
     private fixturesStore: FixturesStore,
     private sidenavService: SidenavService
-  ) {}
+  ) {
+    Logger.logDev('app component, constructor, loading data');
+    this.playersStore.loadAll();
+  }
 
   public ngOnInit(): void {
     Logger.logDev('app component, on init, loading data');
     //this.propertiesService.loadLastUpdated();
     this.propertiesService.loadProperties();
-    this.playersStore.loadAll();
+
     this.teamsStore.load();
     this.fixturesStore.load();
 
