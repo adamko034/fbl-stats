@@ -6,6 +6,7 @@ import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us
 import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersGamesPlayedRoutingModule } from './players-games-played-routing.module';
@@ -24,7 +25,8 @@ import { PlayersGamesPlayedComponent } from './views/players-games-played/player
     SwitcherModule,
     FormFieldModule,
     AdBannerModule,
-    IfScreenModule
+    IfScreenModule,
+    CommonGuardsModule
   ],
   providers: [PlayersGamesPlayedResolver]
 })

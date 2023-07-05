@@ -10,6 +10,7 @@ import { MyTeamResolversModule } from 'src/app/common/my-team/routing/resolvers/
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
 import { PlayersTableModule } from 'src/app/common/players/players-table/players-table.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { PropertiesResolverModule } from 'src/app/common/routing/resolvers/properties-resolver/properties-resolver.module';
 import { TeamsResolverModule } from 'src/app/common/routing/resolvers/teams/teams-resolver.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
@@ -52,7 +53,8 @@ import { MyTeamTotalsComponent } from './views/my-team-selection/my-team-totals/
     PlayerNameLinkModule,
     TeamLogoModule,
     AdBannerModule,
-    IfScreenModule
+    IfScreenModule,
+    CommonGuardsModule
   ],
   providers: [MyTeamTilesDisplaySettingsService]
 })

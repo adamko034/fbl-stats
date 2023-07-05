@@ -6,6 +6,7 @@ import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.mo
 import { PlayerIconPriceChangeModule } from 'src/app/common/players/components/player-icon-price-change/player-icon-price-change.module';
 import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -32,6 +33,7 @@ import { PlayersListsOnSaleComponent } from './views/players-lists-on-sale/playe
   ],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     PlayersListsRoutingModule,
     SharedModule,
     AngularMaterialModule,

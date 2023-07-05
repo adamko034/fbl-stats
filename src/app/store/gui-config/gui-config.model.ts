@@ -2,6 +2,7 @@ export interface GuiConfig {
   players?: GuiConfigPlayers;
   myTeam?: GuiConfigMyTeam;
   comparePlayers?: GuiConfigComparePlayers;
+  pageTitle?: string;
 }
 
 export interface GuiConfigComparePlayers {

@@ -7,6 +7,7 @@ import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us
 import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersPointsEfficiencyRoutingModule } from './players-points-efficiency-routing.module';
 import { PlayersPointsEfficiencyLoader } from './resolvers/players-points-efficiency.loader';
@@ -25,7 +26,8 @@ import { PlayersPointsEfficiencyComponent } from './views/players-points-efficie
     SwitcherModule,
     FormFieldModule,
     AdBannerModule,
-    IfScreenModule
+    IfScreenModule,
+    CommonGuardsModule
   ],
   providers: [PlayersPointsEffciencyResolver, PlayersPointsEfficiencyLoader]
 })

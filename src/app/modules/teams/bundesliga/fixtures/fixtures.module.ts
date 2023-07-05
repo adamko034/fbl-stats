@@ -11,6 +11,7 @@ import { PlayerIconUnavailableModule } from 'src/app/common/players/components/p
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
 import { PlayersPredictionsTableModule } from 'src/app/common/players/components/players-predictions-table/players-predictions-table.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { MatchdayFirstGameIconModule } from 'src/app/common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { MatchdayStandaloneGameIconModule } from 'src/app/common/teams/components/matchday-standalone-game-icon/matchday-standalone-game-icon.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
@@ -44,6 +45,7 @@ import { BundesligaFixturesComponent } from './views/bundesliga-fixtures/bundesl
   ],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     FixturesRoutingModule,
     AngularMaterialModule,
     SharedModule,

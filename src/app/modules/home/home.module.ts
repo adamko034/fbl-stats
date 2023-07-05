@@ -21,6 +21,7 @@ import { PlayerIconUnavailableModule } from 'src/app/common/players/components/p
 import { PlayerNameWithAvailabilityModule } from 'src/app/common/players/components/player-name-with-availability/player-name-with-availability.module';
 import { PlayersTableCardModule } from 'src/app/common/players/components/players-table-card/players-table-card.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { BundesligaNextFixtureResolverModule } from 'src/app/common/routing/resolvers/bundesliga-next-fixture/bundesliga-next-fixture-resolver.module';
 import { PlayersResolverModule } from 'src/app/common/routing/resolvers/players-resolver/players-resolver.module';
 import { PropertiesResolverModule } from 'src/app/common/routing/resolvers/properties-resolver/properties-resolver.module';
@@ -93,7 +94,8 @@ import { HomeComponent } from './view/home.component';
     AdBannerModule,
     PlayerIconPriceChangeModule,
     IfScreenModule,
-    MatCardModule
+    MatCardModule,
+    CommonGuardsModule
   ]
 })
 export class HomeModule {}

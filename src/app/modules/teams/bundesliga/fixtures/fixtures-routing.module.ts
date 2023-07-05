@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageTitleGuard } from 'src/app/common/routing/guards/page-title/page-title.guard';
 import { FixturesLoadedGuard } from 'src/app/modules/core/guards/fixtures-loaded.guard';
 import { BundesligaFixtureDetailsResolver } from './resolvers/bundesliga-fixture-details.resolver';
 import { BundesligaFixturesResolver } from './resolvers/bundesliga-fixtures.resolver';
@@ -9,10 +10,11 @@ import { BundesligaFixturesComponent } from './views/bundesliga-fixtures/bundesl
 const routes: Routes = [
   {
     path: '',
-    canActivate: [FixturesLoadedGuard],
-    title: 'FBL Bundesliga Fixtures',
+    canActivate: [FixturesLoadedGuard, PageTitleGuard],
+    title: 'Bundesliga: Fixtures',
     resolve: { matchdays: BundesligaFixturesResolver },
-    component: BundesligaFixturesComponent
+    component: BundesligaFixturesComponent,
+    data: { pageTitle: 'Bundesliga: Fixtures' }
   },
   {
     path: ':matchday',
@@ -23,7 +25,9 @@ const routes: Routes = [
           {
             resolve: { state: BundesligaFixtureDetailsResolver },
             path: ':away',
-            component: BundesligaFixtureDetailsComponent
+            component: BundesligaFixtureDetailsComponent,
+            canActivate: [PageTitleGuard],
+            data: { pageTitle: 'Bundesliga: Fixture Details' }
           }
         ]
       }

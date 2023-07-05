@@ -21,6 +21,7 @@ import { FixturesDifficultyRoutingModule } from './fixtures-difficulty-routing.m
 import { FixturesDifficultyTeamsLoaderFactory } from './logic/fixtures-difficulty-teams-loader-factory';
 import { FixturesDifficultyResolver } from './resolvers/fixtures-difficulty.resolver';
 
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { FixturesDifficultyFiltersService } from './services/fixtures-difficulty-filters.service';
 import { FixturesDifficultyFiltersComponent } from './view/fixtures-difficulty-filters/fixtures-difficulty-filters.component';
 import { FixturesDifficultyFixturesComponent } from './view/fixtures-difficulty-fixtures/fixtures-difficulty-fixtures.component';
@@ -47,7 +48,8 @@ import { FixturesDifficultyComponent } from './view/fixtures-difficulty.componen
     SwitcherModule,
     IfScreenModule,
     AdBannerModule,
-    TeamServicesModule
+    TeamServicesModule,
+    CommonGuardsModule
   ],
   providers: [FixturesDifficultyResolver, FixturesDifficultyFiltersService, FixturesDifficultyTeamsLoaderFactory]
 })

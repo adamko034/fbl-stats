@@ -8,6 +8,7 @@ import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.m
 import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -23,6 +24,7 @@ import { PlayersStatsPointsComponent } from './views/players-stats-points/player
   declarations: [PlayersStatsPointsComponent, PlayersStatsPointsFiltersComponent, PlayersStatsPointsTableComponent],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     PlayersStatsPointsRoutingModule,
     SharedModule,
     FblCoreModule,

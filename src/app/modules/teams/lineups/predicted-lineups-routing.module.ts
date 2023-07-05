@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageTitleGuard } from 'src/app/common/routing/guards/page-title/page-title.guard';
 import { LastMatchdayResolver } from 'src/app/common/routing/resolvers/last-matchday/last-matchday.resolver';
 import { PlayersResolver } from '../../core/resolvers/players.resolver';
 import { TeamPlayersResolver } from '../../core/resolvers/team-players.resolver';
@@ -32,7 +33,7 @@ const routes: Routes = [
     children: [
       {
         path: 'next/summary',
-        title: 'FBL Predicted Lineups Summary',
+        title: 'Predicted Lineups: Summary',
         component: PredictedLineupsTeamsComponent,
         resolve: {
           sources: PredictedLineupsSourcesResolver,
@@ -40,26 +41,32 @@ const routes: Routes = [
           players: PlayersResolver,
           teamsNavigation: TeamsNavigationResolver,
           lastMatchday: LastMatchdayResolver
-        }
+        },
+        canActivate: [PageTitleGuard],
+        data: { pageTitle: 'Predicted Lineups: Summary' }
       },
       {
         path: 'next/:team',
-        title: 'FBL Predicted Lineups Team',
+        title: 'Predicted Lineups: Team',
         component: PredictedLineupsTeamComponent,
         resolve: {
           teamsNavigation: TeamsNavigationResolver,
           teamPredictions: PredictedLineupTeamResolver,
           players: TeamPlayersResolver
-        }
+        },
+        canActivate: [PageTitleGuard],
+        data: { pageTitle: 'Predicted Lineups: Team' }
       },
       {
         path: 'sources',
-        title: 'FBL Predicted Lineups Sources',
+        title: 'Predicted Lineups: Sources',
         component: PredictedLineupsSourcesComponent,
         resolve: {
           sources: PredictedLineupsSourcesResolver,
           teams: PredictedLineupsSourcesTeamsResolver
-        }
+        },
+        canActivate: [PageTitleGuard],
+        data: { pageTitle: 'Predicted Lineups: Sources' }
       }
     ]
   }

@@ -48,6 +48,13 @@ export class GuiConfigStore {
     );
   }
 
+  public selectPageTitle(): Observable<string> {
+    return this.config$.pipe(
+      map((config) => config.pageTitle ?? ''),
+      distinctUntilChanged()
+    );
+  }
+
   public changeMyTeamPlayerIds(ids: string[]): void {
     this.config.myTeam = { ...this.config.myTeam, playerIds: ids };
     this.send();
@@ -72,16 +79,25 @@ export class GuiConfigStore {
     this.send();
   }
 
+  public changePageTitle(pageTitle: string): void {
+    this.config.pageTitle = pageTitle;
+    this.send(false);
+  }
+
   private rememberGuiConfig(): void {
-    this.localStorageService.upsert<GuiConfig>(this.key, this.config);
+    const { pageTitle: _, ...configToStore } = this.config;
+    this.localStorageService.upsert<GuiConfig>(this.key, configToStore);
   }
 
   private getGuiConfig(): GuiConfig {
     return this.localStorageService.get<GuiConfig>(this.key) || {};
   }
 
-  private send(): void {
-    this.rememberGuiConfig();
+  private send(toLocalStorage: boolean = true): void {
+    if (toLocalStorage) {
+      this.rememberGuiConfig();
+    }
+
     this.config$.next({ ...this.config });
   }
 }

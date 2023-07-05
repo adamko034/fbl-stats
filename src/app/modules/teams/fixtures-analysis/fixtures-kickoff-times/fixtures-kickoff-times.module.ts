@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { NextUnlimitedTransfersModule } from 'src/app/common/routing/resolvers/next-unlimited-transfers/next-unlimited-transfers.module';
 import { PropertiesResolverModule } from 'src/app/common/routing/resolvers/properties-resolver/properties-resolver.module';
 import { TeamsResolverModule } from 'src/app/common/routing/resolvers/teams/teams-resolver.module';
@@ -15,7 +16,8 @@ import { FixturesKickoffTimesComponent } from './view/fixtures-kickoff-times.com
     TeamsResolverModule,
     PropertiesResolverModule,
     TeamsDifferentKickoffTimesModule,
-    NextUnlimitedTransfersModule
+    NextUnlimitedTransfersModule,
+    CommonGuardsModule
   ]
 })
 export class FixturesKickoffTimesModule {}

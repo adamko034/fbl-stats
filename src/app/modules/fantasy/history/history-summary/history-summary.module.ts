@@ -7,6 +7,7 @@ import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner
 import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-field.module';
 import { NavigationMenuModule } from 'src/app/common/components/ui/navigation-menu/navigation-menu.module';
 import { TitleModule } from 'src/app/common/components/ui/title/title.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HistorySummaryRoutingModule } from './history-summary-routing.module';
@@ -17,6 +18,7 @@ import { HistorySummaryComponent } from './views/history-summary.component';
   declarations: [HistorySummaryComponent, HistorySummaryLineupComponent],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     HistorySummaryRoutingModule,
     SharedModule,
     AngularMaterialModule,

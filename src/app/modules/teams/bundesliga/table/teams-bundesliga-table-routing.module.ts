@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageTitleGuard } from 'src/app/common/routing/guards/page-title/page-title.guard';
 import { LastMatchdayResolver } from 'src/app/common/routing/resolvers/last-matchday/last-matchday.resolver';
 import { TeamsResolver } from 'src/app/common/routing/resolvers/teams/teams.resolver';
 import { SelectedTeamsResolver } from './resolvers/selected-teams.resolver';
@@ -13,8 +14,10 @@ const routes: Routes = [
       lastMatchday: LastMatchdayResolver,
       selectedTeams: SelectedTeamsResolver
     },
-    title: 'FBL Bundesliga Table',
-    component: TeamsBundesligaTableComponent
+    title: 'Bundesliga: Table',
+    component: TeamsBundesligaTableComponent,
+    canActivate: [PageTitleGuard],
+    data: { pageTitle: 'Bundesliga: Table' }
   }
 ];
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RouterNavigationService } from 'src/app/common/services/router-navigation.service';
 import { PlayerPicker } from 'src/app/modules/core/players/picker/models/player-picker.model';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { GuiConfigStore } from 'src/app/store/gui-config/gui-config.store';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,13 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 })
 export class HeaderComponent {
   showBackButton$ = this.navigationService.hasBackUrl();
+  pageTitle$ = this.guiConfigStore.selectPageTitle();
 
   constructor(
     private sidenavService: SidenavService,
     private router: Router,
-    private navigationService: RouterNavigationService
+    private navigationService: RouterNavigationService,
+    private guiConfigStore: GuiConfigStore
   ) {}
 
   public onToggleMenu(): void {

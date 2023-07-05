@@ -4,6 +4,7 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { SelectFutureMatchdaysPanelModule } from 'src/app/common/components/filters/select-future-matchdays-panel/select-future-matchdays-panel.module';
 import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { LastKnownMatchdayModule } from 'src/app/common/routing/resolvers/last-known-matchday/last-known-matchday.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { NextUnlimitedTransfersModule } from 'src/app/common/routing/resolvers/next-unlimited-transfers/next-unlimited-transfers.module';
@@ -28,6 +29,7 @@ import { FixturesFirstGamesComponent } from './view/fixtures-first-games.compone
   ],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     FixturesFirstGamesRoutingModule,
     SharedModule,
     AngularMaterialModule,

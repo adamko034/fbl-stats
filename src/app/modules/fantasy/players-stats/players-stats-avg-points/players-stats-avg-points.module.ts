@@ -8,6 +8,7 @@ import { FormFieldModule } from 'src/app/common/components/ui/form-field/form-fi
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PlayersStatsAvgPointsConverter } from './converters/players-stats-avg-points.converter';
@@ -21,6 +22,7 @@ import { PlayersStatsAvgPointsComponent } from './views/players-stats-avg-points
   declarations: [PlayersStatsAvgPointsComponent, PlayersStatsAvgPointsFiltersComponent],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     PlayersStatsAvgPointsRoutingModule,
     SharedModule,
     AngularMaterialModule,

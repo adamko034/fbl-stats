@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageTitleGuard } from 'src/app/common/routing/guards/page-title/page-title.guard';
 import { BundesligaNextFixtureResolver } from 'src/app/common/routing/resolvers/bundesliga-next-fixture/bundesliga-next-fixture.resolver';
 import { PlayersResolver } from 'src/app/common/routing/resolvers/players-resolver/players.resolver';
 import { PropertiesResolver } from 'src/app/common/routing/resolvers/properties-resolver/properties.resolver';
@@ -11,6 +12,8 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     title: 'FBL Home',
+    data: { pageTitle: 'Home' },
+    canActivate: [PageTitleGuard],
     resolve: {
       players: PlayersResolver,
       properties: PropertiesResolver,

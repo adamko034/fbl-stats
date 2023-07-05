@@ -11,6 +11,7 @@ import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { OurPickIconModule } from 'src/app/common/players/components/our-pick-icon/our-pick-icon.module';
 import { PlayerIconPredictionModule } from 'src/app/common/players/components/player-icon-prediction/player-icon-prediction.module';
 import { PlayerNameWithAvailabilityModule } from 'src/app/common/players/components/player-name-with-availability/player-name-with-availability.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { LastMatchdayResolverModule } from 'src/app/common/routing/resolvers/last-matchday/last-matchday-resolver.module';
 import { GameTeamVenueModule } from 'src/app/common/teams/components/game-team-venue/game-team-venue.module';
 import { MatchdayFirstGameIconModule } from 'src/app/common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
@@ -39,7 +40,8 @@ import { MatchdayTipsOurPicksPlayersComponent } from './views/our-picks-players/
     TitleModule,
     LastMatchdayResolverModule,
     AdBannerModule,
-    IfScreenModule
+    IfScreenModule,
+    CommonGuardsModule
   ],
   providers: [MatchdayTipsOurPicksLoadedGuard]
 })

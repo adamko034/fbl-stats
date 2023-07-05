@@ -11,6 +11,7 @@ import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerIconLineupPredictionModule } from 'src/app/common/players/components/player-icon-lineup-prediction/player-icon-lineup-prediction.module';
 import { PlayerIconSuspensionRiskModule } from 'src/app/common/players/components/player-icon-suspension-risk/player-icon-suspension-risk.module';
 import { PlayersServicesModule } from 'src/app/common/players/services/players-services.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { MatchdayFirstGameIconModule } from 'src/app/common/teams/components/matchday-first-game-icon/matchday-first-game-icon.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { FblCoreModule } from 'src/app/modules/core/fbl-core.module';
@@ -53,6 +54,7 @@ import { PlayersDetailsFantasyStatsComponent } from './view/player-details-conte
   ],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     PlayerDetailsRoutingModule,
     SharedModule,
     AngularMaterialModule,

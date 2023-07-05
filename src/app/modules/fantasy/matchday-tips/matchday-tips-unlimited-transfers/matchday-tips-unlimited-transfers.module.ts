@@ -4,6 +4,7 @@ import { AngularMaterialModule } from 'src/app/angular-material.module';
 import { AdBannerModule } from 'src/app/common/components/ui/ad-banner/ad-banner.module';
 import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatchdayTipsUnlimitedTransfersRoutingModule } from './matchday-tips-unlimited-transfers-routing.module';
 import { MatchdayTipsUnlimitedTransfersResolver } from './routing/matchday-tips-unlimited-transfers.resolver';
@@ -18,7 +19,8 @@ import { MatchdayTipsUnlimitedTransfersComponent } from './views/matchday-tips-u
     SharedModule,
     PipesModule,
     IfScreenModule,
-    AdBannerModule
+    AdBannerModule,
+    CommonGuardsModule
   ],
   providers: [MatchdayTipsUnlimitedTransfersResolver]
 })

@@ -8,6 +8,7 @@ import { FollowUsModule } from 'src/app/common/components/ui/follow-us/follow-us
 import { SwitcherModule } from 'src/app/common/components/ui/switcher/switcher.module';
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatchdayTipsTopTeamRoutingModule } from './matchday-tips-top-team-routing.module';
 import { MatchdayTipsTopTeamElector } from './routing/matchday-tips-top-team-elector.service';
@@ -21,6 +22,7 @@ import { MatchdayTipsTopTeamComponent } from './views/matchday-tips-top-team.com
   declarations: [MatchdayTipsTopTeamComponent, MatchdayTipsTopTeamFiltersComponent],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     MatchdayTipsTopTeamRoutingModule,
     AngularMaterialModule,
     SharedModule,

@@ -11,6 +11,7 @@ import { IfScreenModule } from 'src/app/common/directives/if-screen/if-screen.mo
 import { StickyModule } from 'src/app/common/directives/sticky/sticky.module';
 import { PipesModule } from 'src/app/common/pipes/pipes.module';
 import { PlayerNameLinkModule } from 'src/app/common/players/components/player-name-link/player-name-link.module';
+import { CommonGuardsModule } from 'src/app/common/routing/guards/common-guards.module';
 import { TeamLogoModule } from 'src/app/common/teams/team-logo/team-logo.module';
 import { TeamsKickoffTimesService } from 'src/app/common/teams/teams-kickoff-times/services/teams-kickoff-times.service';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -50,6 +51,7 @@ import { PlayersCompareComponent } from './view/players-compare.component';
   ],
   imports: [
     CommonModule,
+    CommonGuardsModule,
     PlayersCompareRoutingModule,
     SharedModule,
     AngularMaterialModule,
