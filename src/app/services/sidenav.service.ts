@@ -14,6 +14,12 @@ export class SidenavService {
     this._opened$ = new BehaviorSubject(!this.screenSizeService.isMobile());
   }
 
+  public closeOnMobile(): void {
+    if (this.screenSizeService.isMobile()) {
+      this._opened$.next(false);
+    }
+  }
+
   public toggle(): void {
     this._opened$.next(!this._opened$.getValue());
   }

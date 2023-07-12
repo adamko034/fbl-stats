@@ -37,3 +37,7 @@
 .flex-row-wrap {
   @apply flex flex-row flex-wrap;
 }
+
+.overflow-initial {
+  overflow: initial !important;
+}

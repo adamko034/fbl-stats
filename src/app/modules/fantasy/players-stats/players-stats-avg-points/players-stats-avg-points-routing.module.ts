@@ -13,7 +13,7 @@ const routes: Routes = [
     component: PlayersStatsAvgPointsComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Players Stats: Avg Points' }
+    data: { pageTitle: 'Players Stats: Avg Points', pageTitleMobile: 'Avg Points' }
   }
 ];
 

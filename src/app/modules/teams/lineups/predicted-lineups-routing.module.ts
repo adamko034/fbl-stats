@@ -43,7 +43,7 @@ const routes: Routes = [
           lastMatchday: LastMatchdayResolver
         },
         canActivate: [PageTitleGuard],
-        data: { pageTitle: 'Predicted Lineups: Summary' }
+        data: { pageTitle: 'Predicted Lineups: Summary', pageTitleMobile: 'Predicted Lineups' }
       },
       {
         path: 'next/:team',
@@ -55,7 +55,7 @@ const routes: Routes = [
           players: TeamPlayersResolver
         },
         canActivate: [PageTitleGuard],
-        data: { pageTitle: 'Predicted Lineups: Team' }
+        data: { pageTitle: 'Predicted Lineups' }
       },
       {
         path: 'sources',
@@ -66,7 +66,7 @@ const routes: Routes = [
           teams: PredictedLineupsSourcesTeamsResolver
         },
         canActivate: [PageTitleGuard],
-        data: { pageTitle: 'Predicted Lineups: Sources' }
+        data: { pageTitle: 'Predicted Lineups Sources' }
       }
     ]
   }

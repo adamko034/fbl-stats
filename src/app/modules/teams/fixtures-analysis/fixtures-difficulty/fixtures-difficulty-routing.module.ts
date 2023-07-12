@@ -20,7 +20,7 @@ const routes: Routes = [
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Fixtures Analysis: Difficulty Matrix' }
+    data: { pageTitle: 'Fixtures Analysis: Difficulty Matrix', pageTitleMobile: 'Fixutres Difficulty' }
   }
 ];
 

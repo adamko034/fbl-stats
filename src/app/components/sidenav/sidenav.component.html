@@ -85,6 +85,7 @@
     class="link-main flex-row-space-between-center"
     [ngClass]="{ 'link-main-sublink': isSublink }"
     [routerLink]="link.path"
+    (click)="closeSideNav()"
   >
     <ng-template [ngTemplateOutlet]="linkTemplate" [ngTemplateOutletContext]="{ link: link }"></ng-template>
   </a>

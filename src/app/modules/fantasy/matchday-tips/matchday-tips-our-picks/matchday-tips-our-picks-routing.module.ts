@@ -13,7 +13,7 @@ const routes: Routes = [
     canActivate: [MatchdayTipsOurPicksLoadedGuard, PageTitleGuard],
     component: MatchdayTipsOurPicksComponent,
     resolve: { ourPicks: MatchdayTipsOurPicksResolver, lastMatchday: LastMatchdayResolver },
-    data: { pageTitle: 'Matchday Tips: Proposed Picks' }
+    data: { pageTitle: 'Matchday Tips: Proposed Picks', pageTitleMobile: 'Proposed Picks' }
   }
 ];
 

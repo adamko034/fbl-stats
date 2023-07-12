@@ -55,6 +55,13 @@ export class GuiConfigStore {
     );
   }
 
+  public selectPageTitleMobile(): Observable<string> {
+    return this.config$.pipe(
+      map((config) => config.pageTitleMobile ?? ''),
+      distinctUntilChanged()
+    );
+  }
+
   public changeMyTeamPlayerIds(ids: string[]): void {
     this.config.myTeam = { ...this.config.myTeam, playerIds: ids };
     this.send();
@@ -79,8 +86,9 @@ export class GuiConfigStore {
     this.send();
   }
 
-  public changePageTitle(pageTitle: string): void {
+  public changePageTitle(pageTitle: string, pageTitleMobile: string): void {
     this.config.pageTitle = pageTitle;
+    this.config.pageTitleMobile = pageTitleMobile;
     this.send(false);
   }
 

@@ -18,7 +18,7 @@ const routes: Routes = [
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Fixtures Analysis: Kickoff Times' }
+    data: { pageTitle: 'Fixtures Analysis: Kickoff Times', pageTitleMobile: 'Kickoff Times' }
   }
 ];
 

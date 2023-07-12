@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IfScreenModule } from './common/directives/if-screen/if-screen.module';
 import { PipesModule } from './common/pipes/pipes.module';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -42,10 +43,7 @@ import { AboutUsComponent } from './modules/about-us/views/about-us/about-us.com
     SharedModule,
     FblCoreModule,
     AngularMaterialModule,
-    // AdsenseModule.forRoot({
-    //   adClient: 'ca-pub-2064593657160416',
-    //   adSlot: 7293848343
-    // }),
+    IfScreenModule,
     MomentModule,
     PipesModule
   ],

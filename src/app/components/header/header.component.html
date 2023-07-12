@@ -1,6 +1,6 @@
-<div class="header flex-row-space-between-center">
+<div class="header flex-row-space-between-center px-1 sm:px-2 md:px-3">
   <div class="flex flex-row items-center">
-    <button class="block sm:hidden" mat-icon-button aria-label="Toggle menu" (click)="onToggleMenu()">
+    <button class="block md:hidden" mat-icon-button aria-label="Toggle menu" (click)="onToggleMenu()">
       <mat-icon>menu</mat-icon>
     </button>
     <button *ngIf="showBackButton$ | async" mat-icon-button (click)="goBack()">
@@ -8,7 +8,16 @@
     </button>
   </div>
 
-  <span class="text-[17px] font-medium">{{ pageTitle$ | async }}</span>
+  <span
+    *appIfScreen="{ type: 'eq', size: screens.XS }"
+    class="text-[16px] font-medium whitespace-nowrap overflow-hidden text-ellipsis"
+    >{{ pageTitleMobile$ | async }}</span
+  >
+  <span
+    *appIfScreen="{ type: 'gt', size: screens.XS }"
+    class="text-[16px] font-medium whitespace-nowrap overflow-hidden text-ellipsis"
+    >{{ pageTitle$ | async }}</span
+  >
 
   <div>
     <app-players-picker

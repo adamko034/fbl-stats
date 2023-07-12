@@ -11,7 +11,7 @@ const routes: Routes = [
     title: 'Players Stats: Games Played',
     resolve: { players: PlayersGamesPlayedResolver, lastMatchday: LastMatchdayResolver },
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Players Stats: Games Played' },
+    data: { pageTitle: 'Players Stats: Games Played', pageTitleMobile: 'Games Played' },
     component: PlayersGamesPlayedComponent,
     runGuardsAndResolvers: 'always'
   }

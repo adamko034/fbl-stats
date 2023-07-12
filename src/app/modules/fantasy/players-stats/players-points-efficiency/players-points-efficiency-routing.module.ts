@@ -18,7 +18,7 @@ const routes: Routes = [
         resolve: { pointsEfficiency: PlayersPointsEffciencyResolver },
         title: 'FBL Players Stats Points Efficiency',
         canActivate: [PageTitleGuard],
-        data: { pageTitle: 'Players Stats: Points Efficiency' },
+        data: { pageTitle: 'Players Stats: Points Efficiency', pageTitleMobile: 'Points Efficiency' },
         component: PlayersPointsEfficiencyComponent,
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
       }

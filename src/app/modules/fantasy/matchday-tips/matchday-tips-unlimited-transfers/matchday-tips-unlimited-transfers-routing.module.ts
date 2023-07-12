@@ -11,7 +11,7 @@ const routes: Routes = [
     title: 'Matchday Tips Unlimited Transfers',
     resolve: { state: MatchdayTipsUnlimitedTransfersResolver },
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Matchday Tips: Unlimited Transfers' }
+    data: { pageTitle: 'Matchday Tips: Unlimited Transfers', pageTitleMobile: 'Unlimited Transfers' }
   }
 ];
 

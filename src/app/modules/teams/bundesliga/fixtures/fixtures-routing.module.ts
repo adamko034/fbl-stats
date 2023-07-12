@@ -27,7 +27,7 @@ const routes: Routes = [
             path: ':away',
             component: BundesligaFixtureDetailsComponent,
             canActivate: [PageTitleGuard],
-            data: { pageTitle: 'Bundesliga: Fixture Details' }
+            data: { pageTitle: 'Bundesliga: Fixture Details', pageTitleMobile: 'Fixture Details' }
           }
         ]
       }

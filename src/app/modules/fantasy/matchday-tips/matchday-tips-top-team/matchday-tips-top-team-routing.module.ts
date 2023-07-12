@@ -12,7 +12,7 @@ const routes: Routes = [
     component: MatchdayTipsTopTeamComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Matchday Tips: Best Team' }
+    data: { pageTitle: 'Matchday Tips: Best Team', pageTitleMobile: 'Best Team' }
   }
 ];
 

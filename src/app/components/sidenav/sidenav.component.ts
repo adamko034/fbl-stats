@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Navigation2 } from 'src/app/resources/navigation2';
+import { SidenavService } from 'src/app/services/sidenav.service';
 import { NavigationLink } from 'src/app/shared/models/navigation-link.model';
 
 @Component({
@@ -20,6 +21,8 @@ export class SidenavComponent {
     return `${window.innerHeight}px`;
   }
 
+  constructor(private sidenavService: SidenavService) {}
+
   public toggleNav(navKey: string) {
     const current = this.openedNavs$.getValue();
     const index = current.indexOf(navKey);
@@ -31,5 +34,9 @@ export class SidenavComponent {
     }
 
     this.openedNavs$.next([...current]);
+  }
+
+  public closeSideNav() {
+    this.sidenavService.closeOnMobile();
   }
 }

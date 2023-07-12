@@ -3,6 +3,7 @@ export interface GuiConfig {
   myTeam?: GuiConfigMyTeam;
   comparePlayers?: GuiConfigComparePlayers;
   pageTitle?: string;
+  pageTitleMobile?: string;
 }
 
 export interface GuiConfigComparePlayers {

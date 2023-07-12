@@ -21,7 +21,7 @@ const routes: Routes = [
       nextUnlimitedTransfers: NextUnlimitedTransfersResover
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-    data: { pageTitle: 'Fixtures Analysis: First Games' }
+    data: { pageTitle: 'Fixtures Analysis: First Games', pageTitleMobile: 'First Games' }
   }
 ];
 

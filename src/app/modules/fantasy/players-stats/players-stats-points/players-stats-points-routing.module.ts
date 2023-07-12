@@ -12,7 +12,7 @@ const routes: Routes = [
     component: PlayersStatsPointsComponent,
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     canActivate: [PageTitleGuard],
-    data: { pageTitle: 'Players Stats: Fantasy Points' }
+    data: { pageTitle: 'Players Stats: Fantasy Points', pageTitleMobile: 'Fantasy Points' }
   }
 ];
 

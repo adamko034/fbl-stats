@@ -7,7 +7,8 @@ export class PageTitleGuard implements CanActivate {
   constructor(private guiConfigStore: GuiConfigStore) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    this.guiConfigStore.changePageTitle(route.data['pageTitle']);
+    const mobileTitle = route.data['pageTitleMobile'] ?? route.data['pageTitle'];
+    this.guiConfigStore.changePageTitle(route.data['pageTitle'], mobileTitle);
     return true;
   }
 }
